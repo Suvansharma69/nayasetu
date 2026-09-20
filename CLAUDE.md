@@ -1,0 +1,225 @@
+# Pramana — Project Context
+**Read this file fully before doing anything. This is the single source of truth for the project. If any instruction in a session conflicts with this file, flag the conflict instead of silently picking one.**
+
+---
+
+## 1. What This Is
+
+**Pramana** is an AI-assisted legal research system for Indian criminal law. A lawyer inputs case facts and an offence date; the system identifies applicable statutory provisions (IPC or BNS, whichever era applies), verifies every citation against real ingested data before showing it, matches precedent judgments, generates likely counter-arguments, and produces section-level outcome analytics — conviction rates and sentence ranges pulled from real judgment data.
+
+It is a college capstone project, built to run at **zero recurring cost**, with a **fully local fallback mode**, on a **Windows laptop with roughly 20GB of free disk space** and a 4GB VRAM GPU.
+
+---
+
+## 2. Non-Negotiable Architectural Decisions
+**Do not deviate from these without explicitly flagging it and asking first.**
+
+- **RAG, not fine-tuning**, for the generation layer. This is empirically justified: a domain-fine-tuned Indian legal model (AALAP) scored *worse* than an untouched base model on the AIBE benchmark, while a RAG-augmented approach scored highest of everything tested. Never suggest fine-tuning a model as a solution to a quality problem — the fix is better retrieval or better prompting, not fine-tuning.
+- **Every citation MUST be checked against the NetworkX citation graph** before being shown as verified. No exceptions. A section number or case ID is only ever "real" if it exists as a node in the graph, built from actually-ingested data.
+- **Zero recurring cost.** Never introduce a paid API, paid service, or paid tier without flagging it first. Gemini API free tier is the primary generation path; a local Ollama model is the fallback.
+- **Offence-Date Router** (Stage 0, deterministic, no LLM): offence before 1 July 2024 → IPC collections; offence on/after 1 July 2024 → BNS collections + post-2024 judgments. This is load-bearing — every downstream retrieval depends on getting this right.
+- **Embedding model is InLegal-Sbert specifically** (`sentence-transformers` compatible, adapted from InLegalBERT) — not a generic sentence-transformer default. It's domain-pretrained on 5.4M Indian legal documents.
+- **GPU-accelerated PyTorch (CUDA build)** for embeddings — InLegal-Sbert runs on GPU. This costs more disk space than the CPU-only build (~2GB more), which is accounted for in the Section 4 storage budget. Ollama's fallback model manages its own GPU access independently either way.
+- **"Insufficient data" guardrail**: if retrieval returns nothing relevant above threshold, return an explicit "insufficient data" response rather than forcing the LLM to generate an answer from weak context.
+
+---
+
+## 3. System Architecture
+
+```
+OFFLINE (built once):
+Data ingestion → preprocessing → legal embeddings (InLegal-Sbert) → ChromaDB
+                                                                    ↘
+                                                          Citation Graph (NetworkX)
+
+RUNTIME (per case):
+Input (case facts + offence date)
+  → Stage 0: Offence-Date Router (deterministic)
+  → Retrieval (InLegal-Sbert encodes query, searches ChromaDB)
+  → [insufficient data? → return early, skip LLM]
+  → LangGraph pipeline:
+       Node 1: Statute Identifier   (proposes candidate_sections)
+       Node 2: Verifier              (checks against citation graph → verified_sections)
+                 ↳ conditional edge: if unconfirmed and retry_count < 2 → back to Node 1, with feedback
+       Node 3: Precedent Matcher     (retrieves judgments for verified sections;
+                                       for post-2024 cases, ALSO checks the IPC-predecessor
+                                       section via the mapping table — precedent shouldn't
+                                       be cut off artificially at the BNS transition date)
+       Node 4: Defense Generator     (counter-arguments from verified_sections + precedents)
+       Node 5: Outcome Analytics     (runs in PARALLEL with Node 3 — reads only
+                                       verified_sections, pure SQL aggregation over a
+                                       pre-extracted outcomes table, NO LLM call at runtime,
+                                       suppressed below ~5 supporting judgments)
+  → Final verification pass (re-check any new citations Node 3/4 introduced)
+  → FastAPI backend → Streamlit report (verified vs. unconfirmed MUST be visually distinct)
+```
+
+**LangGraph shared state schema** (exact field names to use):
+```python
+state = {
+    "case_facts": str,
+    "offence_date": str,
+    "candidate_sections": list,
+    "verified_sections": list,
+    "precedents": list,
+    "analytics": dict,
+    "defenses": list,
+    "retry_count": int,
+}
+```
+
+**Worked example to test against** (use this as your standard end-to-end test case): a case description mentioning theft of a motorcycle, offence date 15 August 2024. Router selects BNS (date is after 1 Jul 2024). Retrieval surfaces BNS §303 (theft). Node 1 proposes §303. Node 2 confirms it's a real ingested section. Node 3 retrieves judgments applying §303 *and* checks its IPC predecessor, §378, for pre-transition precedent where legally relevant. Node 4 proposes counter-arguments grounded only in verified sections and matched precedents.
+
+---
+
+## 4. Dataset & Storage Plan — Hard 20GB Ceiling
+
+This is a genuine constraint, not a preference. Budget:
+
+| Item | Budget |
+|---|---|
+| IPC + BNS statute JSON | ~50 MB |
+| Python environment (**GPU/CUDA** torch + sentence-transformers + ChromaDB + LangGraph + FastAPI/Streamlit) | ~4.5 GB |
+| Ollama + `gemma3:4b` (Q4) | ~3 GB |
+| vanga SC judgments — **2023 and 2024 only**, not the full archive | ~4–5 GB |
+| NyayaAnumana — **curated subset of a few thousand cases** filtered to theft/assault/cheating/common-intention offence types, NOT the full 702,945-case collection | ~1–2 GB |
+| ChromaDB vector index + citation graph | ~0.5–1 GB |
+| Working buffer (git, temp files) | ~3 GB |
+| **Total** | **~18.5 GB, leaving only ~1.5 GB headroom** |
+
+**This is noticeably tighter than the CPU-only plan (~1.5GB headroom vs. ~3.5GB) — treat that headroom as real, not padding.** If any dataset estimate below runs high in practice, the fix is trimming a dataset (e.g. 1 year of vanga instead of 2), not assuming there's slack to absorb it.
+
+**Rules to enforce:**
+1. Pull vanga's SC judgment archive filtered to **2023 + 2024 specifically** (it's organized by year on S3) — this straddles the IPC→BNS transition, giving real data on both sides of the router logic.
+2. Do **not** download NyayaAnumana's bulk collection. Pull a curated, filtered subset.
+3. **Download the NyayaAnumana subset first**, check actual remaining disk space, *then* size the vanga pull based on what's really left — don't trust the estimates above blindly, they're estimates, not confirmed figures. With only ~1.5GB headroom under the GPU-enabled plan, check remaining space after every major download, not just at the end.
+4. Once `data/processed/` exists and is verified correct, **delete `data/raw/`**. Don't keep both simultaneously — that's paying for the same data twice.
+5. If disk space gets tight mid-project, the fix is a smaller data subset, never a bigger disk budget assumption.
+
+---
+
+## 5. Tech Stack
+
+| Layer | Tool |
+|---|---|
+| Embedding model | InLegal-Sbert (via `sentence-transformers`) |
+| Vector store | ChromaDB (embedded, file-based, 4 collections: `ipc_sections`, `bns_sections`, `judgments_pre2024`, `judgments_post2024`) |
+| Citation graph | NetworkX (in-memory, no server) |
+| Orchestration | LangGraph |
+| Generation — primary | Gemini API (free tier) |
+| Generation — fallback | Ollama, `gemma3:4b`, local |
+| Backend | FastAPI |
+| Frontend | Streamlit |
+| Outcomes storage | SQLite |
+
+---
+
+## 6. Windows-Specific Setup Notes
+
+```powershell
+# Virtual environment
+python -m venv venv
+venv\Scripts\activate
+
+# GPU-accelerated PyTorch (CUDA build) — check pytorch.org's "Get Started" selector
+# for the exact command matching your installed CUDA driver version; cu121 shown as
+# the common current example:
+pip install torch --index-url https://download.pytorch.org/whl/cu121
+
+# Rest of requirements
+pip install sentence-transformers chromadb networkx langgraph google-genai fastapi uvicorn streamlit python-dotenv pytest
+
+# Ollama (native Windows installer, or winget)
+winget install Ollama.Ollama
+ollama pull gemma3:4b
+ollama run gemma3:4b "hello"   # confirm it works before you need it as a fallback
+```
+
+Claude Code on Windows uses Git Bash for its Bash tool if Git for Windows is installed; otherwise it falls back to PowerShell. Either works for this project — no bash-specific scripting is required by the plan below.
+
+---
+
+## 7. Folder Structure
+
+**Real root on this machine is `D:\nayasetu`** — `pramana/` below names the project, not a nested folder. `data/`, `src/`, `app/`, `tests/` sit directly in `D:\nayasetu`.
+
+```
+pramana/                     # == D:\nayasetu
+├── data/
+│   ├── raw/                 # untouched downloads — delete after processing, never commit
+│   ├── processed/           # cleaned, chunked JSON
+│   └── mappings/             # IPC↔BNS section mapping table
+├── src/
+│   ├── ingest/               # Phase 1
+│   ├── retrieval/             # Phase 2
+│   ├── graph/                 # Phase 3
+│   ├── pipeline/               # Phase 4–5 (LangGraph nodes)
+│   ├── eval/                   # Phase 6
+│   └── api/                    # Phase 7 (FastAPI)
+├── app/                     # Streamlit frontend (Phase 7)
+├── tests/                   # mirrors src/
+├── .env.example              # never commit the real .env
+├── requirements.txt
+└── CLAUDE.md                # this file
+```
+
+---
+
+## 8. The 7 Phases
+
+**Work one phase per session. Start each with `/clear`. Use Plan Mode before writing code on Phase 4 and later — ask for a plan, review it, then approve implementation.**
+
+### Phase 1 — Data Layer (2 weeks)
+Pull civictech-India IPC/CrPC JSON, curate BNS dataset, build the IPC↔BNS mapping table (highest-risk task — spot-check against real gazette text, don't fully automate), pull the NyayaAnumana subset and the 2023+2024 vanga judgments per Section 4's storage plan. Chunk statutes one-section-per-chunk; chunk judgments by paragraph/holding, never fixed token count. Every chunk gets metadata: source, court, date, sections_involved.
+**Done when:** processed JSON validates against a fixed schema; 20 random chunks manually spot-checked, none truncated or malformed.
+
+### Phase 2 — Retrieval (1 week)
+Embed everything with InLegal-Sbert into the four ChromaDB collections. Write one reusable `retrieve(query_text, collection) -> top_k` function. Test against 15 hand-written case-fact examples spanning theft, assault, cheating, common intention.
+**Done when:** top-3 results manually judged relevant in at least 12/15 test cases. If not, fix chunking before moving on — don't carry bad retrieval forward.
+
+### Phase 3 — Citation Graph (1 week)
+Build the NetworkX graph (section + case nodes, case→section edges from Phase 1 metadata). Implement `verify_section()`, `verify_case()`, `get_precedents_for_section()`.
+**Done when:** 100% correct on an adversarial test set of 10 real + 10 fabricated section numbers. This is a binary gate.
+
+### Phase 4 — Single-Node Pipeline (2 weeks)
+LangGraph `StateGraph` with the exact schema from Section 3. Implement the Offence-Date Router as a plain function (not a graph node — deterministic, before the graph). Implement the insufficient-data guardrail. Node 1 + Node 2 + the conditional retry edge (cap `retry_count < 2`, feed the specific unconfirmed section back into the retry prompt).
+**Done when:** 10 test cases (5 pre-2024, 5 post-2024) route correctly every time; a deliberately-adversarial case demonstrably triggers and survives the retry loop.
+
+### Phase 5 — Full Pipeline (2 weeks)
+Node 3 (with the IPC-predecessor check for post-2024 cases), Node 4, and Node 5 (offline outcome-extraction batch job into SQLite, then the runtime SQL-only aggregation with the small-sample guardrail). Wire Node 5 to run in parallel with Node 3.
+**Done when:** the motorcycle-theft worked example (Section 3) runs end-to-end and produces a correctly-structured report.
+
+### Phase 6 — Evaluation (1 week)
+Evaluate Node 1 and Node 3 against IL-TUR's LSI and PCR tasks. Compute the hallucination-catch-rate: of all citations Node 1 ever proposed, what fraction were caught unconfirmed by Node 2, and what fraction were corrected within 2 retries.
+**Done when:** real numbers exist in `docs/evaluation_results.md`, reproducible by re-running one script.
+
+### Phase 7 — Frontend (1 week)
+FastAPI endpoint wrapping the full pipeline. Streamlit form (case facts + offence date) → structured report, verified vs. unconfirmed visually distinct. Ollama fallback wired for when Gemini is unavailable.
+**Done when:** the motorcycle-theft example works end-to-end in the browser with no manual steps.
+
+---
+
+## 9. Working Discipline
+
+- One phase ≈ one session. `/clear` between phases; `/compact` mid-phase if running long but not done.
+- Git: `main` always working; one branch per phase (`phase-1-data`, `phase-2-retrieval`, …); merge only when that phase's "Done when" criteria are actually met — not just when the code runs without errors.
+- **Whenever a mistake gets corrected, add it to this file's "Known Gotchas" section below** — don't let the same mistake recur in a later session.
+- If a change to citation verification or the retry loop is proposed as a "simplification," treat it with extra scrutiny — this logic is easy to subtly weaken while cleaning it up.
+
+---
+
+## 10. Current Status
+*(Update this line at the end of every session.)*
+
+**Current phase:** Not started — begin with Phase 0 (environment setup), then Phase 1.
+
+## Known Gotchas
+
+*Resolved 2026-09-20, before Phase 0 - four points where this file disagreed with the actual machine.*
+
+- **Project root is `D:\nayasetu`, not `D:\nayasetu\pramana`.** Section 7's tree labels the project, not a directory to create. Don't "fix" this by nesting a `pramana/` folder.
+- **`google-generativeai` is retired; use `google-genai`.** Google replaced the SDK. Same free tier, different import surface (`from google import genai`). Section 6 has been updated - don't revert to the old package name just because older tutorials use it.
+- **The 20GB ceiling in Section 4 is a deliberate discipline, not a reading of the disk.** `D:` actually has ~107GB free. The ceiling was kept anyway - smaller curated data embeds faster on 4GB VRAM and keeps iteration tight. Seeing free space is *not* grounds to widen dataset scope; Section 4 rule 5 still stands.
+- **Ollama models must live on `D:`, never `C:`.** `C:` has only ~10GB free, and 20.67GB of old models were sitting in `C:\Users\<user>\.ollama\models` even though `OLLAMA_MODELS` was set to `D:\stuff` - the *user-level* env var never reached the Ollama background service. Setting `OLLAMA_MODELS` alone is insufficient: the service must be restarted (or the var set machine-wide) for it to take effect. The same trap applies to `pip`'s wheel cache, which defaults to `C:` and holds ~2.5GB for the CUDA torch build - redirect it before installing.
+
+*(Add to this as you hit real issues during the build.)*

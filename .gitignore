@@ -1,0 +1,42 @@
+# --- Data (Section 4: never commit; data/raw/ is deleted after processing) ---
+data/raw/
+data/processed/
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# data/mappings/ IS committed - the IPC<->BNS table is hand-verified source of truth
+
+# --- Vector store / graph / outcomes (all rebuildable artifacts) ---
+chroma/
+chroma_db/
+*.sqlite3
+outcomes.db
+citation_graph.pkl
+citation_graph.gpickle
+
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Python ---
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Model / HF caches (large; keep off the repo and off C:) ---
+.cache/
+models/
+*.safetensors
+*.gguf
+
+# --- OS / editor ---
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
