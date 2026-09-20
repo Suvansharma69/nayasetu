@@ -121,10 +121,11 @@ This is a genuine constraint, not a preference. Budget:
 python -m venv venv
 venv\Scripts\activate
 
-# GPU-accelerated PyTorch (CUDA build) — check pytorch.org's "Get Started" selector
-# for the exact command matching your installed CUDA driver version; cu121 shown as
-# the common current example:
-pip install torch --index-url https://download.pytorch.org/whl/cu121
+# GPU-accelerated PyTorch (CUDA build). On THIS machine torch was NOT downloaded
+# - it was copied from an existing venv (see Known Gotchas). To rebuild from
+# scratch, check pytorch.org's "Get Started" selector for the command matching
+# your CUDA driver; the installed build is 2.6.0+cu124:
+pip install torch --index-url https://download.pytorch.org/whl/cu124
 
 # Rest of requirements
 pip install sentence-transformers chromadb networkx langgraph google-genai fastapi uvicorn streamlit python-dotenv pytest
@@ -226,5 +227,7 @@ FastAPI endpoint wrapping the full pipeline. Streamlit form (case facts + offenc
 - **The embedder and the Ollama fallback cannot both hold VRAM.** 4GB total. At runtime the query is embedded immediately before generation, so Phase 7 must free the SentenceTransformer (or pin it to CPU for single-query encoding) before invoking Ollama. Encoding one query on CPU costs milliseconds; this is not a reason to claw back VRAM elsewhere.
 - **Gemini free tier is Flash-only since May 2026.** Pro models moved behind billing. `gemini-3.8-flash` is the newest free Flash; `gemini-3.1-flash-lite` has higher limits and is the degrade target. Do not write `gemini-2.0-flash` or any `*-pro` ID into config. Note also that Google may train on free-tier prompts - fine for public judgment data, but never send a real client's facts through it.
 - **The network link here is slow (~700 KB/s).** The 2.6GB torch wheel and any Ollama pull each take roughly an hour. Do not run two large downloads concurrently, and do not assume a slow-looking download is hung.
+- **The venv was seeded by copying torch from `D:\legal\venv`, not by downloading it.** On a ~700 KB/s link the 2.6GB wheel takes an hour; the machine already had five CUDA torch builds on Python 3.12.7. Copied `torch 2.6.0+cu124` plus `transformers`/`tokenizers`/`numpy`/`huggingface_hub`/`safetensors` and friends into `D:\nayasetu\venv\Lib\site-packages`, verified with a real GPU matmul. **This only works because donor and target are byte-identical Python versions** (3.12.7, `_C.cp312-win_amd64.pyd`) - a 3.11 donor would import-error on the compiled extension. `torchaudio`/`torchvision` were deliberately left behind as unused GBs against the Section 4 budget. If `D:\legal\venv` is ever deleted this venv is unaffected; the files were copied, not linked.
+- **Installed torch is 2.6.0+cu124, not the newest.** It came from the donor. Fine for everything here (sentence-transformers needs only >=1.11). Do not "upgrade" it casually - that means re-downloading 2.6GB on a slow link for no gain.
 
 *(Add to this as you hit real issues during the build.)*
