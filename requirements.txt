@@ -1,0 +1,35 @@
+# Pramana - Python dependencies (see CLAUDE.md Section 5 & 6)
+#
+# torch is NOT listed here: the CUDA build must come from PyTorch's own index,
+# not PyPI (PyPI's Windows wheel is CPU-only). Install it FIRST, separately:
+#
+#     pip install torch --index-url https://download.pytorch.org/whl/cu126
+#
+# Then:  pip install -r requirements.txt
+#
+# Exact pinned versions of everything actually installed: requirements.lock.txt
+
+# --- Embeddings & vector store ---
+sentence-transformers      # loads bhavyagiri/InLegal-Sbert (NOT law-ai/InLegalBERT)
+chromadb                   # embedded, file-based; 4 collections
+
+# --- Citation graph (Section 2: every citation verified against this) ---
+networkx                   # in-memory, no server
+
+# --- Orchestration ---
+langgraph                  # StateGraph; schema pinned in CLAUDE.md Section 3
+
+# --- Generation: primary (Gemini free tier) ---
+google-genai               # current SDK; google-generativeai is retired
+
+# --- Backend / frontend ---
+fastapi
+uvicorn
+streamlit
+
+# --- Misc ---
+python-dotenv
+pytest
+
+# Ollama fallback (gemma3:4b) is a native install, not a pip package.
+# Outcomes storage is SQLite - stdlib, no dependency.
