@@ -136,7 +136,7 @@ def _():
     with urllib.request.urlopen(f"{host}/api/tags", timeout=10) as r:
         tags = json.load(r)
     names = [m["name"] for m in tags.get("models", [])]
-    want = os.environ.get("OLLAMA_MODEL", "gemma3:4b")
+    want = os.environ.get("OLLAMA_MODEL", "qwen3.5:4b")
     assert any(n.startswith(want.split(":")[0]) for n in names), (
         f"{want} not pulled; have {names}"
     )
