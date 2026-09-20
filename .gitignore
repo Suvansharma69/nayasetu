@@ -1,8 +1,9 @@
 # --- Data (Section 4: never commit; data/raw/ is deleted after processing) ---
 data/raw/
 data/processed/
-!data/raw/.gitkeep
-!data/processed/.gitkeep
+# NB: no !data/raw/.gitkeep negation - git cannot re-include a file inside an
+# excluded directory, so the negation would be dead. These dirs are recreated
+# by scripts, not by git.
 
 # data/mappings/ IS committed - the IPC<->BNS table is hand-verified source of truth
 
