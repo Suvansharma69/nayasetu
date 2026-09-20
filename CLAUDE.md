@@ -18,7 +18,7 @@ It is a college capstone project, built to run at **zero recurring cost**, with 
 - **Every citation MUST be checked against the NetworkX citation graph** before being shown as verified. No exceptions. A section number or case ID is only ever "real" if it exists as a node in the graph, built from actually-ingested data.
 - **Zero recurring cost.** Never introduce a paid API, paid service, or paid tier without flagging it first. Gemini API free tier is the primary generation path; a local Ollama model is the fallback.
 - **Offence-Date Router** (Stage 0, deterministic, no LLM): offence before 1 July 2024 → IPC collections; offence on/after 1 July 2024 → BNS collections + post-2024 judgments. This is load-bearing — every downstream retrieval depends on getting this right.
-- **Embedding model is InLegal-Sbert specifically** (`sentence-transformers` compatible, adapted from InLegalBERT) — not a generic sentence-transformer default. It's domain-pretrained on 5.4M Indian legal documents.
+- **Embedding model: InLegal-Sbert is the DEFAULT, confirmed by measurement at the Phase 2 gate.** `bhavyagiri/InLegal-Sbert` (`sentence-transformers` compatible, adapted from InLegalBERT, domain-pretrained on 5.4M Indian legal documents) - never a generic sentence-transformer picked by default. *Amended 2026-09-20:* domain-pretraining is no longer assumed to settle the question. The Prior Case Retrieval study arXiv 2507.18455 evaluated PCR on Indian legal data and found general-purpose embedders match or beat InLegalBERT/InLegal-Sbert. So the choice is decided by `scripts/embedding_bakeoff.py` against the 15 Phase 2 test cases, not by assertion. **The winner is locked before mass ingestion** - changing embedder afterwards means re-embedding the whole corpus. Candidates are capped by the 4GB VRAM / 20GB disk budget, which rules out all 7B-class leaderboard leaders.
 - **GPU-accelerated PyTorch (CUDA build)** for embeddings — InLegal-Sbert runs on GPU. This costs more disk space than the CPU-only build (~2GB more), which is accounted for in the Section 4 storage budget. Ollama's fallback model manages its own GPU access independently either way.
 - **"Insufficient data" guardrail**: if retrieval returns nothing relevant above threshold, return an explicit "insufficient data" response rather than forcing the LLM to generate an answer from weak context.
 
@@ -80,7 +80,7 @@ This is a genuine constraint, not a preference. Budget:
 |---|---|
 | IPC + BNS statute JSON | ~50 MB |
 | Python environment (**GPU/CUDA** torch + sentence-transformers + ChromaDB + LangGraph + FastAPI/Streamlit) | ~4.5 GB |
-| Ollama + `gemma3:4b` (Q4) | ~3 GB |
+| Ollama + `qwen3.5:4b` (Q4) | ~3.4 GB |
 | vanga SC judgments — **2023 and 2024 only**, not the full archive | ~4–5 GB |
 | NyayaAnumana — **curated subset of a few thousand cases** filtered to theft/assault/cheating/common-intention offence types, NOT the full 702,945-case collection | ~1–2 GB |
 | ChromaDB vector index + citation graph | ~0.5–1 GB |
@@ -102,12 +102,12 @@ This is a genuine constraint, not a preference. Budget:
 
 | Layer | Tool |
 |---|---|
-| Embedding model | InLegal-Sbert (via `sentence-transformers`) |
+| Embedding model | InLegal-Sbert default, `bhavyagiri/InLegal-Sbert` - challenger BGE-M3, decided at Phase 2 gate |
 | Vector store | ChromaDB (embedded, file-based, 4 collections: `ipc_sections`, `bns_sections`, `judgments_pre2024`, `judgments_post2024`) |
 | Citation graph | NetworkX (in-memory, no server) |
 | Orchestration | LangGraph |
-| Generation — primary | Gemini API (free tier) |
-| Generation — fallback | Ollama, `gemma3:4b`, local |
+| Generation — primary | Gemini API free tier - `gemini-3.8-flash`, degrading to `gemini-3.1-flash-lite` on rate limit |
+| Generation — fallback | Ollama, `qwen3.5:4b`, local (replaced `gemma3:4b` - see Known Gotchas) |
 | Backend | FastAPI |
 | Frontend | Streamlit |
 | Outcomes storage | SQLite |
@@ -131,8 +131,8 @@ pip install sentence-transformers chromadb networkx langgraph google-genai fasta
 
 # Ollama (native Windows installer, or winget)
 winget install Ollama.Ollama
-ollama pull gemma3:4b
-ollama run gemma3:4b "hello"   # confirm it works before you need it as a fallback
+ollama pull qwen3.5:4b
+ollama run qwen3.5:4b "hello"   # confirm it works before you need it as a fallback
 ```
 
 Claude Code on Windows uses Git Bash for its Bash tool if Git for Windows is installed; otherwise it falls back to PowerShell. Either works for this project — no bash-specific scripting is required by the plan below.
@@ -222,5 +222,9 @@ FastAPI endpoint wrapping the full pipeline. Streamlit form (case facts + offenc
 - **The 20GB ceiling in Section 4 is a deliberate discipline, not a reading of the disk.** `D:` actually has ~107GB free. The ceiling was kept anyway - smaller curated data embeds faster on 4GB VRAM and keeps iteration tight. Seeing free space is *not* grounds to widen dataset scope; Section 4 rule 5 still stands.
 - **Ollama models must live on `D:`, never `C:`.** `C:` has only ~10GB free, and 20.67GB of old models were sitting in `C:\Users\<user>\.ollama\models` even though `OLLAMA_MODELS` was set to `D:\stuff` - the *user-level* env var never reached the Ollama background service. Setting `OLLAMA_MODELS` alone is insufficient: the service must be restarted (or the var set machine-wide) for it to take effect. The same trap applies to `pip`'s wheel cache, which defaults to `C:` and holds ~2.5GB for the CUDA torch build - redirect it before installing.
 - **InLegal-Sbert is `bhavyagiri/InLegal-Sbert`, NOT `law-ai/InLegalBERT`.** Easy to conflate: InLegal-Sbert is *adapted from* InLegalBERT, but only the Sbert variant has the trained pooling layer that makes it sentence-transformers compatible (768-dim). Loading the base `law-ai/InLegalBERT` through `SentenceTransformer` does **not** error - it silently attaches an untrained mean-pooling head and yields materially worse retrieval. If Phase 2 relevance is bad, check this env var before touching chunking.
+- **`gemma3:4b` was dropped for `qwen3.5:4b`.** gemma3:4b is 3.3GB on a 4096 MiB card; after ~0.5-0.8GB of Windows desktop VRAM there is almost nothing left for KV cache, so it spills to CPU. qwen3.5:4b is comparable on disk (3.4GB) but stronger at reasoning and carries a **256K context window**, which matters when stuffing retrieved judgment chunks into a prompt. If it proves too slow on the 3050 Ti, drop to `qwen3.5:2b` (2.7GB), which genuinely fits in VRAM. Do not "restore" gemma3:4b.
+- **The embedder and the Ollama fallback cannot both hold VRAM.** 4GB total. At runtime the query is embedded immediately before generation, so Phase 7 must free the SentenceTransformer (or pin it to CPU for single-query encoding) before invoking Ollama. Encoding one query on CPU costs milliseconds; this is not a reason to claw back VRAM elsewhere.
+- **Gemini free tier is Flash-only since May 2026.** Pro models moved behind billing. `gemini-3.8-flash` is the newest free Flash; `gemini-3.1-flash-lite` has higher limits and is the degrade target. Do not write `gemini-2.0-flash` or any `*-pro` ID into config. Note also that Google may train on free-tier prompts - fine for public judgment data, but never send a real client's facts through it.
+- **The network link here is slow (~700 KB/s).** The 2.6GB torch wheel and any Ollama pull each take roughly an hour. Do not run two large downloads concurrently, and do not assume a slow-looking download is hung.
 
 *(Add to this as you hit real issues during the build.)*

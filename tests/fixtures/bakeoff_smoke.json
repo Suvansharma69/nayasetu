@@ -1,0 +1,26 @@
+{
+  "_WARNING": "SMOKE FIXTURE ONLY - NOT VERIFIED LEGAL DATA. The section numbers and paraphrased texts below exist solely to prove the bake-off harness runs end-to-end before Phase 1 data exists. They are paraphrases, NOT gazette text, and they are NOT an IPC<->BNS mapping table. Per CLAUDE.md Section 8 the real mapping table must be hand-checked against gazette text. Never import this file into src/. Never cite it. Phase 2 replaces it with real ingested chunks.",
+  "corpus": [
+    {"id": "SMOKE-A", "text": "Whoever, intending to take dishonestly any movable property out of the possession of any person without that person's consent, moves that property in order to such taking, is said to commit theft."},
+    {"id": "SMOKE-B", "text": "Punishment for theft: imprisonment of either description for a term which may extend to three years, or with fine, or with both."},
+    {"id": "SMOKE-C", "text": "In theft, if the offender voluntarily causes or attempts to cause to any person death or hurt or wrongful restraint, in order to the committing of the theft, the theft is robbery."},
+    {"id": "SMOKE-D", "text": "Whoever by deceiving any person fraudulently or dishonestly induces the person so deceived to deliver any property to any person is said to cheat."},
+    {"id": "SMOKE-E", "text": "Whoever cheats and thereby dishonestly induces the person deceived to deliver any property, shall be punished with imprisonment which may extend to seven years and shall also be liable to fine."},
+    {"id": "SMOKE-F", "text": "Whoever causes bodily pain, disease or infirmity to any person is said to cause hurt."},
+    {"id": "SMOKE-G", "text": "Whoever voluntarily causes grievous hurt shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine."},
+    {"id": "SMOKE-H", "text": "When a criminal act is done by several persons in furtherance of the common intention of all, each of such persons is liable for that act in the same manner as if it were done by him alone."},
+    {"id": "SMOKE-I", "text": "Whoever commits mischief by causing destruction of any property, or any such change in property as destroys or diminishes its value or utility, shall be punished."},
+    {"id": "SMOKE-J", "text": "Whoever attempts to commit an offence punishable with imprisonment for life, and in such attempt does any act towards the commission of the offence, shall be punished."},
+    {"id": "SMOKE-K", "text": "Whoever dishonestly misappropriates or converts to his own use any movable property, shall be punished with imprisonment which may extend to two years, or with fine, or with both."},
+    {"id": "SMOKE-L", "text": "Whoever, being entrusted with property, dishonestly misappropriates or converts to his own use that property, commits criminal breach of trust."}
+  ],
+  "cases": [
+    {"query": "The accused took the complainant's motorcycle parked outside his house at night and rode away without permission, intending never to return it.", "relevant": ["SMOKE-A", "SMOKE-B"]},
+    {"query": "Three men surrounded the victim, one held him while another snatched his gold chain, injuring his neck in the process.", "relevant": ["SMOKE-C", "SMOKE-H"]},
+    {"query": "The accused persuaded the complainant to transfer money for a flat he did not own and never intended to deliver.", "relevant": ["SMOKE-D", "SMOKE-E"]},
+    {"query": "During a quarrel the accused struck the victim with an iron rod, fracturing his arm.", "relevant": ["SMOKE-F", "SMOKE-G"]},
+    {"query": "A group of four attacked the shopkeeper together, each playing a part in the assault under a shared plan.", "relevant": ["SMOKE-H"]},
+    {"query": "The accused set fire to the neighbour's parked car, destroying it completely.", "relevant": ["SMOKE-I"]},
+    {"query": "The company accountant was given custody of client funds and diverted them into his personal account.", "relevant": ["SMOKE-L", "SMOKE-K"]}
+  ]
+}

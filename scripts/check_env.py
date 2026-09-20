@@ -1,4 +1,4 @@
-"""Phase 0 environment verification.
+r"""Phase 0 environment verification.
 
 Run:  venv\Scripts\python.exe scripts_check_env.py
 
