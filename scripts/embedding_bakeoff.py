@@ -30,6 +30,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 os.environ.setdefault("HF_HOME", r"D:\hf-cache")
+# Not just cosmetic: without this, huggingface_hub attempts symlinks and
+# aborts mid-download with WinError 1314 on this machine. The _WARNING var
+# does NOT do this -- see CLAUDE.md Known Gotchas.
+os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS", "1")
+os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
 
 DEFAULT_MODELS = [
     "bhavyagiri/InLegal-Sbert",   # incumbent: domain-pretrained, 110M, 768d, 512 tok

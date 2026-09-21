@@ -1,6 +1,6 @@
 r"""Phase 0 environment verification.
 
-Run:  venv\Scripts\python.exe scripts_check_env.py
+Run:  venv\Scripts\python.exe scripts\check_env.py
 
 Checks every load-bearing piece of the stack ACTUALLY works, not just imports.
 The InLegal-Sbert check is the important one: a green pip install tells you
@@ -10,8 +10,25 @@ import os
 import sys
 import shutil
 import sqlite3
+from pathlib import Path
+
+# .env holds GEMINI_API_KEY, EMBEDDING_MODEL and the cache redirects. Load it
+# first so those win; the HF_HOME setdefault below is only a last-resort default
+# (it MUST NOT fall back to C:, which has ~10GB free -- CLAUDE.md Known Gotchas).
+try:
+    from dotenv import load_dotenv
+    _env = Path(__file__).resolve().parent.parent / ".env"
+    load_dotenv(_env)
+    _env_note = f"loaded {_env.name}" if _env.exists() else "no .env (using defaults)"
+except ImportError:
+    _env_note = "python-dotenv missing"
 
 os.environ.setdefault("HF_HOME", r"D:\hf-cache")
+# Not just cosmetic: without this, huggingface_hub attempts symlinks and
+# aborts mid-download with WinError 1314 on this machine. The _WARNING var
+# does NOT do this -- see CLAUDE.md Known Gotchas.
+os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS", "1")
+os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
 
 OK, FAIL, WARN = "[ OK ]", "[FAIL]", "[WARN]"
 results = []
@@ -25,6 +42,11 @@ def check(name):
         except Exception as e:
             results.append((FAIL, name, f"{type(e).__name__}: {e}"))
     return deco
+
+
+@check(".env")
+def _():
+    return _env_note
 
 
 @check("python")

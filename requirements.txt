@@ -3,7 +3,7 @@
 # torch is NOT listed here: the CUDA build must come from PyTorch's own index,
 # not PyPI (PyPI's Windows wheel is CPU-only). Install it FIRST, separately:
 #
-#     pip install torch --index-url https://download.pytorch.org/whl/cu126
+#     pip install torch --index-url https://download.pytorch.org/whl/cu124
 #
 # Then:  pip install -r requirements.txt
 #
@@ -31,5 +31,5 @@ streamlit
 python-dotenv
 pytest
 
-# Ollama fallback (gemma3:4b) is a native install, not a pip package.
+# Ollama fallback (qwen3.5:4b) is a native install, not a pip package.
 # Outcomes storage is SQLite - stdlib, no dependency.
