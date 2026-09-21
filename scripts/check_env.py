@@ -153,16 +153,31 @@ def _():
 
 @check("ollama fallback")
 def _():
+    # EXACT tag match. A prefix match on the family name ("qwen3.5") is not
+    # good enough: it passes on qwen3.5:latest, which is 9.7B/6.1GB and will
+    # not fit the 4GB card at all - the precise failure that got gemma3:4b
+    # dropped. Reporting the CONFIGURED name while a different tag is
+    # installed is a false green.
     import urllib.request, json
     host = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
     with urllib.request.urlopen(f"{host}/api/tags", timeout=10) as r:
         tags = json.load(r)
-    names = [m["name"] for m in tags.get("models", [])]
+    models = tags.get("models", [])
     want = os.environ.get("OLLAMA_MODEL", "qwen3.5:4b")
-    assert any(n.startswith(want.split(":")[0]) for n in names), (
-        f"{want} not pulled; have {names}"
+    hit = next((m for m in models if m["name"] == want), None)
+    assert hit is not None, (
+        f"{want} is NOT pulled (exact tag). Installed: "
+        f"{sorted(m['name'] for m in models)}. Run: ollama pull {want}"
     )
-    return f"{host} | {want} present ({len(names)} models)"
+    gb = hit["size"] / 1024 ** 3
+    params = hit.get("details", {}).get("parameter_size", "?")
+    quant = hit.get("details", {}).get("quantization_level", "?")
+    # Section 4 budgets 3.4GB for this model; the card is 4GB total.
+    assert gb <= 4.0, (
+        f"{want} is {gb:.1f} GB ({params}) - cannot fit the 4GB card, will "
+        f"spill to CPU. Use qwen3.5:4b, or qwen3.5:2b if that is still slow."
+    )
+    return f"{host} | {want} {gb:.1f} GB ({params}, {quant})"
 
 
 @check("disk headroom (Section 4)")

@@ -212,11 +212,15 @@ FastAPI endpoint wrapping the full pipeline. Streamlit form (case facts + offenc
 ## 10. Current Status
 *(Update this line at the end of every session.)*
 
-**Current phase:** Phase 0 nearly done (2026-09-21). `scripts/check_env.py` passes **10 of 11** checks: torch 2.6.0+cu124 on the RTX 3050 Ti (4.0GB), chromadb 1.5.9, networkx 3.3, langgraph 1.2.11, google-genai 2.24.0, fastapi 0.141.1 / streamlit 1.64.0, sqlite 3.45.3, Ollama serving `qwen3.5:4b`, 80GB free on `D:`.
+**Current phase:** Phase 0 COMPLETE except one item (2026-09-21). `scripts/check_env.py` passes **11 of 12**.
 
-**The one open item is the InLegal-Sbert weights.** The 418MB `pytorch_model.bin` is not downloaded - the link died repeatedly (best run reached 23.5MB before `getaddrinfo failed`). Everything else about the model is verified: the repo is correct and its `modules.json` carries the Transformer+Pooling+Dense stack. Re-run `venv\Scripts\python.exe scripts\fetch_models.py` when the network is usable, then `scripts\check_env.py` for a clean 12/12. **This does not block Phase 1** - the data layer needs no embedder. It blocks Phase 2.
+Verified working: python 3.12.7 (venv), torch 2.6.0+cu124 on the RTX 3050 Ti (4.0GB), **InLegal-Sbert loading on GPU at dim=768, peak VRAM 0.44GB** (so the embedder leaves ~3.5GB of the card free), chromadb 1.5.9, networkx 3.3, langgraph 1.2.11, google-genai 2.24.0, fastapi 0.141.1 / streamlit 1.64.0, sqlite 3.45.3, 79.8GB free on `D:`. `scripts/embedding_bakeoff.py --smoke` runs end-to-end and writes `docs/embedding_bakeoff.md`; the harness is proven, the numbers in it are toy-fixture numbers and decide nothing.
 
-Also outstanding: `.env` exists but `GEMINI_API_KEY` is still the placeholder.
+**The one failing check is the Ollama fallback.** `qwen3.5:4b` is NOT pulled. What is installed is `qwen3.5:latest`, which is 9.7B / 6.14GB and cannot fit the 4GB card - it would spill to CPU, the exact failure that got gemma3:4b dropped. Fix: `ollama pull qwen3.5:4b`, then remove `qwen3.5:latest` (6.14GB against a Section 4 line item budgeted at 3.4GB).
+
+Also outstanding, not blocking: `.env` exists but `GEMINI_API_KEY` is still the placeholder (first needed in Phase 4). BGE-M3, the bake-off challenger, is ~2.3GB and still undownloaded - pull it opportunistically well before the Phase 2 gate, not at it.
+
+**Next:** Phase 1 (Data Layer) on branch `phase-1-data`. Phase 1 needs no embedder and no LLM.
 
 ## Known Gotchas
 
