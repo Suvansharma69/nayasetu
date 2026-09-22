@@ -78,10 +78,62 @@ _PARA = re.compile(r"(?m)^[ \t]*(\d{1,3})\.[ \t\n]+(?=\S)")
 # single-character lines -- they appear in 7.7% of judgment chunks, often as a
 # run of eight at a page break. They carry no meaning in the flowed text and
 # would otherwise be embedded as content.
+#
+# The recurring block at every page break is, in order: the party-name header
+# in full caps, the authoring judge, "SUPREME COURT REPORTS", the reporter
+# citation, and the page number. All five are furniture, and "SUPREME COURT
+# REPORTS" alone was landing in 17% of chunks.
+#
+# The party-name line is matched case-SENSITIVELY: it is set in full caps
+# ("UNION OF INDIA AND OTHERS v. DILIP PAUL") while ordinary prose naming the
+# same parties is not, so the caps are what distinguish a header from a
+# sentence. Only the " v. " separator is lowercase.
 _PAGE_FURNITURE = re.compile(
-    r"(?m)^\s*(?:\[\d{4}\]\s+\d+\s+S\.C\.R\..*|Digital Supreme Court Reports\s*"
-    r"|\d{1,4}|[A-H])\s*$"
+    r"(?m)^[ \t]*(?:\[\d{4}\]\s+\d+\s+S\.C\.R\..*"
+    # Case-insensitive ONLY for this phrase, via an inline group: the reports
+    # set it as "SUPREME COURT REPORTS", "Digital Supreme Court Reports" AND
+    # "DIGITAL SUPREME COURT REPORTS". A global re.IGNORECASE cannot be used
+    # here because the party-name rule below depends on matching caps exactly.
+    r"|(?i:(?:Digital )?Supreme Court Reports)"
+    r"|\[[A-Z][A-Z. ,'()]*,[ \t]*JJ?\.\]"                      # [J. B. PARDIWALA, J.]
+    r"|[A-Z][A-Z0-9 .,&'()\-]*\sv\.\s[A-Z][A-Z0-9 .,&'()\-]*"  # party-name header
+    r"|\d{1,4}|[A-H])[ \t]*$"
 )
+
+# Ligature glyphs, and the spurious spaces the extractor pads them with.
+#
+# The gazette and SCR PDFs use real ligature glyphs, and extraction emits one
+# glyph plus (len(expansion) - 1) spaces, because the PDF reserved that width:
+# "ﬁ led" is "filed", "Classiﬁ cation" is "Classification", "Oﬃ  cer" is
+# "Officer" (two spaces, since ﬃ expands to three characters). 8.6% of judgment
+# chunks are affected, and the damaged words are ordinary legal vocabulary --
+# notification, qualification, definition, specified, effect. Left alone, none
+# of them would ever match a query embedding.
+#
+# Consuming exactly (len(expansion) - 1) spaces is what makes this safe at a
+# word boundary: a word-final "staﬀ " carries one spurious space AND one real
+# one, so the rule eats the padding and leaves the real space intact.
+_LIGATURES = {
+    "ﬀ": "ff", "ﬁ": "fi", "ﬂ": "fl",
+    "ﬃ": "ffi", "ﬄ": "ffl", "ﬅ": "st", "ﬆ": "st",
+}
+_LIGATURE_RE = re.compile(
+    "|".join(f"{re.escape(g)} {{0,{len(e) - 1}}}" for g, e in _LIGATURES.items())
+)
+_LIGATURE_BY_GLYPH = dict(_LIGATURES)
+
+
+def repair_ligatures(text):
+    """Expand ligature glyphs and drop the padding spaces the extractor adds.
+
+    Must run BEFORE any whitespace collapsing: the rule counts exact spaces,
+    and collapsing runs of spaces first destroys the very signal that tells
+    padding apart from a real word break.
+    """
+    def sub(m):
+        glyph = m.group(0)[0]
+        return _LIGATURE_BY_GLYPH[glyph]
+    return _LIGATURE_RE.sub(sub, text)
 
 
 
@@ -91,6 +143,10 @@ def _pdf_text(data):
 
 
 def _clean(text):
+    # Order matters. Ligature repair counts exact spaces, so it must precede
+    # both the furniture strip (which rewrites line structure) and the
+    # whitespace collapse (which would erase the padding it keys on).
+    text = repair_ligatures(text)
     text = _PAGE_FURNITURE.sub("", text)
     text = text.replace("\xa0", " ").replace(" ", " ").replace("\x08", "")
     text = re.sub(r"[ \t]+", " ", text)
