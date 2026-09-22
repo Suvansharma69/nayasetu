@@ -12,7 +12,7 @@ import shutil
 import sqlite3
 from pathlib import Path
 
-# .env holds GEMINI_API_KEY, EMBEDDING_MODEL and the cache redirects. Load it
+# .env holds EMBEDDING_MODEL, OLLAMA_* and the cache redirects. Load it
 # first so those win; the HF_HOME setdefault below is only a last-resort default
 # (it MUST NOT fall back to C:, which has ~10GB free -- CLAUDE.md Known Gotchas).
 try:
@@ -127,13 +127,21 @@ def _():
     return f"{getattr(langgraph, '__version__', 'n/a')} | StateGraph ok"
 
 
-@check("google-genai")
+@check("no cloud LLM configured")
 def _():
-    from google import genai  # noqa: F401
-    import google.genai as g
-    key = os.environ.get("GEMINI_API_KEY")
-    status = "key present" if key and key != "your-key-here" else "NO KEY YET (.env)"
-    return f"{getattr(g, '__version__', 'n/a')} | {status}"
+    """Generation is fully local (CLAUDE.md Section 2). Assert it stays that way.
+
+    This check exists to FAIL if a cloud key creeps back into .env. The
+    reversal was made so that nothing about a case leaves the machine, and a
+    stray GEMINI_API_KEY would silently re-enable a path that is supposed to
+    be gone.
+    """
+    leaked = [k for k in ("GEMINI_API_KEY", "OPENAI_API_KEY", "ANTHROPIC_API_KEY",
+                          "GROQ_API_KEY", "OPENROUTER_API_KEY")
+              if (os.environ.get(k) or "").strip()
+              and not os.environ.get(k, "").startswith("your-key")]
+    assert not leaked, f"cloud LLM key(s) set: {leaked} -- generation must stay local"
+    return "local-only (no cloud generation path)"
 
 
 @check("fastapi/streamlit")
@@ -151,8 +159,12 @@ def _():
     return f"sqlite {sqlite3.sqlite_version}"
 
 
-@check("ollama fallback")
+@check("ollama (SOLE generation path)")
 def _():
+    # No longer a fallback. Since 2026-09-22 this is the only way the system
+    # generates anything, so a failure here is not a degraded mode -- Nodes 1
+    # and 4 simply cannot run. Blocking for Phase 4 onward.
+    #
     # EXACT tag match. A prefix match on the family name ("qwen3.5") is not
     # good enough: it passes on qwen3.5:latest, which is 9.7B/6.1GB and will
     # not fit the 4GB card at all - the precise failure that got gemma3:4b

@@ -19,8 +19,11 @@ networkx                   # in-memory, no server
 # --- Orchestration ---
 langgraph                  # StateGraph; schema pinned in CLAUDE.md Section 3
 
-# --- Generation: primary (Gemini free tier) ---
-google-genai               # current SDK; google-generativeai is retired
+# --- Generation ---
+# Nothing to install. Generation is fully local via Ollama (a native install,
+# not a pip package) -- see CLAUDE.md Section 2. google-genai was removed on
+# 2026-09-22 along with the cloud path; do not add an LLM SDK back here
+# without flagging it first.
 
 # --- Backend / frontend ---
 fastapi

@@ -16,7 +16,11 @@ It is a college capstone project, built to run at **zero recurring cost**, with 
 
 - **RAG, not fine-tuning**, for the generation layer. This is empirically justified: a domain-fine-tuned Indian legal model (AALAP) scored *worse* than an untouched base model on the AIBE benchmark, while a RAG-augmented approach scored highest of everything tested. Never suggest fine-tuning a model as a solution to a quality problem — the fix is better retrieval or better prompting, not fine-tuning.
 - **Every citation MUST be checked against the NetworkX citation graph** before being shown as verified. No exceptions. A section number or case ID is only ever "real" if it exists as a node in the graph, built from actually-ingested data.
-- **Zero recurring cost.** Never introduce a paid API, paid service, or paid tier without flagging it first. Gemini API free tier is the primary generation path; a local Ollama model is the fallback.
+- **Zero recurring cost.** Never introduce a paid API, paid service, or paid tier without flagging it first.
+- **Generation is FULLY LOCAL. There is no cloud path.** *Amended 2026-09-22.* The original plan made Gemini's free tier primary with Ollama as fallback. That was reversed on two grounds: no account or API key should be needed to run this, and no case facts should leave the machine. The second matters most - the corpus here is public judgment data, but the Streamlit form in Phase 7 invites a lawyer to type a real client's facts, and a free-tier cloud provider that may train on prompts is the wrong place for those. Ollama `qwen3.5:4b` is now the ONLY generation path. Do not reintroduce a cloud LLM without flagging it.
+  - This is less costly to quality than it sounds, because the LLM does less work here than in a typical RAG app: **Node 2 (the verifier) is deterministic graph lookup, not an LLM**, Node 5 is pure SQL, Node 3 is retrieval. The model only proposes candidate sections in Node 1 - which Node 2 then verifies anyway - and writes counter-arguments in Node 4.
+  - The real cost lands on **Node 4**, which is the quality-sensitive one. If its output is weak the fix is better retrieval and better prompting, never fine-tuning (see the RAG-not-fine-tuning rule above).
+  - **Consequence: the 4GB VRAM conflict is now central, not a Phase 7 footnote.** The embedder and the Ollama model cannot both hold the card. Every runtime path must free the SentenceTransformer (or pin it to CPU for single-query encoding) before generating.
 - **Offence-Date Router** (Stage 0, deterministic, no LLM): offence before 1 July 2024 → IPC collections; offence on/after 1 July 2024 → BNS collections + post-2024 judgments. This is load-bearing — every downstream retrieval depends on getting this right.
 - **Embedding model: InLegal-Sbert is the DEFAULT, confirmed by measurement at the Phase 2 gate.** `bhavyagiri/InLegal-Sbert` (`sentence-transformers` compatible, adapted from InLegalBERT, domain-pretrained on 5.4M Indian legal documents) - never a generic sentence-transformer picked by default. *Amended 2026-09-20:* domain-pretraining is no longer assumed to settle the question. The Prior Case Retrieval study arXiv 2507.18455 evaluated PCR on Indian legal data and found general-purpose embedders match or beat InLegalBERT/InLegal-Sbert. So the choice is decided by `scripts/embedding_bakeoff.py` against the 15 Phase 2 test cases, not by assertion. **The winner is locked before mass ingestion** - changing embedder afterwards means re-embedding the whole corpus. Candidates are capped by the 4GB VRAM / 20GB disk budget, which rules out all 7B-class leaderboard leaders.
 - **GPU-accelerated PyTorch (CUDA build)** for embeddings — InLegal-Sbert runs on GPU. This costs more disk space than the CPU-only build (~2GB more), which is accounted for in the Section 4 storage budget. Ollama's fallback model manages its own GPU access independently either way.
@@ -106,8 +110,7 @@ This is a genuine constraint, not a preference. Budget:
 | Vector store | ChromaDB (embedded, file-based, 4 collections: `ipc_sections`, `bns_sections`, `judgments_pre2024`, `judgments_post2024`) |
 | Citation graph | NetworkX (in-memory, no server) |
 | Orchestration | LangGraph |
-| Generation — primary | Gemini API free tier - `gemini-3.8-flash`, degrading to `gemini-3.1-flash-lite` on rate limit |
-| Generation — fallback | Ollama, `qwen3.5:4b`, local (replaced `gemma3:4b` - see Known Gotchas) |
+| Generation — the only path | Ollama, `qwen3.5:4b`, local. Degrade to `qwen3.5:2b` (2.7GB) if too slow on the 3050 Ti. **No cloud LLM** - see Section 2 |
 | Backend | FastAPI |
 | Frontend | Streamlit |
 | Outcomes storage | SQLite |
@@ -128,7 +131,7 @@ venv\Scripts\activate
 pip install torch --index-url https://download.pytorch.org/whl/cu124
 
 # Rest of requirements
-pip install sentence-transformers chromadb networkx langgraph google-genai fastapi uvicorn streamlit python-dotenv pytest
+pip install sentence-transformers chromadb networkx langgraph fastapi uvicorn streamlit python-dotenv pytest pymupdf pandas
 
 # Ollama (native Windows installer, or winget)
 winget install Ollama.Ollama
@@ -195,7 +198,7 @@ Evaluate Node 1 and Node 3 against IL-TUR's LSI and PCR tasks. Compute the hallu
 **Done when:** real numbers exist in `docs/evaluation_results.md`, reproducible by re-running one script.
 
 ### Phase 7 — Frontend (1 week)
-FastAPI endpoint wrapping the full pipeline. Streamlit form (case facts + offence date) → structured report, verified vs. unconfirmed visually distinct. Ollama fallback wired for when Gemini is unavailable.
+FastAPI endpoint wrapping the full pipeline. Streamlit form (case facts + offence date) → structured report, verified vs. unconfirmed visually distinct. Generation runs on local Ollama, so **the VRAM handoff is part of this phase's work, not an afterthought**: free the SentenceTransformer (or pin it to CPU) before invoking the model, since both cannot hold the 4GB card.
 **Done when:** the motorcycle-theft example works end-to-end in the browser with no manual steps.
 
 ---
@@ -226,7 +229,11 @@ FastAPI endpoint wrapping the full pipeline. Streamlit form (case facts + offenc
 
 **Still to do before Phase 1 can be called done:** hand-verify the IPC<->BNS mapping. `scripts/build_mapping.py` proposes 574 candidates into `data/mappings/ipc_bns_candidates.json`, every row `"verified": false`. Spot-checked against 21 known correspondences it gets 19 right, and **both misses carry `low_evidence: true`** - so the flag is doing its job, but the rows still need a person. Verify the 97 `in_scope` rows first; they are what the Phase 2 test cases exercise.
 
-Still outstanding from Phase 0, unchanged: `qwen3.5:4b` is NOT pulled (`qwen3.5:latest` is 9.7B/6.14GB and will not fit the 4GB card - do not use it). `GEMINI_API_KEY` is still a placeholder (first needed in Phase 4). BGE-M3 (~2.3GB) still undownloaded - pull well before the Phase 2 gate, not at it.
+**`qwen3.5:4b` is NOT pulled, and that is now BLOCKING for Phase 4.** With the cloud path removed (Section 2), this model is the only way the system generates anything - it is no longer a fallback that can be deferred. `ollama pull qwen3.5:4b`. Do NOT substitute `qwen3.5:latest`, which is 9.7B/6.14GB and will not fit the 4GB card.
+
+BGE-M3 is **downloaded and verified**: loads on the card at dim=1024, 2.12GB peak VRAM (InLegal-Sbert: dim=768, 0.44GB). Both fit, so the Phase 2 bake-off can run. Note it took **4.3GB on disk, not the ~2.3GB estimated**, and 2.2GB of that is an `onnx/` directory sentence-transformers never loads - prunable.
+
+No API keys are needed anywhere in this project any more.
 
 **Blocked, needs you:** NyayaAnumana is a GATED HuggingFace dataset (401 `GatedRepo` unauthenticated). To ingest it: log in at huggingface.co, open `L-NLProc/NyayaAnumana-Classification-Data`, accept the terms, create a read token, put `HF_TOKEN` in `.env`. Its bulk train splits (6.5GB/4.7GB) are forbidden by Section 4 anyway; the usable piece is `test/2020_2024_single.zip` at 264MB. Without it the corpus is SC-only, which will make Phase 5's >=5-judgments-per-section guardrail suppress most sections.
 
@@ -237,13 +244,13 @@ Still outstanding from Phase 0, unchanged: `qwen3.5:4b` is NOT pulled (`qwen3.5:
 *Resolved 2026-09-20, before Phase 0 - four points where this file disagreed with the actual machine.*
 
 - **Project root is `D:\nayasetu`, not `D:\nayasetu\pramana`.** Section 7's tree labels the project, not a directory to create. Don't "fix" this by nesting a `pramana/` folder.
-- **`google-generativeai` is retired; use `google-genai`.** Google replaced the SDK. Same free tier, different import surface (`from google import genai`). Section 6 has been updated - don't revert to the old package name just because older tutorials use it.
+- ~~**`google-generativeai` is retired; use `google-genai`.**~~ **Obsolete as of 2026-09-22** - there is no cloud generation path at all now (Section 2). Kept only so a future session does not "restore" a Gemini SDK on the strength of an old tutorial. If a cloud LLM is ever reintroduced, it is `google-genai`, never `google-generativeai`.
 - **The 20GB ceiling in Section 4 is a deliberate discipline, not a reading of the disk.** `D:` actually has ~107GB free. The ceiling was kept anyway - smaller curated data embeds faster on 4GB VRAM and keeps iteration tight. Seeing free space is *not* grounds to widen dataset scope; Section 4 rule 5 still stands.
 - **Ollama models must live on `D:`, never `C:`.** `C:` has only ~10GB free, and 20.67GB of old models were sitting in `C:\Users\<user>\.ollama\models` even though `OLLAMA_MODELS` was set to `D:\stuff` - the *user-level* env var never reached the Ollama background service. Setting `OLLAMA_MODELS` alone is insufficient: the service must be restarted (or the var set machine-wide) for it to take effect. The same trap applies to `pip`'s wheel cache, which defaults to `C:` and holds ~2.5GB for the CUDA torch build - redirect it before installing.
 - **InLegal-Sbert is `bhavyagiri/InLegal-Sbert`, NOT `law-ai/InLegalBERT`.** Easy to conflate: InLegal-Sbert is *adapted from* InLegalBERT, but only the Sbert variant has the trained pooling layer that makes it sentence-transformers compatible (768-dim). Loading the base `law-ai/InLegalBERT` through `SentenceTransformer` does **not** error - it silently attaches an untrained mean-pooling head and yields materially worse retrieval. If Phase 2 relevance is bad, check this env var before touching chunking. **There is a full local copy of the WRONG one at `D:\legal\InLegalBERT`** (510MB, the same donor tree the venv's torch came from). It has no `modules.json`, no `1_Pooling/`, no `2_Dense/` - verified. Do not reach for it as a shortcut when the download is failing; it is not a substitute.
 - **`gemma3:4b` was dropped for `qwen3.5:4b`.** gemma3:4b is 3.3GB on a 4096 MiB card; after ~0.5-0.8GB of Windows desktop VRAM there is almost nothing left for KV cache, so it spills to CPU. qwen3.5:4b is comparable on disk (3.4GB) but stronger at reasoning and carries a **256K context window**, which matters when stuffing retrieved judgment chunks into a prompt. If it proves too slow on the 3050 Ti, drop to `qwen3.5:2b` (2.7GB), which genuinely fits in VRAM. Do not "restore" gemma3:4b.
 - **The embedder and the Ollama fallback cannot both hold VRAM.** 4GB total. At runtime the query is embedded immediately before generation, so Phase 7 must free the SentenceTransformer (or pin it to CPU for single-query encoding) before invoking Ollama. Encoding one query on CPU costs milliseconds; this is not a reason to claw back VRAM elsewhere.
-- **Gemini free tier is Flash-only since May 2026.** Pro models moved behind billing. `gemini-3.8-flash` is the newest free Flash; `gemini-3.1-flash-lite` has higher limits and is the degrade target. Do not write `gemini-2.0-flash` or any `*-pro` ID into config. Note also that Google may train on free-tier prompts - fine for public judgment data, but never send a real client's facts through it.
+- ~~**Gemini free tier is Flash-only since May 2026.**~~ **Obsolete as of 2026-09-22 - generation is fully local, see Section 2.** The reason is preserved because it is the reason: Google may train on free-tier prompts. That is fine for public judgment data but wrong for the Phase 7 Streamlit form, which invites a lawyer to type a real client's facts. Any future proposal to add a cloud LLM has to answer that.
 - **The network link here is slow (~700 KB/s).** The 2.6GB torch wheel and any Ollama pull each take roughly an hour. Do not run two large downloads concurrently, and do not assume a slow-looking download is hung.
 - **The venv was seeded by copying torch from `D:\legal\venv`, not by downloading it.** On a ~700 KB/s link the 2.6GB wheel takes an hour; the machine already had five CUDA torch builds on Python 3.12.7. Copied `torch 2.6.0+cu124` plus `transformers`/`tokenizers`/`numpy`/`huggingface_hub`/`safetensors` and friends into `D:\nayasetu\venv\Lib\site-packages`, verified with a real GPU matmul. **This only works because donor and target are byte-identical Python versions** (3.12.7, `_C.cp312-win_amd64.pyd`) - a 3.11 donor would import-error on the compiled extension. `torchaudio`/`torchvision` were deliberately left behind as unused GBs against the Section 4 budget. If `D:\legal\venv` is ever deleted this venv is unaffected; the files were copied, not linked.
 - **Installed torch is 2.6.0+cu124, not the newest.** It came from the donor. Fine for everything here (sentence-transformers needs only >=1.11). Do not "upgrade" it casually - that means re-downloading 2.6GB on a slow link for no gain.
