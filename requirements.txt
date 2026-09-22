@@ -27,6 +27,15 @@ fastapi
 uvicorn
 streamlit
 
+# --- Ingestion (Phase 1) ---
+# The judgment archive and the BNS gazette are both PDFs. pymupdf was picked by
+# measurement on a real 18-page judgment: 0.02s vs pypdf 0.15s vs pdfplumber
+# 0.84s, at slightly better completeness. Over 2,533 judgments that gap is the
+# difference between a minute and most of an hour.
+pymupdf
+pandas                     # reads the vanga metadata parquet (date, citation,
+                           # disposal_nature -> Phase 5 outcome analytics)
+
 # --- Misc ---
 python-dotenv
 pytest
