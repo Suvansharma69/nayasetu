@@ -1,0 +1,184 @@
+{
+  "_README": [
+    "The Phase 2 retrieval gate, and the input that decides the embedder.",
+    "",
+    "CLAUDE.md Section 8: 'Test against 15 hand-written case-fact examples",
+    "spanning theft, assault, cheating, common intention. Done when: top-3",
+    "results manually judged relevant in at least 12/15 test cases.'",
+    "",
+    "PROVENANCE, read before trusting this file:",
+    "  - The 15 `query` strings are SYNTHETIC case facts, drafted for this",
+    "    test. They are not real cases and are not quotations from anything.",
+    "  - The `relevant` section ids were drafted by Claude and then checked",
+    "    against the REAL INGESTED TEXT of each cited section in",
+    "    data/processed/statutes_{ipc,bns}.jsonl. No section number here was",
+    "    written from memory. They still need a human to confirm the legal",
+    "    judgement -- 'which section do these facts disclose' is a lawyer's",
+    "    call, not a retrieval engineer's.",
+    "  - Nothing here contains statutory text. The corpus is loaded from the",
+    "    ingested JSONL by reference (see `corpus_from`), so this file can",
+    "    never drift out of step with what was actually ingested, and there",
+    "    is no place in it for statutory text transcribed from memory.",
+    "",
+    "WHY EACH CASE CARRIES AN `era`:",
+    "  Stage 0's offence-date router means an IPC-era query is only ever",
+    "  searched against IPC collections, and a BNS-era query against BNS",
+    "  ones. Scoring against the union of both codes would measure a problem",
+    "  the system does not have, and would measure it wrongly: Known Gotchas",
+    "  records that s303 is theft in the BNS but punishment-for-murder-by-a-",
+    "  life-convict in the IPC, and s302 is murder (IPC) vs wounding",
+    "  religious feelings (BNS). On a union corpus a model could score a hit",
+    "  on s303 for a theft query while actually retrieving the IPC murder",
+    "  provision. `era` restricts each case's candidate pool to the code the",
+    "  router would really have selected.",
+    "",
+    "WHY IPC CASES LIST MORE SECTIONS THAN BNS ONES:",
+    "  The IPC splits definition from punishment (378 Theft / 379 Punishment",
+    "  for theft; 322 voluntarily causing grievous hurt / 325 its",
+    "  punishment). The BNS merges them into subsections of one section",
+    "  (303(1) defines theft, 303(2) punishes it). That is a real structural",
+    "  difference between the corpora, not an inconsistency in this file.",
+    "",
+    "A hit is counted if ANY id in `relevant` appears in the top-k, so keep",
+    "these lists to sections the facts genuinely disclose. Padding a list",
+    "with plausible neighbours inflates recall and hides a weak embedder.",
+    "",
+    "Run: venv\\Scripts\\python.exe scripts\\embedding_bakeoff.py --data tests\\fixtures\\phase2_testset.json",
+    "",
+    "Lives in tests/fixtures/ and not in data/processed/ because data/processed/",
+    "is gitignored as rebuildable output, and this file is neither rebuildable",
+    "nor output -- it is hand-written source, like data/mappings/. A negation in",
+    ".gitignore would not rescue it: git cannot re-include a file inside an",
+    "excluded directory. The `corpus_from` paths below are resolved against the",
+    "project root, so they keep working from here."
+  ],
+
+  "corpus_from": [
+    "data/processed/statutes_ipc.jsonl",
+    "data/processed/statutes_bns.jsonl"
+  ],
+
+  "cases": [
+    {
+      "era": "ipc",
+      "offence_date": "2023-03-11",
+      "offence_type": "theft",
+      "query": "The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it.",
+      "relevant": ["ipc_s378", "ipc_s379"],
+      "note": "Plain theft: dishonest taking of movable property out of possession without consent. The IPC-era twin of the Section 3 worked example, so the two eras can be compared on identical facts."
+    },
+    {
+      "era": "ipc",
+      "offence_date": "2022-11-02",
+      "offence_type": "theft",
+      "query": "While the family was away at a wedding the accused entered their home through an unlatched window and removed gold ornaments and cash from an almirah in the bedroom.",
+      "relevant": ["ipc_s380", "ipc_s378"],
+      "note": "Theft committed in a building used as a human dwelling, which s380 aggravates from three years to seven."
+    },
+    {
+      "era": "ipc",
+      "offence_date": "2023-06-20",
+      "offence_type": "theft",
+      "query": "The accused worked as a salesman at the complainant's cloth shop. Over four months he removed bolts of cloth from the stock room and sold them to a third party. The stock was never entrusted to him; he simply had access to the premises.",
+      "relevant": ["ipc_s381", "ipc_s378"],
+      "note": "Deliberately paired with the accountant case below. Both involve an employee taking the employer's property, but here there is NO entrustment, so it is theft by a servant (s381) and not criminal breach of trust (s408). A retriever that cannot separate the two will look right on one and wrong on the other."
+    },
+    {
+      "era": "ipc",
+      "offence_date": "2023-09-14",
+      "offence_type": "criminal breach of trust",
+      "query": "The accused was the accountant of a firm and was given charge of client deposits held in the firm's account. He transferred those deposits into an account in his wife's name and used them to buy property.",
+      "relevant": ["ipc_s405", "ipc_s406", "ipc_s408"],
+      "note": "Entrustment is present, and it is the whole distinction from the salesman case above: the property lawfully came into his hands, and the dishonesty lay in what he then did with it."
+    },
+    {
+      "era": "ipc",
+      "offence_date": "2023-01-28",
+      "offence_type": "assault",
+      "query": "During a dispute over a boundary wall the accused struck the complainant on the forearm with an iron rod. The medical report records a fracture of the radius and fifteen days of hospitalisation.",
+      "relevant": ["ipc_s320", "ipc_s322", "ipc_s325", "ipc_s326"],
+      "note": "A fracture is enumerated as grievous hurt in s320. s326 is included because an iron rod used as a weapon of offence is arguable as a dangerous means; a human reviewer should decide whether to keep it."
+    },
+    {
+      "era": "ipc",
+      "offence_date": "2023-04-05",
+      "offence_type": "assault",
+      "query": "The accused raised a stick above his head and advanced towards the complainant shouting that he would break his legs. Bystanders intervened before any blow landed. The complainant was not touched and suffered no injury.",
+      "relevant": ["ipc_s351", "ipc_s352"],
+      "note": "No contact and no injury, so this rests on the gesture-and-apprehension definition of assault alone. A retriever that pulls the hurt sections here is matching the threat's violence rather than what was actually done, which is exactly the failure worth catching."
+    },
+    {
+      "era": "ipc",
+      "offence_date": "2022-08-19",
+      "offence_type": "cheating",
+      "query": "The accused advertised a flat for sale, showed the complainant forged ownership papers, and accepted eleven lakh rupees as advance. He neither owned the flat nor had any agreement to sell it, and never intended to convey it.",
+      "relevant": ["ipc_s420", "ipc_s415"],
+      "note": "Deception inducing delivery of property. The forgery sections (s463, s468) are arguably also disclosed by the papers; left out to keep the list to what the facts centrally establish."
+    },
+    {
+      "era": "ipc",
+      "offence_date": "2023-12-03",
+      "offence_type": "common intention",
+      "query": "Four men arrived together at the shop, having agreed beforehand to teach the shopkeeper a lesson. Two held him down while a third beat him; the fourth kept watch at the door. Only one of them actually inflicted the injuries.",
+      "relevant": ["ipc_s34", "ipc_s322"],
+      "note": "Four persons, so this is joint liability under s34 and NOT s149, which requires an unlawful assembly of five or more. The party count is doing legal work here; do not raise it when editing."
+    },
+
+    {
+      "era": "bns",
+      "offence_date": "2024-08-15",
+      "offence_type": "theft",
+      "query": "The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it.",
+      "relevant": ["bns_s303"],
+      "note": "THE WORKED EXAMPLE from CLAUDE.md Section 3, with its facts and date. The router must select BNS and retrieval must surface s303. If this single case fails, nothing downstream is worth running."
+    },
+    {
+      "era": "bns",
+      "offence_date": "2024-10-07",
+      "offence_type": "theft",
+      "query": "The complainant was walking along the roadside using her phone when two men on a scooter slowed beside her, grabbed the phone out of her hand and accelerated away.",
+      "relevant": ["bns_s304", "bns_s303"],
+      "note": "Snatching, a BNS offence with NO IPC predecessor at all. It tests something no IPC-era case can: that the post-2024 path retrieves genuinely new provisions rather than merely mirroring the old code. Also a check on Phase 5's IPC-predecessor lookup, which must return nothing here instead of forcing a wrong ancestor."
+    },
+    {
+      "era": "bns",
+      "offence_date": "2024-09-22",
+      "offence_type": "theft",
+      "query": "The accused broke the seal on a goods container on a stationary freight lorry at a transport depot and removed thirty cartons of electronics before the driver returned.",
+      "relevant": ["bns_s305", "bns_s303"],
+      "note": "s305 expressly covers theft of articles from a means of transport used for carrying goods, which the IPC's dwelling-house aggravation did not reach. Another provision with no clean IPC ancestor."
+    },
+    {
+      "era": "bns",
+      "offence_date": "2025-02-11",
+      "offence_type": "assault",
+      "query": "Following an argument outside a tea stall the accused drew a knife and stabbed the complainant twice in the abdomen. The complainant underwent emergency surgery and remained in intensive care for six days.",
+      "relevant": ["bns_s117", "bns_s118", "bns_s116"],
+      "note": "Hurt which endangers life is enumerated as grievous in s116, and a knife is squarely an instrument for stabbing under s118."
+    },
+    {
+      "era": "bns",
+      "offence_date": "2024-11-30",
+      "offence_type": "cheating",
+      "query": "The accused ran a scheme promising forty per cent returns in ninety days, collected deposits from twenty-three people, paid the earliest few out of the later deposits, and stopped paying once collections slowed.",
+      "relevant": ["bns_s318"],
+      "note": "Cheating. s318 merges the IPC's s415 definition and s420 aggravated form into one section, so the single id here is correct and not an omission."
+    },
+    {
+      "era": "bns",
+      "offence_date": "2025-01-16",
+      "offence_type": "cheating",
+      "query": "The accused telephoned the complainant claiming to be a bank fraud-prevention officer, gave a false employee number, and persuaded her to read out a one-time password, after which two lakh rupees left her account.",
+      "relevant": ["bns_s319", "bns_s318"],
+      "note": "Cheating by personation: pretending to be some other person in order to cheat."
+    },
+    {
+      "era": "bns",
+      "offence_date": "2024-12-08",
+      "offence_type": "common intention",
+      "query": "The three accused went to the victim's house together under a plan settled that morning. One waited in the car, one forced the gate, and the third assaulted the victim inside. The prosecution seeks to hold all three liable for the injuries caused by one of them.",
+      "relevant": ["bns_s3"],
+      "note": "EXPECTED TO BE THE HARDEST CASE IN THE SET, and kept for exactly that reason. The BNS puts common intention in s3(5), one subsection of a 4,765-character section titled 'General explanations' whose bulk is definitions and general-exceptions material; the provision itself begins about 1,700 characters in. One-section-per-chunk therefore gives it an embedding dominated by unrelated content. If this case fails while its IPC twin passes (s34, a 256-character section that is nothing but the rule), the cause is chunking and not the embedder -- and per CLAUDE.md Section 8 the remedy is to fix chunking before carrying it forward, which is the decision this gate exists to force."
+    }
+  ]
+}
