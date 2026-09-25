@@ -40,7 +40,7 @@
       "ipc_section": "124",
       "ipc_title": "Assaulting President, Governor, etc., with intent to compel or restrain the exercise of any lawful power",
       "bns_section": "151",
-      "bns_title": null,
+      "bns_title": "Assaulting President, Governor, etc., with intent to compel or restrain exercise of any lawful power",
       "similarity": 1.0,
       "runner_up": {
         "bns_section": "76",
@@ -547,9 +547,9 @@
       "bns_title": "Dishonest misappropriation of property",
       "similarity": 1.0,
       "runner_up": {
-        "bns_section": "315",
-        "bns_title": null,
-        "similarity": 0.875
+        "bns_section": "303",
+        "bns_title": "Theft",
+        "similarity": 0.625
       },
       "in_scope": true,
       "ipc_terms": 8,
@@ -820,24 +820,6 @@
         "bns_section": "2",
         "bns_title": "Definitions",
         "similarity": 0.5
-      },
-      "in_scope": true,
-      "ipc_terms": 26,
-      "low_evidence": false,
-      "verified": false,
-      "verified_by": null,
-      "note": ""
-    },
-    {
-      "ipc_section": "404",
-      "ipc_title": "Dishonest misappropriation of property possessed by deceased person at the time of his death",
-      "bns_section": "315",
-      "bns_title": null,
-      "similarity": 0.962,
-      "runner_up": {
-        "bns_section": "316",
-        "bns_title": "Criminal breach of trust",
-        "similarity": 0.577
       },
       "in_scope": true,
       "ipc_terms": 26,
@@ -1462,12 +1444,12 @@
       "ipc_section": "106",
       "ipc_title": "Right of private defence against deadly assault when there is risk of harm to innocent person",
       "bns_section": "44",
-      "bns_title": null,
+      "bns_title": "Right of private defence against deadly assault when there is risk of harm to innocent person",
       "similarity": 0.87,
       "runner_up": {
-        "bns_section": "43",
-        "bns_title": "Commencement and continuance of right of private defence of property",
-        "similarity": 0.609
+        "bns_section": "34",
+        "bns_title": "Things done in private defence",
+        "similarity": 0.571
       },
       "in_scope": true,
       "ipc_terms": 23,
@@ -1579,6 +1561,24 @@
       },
       "in_scope": true,
       "ipc_terms": 13,
+      "low_evidence": false,
+      "verified": false,
+      "verified_by": null,
+      "note": ""
+    },
+    {
+      "ipc_section": "404",
+      "ipc_title": "Dishonest misappropriation of property possessed by deceased person at the time of his death",
+      "bns_section": "315",
+      "bns_title": "Dishonest misappropriation of property possessed by deceased person at the time of his death",
+      "similarity": 0.846,
+      "runner_up": {
+        "bns_section": "316",
+        "bns_title": "Criminal breach of trust",
+        "similarity": 0.577
+      },
+      "in_scope": true,
+      "ipc_terms": 26,
       "low_evidence": false,
       "verified": false,
       "verified_by": null,
@@ -2992,7 +2992,7 @@
       "ipc_section": "171F",
       "ipc_title": "Punishment for undue influence or personation at an election",
       "bns_section": "174",
-      "bns_title": "Punishment for undue influence or personation at an election. False statement in connection with an election",
+      "bns_title": "Punishment for undue influence or personation at an election",
       "similarity": 1.0,
       "runner_up": {
         "bns_section": "171",
@@ -3010,7 +3010,7 @@
       "ipc_section": "171G",
       "ipc_title": "False statement in connection with an election",
       "bns_section": "175",
-      "bns_title": "Illegal payments in connection with an election",
+      "bns_title": "False statement in connection with an election",
       "similarity": 1.0,
       "runner_up": {
         "bns_section": "227",
@@ -3050,8 +3050,8 @@
       "similarity": 1.0,
       "runner_up": {
         "bns_section": "219",
-        "bns_title": null,
-        "similarity": 0.643
+        "bns_title": "Obstructing sale of property offered for sale by authority of public servant",
+        "similarity": 0.692
       },
       "in_scope": false,
       "ipc_terms": 29,
@@ -3428,7 +3428,7 @@
       "similarity": 1.0,
       "runner_up": {
         "bns_section": "181",
-        "bns_title": null,
+        "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
         "similarity": 0.867
       },
       "in_scope": false,
@@ -3727,24 +3727,6 @@
       "note": ""
     },
     {
-      "ipc_section": "312",
-      "ipc_title": "Causing miscarriage",
-      "bns_section": "88",
-      "bns_title": "Causing miscarriage",
-      "similarity": 1.0,
-      "runner_up": {
-        "bns_section": "2",
-        "bns_title": "Definitions",
-        "similarity": 0.579
-      },
-      "in_scope": false,
-      "ipc_terms": 19,
-      "low_evidence": false,
-      "verified": false,
-      "verified_by": null,
-      "note": ""
-    },
-    {
       "ipc_section": "315",
       "ipc_title": "Act done with intent to prevent child being born alive or to cause it to die after birth",
       "bns_section": "91",
@@ -3946,7 +3928,7 @@
       "ipc_section": "369",
       "ipc_title": "Kidnapping or abducting child under ten years with intent to steal from its person",
       "bns_section": "97",
-      "bns_title": "Selling child for purposes of prostitution, etc",
+      "bns_title": "Kidnapping or abducting child under ten years of age with intent to steal from its person",
       "similarity": 1.0,
       "runner_up": {
         "bns_section": "20",
@@ -3968,7 +3950,7 @@
       "similarity": 1.0,
       "runner_up": {
         "bns_section": "179",
-        "bns_title": null,
+        "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
         "similarity": 0.562
       },
       "in_scope": false,
@@ -4375,42 +4357,6 @@
       "note": ""
     },
     {
-      "ipc_section": "489B",
-      "ipc_title": "Using as genuine, forged or counterfeit currency-notes or bank-notes",
-      "bns_section": "179",
-      "bns_title": null,
-      "similarity": 1.0,
-      "runner_up": {
-        "bns_section": "180",
-        "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
-        "similarity": 0.56
-      },
-      "in_scope": false,
-      "ipc_terms": 25,
-      "low_evidence": false,
-      "verified": false,
-      "verified_by": null,
-      "note": ""
-    },
-    {
-      "ipc_section": "489C",
-      "ipc_title": "Possession of forged or counterfeit currency-notes or bank-notes",
-      "bns_section": "180",
-      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
-      "similarity": 1.0,
-      "runner_up": {
-        "bns_section": "179",
-        "bns_title": null,
-        "similarity": 0.765
-      },
-      "in_scope": false,
-      "ipc_terms": 17,
-      "low_evidence": false,
-      "verified": false,
-      "verified_by": null,
-      "note": ""
-    },
-    {
       "ipc_section": "493",
       "ipc_title": "Cohabitation caused by a man deceitfully inducing a belief of lawful marriage",
       "bns_section": "81",
@@ -4580,7 +4526,7 @@
       "similarity": 0.98,
       "runner_up": {
         "bns_section": "174",
-        "bns_title": "Punishment for undue influence or personation at an election. False statement in connection with an election",
+        "bns_title": "Punishment for undue influence or personation at an election",
         "similarity": 0.714
       },
       "in_scope": false,
@@ -5239,24 +5185,6 @@
       "note": ""
     },
     {
-      "ipc_section": "511",
-      "ipc_title": "Punishment for attempting to commit offences punishable with imprisonment for life or other imprisonment",
-      "bns_section": "62",
-      "bns_title": null,
-      "similarity": 0.96,
-      "runner_up": {
-        "bns_section": "3",
-        "bns_title": "General explanations",
-        "similarity": 0.6
-      },
-      "in_scope": false,
-      "ipc_terms": 25,
-      "low_evidence": false,
-      "verified": false,
-      "verified_by": null,
-      "note": ""
-    },
-    {
       "ipc_section": "113",
       "ipc_title": "Liability of abettor for an effect caused by the act abetted different from that intended by the abettor",
       "bns_section": "53",
@@ -5335,9 +5263,9 @@
       "bns_title": "Enhanced punishment for certain offences after previous conviction",
       "similarity": 0.957,
       "runner_up": {
-        "bns_section": "2",
-        "bns_title": "Definitions",
-        "similarity": 0.533
+        "bns_section": "167",
+        "bns_title": "Persons subject to certain Acts",
+        "similarity": 0.545
       },
       "in_scope": false,
       "ipc_terms": 30,
@@ -5354,7 +5282,7 @@
       "similarity": 0.957,
       "runner_up": {
         "bns_section": "174",
-        "bns_title": "Punishment for undue influence or personation at an election. False statement in connection with an election",
+        "bns_title": "Punishment for undue influence or personation at an election",
         "similarity": 0.571
       },
       "in_scope": false,
@@ -5373,7 +5301,7 @@
       "runner_up": {
         "bns_section": "96",
         "bns_title": "Procuration of child",
-        "similarity": 0.652
+        "similarity": 0.737
       },
       "in_scope": false,
       "ipc_terms": 27,
@@ -5584,7 +5512,7 @@
       "ipc_section": "256",
       "ipc_title": "Having possession of instrument or material for counterfeiting Government stamp",
       "bns_section": "181",
-      "bns_title": null,
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
       "similarity": 0.95,
       "runner_up": {
         "bns_section": "178",
@@ -5719,6 +5647,42 @@
       },
       "in_scope": false,
       "ipc_terms": 19,
+      "low_evidence": false,
+      "verified": false,
+      "verified_by": null,
+      "note": ""
+    },
+    {
+      "ipc_section": "312",
+      "ipc_title": "Causing miscarriage",
+      "bns_section": "88",
+      "bns_title": "Causing miscarriage",
+      "similarity": 0.947,
+      "runner_up": {
+        "bns_section": "2",
+        "bns_title": "Definitions",
+        "similarity": 0.579
+      },
+      "in_scope": false,
+      "ipc_terms": 19,
+      "low_evidence": false,
+      "verified": false,
+      "verified_by": null,
+      "note": ""
+    },
+    {
+      "ipc_section": "366A",
+      "ipc_title": "Procuration of minor girl",
+      "bns_section": "96",
+      "bns_title": "Procuration of child",
+      "similarity": 0.947,
+      "runner_up": {
+        "bns_section": "87",
+        "bns_title": "Kidnapping, abducting or inducing woman to compel her marriage, etc",
+        "similarity": 0.739
+      },
+      "in_scope": false,
+      "ipc_terms": 23,
       "low_evidence": false,
       "verified": false,
       "verified_by": null,
@@ -5908,7 +5872,7 @@
       "ipc_section": "138",
       "ipc_title": "Abetment of act of insubordination by soldier, sailor or airman",
       "bns_section": "166",
-      "bns_title": null,
+      "bns_title": "Abetment of act of insubordination by soldier, sailor or airman",
       "similarity": 0.941,
       "runner_up": {
         "bns_section": "163",
@@ -6022,6 +5986,24 @@
         "bns_section": "324",
         "bns_title": "Mischief",
         "similarity": 0.647
+      },
+      "in_scope": false,
+      "ipc_terms": 17,
+      "low_evidence": false,
+      "verified": false,
+      "verified_by": null,
+      "note": ""
+    },
+    {
+      "ipc_section": "489C",
+      "ipc_title": "Possession of forged or counterfeit currency-notes or bank-notes",
+      "bns_section": "180",
+      "bns_title": "Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.941,
+      "runner_up": {
+        "bns_section": "179",
+        "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+        "similarity": 0.706
       },
       "in_scope": false,
       "ipc_terms": 17,
@@ -6355,24 +6337,6 @@
       "note": ""
     },
     {
-      "ipc_section": "139",
-      "ipc_title": "Persons subject to certain Acts",
-      "bns_section": "167",
-      "bns_title": "46 of 1950. 62 of 1957",
-      "similarity": 0.929,
-      "runner_up": {
-        "bns_section": "2",
-        "bns_title": "Definitions",
-        "similarity": 0.706
-      },
-      "in_scope": false,
-      "ipc_terms": 17,
-      "low_evidence": false,
-      "verified": false,
-      "verified_by": null,
-      "note": ""
-    },
-    {
       "ipc_section": "148",
       "ipc_title": "Rioting, armed with deadly weapon",
       "bns_section": "191",
@@ -6382,24 +6346,6 @@
         "bns_section": "189",
         "bns_title": "Unlawful assembly",
         "similarity": 0.786
-      },
-      "in_scope": false,
-      "ipc_terms": 14,
-      "low_evidence": false,
-      "verified": false,
-      "verified_by": null,
-      "note": ""
-    },
-    {
-      "ipc_section": "184",
-      "ipc_title": "Obstructing sale of property offered for sale by authority of public servant",
-      "bns_section": "219",
-      "bns_title": null,
-      "similarity": 0.929,
-      "runner_up": {
-        "bns_section": "220",
-        "bns_title": "Illegal purchase or bid for property offered for sale by authority of public servant",
-        "similarity": 0.643
       },
       "in_scope": false,
       "ipc_terms": 14,
@@ -6430,12 +6376,12 @@
       "ipc_section": "313",
       "ipc_title": "Causing miscarriage without woman's consent",
       "bns_section": "89",
-      "bns_title": null,
+      "bns_title": "Causing miscarriage without woman's consent",
       "similarity": 0.929,
       "runner_up": {
-        "bns_section": "88",
-        "bns_title": "Causing miscarriage",
-        "similarity": 0.667
+        "bns_section": "90",
+        "bns_title": "Death caused by act done with intent to cause miscarriage",
+        "similarity": 0.611
       },
       "in_scope": false,
       "ipc_terms": 18,
@@ -6470,7 +6416,7 @@
       "similarity": 0.929,
       "runner_up": {
         "bns_section": "181",
-        "bns_title": null,
+        "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
         "similarity": 0.786
       },
       "in_scope": false,
@@ -6502,7 +6448,7 @@
       "ipc_section": "257",
       "ipc_title": "Making or selling instrument for counterfeiting Government stamp",
       "bns_section": "181",
-      "bns_title": null,
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
       "similarity": 0.926,
       "runner_up": {
         "bns_section": "178",
@@ -6529,6 +6475,24 @@
       },
       "in_scope": false,
       "ipc_terms": 13,
+      "low_evidence": false,
+      "verified": false,
+      "verified_by": null,
+      "note": ""
+    },
+    {
+      "ipc_section": "184",
+      "ipc_title": "Obstructing sale of property offered for sale by authority of public servant",
+      "bns_section": "219",
+      "bns_title": "Obstructing sale of property offered for sale by authority of public servant",
+      "similarity": 0.923,
+      "runner_up": {
+        "bns_section": "220",
+        "bns_title": "Illegal purchase or bid for property offered for sale by authority of public servant",
+        "similarity": 0.643
+      },
+      "in_scope": false,
+      "ipc_terms": 14,
       "low_evidence": false,
       "verified": false,
       "verified_by": null,
@@ -6614,7 +6578,7 @@
       "similarity": 0.923,
       "runner_up": {
         "bns_section": "179",
-        "bns_title": null,
+        "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
         "similarity": 0.538
       },
       "in_scope": false,
@@ -6664,12 +6628,30 @@
       "ipc_section": "372",
       "ipc_title": "Selling minor for purposes of prostitution, etc.",
       "bns_section": "98",
-      "bns_title": null,
+      "bns_title": "Selling child for purposes of prostitution, etc",
       "similarity": 0.92,
       "runner_up": {
         "bns_section": "99",
         "bns_title": "Buying child for purposes of prostitution, etc",
         "similarity": 0.72
+      },
+      "in_scope": false,
+      "ipc_terms": 25,
+      "low_evidence": false,
+      "verified": false,
+      "verified_by": null,
+      "note": ""
+    },
+    {
+      "ipc_section": "489B",
+      "ipc_title": "Using as genuine, forged or counterfeit currency-notes or bank-notes",
+      "bns_section": "179",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.92,
+      "runner_up": {
+        "bns_section": "180",
+        "bns_title": "Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+        "similarity": 0.52
       },
       "in_scope": false,
       "ipc_terms": 25,
@@ -6740,7 +6722,7 @@
       "similarity": 0.917,
       "runner_up": {
         "bns_section": "181",
-        "bns_title": null,
+        "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
         "similarity": 0.75
       },
       "in_scope": false,
@@ -6895,6 +6877,24 @@
       "note": ""
     },
     {
+      "ipc_section": "139",
+      "ipc_title": "Persons subject to certain Acts",
+      "bns_section": "167",
+      "bns_title": "Persons subject to certain Acts",
+      "similarity": 0.909,
+      "runner_up": {
+        "bns_section": "2",
+        "bns_title": "Definitions",
+        "similarity": 0.706
+      },
+      "in_scope": false,
+      "ipc_terms": 17,
+      "low_evidence": false,
+      "verified": false,
+      "verified_by": null,
+      "note": ""
+    },
+    {
       "ipc_section": "208",
       "ipc_title": "Fraudulently suffering decree for sum not due",
       "bns_section": "245",
@@ -6920,7 +6920,7 @@
       "similarity": 0.909,
       "runner_up": {
         "bns_section": "181",
-        "bns_title": null,
+        "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
         "similarity": 0.727
       },
       "in_scope": false,
@@ -7442,7 +7442,7 @@
       "similarity": 0.892,
       "runner_up": {
         "bns_section": "89",
-        "bns_title": null,
+        "bns_title": "Causing miscarriage without woman's consent",
         "similarity": 0.5
       },
       "in_scope": false,
@@ -7492,7 +7492,7 @@
       "ipc_section": "233",
       "ipc_title": "Making or selling instrument for counterfeiting coin",
       "bns_section": "181",
-      "bns_title": null,
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
       "similarity": 0.889,
       "runner_up": {
         "bns_section": "85",
@@ -7510,7 +7510,7 @@
       "ipc_section": "234",
       "ipc_title": "Making or selling instrument for counterfeiting Indian coin",
       "bns_section": "181",
-      "bns_title": null,
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
       "similarity": 0.889,
       "runner_up": {
         "bns_section": "178",
@@ -7676,8 +7676,26 @@
       "similarity": 0.88,
       "runner_up": {
         "bns_section": "98",
-        "bns_title": null,
+        "bns_title": "Selling child for purposes of prostitution, etc",
         "similarity": 0.76
+      },
+      "in_scope": false,
+      "ipc_terms": 25,
+      "low_evidence": false,
+      "verified": false,
+      "verified_by": null,
+      "note": ""
+    },
+    {
+      "ipc_section": "511",
+      "ipc_title": "Punishment for attempting to commit offences punishable with imprisonment for life or other imprisonment",
+      "bns_section": "62",
+      "bns_title": "Punishment for attempting to commit offences punishable with imprisonment for life or other imprisonment",
+      "similarity": 0.88,
+      "runner_up": {
+        "bns_section": "3",
+        "bns_title": "General explanations",
+        "similarity": 0.6
       },
       "in_scope": false,
       "ipc_terms": 25,
@@ -7708,7 +7726,7 @@
       "ipc_section": "489D",
       "ipc_title": "Making or possessing instruments or materials for forging or counterfeiting currency notes or bank-notes",
       "bns_section": "181",
-      "bns_title": null,
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
       "similarity": 0.879,
       "runner_up": {
         "bns_section": "178",
@@ -8338,7 +8356,7 @@
       "ipc_section": "235",
       "ipc_title": "Possession of instrument or material for the purpose of using the same for counterfeiting coin",
       "bns_section": "181",
-      "bns_title": null,
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
       "similarity": 0.833,
       "runner_up": {
         "bns_section": "341",
@@ -8419,24 +8437,6 @@
       },
       "in_scope": false,
       "ipc_terms": 29,
-      "low_evidence": false,
-      "verified": false,
-      "verified_by": null,
-      "note": ""
-    },
-    {
-      "ipc_section": "366A",
-      "ipc_title": "Procuration of minor girl",
-      "bns_section": "96",
-      "bns_title": "Procuration of child",
-      "similarity": 0.826,
-      "runner_up": {
-        "bns_section": "87",
-        "bns_title": "Kidnapping, abducting or inducing woman to compel her marriage, etc",
-        "similarity": 0.739
-      },
-      "in_scope": false,
-      "ipc_terms": 23,
       "low_evidence": false,
       "verified": false,
       "verified_by": null,
@@ -8558,7 +8558,7 @@
       "similarity": 0.818,
       "runner_up": {
         "bns_section": "89",
-        "bns_title": null,
+        "bns_title": "Causing miscarriage without woman's consent",
         "similarity": 0.5
       },
       "in_scope": false,
@@ -8842,7 +8842,7 @@
       "ipc_section": "171H",
       "ipc_title": "Illegal payments in connection with an election",
       "bns_section": "176",
-      "bns_title": null,
+      "bns_title": "Illegal payments in connection with an election",
       "similarity": 0.793,
       "runner_up": {
         "bns_section": "2",
@@ -8937,7 +8937,7 @@
       "runner_up": {
         "bns_section": "96",
         "bns_title": "Procuration of child",
-        "similarity": 0.565
+        "similarity": 0.579
       },
       "in_scope": false,
       "ipc_terms": 23,
@@ -9220,7 +9220,7 @@
       "ipc_section": "309",
       "ipc_title": "Attempt to commit suicide",
       "bns_section": "62",
-      "bns_title": null,
+      "bns_title": "Punishment for attempting to commit offences punishable with imprisonment for life or other imprisonment",
       "similarity": 0.7,
       "runner_up": {
         "bns_section": "3",
@@ -9256,11 +9256,11 @@
       "ipc_section": "258",
       "ipc_title": "Sale of counterfeit Government stamp",
       "bns_section": "181",
-      "bns_title": null,
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
       "similarity": 0.688,
       "runner_up": {
-        "bns_section": "179",
-        "bns_title": null,
+        "bns_section": "294",
+        "bns_title": "Sale, etc., of obscene books, etc",
         "similarity": 0.562
       },
       "in_scope": false,
@@ -9331,9 +9331,9 @@
       "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
       "similarity": 0.615,
       "runner_up": {
-        "bns_section": "179",
-        "bns_title": null,
-        "similarity": 0.615
+        "bns_section": "181",
+        "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
+        "similarity": 0.538
       },
       "in_scope": false,
       "ipc_terms": 13,
@@ -9346,7 +9346,7 @@
       "ipc_section": "237",
       "ipc_title": "Import or export of counterfeit coin",
       "bns_section": "179",
-      "bns_title": null,
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
       "similarity": 0.611,
       "runner_up": {
         "bns_section": "317",
@@ -9472,7 +9472,7 @@
       "ipc_section": "238",
       "ipc_title": "Import or export of counterfeits of the Indian coin",
       "bns_section": "179",
-      "bns_title": null,
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
       "similarity": 0.579,
       "runner_up": {
         "bns_section": "317",
@@ -10070,7 +10070,7 @@
       "similarity": 0.4,
       "runner_up": {
         "bns_section": "181",
-        "bns_title": null,
+        "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
         "similarity": 0.35
       },
       "in_scope": false,

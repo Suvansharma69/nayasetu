@@ -23,8 +23,8 @@ BNS -- the Ministry of Home Affairs gazette PDF (No. 45 of 2023, 25 Dec 2023,
 
     1. Section titles are GAZETTE MARGINAL NOTES, not inline headings. They sit
        in a narrow column (width < 80pt) that mirrors by page -- x0 > 480 on
-       odd pages, x0 < 110 on even ones. A note is matched to the section whose
-       head line is nearest it vertically, which is exactly how the printed
+       odd pages, x0 < 80 on even ones. A note belongs to the section whose
+       head it follows in document order, which is exactly how the printed
        page is meant to be read.
     2. Section heads are `<n>.` at the start of a body line. Note there is NO
        required space after the period: 8 of the 358 sections render as
@@ -36,6 +36,7 @@ BNS -- the Ministry of Home Affairs gazette PDF (No. 45 of 2023, 25 Dec 2023,
 """
 from __future__ import annotations
 
+import bisect
 import json
 import re
 from pathlib import Path
@@ -57,10 +58,24 @@ BNS_EXPECTED_SECTIONS = 358
 IPC_EXPECTED_SECTIONS = 575
 
 # --- gazette page geometry (points; page is 595 x 842) -----------------------
+# Measured across all 102 pages of the gazette rather than guessed:
+#     left-margin notes    x0 in [ 51.1,  59.8]   (n=203)
+#     right-margin notes   x0 in [485.4, 526.6]   (n=176)
+#     body text            x0 in [102.8, 232.5]   (n=1348)
+# x0 therefore separates the columns with ~40pt of clearance on both sides.
+# An earlier version tested the left margin with `x1 < 110`, which cuts through
+# the middle of the note column -- note x1 runs out to 116.2 -- and silently
+# reclassified 11 titles as body text.
 _MARGIN_NOTE_MAX_WIDTH = 80    # notes are a narrow column; body runs ~360 wide
 _MARGIN_RIGHT_X0 = 480         # odd pages: note sits right of the body
-_MARGIN_LEFT_X0 = 110          # even pages: note sits left of the body
+_MARGIN_LEFT_X0 = 80           # even pages: note sits left of the body
 _HEADER_MAX_Y0 = 80            # running head "Sec. 1] THE GAZETTE OF INDIA ..."
+_SIGNATURE_Y0 = 740            # Press's digital signature; lowest real note is 715.4
+
+# Marginal columns also carry references to OTHER Acts ("28 of 1961." next to
+# the dowry-death provision), and one block may hold several of them
+# ("46 of 1950. 62 of 1957."). Those are citations, not section titles.
+_ACT_REFERENCE = re.compile(r"^(?:\d+\s+of\s+\d{4}\.?[\s,;]*)+$")
 
 _SECTION_HEAD = re.compile(r"^\s*(\d{1,3})\.")
 _CHAPTER = re.compile(r"^\s*CHAPTER\s*([IVXL]+)\s*$", re.I)
@@ -96,38 +111,60 @@ def _clean(text):
 
 
 def _page_blocks(page):
-    """Split one gazette page into (body_blocks, margin_notes).
+    """Split one gazette page into (body_blocks, margin_note_lines).
 
-    Both are returned in reading order with their y positions, so a note can be
-    matched to the section it annotates.
+    Notes come back as individual LINES, not whole blocks. The margin column is
+    typeset one note per section, but pymupdf's block grouping does not respect
+    that boundary: it splits s315's note across three blocks and fuses s174's
+    with s175's into one. A line carries its own y, so both cases resolve under
+    the single ordering rule in _assign_titles instead of needing a joining
+    heuristic and a splitting heuristic that would have to disagree.
+
+    Act references and the Press's digital signature are dropped whole-block --
+    they share the margin with the titles but are furniture, and at line
+    granularity they would interleave into the title they sit beside
+    ("Persons subject 45 of 1950. to certain 46 of 1950. Acts").
     """
     body, notes = [], []
-    for x0, y0, x1, y1, txt, *_ in page.get_text("blocks"):
-        txt = txt.strip()
-        if not txt:
+    for blk in page.get_text("dict")["blocks"]:
+        if "lines" not in blk:
+            continue  # image block
+        x0, y0, x1, _y1 = blk["bbox"]
+        lines = [
+            "".join(sp["text"] for sp in ln["spans"]).strip() for ln in blk["lines"]
+        ]
+        flat = re.sub(r"\s+", " ", " ".join(t for t in lines if t)).strip()
+        if not flat:
             continue
-        width = x1 - x0
         if y0 < _HEADER_MAX_Y0:
             continue  # running header / page number
-        if "GAZETTE OF INDIA" in txt.upper():
+        if "GAZETTE OF INDIA" in flat.upper():
             continue
-        is_margin = width < _MARGIN_NOTE_MAX_WIDTH and (
-            x0 > _MARGIN_RIGHT_X0 or x1 < _MARGIN_LEFT_X0
+        is_margin = (x1 - x0) < _MARGIN_NOTE_MAX_WIDTH and (
+            x0 > _MARGIN_RIGHT_X0 or x0 < _MARGIN_LEFT_X0
         )
-        (notes if is_margin else body).append((y0, txt))
+        if not is_margin:
+            body.append((y0, "\n".join(lines)))
+            continue
+        if y0 > _SIGNATURE_Y0 or _ACT_REFERENCE.match(flat):
+            continue
+        # (y, x, text): x is the tiebreak, not decoration. Justified setting
+        # splits one visual line into two records at a wide word gap -- s306's
+        # note has "property" at x=57.6 and "in" at x=101.8 on the SAME y --
+        # so ordering by y alone leaves the words to fall in whatever order the
+        # sort's tiebreak happens to give ("of in property possession").
+        notes += [
+            (ln["bbox"][1], ln["bbox"][0], text)
+            for ln, text in zip(blk["lines"], lines)
+            if text
+        ]
     body.sort(key=lambda b: b[0])
-    notes.sort(key=lambda b: b[0])
+    notes.sort(key=lambda b: (b[0], b[1]))
     return body, notes
 
 
 _PAGE_HEIGHT = 842
-_SAME_LINE_TOLERANCE = 40    # a note sits within ~3pt of its head's baseline
-_PAGE_FOOT = 620             # below this, a section's note may not fit the page
-_PAGE_HEAD = 200             # ...and is then set this high on the next page
-
-# Marginal columns also carry references to OTHER Acts ("28 of 1961." next to
-# the dowry-death provision). Those are citations, not section titles.
-_ACT_REFERENCE = re.compile(r"^\d+\s+of\s+\d{4}\.?$")
+_NOTE_LEAD = 5.0             # a note line may start this far ABOVE its own head
 
 
 def _clean_note(text):
@@ -136,48 +173,44 @@ def _clean_note(text):
 
 
 def _assign_titles(sections, notes):
-    """Bind each marginal note to the section head it annotates.
+    """Bind marginal-note lines to section heads by position in the document.
 
-    Geometry, not ordinal position. There are 351 title notes for 358 sections,
-    so a few provisions carry no marginal note at all; matching the Nth note to
-    the Nth section would silently shift every title after the first such gap,
-    which is far worse than leaving a title empty.
+    The gazette sets a section's note level with the head it annotates, so the
+    note for section N is everything standing in the margin between head N and
+    head N+1. Reading the column that way -- rather than matching each note to
+    the nearest head within a tolerance -- is what makes the awkward cases
+    ordinary rather than special:
 
-    Two rules, in order of confidence:
+    * A note split across several blocks rejoins, because all of its lines fall
+      in the same span (s315's title is three blocks: "Dishonest
+      misappropriation of property possessed by" / "deceased person at the" /
+      "time of his death").
+    * Two notes fused into one block separate, because the fused block's later
+      lines sit below the next head (s174 "Punishment for undue influence or
+      personation at an election" and s175 "False statement in connection with
+      an election" share a block).
+    * A note set at the top of the next page, for a section that began at the
+      foot of the previous one, lands correctly with no page-wrap rule at all.
+      The rule this replaces gave such a note to the section that wrapped, and
+      it was wrong every one of the three times it fired: s97 took s98's title,
+      s175 took s176's, s180 took s181's. A wrong title is worse than none --
+      it is prepended to the section's embedded text, so it corrupts retrieval
+      while looking perfectly well-formed.
 
-    1. Same page, within ~40pt of the head's baseline. The gazette prints the
-       note level with the text it annotates, so this is near-exact.
-    2. Page wrap. A section beginning in the last ~200pt of a page leaves no
-       room for its note, which is then set at the top of the next page. Only
-       the first unclaimed note there is eligible, and only for a head that
-       really is at the foot of its page -- without both conditions this rule
-       would happily steal the next section's title.
+    `_NOTE_LEAD` lets a note line begin a few points above its own head
+    (measured: up to 3pt, e.g. s78 "Stalking"). Consecutive heads are never
+    closer than ~70pt, so it cannot reach back into the previous section.
     """
-    claimed = set()
-    by_page = {}
-    for j, (page, y, text) in enumerate(notes):
-        by_page.setdefault(page, []).append(j)
+    heads = [s["ord"] for s in sections]
+    owned = {}
+    for ordinate, x, text in notes:
+        i = bisect.bisect_right(heads, ordinate + _NOTE_LEAD) - 1
+        if i >= 0:
+            owned.setdefault(i, []).append((ordinate, x, text))
 
-    for s in sections:
-        best, best_d = None, None
-        for j in by_page.get(s["page"], []):
-            if j in claimed:
-                continue
-            d = abs(notes[j][1] - s["y"])
-            if d <= _SAME_LINE_TOLERANCE and (best_d is None or d < best_d):
-                best, best_d = j, d
-
-        if best is None and s["y"] >= _PAGE_FOOT:
-            for j in by_page.get(s["page"] + 1, []):
-                if j in claimed:
-                    continue
-                if notes[j][1] <= _PAGE_HEAD:
-                    best = j
-                break  # only the FIRST note on the next page can be ours
-
-        if best is not None:
-            claimed.add(best)
-            s["title"] = _clean_note(notes[best][2])
+    for i, lines in owned.items():
+        lines.sort(key=lambda ln: (ln[0], ln[1]))   # down the page, then across
+        sections[i]["title"] = _clean_note(" ".join(t for _, _, t in lines))
 
 
 def parse_bns(pdf_path=None):
@@ -188,17 +221,15 @@ def parse_bns(pdf_path=None):
     # Section bodies span page breaks, so nothing can be finalised per-page;
     # heads and marginal notes are both collected against a document-wide
     # ordinate and reconciled afterwards.
-    sections = []        # [{"section","title","chapter","chapter_title","lines","pos"}]
-    all_notes = []       # [(pos, text)]
+    sections = []        # [{"section","title","chapter","chapter_title","lines","ord"}]
+    all_notes = []       # [(ord, x, text)] -- one entry per note LINE
     chapter = chapter_title = None
     pending_chapter = None   # a CHAPTER line; its title is the NEXT line
 
     for page_index, page in enumerate(doc):
         body, notes = _page_blocks(page)
-        all_notes += [
-            (page_index, y, txt) for y, txt in notes
-            if not _ACT_REFERENCE.match(re.sub(r"\s+", " ", txt).strip())
-        ]
+        page_ord = page_index * _PAGE_HEIGHT
+        all_notes += [(page_ord + y, x, txt) for y, x, txt in notes]
 
         for y0, block in body:
             for line in block.split("\n"):
@@ -224,8 +255,7 @@ def parse_bns(pdf_path=None):
                         "chapter": chapter,
                         "chapter_title": chapter_title,
                         "lines": [stripped],
-                        "page": page_index,
-                        "y": y0,
+                        "ord": page_ord + y0,
                     })
                     continue
 
