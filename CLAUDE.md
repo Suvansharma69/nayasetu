@@ -247,7 +247,12 @@ BGE-M3 is **downloaded and verified**: loads on the card at dim=1024, 2.12GB pea
 
 No API keys are needed anywhere in this project any more.
 
-**Blocked, needs you:** NyayaAnumana is a GATED HuggingFace dataset (401 `GatedRepo` unauthenticated). To ingest it: log in at huggingface.co, open `L-NLProc/NyayaAnumana-Classification-Data`, accept the terms, create a read token, put `HF_TOKEN` in `.env`. Its bulk train splits (6.5GB/4.7GB) are forbidden by Section 4 anyway; the usable piece is `test/2020_2024_single.zip` at 264MB. Without it the corpus is SC-only, which will make Phase 5's >=5-judgments-per-section guardrail suppress most sections.
+**NyayaAnumana subset is DOWNLOADED (2026-09-25)** to `data/raw/nyaya_anumana/test/2020_2024_single.zip` - 263,636,668 bytes, `testzip()` clean, ~0.96GB uncompressed. Only this file; the bulk train splits remain forbidden by Section 4. **No ingestion code exists for it yet** - that is the next Phase 1 task. What is inside decides how it can be used:
+  - Four CSVs (HCs 456MB, SCI 47MB, Tribunals 323MB, Dailyorder 130MB), each with only `filename, text, label`. Tribunals and Dailyorder are out of scope for criminal-law precedent - do not extract them.
+  - `label` is a binary outcome, which is what Node 5 wants. **Confirm what 1 and 0 mean from the dataset card before building analytics on it** - do not guess the polarity.
+  - **No date, no section list, no court field.** Court and year come only from `filename` (`Madras_HC_2022_3142`). Dates are scrubbed out of the text itself ("judgment dated passed by"). So the Stage 0 router CANNOT place a 2024 NyayaAnumana case either side of 2024-07-01 from this data; year alone places 2020-2023 as pre-transition. Treat 2024 rows as unroutable unless the text itself cites BNS/IPC unambiguously.
+  - Sections must be extracted from `text` with `src/ingest/sections.py`, and the corpus-first rule applies (never the IPC/BNS union).
+  - Filter to theft/assault/cheating/common-intention BEFORE writing anything to `data/processed/`, keeping a few thousand rows (Section 4 rule 2).
 
 **Next:** finish the mapping sign-off (human, `scripts\review_mapping.py`, 0 of 574 rows done, `ipc_bns_map.json` not yet created), then Phase 2 (Retrieval). Phase 2 needs the embedder; Phase 1 needed neither embedder nor LLM.
 
