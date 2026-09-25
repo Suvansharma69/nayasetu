@@ -8,6 +8,11 @@ Two halves, and the first is not optional decoration: the build validates on
 the way out, but this re-validates what is actually ON DISK, so a file that was
 truncated by a crashed or interrupted write is caught rather than trusted.
 
+Catching truncation takes the report cross-check, not just re-parsing. A file
+cut short is still valid JSONL -- every line parses, every chunk validates, no
+id repeats -- so re-validation alone waves it through. Only comparing the line
+counts against `build_report.json` notices. See _check_against_report.
+
 The second half prints a fixed random sample for a human to read. It also runs
 automated truncation heuristics over the WHOLE corpus, because 20 chunks out of
 77,000 is a sample, not a proof -- the heuristics say where to look.
@@ -56,6 +61,51 @@ def load(path):
                 raise SystemExit(f"{path.name}:{lineno} is not valid JSON: {e}")
 
 
+def _check_against_report(stats, warnings):
+    """Cross-check the corpus on disk against what the build said it wrote.
+
+    This is the half of the truncation check that the loop above cannot do. A
+    file cut short by an interrupted write is still perfectly valid JSONL --
+    every line parses, every chunk validates, no id repeats -- so nothing else
+    here objects to it. `build_report.json` is an independent claim about the
+    same corpus, made by the process that produced it, and a disagreement
+    between the two means one of them is lying about what was ingested.
+
+    Fatal, not a warning. Everything downstream treats this corpus as the
+    definition of what exists: the citation graph's nodes are built from it, so
+    a silently short corpus does not degrade the system's answers, it makes it
+    deny that real sections and real judgments exist.
+    """
+    path = PROCESSED / "build_report.json"
+    if not path.exists():
+        warnings.append(
+            "NO REPORT build_report.json is absent -- record counts are unverified"
+        )
+        return []
+
+    report = json.loads(path.read_text(encoding="utf-8"))
+    problems = []
+    for name in FILES:
+        key = name[: -len(".jsonl")]
+        if key not in report:
+            warnings.append(f"NO COUNT build_report.json has no entry for {key}")
+        elif report[key] != stats[name]:
+            problems.append(
+                f"COUNT {name}: {stats[name]} lines on disk, but "
+                f"build_report.json claims {report[key]}"
+            )
+
+    # CLAUDE.md: all 358 BNS sections carry a marginal note, so a non-empty
+    # list here is a parser regression, not a property of the gazette.
+    missing = report.get("bns_missing_titles")
+    if missing:
+        problems.append(
+            f"BNS TITLES {len(missing)} sections have no title: {missing[:12]} "
+            "-- every BNS section has a marginal note; this is a parser regression"
+        )
+    return problems
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seed", type=int, default=20260922)
@@ -97,7 +147,11 @@ def main():
                 stats["with_sections"] += 1
             all_chunks.append((name, chunk))
         stats[name] = n
+        if n == 0:
+            problems.append(f"EMPTY {name} has no records at all")
         print(f"  {name:28} {n:>7} chunks")
+
+    problems += _check_against_report(stats, warnings)
 
     print(f"\ntotal {len(all_chunks)} chunks, {len(seen_ids)} unique ids")
     print(f"with section references: {stats['with_sections']}")

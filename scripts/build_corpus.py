@@ -21,6 +21,7 @@ Run:  venv\Scripts\python.exe scripts\build_corpus.py
 """
 import argparse
 import json
+import os
 import sys
 import time
 from collections import Counter
@@ -56,7 +57,26 @@ class Writer:
         self.n += 1
 
     def close(self):
+        """Flush to the platform, then read the count back off disk.
+
+        `self.n` is a number this process kept in memory; it proves nothing
+        about the file. A build killed between the last write and the OS flush
+        leaves a short file, and `build_report.json` -- which is written from
+        these counters -- then states a total that no line of the corpus
+        supports. That is not hypothetical: a killed rebuild once left
+        `judgments_post2024.jsonl` at 0 lines while the report claimed 42,890.
+        Reading the count back is the only version of this check that is worth
+        anything, so it is done here rather than trusted.
+        """
+        self.fh.flush()
+        os.fsync(self.fh.fileno())
         self.fh.close()
+        on_disk = sum(1 for _ in self.path.open(encoding="utf-8"))
+        if on_disk != self.n:
+            raise SchemaError(
+                f"{self.path.name}: {self.n} records written but {on_disk} lines "
+                "on disk -- the write was truncated; this build is not usable"
+            )
 
 
 def build_statutes(report):
