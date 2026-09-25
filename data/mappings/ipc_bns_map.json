@@ -1,0 +1,959 @@
+{
+  "_README": [
+    "VERIFIED IPC<->BNS mapping. Every entry was confirmed by a person",
+    "against the real ingested text of both sections.",
+    "",
+    "REVIEWER NOTE: the 97 in-scope rows were reviewed by Claude (Claude Code),",
+    "delegated by the project owner on 2026-09-25, NOT by a lawyer. Each row was",
+    "read IPC-text vs gazette-BNS-text; every correction was located by an exact",
+    "phrase match in the ingested BNS text, never from memory. Entries carry",
+    "reviewer='claude'. Rows marked reviewer='human' were checked by a person.",
+    "",
+    "decision: 'confirmed'  the proposed BNS section is the correspondence",
+    "          'corrected'  a human supplied a different BNS section",
+    "          'none'       the IPC section has no BNS equivalent",
+    "",
+    "Written by scripts/review_mapping.py. Node 3 (Phase 5) reads this for",
+    "the IPC-predecessor check on post-2024 cases; it must never read",
+    "ipc_bns_candidates.json, which is unverified machine output."
+  ],
+  "verified_on": "2026-09-25",
+  "entries": {
+    "34": {
+      "bns_section": "3",
+      "decision": "confirmed",
+      "bns_title": "General explanations",
+      "ipc_title": "Acts done by several persons in furtherance of common intention -",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "3(5)"
+    },
+    "124": {
+      "bns_section": "151",
+      "decision": "confirmed",
+      "bns_title": "Assaulting President, Governor, etc., with intent to compel or restrain exercise of any lawful power",
+      "ipc_title": "Assaulting President, Governor, etc., with intent to compel or restrain the exercise of any lawful power",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "133": {
+      "bns_section": "161",
+      "decision": "confirmed",
+      "bns_title": "Abetment of assault by soldier, sailor or airman on his superior officer, when in execution of his office",
+      "ipc_title": "Abetment of assault by soldier, sailor or airman on his superior officer, when in execution of his office",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "134": {
+      "bns_section": "162",
+      "decision": "confirmed",
+      "bns_title": "Abetment of such assault, if assault committed",
+      "ipc_title": "Abetment of such assault, if the assault committed",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "299": {
+      "bns_section": "100",
+      "decision": "confirmed",
+      "bns_title": "Culpable homicide",
+      "ipc_title": "Culpable homicide",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "300": {
+      "bns_section": "101",
+      "decision": "confirmed",
+      "bns_title": "Murder",
+      "ipc_title": "Murder",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude"
+    },
+    "301": {
+      "bns_section": "102",
+      "decision": "confirmed",
+      "bns_title": "Culpable homicide by causing death of person other than person whose death was intended",
+      "ipc_title": "Culpable homicide by causing death of person other than person whose death was intended",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "319": {
+      "bns_section": "114",
+      "decision": "confirmed",
+      "bns_title": "Hurt",
+      "ipc_title": "Hurt",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude"
+    },
+    "321": {
+      "bns_section": "115",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt",
+      "ipc_title": "Voluntarily causing hurt",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "322": {
+      "bns_section": "117",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing grievous hurt",
+      "ipc_title": "Voluntarily causing grievous hurt",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "328": {
+      "bns_section": "123",
+      "decision": "confirmed",
+      "bns_title": "Causing hurt by means of poison, etc., with intent to commit an offence",
+      "ipc_title": "Causing hurt by means of poison, etc., with intent to commit and offence",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "351": {
+      "bns_section": "130",
+      "decision": "confirmed",
+      "bns_title": "Assault",
+      "ipc_title": "Assault",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "353": {
+      "bns_section": "132",
+      "decision": "confirmed",
+      "bns_title": "Assault or criminal force to deter public servant from discharge of his duty",
+      "ipc_title": "Assault or criminal force to deter public servant from discharge of his duty",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "354B": {
+      "bns_section": "76",
+      "decision": "confirmed",
+      "bns_title": "Assault or use of criminal force to woman with intent to disrobe",
+      "ipc_title": "Assault or use of criminal force to woman with intent to disrobe",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "355": {
+      "bns_section": "133",
+      "decision": "confirmed",
+      "bns_title": "Assault or criminal force with intent to dishonour person, otherwise than on grave provocation",
+      "ipc_title": "Assault or criminal force with intent to dishonour person, otherwise than on grave provocation",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "356": {
+      "bns_section": "134",
+      "decision": "confirmed",
+      "bns_title": "Assault or criminal force in attempt to commit theft of property carried by a person",
+      "ipc_title": "Assault or criminal force in attempt to commit theft of property carried by a person",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "378": {
+      "bns_section": "303",
+      "decision": "confirmed",
+      "bns_title": "Theft",
+      "ipc_title": "Theft",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "381": {
+      "bns_section": "306",
+      "decision": "confirmed",
+      "bns_title": "Theft by clerk or servant of property in possession of master",
+      "ipc_title": "Theft by clerk or servant of property in possession of master",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "382": {
+      "bns_section": "307",
+      "decision": "confirmed",
+      "bns_title": "Theft after preparation made for causing death, hurt or restraint in order to committing of theft",
+      "ipc_title": "Theft after preparation made for causing death, hurt or restraint in order to the committing of the theft",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "383": {
+      "bns_section": "308",
+      "decision": "confirmed",
+      "bns_title": "Extortion",
+      "ipc_title": "Extortion",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "385": {
+      "bns_section": "308",
+      "decision": "confirmed",
+      "bns_title": "Extortion",
+      "ipc_title": "Putting person in fear of injury in order to commit extortion",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "308(3)"
+    },
+    "386": {
+      "bns_section": "308",
+      "decision": "confirmed",
+      "bns_title": "Extortion",
+      "ipc_title": "Extortion by putting a person in fear of death or grievous hurt",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "308(5)"
+    },
+    "387": {
+      "bns_section": "308",
+      "decision": "confirmed",
+      "bns_title": "Extortion",
+      "ipc_title": "Putting person in fear of death or of grievous hurt, in order to commit extortion",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "308(6)"
+    },
+    "389": {
+      "bns_section": "308",
+      "decision": "confirmed",
+      "bns_title": "Extortion",
+      "ipc_title": "Putting person in fear or accusation of offence, in order to commit extortion",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "308(6)"
+    },
+    "391": {
+      "bns_section": "310",
+      "decision": "confirmed",
+      "bns_title": "Dacoity",
+      "ipc_title": "Dacoity",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "394": {
+      "bns_section": "309",
+      "decision": "confirmed",
+      "bns_title": "Robbery",
+      "ipc_title": "Voluntarily causing hurt in committing robbery",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "309(6)"
+    },
+    "396": {
+      "bns_section": "310",
+      "decision": "confirmed",
+      "bns_title": "Dacoity",
+      "ipc_title": "Dacoity with murder",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "310(3)"
+    },
+    "397": {
+      "bns_section": "311",
+      "decision": "confirmed",
+      "bns_title": "Robbery, or dacoity, with attempt to cause death or grievous hurt",
+      "ipc_title": "Robbery or dacoity, with attempt to cause death or grievous hurt",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "398": {
+      "bns_section": "312",
+      "decision": "confirmed",
+      "bns_title": "Attempt to commit robbery or dacoity when armed with deadly weapon",
+      "ipc_title": "Attempt to commit robbery or dacoity when armed with deadly weapon",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "403": {
+      "bns_section": "314",
+      "decision": "confirmed",
+      "bns_title": "Dishonest misappropriation of property",
+      "ipc_title": "Dishonest misappropriation of property",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "405": {
+      "bns_section": "316",
+      "decision": "confirmed",
+      "bns_title": "Criminal breach of trust",
+      "ipc_title": "Criminal breach of trust",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "407": {
+      "bns_section": "316",
+      "decision": "confirmed",
+      "bns_title": "Criminal breach of trust",
+      "ipc_title": "Criminal breach of trust by carrier, etc.",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "316(3)"
+    },
+    "408": {
+      "bns_section": "316",
+      "decision": "confirmed",
+      "bns_title": "Criminal breach of trust",
+      "ipc_title": "Criminal breach of trust by clerk or servant",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "316(4)"
+    },
+    "409": {
+      "bns_section": "316",
+      "decision": "confirmed",
+      "bns_title": "Criminal breach of trust",
+      "ipc_title": "Criminal breach of trust by public servant, or by banker, merchant or agent",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "316(5)"
+    },
+    "415": {
+      "bns_section": "318",
+      "decision": "confirmed",
+      "bns_title": "Cheating",
+      "ipc_title": "Cheating",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "452": {
+      "bns_section": "333",
+      "decision": "confirmed",
+      "bns_title": "House-trespass after preparation for hurt, assault or wrongful restraint",
+      "ipc_title": "House-trespass after preparation for hurt, assault or wrongful restraint",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "455": {
+      "bns_section": "331",
+      "decision": "confirmed",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "ipc_title": "Lurking house-trespass or house-breaking after preparation for hurt, assault or wrongful restraint",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "331(5)"
+    },
+    "468": {
+      "bns_section": "336",
+      "decision": "confirmed",
+      "bns_title": "Forgery",
+      "ipc_title": "Forgery for purpose of cheating",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "336(3)"
+    },
+    "503": {
+      "bns_section": "351",
+      "decision": "confirmed",
+      "bns_title": "Criminal intimidation",
+      "ipc_title": "Criminal intimidation",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "506": {
+      "bns_section": "351",
+      "decision": "confirmed",
+      "bns_title": "Criminal intimidation",
+      "ipc_title": "Punishment for criminal intimidation",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "bns_subsection": "351(2)"
+    },
+    "320": {
+      "bns_section": "116",
+      "decision": "confirmed",
+      "bns_title": "Grievous hurt",
+      "ipc_title": "Grievous hurt",
+      "similarity": 0.974,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "390": {
+      "bns_section": "309",
+      "decision": "confirmed",
+      "bns_title": "Robbery",
+      "ipc_title": "Robbery",
+      "similarity": 0.971,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "420": {
+      "bns_section": "318",
+      "decision": "confirmed",
+      "bns_title": "Cheating",
+      "ipc_title": "Cheating and dishonestly inducing delivery of property",
+      "similarity": 0.964,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "318(4)"
+    },
+    "412": {
+      "bns_section": "317",
+      "decision": "confirmed",
+      "bns_title": "Stolen property",
+      "ipc_title": "Dishonestly receiving property stolen in the commission of a dacoity",
+      "similarity": 0.963,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "317(3)"
+    },
+    "120B": {
+      "bns_section": "61",
+      "decision": "confirmed",
+      "bns_title": "Criminal conspiracy",
+      "ipc_title": "Punishment of criminal conspiracy",
+      "similarity": 0.962,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "61(2)"
+    },
+    "87": {
+      "bns_section": "25",
+      "decision": "confirmed",
+      "bns_title": "Act not intended and not known to be likely to cause death or grievous hurt, done by consent",
+      "ipc_title": "Act not intended and not known to be likely to cause death or grievous hurt, done by consent",
+      "similarity": 0.96,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "120A": {
+      "bns_section": "61",
+      "decision": "confirmed",
+      "bns_title": "Criminal conspiracy",
+      "ipc_title": "Definition of criminal conspiracy",
+      "similarity": 0.958,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "61(1)"
+    },
+    "333": {
+      "bns_section": "121",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt to deter public servant from his duty",
+      "ipc_title": "Voluntarily causing grievous hurt to deter public servant from his duty",
+      "similarity": 0.958,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "121(2)"
+    },
+    "458": {
+      "bns_section": "331",
+      "decision": "confirmed",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "ipc_title": "Lurking house-trespass or house-breaking by night after preparation for hurt, assault, or wrongful restraint",
+      "similarity": 0.958,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "331(6)"
+    },
+    "307": {
+      "bns_section": "109",
+      "decision": "confirmed",
+      "bns_title": "Attempt to murder",
+      "ipc_title": "Attempt to murder",
+      "similarity": 0.95,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "388": {
+      "bns_section": "308",
+      "decision": "confirmed",
+      "bns_title": "Extortion",
+      "ipc_title": "Extortion by threat of accusation of an offence punishable with death or imprisonment for life, etc",
+      "similarity": 0.95,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "308(7)"
+    },
+    "304": {
+      "bns_section": "105",
+      "decision": "confirmed",
+      "bns_title": "Punishment for culpable homicide not amounting to murder",
+      "ipc_title": "Punishment for culpable homicide not amounting to murder",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "354": {
+      "bns_section": "74",
+      "decision": "confirmed",
+      "bns_title": "Assault or use of criminal force to woman with intent to outrage her modesty",
+      "ipc_title": "Assault or criminal force to woman with intent to outrage her modesty",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "440": {
+      "bns_section": "324",
+      "decision": "confirmed",
+      "bns_title": "Mischief",
+      "ipc_title": "Mischief committed after preparation made for causing death or hurt",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "324(6)"
+    },
+    "459": {
+      "bns_section": "331",
+      "decision": "confirmed",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "ipc_title": "Grievous hurt caused whilst committing lurking house-trespass or house-breaking",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "331(7)"
+    },
+    "330": {
+      "bns_section": "120",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property",
+      "ipc_title": "Voluntarily causing hurt to extort confession or to compel restoration of property",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "120(1)"
+    },
+    "331": {
+      "bns_section": "120",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property",
+      "ipc_title": "Voluntarily causing grievous hurt to extort confession, or to compel restoration of property",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "120(2)"
+    },
+    "326A": {
+      "bns_section": "124",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing grievous hurt by use of acid, etc",
+      "ipc_title": "Voluntarily causing grievous hurt by use of acid, etc.",
+      "similarity": 0.935,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "380": {
+      "bns_section": "305",
+      "decision": "confirmed",
+      "bns_title": "Theft in a dwelling house, or means of transportation or place of worship, etc",
+      "ipc_title": "Theft in dwelling house, etc.",
+      "similarity": 0.933,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "325": {
+      "bns_section": "117",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing grievous hurt",
+      "ipc_title": "Punishment for voluntarily causing grievous hurt",
+      "similarity": 0.929,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "117(2)"
+    },
+    "392": {
+      "bns_section": "309",
+      "decision": "confirmed",
+      "bns_title": "Robbery",
+      "ipc_title": "Punishment for robbery",
+      "similarity": 0.929,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "309(4)"
+    },
+    "326": {
+      "bns_section": "118",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt by dangerous weapons or means",
+      "ipc_title": "Voluntarily causing grievous hurt by dangerous weapons or means",
+      "similarity": 0.927,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "118(2)"
+    },
+    "416": {
+      "bns_section": "319",
+      "decision": "confirmed",
+      "bns_title": "Cheating by personation",
+      "ipc_title": "Cheating by personation",
+      "similarity": 0.923,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "324": {
+      "bns_section": "118",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt by dangerous weapons or means",
+      "ipc_title": "Voluntarily causing hurt by dangerous weapons or means",
+      "similarity": 0.921,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "118(1)"
+    },
+    "323": {
+      "bns_section": "115",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt",
+      "ipc_title": "Punishment for voluntarily causing hurt",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "115(2)"
+    },
+    "329": {
+      "bns_section": "119",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt to extort property, or to constrain to an illegal act",
+      "ipc_title": "Voluntarily causing grievous hurt to extort property, or to constrain to an illegal act",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "119(2)"
+    },
+    "507": {
+      "bns_section": "351",
+      "decision": "confirmed",
+      "bns_title": "Criminal intimidation",
+      "ipc_title": "Criminal intimidation by an anonymous communication",
+      "similarity": 0.913,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "351(4)"
+    },
+    "332": {
+      "bns_section": "121",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt to deter public servant from his duty",
+      "ipc_title": "Voluntarily causing hurt to deter public servant from his duty",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "121(1)"
+    },
+    "357": {
+      "bns_section": "135",
+      "decision": "confirmed",
+      "bns_title": "Assault or criminal force in attempt to wrongfully confine a person",
+      "ipc_title": "Assault or criminal force in attempt wrongfully to confine a person",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "335": {
+      "bns_section": "122",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt on provocation",
+      "ipc_title": "Voluntarily causing grievous hurt on provocation",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "122(2)"
+    },
+    "367": {
+      "bns_section": "140",
+      "decision": "confirmed",
+      "bns_title": "Kidnapping or abducting in order to murder or for ransom, etc",
+      "ipc_title": "Kidnapping or abducting in order to subject person to grievous hurt, slavery, etc.",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "140(4)"
+    },
+    "439": {
+      "bns_section": "328",
+      "decision": "confirmed",
+      "bns_title": "Punishment for intentionally running vessel aground or ashore with intent to commit theft, etc",
+      "ipc_title": "Punishment for intentionally running vessel aground or ashore with intent to commit theft, etc.",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "334": {
+      "bns_section": "122",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt on provocation",
+      "ipc_title": "Voluntarily causing hurt on provocation",
+      "similarity": 0.9,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "122(1)"
+    },
+    "399": {
+      "bns_section": "310",
+      "decision": "confirmed",
+      "bns_title": "Dacoity",
+      "ipc_title": "Making preparation to commit dacoity",
+      "similarity": 0.9,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "310(4)"
+    },
+    "418": {
+      "bns_section": "318",
+      "decision": "confirmed",
+      "bns_title": "Cheating",
+      "ipc_title": "Cheating with knowledge that wrongful loss may ensue to person whose interest offender is bound to protect",
+      "similarity": 0.9,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "318(3)"
+    },
+    "308": {
+      "bns_section": "110",
+      "decision": "corrected",
+      "proposed_was": "3",
+      "bns_title": "Attempt to commit culpable homicide",
+      "ipc_title": "Attempt to commit culpable homicide",
+      "similarity": 0.895,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "316": {
+      "bns_section": "92",
+      "decision": "corrected",
+      "proposed_was": "3",
+      "bns_title": "Causing death of quick unborn child by act amounting to culpable homicide",
+      "ipc_title": "Causing death of quick unborn child by act amounting to culpable homicide-",
+      "similarity": 0.895,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "393": {
+      "bns_section": "309",
+      "decision": "confirmed",
+      "bns_title": "Robbery",
+      "ipc_title": "Attempt to commit robbery",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "309(5)"
+    },
+    "395": {
+      "bns_section": "310",
+      "decision": "confirmed",
+      "bns_title": "Dacoity",
+      "ipc_title": "Punishment for dacoity",
+      "similarity": 0.875,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "310(2)"
+    },
+    "106": {
+      "bns_section": "44",
+      "decision": "confirmed",
+      "bns_title": "Right of private defence against deadly assault when there is risk of harm to innocent person",
+      "ipc_title": "Right of private defence against deadly assault when there is risk of harm to innocent person",
+      "similarity": 0.87,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "327": {
+      "bns_section": "119",
+      "decision": "confirmed",
+      "bns_title": "Voluntarily causing hurt or grievous hurt to extort property, or to constrain to an illegal act",
+      "ipc_title": "Voluntarily causing hurt to extort property, or to constrain to an illegal to an act",
+      "similarity": 0.87,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "119(1)"
+    },
+    "364": {
+      "bns_section": "140",
+      "decision": "confirmed",
+      "bns_title": "Kidnapping or abducting in order to murder or for ransom, etc",
+      "ipc_title": "Kidnapping or abducting in order to murder",
+      "similarity": 0.867,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "140(1)"
+    },
+    "302": {
+      "bns_section": "103",
+      "decision": "corrected",
+      "proposed_was": "46",
+      "bns_title": "Punishment for murder",
+      "ipc_title": "Punishment for murder",
+      "similarity": 0.857,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "bns_subsection": "103(1)"
+    },
+    "406": {
+      "bns_section": "316",
+      "decision": "corrected",
+      "proposed_was": "111",
+      "bns_title": "Criminal breach of trust",
+      "ipc_title": "Punishment for criminal breach of trust",
+      "similarity": 0.857,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "bns_subsection": "316(2)"
+    },
+    "152": {
+      "bns_section": "195",
+      "decision": "confirmed",
+      "bns_title": "Assaulting or obstructing public servant when suppressing riot, etc",
+      "ipc_title": "Assaulting or obstructing public servant when suppressing riot, etc.",
+      "similarity": 0.846,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "358": {
+      "bns_section": "136",
+      "decision": "confirmed",
+      "bns_title": "Assault or criminal force on grave provocation",
+      "ipc_title": "Assault or criminal force on grave provocation",
+      "similarity": 0.846,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "404": {
+      "bns_section": "315",
+      "decision": "confirmed",
+      "bns_title": "Dishonest misappropriation of property possessed by deceased person at the time of his death",
+      "ipc_title": "Dishonest misappropriation of property possessed by deceased person at the time of his death",
+      "similarity": 0.846,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "352": {
+      "bns_section": "131",
+      "decision": "confirmed",
+      "bns_title": "Punishment for assault or criminal force otherwise than on grave provocation",
+      "ipc_title": "Punishment for assault or criminal force otherwise than on grave provocation",
+      "similarity": 0.824,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "460": {
+      "bns_section": "331",
+      "decision": "confirmed",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "ipc_title": "All persons jointly concerned in lurking house-trespass or house-breaking by night punishable where death or grievous hurt caused by one of them",
+      "similarity": 0.815,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "331(8)"
+    },
+    "379": {
+      "bns_section": "303",
+      "decision": "corrected",
+      "proposed_was": "46",
+      "bns_title": "Theft",
+      "ipc_title": "Punishment for theft",
+      "similarity": 0.8,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "bns_subsection": "303(2)"
+    },
+    "384": {
+      "bns_section": "308",
+      "decision": "corrected",
+      "proposed_was": "111",
+      "bns_title": "Extortion",
+      "ipc_title": "Punishment for extortion",
+      "similarity": 0.8,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "bns_subsection": "308(2)"
+    },
+    "303": {
+      "bns_section": "104",
+      "decision": "confirmed",
+      "bns_title": "Punishment for murder by life-convict",
+      "ipc_title": "Punishment for murder by life-convict",
+      "similarity": 0.778,
+      "low_evidence": false,
+      "reviewer": "claude"
+    },
+    "337": {
+      "bns_section": "125",
+      "decision": "confirmed",
+      "bns_title": "Act endangering life or personal safety of others",
+      "ipc_title": "Causing hurt by act endangering life or personal safety of others",
+      "similarity": 0.765,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "125(a)"
+    },
+    "338": {
+      "bns_section": "125",
+      "decision": "confirmed",
+      "bns_title": "Act endangering life or personal safety of others",
+      "ipc_title": "Causing grievous hurt by act endangering life or personal safety of others",
+      "similarity": 0.765,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "125(b)"
+    },
+    "402": {
+      "bns_section": "310",
+      "decision": "confirmed",
+      "bns_title": "Dacoity",
+      "ipc_title": "Assembling for purpose of committing dacoity",
+      "similarity": 0.706,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "bns_subsection": "310(5)"
+    },
+    "419": {
+      "bns_section": "319",
+      "decision": "corrected",
+      "proposed_was": "318",
+      "bns_title": "Cheating by personation",
+      "ipc_title": "Punishment for cheating by personation",
+      "similarity": 0.667,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "bns_subsection": "319(2)"
+    },
+    "417": {
+      "bns_section": "318",
+      "decision": "corrected",
+      "proposed_was": "112",
+      "bns_title": "Cheating",
+      "ipc_title": "Punishment for cheating",
+      "similarity": 0.5,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "bns_subsection": "318(2)"
+    }
+  },
+  "counts": {
+    "decided": 97,
+    "with_bns": 97
+  }
+}
