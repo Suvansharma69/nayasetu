@@ -41,6 +41,7 @@ import pymupdf
 
 from .schema import MIN_TEXT_CHARS
 from .sections import detect_corpus, extract_sections, valid_for
+from .textsplit import chunk_text
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw" / "judgments"
@@ -240,6 +241,22 @@ def _merge_short(parts):
     return out
 
 
+# A real SC paragraph is at most a few thousand characters -- long quotations
+# included. Anything past this is a failed paragraph split, not a paragraph:
+# a missing number ("227." then "229.") or a separate opinion restarting at
+# "1." leaves split_paragraphs waiting for a number that never comes, and the
+# rest of the judgment lands in one chunk. Measured 2026-09-26: 687 chunks
+# over 8,000 chars, the largest 397,044 -- which also ran the embedder out of
+# memory. Such a part is re-split into runs of whole sentences.
+MAX_PARAGRAPH_CHARS = 4000
+
+
+def _fit(part):
+    if len(part.strip()) <= MAX_PARAGRAPH_CHARS:
+        return [part]
+    return chunk_text(part)[0]
+
+
 def chunk_judgment(text, meta, section_index):
     """Turn one judgment's text into schema-valid chunks."""
     text = _clean(text)
@@ -267,6 +284,7 @@ def chunk_judgment(text, meta, section_index):
     if len(headnote.strip()) >= MIN_TEXT_CHARS:
         parts.append((headnote, True))
     parts += [(p, False) for p in _merge_short(split_paragraphs(body))]
+    parts = [(piece, hn) for part, hn in parts for piece in _fit(part)]
 
     chunks = []
     for i, (para, is_headnote) in enumerate(parts):

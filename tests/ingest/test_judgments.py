@@ -155,3 +155,26 @@ def test_caps_prose_line_without_judge_bracket_is_kept():
 def test_route_by_code_then_date(hint, date, expected):
     from src.ingest.judgments import route
     assert route(hint, date) == expected
+
+
+def test_failed_paragraph_split_is_resplit_into_sentences():
+    """A 'paragraph' past MAX_PARAGRAPH_CHARS is a failed split, not prose.
+
+    Verbatim shape of 2023_16_1209_1524_p228: numbering jumps 227 -> 229, the
+    splitter waits for 228 forever, and 397,044 chars became one chunk.
+    """
+    from src.ingest.judgments import MAX_PARAGRAPH_CHARS, chunk_judgment
+    sentence = "The appellant was present at the spot when the offence occurred. "
+    body = ("CRIMINAL APPELLATE JURISDICTION: Criminal Appeal No. 1 of 2020\n"
+            "1. " + sentence * 3 + "\n227. " + sentence * 400 + "\n229. " + sentence * 3)
+    chunks = chunk_judgment(body, {"path": "x"}, {"ipc": set(), "bns": set(), "_union": set()})
+    assert max(len(c["text"]) for c in chunks) <= MAX_PARAGRAPH_CHARS
+    # chunks[0] is the jurisdiction preamble, which is not a sentence.
+    assert len(chunks) > 5
+    assert all(c["text"].rstrip().endswith(".") for c in chunks[1:])
+
+
+def test_ordinary_paragraph_is_not_resplit():
+    from src.ingest.judgments import _fit
+    para = "12. " + "The evidence of PW-1 is consistent. " * 50      # ~1,800 chars
+    assert _fit(para) == [para]
