@@ -84,7 +84,9 @@ _MEMBER = re.compile(_NUM, re.IGNORECASE)
 _ASIDE = r"[\s,]*(?:\([^()]{0,24}\)[\s,]*)?"
 _PENAL = re.compile(
     _ASIDE + r"(?:of\s+)?(?:the\s+)?(?:Indian\s+Penal\s+Code|Penal\s+Code"
-    r"|I\.?\s?P\.?\s?C\b|Bharatiya\s+Nyaya|B\.?\s?N\.?\s?S\b(?!\.?\s?S))",
+    # "(?!\.?\s?S\b)": not B.N.S.S. (procedure) -- but only a STANDALONE
+    # trailing S, or "Section 318 BNS. Section 302..." would be rejected too.
+    r"|I\.?\s?P\.?\s?C\b|Bharatiya\s+Nyaya|B\.?\s?N\.?\s?S\b(?!\.?\s?S\b))",
     re.IGNORECASE,
 )
 _OTHER_ENACTMENT = re.compile(
@@ -132,6 +134,27 @@ def detect_corpus(text):
     return [name for name, pat in _ACT_HINTS if pat.search(text)]
 
 
+def _members(m, valid):
+    """Canonical sections named by one citation match that exist in `valid`."""
+    # Bracketed sub-section and clause numbers are NOT sections. Scanned
+    # in place, "303(2)" yields both 303 and 2, and s2 is real in both
+    # codes -- so the Section 3 worked example itself (BNS 303(2), theft)
+    # used to add a phantom edge to s2, and bare 1/2/3 were landing in
+    # ~800 SC judgments' section lists. Blank them before scanning.
+    body = re.sub(r"\([^()]*\)", " ", m.group("body"))
+    out = []
+    for member in _MEMBER.finditer(body):
+        s = _canonical(member.group(0))
+        if s not in valid and " " in member.group(0).strip():
+            # "307 A.P." -- a spaced capital that is not a suffix after
+            # all. Fall back to the number. Only the SPACED form falls
+            # back: "120-B"/"120B" never degrade to "120" (see _MEMBER).
+            s = _canonical(re.match(r"\d+", member.group(0)).group(0))
+        if s in valid:
+            out.append(s)
+    return out
+
+
 def extract_sections(text, valid):
     """Section numbers cited in `text` that exist in `valid`.
 
@@ -144,22 +167,34 @@ def extract_sections(text, valid):
     for m in _CITATION.finditer(text):
         if _names_other_enactment(text, m.end()):
             continue
-        # Bracketed sub-section and clause numbers are NOT sections. Scanned
-        # in place, "303(2)" yields both 303 and 2, and s2 is real in both
-        # codes -- so the Section 3 worked example itself (BNS 303(2), theft)
-        # used to add a phantom edge to s2, and bare 1/2/3 were landing in
-        # ~800 SC judgments' section lists. Blank them before scanning.
-        body = re.sub(r"\([^()]*\)", " ", m.group("body"))
-        for member in _MEMBER.finditer(body):
-            s = _canonical(member.group(0))
-            if s not in valid and " " in member.group(0).strip():
-                # "307 A.P." -- a spaced capital that is not a suffix after
-                # all. Fall back to the number. Only the SPACED form falls
-                # back: "120-B"/"120B" never degrade to "120" (see _MEMBER).
-                s = _canonical(re.match(r"\d+", member.group(0)).group(0))
-            if s in valid and s not in found:
+        for s in _members(m, valid):
+            if s not in found:
                 found.append(s)
     return found
+
+
+_NAMES_BNS = re.compile(r"bharatiya|B\.?\s?N\.?\s?S", re.IGNORECASE)
+
+
+def attributed_sections(text, index):
+    """{"ipc": [...], "bns": [...]} for citations that NAME their code.
+
+    For judgments that discuss both codes, whose unqualified "Section 302"
+    cannot be attributed to either. Only a citation followed by the code's
+    name ("Section 303 of the BNS", "u/s 379 IPC") counts, and it is checked
+    against THAT code's sections alone -- never the union. Unnamed citations
+    are left out rather than guessed.
+    """
+    out = {"ipc": [], "bns": []}
+    for m in _CITATION.finditer(text):
+        named = _PENAL.match(text[m.end():m.end() + 120])
+        if not named:
+            continue
+        code = "bns" if _NAMES_BNS.search(named.group(0)) else "ipc"
+        for s in _members(m, index.get(code, set())):
+            if s not in out[code]:
+                out[code].append(s)
+    return out
 
 
 def statute_section_set(chunks, corpus=None):
