@@ -99,3 +99,77 @@ def test_section_index_separates_corpora():
     idx = section_index(ipc_chunks, bns_chunks)
     assert idx["ipc"] == {"302"} and idx["bns"] == {"303"}
     assert idx["_union"] == {"302", "303"}
+
+
+# --- Citations to OTHER enactments -------------------------------------------
+# Membership cannot tell "Section 378 Cr.P.C." from IPC 378: the number is real
+# in both. Before the enactment check, 7,035 CrPC citations sat in the SC
+# corpus's sections_involved as IPC sections. The first three strings are
+# verbatim from ingested SC judgments; the rest follow forms seen in them and in
+# NyayaAnumana High Court text.
+
+CRPC_COLLIDING = IPC | {"53A", "227", "378", "406", "482", "439", "13", "25", "27"}
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Section 53A Cr.P.C",
+        "Section 53A of the Code of Criminal Procedure",
+        "Section 227 of the Criminal Procedure Code",
+        "an appeal under Section 378(3) Cr.P.C. against acquittal",   # not theft
+        "transfer under Section 406 of the Cr.P.C.",                  # not CBT
+        "petition under Section 482 CrPC to quash",
+        "bail under Sections 438 and 439 of the Code",
+        "Section 13(2) r w 13(1)(d) of P.C Act, 1988",
+        "Section 25 of the Arms Act",
+        "Section 27 of the Evidence Act",
+        # Verbatim, Karnataka HC acquittal appeals: the "and (3)" once hid
+        # the enactment and the State's appeal was filed as a theft case.
+        "This appeal is filed by the State under Section 378(1) and (3) of Code of Criminal Procedure",
+        "The State has filed this appeal under Section 378 (1) (3) of the Code of Criminal Procedure, 1973",
+        # Verbatim, Madras HC.
+        "reach its own conclusions under Sections 378 and 379 (sic 378) CrPC are as",
+    ],
+)
+def test_citation_to_another_enactment_is_dropped(text):
+    assert extract_sections(text, CRPC_COLLIDING) == []
+
+
+def test_penal_code_citation_beside_a_crpc_one_survives():
+    text = ("petition under Section 482 Cr.P.C. to quash the FIR registered "
+            "under Sections 420 and 406 IPC")
+    assert extract_sections(text, CRPC_COLLIDING) == ["420", "406"]
+
+
+def test_citation_followed_by_prose_naming_an_act_is_kept():
+    # Only a name that OPENS with a capital word is an enactment; "and the
+    # Arms Act" after a real IPC cite is prose, and the cite must survive.
+    assert extract_sections("convicted under Section 379 and the Arms Act",
+                            CRPC_COLLIDING) == ["379"]
+
+
+def test_bare_citation_still_kept():
+    assert extract_sections("section 420 IPC.It had been stated", IPC) == ["420"]
+
+
+# --- NyayaAnumana's scrubbed High Court formatting ----------------------------
+
+def test_spaced_suffix_and_read_with_chain():
+    """Verbatim from Madras_HC_2023_848.
+
+    Two failures in one string before the fix: "120 B" read as s120
+    (concealing a design, not conspiracy), and the 420 after "r w" was never
+    reached because "r w" was not a joiner.
+    """
+    text = "guilty of offence under Section 120 B r w 420 of I.P.C and"
+    assert extract_sections(text, IPC) == ["120B", "420"]
+
+
+def test_spaced_capital_that_is_not_a_suffix_falls_back_to_number():
+    assert extract_sections("under Section 302 A.P. police", IPC) == ["302"]
+
+
+def test_ipc_abbreviation_is_not_read_as_a_suffix():
+    assert extract_sections("under Section 34 IPC", IPC) == ["34"]
+    assert extract_sections("Section 379 r w 34 IPC", IPC) == ["379", "34"]
