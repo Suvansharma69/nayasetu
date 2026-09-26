@@ -217,3 +217,30 @@ def test_acronym_enactment_is_dropped():
 def test_acronym_rule_needs_of_so_witness_labels_survive():
     assert extract_sections("under Section 379 PW-1 deposed", WITH_LOW) == ["379"]
     assert extract_sections("under Section 379 of the IPC", WITH_LOW) == ["379"]
+
+
+# --- attribution for judgments that discuss both codes ----------------------------
+
+def test_only_citations_that_name_their_code_are_attributed():
+    from src.ingest.sections import attributed_sections
+    idx = {"ipc": {"302", "379", "420", "34"}, "bns": {"302", "303", "318", "3"}}
+    text = ("The FIR was registered under Section 379 IPC. After 1 July 2024 the "
+            "equivalent offence is Section 303 of the Bharatiya Nyaya Sanhita, and "
+            "cheating is Section 318 BNS. Section 302 was also discussed.")
+    got = attributed_sections(text, idx)
+    assert got == {"ipc": ["379"], "bns": ["303", "318"]}     # unnamed 302 left out
+
+
+def test_attributed_citation_checked_against_its_own_code_only():
+    from src.ingest.sections import attributed_sections
+    idx = {"ipc": {"420"}, "bns": {"318"}}
+    # BNS has no s420: named as BNS, it must not be accepted from the IPC set.
+    assert attributed_sections("Section 420 of the BNS", idx) == {"ipc": [], "bns": []}
+    # BNSS is procedure, not the BNS.
+    assert attributed_sections("Section 303 BNSS", {"ipc": set(), "bns": {"303"}}) == {"ipc": [], "bns": []}
+
+
+def test_bns_citation_before_a_sentence_starting_with_s_is_kept():
+    """'Section 318 BNS. Section 302...' -- the BNSS guard used to swallow it."""
+    assert extract_sections("cheating is Section 318 BNS. Section 302 was also",
+                            {"318"}) == ["318"]

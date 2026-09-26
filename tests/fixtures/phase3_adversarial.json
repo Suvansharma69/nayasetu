@@ -1,0 +1,27 @@
+{
+  "_README": [
+    "The Phase 3 gate (CLAUDE.md Section 8): verify_section() must be 100% correct",
+    "on 10 real and 10 fabricated section numbers. Binary gate.",
+    "",
+    "The fabricated ones are chosen to be the fabrications a model actually makes,",
+    "not random noise: a number that is real in the OTHER code (BNS 420, BNS 498A -",
+    "the union error), one past the end of a code (IPC 512, BNS 359), a plausible",
+    "letter suffix that does not exist (IPC 120C, 302A, 379Z; BNS 303A), and",
+    "malformed input (IPC 0, IPC 302.5).",
+    "",
+    "The real ones include the awkward cases: a suffixed section (120B), a section",
+    "whose text had to be patched in from the official text (304B), a repealed",
+    "section that is still a section (IPC 13 - a lawyer citing it must be told it",
+    "was repealed, not that it does not exist), and both ends of the BNS (1, 358).",
+    "Every 'real' entry was checked against the ingested corpus before being listed;",
+    "every 'fabricated' one was checked to be absent from it."
+  ],
+  "real": [
+    ["ipc", "378"], ["ipc", "120B"], ["ipc", "304B"], ["ipc", "498A"], ["ipc", "13"],
+    ["bns", "303"], ["bns", "3"], ["bns", "318"], ["bns", "1"], ["bns", "358"]
+  ],
+  "fabricated": [
+    ["bns", "420"], ["bns", "498A"], ["ipc", "512"], ["bns", "359"], ["ipc", "120C"],
+    ["ipc", "302A"], ["ipc", "379Z"], ["bns", "303A"], ["ipc", "0"], ["ipc", "302.5"]
+  ]
+}

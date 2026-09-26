@@ -40,7 +40,7 @@ from pathlib import Path
 import pymupdf
 
 from .schema import MIN_TEXT_CHARS
-from .sections import detect_corpus, extract_sections, valid_for
+from .sections import attributed_sections, detect_corpus, extract_sections, valid_for
 from .textsplit import chunk_text
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -278,6 +278,11 @@ def chunk_judgment(text, meta, section_index):
     # block and the charge recital both sit in the headnote, while the
     # reasoning paragraphs often say only "the said section".
     doc_sections = extract_sections(text, valid_sections)
+    # A judgment naming BOTH codes had its sections checked against the union,
+    # so its bare numbers cannot be attributed to either code. Keep, beside
+    # them, only the citations that name their code -- the citation graph
+    # builds this judgment's edges from these alone.
+    attributed = attributed_sections(text, section_index) if len(corpus) > 1 else None
 
     date = _iso_date(meta.get("decision_date"))
     parts = []
@@ -311,6 +316,7 @@ def chunk_judgment(text, meta, section_index):
             "para_index": i,
             "is_headnote": is_headnote,
             "corpus_hint": ",".join(corpus) or None,
+            "sections_attributed": attributed,
         })
     return chunks
 
