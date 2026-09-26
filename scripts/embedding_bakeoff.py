@@ -11,7 +11,7 @@ Run it twice:
   1. NOW, on the smoke fixture, just to prove the harness works:
        venv\\Scripts\\python.exe scripts/embedding_bakeoff.py --smoke
   2. AT THE PHASE 2 GATE, on the real 15 hand-written case-fact examples:
-       venv\\Scripts\\python.exe scripts/embedding_bakeoff.py --data data/processed/phase2_testset.json
+       venv\\Scripts\\python.exe scripts/embedding_bakeoff.py --data tests/fixtures/phase2_testset.json
 
 The Phase 2 run is the one that counts. Lock the winner into EMBEDDING_MODEL
 BEFORE mass ingestion -- switching later means re-embedding the whole corpus.
@@ -43,13 +43,69 @@ DEFAULT_MODELS = [
 
 
 def load_data(path):
+    """Read a bake-off file. Two corpus forms, and optional per-case eras.
+
+    `corpus`      -- an inline list of {id, text}. The smoke fixture uses this.
+    `corpus_from` -- a list of processed JSONL paths, read straight from
+                     data/processed/. The Phase 2 set uses this so the test
+                     file cannot drift from what was actually ingested, and so
+                     no statutory text has to be transcribed into it.
+
+    A case may carry `era` ("ipc" | "bns"). That is not decoration: Stage 0's
+    offence-date router means a query is only ever searched against one code's
+    collections, so scoring against the union of both would measure a problem
+    the system does not have. Worse, it would measure it wrongly -- s303 is
+    theft in the BNS but punishment-for-murder-by-a-life-convict in the IPC, so
+    a union corpus lets a model bank a hit on the right number from the wrong
+    statute. `era` restricts the candidate pool to the code the router would
+    have selected.
+    """
     blob = json.loads(path.read_text(encoding="utf-8"))
-    corpus, cases = blob["corpus"], blob["cases"]
+    cases = blob["cases"]
+
+    if "corpus" in blob:
+        corpus = blob["corpus"]
+    elif "corpus_from" in blob:
+        corpus = []
+        for rel in blob["corpus_from"]:
+            src = ROOT / rel
+            if not src.exists():
+                raise FileNotFoundError("corpus_from: %s" % src)
+            with src.open(encoding="utf-8") as fh:
+                for line in fh:
+                    rec = json.loads(line)
+                    corpus.append({
+                        "id": rec["chunk_id"],
+                        "text": rec["text"],
+                        # `corpus` in the ingested record is "ipc"/"bns" -- the
+                        # same vocabulary a case's `era` uses.
+                        "era": rec.get("corpus"),
+                        "section": rec.get("section"),
+                        "section_title": rec.get("section_title"),
+                    })
+    else:
+        raise ValueError("%s has neither 'corpus' nor 'corpus_from'" % path.name)
+
     ids = {c["id"] for c in corpus}
     for case in cases:
         missing = set(case["relevant"]) - ids
         if missing:
             raise ValueError("case references unknown corpus ids: %s" % missing)
+
+    # An era that excludes a case's own answers would make that case
+    # unhittable and silently drag every model's recall down together, which
+    # looks like a retrieval problem rather than the typo it is.
+    by_id = {c["id"]: c for c in corpus}
+    for case in cases:
+        era = case.get("era")
+        if not era:
+            continue
+        stranded = [r for r in case["relevant"] if by_id[r].get("era") != era]
+        if stranded:
+            raise ValueError(
+                "case era %r excludes its own relevant ids %s -- the case could "
+                "never be scored a hit" % (era, stranded))
+
     return corpus, cases
 
 
@@ -83,6 +139,19 @@ def evaluate(model_id, corpus, cases, device):
     )
 
     sims = q_emb @ doc_emb.T                      # cosine, both normalized
+
+    # Apply the offence-date router. A case with an `era` competes only against
+    # its own code's sections; everything else is pushed below every real
+    # candidate rather than dropped, so row widths stay uniform.
+    doc_eras = [c.get("era") for c in corpus]
+    for row, case in enumerate(cases):
+        era = case.get("era")
+        if not era:
+            continue
+        excluded = [i for i, e in enumerate(doc_eras) if e != era]
+        if excluded:
+            sims[row, excluded] = float("-inf")
+
     order = sims.argsort(dim=1, descending=True).cpu().tolist()
 
     hits = {1: 0, 3: 0, 5: 0}
@@ -98,6 +167,9 @@ def evaluate(model_id, corpus, cases, device):
         rr_total += 1.0 / rank if rank else 0.0
         per_case.append({
             "query": case["query"][:60] + "...",
+            "era": case.get("era"),
+            "offence_type": case.get("offence_type"),
+            "pool": sum(1 for e in doc_eras if not case.get("era") or e == case["era"]),
             "top3": ranked_ids[:3],
             "relevant": sorted(rel),
             "first_hit_rank": rank,
