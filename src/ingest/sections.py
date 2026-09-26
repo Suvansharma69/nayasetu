@@ -92,6 +92,11 @@ _OTHER_ENACTMENT = re.compile(
     r"(?:(?i:Crl?\.?\s?P\.?\s?C\b|Code\s+of\s+Criminal\s+Procedure"
     r"|Criminal\s+Procedure\s+Code|B\.?\s?N\.?\s?S\.?\s?S\b|Bharatiya\s+(?:Nagarik|Sakshya)"
     r"|N\.?\s?D\.?\s?P\.?\s?S\b|Code\b|Evidence\s+Act)"
+    # "of the IBC", "of the MCOCA", "of SC/ST" -- an acronym standing for an
+    # enactment. Only after an explicit "of": a bare capitalised token after a
+    # section number is too often a witness ("Section 379 PW-1 deposed").
+    # IPC/BNS never reach here, _PENAL is checked first.
+    r"|(?<=of\s)(?:the\s+)?[A-Z][A-Z.&/]{1,9}(?:\s+Act)?\b(?![a-z])"
     # "of the Act", "of the Arms Act", "of the Protection of Children from
     # Sexual Offences Act, 2012", "of P.C Act" -- an enactment's name must
     # OPEN with a capitalised word, so "Section 379 and the Arms Act" (a real
@@ -139,7 +144,13 @@ def extract_sections(text, valid):
     for m in _CITATION.finditer(text):
         if _names_other_enactment(text, m.end()):
             continue
-        for member in _MEMBER.finditer(m.group("body")):
+        # Bracketed sub-section and clause numbers are NOT sections. Scanned
+        # in place, "303(2)" yields both 303 and 2, and s2 is real in both
+        # codes -- so the Section 3 worked example itself (BNS 303(2), theft)
+        # used to add a phantom edge to s2, and bare 1/2/3 were landing in
+        # ~800 SC judgments' section lists. Blank them before scanning.
+        body = re.sub(r"\([^()]*\)", " ", m.group("body"))
+        for member in _MEMBER.finditer(body):
             s = _canonical(member.group(0))
             if s not in valid and " " in member.group(0).strip():
                 # "307 A.P." -- a spaced capital that is not a suffix after
@@ -182,10 +193,19 @@ def section_index(*chunk_lists):
 def valid_for(index, corpora):
     """Pick the section set to validate against, given detected corpora.
 
-    One detected code -> that code's sections. Ambiguous (a judgment that
-    discusses both, common around the transition) or none detected -> the
-    union, because narrowing on a guess would drop real citations.
+    One detected code -> that code's sections. Both detected (a judgment that
+    discusses both, common around the transition) -> the union, because
+    narrowing on a guess would drop real citations.
+
+    NEITHER detected -> nothing. A judgment that never names the IPC or the
+    BNS is not citing either; its "Section 34" is the Arbitration Act's, its
+    "Section 2" some Act's definitions clause. This used to fall back to the
+    union too, and 1,214 of the 1,682 such SC judgments (labour, SARFAESI,
+    arbitration) came out linked to penal sections -- the largest single
+    source of fabricated case->section edges in the corpus.
     """
+    if not corpora:
+        return set()
     if len(corpora) == 1 and corpora[0] in index:
         return index[corpora[0]]
     return index["_union"]

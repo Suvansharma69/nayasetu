@@ -109,3 +109,29 @@ def test_all_reporter_header_casings_stripped(variant):
     depends on matching full caps exactly -- hence the inline (?i:...) group.
     """
     assert variant not in _clean(f"body text here\n{variant}\nmore body text")
+
+
+@pytest.mark.parametrize(
+    "raw",
+    [
+        # Verbatim page breaks from ingested SC judgments (spot-check 2026-09-26).
+        # A wrapped party name leaves its tail on the judge's line.
+        "designated by\n\nAIRPORT LTD [S. RAVINDRA BHAT, J.]\nthe levy",
+        # Curly apostrophe in the party name.
+        "to 2009-2010.\nHIND FILTERS LTD. & ANR. v. HIND FILTER EMPLOYEES’\n"
+        "UNION & ANR. [RAJESH BINDAL, J.]\nthe levy",
+        # Tail opening with "&" when the wrap falls mid-name.
+        "technical\n\n& TRANSPORT UNDERTAKING (BEST) [J. B. PARDIWALA, J.]\n\nthe levy",
+    ],
+)
+def test_wrapped_or_curly_page_header_is_stripped(raw):
+    got = _clean(raw)
+    leaked = ("BHAT", "BINDAL", "HIND FILTER", "PARDIWALA", "TRANSPORT")
+    assert not any(k in got for k in leaked)
+    assert got.endswith("the levy")
+
+
+def test_caps_prose_line_without_judge_bracket_is_kept():
+    # The judge bracket is what marks the header; a caps line alone is not
+    # furniture (statute headings, "ORDER", quoted notices).
+    assert "NOTICE UNDER SECTION 7" in _clean("the text\nNOTICE UNDER SECTION 7\nmore text")

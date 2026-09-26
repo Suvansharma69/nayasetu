@@ -95,8 +95,16 @@ _PAGE_FURNITURE = re.compile(
     # "DIGITAL SUPREME COURT REPORTS". A global re.IGNORECASE cannot be used
     # here because the party-name rule below depends on matching caps exactly.
     r"|(?i:(?:Digital )?Supreme Court Reports)"
-    r"|\[[A-Z][A-Z. ,'()]*,[ \t]*JJ?\.\]"                      # [J. B. PARDIWALA, J.]
-    r"|[A-Z][A-Z0-9 .,&'()\-]*\sv\.\s[A-Z][A-Z0-9 .,&'()\-]*"  # party-name header
+    # A long party name WRAPS: its first line (with " v. ") is caught by the
+    # party-name rule below, and the tail lands on the judge's line --
+    # "AIRPORT LTD [S. RAVINDRA BHAT, J.]". So the judge bracket is stripped
+    # together with any all-caps text before it on the same line. Before
+    # this, 2,491 SC chunks kept such a tail. The apostrophe class includes
+    # U+2019 because the reports set "EMPLOYEES’" with a curly one (200 more).
+    # The tail may open with "&" or "(" when the wrap falls mid-name:
+    # "& TRANSPORT UNDERTAKING (BEST) [J. B. PARDIWALA, J.]".
+    r"|(?:[A-Z&(][A-Z0-9 .,&'’()\-]*[ \t]+)?\[[A-Z][A-Z. ,'’()]*,[ \t]*JJ?\.\]"  # [J. B. PARDIWALA, J.]
+    r"|[A-Z][A-Z0-9 .,&'’()\-]*\sv\.\s[A-Z][A-Z0-9 .,&'’()\-]*"  # party-name header
     r"|\d{1,4}|[A-H])[ \t]*$"
 )
 

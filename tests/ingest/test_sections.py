@@ -90,7 +90,17 @@ def test_valid_for_falls_back_to_union_when_ambiguous():
     # Transition-era judgments discuss both codes; narrowing on a guess would
     # drop real citations.
     assert valid_for(INDEX, ["ipc", "bns"]) == INDEX["_union"]
-    assert valid_for(INDEX, []) == INDEX["_union"]
+
+
+def test_valid_for_is_empty_when_no_penal_code_is_named():
+    """A judgment that never names the IPC or BNS cites neither.
+
+    Falling back to the union here linked 1,214 civil SC judgments to penal
+    sections: "the Section 34 petition" (Arbitration Act) became IPC s34.
+    """
+    assert valid_for(INDEX, []) == set()
+    assert extract_sections("the Section 34 petition was dismissed",
+                            valid_for(INDEX, [])) == []
 
 
 def test_section_index_separates_corpora():
@@ -173,3 +183,37 @@ def test_spaced_capital_that_is_not_a_suffix_falls_back_to_number():
 def test_ipc_abbreviation_is_not_read_as_a_suffix():
     assert extract_sections("under Section 34 IPC", IPC) == ["34"]
     assert extract_sections("Section 379 r w 34 IPC", IPC) == ["379", "34"]
+
+
+# --- Sub-section numbers are not sections ---------------------------------------
+# The stand-in sets above lack "1", "2" and "15", which is exactly why
+# test_subsection_flattened_to_section never saw this: s1/s2/s15 are real in
+# both codes, so a bracketed sub-section number passes membership.
+WITH_LOW = IPC | BNS | {"1", "2", "13", "15", "79", "376"}
+
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        # The Section 3 worked example: BNS 303(2) is theft, not 303 AND s2.
+        ("convicted under Section 303(2) of the Bharatiya Nyaya Sanhita", ["303"]),
+        ("Section 376(2)(i) IPC", ["376"]),
+        ("Section 13(1)(d) read with 13(2)", ["13"]),
+        ("under Sections 323(1) and 34", ["323", "34"]),
+    ],
+)
+def test_bracketed_subsection_never_becomes_a_section(text, expected):
+    assert extract_sections(text, WITH_LOW) == expected
+
+
+def test_acronym_enactment_is_dropped():
+    # Verbatim from 2025_3_325_340 (spot-check chunk 17): an IBC provision.
+    assert extract_sections("excluded debts under Section 79(15) of the IBC",
+                            WITH_LOW) == []
+    assert extract_sections("The moratorium under Section 96 of the IBC is",
+                            WITH_LOW | {"96"}) == []
+
+
+def test_acronym_rule_needs_of_so_witness_labels_survive():
+    assert extract_sections("under Section 379 PW-1 deposed", WITH_LOW) == ["379"]
+    assert extract_sections("under Section 379 of the IPC", WITH_LOW) == ["379"]
