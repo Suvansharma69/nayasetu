@@ -9,10 +9,12 @@ than sitting in memory twice:
     judgments_pre2024.jsonl   judgments_pre2024
     judgments_post2024.jsonl  judgments_post2024
 
-The vanga SC judgments are split on DECISION DATE against 2024-07-01, the BNS
-commencement the Stage 0 router keys on. The NyayaAnumana High Court subset has
-no decision date to split on, so it is routed by the code each judgment applies
-(see src/ingest/nyaya.py), into the same two files.
+Judgments are split by the CODE they apply, not by decision date (decided
+2026-09-26, see judgments.route): IPC judgments -> judgments_pre2024, BNS
+judgments -> judgments_post2024, so each collection speaks one numbering. Only
+a judgment naming both codes or neither falls back to decision date against
+2024-07-01. The file names are kept for the Section 5 collection names; read
+them as "IPC era" and "BNS era".
 
 Nothing is written until it validates. Phase 1's gate is "processed JSON
 validates against a fixed schema", so a chunk that fails is a build failure,
@@ -33,7 +35,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from src.ingest import nyaya
-from src.ingest.judgments import BNS_COMMENCEMENT, iter_judgments, load_metadata
+from src.ingest.judgments import iter_judgments, load_metadata, route
 from src.ingest.schema import SchemaError, validate_chunk
 from src.ingest.sections import section_index
 from src.ingest.statutes import parse_bns, parse_ipc
@@ -118,14 +120,23 @@ def build_judgments(index, report, pre, post, dup_index, limit=None):
             if not chunks:
                 stats["empty_judgments"] += 1
                 continue
-            date = chunks[0]["date"]
-            if date is None:
-                # Cannot be routed to a side of the BNS transition, so it is
-                # not silently dropped into one; it is reported instead.
-                undated.append(key)
-                stats["undated"] += 1
+            if chunks[0]["corpus_hint"] is None:
+                # Names neither the IPC nor the BNS: a civil judgment (1,682
+                # of 2,533). It carries no penal sections, so Node 3 -- which
+                # finds precedent FOR verified sections -- can never surface
+                # it as verified precedent; embedded, it is only noise
+                # competing with criminal precedent. Decided 2026-09-26.
+                stats["dropped_no_penal_code"] += 1
                 continue
-            sink = post if date >= BNS_COMMENCEMENT else pre
+            side = route(chunks[0]["corpus_hint"], chunks[0]["date"])
+            if side is None:
+                # Names both codes or neither, and has no date to break the
+                # tie: not silently dropped into a side, reported instead.
+                undated.append(key)
+                stats["unroutable"] += 1
+                continue
+            stats[f"routed_{side}_{chunks[0]['corpus_hint'] or 'no_code'}"] += 1
+            sink = post if side == "post" else pre
             for c in chunks:
                 sink.write(c)
                 dup_index.add(c["doc_id"], c["text"])

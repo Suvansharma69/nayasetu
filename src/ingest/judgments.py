@@ -48,9 +48,35 @@ RAW = ROOT / "data" / "raw" / "judgments"
 SOURCE = "s3://indian-supreme-court-judgments (AWS Open Data)"
 COURT = "Supreme Court of India"
 
-# BNS applies to offences on or after this date; CLAUDE.md Stage 0 routes on it
-# and the two judgment collections are split by it.
+# BNS applies to offences on or after this date; CLAUDE.md Stage 0 routes on it.
 BNS_COMMENCEMENT = "2024-07-01"
+
+
+def route(corpus_hint, date):
+    """Which judgment collection a judgment belongs in: "pre", "post" or None.
+
+    Decided 2026-09-26: by the code the judgment APPLIES, with decision date
+    only as the tie-break. The Stage 0 router sends a pre-transition offence
+    to the IPC collections and a post-transition one to the BNS collections,
+    so each judgment collection must speak ONE numbering. Split on decision
+    date instead, `judgments_post2024` held every IPC appeal decided after
+    July 2024 -- its "302" could be IPC murder or BNS s302, the exact union
+    error Known Gotchas forbids. It also matches the NyayaAnumana subset,
+    which has no decision date and could only ever be routed by code.
+
+      "ipc"      -> pre   (whatever the decision date)
+      "bns"      -> post
+      both/none  -> decision date: a transition judgment discussing both
+                    codes, or a civil one naming neither (which carries no
+                    penal sections anyway). None if undated.
+    """
+    if corpus_hint == "ipc":
+        return "pre"
+    if corpus_hint == "bns":
+        return "post"
+    if date is None:
+        return None
+    return "post" if date >= BNS_COMMENCEMENT else "pre"
 
 # Start of the judgment proper. Civil matters say CIVIL, criminal say CRIMINAL,
 # and some say ORIGINAL -- match the common suffix. The line does NOT end

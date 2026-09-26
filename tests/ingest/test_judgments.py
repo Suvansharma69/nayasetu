@@ -135,3 +135,23 @@ def test_caps_prose_line_without_judge_bracket_is_kept():
     # The judge bracket is what marks the header; a caps line alone is not
     # furniture (statute headings, "ORDER", quoted notices).
     assert "NOTICE UNDER SECTION 7" in _clean("the text\nNOTICE UNDER SECTION 7\nmore text")
+
+
+@pytest.mark.parametrize(
+    "hint,date,expected",
+    [
+        # By code, whatever the date: an IPC appeal decided in 2025 is IPC
+        # precedent, and must not sit in the BNS-era collection.
+        ("ipc", "2025-03-01", "pre"),
+        ("ipc", None, "pre"),
+        ("bns", "2024-09-01", "post"),
+        # Both codes or neither: decision date breaks the tie.
+        ("ipc,bns", "2024-06-30", "pre"),
+        ("ipc,bns", "2024-07-01", "post"),
+        (None, "2025-01-01", "post"),
+        (None, None, None),
+    ],
+)
+def test_route_by_code_then_date(hint, date, expected):
+    from src.ingest.judgments import route
+    assert route(hint, date) == expected
