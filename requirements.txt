@@ -10,7 +10,7 @@
 # Exact pinned versions of everything actually installed: requirements.lock.txt
 
 # --- Embeddings & vector store ---
-sentence-transformers      # loads bhavyagiri/InLegal-Sbert (NOT law-ai/InLegalBERT)
+sentence-transformers      # loads BAAI/bge-m3 (Phase 2 bake-off winner); never law-ai/InLegalBERT
 chromadb                   # embedded, file-based; 4 collections
 
 # --- Citation graph (Section 2: every citation verified against this) ---

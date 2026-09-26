@@ -5,6 +5,8 @@ Every coordinate here is measured from the real MHA gazette PDF (No. 45 of
 it was caught: 11 sections lost their title to the body text, and 4 more
 carried a title that belonged to a different section.
 """
+import json
+
 import pytest
 
 from src.ingest.statutes import (
@@ -13,6 +15,7 @@ from src.ingest.statutes import (
     _PAGE_HEIGHT,
     _assign_titles,
     _page_blocks,
+    parse_ipc,
 )
 
 
@@ -231,3 +234,47 @@ def test_a_note_before_the_first_head_is_discarded_not_back_attached():
     notes = [(100.0, 57.6, "Arrangement of sections."), (502.0, 57.6, "Short title.")]
     _assign_titles(sections, notes)
     assert sections[0]["title"] == "Short title"
+
+
+# --- statute patches ----------------------------------------------------------
+
+def _ipc_json(tmp_path, desc):
+    p = tmp_path / "ipc.json"
+    p.write_text(json.dumps([
+        {"Section": "304A", "section_title": "Causing death by negligence",
+         "section_desc": "Whoever causes the death of any person by doing any rash act.",
+         "chapter": 16, "chapter_title": "OF OFFENCES AFFECTING THE HUMAN BODY"},
+        {"Section": "304B", "section_title": "Dowry death", "section_desc": desc,
+         "chapter": 16, "chapter_title": "OF OFFENCES AFFECTING THE HUMAN BODY"},
+    ]), encoding="utf-8")
+    return p
+
+
+def _patches(tmp_path, text, source):
+    p = tmp_path / "patches.json"
+    p.write_text(json.dumps({"ipc": {"304B": {"section_title": "Dowry death",
+                                               "text": text, "source": source}}}), encoding="utf-8")
+    return p
+
+
+def test_empty_upstream_section_filled_only_from_a_sourced_patch(tmp_path):
+    chunks, skipped = parse_ipc(_ipc_json(tmp_path, ""),
+                                _patches(tmp_path, "(1) Where the death of a woman...", "gazette p.145"))
+    s = {c["section"]: c for c in chunks}
+    assert "304B" in s and skipped == []
+    assert s["304B"]["text"].startswith("Dowry death. (1) Where the death")
+    assert s["304B"]["source"] == "gazette p.145"          # provenance travels with it
+
+
+@pytest.mark.parametrize("text,source", [("", ""), ("some text", ""), ("", "a source")])
+def test_patch_without_text_and_source_is_still_a_gap(tmp_path, text, source):
+    chunks, skipped = parse_ipc(_ipc_json(tmp_path, ""), _patches(tmp_path, text, source))
+    assert "304B" not in {c["section"] for c in chunks}
+    assert skipped == ["304B"]
+
+
+def test_real_patch_file_carries_304B_with_provenance():
+    from src.ingest.statutes import load_patches
+    p = load_patches("ipc")
+    assert "304B" in p
+    assert "Act 43 of 1986" in p["304B"]["source"] and "sha256" in p["304B"]["source"]

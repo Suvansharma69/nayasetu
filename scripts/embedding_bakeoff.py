@@ -299,7 +299,7 @@ def main():
               "```json", json.dumps(results, indent=2), "```"]
     args.report.write_text("\n".join(lines), encoding="utf-8")
     print("")
-    print("report -> %s" % args.report.relative_to(ROOT))
+    print("report -> %s" % args.report.resolve().relative_to(ROOT))
     return 0
 
 

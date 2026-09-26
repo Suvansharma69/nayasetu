@@ -16,9 +16,9 @@
   "ipc": {
     "304B": {
       "section_title": "Dowry death",
-      "text": "",
-      "source": "",
-      "note": "GAP. civictech-India ships section_desc as \"\" in ipc.json and NULL in IndiaLaw.db -- the defect is upstream and present in both formats, not a parsing error on our side. indiacode.nic.in serves its root but times out on every /bitstream/ and /handle/ path from this network, so the authoritative text could not be fetched. Dowry death is outside the theft/assault/cheating/common-intention offence types Phase 1 curates for, so this is not on the critical path; transcribe from the gazette before any work that depends on s304B."
+      "text": "(1) Where the death of a woman is caused by any burns or bodily injury or occurs otherwise than under normal circumstances within seven years of her marriage and it is shown that soon before her death she was subjected to cruelty or harassment by her husband or any relative of her husband for, or in connection with, any demand for dowry, such death shall be called \"dowry death\", and such husband or relative shall be deemed to have caused her death.\nExplanation.-For the purposes of this sub-section, \"dowry\" shall have the same meaning as in section 2 of the Dowry Prohibition Act, 1961 (28 of 1961).\n(2) Whoever commits dowry death shall be punished with imprisonment for a term which shall not be less than seven years but which may extend to imprisonment for life.",
+      "source": "The Indian Penal Code, 1860 (Act No. 45 of 1860), Legislative Department consolidated text as republished by Goa Police: https://citizen.goapolice.gov.in/documents/10184/1794152/ipc.pdf/f7f2c816-63fe-450f-8874-0a5552959c45 (fetched 2026-09-26, sha256 576a485b22bea6127c51f8cf8e646a320ee902008b32ee0ec4dae5f28ff30511, PDF page 145). Section inserted by Act 43 of 1986, s. 10 (w.e.f. 19-11-1986).",
+      "note": "Was a GAP: civictech-India ships section_desc as \"\" in ipc.json and NULL in IndiaLaw.db. Filled 2026-09-26 by extracting the section from the PDF above programmatically (not retyped): whitespace collapsed and the amendment markers '3*[' ... ']' removed, matching how the civictech corpus renders amended sections (cf. 304A, 498A); no words changed. indiacode.nic.in still times out from this network."
     }
   },
   "bns": {}

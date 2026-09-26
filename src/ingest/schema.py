@@ -15,13 +15,12 @@ CLAUDE.md Phase 1 requires every chunk to carry: source, court, date,
 sections_involved. Those four are mandatory for both doc types (court and date
 are None for statutes, which have no deciding court).
 
-ChromaDB caveat for Phase 2
----------------------------
-Chroma metadata values must be scalars -- str, int, float, bool or None. A
-list is rejected. `sections_involved` is therefore stored here as a real list
-(correct for JSON, and what the citation graph in Phase 3 wants) and must be
-joined into a delimited string at Chroma insert time, not before. Keep the
-canonical list form on disk; flatten only at the boundary.
+ChromaDB note (corrected in Phase 2)
+------------------------------------
+An earlier version of this note said Chroma rejects list metadata. ChromaDB
+1.5 (installed) ACCEPTS lists and filters them with `$contains`, so
+`sections_involved` is stored as the real list end to end. It is `None` that
+Chroma rejects; src/retrieval/store.to_metadata drops None-valued keys.
 """
 from __future__ import annotations
 

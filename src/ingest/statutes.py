@@ -47,6 +47,22 @@ from .schema import normalise_section
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw" / "statutes"
+PATCHES = ROOT / "data" / "mappings" / "statute_patches.json"
+
+
+def load_patches(code, path=None):
+    """Hand-verified text for sections the upstream source left empty.
+
+    Only an entry with BOTH text and a recorded source counts: an empty-text
+    entry is an acknowledged gap, and the section stays out of the corpus
+    rather than going in as a stub the verifier would bless.
+    """
+    path = Path(path or PATCHES)
+    if not path.exists():
+        return {}
+    entries = json.loads(path.read_text(encoding="utf-8")).get(code, {})
+    return {sec: e for sec, e in entries.items()
+            if (e.get("text") or "").strip() and (e.get("source") or "").strip()}
 
 IPC_SOURCE = (
     "https://raw.githubusercontent.com/civictech-India/"
@@ -296,10 +312,11 @@ def _bns_chunk(s):
     }
 
 
-def parse_ipc(json_path=None):
+def parse_ipc(json_path=None, patches_path=None):
     """Parse the civictech IPC JSON into one chunk per section."""
     json_path = Path(json_path or RAW / "ipc.json")
     records = json.loads(json_path.read_text(encoding="utf-8"))
+    patches = load_patches("ipc", patches_path)
 
     chunks, skipped = [], []
     for r in records:
@@ -309,6 +326,13 @@ def parse_ipc(json_path=None):
             continue
         title = (r.get("section_title") or "").strip() or None
         desc = (r.get("section_desc") or "").strip()
+        source = IPC_SOURCE
+        if not desc and section in patches:
+            # s304B (dowry death): empty upstream in both civictech formats,
+            # filled from the official text with provenance in the patch file.
+            desc = patches[section]["text"].strip()
+            title = title or patches[section].get("section_title")
+            source = patches[section]["source"]
         if not desc:
             # One record in the file has an empty description. A section with
             # no text cannot be retrieved or meaningfully cited, so it is
@@ -323,7 +347,7 @@ def parse_ipc(json_path=None):
             # The title carries real retrieval signal ("Theft", "Punishment for
             # theft") and is absent from section_desc, so it is prepended.
             "text": f"{title}. {desc}" if title else desc,
-            "source": IPC_SOURCE,
+            "source": source,
             "court": None,
             "date": None,
             "sections_involved": [section],

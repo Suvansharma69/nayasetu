@@ -1,0 +1,753 @@
+[
+ {
+  "case": 1,
+  "era": "ipc",
+  "offence_type": "theft",
+  "query": "The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it.",
+  "want": [
+   "378",
+   "379"
+  ],
+  "statute_top3": [
+   [
+    "446",
+    "446",
+    "House-breaking by night"
+   ],
+   [
+    "444",
+    "444",
+    "Lurking house-trespass by night"
+   ],
+   [
+    "456",
+    "456",
+    "Punishment for lurking house-trespass or house-breaking by night"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "201",
+    "201",
+    "Causing disappearance of evidence of offence, or giving false information to screen offender",
+    4,
+    12
+   ],
+   [
+    "378",
+    "378",
+    "Theft",
+    8,
+    23
+   ],
+   [
+    "411",
+    "411",
+    "Dishonestly receiving stolen property",
+    51,
+    5
+   ]
+  ]
+ },
+ {
+  "case": 2,
+  "era": "ipc",
+  "offence_type": "theft",
+  "query": "While the family was away at a wedding the accused entered their home through an unlatched window and removed gold ornaments and cash from an almirah in the bedroom.",
+  "want": [
+   "378",
+   "380"
+  ],
+  "statute_top3": [
+   [
+    "378",
+    "378",
+    "Theft"
+   ],
+   [
+    "206",
+    "206",
+    "Fraudulent removal or concealment of property to prevent its seizure as forfeited or in execution"
+   ],
+   [
+    "405",
+    "405",
+    "Criminal breach of trust"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "380",
+    "380",
+    "Theft in dwelling house, etc.",
+    7,
+    19
+   ],
+   [
+    "382",
+    "382",
+    "Theft after preparation made for causing death, hurt or restraint in order to the committing of the theft",
+    26,
+    12
+   ],
+   [
+    "378",
+    "378",
+    "Theft",
+    1,
+    65
+   ]
+  ]
+ },
+ {
+  "case": 3,
+  "era": "ipc",
+  "offence_type": "theft",
+  "query": "The accused worked as a salesman at the complainant's cloth shop. Over four months he removed bolts of cloth from the stock room and sold them to a third party. The stock was never entrusted to him; he simply had access to the premises.",
+  "want": [
+   "378",
+   "381"
+  ],
+  "statute_top3": [
+   [
+    "408",
+    "408",
+    "Criminal breach of trust by clerk or servant"
+   ],
+   [
+    "381",
+    "381",
+    "Theft by clerk or servant of property in possession of master"
+   ],
+   [
+    "409",
+    "409",
+    "Criminal breach of trust by public servant, or by banker, merchant or agent"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "409",
+    "409",
+    "Criminal breach of trust by public servant, or by banker, merchant or agent",
+    3,
+    13
+   ],
+   [
+    "411",
+    "411",
+    "Dishonestly receiving stolen property",
+    23,
+    2
+   ],
+   [
+    "420",
+    "420",
+    "Cheating and dishonestly inducing delivery of property",
+    27,
+    1
+   ]
+  ]
+ },
+ {
+  "case": 4,
+  "era": "ipc",
+  "offence_type": "criminal breach of trust",
+  "query": "The accused was the accountant of a firm and was given charge of client deposits held in the firm's account. He transferred those deposits into an account in his wife's name and used them to buy property.",
+  "want": [
+   "405",
+   "406",
+   "408"
+  ],
+  "statute_top3": [
+   [
+    "27",
+    "27",
+    "Property in possession of wife, clerk or servant"
+   ],
+   [
+    "405",
+    "405",
+    "Criminal breach of trust"
+   ],
+   [
+    "403",
+    "403",
+    "Dishonest misappropriation of property"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "420",
+    "420",
+    "Cheating and dishonestly inducing delivery of property",
+    10,
+    1
+   ],
+   [
+    "409",
+    "409",
+    "Criminal breach of trust by public servant, or by banker, merchant or agent",
+    6,
+    8
+   ],
+   [
+    "415",
+    "415",
+    "Cheating",
+    4,
+    15
+   ]
+  ]
+ },
+ {
+  "case": 5,
+  "era": "ipc",
+  "offence_type": "assault",
+  "query": "During a dispute over a boundary wall the accused struck the complainant on the forearm with an iron rod. The medical report records a fracture of the radius and fifteen days of hospitalisation.",
+  "want": [
+   "320",
+   "322",
+   "325",
+   "326"
+  ],
+  "statute_top3": [
+   [
+    "44",
+    "44",
+    "Injury"
+   ],
+   [
+    "357",
+    "357",
+    "Assault or criminal force in attempt wrongfully to confine a person"
+   ],
+   [
+    "323",
+    "323",
+    "Punishment for voluntarily causing hurt"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "323",
+    "323",
+    "Punishment for voluntarily causing hurt",
+    3,
+    3
+   ],
+   [
+    "324",
+    "324",
+    "Voluntarily causing hurt by dangerous weapons or means",
+    7,
+    1
+   ],
+   [
+    "326",
+    "326",
+    "Voluntarily causing grievous hurt by dangerous weapons or means",
+    16,
+    6
+   ]
+  ]
+ },
+ {
+  "case": 6,
+  "era": "ipc",
+  "offence_type": "assault",
+  "query": "The accused raised a stick above his head and advanced towards the complainant shouting that he would break his legs. Bystanders intervened before any blow landed. The complainant was not touched and suffered no injury.",
+  "want": [
+   "351",
+   "352"
+  ],
+  "statute_top3": [
+   [
+    "190",
+    "190",
+    "Threat of injury to induce person to refrain from applying for protection to public servant"
+   ],
+   [
+    "355",
+    "355",
+    "Assault or criminal force with intent to dishonour person, otherwise than on grave provocation"
+   ],
+   [
+    "351",
+    "351",
+    "Assault"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "504",
+    "504",
+    "Intentional insult with intent to provoke breach of the peace",
+    18,
+    5
+   ],
+   [
+    "307",
+    "307",
+    "Attempt to murder",
+    38,
+    2
+   ],
+   [
+    "324",
+    "324",
+    "Voluntarily causing hurt by dangerous weapons or means",
+    42,
+    1
+   ]
+  ]
+ },
+ {
+  "case": 7,
+  "era": "ipc",
+  "offence_type": "cheating",
+  "query": "The accused advertised a flat for sale, showed the complainant forged ownership papers, and accepted eleven lakh rupees as advance. He neither owned the flat nor had any agreement to sell it, and never intended to convey it.",
+  "want": [
+   "415",
+   "420"
+  ],
+  "statute_top3": [
+   [
+    "207",
+    "207",
+    "Fraudulent claim to property to prevent its seizure as forfeited or in execution"
+   ],
+   [
+    "206",
+    "206",
+    "Fraudulent removal or concealment of property to prevent its seizure as forfeited or in execution"
+   ],
+   [
+    "403",
+    "403",
+    "Dishonest misappropriation of property"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "415",
+    "415",
+    "Cheating",
+    4,
+    11
+   ],
+   [
+    "467",
+    "467",
+    "Forgery of valuable security, will, etc.",
+    14,
+    5
+   ],
+   [
+    "420",
+    "420",
+    "Cheating and dishonestly inducing delivery of property",
+    21,
+    1
+   ]
+  ]
+ },
+ {
+  "case": 8,
+  "era": "ipc",
+  "offence_type": "common intention",
+  "query": "Four men arrived together at the shop, having agreed beforehand to teach the shopkeeper a lesson. Two held him down while a third beat him; the fourth kept watch at the door. Only one of them actually inflicted the injuries.",
+  "want": [
+   "322",
+   "34"
+  ],
+  "statute_top3": [
+   [
+    "351",
+    "351",
+    "Assault"
+   ],
+   [
+    "382",
+    "382",
+    "Theft after preparation made for causing death, hurt or restraint in order to the committing of the theft"
+   ],
+   [
+    "356",
+    "356",
+    "Assault or criminal force in attempt to commit theft of property carried by a person"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "323",
+    "323",
+    "Punishment for voluntarily causing hurt",
+    9,
+    3
+   ],
+   [
+    "357",
+    "357",
+    "Assault or criminal force in attempt wrongfully to confine a person",
+    14,
+    21
+   ],
+   [
+    "307",
+    "307",
+    "Attempt to murder",
+    56,
+    2
+   ]
+  ]
+ },
+ {
+  "case": 9,
+  "era": "bns",
+  "offence_type": "theft",
+  "query": "The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it.",
+  "want": [
+   "303"
+  ],
+  "statute_top3": [
+   [
+    "129",
+    "129",
+    "Criminal force"
+   ],
+   [
+    "331",
+    "331(4)",
+    "Punishment for house-trespass or house- breaking"
+   ],
+   [
+    "303",
+    "303(1)",
+    "Theft"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "303",
+    "303(1)",
+    "Theft",
+    3,
+    1
+   ],
+   [
+    "309",
+    "309(4)",
+    "Robbery",
+    10,
+    17
+   ],
+   [
+    "324",
+    "324(1)",
+    "Mischief",
+    7,
+    26
+   ]
+  ]
+ },
+ {
+  "case": 10,
+  "era": "bns",
+  "offence_type": "theft",
+  "query": "The complainant was walking along the roadside using her phone when two men on a scooter slowed beside her, grabbed the phone out of her hand and accelerated away.",
+  "want": [
+   "303",
+   "304"
+  ],
+  "statute_top3": [
+   [
+    "78",
+    "78(1)",
+    "Stalking"
+   ],
+   [
+    "303",
+    "303(1)",
+    "Theft"
+   ],
+   [
+    "309",
+    "309(3)",
+    "Robbery"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "303",
+    "303(1)",
+    "Theft",
+    2,
+    4
+   ],
+   [
+    "309",
+    "309(3)",
+    "Robbery",
+    3,
+    12
+   ],
+   [
+    "351",
+    "351(4)",
+    "Criminal intimidation",
+    37,
+    1
+   ]
+  ]
+ },
+ {
+  "case": 11,
+  "era": "bns",
+  "offence_type": "theft",
+  "query": "The accused broke the seal on a goods container on a stationary freight lorry at a transport depot and removed thirty cartons of electronics before the driver returned.",
+  "want": [
+   "303",
+   "305"
+  ],
+  "statute_top3": [
+   [
+    "350",
+    "350(1)",
+    "Making a false mark upon any receptacle containing goods"
+   ],
+   [
+    "316",
+    "316(3)",
+    "Criminal breach of trust"
+   ],
+   [
+    "334",
+    "334(1)",
+    "Dishonestly breaking open receptacle containing property"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "316",
+    "316(3)",
+    "Criminal breach of trust",
+    2,
+    2
+   ],
+   [
+    "303",
+    "303(1)",
+    "Theft",
+    7,
+    6
+   ],
+   [
+    "336",
+    "336(1)",
+    "Forgery",
+    10,
+    7
+   ]
+  ]
+ },
+ {
+  "case": 12,
+  "era": "bns",
+  "offence_type": "assault",
+  "query": "Following an argument outside a tea stall the accused drew a knife and stabbed the complainant twice in the abdomen. The complainant underwent emergency surgery and remained in intensive care for six days.",
+  "want": [
+   "116",
+   "117",
+   "118"
+  ],
+  "statute_top3": [
+   [
+    "114",
+    "114",
+    "Hurt"
+   ],
+   [
+    "118",
+    "118(1)",
+    "Voluntarily causing hurt or grievous hurt by dangerous weapons or means"
+   ],
+   [
+    "109",
+    "109(2)",
+    "Attempt to murder"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "118",
+    "118(1)",
+    "Voluntarily causing hurt or grievous hurt by dangerous weapons or means",
+    2,
+    2
+   ],
+   [
+    "109",
+    "109(2)",
+    "Attempt to murder",
+    3,
+    3
+   ],
+   [
+    "115",
+    "115(2)",
+    "Voluntarily causing hurt",
+    6,
+    7
+   ]
+  ]
+ },
+ {
+  "case": 13,
+  "era": "bns",
+  "offence_type": "cheating",
+  "query": "The accused ran a scheme promising forty per cent returns in ninety days, collected deposits from twenty-three people, paid the earliest few out of the later deposits, and stopped paying once collections slowed.",
+  "want": [
+   "318"
+  ],
+  "statute_top3": [
+   [
+    "318",
+    "318(4)",
+    "Cheating"
+   ],
+   [
+    "308",
+    "308(7)",
+    "Extortion"
+   ],
+   [
+    "335",
+    "335",
+    "Making a false document"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "318",
+    "318(4)",
+    "Cheating",
+    1,
+    1
+   ],
+   [
+    "308",
+    "308(7)",
+    "Extortion",
+    2,
+    10
+   ],
+   [
+    "336",
+    "336(3)",
+    "Forgery",
+    8,
+    5
+   ]
+  ]
+ },
+ {
+  "case": 14,
+  "era": "bns",
+  "offence_type": "cheating",
+  "query": "The accused telephoned the complainant claiming to be a bank fraud-prevention officer, gave a false employee number, and persuaded her to read out a one-time password, after which two lakh rupees left her account.",
+  "want": [
+   "318",
+   "319"
+  ],
+  "statute_top3": [
+   [
+    "319",
+    "319(1)",
+    "Cheating by personation"
+   ],
+   [
+    "182",
+    "182",
+    "Making or using documents resembling currency-notes or bank-notes"
+   ],
+   [
+    "335",
+    "335",
+    "Making a false document"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "316",
+    "316(1)",
+    "Criminal breach of trust",
+    5,
+    2
+   ],
+   [
+    "319",
+    "319(1)",
+    "Cheating by personation",
+    1,
+    7
+   ],
+   [
+    "318",
+    "318(1)",
+    "Cheating",
+    7,
+    1
+   ]
+  ]
+ },
+ {
+  "case": 15,
+  "era": "bns",
+  "offence_type": "common intention",
+  "query": "The three accused went to the victim's house together under a plan settled that morning. One waited in the car, one forced the gate, and the third assaulted the victim inside. The prosecution seeks to hold all three liable for the injuries caused by one of them.",
+  "want": [
+   "3"
+  ],
+  "statute_top3": [
+   [
+    "333",
+    "333",
+    "House-trespass after preparation for hurt, assault or wrongful restraint"
+   ],
+   [
+    "115",
+    "115(1)",
+    "Voluntarily causing hurt"
+   ],
+   [
+    "119",
+    "119(1)",
+    "Voluntarily causing hurt or grievous hurt to extort property, or to constrain to an illegal act"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "115",
+    "115(1)",
+    "Voluntarily causing hurt",
+    2,
+    2
+   ],
+   [
+    "333",
+    "333",
+    "House-trespass after preparation for hurt, assault or wrongful restraint",
+    1,
+    10
+   ],
+   [
+    "3",
+    "3(9)",
+    "General explanations",
+    6,
+    5
+   ]
+  ]
+ }
+]

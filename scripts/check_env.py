@@ -3,7 +3,7 @@ r"""Phase 0 environment verification.
 Run:  venv\Scripts\python.exe scripts\check_env.py
 
 Checks every load-bearing piece of the stack ACTUALLY works, not just imports.
-The InLegal-Sbert check is the important one: a green pip install tells you
+The embedder check is the important one: a green pip install tells you
 nothing about whether the model fits in 4GB VRAM at embedding time.
 """
 import os
@@ -66,11 +66,11 @@ def _():
     return f"{torch.__version__} | {name} | {vram:.1f} GB VRAM"
 
 
-@check("InLegal-Sbert on GPU")
+@check("Embedder on GPU")
 def _():
     import torch
     from sentence_transformers import SentenceTransformer
-    model_id = os.environ.get("EMBEDDING_MODEL", "bhavyagiri/InLegal-Sbert")
+    model_id = os.environ.get("EMBEDDING_MODEL", "BAAI/bge-m3")
     assert "InLegalBERT" not in model_id, (
         "EMBEDDING_MODEL is the base MLM model, not the Sbert variant "
         "- see CLAUDE.md Known Gotchas"
@@ -84,7 +84,8 @@ def _():
     ] * 16
     emb = m.encode(batch, batch_size=16, show_progress_bar=False)
     peak = torch.cuda.max_memory_allocated() / 1024**3
-    assert emb.shape[1] == 768, f"expected 768-dim, got {emb.shape[1]}"
+    want = int(os.environ.get("EMBEDDING_DIM", "1024"))
+    assert emb.shape[1] == want, f"expected {want}-dim (EMBEDDING_DIM), got {emb.shape[1]}"
     return f"{model_id} | dim={emb.shape[1]} | peak VRAM {peak:.2f} GB"
 
 
