@@ -71,7 +71,7 @@ def _sections_in_era(hit, collection, era):
     return sorted({m[s] for s in secs if s in m})
 
 
-def precedent_votes(query_text, era, pool=60, cli=None):
+def precedent_votes(query_text, era, pool=60, cli=None, device=None):
     """{section: vote} from the `pool` most similar judgment chunks.
 
     One vote per JUDGMENT, not per chunk: a long judgment whose paragraphs all
@@ -79,7 +79,7 @@ def precedent_votes(query_text, era, pool=60, cli=None):
     """
     best_per_doc = {}
     for collection in ERA[era]["judgments"]:
-        for h in store.retrieve(query_text, collection, top_k=pool, cli=cli):
+        for h in store.retrieve(query_text, collection, top_k=pool, cli=cli, device=device):
             secs = _sections_in_era(h, collection, era)
             if not secs:
                 continue
@@ -93,20 +93,23 @@ def precedent_votes(query_text, era, pool=60, cli=None):
     return dict(votes)
 
 
-def rank_sections(query_text, era, top_k=5, pool=60, cli=None, use_votes=True):
+def rank_sections(query_text, era, top_k=5, pool=60, cli=None, use_votes=True, device=None):
     """Fused section ranking for one case. Returns a list, best first, of
-    {section, score, statute_rank, vote_rank, title, matched, id}."""
+    {section, score, statute_rank, statute_score, vote_rank, title, matched, id}.
+
+    `device` is where the query is encoded. The runtime pipeline passes "cpu"
+    so the embedder never competes with Ollama for the 4GB card."""
     if era not in ERA:
         raise ValueError(f"era must be 'ipc' or 'bns', got {era!r}")
     cli = cli or store.client()
     statute = store.retrieve_sections(query_text, ERA[era]["statutes"],
-                                      top_k=pool, cli=cli, pool=pool * 4)
+                                      top_k=pool, cli=cli, pool=pool * 4, device=device)
     s_rank = {r["section"]: i + 1 for i, r in enumerate(statute)}
     info = {r["section"]: r for r in statute}
 
     v_rank = {}
     if use_votes:
-        votes = precedent_votes(query_text, era, pool=pool, cli=cli)
+        votes = precedent_votes(query_text, era, pool=pool, cli=cli, device=device)
         # A vote for a section the era's statute corpus does not contain
         # cannot happen through the paths above; guard anyway, because a
         # section that is not in the corpus must never be proposed.
@@ -130,6 +133,7 @@ def rank_sections(query_text, era, top_k=5, pool=60, cli=None, use_votes=True):
             "section": sec,
             "score": round(fused[sec], 5),
             "statute_rank": s_rank.get(sec),
+            "statute_score": info[sec]["score"] if sec in info else None,
             "vote_rank": v_rank.get(sec),
             "title": r.get("title") if "title" in r else r.get("section_title"),
             "matched": r.get("matched", sec),
