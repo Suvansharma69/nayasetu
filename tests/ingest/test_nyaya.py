@@ -198,3 +198,26 @@ def test_chunk_row_is_schema_valid_and_carries_provenance():
 def test_unknown_court_is_loud():
     with pytest.raises(ValueError, match="unknown court"):
         nyaya.chunk_row("Atlantis_HC_2022_1", "x " * 100, 0, ["379"], "ipc")
+
+
+def test_hard_split_prefers_clause_boundaries():
+    from src.ingest.textsplit import TARGET_CHARS, _hard_split
+    clause = "Penal Code, 1860 – s.302 – Murder – Circumstantial evidence "
+    headnote = "; ".join([clause * 3] * 30)            # one 'sentence', no full stop
+    parts = _hard_split(headnote)
+    assert len(parts) > 1
+    for p in parts[:-1]:
+        assert p.endswith(";") or p.endswith("–") or p.endswith(":") or p.endswith(",")
+        assert len(p) >= TARGET_CHARS // 2
+
+
+def test_bombay_ligature_repair_is_exact_and_case_preserving():
+    from src.ingest.nyaya import repair_bombay_ligatures as fix
+    assert fix("The frst ofence was committed. Frst Information Report. OFENCE") == \
+        "The first offence was committed. First Information Report. OFFENCE"
+    # Only mapped tokens change. "arming" is not in the map (the old dictionary
+    # guess turned it into "affirming"); "fling" IS -- in this corpus it occurs
+    # under 3 times outside Bombay, where it is always the damaged "filing".
+    assert fix("arming the accused with a fling of the stone") == "arming the accused with a filing of the stone"
+    assert fix("forming frstly") == "forming firstly"
+    assert fix("the officer found") == "the officer found"

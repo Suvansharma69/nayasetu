@@ -93,17 +93,33 @@ def precedent_votes(query_text, era, pool=60, cli=None, device=None):
     return dict(votes)
 
 
-def rank_sections(query_text, era, top_k=5, pool=60, cli=None, use_votes=True, device=None):
+def rank_sections(query_text, era, top_k=5, pool=60, cli=None, use_votes=True, device=None,
+                  exclude=None, statute_query=None):
     """Fused section ranking for one case. Returns a list, best first, of
     {section, score, statute_rank, statute_score, vote_rank, title, matched, id}.
 
+    `statute_query`, if given, is what the STATUTE side is searched with, while
+    precedent votes still use `query_text`. The pipeline passes a HyDE-style
+    abstract restatement of the facts (see src/pipeline/hyde.py): statutes are
+    abstract and judgments are narrative, so each side is matched in its own
+    register.
+
     `device` is where the query is encoded. The runtime pipeline passes "cpu"
-    so the embedder never competes with Ollama for the 4GB card."""
+    so the embedder never competes with Ollama for the 4GB card.
+
+    `exclude` is a set of sections that may neither rank nor receive votes.
+    The pipeline passes the codes' non-chargeable sections (definitions,
+    general exceptions): once the full IPC<->BNS mapping existed, IPC judgments
+    citing definition sections voted BNS 2 "Definitions" into the top 3. The
+    default (None) is the frozen Phase 2 method, which scripts/eval_retrieval.py
+    still measures."""
     if era not in ERA:
         raise ValueError(f"era must be 'ipc' or 'bns', got {era!r}")
     cli = cli or store.client()
-    statute = store.retrieve_sections(query_text, ERA[era]["statutes"],
+    statute = store.retrieve_sections(statute_query or query_text, ERA[era]["statutes"],
                                       top_k=pool, cli=cli, pool=pool * 4, device=device)
+    exclude = exclude or set()
+    statute = [r for r in statute if r["section"] not in exclude]
     s_rank = {r["section"]: i + 1 for i, r in enumerate(statute)}
     info = {r["section"]: r for r in statute}
 
@@ -114,7 +130,7 @@ def rank_sections(query_text, era, top_k=5, pool=60, cli=None, use_votes=True, d
         # cannot happen through the paths above; guard anyway, because a
         # section that is not in the corpus must never be proposed.
         valid = _era_sections(era)
-        ordered = sorted((s for s in votes if s in valid), key=lambda s: -votes[s])
+        ordered = sorted((s for s in votes if s in valid and s not in exclude), key=lambda s: -votes[s])
         v_rank = {s: i + 1 for i, s in enumerate(ordered)}
 
     fused = {}

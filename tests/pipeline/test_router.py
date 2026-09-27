@@ -3,7 +3,7 @@ from datetime import date, datetime
 
 import pytest
 
-from src.pipeline.router import route
+from src.pipeline.router import route, route_period
 
 TODAY = date(2026, 9, 27)
 
@@ -33,7 +33,32 @@ def test_future_offence_date_is_refused():
         route("2026-09-28", today=TODAY)
 
 
+@pytest.mark.parametrize("a, b, eras", [
+    ("2024-01-10", "2024-06-30", ["ipc"]),
+    ("2024-07-01", "2024-09-10", ["bns"]),
+    ("2024-01-10", "2024-09-10", ["ipc", "bns"]),     # cruelty spanning the transition
+    ("2024-06-30", "2024-07-01", ["ipc", "bns"]),     # the tightest straddle
+])
+def test_route_period(a, b, eras):
+    assert route_period(a, b, today=TODAY) == eras
+
+
+def test_backwards_period_is_refused():
+    with pytest.raises(ValueError, match="backwards"):
+        route_period("2024-09-10", "2024-01-10", today=TODAY)
+
+
 def test_transition_date_comes_from_env(monkeypatch):
     monkeypatch.setenv("BNS_TRANSITION_DATE", "2024-08-01")
     assert route("2024-07-15", today=TODAY) == "ipc"
     assert route("2024-08-01", today=TODAY) == "bns"
+
+
+def test_context_size_grows_with_the_prompt():
+    from src.pipeline.llm import LLMError, context_size
+    short = [{"role": "user", "content": "x" * 3000}]
+    long = [{"role": "user", "content": "x" * 30000}]        # ~an LSI fact statement
+    assert context_size(short, 1024) == 8192
+    assert context_size(long, 1024) == 16384
+    with pytest.raises(LLMError):
+        context_size([{"role": "user", "content": "x" * 200000}], 1024)

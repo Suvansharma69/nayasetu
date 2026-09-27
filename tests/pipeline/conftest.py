@@ -2,6 +2,7 @@
 IPC 302 (murder) vs BNS 302 (something else), IPC 420 with no BNS 420,
 IPC 378/379 -> BNS 303, IPC 34 -> BNS 3."""
 import json
+import re
 
 import pytest
 
@@ -45,16 +46,38 @@ def g(tmp_path):
 class ScriptedLLM:
     """Returns one scripted proposal list per call; records every call."""
 
-    def __init__(self, *rounds):
+    """`calls` records Node 1 calls only; Node 2b (applicability) calls go to
+    `assess_calls`. `assess` maps a section reference ("BNS 303") to a reply
+    dict; by default every section applies, quoting the facts' opening words."""
+
+    def __init__(self, *rounds, profile=None, assess=None):
         self.rounds = list(rounds)
         self.calls = []
+        self.assess_calls = []
+        self.profile = profile or {}
+        self.assess = assess or {}
 
     def __call__(self, messages, schema):
+        if "assessments" in schema["properties"]:
+            self.assess_calls.append(messages)
+            refs = re.findall(r"^\[([^\]]+)\]", messages[-1]["content"], re.M)
+            facts = messages[-1]["content"].split("Facts:\n", 1)[1].split("\n\nSections:", 1)[0]
+            default = {"facts_quotes": [facts[:30]], "missing_ingredient": "", "applies": True}
+            return {"assessments": [{"section": r, **self.assess.get(r, default)} for r in refs]}
         self.calls.append(messages)
         secs = self.rounds[min(len(self.calls) - 1, len(self.rounds) - 1)]
-        return {"sections": [{"section": s, "reason": "r"} for s in secs]}
+        return {**self.profile, "sections": [{"section": s, "reason": "r"} for s in secs]}
 
 
 @pytest.fixture
 def scripted():
     return ScriptedLLM
+
+
+@pytest.fixture(scope="session")
+def g2():
+    """The REAL citation graph, for checks that must use real section sets.
+    Skipped if it has not been built (scripts/build_graph.py)."""
+    if not cg.graph_path().exists():
+        pytest.skip("citation graph not built")
+    return cg.load()

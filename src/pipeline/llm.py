@@ -36,10 +36,26 @@ def model():
     return os.environ.get("OLLAMA_MODEL", DEFAULT_MODEL).strip()
 
 
-def chat_json(messages, schema, model_name=None, num_ctx=8192, num_predict=1024):
+def context_size(messages, num_predict):
+    """Smallest of 8K/16K/32K that holds the prompt plus the reply.
+
+    A lawyer's brief fits 8K; IL-TUR LSI facts average ~2,400 words and do not.
+    Ollama silently TRUNCATES a prompt longer than num_ctx -- the model would
+    then judge facts it never saw -- so the size follows the prompt. Estimated
+    at ~3 characters per token, deliberately pessimistic for legal English.
+    """
+    need = sum(len(m["content"]) for m in messages) // 3 + num_predict + 256
+    for size in (8192, 16384, 32768):
+        if need <= size:
+            return size
+    raise LLMError(f"prompt needs ~{need} tokens, over the 32K this machine can hold")
+
+
+def chat_json(messages, schema, model_name=None, num_ctx=None, num_predict=1024):
     """Send `messages`, return the reply parsed as JSON conforming to `schema`."""
     import httpx
 
+    num_ctx = num_ctx or context_size(messages, num_predict)
     body = {
         "model": model_name or model(),
         "messages": messages,

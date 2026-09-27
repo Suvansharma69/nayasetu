@@ -26,6 +26,8 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
+import time
 from pathlib import Path
 
 from . import embedder
@@ -238,6 +240,28 @@ def _collection(collection, cli=None):
     return col
 
 
+SLOW_RETRIEVE_S = 20.0
+
+
+def _free_ram_gb():
+    """Free physical RAM in GB on Windows (no psutil dependency), else '?'."""
+    try:
+        import ctypes
+
+        class _MS(ctypes.Structure):
+            _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong),
+                        ("ullTotalPhys", ctypes.c_ulonglong), ("ullAvailPhys", ctypes.c_ulonglong),
+                        ("ullTotalPageFile", ctypes.c_ulonglong), ("ullAvailPageFile", ctypes.c_ulonglong),
+                        ("ullTotalVirtual", ctypes.c_ulonglong), ("ullAvailVirtual", ctypes.c_ulonglong),
+                        ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
+        ms = _MS()
+        ms.dwLength = ctypes.sizeof(_MS)
+        ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(ms))
+        return f"{ms.ullAvailPhys / 1e9:.1f} GB"
+    except Exception:                                     # pragma: no cover
+        return "?"
+
+
 def retrieve(query_text, collection, top_k=5, where=None, device=None, cli=None):
     """Top-k records for `query_text` from one collection, best first.
 
@@ -251,12 +275,22 @@ def retrieve(query_text, collection, top_k=5, where=None, device=None, cli=None)
     if not query_text or not query_text.strip():
         raise ValueError("empty query")
     col = _collection(collection, cli)
+    t0 = time.perf_counter()
+    vec = embedder.encode([query_text], device=device)
+    t1 = time.perf_counter()
     res = col.query(
-        query_embeddings=embedder.encode([query_text], device=device),
+        query_embeddings=vec,
         n_results=top_k,
         where=where,
         include=["documents", "metadatas", "distances"],
     )
+    t2 = time.perf_counter()
+    if t2 - t0 > SLOW_RETRIEVE_S:
+        # One retrieval took 251 s at the Phase 4 gate (every other run ~0.5 s)
+        # and never recurred. Timed in two halves so a repeat says whether it is
+        # the embedder or the index, with the RAM free at that moment.
+        print(f"[slow retrieve] {collection}: encode {t1 - t0:.1f}s, query {t2 - t1:.1f}s, "
+              f"free RAM {_free_ram_gb()}", file=sys.stderr, flush=True)
     out = []
     for i, doc, md, dist in zip(res["ids"][0], res["documents"][0],
                                 res["metadatas"][0], res["distances"][0]):
@@ -288,6 +322,63 @@ def retrieve_sections(query_text, collection, top_k=5, device=None, cli=None, po
                 "text": h["text"],
             }
     return sorted(best.values(), key=lambda r: -r["score"])[:top_k]
+
+
+def _index_ids(col, page=5000):
+    have, offset = set(), 0
+    while True:
+        got = col.get(include=[], limit=page, offset=offset)
+        if not got["ids"]:
+            return have
+        have.update(got["ids"])
+        offset += len(got["ids"])
+
+
+def add_missing(collection, cli=None, encode_batch=8, device=None):
+    """Embed and add ONLY the corpus records the index lacks. Returns the count.
+
+    The incremental half of --sync: when a rebuild adds a few chunks (one newly
+    qualifying judgment), embedding those alone is equivalent to a full rebuild
+    for them. Existing records are not touched here; prune() removes stale ones
+    and sync_metadata() then verifies every id AND text against the corpus.
+    """
+    col = _collection(collection, cli)
+    statute = collection in STATUTE_COLLECTIONS
+    have = _index_ids(col)
+    new = [(rid, text, md) for chunk in iter_chunks(collection)
+           for rid, text, md in records(chunk, statute) if rid not in have]
+    for i in range(0, len(new), 256):
+        batch = new[i:i + 256]
+        docs = [t for _, t, _ in batch]
+        col.add(ids=[r for r, _, _ in batch], documents=docs, metadatas=[m for _, _, m in batch],
+                embeddings=embedder.encode(docs, batch_size=encode_batch, device=device))
+    return len(new)
+
+
+def prune(collection, cli=None, page=5000):
+    """Delete index records whose ids the corpus no longer contains. Returns the count.
+
+    For corpus rebuilds that only REMOVE chunks (e.g. judgments that stopped
+    qualifying once bare procedure citations were no longer read as penal): the
+    remaining vectors are still valid, so re-embedding 80K chunks is wasted work.
+    Refuses if the corpus holds any id the index lacks -- those need embedding,
+    which only build() does. Follow with sync_metadata(), which verifies ids and
+    texts match exactly.
+    """
+    col = _collection(collection, cli)
+    statute = collection in STATUTE_COLLECTIONS
+    want = {rid for chunk in iter_chunks(collection) for rid, _, _ in records(chunk, statute)}
+    have = _index_ids(col, page)
+    missing = want - have
+    if missing:
+        raise RuntimeError(f"{collection}: {len(missing)} corpus records are not in the index "
+                           f"(e.g. {next(iter(missing))}) -- rebuild with scripts/build_index.py")
+    stale = sorted(have - want)
+    for i in range(0, len(stale), page):
+        col.delete(ids=stale[i:i + page])
+    if col.count() != len(want):
+        raise RuntimeError(f"{collection}: {col.count()} records after pruning, {len(want)} in the corpus")
+    return len(stale)
 
 
 def sync_metadata(collection, cli=None, page=2000):
@@ -327,11 +418,22 @@ def sync_metadata(collection, cli=None, page=2000):
                            "-- their embeddings are stale; rebuild with scripts/build_index.py")
 
     changed = [rid for rid in want if want[rid][1] != have[rid][1]]
-    for rid in changed:
-        if set(have[rid][1]) - set(want[rid][1]):
-            # Chroma's update merges keys; it cannot be trusted to delete one.
-            raise RuntimeError(f"{collection}: {rid} would lose a metadata key -- rebuild instead")
-    for i in range(0, len(changed), page):
-        ids = changed[i:i + page]
+    # Chroma's update merges metadata keys and cannot delete one. A record that
+    # must LOSE a key (a chunk whose only citations turned out to be another
+    # Act's, so `sections_involved` goes away) is deleted and re-added with its
+    # EXISTING vector -- valid, because its text was just verified unchanged.
+    losing = [rid for rid in changed if set(have[rid][1]) - set(want[rid][1])]
+    merging = [rid for rid in changed if rid not in set(losing)]
+    for i in range(0, len(merging), page):
+        ids = merging[i:i + page]
         col.update(ids=ids, metadatas=[want[r][1] for r in ids])
+    for i in range(0, len(losing), page):
+        ids = losing[i:i + page]
+        got = col.get(ids=ids, include=["embeddings", "documents"])
+        vec = dict(zip(got["ids"], got["embeddings"]))
+        col.delete(ids=ids)
+        col.add(ids=ids, documents=[want[r][0] for r in ids], metadatas=[want[r][1] for r in ids],
+                embeddings=[list(vec[r]) for r in ids])
+    if col.count() != len(want):
+        raise RuntimeError(f"{collection}: {col.count()} records after sync, {len(want)} in the corpus")
     return len(changed)

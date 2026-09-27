@@ -23,8 +23,8 @@ from functools import partial
 from src.graph import citation_graph as cg
 from src.retrieval import embedder, ranker
 
-from . import guardrail, llm as llm_mod, nodes
-from .router import route
+from . import applicability, chargeability, guardrail, llm as llm_mod, nodes
+from .router import STRADDLE_WARNING, route, route_period
 from .state import initial_state
 
 TOP_K_CANDIDATES = 10
@@ -41,7 +41,12 @@ def citation_graph():
     return _graph
 
 
-def build_graph(llm, g):
+def build_graph(llm, g, text_of=None, check_applicability=True):
+    """Node 1 <-> Node 2 retry loop, then Node 2b (applicability) once the loop ends.
+
+    Node 2b runs after the loop, not inside it: the retry loop is about
+    citations that do not EXIST, and its cap (retry_count < 2) is unchanged.
+    `check_applicability=False` reproduces the Phase 4 graph exactly."""
     from langgraph.graph import END, START, StateGraph
 
     from .state import PipelineState
@@ -51,8 +56,13 @@ def build_graph(llm, g):
     sg.add_node("verifier", partial(nodes.verifier, g=g))
     sg.add_edge(START, "statute_identifier")
     sg.add_edge("statute_identifier", "verifier")
+    after = "applicability" if check_applicability else END
+    if check_applicability:
+        sg.add_node("applicability", partial(applicability.assess, llm=llm,
+                                             text_of=text_of or applicability.statute_text))
+        sg.add_edge("applicability", END)
     sg.add_conditional_edges("verifier", nodes.route_after_verify,
-                             {"statute_identifier": "statute_identifier", "end": END})
+                             {"statute_identifier": "statute_identifier", "end": after})
     return sg.compile()
 
 
@@ -62,19 +72,44 @@ def _excerpt(text):
 
 
 def retrieve_candidates(case_facts, era, cli=None, device=RUNTIME_DEVICE):
-    rows = ranker.rank_sections(case_facts, era, top_k=TOP_K_CANDIDATES, cli=cli, device=device)
+    rows = ranker.rank_sections(case_facts, era, top_k=TOP_K_CANDIDATES, cli=cli, device=device,
+                                exclude=chargeability.non_chargeable_sections(era))
     for r in rows:
         r["excerpt"] = _excerpt(ranker._section_record(era, r["section"]).get("text"))
     return rows
 
 
-def run(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, sufficient=None):
-    """One case through Phase 4. Returns a dict with `status`, the final state
-    (Section 3 fields + era/retrieved/unconfirmed) and per-stage timings.
+def run(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, sufficient=None,
+        text_of=None, check_applicability=True, offence_date_to=None):
+    """One case through the pipeline. Returns a dict with `status`, the final
+    state (Section 3 fields + additions), `charges` (verified AND supported by
+    Node 2b), `unsupported` (verified but not shown to apply), and timings.
 
-    `llm`, `g`, `retrieve` and `sufficient` are injectable so tests run with no
-    Ollama, no index and no GPU.
+    `offence_date_to` makes the offence a period. If the period straddles the
+    IPC->BNS transition, the pipeline runs once per code and returns
+    {"status": "straddles_transition", "runs": {"ipc": ..., "bns": ...},
+    "warnings": [...]}: each run is dated on its own side of the line.
+
+    `llm`, `g`, `retrieve`, `sufficient` and `text_of` are injectable so tests
+    run with no Ollama, no index and no GPU.
     """
+    kw = dict(llm=llm, g=g, cli=cli, retrieve=retrieve, sufficient=sufficient, text_of=text_of,
+              check_applicability=check_applicability)
+    if offence_date_to is not None:
+        eras = route_period(offence_date, offence_date_to)
+        if len(eras) == 2:
+            runs = {"ipc": _run_one(case_facts, offence_date, **kw),
+                    "bns": _run_one(case_facts, offence_date_to, **kw)}
+            for r in runs.values():
+                r["state"]["warnings"].append(STRADDLE_WARNING)
+            return {"status": "straddles_transition", "runs": runs, "warnings": [STRADDLE_WARNING]}
+        # One side only: date the run by the period's end, which is on that side.
+        return _run_one(case_facts, offence_date_to, **kw)
+    return _run_one(case_facts, offence_date, **kw)
+
+
+def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, sufficient=None,
+             text_of=None, check_applicability=True):
     timings = {}
     t0 = time.perf_counter()
     era = route(offence_date)
@@ -96,15 +131,31 @@ def run(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, suf
     timings["retrieve_s"] = time.perf_counter() - t
     embedder.free()
 
-    graph = build_graph(llm or llm_mod.chat_json, g if g is not None else citation_graph())
+    graph = build_graph(llm or llm_mod.chat_json, g if g is not None else citation_graph(),
+                        text_of=text_of, check_applicability=check_applicability)
     t = time.perf_counter()
     final = graph.invoke(initial_state(case_facts, offence_date, era, retrieved))
     timings["graph_s"] = time.perf_counter() - t
 
-    if final["verified_sections"]:
+    if final["facts_profile"].get("discloses_offence") is False:
+        status = "no_offence_disclosed"
+    elif final["verified_sections"]:
         status = "ok"
     elif final["candidate_sections"]:
         status = "no_verified_sections"
     else:
         status = "no_proposals"
-    return {"status": status, "era": era, "guardrail": detail, "state": final, "timings": timings}
+    return {"status": status, "era": era, "guardrail": detail, "state": final, "timings": timings,
+            **split_by_applicability(final, check_applicability)}
+
+
+def split_by_applicability(state, checked=True):
+    """charges = verified and supported; unsupported = verified, not shown to apply.
+    With the check off (Phase 4 behaviour) every verified section is a charge."""
+    if not checked:
+        return {"charges": list(state["verified_sections"]), "unsupported": []}
+    ok = {(a["section"], a["subsection"]) for a in state["applicability"] if a["supported"]}
+    charges, unsupported = [], []
+    for v in state["verified_sections"]:
+        (charges if (v["section"], v["subsection"]) in ok else unsupported).append(v)
+    return {"charges": charges, "unsupported": unsupported}

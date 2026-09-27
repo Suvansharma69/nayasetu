@@ -175,3 +175,64 @@ def test_sync_metadata_updates_in_place_and_refuses_text_changes(fake, monkeypat
     js[0]["text"] = "theft of a scooter"                   # text change -> stale vector
     with pytest.raises(RuntimeError, match="embeddings are stale"):
         store.sync_metadata("judgments_pre2024", cli=fake)
+
+
+def test_excluded_sections_neither_rank_nor_collect_votes(fake, monkeypatch):
+    cli = fake
+    for name, rows in (("bns_sections", [_statute("303", "theft of movable property taken dishonestly", "Theft"),
+                                         _statute("2", "definitions theft property movable dishonestly", "Definitions")]),):
+        col = cli.create_collection(name, metadata={"embedding_model": "fake/model"})
+        col.add(ids=[r["chunk_id"] for r in rows], documents=[r["text"] for r in rows],
+                embeddings=_fake_encode([r["text"] for r in rows]),
+                metadatas=[store.to_metadata(r) for r in rows])
+    monkeypatch.setattr(ranker, "_era_sections", lambda era: {"303", "2"})
+    monkeypatch.setattr(ranker, "precedent_votes", lambda *a, **k: {"2": 5.0, "303": 1.0})
+    got = [r["section"] for r in ranker.rank_sections("dishonestly took movable property", "bns", cli=cli)]
+    assert "2" in got
+    got = [r["section"] for r in ranker.rank_sections("dishonestly took movable property", "bns", cli=cli,
+                                                      exclude={"2"})]
+    assert got == ["303"]
+
+
+def test_prune_removes_only_records_the_corpus_dropped(fake, monkeypatch):
+    rows = [_statute("303", "theft of movable property"), _statute("304", "snatching of property")]
+    monkeypatch.setattr(store, "iter_chunks", lambda c: iter(rows))
+    col = fake.create_collection("bns_sections", metadata={"embedding_model": "fake/model"})
+    col.add(ids=["bns_s303", "bns_s304", "bns_s999"], documents=["a", "b", "c"],
+            embeddings=_fake_encode(["a", "b", "c"]))
+    assert store.prune("bns_sections", cli=fake) == 1
+    assert sorted(col.get()["ids"]) == ["bns_s303", "bns_s304"]
+
+
+def test_prune_refuses_when_the_corpus_gained_records(fake, monkeypatch):
+    rows = [_statute("303", "theft"), _statute("304", "snatching")]
+    monkeypatch.setattr(store, "iter_chunks", lambda c: iter(rows))
+    col = fake.create_collection("bns_sections", metadata={"embedding_model": "fake/model"})
+    col.add(ids=["bns_s303"], documents=["a"], embeddings=_fake_encode(["a"]))
+    with pytest.raises(RuntimeError, match="not in the index"):
+        store.prune("bns_sections", cli=fake)
+
+
+def test_add_missing_embeds_only_new_records(fake, monkeypatch):
+    rows = [_statute("303", "theft of movable property"), _statute("304", "snatching of property")]
+    monkeypatch.setattr(store, "iter_chunks", lambda c: iter(rows))
+    col = fake.create_collection("bns_sections", metadata={"embedding_model": "fake/model"})
+    col.add(ids=["bns_s303"], documents=[rows[0]["text"]], embeddings=_fake_encode([rows[0]["text"]]),
+            metadatas=[store.to_metadata(rows[0])])
+    assert store.add_missing("bns_sections", cli=fake) == 1
+    assert store.prune("bns_sections", cli=fake) == 0
+    assert store.sync_metadata("bns_sections", cli=fake) == 0      # ids and texts now match exactly
+
+
+def test_sync_can_remove_a_metadata_key_keeping_the_vector(fake, monkeypatch):
+    row = _statute("303", "theft of movable property")
+    old_md = store.to_metadata(row)                          # has sections_involved
+    new_row = {**row, "sections_involved": []}               # now cites nothing
+    monkeypatch.setattr(store, "iter_chunks", lambda c: iter([new_row]))
+    col = fake.create_collection("bns_sections", metadata={"embedding_model": "fake/model"})
+    vec = _fake_encode([row["text"]])
+    col.add(ids=["bns_s303"], documents=[row["text"]], embeddings=vec, metadatas=[old_md])
+    assert store.sync_metadata("bns_sections", cli=fake) == 1
+    got = col.get(ids=["bns_s303"], include=["metadatas", "embeddings"])
+    assert "sections_involved" not in got["metadatas"][0]
+    assert [round(x, 6) for x in got["embeddings"][0]] == [round(x, 6) for x in vec[0]]

@@ -47,4 +47,22 @@ def route(offence_date, today=None):
     return "ipc" if d < transition_date() else "bns"
 
 
+def route_period(date_from, date_to, today=None):
+    """Eras a course of conduct from `date_from` to `date_to` falls under.
+
+    One era when the whole period is on one side of the transition; ["ipc",
+    "bns"] when it straddles it -- e.g. cruelty from January to September 2024,
+    where acts before 1 July are IPC 498A and later acts BNS 85. A single-date
+    route() would silently charge the whole period under one code.
+    """
+    a, b = route(date_from, today=today), route(date_to, today=today)
+    if parse_date(date_from) > parse_date(date_to):
+        raise ValueError(f"offence period runs backwards: {date_from} to {date_to}")
+    return [a] if a == b else ["ipc", "bns"]
+
+
+STRADDLE_WARNING = ("The offence period straddles the IPC-to-BNS transition on 1 July 2024: acts "
+                    "before that date fall under the IPC and acts on or after it under the BNS. "
+                    "Both are shown; check which acts fall on which side.")
+
 CODE_NAME = {"ipc": "Indian Penal Code, 1860 (IPC)", "bns": "Bharatiya Nyaya Sanhita, 2023 (BNS)"}

@@ -36,6 +36,7 @@ DEST = ROOT / "data" / "raw" / "iltur"
 REPO = "Exploration-Lab/IL-TUR"
 BASE = f"https://huggingface.co/datasets/{REPO}/resolve/main/"
 WANT = [
+    "README.md",            # holds the LSI label names (class id -> "Section 302"); public
     "lsi/statutes-00000-of-00001.parquet",
     "lsi/dev-00000-of-00001.parquet",
     "lsi/test-00000-of-00001.parquet",
@@ -111,7 +112,10 @@ def main():
         sys.exit(f"not in the repo any more: {missing}")
     print(f"{len(WANT)} files, {sum(listed[p] for p in WANT) / 1e6:.1f} MB")
     if args.check:
-        req = urllib.request.Request(BASE + WANT[0], method="HEAD", headers={"Authorization": f"Bearer {tok}"})
+        # Probe a GATED data file. The README is public, so probing it reports
+        # "OK" without access -- which is exactly the false OK this once gave.
+        gated = next(p for p in WANT if p.endswith(".parquet"))
+        req = urllib.request.Request(BASE + gated, method="HEAD", headers={"Authorization": f"Bearer {tok}"})
         try:
             urllib.request.urlopen(req, timeout=60)
             print("access: OK")

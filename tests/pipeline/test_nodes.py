@@ -47,7 +47,9 @@ def test_fabricated_section_is_unconfirmed(g):
 def test_ipc_number_in_bns_era_is_caught_with_mapped_hint(g):
     ok, bad = nodes.check(g, "bns", _prop("Section 420"))
     assert not ok
-    assert "IPC 420 is an IPC section" in bad[0]["why"] and "BNS 318" in bad[0]["why"]
+    why = bad[0]["why"]
+    assert "IPC 420 (Cheating and dishonestly inducing delivery of property) is an IPC section" in why
+    assert "BNS 318 (Cheating)" in why and "only correct if the original section" in why
 
 
 def test_named_wrong_code_is_never_reread_as_era_code(g):
@@ -58,7 +60,7 @@ def test_named_wrong_code_is_never_reread_as_era_code(g):
 
 def test_bns_number_in_ipc_era_gets_predecessor_hint(g):
     ok, bad = nodes.check(g, "ipc", _prop("303"))
-    assert not ok and "IPC counterpart is IPC 378, 379" in bad[0]["why"]
+    assert not ok and "IPC counterpart is IPC 378 (Theft), IPC 379 (Punishment for theft)" in bad[0]["why"]
 
 
 def test_other_enactment_is_unconfirmed(g):
@@ -118,3 +120,24 @@ def test_retry_replays_previous_answer_and_bans_rejected_numbers(g):
 def test_nonexistent_section_reason_states_the_codes_span(g):
     ok, bad = nodes.check(g, "bns", _prop("421"))
     assert "(sections 3 to 318)" in bad[0]["why"]      # span of the synthetic BNS
+
+
+@pytest.mark.parametrize("era, raw, why", [
+    ("ipc", "25", "definition or general explanation"),     # "fraudulently", proposed at Phase 4
+    ("ipc", "76", "general exception"),
+    ("bns", "2", "preliminary provision or definition"),    # BNS 2 reached the top 3 by votes
+    ("bns", "3", "cite that sub-section"),                  # bare BNS 3 is not common intention
+])
+def test_non_chargeable_sections_are_rejected_with_reason(g2, era, raw, why):
+    ok, bad = nodes.check(g2, era, _prop(raw))
+    assert not ok and why in bad[0]["why"] and "not an offence a person can be charged under" in bad[0]["why"]
+
+
+@pytest.mark.parametrize("era, raw, role", [
+    ("ipc", "34", "liability"), ("ipc", "120B", "liability"), ("ipc", "511", "liability"),
+    ("ipc", "302", "offence"), ("bns", "3(5)", "liability"), ("bns", "61(2)", "liability"),
+    ("bns", "103", "offence"),
+])
+def test_chargeable_sections_verify_with_role(g2, era, raw, role):
+    ok, bad = nodes.check(g2, era, _prop(raw))
+    assert not bad and ok[0]["role"] == role

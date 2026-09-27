@@ -1,0 +1,5618 @@
+{
+  "_README": [
+    "Built by scripts/build_chargeability.py from the ingested chapter structure; do not edit by hand.",
+    "offence = chargeable; liability = extends liability, charged together with an offence;",
+    "non_chargeable = definitions, general explanations, punishment rules, general exceptions.",
+    "subsection_liability: for these sections only the listed sub-sections are liability rules;",
+    "any other citation of the section, including the bare number, is non_chargeable."
+  ],
+  "ipc": {
+    "1": {
+      "class": "non_chargeable",
+      "why": "a preliminary provision",
+      "title": "Title and extent of operation of the Code",
+      "chapter": "1"
+    },
+    "2": {
+      "class": "non_chargeable",
+      "why": "a preliminary provision",
+      "title": "Punishment of offences committed within India",
+      "chapter": "1"
+    },
+    "3": {
+      "class": "non_chargeable",
+      "why": "a preliminary provision",
+      "title": "Punishment of offences committed beyond, but which by law may be tried within, India",
+      "chapter": "1"
+    },
+    "4": {
+      "class": "non_chargeable",
+      "why": "a preliminary provision",
+      "title": "Extension of Code to extra-territorial offences",
+      "chapter": "1"
+    },
+    "5": {
+      "class": "non_chargeable",
+      "why": "a preliminary provision",
+      "title": "Certain laws not to be affected by this Act",
+      "chapter": "1"
+    },
+    "6": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Definitions in the Code to be understood subject to exceptions",
+      "chapter": "2"
+    },
+    "7": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Sense of expression once explained",
+      "chapter": "2"
+    },
+    "8": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Gender",
+      "chapter": "2"
+    },
+    "9": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Number",
+      "chapter": "2"
+    },
+    "10": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Man and  Woman",
+      "chapter": "2"
+    },
+    "11": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Person",
+      "chapter": "2"
+    },
+    "12": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Public",
+      "chapter": "2"
+    },
+    "13": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Queen",
+      "chapter": "2"
+    },
+    "14": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Servant of Government",
+      "chapter": "2"
+    },
+    "15": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "British India",
+      "chapter": "2"
+    },
+    "16": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Government of India",
+      "chapter": "2"
+    },
+    "17": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Government",
+      "chapter": "2"
+    },
+    "18": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "India",
+      "chapter": "2"
+    },
+    "19": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Judge",
+      "chapter": "2"
+    },
+    "20": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Court of Justice",
+      "chapter": "2"
+    },
+    "21": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Public servant",
+      "chapter": "2"
+    },
+    "22": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Movable property",
+      "chapter": "2"
+    },
+    "23": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Wrongful gain",
+      "chapter": "2"
+    },
+    "24": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Dishonestly",
+      "chapter": "2"
+    },
+    "25": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Fraudulently",
+      "chapter": "2"
+    },
+    "26": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Reason to believe",
+      "chapter": "2"
+    },
+    "27": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Property in possession of wife, clerk or servant",
+      "chapter": "2"
+    },
+    "28": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Counterfeit",
+      "chapter": "2"
+    },
+    "29": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Document",
+      "chapter": "2"
+    },
+    "29A": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Electronic record",
+      "chapter": "2"
+    },
+    "30": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Valuable security",
+      "chapter": "2"
+    },
+    "31": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "A will",
+      "chapter": "2"
+    },
+    "32": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Words referring to acts include illegal omissions",
+      "chapter": "2"
+    },
+    "33": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Act .  Omission",
+      "chapter": "2"
+    },
+    "34": {
+      "class": "liability",
+      "why": "common intention",
+      "title": "Acts done by several persons in furtherance of common intention -",
+      "chapter": "2"
+    },
+    "35": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "When such an act is criminal by reason of its being done with a criminal knowledge or intention",
+      "chapter": "2"
+    },
+    "36": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Effect caused partly by act and partly by omission",
+      "chapter": "2"
+    },
+    "37": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Co-operation by doing one of several acts constituting an offence",
+      "chapter": "2"
+    },
+    "38": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Persons concerned in criminal Act may be guilty of different offences",
+      "chapter": "2"
+    },
+    "39": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Voluntarily",
+      "chapter": "2"
+    },
+    "40": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Offence",
+      "chapter": "2"
+    },
+    "41": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Special law",
+      "chapter": "2"
+    },
+    "42": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Local law",
+      "chapter": "2"
+    },
+    "43": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Illegal .  Legally bound to do",
+      "chapter": "2"
+    },
+    "44": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Injury",
+      "chapter": "2"
+    },
+    "45": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Life",
+      "chapter": "2"
+    },
+    "46": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Death",
+      "chapter": "2"
+    },
+    "47": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Animal",
+      "chapter": "2"
+    },
+    "48": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Vessel",
+      "chapter": "2"
+    },
+    "49": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Year .  Month",
+      "chapter": "2"
+    },
+    "50": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Section",
+      "chapter": "2"
+    },
+    "51": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Oath",
+      "chapter": "2"
+    },
+    "52": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Good faith",
+      "chapter": "2"
+    },
+    "52A": {
+      "class": "non_chargeable",
+      "why": "a definition or general explanation",
+      "title": "Harbour",
+      "chapter": "2"
+    },
+    "53": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Punishments",
+      "chapter": "3"
+    },
+    "53A": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Construction of reference to transportation",
+      "chapter": "3"
+    },
+    "54": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Commutation of sentence of death",
+      "chapter": "3"
+    },
+    "55": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Commutation of sentence of imprisonment for life",
+      "chapter": "3"
+    },
+    "55A": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Definition of  appropriate Government",
+      "chapter": "3"
+    },
+    "56": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Sentence of Europeans and Americans to penal servitude.",
+      "chapter": "3"
+    },
+    "57": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Fractions of terms of punishment",
+      "chapter": "3"
+    },
+    "58": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Offenders sentenced to transportation how dealt with until transported.",
+      "chapter": "3"
+    },
+    "59": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Transportation instead of imprisonment.",
+      "chapter": "3"
+    },
+    "60": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Sentence may be (in certain cases of imprisonment) wholly or partly rigorous or simple",
+      "chapter": "3"
+    },
+    "61": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Sentence of forfeiture of property.",
+      "chapter": "3"
+    },
+    "62": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Forfeiture of property, in respect of offenders punishable with death, transportation or imprisonment.",
+      "chapter": "3"
+    },
+    "63": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Amount of fine",
+      "chapter": "3"
+    },
+    "64": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Sentence of imprisonment for non-payment of fine",
+      "chapter": "3"
+    },
+    "65": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Limit to imprisonment for non-payment of fine, when imprisonment and fine awardable",
+      "chapter": "3"
+    },
+    "66": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Description of imprisonment for non-payment of fine",
+      "chapter": "3"
+    },
+    "67": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Imprisonment for non-payment of fine, when offence punishable with fine only",
+      "chapter": "3"
+    },
+    "68": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Imprisonment to terminate on payment of fine",
+      "chapter": "3"
+    },
+    "69": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Termination of imprisonment on payment of proportional part of fine",
+      "chapter": "3"
+    },
+    "70": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Fine leviable within six years, or during imprisonment. Death not to discharge property from liability",
+      "chapter": "3"
+    },
+    "71": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Limit of punishment of offence made up of several offences",
+      "chapter": "3"
+    },
+    "72": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Punishment of person guilty of one of several offences, the judgment stating that it is doubtful of which",
+      "chapter": "3"
+    },
+    "73": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Solitary confinement",
+      "chapter": "3"
+    },
+    "74": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Limit of solitary confinement",
+      "chapter": "3"
+    },
+    "75": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Enhanced punishment for certain offences under Chapter XII or Chapter XVII after previous conviction",
+      "chapter": "3"
+    },
+    "76": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done by a person bound, or by mistake of fact believing himself bound, by law",
+      "chapter": "4"
+    },
+    "77": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of Judge when acting judicially",
+      "chapter": "4"
+    },
+    "78": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done pursuant to the judgment or order of Court",
+      "chapter": "4"
+    },
+    "79": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done by a person justified, or by mistake of fact believing himself, justified, by law",
+      "chapter": "4"
+    },
+    "80": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Accident in doing a lawful act",
+      "chapter": "4"
+    },
+    "81": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act likely to cause harm, but done without criminal intent, and to prevent other harm",
+      "chapter": "4"
+    },
+    "82": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of a child under seven years of age",
+      "chapter": "4"
+    },
+    "83": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of a child above seven and under twelve of immature understanding",
+      "chapter": "4"
+    },
+    "84": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of a person of unsound mind",
+      "chapter": "4"
+    },
+    "85": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of a person incapable of judgment by reason of intoxication caused against his will",
+      "chapter": "4"
+    },
+    "86": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Offence requiring a particular intent or knowledge committed by one who is intoxicated",
+      "chapter": "4"
+    },
+    "87": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act not intended and not known to be likely to cause death or grievous hurt, done by consent",
+      "chapter": "4"
+    },
+    "88": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act not intended to cause death, done by consent in good faith for person's benefit",
+      "chapter": "4"
+    },
+    "89": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done in good faith for benefit of child or insane person, by or by consent of guardian",
+      "chapter": "4"
+    },
+    "90": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Consent known to be given under fear or misconception",
+      "chapter": "4"
+    },
+    "91": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Exclusion of acts which are offences independently of harm cause",
+      "chapter": "4"
+    },
+    "92": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done in good faith for benefit of a person without consent",
+      "chapter": "4"
+    },
+    "93": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Communication made in good faith",
+      "chapter": "4"
+    },
+    "94": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act to which a person is compelled by threats",
+      "chapter": "4"
+    },
+    "95": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act causing slight harm",
+      "chapter": "4"
+    },
+    "96": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Things done in private defence",
+      "chapter": "4"
+    },
+    "97": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Right of private defence of the body and of property",
+      "chapter": "4"
+    },
+    "98": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Right of private defence against the act of a person of unsound mind, etc.",
+      "chapter": "4"
+    },
+    "99": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Acts against which there is no right of private defence",
+      "chapter": "4"
+    },
+    "100": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "When the right of private defence of the body extends to causing death",
+      "chapter": "4"
+    },
+    "101": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "When such right extends to causing any harm other than death",
+      "chapter": "4"
+    },
+    "102": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Commencement and continuance of the right of private defence of the body",
+      "chapter": "4"
+    },
+    "103": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "When the right of private defence of property extends to causing death",
+      "chapter": "4"
+    },
+    "104": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "When such right to causing any harm other than death",
+      "chapter": "4"
+    },
+    "105": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Commencement and continuance of the right of private defence of property",
+      "chapter": "4"
+    },
+    "106": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Right of private defence against deadly assault when there is risk of harm to innocent person",
+      "chapter": "4"
+    },
+    "107": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Abetment of a thing",
+      "chapter": "5"
+    },
+    "108": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Abettor",
+      "chapter": "5"
+    },
+    "108A": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Abetment in India of offences outside India",
+      "chapter": "5"
+    },
+    "109": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Punishment of abetment if the act abetted is committed in consequence and where no express provision is made for its punishment",
+      "chapter": "5"
+    },
+    "110": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Punishment of abetment if person abetted does act with different intention from that of abettor",
+      "chapter": "5"
+    },
+    "111": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Liability of abettor when one act abetted and different act done",
+      "chapter": "5"
+    },
+    "112": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Abettor when liable to cumulative punishment for act abetted and for act done",
+      "chapter": "5"
+    },
+    "113": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Liability of abettor for an effect caused by the act abetted different from that intended by the abettor",
+      "chapter": "5"
+    },
+    "114": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Abettor present when offence is committed",
+      "chapter": "5"
+    },
+    "115": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Abetment of offence punishable with death or imprisonment for life if offence not committed",
+      "chapter": "5"
+    },
+    "116": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Abetment of offence punishable with imprisonment -- if offence be not committed",
+      "chapter": "5"
+    },
+    "117": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Abetting commission of offence by the public or by more than ten persons",
+      "chapter": "5"
+    },
+    "118": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Concealing design to commit offence punishable with death or imprisonment for life",
+      "chapter": "5"
+    },
+    "119": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Public servant concealing design to commit offence which it is his duty to prevent",
+      "chapter": "5"
+    },
+    "120": {
+      "class": "liability",
+      "why": "abetment",
+      "title": "Concealing design to commit offence punishable with imprisonment",
+      "chapter": "5"
+    },
+    "120A": {
+      "class": "liability",
+      "why": "criminal conspiracy",
+      "title": "Definition of criminal conspiracy",
+      "chapter": "5"
+    },
+    "120B": {
+      "class": "liability",
+      "why": "criminal conspiracy",
+      "title": "Punishment of criminal conspiracy",
+      "chapter": "5"
+    },
+    "121": {
+      "class": "offence",
+      "why": null,
+      "title": "Waging, or attempting to wage war, or abetting waging of war, against the Government of India",
+      "chapter": "6"
+    },
+    "121A": {
+      "class": "offence",
+      "why": null,
+      "title": "Conspiracy to commit offences punishable by section 121",
+      "chapter": "6"
+    },
+    "122": {
+      "class": "offence",
+      "why": null,
+      "title": "Collecting arms, etc., with intention of waging war against the Government of India",
+      "chapter": "6"
+    },
+    "123": {
+      "class": "offence",
+      "why": null,
+      "title": "Concealing with intent to facilitate design to wage war",
+      "chapter": "6"
+    },
+    "124": {
+      "class": "offence",
+      "why": null,
+      "title": "Assaulting President, Governor, etc., with intent to compel or restrain the exercise of any lawful power",
+      "chapter": "6"
+    },
+    "124A": {
+      "class": "offence",
+      "why": null,
+      "title": "Sedition",
+      "chapter": "6"
+    },
+    "125": {
+      "class": "offence",
+      "why": null,
+      "title": "Waging war against any Asiatic Power in alliance with the Government of India",
+      "chapter": "6"
+    },
+    "126": {
+      "class": "offence",
+      "why": null,
+      "title": "Committing depredation on territories of Power at peace with the Government of India",
+      "chapter": "6"
+    },
+    "127": {
+      "class": "offence",
+      "why": null,
+      "title": "Receiving property taken by war or depredation mentioned in sections 125 and 126",
+      "chapter": "6"
+    },
+    "128": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant voluntarily allowing prisoner of state or war to escape",
+      "chapter": "6"
+    },
+    "129": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant negligently suffering such prisoner to escape",
+      "chapter": "6"
+    },
+    "130": {
+      "class": "offence",
+      "why": null,
+      "title": "Aiding escape of, rescuing or harbouring such prisoner",
+      "chapter": "6"
+    },
+    "131": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetting mutiny, or attempting to seduce a soldier, sailor or airman from his duty",
+      "chapter": "7"
+    },
+    "132": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of mutiny, if mutiny is committed in consequence thereof",
+      "chapter": "7"
+    },
+    "133": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of assault by soldier, sailor or airman on his superior officer, when in execution of his office",
+      "chapter": "7"
+    },
+    "134": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of such assault, if the assault committed",
+      "chapter": "7"
+    },
+    "135": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of desertion of soldier, sailor or airman",
+      "chapter": "7"
+    },
+    "136": {
+      "class": "offence",
+      "why": null,
+      "title": "Harbouring deserter",
+      "chapter": "7"
+    },
+    "137": {
+      "class": "offence",
+      "why": null,
+      "title": "Deserter concealed on board merchant vessel through negligence of master",
+      "chapter": "7"
+    },
+    "138": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of act of insubordination by soldier, sailor or airman",
+      "chapter": "7"
+    },
+    "138A": {
+      "class": "offence",
+      "why": null,
+      "title": "Application of foregoing sections to the Indian Marine Service.",
+      "chapter": "7"
+    },
+    "139": {
+      "class": "offence",
+      "why": null,
+      "title": "Persons subject to certain Acts",
+      "chapter": "7"
+    },
+    "140": {
+      "class": "offence",
+      "why": null,
+      "title": "Wearing garb or carrying token used by soldier, sailor or airman",
+      "chapter": "7"
+    },
+    "141": {
+      "class": "offence",
+      "why": null,
+      "title": "Unlawful assembly",
+      "chapter": "8"
+    },
+    "142": {
+      "class": "offence",
+      "why": null,
+      "title": "Being member of unlawful assembly",
+      "chapter": "8"
+    },
+    "143": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment",
+      "chapter": "8"
+    },
+    "144": {
+      "class": "offence",
+      "why": null,
+      "title": "Joining unlawful assembly armed with deadly weapon",
+      "chapter": "8"
+    },
+    "145": {
+      "class": "offence",
+      "why": null,
+      "title": "Joining or continuing in unlawful assembly, knowing it has been commanded to disperse",
+      "chapter": "8"
+    },
+    "146": {
+      "class": "offence",
+      "why": null,
+      "title": "Rioting",
+      "chapter": "8"
+    },
+    "147": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for rioting",
+      "chapter": "8"
+    },
+    "148": {
+      "class": "offence",
+      "why": null,
+      "title": "Rioting, armed with deadly weapon",
+      "chapter": "8"
+    },
+    "149": {
+      "class": "liability",
+      "why": "every member of an unlawful assembly guilty of the offence committed in prosecution of its common object",
+      "title": "Every member of unlawful assembly guilty of offence committed in prosecution of common object",
+      "chapter": "8"
+    },
+    "150": {
+      "class": "offence",
+      "why": null,
+      "title": "Hiring, or conniving at hiring, of persons to join unlawful assembly",
+      "chapter": "8"
+    },
+    "151": {
+      "class": "offence",
+      "why": null,
+      "title": "Knowingly joining or continuing in assembly of five or more persons after it has been commanded to disperse",
+      "chapter": "8"
+    },
+    "152": {
+      "class": "offence",
+      "why": null,
+      "title": "Assaulting or obstructing public servant when suppressing riot, etc.",
+      "chapter": "8"
+    },
+    "153": {
+      "class": "offence",
+      "why": null,
+      "title": "Wantonly giving provocation with intent to cause riot",
+      "chapter": "8"
+    },
+    "153A": {
+      "class": "offence",
+      "why": null,
+      "title": "Promoting enmity between different groups on ground of religion, race, place of birth, residence, language, etc., and doing acts prejudicial to maintenance of harmony",
+      "chapter": "8"
+    },
+    "153AA": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for knowingly carrying arms in any procession or organising or holding or taking part in any mass drill or mass training with arms",
+      "chapter": "8"
+    },
+    "153B": {
+      "class": "offence",
+      "why": null,
+      "title": "Imputations, assertions prejudicial to national integration",
+      "chapter": "8"
+    },
+    "154": {
+      "class": "offence",
+      "why": null,
+      "title": "Owner or occupier of land on which an unlawful assembly is held",
+      "chapter": "8"
+    },
+    "155": {
+      "class": "offence",
+      "why": null,
+      "title": "Liability of person for whose benefit riot is committed",
+      "chapter": "8"
+    },
+    "156": {
+      "class": "offence",
+      "why": null,
+      "title": "Liability of agent of owner or occupier for whose benefit riot is committed",
+      "chapter": "8"
+    },
+    "157": {
+      "class": "offence",
+      "why": null,
+      "title": "Harbouring persons hired for an unlawful assembly",
+      "chapter": "8"
+    },
+    "158": {
+      "class": "offence",
+      "why": null,
+      "title": "Being hired to take part in an unlawful assembly or riot",
+      "chapter": "8"
+    },
+    "159": {
+      "class": "offence",
+      "why": null,
+      "title": "Affray",
+      "chapter": "8"
+    },
+    "160": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for committing affray",
+      "chapter": "8"
+    },
+    "161": {
+      "class": "offence",
+      "why": null,
+      "title": "Rep. by the Prevention of Corruption Act, 1988",
+      "chapter": "9"
+    },
+    "162": {
+      "class": "offence",
+      "why": null,
+      "title": "Rep. by the Prevention of Corruption Act, 1988",
+      "chapter": "9"
+    },
+    "163": {
+      "class": "offence",
+      "why": null,
+      "title": "Rep. by the Prevention of Corruption Act, 1988",
+      "chapter": "9"
+    },
+    "164": {
+      "class": "offence",
+      "why": null,
+      "title": "Rep. by the Prevention of Corruption Act, 1988",
+      "chapter": "9"
+    },
+    "165": {
+      "class": "offence",
+      "why": null,
+      "title": "Rep. by the Prevention of Corruption Act, 1988",
+      "chapter": "9"
+    },
+    "165A": {
+      "class": "offence",
+      "why": null,
+      "title": "Rep. by the Prevention of Corruption Act, 1988",
+      "chapter": "9"
+    },
+    "166": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant disobeying law, with intent to cause injury to any person",
+      "chapter": "9"
+    },
+    "166A": {
+      "class": "offence",
+      "why": null,
+      "title": "Public Servant disobeying direction under Law",
+      "chapter": "9"
+    },
+    "166B": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for non treatment of victim",
+      "chapter": "9"
+    },
+    "167": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant framing an incorrect document with intent to cause injury",
+      "chapter": "9"
+    },
+    "168": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant unlawfully engaging in trade",
+      "chapter": "9"
+    },
+    "169": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant unlawfully buying or bidding for property",
+      "chapter": "9"
+    },
+    "170": {
+      "class": "offence",
+      "why": null,
+      "title": "Personating a public servant",
+      "chapter": "9"
+    },
+    "171": {
+      "class": "offence",
+      "why": null,
+      "title": "Wearing garb or carrying token used by public servant with fraudulent intent",
+      "chapter": "9"
+    },
+    "171A": {
+      "class": "offence",
+      "why": null,
+      "title": "Candidate ,  Electoral right  defined",
+      "chapter": "9"
+    },
+    "171B": {
+      "class": "offence",
+      "why": null,
+      "title": "Bribery",
+      "chapter": "9"
+    },
+    "171C": {
+      "class": "offence",
+      "why": null,
+      "title": "Undue influence at elections",
+      "chapter": "9"
+    },
+    "171D": {
+      "class": "offence",
+      "why": null,
+      "title": "Personation at elections",
+      "chapter": "9"
+    },
+    "171E": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for bribery",
+      "chapter": "9"
+    },
+    "171F": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for undue influence or personation at an election",
+      "chapter": "9"
+    },
+    "171G": {
+      "class": "offence",
+      "why": null,
+      "title": "False statement in connection with an election",
+      "chapter": "9"
+    },
+    "171H": {
+      "class": "offence",
+      "why": null,
+      "title": "Illegal payments in connection with an election",
+      "chapter": "9"
+    },
+    "171I": {
+      "class": "offence",
+      "why": null,
+      "title": "Failure to keep election accounts",
+      "chapter": "9"
+    },
+    "172": {
+      "class": "offence",
+      "why": null,
+      "title": "Absconding to avoid service of summons or other proceeding",
+      "chapter": "10"
+    },
+    "173": {
+      "class": "offence",
+      "why": null,
+      "title": "Preventing service of summons or other proceeding, or preventing publication thereof",
+      "chapter": "10"
+    },
+    "174": {
+      "class": "offence",
+      "why": null,
+      "title": "Non-attendance in obedience to an order from public servant",
+      "chapter": "10"
+    },
+    "174A": {
+      "class": "offence",
+      "why": null,
+      "title": "Non-appearance in response to a proclamation under section 82 of Act 2 of 1974",
+      "chapter": "10"
+    },
+    "175": {
+      "class": "offence",
+      "why": null,
+      "title": "Omission to produce document to public servant by person legally bound to produce it",
+      "chapter": "10"
+    },
+    "176": {
+      "class": "offence",
+      "why": null,
+      "title": "Omission to give notice or information to public servant by person legally bound to give it",
+      "chapter": "10"
+    },
+    "177": {
+      "class": "offence",
+      "why": null,
+      "title": "Furnishing false information",
+      "chapter": "10"
+    },
+    "178": {
+      "class": "offence",
+      "why": null,
+      "title": "Refusing oath or affirmation when duly required by public servant to make it",
+      "chapter": "10"
+    },
+    "179": {
+      "class": "offence",
+      "why": null,
+      "title": "Refusing to answer public servant authorized to question",
+      "chapter": "10"
+    },
+    "180": {
+      "class": "offence",
+      "why": null,
+      "title": "Refusing to sign statement",
+      "chapter": "10"
+    },
+    "181": {
+      "class": "offence",
+      "why": null,
+      "title": "False statement on oath or affirmation to public servant or person authorized to administer an oath or affirmation",
+      "chapter": "10"
+    },
+    "182": {
+      "class": "offence",
+      "why": null,
+      "title": "False information, with intent to cause public servant to use his lawful power to the injury of another person",
+      "chapter": "10"
+    },
+    "183": {
+      "class": "offence",
+      "why": null,
+      "title": "Resistance to the taking of property by the lawful authority of a public servant",
+      "chapter": "10"
+    },
+    "184": {
+      "class": "offence",
+      "why": null,
+      "title": "Obstructing sale of property offered for sale by authority of public servant",
+      "chapter": "10"
+    },
+    "185": {
+      "class": "offence",
+      "why": null,
+      "title": "Illegal purchase or bid for property offered for sale by authority of public servant",
+      "chapter": "10"
+    },
+    "186": {
+      "class": "offence",
+      "why": null,
+      "title": "Obstructing public servant in discharge of public functions",
+      "chapter": "10"
+    },
+    "187": {
+      "class": "offence",
+      "why": null,
+      "title": "Omission to assist public servant when bound by law to give assistance",
+      "chapter": "10"
+    },
+    "188": {
+      "class": "offence",
+      "why": null,
+      "title": "Disobedience to order duly promulgated by public servant",
+      "chapter": "10"
+    },
+    "189": {
+      "class": "offence",
+      "why": null,
+      "title": "Threat of injury to public servant",
+      "chapter": "10"
+    },
+    "190": {
+      "class": "offence",
+      "why": null,
+      "title": "Threat of injury to induce person to refrain from applying for protection to public servant",
+      "chapter": "10"
+    },
+    "191": {
+      "class": "offence",
+      "why": null,
+      "title": "Giving false evidence",
+      "chapter": "11"
+    },
+    "192": {
+      "class": "offence",
+      "why": null,
+      "title": "Fabricating false evidence",
+      "chapter": "11"
+    },
+    "193": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for false evidence",
+      "chapter": "11"
+    },
+    "194": {
+      "class": "offence",
+      "why": null,
+      "title": "Giving or fabricating false evidence with intent to procure conviction of capital offence",
+      "chapter": "11"
+    },
+    "195": {
+      "class": "offence",
+      "why": null,
+      "title": "Giving or fabricating false evidence with intent to procure conviction of an offence punishable with imprisonment for life or with imprisonment for 7 Years or upwards",
+      "chapter": "11"
+    },
+    "195A": {
+      "class": "offence",
+      "why": null,
+      "title": "Threatening any person to give false evidence",
+      "chapter": "11"
+    },
+    "196": {
+      "class": "offence",
+      "why": null,
+      "title": "Using evidence known to be false",
+      "chapter": "11"
+    },
+    "197": {
+      "class": "offence",
+      "why": null,
+      "title": "Issuing or signing false certificate",
+      "chapter": "11"
+    },
+    "198": {
+      "class": "offence",
+      "why": null,
+      "title": "Using as true a certificate known to be false",
+      "chapter": "11"
+    },
+    "199": {
+      "class": "offence",
+      "why": null,
+      "title": "False statement made in declaration which is by law receivable as evidence",
+      "chapter": "11"
+    },
+    "200": {
+      "class": "offence",
+      "why": null,
+      "title": "Using as true such declaration knowing it to be false",
+      "chapter": "11"
+    },
+    "201": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing disappearance of evidence of offence, or giving false information to screen offender",
+      "chapter": "11"
+    },
+    "202": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional omission to give information of offence by person bound to inform",
+      "chapter": "11"
+    },
+    "203": {
+      "class": "offence",
+      "why": null,
+      "title": "Giving false information respecting an offence committed",
+      "chapter": "11"
+    },
+    "204": {
+      "class": "offence",
+      "why": null,
+      "title": "Destruction of document to prevent its production as evidence",
+      "chapter": "11"
+    },
+    "205": {
+      "class": "offence",
+      "why": null,
+      "title": "False personation for purpose of act or proceeding in suit or prosecution",
+      "chapter": "11"
+    },
+    "206": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulent removal or concealment of property to prevent its seizure as forfeited or in execution",
+      "chapter": "11"
+    },
+    "207": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulent claim to property to prevent its seizure as forfeited or in execution",
+      "chapter": "11"
+    },
+    "208": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulently suffering decree for sum not due",
+      "chapter": "11"
+    },
+    "209": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonesty making false claim in Court",
+      "chapter": "11"
+    },
+    "210": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulently obtaining decree for sum not due",
+      "chapter": "11"
+    },
+    "211": {
+      "class": "offence",
+      "why": null,
+      "title": "False charge of offence made with intent to injure",
+      "chapter": "11"
+    },
+    "212": {
+      "class": "offence",
+      "why": null,
+      "title": "Harbouring offender",
+      "chapter": "11"
+    },
+    "213": {
+      "class": "offence",
+      "why": null,
+      "title": "Taking gift, etc., to screen an offender from punishment",
+      "chapter": "11"
+    },
+    "214": {
+      "class": "offence",
+      "why": null,
+      "title": "Offering gift or restoration of property in consideration of screening offender",
+      "chapter": "11"
+    },
+    "215": {
+      "class": "offence",
+      "why": null,
+      "title": "Taking gift to help to recover stolen property, etc",
+      "chapter": "11"
+    },
+    "216": {
+      "class": "offence",
+      "why": null,
+      "title": "Harbouring offender who has escaped from custody or whose apprehension has been ordered",
+      "chapter": "11"
+    },
+    "216A": {
+      "class": "offence",
+      "why": null,
+      "title": "Penalty for harbouring robbers or dacoits",
+      "chapter": "11"
+    },
+    "216B": {
+      "class": "offence",
+      "why": null,
+      "title": "Definition of  harbour  in sections 212, 216 and 216A.",
+      "chapter": "11"
+    },
+    "217": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant disobeying direction of law with intent to save person from punishment or property from forfeiture",
+      "chapter": "11"
+    },
+    "218": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant framing incorrect record or writing with intent to save person from punishment or property from forfeiture",
+      "chapter": "11"
+    },
+    "219": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant in judicial proceeding corruptly making report, etc., contrary to law",
+      "chapter": "11"
+    },
+    "220": {
+      "class": "offence",
+      "why": null,
+      "title": "Commitment for trial or confinement by person having authority who knows that he is acting contrary to law",
+      "chapter": "11"
+    },
+    "221": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional omission to apprehend on the part of public servant bound to apprehend",
+      "chapter": "11"
+    },
+    "222": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional omission to apprehend on the part of public servant bound to apprehend person under sentence or lawfully committed",
+      "chapter": "11"
+    },
+    "223": {
+      "class": "offence",
+      "why": null,
+      "title": "Escape from confinement or custody negligently suffered by public servant",
+      "chapter": "11"
+    },
+    "224": {
+      "class": "offence",
+      "why": null,
+      "title": "Resistance or obstruction by a person to his lawful apprehension",
+      "chapter": "11"
+    },
+    "225": {
+      "class": "offence",
+      "why": null,
+      "title": "Resistance or obstruction to lawful apprehension of another person",
+      "chapter": "11"
+    },
+    "225A": {
+      "class": "offence",
+      "why": null,
+      "title": "Omission to apprehend, or sufferance of escape, on part of public servant, in cases not otherwise, provided for",
+      "chapter": "11"
+    },
+    "225B": {
+      "class": "offence",
+      "why": null,
+      "title": "Resistance or obstruction to lawful apprehension, or escape or rescue in cases not otherwise provided for",
+      "chapter": "11"
+    },
+    "226": {
+      "class": "offence",
+      "why": null,
+      "title": "Unlawful return from transportation.",
+      "chapter": "11"
+    },
+    "227": {
+      "class": "offence",
+      "why": null,
+      "title": "Violation of condition of remission of punishment",
+      "chapter": "11"
+    },
+    "228": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional insult or interruption to public servant sitting in judicial proceeding",
+      "chapter": "11"
+    },
+    "228A": {
+      "class": "offence",
+      "why": null,
+      "title": "Disclosure of identity of the victim of certain offences, etc",
+      "chapter": "11"
+    },
+    "229": {
+      "class": "offence",
+      "why": null,
+      "title": "Personation of a juror or assessor",
+      "chapter": "11"
+    },
+    "229A": {
+      "class": "offence",
+      "why": null,
+      "title": "Failure by person released on bail or bond to appear in Court",
+      "chapter": "11"
+    },
+    "230": {
+      "class": "offence",
+      "why": null,
+      "title": "Coin  defined",
+      "chapter": "12"
+    },
+    "231": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting coin",
+      "chapter": "12"
+    },
+    "232": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting Indian coin",
+      "chapter": "12"
+    },
+    "233": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or selling instrument for counterfeiting coin",
+      "chapter": "12"
+    },
+    "234": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or selling instrument for counterfeiting Indian coin",
+      "chapter": "12"
+    },
+    "235": {
+      "class": "offence",
+      "why": null,
+      "title": "Possession of instrument or material for the purpose of using the same for counterfeiting coin",
+      "chapter": "12"
+    },
+    "236": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetting in India the counterfeiting out of India of coin",
+      "chapter": "12"
+    },
+    "237": {
+      "class": "offence",
+      "why": null,
+      "title": "Import or export of counterfeit coin",
+      "chapter": "12"
+    },
+    "238": {
+      "class": "offence",
+      "why": null,
+      "title": "Import or export of counterfeits of the Indian coin",
+      "chapter": "12"
+    },
+    "239": {
+      "class": "offence",
+      "why": null,
+      "title": "Delivery of coin possessed with knowledge that it is counterfeit",
+      "chapter": "12"
+    },
+    "240": {
+      "class": "offence",
+      "why": null,
+      "title": "Delivery of Indian coin, possessed with knowledge that it is counterfeit",
+      "chapter": "12"
+    },
+    "241": {
+      "class": "offence",
+      "why": null,
+      "title": "Delivery of coin as genuine, which, when first possessed, the deliverer did not know to be counterfeit",
+      "chapter": "12"
+    },
+    "242": {
+      "class": "offence",
+      "why": null,
+      "title": "Possession of counterfeit coin by person who knew it to be counterfeit when he became possessed thereof",
+      "chapter": "12"
+    },
+    "243": {
+      "class": "offence",
+      "why": null,
+      "title": "Possession of Indian coin by person who knew it to be counterfeit when he became possessed thereof",
+      "chapter": "12"
+    },
+    "244": {
+      "class": "offence",
+      "why": null,
+      "title": "Person employed in mint causing coin to be of different weight or composition from that fixed by law",
+      "chapter": "12"
+    },
+    "245": {
+      "class": "offence",
+      "why": null,
+      "title": "Unlawfully taking coining instrument from mint",
+      "chapter": "12"
+    },
+    "246": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulently or dishonestly diminishing weight or altering composition of coin",
+      "chapter": "12"
+    },
+    "247": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulently or dishonestly diminishing weight or altering composition of Indian coin",
+      "chapter": "12"
+    },
+    "248": {
+      "class": "offence",
+      "why": null,
+      "title": "Altering appearance of coin with intent that it shall pass as coin of different description",
+      "chapter": "12"
+    },
+    "249": {
+      "class": "offence",
+      "why": null,
+      "title": "Altering appearance of Indian coin with intent that it shall pass as coin of different description",
+      "chapter": "12"
+    },
+    "250": {
+      "class": "offence",
+      "why": null,
+      "title": "Delivery of coin possessed with knowledge that it is altered",
+      "chapter": "12"
+    },
+    "251": {
+      "class": "offence",
+      "why": null,
+      "title": "Delivery of Indian coin, possessed with knowledge that it is altered",
+      "chapter": "12"
+    },
+    "252": {
+      "class": "offence",
+      "why": null,
+      "title": "Possession of coin by person who knew it to be altered when he became possessed thereof",
+      "chapter": "12"
+    },
+    "253": {
+      "class": "offence",
+      "why": null,
+      "title": "Possession of Indian coin by person who knew it to be altered when he became possessed thereof",
+      "chapter": "12"
+    },
+    "254": {
+      "class": "offence",
+      "why": null,
+      "title": "Delivery of coin as genuine which, when first possessed, the deliverer did not know to be altered",
+      "chapter": "12"
+    },
+    "255": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting Government stamp",
+      "chapter": "12"
+    },
+    "256": {
+      "class": "offence",
+      "why": null,
+      "title": "Having possession of instrument or material for counterfeiting Government stamp",
+      "chapter": "12"
+    },
+    "257": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or selling instrument for counterfeiting Government stamp",
+      "chapter": "12"
+    },
+    "258": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale of counterfeit Government stamp",
+      "chapter": "12"
+    },
+    "259": {
+      "class": "offence",
+      "why": null,
+      "title": "Having possession of counterfeit Government stamp",
+      "chapter": "12"
+    },
+    "260": {
+      "class": "offence",
+      "why": null,
+      "title": "Using as genuine a Government stamp known to be counterfeit",
+      "chapter": "12"
+    },
+    "261": {
+      "class": "offence",
+      "why": null,
+      "title": "Effacing writing from substance bearing Government stamp, or removing from document a stamp used for it, with intent to cause loss to Government",
+      "chapter": "12"
+    },
+    "262": {
+      "class": "offence",
+      "why": null,
+      "title": "Using Government stamp known to have been before used",
+      "chapter": "12"
+    },
+    "263": {
+      "class": "offence",
+      "why": null,
+      "title": "Erasure of mark denoting that stamp has been used",
+      "chapter": "12"
+    },
+    "263A": {
+      "class": "offence",
+      "why": null,
+      "title": "Prohibition of fictitious stamps",
+      "chapter": "12"
+    },
+    "264": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulent use of false instrument for weighing",
+      "chapter": "13"
+    },
+    "265": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulent use of false weight or measure",
+      "chapter": "13"
+    },
+    "266": {
+      "class": "offence",
+      "why": null,
+      "title": "Being in possession of false weight or measure",
+      "chapter": "13"
+    },
+    "267": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or selling false weight or measure",
+      "chapter": "13"
+    },
+    "268": {
+      "class": "offence",
+      "why": null,
+      "title": "Public nuisance",
+      "chapter": "14"
+    },
+    "269": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent act likely to spread infection of disease dangerous to life",
+      "chapter": "14"
+    },
+    "270": {
+      "class": "offence",
+      "why": null,
+      "title": "Malignant act likely to spread infection of disease dangerous to life",
+      "chapter": "14"
+    },
+    "271": {
+      "class": "offence",
+      "why": null,
+      "title": "Disobedience to quarantine rule",
+      "chapter": "14"
+    },
+    "272": {
+      "class": "offence",
+      "why": null,
+      "title": "Adulteration of food or drink intended for sale",
+      "chapter": "14"
+    },
+    "273": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale of noxious food or drink",
+      "chapter": "14"
+    },
+    "274": {
+      "class": "offence",
+      "why": null,
+      "title": "Adulteration of drugs",
+      "chapter": "14"
+    },
+    "275": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale of adulterated drugs",
+      "chapter": "14"
+    },
+    "276": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale of drug as a different drug or preparation",
+      "chapter": "14"
+    },
+    "277": {
+      "class": "offence",
+      "why": null,
+      "title": "Fouling water of public spring or reservoir",
+      "chapter": "14"
+    },
+    "278": {
+      "class": "offence",
+      "why": null,
+      "title": "Making atmosphere noxious to health",
+      "chapter": "14"
+    },
+    "279": {
+      "class": "offence",
+      "why": null,
+      "title": "Rash driving or riding on a public way",
+      "chapter": "14"
+    },
+    "280": {
+      "class": "offence",
+      "why": null,
+      "title": "Rash navigation of vessel",
+      "chapter": "14"
+    },
+    "281": {
+      "class": "offence",
+      "why": null,
+      "title": "Exhibition of false light, mark or buoy",
+      "chapter": "14"
+    },
+    "282": {
+      "class": "offence",
+      "why": null,
+      "title": "Conveying person by water for hire in unsafe or overloaded vessel",
+      "chapter": "14"
+    },
+    "283": {
+      "class": "offence",
+      "why": null,
+      "title": "Danger or obstruction in public way or line of navigation",
+      "chapter": "14"
+    },
+    "284": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to poisonous substance",
+      "chapter": "14"
+    },
+    "285": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to fire or combustible matter",
+      "chapter": "14"
+    },
+    "286": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to explosive substance",
+      "chapter": "14"
+    },
+    "287": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to machinery",
+      "chapter": "14"
+    },
+    "288": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to pulling down or repairing buildings",
+      "chapter": "14"
+    },
+    "289": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to animal",
+      "chapter": "14"
+    },
+    "290": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for public nuisance in cases not otherwise provided for",
+      "chapter": "14"
+    },
+    "291": {
+      "class": "offence",
+      "why": null,
+      "title": "Continuance of nuisance after injunction to discontinue",
+      "chapter": "14"
+    },
+    "292": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale, etc., of obscene books, etc.",
+      "chapter": "14"
+    },
+    "293": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale, etc., of obscene objects to young person",
+      "chapter": "14"
+    },
+    "294": {
+      "class": "offence",
+      "why": null,
+      "title": "Obscene acts and songs",
+      "chapter": "14"
+    },
+    "294A": {
+      "class": "offence",
+      "why": null,
+      "title": "Keeping lottery office",
+      "chapter": "14"
+    },
+    "295": {
+      "class": "offence",
+      "why": null,
+      "title": "Injuring or defiling place of worship, with intent to insult the religion of any class",
+      "chapter": "15"
+    },
+    "295A": {
+      "class": "offence",
+      "why": null,
+      "title": "Deliberate and malicious acts intended to outrage religious feelings of any class by insulting its religion or religious beliefs",
+      "chapter": "15"
+    },
+    "296": {
+      "class": "offence",
+      "why": null,
+      "title": "Disturbing religious assembly",
+      "chapter": "15"
+    },
+    "297": {
+      "class": "offence",
+      "why": null,
+      "title": "Trespassing on burial places, etc",
+      "chapter": "15"
+    },
+    "298": {
+      "class": "offence",
+      "why": null,
+      "title": "Uttering words, etc., with deliberate intent to wound religious feelings",
+      "chapter": "15"
+    },
+    "299": {
+      "class": "offence",
+      "why": null,
+      "title": "Culpable homicide",
+      "chapter": "16"
+    },
+    "300": {
+      "class": "offence",
+      "why": null,
+      "title": "Murder",
+      "chapter": "16"
+    },
+    "301": {
+      "class": "offence",
+      "why": null,
+      "title": "Culpable homicide by causing death of person other than person whose death was intended",
+      "chapter": "16"
+    },
+    "302": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for murder",
+      "chapter": "16"
+    },
+    "303": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for murder by life-convict",
+      "chapter": "16"
+    },
+    "304": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for culpable homicide not amounting to murder",
+      "chapter": "16"
+    },
+    "304A": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing death by negligence",
+      "chapter": "16"
+    },
+    "304B": {
+      "class": "offence",
+      "why": null,
+      "title": "Dowry death",
+      "chapter": "16"
+    },
+    "305": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of suicide of child or insane person",
+      "chapter": "16"
+    },
+    "306": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of suicide",
+      "chapter": "16"
+    },
+    "307": {
+      "class": "offence",
+      "why": null,
+      "title": "Attempt to murder",
+      "chapter": "16"
+    },
+    "308": {
+      "class": "offence",
+      "why": null,
+      "title": "Attempt to commit culpable homicide",
+      "chapter": "16"
+    },
+    "309": {
+      "class": "offence",
+      "why": null,
+      "title": "Attempt to commit suicide",
+      "chapter": "16"
+    },
+    "310": {
+      "class": "offence",
+      "why": null,
+      "title": "Thug",
+      "chapter": "16"
+    },
+    "311": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment",
+      "chapter": "16"
+    },
+    "312": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing miscarriage",
+      "chapter": "16"
+    },
+    "313": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing miscarriage without woman's consent",
+      "chapter": "16"
+    },
+    "314": {
+      "class": "offence",
+      "why": null,
+      "title": "Death caused by act done with intent to cause miscarriage",
+      "chapter": "16"
+    },
+    "315": {
+      "class": "offence",
+      "why": null,
+      "title": "Act done with intent to prevent child being born alive or to cause it to die after birth",
+      "chapter": "16"
+    },
+    "316": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing death of quick unborn child by act amounting to culpable homicide-",
+      "chapter": "16"
+    },
+    "317": {
+      "class": "offence",
+      "why": null,
+      "title": "Exposure and abandonment of child under twelve years, by parent or person having care of it",
+      "chapter": "16"
+    },
+    "318": {
+      "class": "offence",
+      "why": null,
+      "title": "Concealment of birth by secret disposal of dead body",
+      "chapter": "16"
+    },
+    "319": {
+      "class": "offence",
+      "why": null,
+      "title": "Hurt",
+      "chapter": "16"
+    },
+    "320": {
+      "class": "offence",
+      "why": null,
+      "title": "Grievous hurt",
+      "chapter": "16"
+    },
+    "321": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt",
+      "chapter": "16"
+    },
+    "322": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing grievous hurt",
+      "chapter": "16"
+    },
+    "323": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for voluntarily causing hurt",
+      "chapter": "16"
+    },
+    "324": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt by dangerous weapons or means",
+      "chapter": "16"
+    },
+    "325": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for voluntarily causing grievous hurt",
+      "chapter": "16"
+    },
+    "326": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing grievous hurt by dangerous weapons or means",
+      "chapter": "16"
+    },
+    "326A": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing grievous hurt by use of acid, etc.",
+      "chapter": "16"
+    },
+    "326B": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily throwing or attempting to throw acid, etc.",
+      "chapter": "16"
+    },
+    "327": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt to extort property, or to constrain to an illegal to an act",
+      "chapter": "16"
+    },
+    "328": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing hurt by means of poison, etc., with intent to commit and offence",
+      "chapter": "16"
+    },
+    "329": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing grievous hurt to extort property, or to constrain to an illegal act",
+      "chapter": "16"
+    },
+    "330": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt to extort confession or to compel restoration of property",
+      "chapter": "16"
+    },
+    "331": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing grievous hurt to extort confession, or to compel restoration of property",
+      "chapter": "16"
+    },
+    "332": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt to deter public servant from his duty",
+      "chapter": "16"
+    },
+    "333": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing grievous hurt to deter public servant from his duty",
+      "chapter": "16"
+    },
+    "334": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt on provocation",
+      "chapter": "16"
+    },
+    "335": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing grievous hurt on provocation",
+      "chapter": "16"
+    },
+    "336": {
+      "class": "offence",
+      "why": null,
+      "title": "Act endangering life or personal safety of others",
+      "chapter": "16"
+    },
+    "337": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing hurt by act endangering life or personal safety of others",
+      "chapter": "16"
+    },
+    "338": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing grievous hurt by act endangering life or personal safety of others",
+      "chapter": "16"
+    },
+    "339": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful restraint",
+      "chapter": "16"
+    },
+    "340": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful confinement",
+      "chapter": "16"
+    },
+    "341": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for wrongful restraint",
+      "chapter": "16"
+    },
+    "342": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for wrongful confinement",
+      "chapter": "16"
+    },
+    "343": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful confinement for three or more days",
+      "chapter": "16"
+    },
+    "344": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful confinement for ten or more days",
+      "chapter": "16"
+    },
+    "345": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful confinement of person for whose liberation writ has been issued",
+      "chapter": "16"
+    },
+    "346": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful confinement in secret",
+      "chapter": "16"
+    },
+    "347": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful confinement to extort property, or constrain to illegal act",
+      "chapter": "16"
+    },
+    "348": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful confinement to extort confession, or compel restoration of property",
+      "chapter": "16"
+    },
+    "349": {
+      "class": "offence",
+      "why": null,
+      "title": "Force",
+      "chapter": "16"
+    },
+    "350": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal force",
+      "chapter": "16"
+    },
+    "351": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault",
+      "chapter": "16"
+    },
+    "352": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for assault or criminal force otherwise than on grave provocation",
+      "chapter": "16"
+    },
+    "353": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force to deter public servant from discharge of his duty",
+      "chapter": "16"
+    },
+    "354": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force to woman with intent to outrage her modesty",
+      "chapter": "16"
+    },
+    "354A": {
+      "class": "offence",
+      "why": null,
+      "title": "Sexual harassment and punishment for sexual harassment",
+      "chapter": "16"
+    },
+    "354B": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or use of criminal force to woman with intent to disrobe",
+      "chapter": "16"
+    },
+    "354C": {
+      "class": "offence",
+      "why": null,
+      "title": "Voyeurism",
+      "chapter": "16"
+    },
+    "354D": {
+      "class": "offence",
+      "why": null,
+      "title": "Stalking",
+      "chapter": "16"
+    },
+    "355": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force with intent to dishonour person, otherwise than on grave provocation",
+      "chapter": "16"
+    },
+    "356": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force in attempt to commit theft of property carried by a person",
+      "chapter": "16"
+    },
+    "357": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force in attempt wrongfully to confine a person",
+      "chapter": "16"
+    },
+    "358": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force on grave provocation",
+      "chapter": "16"
+    },
+    "359": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping",
+      "chapter": "16"
+    },
+    "360": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping from India",
+      "chapter": "16"
+    },
+    "361": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping from lawful guardianship",
+      "chapter": "16"
+    },
+    "362": {
+      "class": "offence",
+      "why": null,
+      "title": "Abduction",
+      "chapter": "16"
+    },
+    "363": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for kidnapping",
+      "chapter": "16"
+    },
+    "363A": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping or maiming a minor for purposes of begging",
+      "chapter": "16"
+    },
+    "364": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping or abducting in order to murder",
+      "chapter": "16"
+    },
+    "364A": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping for ransom, etc.",
+      "chapter": "16"
+    },
+    "365": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping or abducting with intent secretly and wrongfully to confine person",
+      "chapter": "16"
+    },
+    "366": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping, abducting or inducing woman to compel her marriage, etc.",
+      "chapter": "16"
+    },
+    "366A": {
+      "class": "offence",
+      "why": null,
+      "title": "Procuration of minor girl",
+      "chapter": "16"
+    },
+    "366B": {
+      "class": "offence",
+      "why": null,
+      "title": "Importation of girl from foreign country",
+      "chapter": "16"
+    },
+    "367": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping or abducting in order to subject person to grievous hurt, slavery, etc.",
+      "chapter": "16"
+    },
+    "368": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongfully concealing or keeping in confinement, kidnapped or abducted person",
+      "chapter": "16"
+    },
+    "369": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping or abducting child under ten years with intent to steal from its person",
+      "chapter": "16"
+    },
+    "370": {
+      "class": "offence",
+      "why": null,
+      "title": "Trafficking of persons",
+      "chapter": "16"
+    },
+    "370A": {
+      "class": "offence",
+      "why": null,
+      "title": "Exploitation of a trafficked person",
+      "chapter": "16"
+    },
+    "371": {
+      "class": "offence",
+      "why": null,
+      "title": "Habitual dealing in slaves",
+      "chapter": "16"
+    },
+    "372": {
+      "class": "offence",
+      "why": null,
+      "title": "Selling minor for purposes of prostitution, etc.",
+      "chapter": "16"
+    },
+    "373": {
+      "class": "offence",
+      "why": null,
+      "title": "Buying minor for purposes of prostitution, etc.",
+      "chapter": "16"
+    },
+    "374": {
+      "class": "offence",
+      "why": null,
+      "title": "Unlawful compulsory labour",
+      "chapter": "16"
+    },
+    "375": {
+      "class": "offence",
+      "why": null,
+      "title": "Rape",
+      "chapter": "16"
+    },
+    "376": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for rape",
+      "chapter": "16"
+    },
+    "376A": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for causing death or resulting in persistent vegetative state of victim",
+      "chapter": "16"
+    },
+    "376AB": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for rape on woman under twelve years of age",
+      "chapter": "16"
+    },
+    "376B": {
+      "class": "offence",
+      "why": null,
+      "title": "Sexual intercourse by husband upon his wife during separation",
+      "chapter": "16"
+    },
+    "376C": {
+      "class": "offence",
+      "why": null,
+      "title": "Sexual intercourse by person in authority",
+      "chapter": "16"
+    },
+    "376D": {
+      "class": "offence",
+      "why": null,
+      "title": "Gang Rape",
+      "chapter": "16"
+    },
+    "376DA": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for gang rape on woman under sixteen years of age",
+      "chapter": "16"
+    },
+    "376DB": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for gang rape on woman under twelve years of age",
+      "chapter": "16"
+    },
+    "376E": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for repeat offenders",
+      "chapter": "16"
+    },
+    "377": {
+      "class": "offence",
+      "why": null,
+      "title": "Unnatural offences",
+      "chapter": "16"
+    },
+    "378": {
+      "class": "offence",
+      "why": null,
+      "title": "Theft",
+      "chapter": "17"
+    },
+    "379": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for theft",
+      "chapter": "17"
+    },
+    "380": {
+      "class": "offence",
+      "why": null,
+      "title": "Theft in dwelling house, etc.",
+      "chapter": "17"
+    },
+    "381": {
+      "class": "offence",
+      "why": null,
+      "title": "Theft by clerk or servant of property in possession of master",
+      "chapter": "17"
+    },
+    "382": {
+      "class": "offence",
+      "why": null,
+      "title": "Theft after preparation made for causing death, hurt or restraint in order to the committing of the theft",
+      "chapter": "17"
+    },
+    "383": {
+      "class": "offence",
+      "why": null,
+      "title": "Extortion",
+      "chapter": "17"
+    },
+    "384": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for extortion",
+      "chapter": "17"
+    },
+    "385": {
+      "class": "offence",
+      "why": null,
+      "title": "Putting person in fear of injury in order to commit extortion",
+      "chapter": "17"
+    },
+    "386": {
+      "class": "offence",
+      "why": null,
+      "title": "Extortion by putting a person in fear of death or grievous hurt",
+      "chapter": "17"
+    },
+    "387": {
+      "class": "offence",
+      "why": null,
+      "title": "Putting person in fear of death or of grievous hurt, in order to commit extortion",
+      "chapter": "17"
+    },
+    "388": {
+      "class": "offence",
+      "why": null,
+      "title": "Extortion by threat of accusation of an offence punishable with death or imprisonment for life, etc",
+      "chapter": "17"
+    },
+    "389": {
+      "class": "offence",
+      "why": null,
+      "title": "Putting person in fear or accusation of offence, in order to commit extortion",
+      "chapter": "17"
+    },
+    "390": {
+      "class": "offence",
+      "why": null,
+      "title": "Robbery",
+      "chapter": "17"
+    },
+    "391": {
+      "class": "offence",
+      "why": null,
+      "title": "Dacoity",
+      "chapter": "17"
+    },
+    "392": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for robbery",
+      "chapter": "17"
+    },
+    "393": {
+      "class": "offence",
+      "why": null,
+      "title": "Attempt to commit robbery",
+      "chapter": "17"
+    },
+    "394": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt in committing robbery",
+      "chapter": "17"
+    },
+    "395": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for dacoity",
+      "chapter": "17"
+    },
+    "396": {
+      "class": "offence",
+      "why": null,
+      "title": "Dacoity with murder",
+      "chapter": "17"
+    },
+    "397": {
+      "class": "offence",
+      "why": null,
+      "title": "Robbery or dacoity, with attempt to cause death or grievous hurt",
+      "chapter": "17"
+    },
+    "398": {
+      "class": "offence",
+      "why": null,
+      "title": "Attempt to commit robbery or dacoity when armed with deadly weapon",
+      "chapter": "17"
+    },
+    "399": {
+      "class": "offence",
+      "why": null,
+      "title": "Making preparation to commit dacoity",
+      "chapter": "17"
+    },
+    "400": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for belonging to gang of dacoits",
+      "chapter": "17"
+    },
+    "401": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for belonging to gang of thieves",
+      "chapter": "17"
+    },
+    "402": {
+      "class": "offence",
+      "why": null,
+      "title": "Assembling for purpose of committing dacoity",
+      "chapter": "17"
+    },
+    "403": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest misappropriation of property",
+      "chapter": "17"
+    },
+    "404": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest misappropriation of property possessed by deceased person at the time of his death",
+      "chapter": "17"
+    },
+    "405": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal breach of trust",
+      "chapter": "17"
+    },
+    "406": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for criminal breach of trust",
+      "chapter": "17"
+    },
+    "407": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal breach of trust by carrier, etc.",
+      "chapter": "17"
+    },
+    "408": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal breach of trust by clerk or servant",
+      "chapter": "17"
+    },
+    "409": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal breach of trust by public servant, or by banker, merchant or agent",
+      "chapter": "17"
+    },
+    "410": {
+      "class": "offence",
+      "why": null,
+      "title": "Stolen property",
+      "chapter": "17"
+    },
+    "411": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonestly receiving stolen property",
+      "chapter": "17"
+    },
+    "412": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonestly receiving property stolen in the commission of a dacoity",
+      "chapter": "17"
+    },
+    "413": {
+      "class": "offence",
+      "why": null,
+      "title": "Habitually dealing in stolen property",
+      "chapter": "17"
+    },
+    "414": {
+      "class": "offence",
+      "why": null,
+      "title": "Assisting in concealment of stolen property",
+      "chapter": "17"
+    },
+    "415": {
+      "class": "offence",
+      "why": null,
+      "title": "Cheating",
+      "chapter": "17"
+    },
+    "416": {
+      "class": "offence",
+      "why": null,
+      "title": "Cheating by personation",
+      "chapter": "17"
+    },
+    "417": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for cheating",
+      "chapter": "17"
+    },
+    "418": {
+      "class": "offence",
+      "why": null,
+      "title": "Cheating with knowledge that wrongful loss may ensue to person whose interest offender is bound to protect",
+      "chapter": "17"
+    },
+    "419": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for cheating by personation",
+      "chapter": "17"
+    },
+    "420": {
+      "class": "offence",
+      "why": null,
+      "title": "Cheating and dishonestly inducing delivery of property",
+      "chapter": "17"
+    },
+    "421": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest or fraudulent removal or concealment of property to prevent distribution among creditors",
+      "chapter": "17"
+    },
+    "422": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonestly or fraudulently preventing debt being available for creditors",
+      "chapter": "17"
+    },
+    "423": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest or fraudulent execution of deed of transfer containing false statement of consideration",
+      "chapter": "17"
+    },
+    "424": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest or fraudulent removal or concealment of property",
+      "chapter": "17"
+    },
+    "425": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief",
+      "chapter": "17"
+    },
+    "426": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for mischief",
+      "chapter": "17"
+    },
+    "427": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief causing damage to the amount of fifty rupees",
+      "chapter": "17"
+    },
+    "428": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by killing or maiming animal of the value of ten rupees",
+      "chapter": "17"
+    },
+    "429": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by killing or maiming cattle, etc., of any value or any animal of the value of fifty rupees",
+      "chapter": "17"
+    },
+    "430": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by injury to works of irrigation or by wrongfully diverting water",
+      "chapter": "17"
+    },
+    "431": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by injury to public road, bridge, river or channel",
+      "chapter": "17"
+    },
+    "432": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by causing inundation or obstruction to public drainage attended with damage",
+      "chapter": "17"
+    },
+    "433": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by destroying, moving or rendering less useful a light-house or sea-mark",
+      "chapter": "17"
+    },
+    "434": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by destroying or moving, etc., a land-mark fixed by public authority",
+      "chapter": "17"
+    },
+    "435": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by fire or explosive substance with intent to cause damage to amount of one hundred or (in case of agricultural produce) ten rupees",
+      "chapter": "17"
+    },
+    "436": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by fire or explosive substance with intent destroy house, etc.",
+      "chapter": "17"
+    },
+    "437": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief with intent to destroy or make unsafe a decked vessel or one of twenty tons burden",
+      "chapter": "17"
+    },
+    "438": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for the mischief described in section 437 committed by fire or explosive substance",
+      "chapter": "17"
+    },
+    "439": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for intentionally running vessel aground or ashore with intent to commit theft, etc.",
+      "chapter": "17"
+    },
+    "440": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief committed after preparation made for causing death or hurt",
+      "chapter": "17"
+    },
+    "441": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal trespass",
+      "chapter": "17"
+    },
+    "442": {
+      "class": "offence",
+      "why": null,
+      "title": "House-trespass",
+      "chapter": "17"
+    },
+    "443": {
+      "class": "offence",
+      "why": null,
+      "title": "Lurking house-trespass",
+      "chapter": "17"
+    },
+    "444": {
+      "class": "offence",
+      "why": null,
+      "title": "Lurking house-trespass by night",
+      "chapter": "17"
+    },
+    "445": {
+      "class": "offence",
+      "why": null,
+      "title": "House-breaking",
+      "chapter": "17"
+    },
+    "446": {
+      "class": "offence",
+      "why": null,
+      "title": "House-breaking by night",
+      "chapter": "17"
+    },
+    "447": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for criminal trespass",
+      "chapter": "17"
+    },
+    "448": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for house-trespass",
+      "chapter": "17"
+    },
+    "449": {
+      "class": "offence",
+      "why": null,
+      "title": "House-trespass in order to commit offence punishable with death",
+      "chapter": "17"
+    },
+    "450": {
+      "class": "offence",
+      "why": null,
+      "title": "House-trespass in order to commit offence punishable with imprisonment for life",
+      "chapter": "17"
+    },
+    "451": {
+      "class": "offence",
+      "why": null,
+      "title": "House-trespass in order to commit offence punishable with imprisonment",
+      "chapter": "17"
+    },
+    "452": {
+      "class": "offence",
+      "why": null,
+      "title": "House-trespass after preparation for hurt, assault or wrongful restraint",
+      "chapter": "17"
+    },
+    "453": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for lurking house-trespass or house-breaking",
+      "chapter": "17"
+    },
+    "454": {
+      "class": "offence",
+      "why": null,
+      "title": "Lurking house-trespass or house-breaking in order to commit offence punishable with imprisonment",
+      "chapter": "17"
+    },
+    "455": {
+      "class": "offence",
+      "why": null,
+      "title": "Lurking house-trespass or house-breaking after preparation for hurt, assault or wrongful restraint",
+      "chapter": "17"
+    },
+    "456": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for lurking house-trespass or house-breaking by night",
+      "chapter": "17"
+    },
+    "457": {
+      "class": "offence",
+      "why": null,
+      "title": "Lurking house-trespass or house-breaking by night in order to commit offence punishable with imprisonment",
+      "chapter": "17"
+    },
+    "458": {
+      "class": "offence",
+      "why": null,
+      "title": "Lurking house-trespass or house-breaking by night after preparation for hurt, assault, or wrongful restraint",
+      "chapter": "17"
+    },
+    "459": {
+      "class": "offence",
+      "why": null,
+      "title": "Grievous hurt caused whilst committing lurking house-trespass or house-breaking",
+      "chapter": "17"
+    },
+    "460": {
+      "class": "offence",
+      "why": null,
+      "title": "All persons jointly concerned in lurking house-trespass or house-breaking by night punishable where death or grievous hurt caused by one of them",
+      "chapter": "17"
+    },
+    "461": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonestly breaking open receptacle containing property",
+      "chapter": "17"
+    },
+    "462": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for same offence when committed by person entrusted with custody",
+      "chapter": "17"
+    },
+    "463": {
+      "class": "offence",
+      "why": null,
+      "title": "Forgery",
+      "chapter": "18"
+    },
+    "464": {
+      "class": "offence",
+      "why": null,
+      "title": "Making a false document",
+      "chapter": "18"
+    },
+    "465": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for forgery",
+      "chapter": "18"
+    },
+    "466": {
+      "class": "offence",
+      "why": null,
+      "title": "Forgery of record of Court or of public register, etc.",
+      "chapter": "18"
+    },
+    "467": {
+      "class": "offence",
+      "why": null,
+      "title": "Forgery of valuable security, will, etc.",
+      "chapter": "18"
+    },
+    "468": {
+      "class": "offence",
+      "why": null,
+      "title": "Forgery for purpose of cheating",
+      "chapter": "18"
+    },
+    "469": {
+      "class": "offence",
+      "why": null,
+      "title": "Forgery for purpose of harming reputation",
+      "chapter": "18"
+    },
+    "470": {
+      "class": "offence",
+      "why": null,
+      "title": "Forged document",
+      "chapter": "18"
+    },
+    "471": {
+      "class": "offence",
+      "why": null,
+      "title": "Using as genuine a forged document",
+      "chapter": "18"
+    },
+    "472": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or possessing counterfeit seal, etc., with intent to commit forgery punishable under section 467",
+      "chapter": "18"
+    },
+    "473": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or possessing counterfeit seal, etc., with intent to commit forgery punishable otherwise",
+      "chapter": "18"
+    },
+    "474": {
+      "class": "offence",
+      "why": null,
+      "title": "Having possession of document described in section 466 or 467, knowing it to be forged and intending to use it genuine",
+      "chapter": "18"
+    },
+    "475": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting device or mark used for authenticating documents described in section 467, or possessing counterfeit marked material",
+      "chapter": "18"
+    },
+    "476": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting device or mark used for authenticating documents other than those described in section 467, or possessing counterfeit marked material",
+      "chapter": "18"
+    },
+    "477": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulent cancellation, destruction, etc., of will, authority to adopt, or valuable security",
+      "chapter": "18"
+    },
+    "477A": {
+      "class": "offence",
+      "why": null,
+      "title": "Falsification of accounts",
+      "chapter": "18"
+    },
+    "478": {
+      "class": "offence",
+      "why": null,
+      "title": "Trade Mark.",
+      "chapter": "18"
+    },
+    "479": {
+      "class": "offence",
+      "why": null,
+      "title": "Property mark",
+      "chapter": "18"
+    },
+    "480": {
+      "class": "offence",
+      "why": null,
+      "title": "Using a false trade mark.",
+      "chapter": "18"
+    },
+    "481": {
+      "class": "offence",
+      "why": null,
+      "title": "Using a false property mark",
+      "chapter": "18"
+    },
+    "482": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for using a false property mark",
+      "chapter": "18"
+    },
+    "483": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting a property mark used by another",
+      "chapter": "18"
+    },
+    "484": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting a mark used by a public servant",
+      "chapter": "18"
+    },
+    "485": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or possession of any instrument for counterfeiting a property mark",
+      "chapter": "18"
+    },
+    "486": {
+      "class": "offence",
+      "why": null,
+      "title": "Selling goods marked with a counterfeit property mark",
+      "chapter": "18"
+    },
+    "487": {
+      "class": "offence",
+      "why": null,
+      "title": "Making a false mark upon any receptacle containing goods",
+      "chapter": "18"
+    },
+    "488": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for making use of any such false mark",
+      "chapter": "18"
+    },
+    "489": {
+      "class": "offence",
+      "why": null,
+      "title": "Tampering with property mark with intent to cause injury",
+      "chapter": "18"
+    },
+    "489A": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting currency-notes or bank-notes",
+      "chapter": "18"
+    },
+    "489B": {
+      "class": "offence",
+      "why": null,
+      "title": "Using as genuine, forged or counterfeit currency-notes or bank-notes",
+      "chapter": "18"
+    },
+    "489C": {
+      "class": "offence",
+      "why": null,
+      "title": "Possession of forged or counterfeit currency-notes or bank-notes",
+      "chapter": "18"
+    },
+    "489D": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or possessing instruments or materials for forging or counterfeiting currency notes or bank-notes",
+      "chapter": "18"
+    },
+    "489E": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or using documents resembling currency-notes or bank-notes",
+      "chapter": "18"
+    },
+    "490": {
+      "class": "offence",
+      "why": null,
+      "title": "Breach of contract of service during voyage or journey.",
+      "chapter": "19"
+    },
+    "491": {
+      "class": "offence",
+      "why": null,
+      "title": "Breach of contract to attend on and supply wants of helpless persons",
+      "chapter": "19"
+    },
+    "492": {
+      "class": "offence",
+      "why": null,
+      "title": "Breach of contract to serve at distant place to which servant is conveyed at master",
+      "chapter": "19"
+    },
+    "493": {
+      "class": "offence",
+      "why": null,
+      "title": "Cohabitation caused by a man deceitfully inducing a belief of lawful marriage",
+      "chapter": "20"
+    },
+    "494": {
+      "class": "offence",
+      "why": null,
+      "title": "Marrying again during lifetime of husband or wife",
+      "chapter": "20"
+    },
+    "495": {
+      "class": "offence",
+      "why": null,
+      "title": "Same offence with concealment of former marriage from person with whom subsequent marriage is contracted",
+      "chapter": "20"
+    },
+    "496": {
+      "class": "offence",
+      "why": null,
+      "title": "Marriage ceremony fraudulently gone through without lawful marriage",
+      "chapter": "20"
+    },
+    "497": {
+      "class": "offence",
+      "why": null,
+      "title": "Adultery",
+      "chapter": "20"
+    },
+    "498": {
+      "class": "offence",
+      "why": null,
+      "title": "Enticing or taking away or detaining with criminal intent a married woman",
+      "chapter": "20"
+    },
+    "498A": {
+      "class": "offence",
+      "why": null,
+      "title": "Husband or relative of husband of a woman subjecting her to cruelty",
+      "chapter": "20"
+    },
+    "499": {
+      "class": "offence",
+      "why": null,
+      "title": "Defamation",
+      "chapter": "21"
+    },
+    "500": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for defamation",
+      "chapter": "21"
+    },
+    "501": {
+      "class": "offence",
+      "why": null,
+      "title": "Printing or engraving matter known to be defamatory",
+      "chapter": "21"
+    },
+    "502": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale of printed or engraved substance containing defamatory matter",
+      "chapter": "21"
+    },
+    "503": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal intimidation",
+      "chapter": "22"
+    },
+    "504": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional insult with intent to provoke breach of the peace",
+      "chapter": "22"
+    },
+    "505": {
+      "class": "offence",
+      "why": null,
+      "title": "Statements conducing public mischief",
+      "chapter": "22"
+    },
+    "506": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for criminal intimidation",
+      "chapter": "22"
+    },
+    "507": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal intimidation by an anonymous communication",
+      "chapter": "22"
+    },
+    "508": {
+      "class": "offence",
+      "why": null,
+      "title": "Act caused by inducing person to believe that he will be rendered an object of the Divine displeasure",
+      "chapter": "22"
+    },
+    "509": {
+      "class": "offence",
+      "why": null,
+      "title": "Word, gesture or act intended to insult the modesty of a woman",
+      "chapter": "22"
+    },
+    "510": {
+      "class": "offence",
+      "why": null,
+      "title": "Misconduct in public by a drunken person",
+      "chapter": "22"
+    },
+    "511": {
+      "class": "liability",
+      "why": "attempts  commit offences",
+      "title": "Punishment for attempting to commit offences punishable with imprisonment for life or other imprisonment",
+      "chapter": "23"
+    }
+  },
+  "bns": {
+    "1": {
+      "class": "non_chargeable",
+      "why": "a preliminary provision or definition",
+      "title": "Short title, commencement and application",
+      "chapter": "I"
+    },
+    "2": {
+      "class": "non_chargeable",
+      "why": "a preliminary provision or definition",
+      "title": "Definitions",
+      "chapter": "I"
+    },
+    "3": {
+      "class": "non_chargeable",
+      "why": "a preliminary provision or definition",
+      "title": "General explanations",
+      "chapter": "I"
+    },
+    "4": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Punishments",
+      "chapter": "II"
+    },
+    "5": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Commutation of sentence",
+      "chapter": "II"
+    },
+    "6": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Fractions of terms of punishment",
+      "chapter": "II"
+    },
+    "7": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Sentence may be (in certain cases of imprisonment) wholly or partly rigorous or simple",
+      "chapter": "II"
+    },
+    "8": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Amount of fine, liability in default of payment of fine, etc",
+      "chapter": "II"
+    },
+    "9": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Limit of punishment of offence made up of several offences",
+      "chapter": "II"
+    },
+    "10": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Punishment of person guilty of one of several offences, judgment stating that it is doubtful of which",
+      "chapter": "II"
+    },
+    "11": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Solitary confinement",
+      "chapter": "II"
+    },
+    "12": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Limit of solitary confinement",
+      "chapter": "II"
+    },
+    "13": {
+      "class": "non_chargeable",
+      "why": "a general rule about punishments",
+      "title": "Enhanced punishment for certain offences after previous conviction",
+      "chapter": "II"
+    },
+    "14": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done by a person bound, or by mistake of fact believing himself bound, by law",
+      "chapter": "III"
+    },
+    "15": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of Judge when acting judicially",
+      "chapter": "III"
+    },
+    "16": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done pursuant to judgment or order of Court",
+      "chapter": "III"
+    },
+    "17": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done by a person justified, or by mistake of fact believing himself justified, by law",
+      "chapter": "III"
+    },
+    "18": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Accident in doing a lawful act",
+      "chapter": "III"
+    },
+    "19": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act likely to cause harm, but done without criminal intent, and to prevent other harm",
+      "chapter": "III"
+    },
+    "20": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of a child under seven years of age",
+      "chapter": "III"
+    },
+    "21": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of a child above seven and under twelve years of age of immature understanding",
+      "chapter": "III"
+    },
+    "22": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of a person of unsound mind",
+      "chapter": "III"
+    },
+    "23": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act of a person incapable of judgment by reason of intoxication caused against his will",
+      "chapter": "III"
+    },
+    "24": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Offence requiring a particular intent or knowledge committed by one who is intoxicated",
+      "chapter": "III"
+    },
+    "25": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act not intended and not known to be likely to cause death or grievous hurt, done by consent",
+      "chapter": "III"
+    },
+    "26": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act not intended to cause death, done by consent in good faith for person's benefit",
+      "chapter": "III"
+    },
+    "27": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done in good faith for benefit of child or person of unsound mind, by, or by consent of guardian",
+      "chapter": "III"
+    },
+    "28": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Consent known to be given under fear or misconception",
+      "chapter": "III"
+    },
+    "29": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Exclusion of acts which are offences independently of harm caused",
+      "chapter": "III"
+    },
+    "30": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act done in good faith for benefit of a person without consent",
+      "chapter": "III"
+    },
+    "31": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Communication made in good faith",
+      "chapter": "III"
+    },
+    "32": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act to which a person is compelled by threats",
+      "chapter": "III"
+    },
+    "33": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Act causing slight harm",
+      "chapter": "III"
+    },
+    "34": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Things done in private defence",
+      "chapter": "III"
+    },
+    "35": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Right of private defence of body and of property",
+      "chapter": "III"
+    },
+    "36": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Right of private defence against act of a person of unsound mind, etc",
+      "chapter": "III"
+    },
+    "37": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Acts against which there is no right of private defence",
+      "chapter": "III"
+    },
+    "38": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "When right of private defence of body extends to causing death",
+      "chapter": "III"
+    },
+    "39": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "When such right extends to causing any harm other than death",
+      "chapter": "III"
+    },
+    "40": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Commencement and continuance of right of private defence of body",
+      "chapter": "III"
+    },
+    "41": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "When right of private defence of property extends to causing death",
+      "chapter": "III"
+    },
+    "42": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "When such right extends to causing any harm other than death",
+      "chapter": "III"
+    },
+    "43": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Commencement and continuance of right of private defence of property",
+      "chapter": "III"
+    },
+    "44": {
+      "class": "non_chargeable",
+      "why": "a general exception",
+      "title": "Right of private defence against deadly assault when there is risk of harm to innocent person",
+      "chapter": "III"
+    },
+    "45": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Abetment of a thing",
+      "chapter": "IV"
+    },
+    "46": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Abettor",
+      "chapter": "IV"
+    },
+    "47": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Abetment in India of offences outside India",
+      "chapter": "IV"
+    },
+    "48": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Abetment outside India for offence in India",
+      "chapter": "IV"
+    },
+    "49": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Punishment of abetment if act abetted is committed in consequence and where no express provision is made for its punishment",
+      "chapter": "IV"
+    },
+    "50": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Punishment of abetment if person abetted does act with different intention from that of abettor",
+      "chapter": "IV"
+    },
+    "51": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Liability of abettor when one act abetted and different act done",
+      "chapter": "IV"
+    },
+    "52": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Abettor when liable to cumulative punishment for act abetted and for act done",
+      "chapter": "IV"
+    },
+    "53": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Liability of abettor for an effect caused by act abetted different from that intended by abettor",
+      "chapter": "IV"
+    },
+    "54": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Abettor present when offence is committed",
+      "chapter": "IV"
+    },
+    "55": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Abetment of offence punishable with death or imprisonment for life",
+      "chapter": "IV"
+    },
+    "56": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Abetment of offence punishable with imprisonment",
+      "chapter": "IV"
+    },
+    "57": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Abetting commission of offence by public or by more than ten persons",
+      "chapter": "IV"
+    },
+    "58": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Concealing design to commit offence punishable with death or imprisonment for life",
+      "chapter": "IV"
+    },
+    "59": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Public servant concealing design to commit offence which it is his duty to prevent",
+      "chapter": "IV"
+    },
+    "60": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Concealing design to commit offence punishable with imprisonment",
+      "chapter": "IV"
+    },
+    "61": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Criminal conspiracy",
+      "chapter": "IV"
+    },
+    "62": {
+      "class": "liability",
+      "why": "of abetment, criminal conspiracy and attempt",
+      "title": "Punishment for attempting to commit offences punishable with imprisonment for life or other imprisonment",
+      "chapter": "IV"
+    },
+    "63": {
+      "class": "offence",
+      "why": null,
+      "title": "Rape",
+      "chapter": "V"
+    },
+    "64": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for rape",
+      "chapter": "V"
+    },
+    "65": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for rape in certain cases",
+      "chapter": "V"
+    },
+    "66": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for causing death or resulting in persistent vegetative state of victim",
+      "chapter": "V"
+    },
+    "67": {
+      "class": "offence",
+      "why": null,
+      "title": "Sexual intercourse by husband upon his wife during separation",
+      "chapter": "V"
+    },
+    "68": {
+      "class": "offence",
+      "why": null,
+      "title": "Sexual intercourse by a person in authority",
+      "chapter": "V"
+    },
+    "69": {
+      "class": "offence",
+      "why": null,
+      "title": "Sexual intercourse by employing deceitful means, etc",
+      "chapter": "V"
+    },
+    "70": {
+      "class": "offence",
+      "why": null,
+      "title": "Gang rape",
+      "chapter": "V"
+    },
+    "71": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for repeat offenders",
+      "chapter": "V"
+    },
+    "72": {
+      "class": "offence",
+      "why": null,
+      "title": "Disclosure of identity of victim of certain offences, etc",
+      "chapter": "V"
+    },
+    "73": {
+      "class": "offence",
+      "why": null,
+      "title": "Printing or publishing any matter relating to Court proceedings without permission",
+      "chapter": "V"
+    },
+    "74": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or use of criminal force to woman with intent to outrage her modesty",
+      "chapter": "V"
+    },
+    "75": {
+      "class": "offence",
+      "why": null,
+      "title": "Sexual harassment",
+      "chapter": "V"
+    },
+    "76": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or use of criminal force to woman with intent to disrobe",
+      "chapter": "V"
+    },
+    "77": {
+      "class": "offence",
+      "why": null,
+      "title": "Voyeurism",
+      "chapter": "V"
+    },
+    "78": {
+      "class": "offence",
+      "why": null,
+      "title": "Stalking",
+      "chapter": "V"
+    },
+    "79": {
+      "class": "offence",
+      "why": null,
+      "title": "Word, gesture or act intended to insult modesty of a woman",
+      "chapter": "V"
+    },
+    "80": {
+      "class": "offence",
+      "why": null,
+      "title": "Dowry death",
+      "chapter": "V"
+    },
+    "81": {
+      "class": "offence",
+      "why": null,
+      "title": "Cohabitation caused by man deceitfully inducing belief of lawful marriage",
+      "chapter": "V"
+    },
+    "82": {
+      "class": "offence",
+      "why": null,
+      "title": "Marrying again during lifetime of husband or wife",
+      "chapter": "V"
+    },
+    "83": {
+      "class": "offence",
+      "why": null,
+      "title": "Marriage ceremony fraudulently gone through without lawful marriage",
+      "chapter": "V"
+    },
+    "84": {
+      "class": "offence",
+      "why": null,
+      "title": "Enticing or taking away or detaining with criminal intent a married woman",
+      "chapter": "V"
+    },
+    "85": {
+      "class": "offence",
+      "why": null,
+      "title": "Husband or relative of husband of a woman subjecting her to cruelty",
+      "chapter": "V"
+    },
+    "86": {
+      "class": "offence",
+      "why": null,
+      "title": "Cruelty defined",
+      "chapter": "V"
+    },
+    "87": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping, abducting or inducing woman to compel her marriage, etc",
+      "chapter": "V"
+    },
+    "88": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing miscarriage",
+      "chapter": "V"
+    },
+    "89": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing miscarriage without woman's consent",
+      "chapter": "V"
+    },
+    "90": {
+      "class": "offence",
+      "why": null,
+      "title": "Death caused by act done with intent to cause miscarriage",
+      "chapter": "V"
+    },
+    "91": {
+      "class": "offence",
+      "why": null,
+      "title": "Act done with intent to prevent child being born alive or to cause to die after birth",
+      "chapter": "V"
+    },
+    "92": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing death of quick unborn child by act amounting to culpable homicide",
+      "chapter": "V"
+    },
+    "93": {
+      "class": "offence",
+      "why": null,
+      "title": "Exposure and abandonment of child under twelve years of age, by parent or person having care of it",
+      "chapter": "V"
+    },
+    "94": {
+      "class": "offence",
+      "why": null,
+      "title": "Concealment of birth by secret disposal of dead body",
+      "chapter": "V"
+    },
+    "95": {
+      "class": "offence",
+      "why": null,
+      "title": "Hiring, employing or engaging a child to commit an offence",
+      "chapter": "V"
+    },
+    "96": {
+      "class": "offence",
+      "why": null,
+      "title": "Procuration of child",
+      "chapter": "V"
+    },
+    "97": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping or abducting child under ten years of age with intent to steal from its person",
+      "chapter": "V"
+    },
+    "98": {
+      "class": "offence",
+      "why": null,
+      "title": "Selling child for purposes of prostitution, etc",
+      "chapter": "V"
+    },
+    "99": {
+      "class": "offence",
+      "why": null,
+      "title": "Buying child for purposes of prostitution, etc",
+      "chapter": "V"
+    },
+    "100": {
+      "class": "offence",
+      "why": null,
+      "title": "Culpable homicide",
+      "chapter": "VI"
+    },
+    "101": {
+      "class": "offence",
+      "why": null,
+      "title": "Murder",
+      "chapter": "VI"
+    },
+    "102": {
+      "class": "offence",
+      "why": null,
+      "title": "Culpable homicide by causing death of person other than person whose death was intended",
+      "chapter": "VI"
+    },
+    "103": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for murder",
+      "chapter": "VI"
+    },
+    "104": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for murder by life-convict",
+      "chapter": "VI"
+    },
+    "105": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for culpable homicide not amounting to murder",
+      "chapter": "VI"
+    },
+    "106": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing death by negligence",
+      "chapter": "VI"
+    },
+    "107": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of suicide of child or person of unsound mind",
+      "chapter": "VI"
+    },
+    "108": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of suicide",
+      "chapter": "VI"
+    },
+    "109": {
+      "class": "offence",
+      "why": null,
+      "title": "Attempt to murder",
+      "chapter": "VI"
+    },
+    "110": {
+      "class": "offence",
+      "why": null,
+      "title": "Attempt to commit culpable homicide",
+      "chapter": "VI"
+    },
+    "111": {
+      "class": "offence",
+      "why": null,
+      "title": "Organised crime",
+      "chapter": "VI"
+    },
+    "112": {
+      "class": "offence",
+      "why": null,
+      "title": "Petty organised crime",
+      "chapter": "VI"
+    },
+    "113": {
+      "class": "offence",
+      "why": null,
+      "title": "Terrorist act",
+      "chapter": "VI"
+    },
+    "114": {
+      "class": "offence",
+      "why": null,
+      "title": "Hurt",
+      "chapter": "VI"
+    },
+    "115": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt",
+      "chapter": "VI"
+    },
+    "116": {
+      "class": "offence",
+      "why": null,
+      "title": "Grievous hurt",
+      "chapter": "VI"
+    },
+    "117": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing grievous hurt",
+      "chapter": "VI"
+    },
+    "118": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt or grievous hurt by dangerous weapons or means",
+      "chapter": "VI"
+    },
+    "119": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt or grievous hurt to extort property, or to constrain to an illegal act",
+      "chapter": "VI"
+    },
+    "120": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property",
+      "chapter": "VI"
+    },
+    "121": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt or grievous hurt to deter public servant from his duty",
+      "chapter": "VI"
+    },
+    "122": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing hurt or grievous hurt on provocation",
+      "chapter": "VI"
+    },
+    "123": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing hurt by means of poison, etc., with intent to commit an offence",
+      "chapter": "VI"
+    },
+    "124": {
+      "class": "offence",
+      "why": null,
+      "title": "Voluntarily causing grievous hurt by use of acid, etc",
+      "chapter": "VI"
+    },
+    "125": {
+      "class": "offence",
+      "why": null,
+      "title": "Act endangering life or personal safety of others",
+      "chapter": "VI"
+    },
+    "126": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful restraint",
+      "chapter": "VI"
+    },
+    "127": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongful confinement",
+      "chapter": "VI"
+    },
+    "128": {
+      "class": "offence",
+      "why": null,
+      "title": "Force",
+      "chapter": "VI"
+    },
+    "129": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal force",
+      "chapter": "VI"
+    },
+    "130": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault",
+      "chapter": "VI"
+    },
+    "131": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for assault or criminal force otherwise than on grave provocation",
+      "chapter": "VI"
+    },
+    "132": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force to deter public servant from discharge of his duty",
+      "chapter": "VI"
+    },
+    "133": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force with intent to dishonour person, otherwise than on grave provocation",
+      "chapter": "VI"
+    },
+    "134": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force in attempt to commit theft of property carried by a person",
+      "chapter": "VI"
+    },
+    "135": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force in attempt to wrongfully confine a person",
+      "chapter": "VI"
+    },
+    "136": {
+      "class": "offence",
+      "why": null,
+      "title": "Assault or criminal force on grave provocation",
+      "chapter": "VI"
+    },
+    "137": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping",
+      "chapter": "VI"
+    },
+    "138": {
+      "class": "offence",
+      "why": null,
+      "title": "Abduction",
+      "chapter": "VI"
+    },
+    "139": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping or maiming a child for purposes of begging",
+      "chapter": "VI"
+    },
+    "140": {
+      "class": "offence",
+      "why": null,
+      "title": "Kidnapping or abducting in order to murder or for ransom, etc",
+      "chapter": "VI"
+    },
+    "141": {
+      "class": "offence",
+      "why": null,
+      "title": "Importation of girl or boy from foreign country",
+      "chapter": "VI"
+    },
+    "142": {
+      "class": "offence",
+      "why": null,
+      "title": "Wrongfully concealing or keeping in confinement, kidnapped or abducted person",
+      "chapter": "VI"
+    },
+    "143": {
+      "class": "offence",
+      "why": null,
+      "title": "Trafficking of person",
+      "chapter": "VI"
+    },
+    "144": {
+      "class": "offence",
+      "why": null,
+      "title": "Exploitation of a trafficked person",
+      "chapter": "VI"
+    },
+    "145": {
+      "class": "offence",
+      "why": null,
+      "title": "Habitual dealing in slaves",
+      "chapter": "VI"
+    },
+    "146": {
+      "class": "offence",
+      "why": null,
+      "title": "Unlawful compulsory labour",
+      "chapter": "VI"
+    },
+    "147": {
+      "class": "offence",
+      "why": null,
+      "title": "Waging, or attempting to wage war, or abetting waging of war, against Government of India",
+      "chapter": "VII"
+    },
+    "148": {
+      "class": "offence",
+      "why": null,
+      "title": "Conspiracy to commit offences punishable by section 147",
+      "chapter": "VII"
+    },
+    "149": {
+      "class": "offence",
+      "why": null,
+      "title": "Collecting arms, etc., with intention of waging war against Government of India",
+      "chapter": "VII"
+    },
+    "150": {
+      "class": "offence",
+      "why": null,
+      "title": "Concealing with intent to facilitate design to wage war",
+      "chapter": "VII"
+    },
+    "151": {
+      "class": "offence",
+      "why": null,
+      "title": "Assaulting President, Governor, etc., with intent to compel or restrain exercise of any lawful power",
+      "chapter": "VII"
+    },
+    "152": {
+      "class": "offence",
+      "why": null,
+      "title": "Act endangering sovereignty, unity and integrity of India",
+      "chapter": "VII"
+    },
+    "153": {
+      "class": "offence",
+      "why": null,
+      "title": "Waging war against Government of any foreign State at peace with Government of India",
+      "chapter": "VII"
+    },
+    "154": {
+      "class": "offence",
+      "why": null,
+      "title": "Committing depredation on territories of foreign State at peace with Government of India",
+      "chapter": "VII"
+    },
+    "155": {
+      "class": "offence",
+      "why": null,
+      "title": "Receiving property taken by war or depredation mentioned in sections 153 and 154",
+      "chapter": "VII"
+    },
+    "156": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant voluntarily allowing prisoner of State or war to escape",
+      "chapter": "VII"
+    },
+    "157": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant negligently suffering such prisoner to escape",
+      "chapter": "VII"
+    },
+    "158": {
+      "class": "offence",
+      "why": null,
+      "title": "Aiding escape of, rescuing or harbouring such prisoner",
+      "chapter": "VII"
+    },
+    "159": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetting mutiny, or attempting to seduce a soldier, sailor or airman from his duty",
+      "chapter": "VIII"
+    },
+    "160": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of mutiny, if mutiny is committed in consequence thereof",
+      "chapter": "VIII"
+    },
+    "161": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of assault by soldier, sailor or airman on his superior officer, when in execution of his office",
+      "chapter": "VIII"
+    },
+    "162": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of such assault, if assault committed",
+      "chapter": "VIII"
+    },
+    "163": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of desertion of soldier, sailor or airman",
+      "chapter": "VIII"
+    },
+    "164": {
+      "class": "offence",
+      "why": null,
+      "title": "Harbouring deserter",
+      "chapter": "VIII"
+    },
+    "165": {
+      "class": "offence",
+      "why": null,
+      "title": "Deserter concealed on board merchant vessel through negligence of master",
+      "chapter": "VIII"
+    },
+    "166": {
+      "class": "offence",
+      "why": null,
+      "title": "Abetment of act of insubordination by soldier, sailor or airman",
+      "chapter": "VIII"
+    },
+    "167": {
+      "class": "offence",
+      "why": null,
+      "title": "Persons subject to certain Acts",
+      "chapter": "VIII"
+    },
+    "168": {
+      "class": "offence",
+      "why": null,
+      "title": "Wearing garb or carrying token used by soldier, sailor or airman",
+      "chapter": "VIII"
+    },
+    "169": {
+      "class": "offence",
+      "why": null,
+      "title": "Candidate, electoral right defined",
+      "chapter": "IX"
+    },
+    "170": {
+      "class": "offence",
+      "why": null,
+      "title": "Bribery",
+      "chapter": "IX"
+    },
+    "171": {
+      "class": "offence",
+      "why": null,
+      "title": "Undue influence at elections",
+      "chapter": "IX"
+    },
+    "172": {
+      "class": "offence",
+      "why": null,
+      "title": "Personation at elections",
+      "chapter": "IX"
+    },
+    "173": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for bribery",
+      "chapter": "IX"
+    },
+    "174": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for undue influence or personation at an election",
+      "chapter": "IX"
+    },
+    "175": {
+      "class": "offence",
+      "why": null,
+      "title": "False statement in connection with an election",
+      "chapter": "IX"
+    },
+    "176": {
+      "class": "offence",
+      "why": null,
+      "title": "Illegal payments in connection with an election",
+      "chapter": "IX"
+    },
+    "177": {
+      "class": "offence",
+      "why": null,
+      "title": "Failure to keep election accounts",
+      "chapter": "IX"
+    },
+    "178": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "chapter": "X"
+    },
+    "179": {
+      "class": "offence",
+      "why": null,
+      "title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "chapter": "X"
+    },
+    "180": {
+      "class": "offence",
+      "why": null,
+      "title": "Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "chapter": "X"
+    },
+    "181": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
+      "chapter": "X"
+    },
+    "182": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or using documents resembling currency-notes or bank-notes",
+      "chapter": "X"
+    },
+    "183": {
+      "class": "offence",
+      "why": null,
+      "title": "Effacing writing from substance bearing Government stamp, or removing from document a stamp used for it, with intent to cause loss to Government",
+      "chapter": "X"
+    },
+    "184": {
+      "class": "offence",
+      "why": null,
+      "title": "Using Government stamp known to have been before used",
+      "chapter": "X"
+    },
+    "185": {
+      "class": "offence",
+      "why": null,
+      "title": "Erasure of mark denoting that stamp has been used",
+      "chapter": "X"
+    },
+    "186": {
+      "class": "offence",
+      "why": null,
+      "title": "Prohibition of fictitious stamps",
+      "chapter": "X"
+    },
+    "187": {
+      "class": "offence",
+      "why": null,
+      "title": "Person employed in mint causing coin to be of different weight or composition from that fixed by law",
+      "chapter": "X"
+    },
+    "188": {
+      "class": "offence",
+      "why": null,
+      "title": "Unlawfully taking coining instrument from mint",
+      "chapter": "X"
+    },
+    "189": {
+      "class": "offence",
+      "why": null,
+      "title": "Unlawful assembly",
+      "chapter": "XI"
+    },
+    "190": {
+      "class": "liability",
+      "why": "every member of an unlawful assembly guilty of the offence committed in prosecution of its common object",
+      "title": "Every member of unlawful assembly guilty of offence committed in prosecution of common object",
+      "chapter": "XI"
+    },
+    "191": {
+      "class": "offence",
+      "why": null,
+      "title": "Rioting",
+      "chapter": "XI"
+    },
+    "192": {
+      "class": "offence",
+      "why": null,
+      "title": "Wantonly giving provocation with intent to cause riot-if rioting be committed; if not committed",
+      "chapter": "XI"
+    },
+    "193": {
+      "class": "offence",
+      "why": null,
+      "title": "Liability of owner, occupier, etc., of land on which an unlawful assembly or riot takes place",
+      "chapter": "XI"
+    },
+    "194": {
+      "class": "offence",
+      "why": null,
+      "title": "Affray",
+      "chapter": "XI"
+    },
+    "195": {
+      "class": "offence",
+      "why": null,
+      "title": "Assaulting or obstructing public servant when suppressing riot, etc",
+      "chapter": "XI"
+    },
+    "196": {
+      "class": "offence",
+      "why": null,
+      "title": "Promoting enmity between different groups on grounds of religion, race, place of birth, residence, language, etc., and doing acts prejudicial to maintenance of harmony",
+      "chapter": "XI"
+    },
+    "197": {
+      "class": "offence",
+      "why": null,
+      "title": "Imputations, assertions prejudicial to national integration",
+      "chapter": "XI"
+    },
+    "198": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant disobeying law, with intent to cause injury to any person",
+      "chapter": "XII"
+    },
+    "199": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant disobeying direction under law",
+      "chapter": "XII"
+    },
+    "200": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for non- treatment of victim",
+      "chapter": "XII"
+    },
+    "201": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant framing an incorrect document with intent to cause injury",
+      "chapter": "XII"
+    },
+    "202": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant unlawfully engaging in trade",
+      "chapter": "XII"
+    },
+    "203": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant unlawfully buying or bidding for property",
+      "chapter": "XII"
+    },
+    "204": {
+      "class": "offence",
+      "why": null,
+      "title": "Personating a public servant",
+      "chapter": "XII"
+    },
+    "205": {
+      "class": "offence",
+      "why": null,
+      "title": "Wearing garb or carrying token used by public servant with fraudulent intent",
+      "chapter": "XII"
+    },
+    "206": {
+      "class": "offence",
+      "why": null,
+      "title": "Absconding to avoid service of summons or other proceeding",
+      "chapter": "XIII"
+    },
+    "207": {
+      "class": "offence",
+      "why": null,
+      "title": "Preventing service of summons or other proceeding, or preventing publication thereof",
+      "chapter": "XIII"
+    },
+    "208": {
+      "class": "offence",
+      "why": null,
+      "title": "Non- attendance in obedience to an order from public servant",
+      "chapter": "XIII"
+    },
+    "209": {
+      "class": "offence",
+      "why": null,
+      "title": "Non- appearance in response to a proclamation under section 84 of Bharatiya Nagarik Suraksha Sanhita, 2023",
+      "chapter": "XIII"
+    },
+    "210": {
+      "class": "offence",
+      "why": null,
+      "title": "Omission to produce document or electronic record to public servant by person legally bound to produce it",
+      "chapter": "XIII"
+    },
+    "211": {
+      "class": "offence",
+      "why": null,
+      "title": "Omission to give notice or information to public servant by person legally bound to give it",
+      "chapter": "XIII"
+    },
+    "212": {
+      "class": "offence",
+      "why": null,
+      "title": "Furnishing false information",
+      "chapter": "XIII"
+    },
+    "213": {
+      "class": "offence",
+      "why": null,
+      "title": "Refusing oath or affirmation when duly required by public servant to make it",
+      "chapter": "XIII"
+    },
+    "214": {
+      "class": "offence",
+      "why": null,
+      "title": "Refusing to answer public servant authorised to question",
+      "chapter": "XIII"
+    },
+    "215": {
+      "class": "offence",
+      "why": null,
+      "title": "Refusing to sign statement",
+      "chapter": "XIII"
+    },
+    "216": {
+      "class": "offence",
+      "why": null,
+      "title": "False statement on oath or affirmation to public servant or person authorised to administer an oath or affirmation",
+      "chapter": "XIII"
+    },
+    "217": {
+      "class": "offence",
+      "why": null,
+      "title": "False information, with intent to cause public servant to use his lawful power to injury of another person",
+      "chapter": "XIII"
+    },
+    "218": {
+      "class": "offence",
+      "why": null,
+      "title": "Resistance to taking of property by lawful authority of a public servant",
+      "chapter": "XIII"
+    },
+    "219": {
+      "class": "offence",
+      "why": null,
+      "title": "Obstructing sale of property offered for sale by authority of public servant",
+      "chapter": "XIII"
+    },
+    "220": {
+      "class": "offence",
+      "why": null,
+      "title": "Illegal purchase or bid for property offered for sale by authority of public servant",
+      "chapter": "XIII"
+    },
+    "221": {
+      "class": "offence",
+      "why": null,
+      "title": "Obstructing public servant in discharge of public functions",
+      "chapter": "XIII"
+    },
+    "222": {
+      "class": "offence",
+      "why": null,
+      "title": "Omission to assist public servant when bound by law to give assistance",
+      "chapter": "XIII"
+    },
+    "223": {
+      "class": "offence",
+      "why": null,
+      "title": "Disobedience to order duly promulgated by public servant",
+      "chapter": "XIII"
+    },
+    "224": {
+      "class": "offence",
+      "why": null,
+      "title": "Threat of injury to public servant",
+      "chapter": "XIII"
+    },
+    "225": {
+      "class": "offence",
+      "why": null,
+      "title": "Threat of injury to induce person to refrain from applying for protection to public servant",
+      "chapter": "XIII"
+    },
+    "226": {
+      "class": "offence",
+      "why": null,
+      "title": "Attempt to commit suicide to compel or restrain exercise of lawful power",
+      "chapter": "XIII"
+    },
+    "227": {
+      "class": "offence",
+      "why": null,
+      "title": "Giving false evidence",
+      "chapter": "XIV"
+    },
+    "228": {
+      "class": "offence",
+      "why": null,
+      "title": "Fabricating false evidence",
+      "chapter": "XIV"
+    },
+    "229": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for false evidence",
+      "chapter": "XIV"
+    },
+    "230": {
+      "class": "offence",
+      "why": null,
+      "title": "Giving or fabricating false evidence with intent to procure conviction of capital offence",
+      "chapter": "XIV"
+    },
+    "231": {
+      "class": "offence",
+      "why": null,
+      "title": "Giving or fabricating false evidence with intent to procure conviction of offence punishable with imprisonment for life or imprisonment",
+      "chapter": "XIV"
+    },
+    "232": {
+      "class": "offence",
+      "why": null,
+      "title": "Threatening any person to give false evidence",
+      "chapter": "XIV"
+    },
+    "233": {
+      "class": "offence",
+      "why": null,
+      "title": "Using evidence known to be false",
+      "chapter": "XIV"
+    },
+    "234": {
+      "class": "offence",
+      "why": null,
+      "title": "Issuing or signing false certificate",
+      "chapter": "XIV"
+    },
+    "235": {
+      "class": "offence",
+      "why": null,
+      "title": "Using as true a certificate known to be false",
+      "chapter": "XIV"
+    },
+    "236": {
+      "class": "offence",
+      "why": null,
+      "title": "False statement made in declaration which is by law receivable as evidence",
+      "chapter": "XIV"
+    },
+    "237": {
+      "class": "offence",
+      "why": null,
+      "title": "Using as true such declaration knowing it to be false",
+      "chapter": "XIV"
+    },
+    "238": {
+      "class": "offence",
+      "why": null,
+      "title": "Causing disappearance of evidence of offence, or giving false information to screen offender",
+      "chapter": "XIV"
+    },
+    "239": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional omission to give information of offence by person bound to inform",
+      "chapter": "XIV"
+    },
+    "240": {
+      "class": "offence",
+      "why": null,
+      "title": "Giving false information respecting an offence committed",
+      "chapter": "XIV"
+    },
+    "241": {
+      "class": "offence",
+      "why": null,
+      "title": "Destruction of document or electronic record to prevent its production as evidence",
+      "chapter": "XIV"
+    },
+    "242": {
+      "class": "offence",
+      "why": null,
+      "title": "False personation for purpose of act or proceeding in suit or prosecution",
+      "chapter": "XIV"
+    },
+    "243": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulent removal or concealment of property to prevent its seizure as forfeited or in execution",
+      "chapter": "XIV"
+    },
+    "244": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulent claim to property to prevent its seizure as forfeited or in execution",
+      "chapter": "XIV"
+    },
+    "245": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulently suffering decree for sum not due",
+      "chapter": "XIV"
+    },
+    "246": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonestly making false claim in Court",
+      "chapter": "XIV"
+    },
+    "247": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulently obtaining decree for sum not due",
+      "chapter": "XIV"
+    },
+    "248": {
+      "class": "offence",
+      "why": null,
+      "title": "False charge of offence made with intent to injure",
+      "chapter": "XIV"
+    },
+    "249": {
+      "class": "offence",
+      "why": null,
+      "title": "Harbouring offender",
+      "chapter": "XIV"
+    },
+    "250": {
+      "class": "offence",
+      "why": null,
+      "title": "Taking gift, etc., to screen an offender from punishment",
+      "chapter": "XIV"
+    },
+    "251": {
+      "class": "offence",
+      "why": null,
+      "title": "Offering gift or restoration of property in consideration of screening offender",
+      "chapter": "XIV"
+    },
+    "252": {
+      "class": "offence",
+      "why": null,
+      "title": "Taking gift to help to recover stolen property, etc",
+      "chapter": "XIV"
+    },
+    "253": {
+      "class": "offence",
+      "why": null,
+      "title": "Harbouring offender who has escaped from custody or whose apprehension has been ordered",
+      "chapter": "XIV"
+    },
+    "254": {
+      "class": "offence",
+      "why": null,
+      "title": "Penalty for harbouring robbers or dacoits",
+      "chapter": "XIV"
+    },
+    "255": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant disobeying direction of law with intent to save person from punishment or property from forfeiture",
+      "chapter": "XIV"
+    },
+    "256": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant framing incorrect record or writing with intent to save person from punishment or property from forfeiture",
+      "chapter": "XIV"
+    },
+    "257": {
+      "class": "offence",
+      "why": null,
+      "title": "Public servant in judicial proceeding corruptly making report, etc., contrary to law",
+      "chapter": "XIV"
+    },
+    "258": {
+      "class": "offence",
+      "why": null,
+      "title": "Commitment for trial or confinement by person having authority who knows that he is acting contrary to law",
+      "chapter": "XIV"
+    },
+    "259": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional omission to apprehend on part of public servant bound to apprehend",
+      "chapter": "XIV"
+    },
+    "260": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional omission to apprehend on part of public servant bound to apprehend person under sentence or lawfully committed",
+      "chapter": "XIV"
+    },
+    "261": {
+      "class": "offence",
+      "why": null,
+      "title": "Escape from confinement or custody negligently suffered by public servant",
+      "chapter": "XIV"
+    },
+    "262": {
+      "class": "offence",
+      "why": null,
+      "title": "Resistance or obstruction by a person to his lawful apprehension",
+      "chapter": "XIV"
+    },
+    "263": {
+      "class": "offence",
+      "why": null,
+      "title": "Resistance or obstruction to lawful apprehension of another person",
+      "chapter": "XIV"
+    },
+    "264": {
+      "class": "offence",
+      "why": null,
+      "title": "Omission to apprehend, or sufferance of escape, on part of public servant, in cases not otherwise provided for",
+      "chapter": "XIV"
+    },
+    "265": {
+      "class": "offence",
+      "why": null,
+      "title": "Resistance or obstruction to lawful apprehension or escape or rescue in cases not otherwise provided for",
+      "chapter": "XIV"
+    },
+    "266": {
+      "class": "offence",
+      "why": null,
+      "title": "Violation of condition of remission of punishment",
+      "chapter": "XIV"
+    },
+    "267": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional insult or interruption to public servant sitting in judicial proceeding",
+      "chapter": "XIV"
+    },
+    "268": {
+      "class": "offence",
+      "why": null,
+      "title": "Personation of assessor",
+      "chapter": "XIV"
+    },
+    "269": {
+      "class": "offence",
+      "why": null,
+      "title": "Failure by person released on bail bond or bond to appear in Court",
+      "chapter": "XIV"
+    },
+    "270": {
+      "class": "offence",
+      "why": null,
+      "title": "Public nuisance",
+      "chapter": "XV"
+    },
+    "271": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent act likely to spread infection of disease dangerous to life",
+      "chapter": "XV"
+    },
+    "272": {
+      "class": "offence",
+      "why": null,
+      "title": "Malignant act likely to spread infection of diseasedangerous to life",
+      "chapter": "XV"
+    },
+    "273": {
+      "class": "offence",
+      "why": null,
+      "title": "Disobedience to quarantine rule",
+      "chapter": "XV"
+    },
+    "274": {
+      "class": "offence",
+      "why": null,
+      "title": "Adulteration of food or drink intended for sale",
+      "chapter": "XV"
+    },
+    "275": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale of noxious food or drink",
+      "chapter": "XV"
+    },
+    "276": {
+      "class": "offence",
+      "why": null,
+      "title": "Adulteration of drugs",
+      "chapter": "XV"
+    },
+    "277": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale of adulterated drugs",
+      "chapter": "XV"
+    },
+    "278": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale of drug as a different drug or preparation",
+      "chapter": "XV"
+    },
+    "279": {
+      "class": "offence",
+      "why": null,
+      "title": "Fouling water of public spring or reservoir",
+      "chapter": "XV"
+    },
+    "280": {
+      "class": "offence",
+      "why": null,
+      "title": "Making atmosphere noxious to health",
+      "chapter": "XV"
+    },
+    "281": {
+      "class": "offence",
+      "why": null,
+      "title": "Rash driving or riding on a public way",
+      "chapter": "XV"
+    },
+    "282": {
+      "class": "offence",
+      "why": null,
+      "title": "Rash navigation of vessel",
+      "chapter": "XV"
+    },
+    "283": {
+      "class": "offence",
+      "why": null,
+      "title": "Exhibition of false light, mark or buoy",
+      "chapter": "XV"
+    },
+    "284": {
+      "class": "offence",
+      "why": null,
+      "title": "Conveying person by water for hire in unsafe or overloaded vessel",
+      "chapter": "XV"
+    },
+    "285": {
+      "class": "offence",
+      "why": null,
+      "title": "Danger or obstruction in public way or line of navigation",
+      "chapter": "XV"
+    },
+    "286": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to poisonous substance",
+      "chapter": "XV"
+    },
+    "287": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to fire or combustible matter",
+      "chapter": "XV"
+    },
+    "288": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to explosive substance",
+      "chapter": "XV"
+    },
+    "289": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to machinery",
+      "chapter": "XV"
+    },
+    "290": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to pulling down, repairing or constructing buildings, etc",
+      "chapter": "XV"
+    },
+    "291": {
+      "class": "offence",
+      "why": null,
+      "title": "Negligent conduct with respect to animal",
+      "chapter": "XV"
+    },
+    "292": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for public nuisance in cases not otherwise provided for",
+      "chapter": "XV"
+    },
+    "293": {
+      "class": "offence",
+      "why": null,
+      "title": "Continuance of nuisance after injunction to discontinue",
+      "chapter": "XV"
+    },
+    "294": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale, etc., of obscene books, etc",
+      "chapter": "XV"
+    },
+    "295": {
+      "class": "offence",
+      "why": null,
+      "title": "Sale, etc., of obscene objects to child",
+      "chapter": "XV"
+    },
+    "296": {
+      "class": "offence",
+      "why": null,
+      "title": "Obscene acts and songs",
+      "chapter": "XV"
+    },
+    "297": {
+      "class": "offence",
+      "why": null,
+      "title": "Keeping lottery office",
+      "chapter": "XV"
+    },
+    "298": {
+      "class": "offence",
+      "why": null,
+      "title": "Injuring or defiling place of worship with intent to insult religion of any class",
+      "chapter": "XVI"
+    },
+    "299": {
+      "class": "offence",
+      "why": null,
+      "title": "Deliberate and malicious acts, intended to outrage religious feelings of any class by insulting its religion or religious beliefs",
+      "chapter": "XVI"
+    },
+    "300": {
+      "class": "offence",
+      "why": null,
+      "title": "Disturbing religious assembly",
+      "chapter": "XVI"
+    },
+    "301": {
+      "class": "offence",
+      "why": null,
+      "title": "Trespassing on burial places, etc",
+      "chapter": "XVI"
+    },
+    "302": {
+      "class": "offence",
+      "why": null,
+      "title": "Uttering words, etc., with deliberate intent to wound religious feelings of any person",
+      "chapter": "XVI"
+    },
+    "303": {
+      "class": "offence",
+      "why": null,
+      "title": "Theft",
+      "chapter": "XVII"
+    },
+    "304": {
+      "class": "offence",
+      "why": null,
+      "title": "Snatching",
+      "chapter": "XVII"
+    },
+    "305": {
+      "class": "offence",
+      "why": null,
+      "title": "Theft in a dwelling house, or means of transportation or place of worship, etc",
+      "chapter": "XVII"
+    },
+    "306": {
+      "class": "offence",
+      "why": null,
+      "title": "Theft by clerk or servant of property in possession of master",
+      "chapter": "XVII"
+    },
+    "307": {
+      "class": "offence",
+      "why": null,
+      "title": "Theft after preparation made for causing death, hurt or restraint in order to committing of theft",
+      "chapter": "XVII"
+    },
+    "308": {
+      "class": "offence",
+      "why": null,
+      "title": "Extortion",
+      "chapter": "XVII"
+    },
+    "309": {
+      "class": "offence",
+      "why": null,
+      "title": "Robbery",
+      "chapter": "XVII"
+    },
+    "310": {
+      "class": "offence",
+      "why": null,
+      "title": "Dacoity",
+      "chapter": "XVII"
+    },
+    "311": {
+      "class": "offence",
+      "why": null,
+      "title": "Robbery, or dacoity, with attempt to cause death or grievous hurt",
+      "chapter": "XVII"
+    },
+    "312": {
+      "class": "offence",
+      "why": null,
+      "title": "Attempt to commit robbery or dacoity when armed with deadly weapon",
+      "chapter": "XVII"
+    },
+    "313": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for belonging to gang of robbers, etc",
+      "chapter": "XVII"
+    },
+    "314": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest misappropriation of property",
+      "chapter": "XVII"
+    },
+    "315": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest misappropriation of property possessed by deceased person at the time of his death",
+      "chapter": "XVII"
+    },
+    "316": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal breach of trust",
+      "chapter": "XVII"
+    },
+    "317": {
+      "class": "offence",
+      "why": null,
+      "title": "Stolen property",
+      "chapter": "XVII"
+    },
+    "318": {
+      "class": "offence",
+      "why": null,
+      "title": "Cheating",
+      "chapter": "XVII"
+    },
+    "319": {
+      "class": "offence",
+      "why": null,
+      "title": "Cheating by personation",
+      "chapter": "XVII"
+    },
+    "320": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest or fraudulent removal or concealment of property to prevent distribution among creditors",
+      "chapter": "XVII"
+    },
+    "321": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonestly or fraudulently preventing debt being available for creditors",
+      "chapter": "XVII"
+    },
+    "322": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest or fraudulent execution of deed of transfer containing false statement of consideration",
+      "chapter": "XVII"
+    },
+    "323": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonest or fraudulent removal or concealment of property",
+      "chapter": "XVII"
+    },
+    "324": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief",
+      "chapter": "XVII"
+    },
+    "325": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by killing or maiming animal",
+      "chapter": "XVII"
+    },
+    "326": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief by injury, inundation, fire or explosive substance, etc",
+      "chapter": "XVII"
+    },
+    "327": {
+      "class": "offence",
+      "why": null,
+      "title": "Mischief with intent to destroy or make unsafe a rail, aircraft, decked vessel or one of twenty tons burden",
+      "chapter": "XVII"
+    },
+    "328": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for intentionally running vessel aground or ashore with intent to commit theft, etc",
+      "chapter": "XVII"
+    },
+    "329": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal trespass and house-trespass",
+      "chapter": "XVII"
+    },
+    "330": {
+      "class": "offence",
+      "why": null,
+      "title": "House-trespass and house- breaking",
+      "chapter": "XVII"
+    },
+    "331": {
+      "class": "offence",
+      "why": null,
+      "title": "Punishment for house-trespass or house- breaking",
+      "chapter": "XVII"
+    },
+    "332": {
+      "class": "offence",
+      "why": null,
+      "title": "House-trespass in order to commit offence",
+      "chapter": "XVII"
+    },
+    "333": {
+      "class": "offence",
+      "why": null,
+      "title": "House-trespass after preparation for hurt, assault or wrongful restraint",
+      "chapter": "XVII"
+    },
+    "334": {
+      "class": "offence",
+      "why": null,
+      "title": "Dishonestly breaking open receptacle containing property",
+      "chapter": "XVII"
+    },
+    "335": {
+      "class": "offence",
+      "why": null,
+      "title": "Making a false document",
+      "chapter": "XVIII"
+    },
+    "336": {
+      "class": "offence",
+      "why": null,
+      "title": "Forgery",
+      "chapter": "XVIII"
+    },
+    "337": {
+      "class": "offence",
+      "why": null,
+      "title": "Forgery of record of Court or of public register, etc",
+      "chapter": "XVIII"
+    },
+    "338": {
+      "class": "offence",
+      "why": null,
+      "title": "Forgery of valuable security, will, etc",
+      "chapter": "XVIII"
+    },
+    "339": {
+      "class": "offence",
+      "why": null,
+      "title": "Having possession of document described in section 337 or section 338, knowing it to be forged and intending to use it as genuine",
+      "chapter": "XVIII"
+    },
+    "340": {
+      "class": "offence",
+      "why": null,
+      "title": "Forged document or electronic record and using it as genuine",
+      "chapter": "XVIII"
+    },
+    "341": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or possessing counterfeit seal, etc., with intent to commit forgery punishable under section 338",
+      "chapter": "XVIII"
+    },
+    "342": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting device or mark used for authenticating documents described in section 338, or possessing counterfeit marked material",
+      "chapter": "XVIII"
+    },
+    "343": {
+      "class": "offence",
+      "why": null,
+      "title": "Fraudulent cancellation, destruction, etc., of will, authority to adopt, or valuable security",
+      "chapter": "XVIII"
+    },
+    "344": {
+      "class": "offence",
+      "why": null,
+      "title": "Falsification of accounts",
+      "chapter": "XVIII"
+    },
+    "345": {
+      "class": "offence",
+      "why": null,
+      "title": "Property mark",
+      "chapter": "XVIII"
+    },
+    "346": {
+      "class": "offence",
+      "why": null,
+      "title": "Tampering with property mark with intent to cause injury",
+      "chapter": "XVIII"
+    },
+    "347": {
+      "class": "offence",
+      "why": null,
+      "title": "Counterfeiting a property mark",
+      "chapter": "XVIII"
+    },
+    "348": {
+      "class": "offence",
+      "why": null,
+      "title": "Making or possession of any instrument for counterfeiting a property mark",
+      "chapter": "XVIII"
+    },
+    "349": {
+      "class": "offence",
+      "why": null,
+      "title": "Selling goods marked with a counterfeit property mark",
+      "chapter": "XVIII"
+    },
+    "350": {
+      "class": "offence",
+      "why": null,
+      "title": "Making a false mark upon any receptacle containing goods",
+      "chapter": "XVIII"
+    },
+    "351": {
+      "class": "offence",
+      "why": null,
+      "title": "Criminal intimidation",
+      "chapter": "XIX"
+    },
+    "352": {
+      "class": "offence",
+      "why": null,
+      "title": "Intentional insult with intent to provoke breach of peace",
+      "chapter": "XIX"
+    },
+    "353": {
+      "class": "offence",
+      "why": null,
+      "title": "Statements conducing to public mischief",
+      "chapter": "XIX"
+    },
+    "354": {
+      "class": "offence",
+      "why": null,
+      "title": "Act caused by inducing person to believe that he will be rendered an object of Divine displeasure",
+      "chapter": "XIX"
+    },
+    "355": {
+      "class": "offence",
+      "why": null,
+      "title": "Misconduct in public by a drunken person",
+      "chapter": "XIX"
+    },
+    "356": {
+      "class": "offence",
+      "why": null,
+      "title": "Defamation",
+      "chapter": "XIX"
+    },
+    "357": {
+      "class": "offence",
+      "why": null,
+      "title": "Breach of contract to attend on and supply wants of helpless person",
+      "chapter": "XIX"
+    },
+    "358": {
+      "class": "offence",
+      "why": null,
+      "title": "Repeal and savings",
+      "chapter": "XX"
+    }
+  },
+  "subsection_liability": {
+    "bns": {
+      "3": {
+        "3(5)": "common intention"
+      }
+    }
+  }
+}

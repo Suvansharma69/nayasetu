@@ -32,21 +32,21 @@
     "415",
     "Cheating",
     6,
-    11
+    8
    ],
    [
     "420",
     "420",
     "Cheating and dishonestly inducing delivery of property",
     3,
-    19
+    15
    ],
    [
     "411",
     "411",
     "Dishonestly receiving stolen property",
     16,
-    6
+    3
    ]
   ]
  },
@@ -86,18 +86,18 @@
     6
    ],
    [
+    "464",
+    "464",
+    "Making a false document",
+    1,
+    27
+   ],
+   [
     "467",
     "467",
     "Forgery of valuable security, will, etc.",
     18,
     7
-   ],
-   [
-    "464",
-    "464",
-    "Making a false document",
-    1,
-    34
    ]
   ]
  },
@@ -148,7 +148,7 @@
     "354",
     "Assault or criminal force to woman with intent to outrage her modesty",
     10,
-    19
+    16
    ]
   ]
  },
@@ -192,14 +192,14 @@
     "405",
     "Criminal breach of trust",
     18,
-    6
+    5
    ],
    [
     "407",
     "407",
     "Criminal breach of trust by carrier, etc.",
     1,
-    51
+    26
    ]
   ]
  },
@@ -237,7 +237,14 @@
     "326",
     "Voluntarily causing grievous hurt by dangerous weapons or means",
     10,
-    11
+    8
+   ],
+   [
+    "323",
+    "323",
+    "Punishment for voluntarily causing hurt",
+    24,
+    2
    ],
    [
     "324",
@@ -245,13 +252,6 @@
     "Voluntarily causing hurt by dangerous weapons or means",
     26,
     1
-   ],
-   [
-    "323",
-    "323",
-    "Punishment for voluntarily causing hurt",
-    24,
-    4
    ]
   ]
  },
@@ -283,25 +283,25 @@
   ],
   "fused_top3": [
    [
-    "3",
-    "3(3)",
-    "General explanations",
-    13,
-    1
-   ],
-   [
     "316",
     "316(4)",
     "Criminal breach of trust",
     3,
-    14
+    10
    ],
    [
-    "303",
-    "303",
-    "Theft",
-    8,
-    12
+    "3",
+    "3(3)",
+    "General explanations",
+    13,
+    4
+   ],
+   [
+    "127",
+    "127(8)",
+    "Wrongful confinement",
+    6,
+    13
    ]
   ]
  },
@@ -337,21 +337,21 @@
     "303(1)",
     "Theft",
     1,
-    5
+    10
    ],
    [
     "309",
     "309(3)",
     "Robbery",
     2,
-    8
+    9
    ],
    [
-    "2",
-    "2(38)",
-    "Definitions",
-    10,
-    7
+    "317",
+    "317(1)",
+    "Stolen property",
+    22,
+    2
    ]
   ]
  },
@@ -400,7 +400,7 @@
     "335",
     "Making a false document",
     2,
-    20
+    13
    ]
   ]
  },
@@ -447,11 +447,11 @@
     3
    ],
    [
-    "117",
-    "117(3)",
-    "Voluntarily causing grievous hurt",
-    6,
-    18
+    "116",
+    "116",
+    "Grievous hurt",
+    2,
+    19
    ]
   ]
  },
@@ -500,7 +500,7 @@
     "335",
     "Making a false document",
     2,
-    19
+    10
    ]
   ]
  }

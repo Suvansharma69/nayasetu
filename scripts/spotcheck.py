@@ -153,10 +153,23 @@ def main():
 
     problems += _check_against_report(stats, warnings)
 
+    # A lowercase/comma tail alone is not a cut: at a headnote boundary
+    # ("... Case Arising From" | "CRIMINAL APPELLATE JURISDICTION") the text
+    # simply continues in a new block. A MID-SENTENCE split is a tail like that
+    # whose next chunk of the same judgment opens in lowercase. Explained
+    # 2026-09-27: 1,190 such SC splits, 965 of them headnotes cut at an
+    # arbitrary space by the long-sentence fallback (textsplit._hard_split,
+    # now cut at clause boundaries). No text is lost either way.
+    by_pos = {(c["doc_id"], c.get("para_index")): c for _, c in all_chunks}
+    mid = sum(1 for _, c in all_chunks if _TRUNCATED_TAIL.search(c["text"].rstrip())
+              and (nxt := by_pos.get((c["doc_id"], (c.get("para_index") or 0) + 1)))
+              and re.match(r"\s*[a-z(]", nxt["text"]))
+    stats["mid_sentence_split"] = mid
     print(f"\ntotal {len(all_chunks)} chunks, {len(seen_ids)} unique ids")
     print(f"with section references: {stats['with_sections']}")
-    print(f"tails that look cut off: {stats['suspect_tail']} "
-          f"({stats['suspect_tail'] / max(len(all_chunks), 1):.1%})")
+    print(f"tails ending lowercase/comma: {stats['suspect_tail']} "
+          f"({stats['suspect_tail'] / max(len(all_chunks), 1):.1%}); of those, true mid-sentence "
+          f"splits (next chunk continues in lowercase): {mid} ({mid / max(len(all_chunks), 1):.1%})")
 
     if warnings:
         print(f"\n{len(warnings)} warnings (non-fatal, see code for why):")

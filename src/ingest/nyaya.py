@@ -46,6 +46,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import io
+import json
 import re
 import sys
 import zipfile
@@ -166,6 +167,34 @@ def clean(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
+_BOMBAY_REPAIRS = None
+
+
+def repair_bombay_ligatures(text):
+    """Restore the letter Bombay HC text lost at ligatures ('frst' -> 'first').
+
+    An exact whole-token map, reviewed pair by pair and derived from the
+    corpus's own vocabulary (data/mappings/bombay_ligature_repairs.json), not a
+    dictionary guess -- a guessing repair produced 'arming' -> 'affirming'. Case
+    is preserved ('Frst' -> 'First', 'OFENCE' -> 'OFFENCE').
+    """
+    global _BOMBAY_REPAIRS
+    if _BOMBAY_REPAIRS is None:
+        path = Path(__file__).resolve().parents[2] / "data" / "mappings" / "bombay_ligature_repairs.json"
+        _BOMBAY_REPAIRS = json.loads(path.read_text(encoding="utf-8"))["repairs"]
+
+    def fix(m):
+        w = m.group(0)
+        rep = _BOMBAY_REPAIRS.get(w.lower())
+        if rep is None:
+            return w
+        if w.isupper() and len(w) > 1:
+            return rep.upper()
+        return rep[0].upper() + rep[1:] if w[0].isupper() else rep
+
+    return re.sub(r"[A-Za-z]+", fix, text)
+
+
 def _shingles(text, n=8, mod=16):
     """Sampled word 8-gram hashes, for near-duplicate detection.
 
@@ -272,6 +301,8 @@ def chunk_row(filename, text, label, sections, code):
         raise ValueError(f"unknown court {court_key!r} in {filename!r}")
 
     text = clean(text)
+    if court_key == "Bombay_HC":
+        text = repair_bombay_ligatures(text)
     parts, hard = chunk_text(text)
     chunks = []
     for i, part in enumerate(parts):

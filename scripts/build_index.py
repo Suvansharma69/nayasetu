@@ -31,11 +31,24 @@ ENCODE_BATCH = {"ipc_sections": 4, "bns_sections": 4,
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="+", choices=sorted(store.COLLECTIONS))
+    ap.add_argument("--sync", action="store_true",
+                    help="incremental: embed only records the index lacks, drop records the corpus "
+                         "no longer has, refresh metadata; then verify every id and text")
     args = ap.parse_args()
 
     print(f"model  : {embedder.model_id()}")
     print(f"store  : {store.chroma_dir()}")
     cli = store.client()
+    if args.sync:
+        for name in args.only or list(store.COLLECTIONS):
+            t0 = time.time()
+            added = store.add_missing(name, cli=cli, encode_batch=ENCODE_BATCH[name])
+            pruned = store.prune(name, cli=cli)
+            changed = store.sync_metadata(name, cli=cli)
+            print(f"{name}: added {added}, pruned {pruned}, metadata refreshed on {changed} "
+                  f"records in {time.time() - t0:.0f}s (ids and texts verified)", flush=True)
+        embedder.free()
+        return 0
     for name in args.only or list(store.COLLECTIONS):
         t0 = time.time()
         total = sum(1 for _ in store.iter_chunks(name))

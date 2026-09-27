@@ -244,3 +244,64 @@ def test_bns_citation_before_a_sentence_starting_with_s_is_kept():
     """'Section 318 BNS. Section 302...' -- the BNSS guard used to swallow it."""
     assert extract_sections("cheating is Section 318 BNS. Section 302 was also",
                             {"318"}) == ["318"]
+
+
+# --- The 2026-09-27 edge audit ------------------------------------------------
+# 100 random case->section edges were read against the citation that produced
+# them: 37 were not penal-code sections. Each test below is one audited string.
+
+AUDIT = WITH_LOW | {"4", "5", "18", "25", "27", "28", "112", "114", "138", "258", "341", "482", "498A", "29", "22", "23", "8"}
+
+
+def test_section_number_ends_at_a_digit_boundary():
+    # "S.2587/2011" is a suit number; it was read as IPC 258.
+    assert extract_sections("PW.3 a suit S.2587/2011 on 7.4.2011", AUDIT) == []
+
+
+def test_headnote_enactment_before_the_sections_is_honoured():
+    t = ("Code of Criminal Procedure, 1973 – s.482 – Penal Code, 1860 – ss.341, 323, "
+         "498A and 34 – Dowry Prohibition Act, 1961 – ss.3 and 4 – Dowry case")
+    assert extract_sections(t, AUDIT) == ["341", "323", "498A", "34"]
+    assert extract_sections("Evidence Act, 1872 – ss.4, 112 – Held:", AUDIT) == []
+    assert extract_sections("Arms Act, 1959 – ss.25, 54, 59. [Paras 20-27]", AUDIT) == []
+
+
+def test_acronym_act_glued_to_its_letters():
+    assert extract_sections("makes out a case under Section 138 N.I.Act.", AUDIT) == []
+
+
+def test_comma_and_keeps_a_compound_attached_to_its_act():
+    t = "prosecuted for the offences punishable under Sections 8, 22, 23, and 29 of the Narcotic Drugs and Psychotropic Substances Act, 1985"
+    assert extract_sections(t, AUDIT) == []
+
+
+def test_sub_section_of_another_section_is_not_a_section():
+    t = "as provided in second proviso to sub-Section 5 of Section 21 of the NIA Act"
+    assert extract_sections(t, AUDIT) == []
+
+
+def test_thereof_refers_back_to_another_act():
+    t = "the Wildlife Protection Act, 1972, more particularly, Section 38(O)(b) thereof"
+    assert extract_sections(t, AUDIT | {"38"}) == []
+
+
+def test_distrusted_number_dropped_only_when_bare():
+    distrust = {"482"}
+    assert extract_sections("quashing of the FIR under Section 482 After hearing", AUDIT, distrust) == []
+    # named as the penal code: kept even though the number is distrusted
+    assert extract_sections("using a false mark under Section 482 of the IPC", AUDIT, distrust) == ["482"]
+    # real offences are untouched
+    assert extract_sections("convicted under Section 302 and awarded", AUDIT, distrust) == ["302"]
+
+
+def test_read_with_section_joins_a_compound_and_shares_its_act():
+    # fresh-sample audit, 2026-09-27: both are CrPC sections
+    t = "shall include an order made under section 117, read with section 110 of the Criminal Procedure Code."
+    assert extract_sections(t, AUDIT | {"117", "110"}) == []
+    # and a penal compound now names its code for every member
+    assert extract_sections("under Section 302 read with Section 34 of IPC", AUDIT) == ["302", "34"]
+
+
+def test_act_named_by_its_year():
+    t = "offences u/ss.405, 420 and 120B, IPC along with s.34 of the 2017 Act that the hospital"
+    assert extract_sections(t, AUDIT | {"405", "120B"}) == ["405", "420", "120B"]
