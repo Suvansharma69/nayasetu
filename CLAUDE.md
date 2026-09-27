@@ -220,6 +220,11 @@ FastAPI endpoint wrapping the full pipeline. Streamlit form (case facts + offenc
 
 **Current phase:** Phases 1-4 are DONE and merged to `main` (Phase 4: 2026-09-27). Phase 5 (Full Pipeline) is next, in Plan Mode. Phase 2 was accepted **one case short of its 12/15 gate** - see the Phase 2 entry below for why, and `docs/phase2_retrieval.md` for every case.
 
+**Session of 2026-09-27, part 3 - HARDENING PASS, IN PROGRESS on branch `hardening` (not merged).** Owner's rule (memory `no-advance-with-open-issues`): **no Phase 5 until every Phase 1-4 issue is closed; the bar is state of the art.** The evidence record and open-issue register are in `docs/hardening.md`; read it first.
+  - **Largest finding: citation-graph edges were only ~63% penal-code sections** (other Acts' and CrPC sections read as IPC). Fixed in `sections.py` + corpus-derived `bare_citation_trust.json`: **96% on a fresh 100-edge audit**; edges 24,475 -> 16,514.
+  - New pipeline pieces: chargeability layer (definitions/exceptions rejected by Node 2), Node 2b grounded applicability check (`charges` vs `unsupported`), joint-liability rule from Node 1's fact profile, headcount rules, straddling-period runs. Dev set: common intention now charged in cases 8 and 15; extras 28 -> 12.
+  - **Still open:** Phase 2 retrieval 18/25 on corrected data (below 80%); Node 2b judgments are unstable across data changes (dev 13 lost BNS 318); frozen evals (probes, Phase 4 gate, broad-coverage) **not yet run - the chain was killed for low system memory; rerun only with the owner's go-ahead**; IL-TUR access still pending manual approval (the harness `scripts/eval_lsi.py` is ready).
+
 **Session of 2026-09-27, part 2 (filling the data gaps).** Asked to "find the missing things and include them":
   - **IPC<->BNS mapping COMPLETE: all 574 rows decided** (was 97). The 477 new rows are 408 confirmed, 33 corrected and 36 `none` (repealed, or dropped from the BNS - proved by phrase-search absence). That gives 538 verified bridges, up from 97. Reviewed by Claude with the same method, **not a lawyer**; every entry says `reviewer: "claude"`. IPC 124A -> BNS 152 carries a note: a redrafted successor, so sedition precedent is persuasive only.
   - **2026 SC judgments ingested** (43.8 MB, 67 criminal). Direct BNS precedent is still a handful per section; the mapping bridge is where post-2024 precedent comes from.
@@ -420,5 +425,12 @@ No API keys are needed anywhere in this project any more.
 - **A many-to-one mapping turns precedent votes into noise for definition sections.** Once the IPC definition sections (21, 24, 25, 29...) were mapped, every IPC judgment citing any of them votes for **BNS 2 "Definitions"** in a BNS-era query, and it reached the top 3 (Phase 2 dev case 9). Same shape for BNS 3. A definition is never a charge. Not fixed - the Phase 2 method is frozen - but Phase 5 must not offer definitional sections to Node 1 as charge candidates.
 - **A data fix can move a frozen method's held-out score; that is not licence to re-tune.** Completing the mapping took the Phase 2 held-out set from 10/10 to 8/10 (rank-3/4 swaps) while the dev set went 11 -> 12. Recorded, not "fixed" (`docs/phase2_retrieval.md`, re-score section). New retrieval methods get scored on `tests/fixtures/broad_coverage.json`.
 - **A sentence stated in a judgment is usually not the final sentence.** Sentence phrases appear in 388 of 698 SC+HC judgments citing IPC 302 and 64 of 885 citing 420 - but in appeals they mostly quote the TRIAL court's sentence, which the judgment may then set aside. Node 5's extractor has to tie a sentence to the court that imposed it and to the final disposal, or its "sentence ranges" will include sentences that were quashed.
+
+*Added 2026-09-27 during the hardening pass.*
+
+- **Audit an extractor's precision by reading real edges, not by trusting its tests.** 150 passing extractor tests coexisted with ~37% wrong citation-graph edges. Headnotes name the Act BEFORE the sections (`Evidence Act, 1872 - ss.4, 112`), bare "Section 482" is the CrPC, and `S.2587/2011` is a suit number. Re-audit with a FRESH random sample after any extractor change: the sample that shaped a fix cannot also certify it.
+- **An access check must probe a gated file.** `fetch_iltur.py --check` once said "OK" because the first file in its list was the public README. It now probes a parquet file.
+- **A single model boolean must never erase the rest of its answer.** "discloses_offence: false" together with proposed sections declined a real snatching case. Decline only when both signals agree.
+- **Background evaluation chains get killed under memory pressure** (Ollama ~4 GB + BGE-M3 on CPU ~2.2 GB + Chroma + desktop apps). Run long evals with other apps closed, and keep runners resumable.
 
 *(Add to this as you hit real issues during the build.)*
