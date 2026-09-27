@@ -3,6 +3,8 @@
 These are the mechanics behind the Phase 4 gate: the retry edge fires on an
 unconfirmed section, feeds it back, caps at retry_count < 2, and never lets an
 unconfirmed section into verified_sections."""
+import re
+
 from src.pipeline import graph
 from src.pipeline.state import SECTION3_FIELDS
 
@@ -134,7 +136,7 @@ def test_applicability_splits_charges_from_unsupported(g, scripted):
     assert [v["section"] for v in out["unsupported"]] == ["302"]
     # both stay verified -- the check adds a verdict, it never deletes
     assert [v["section"] for v in out["state"]["verified_sections"]] == ["303", "302"]
-    assert len(llm.assess_calls) == 1
+    assert len(llm.assess_calls) == 2          # two self-consistency passes
 
 
 def test_invented_quote_never_supports_a_section(g, scripted):
@@ -216,3 +218,23 @@ def test_period_on_one_side_is_a_single_run(g, scripted):
                     retrieve=lambda f, era: RETRIEVED, sufficient=lambda f, era: (True, {}),
                     text_of=lambda era, sec, sub: "text")
     assert out["era"] == "bns" and out["status"] == "ok"
+
+
+def test_a_section_is_demoted_only_if_every_pass_rejects_it(g, scripted):
+    from src.pipeline import applicability as ap
+
+    class FlipLLM:
+        """Rejects whichever section is listed FIRST -- an order-sensitive judge."""
+        def __call__(self, messages, schema):
+            refs = re.findall(r"^\[([^\]]+)\]", messages[-1]["content"], re.M)
+            q = {"facts_quotes": ["took the complainant's motorcycle"], "missing_ingredient": ""}
+            return {"assessments": [{"section": r, **q, "applies": i > 0} for i, r in enumerate(refs)]}
+
+    st = {"era": "bns", "case_facts": FACTS, "facts_profile": {},
+          "verified_sections": [{"section": "303", "subsection": None, "title": "Theft"},
+                                {"section": "302", "subsection": None, "title": "x"}]}
+    one = ap.assess(st, FlipLLM(), text_of=lambda *a: "t", passes=1)["applicability"]
+    two = ap.assess(st, FlipLLM(), text_of=lambda *a: "t", passes=2)["applicability"]
+    assert [a["supported"] for a in one] == [False, True]      # single pass: order decides
+    assert [a["supported"] for a in two] == [True, True]       # consensus: neither demoted
+    assert two[0]["passes"] == [False, True]

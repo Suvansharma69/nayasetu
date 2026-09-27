@@ -147,11 +147,38 @@ def build_messages(state, text_of):
     return [{"role": "system", "content": system}, {"role": "user", "content": user}]
 
 
-def assess(state, llm, text_of=statute_text):
-    """Node 2b. Returns {"applicability": [...]}, one record per verified section."""
-    era, verified = state["era"], state["verified_sections"]
+PASSES = 2
+
+
+def assess(state, llm, text_of=statute_text, passes=PASSES):
+    """Node 2b. Returns {"applicability": [...]}, one record per verified section.
+
+    Self-consistency: the check runs `passes` times, the section order reversed
+    on each alternate pass, and a section is supported if ANY pass supports it
+    -- i.e. it is demoted only when every pass rejects it. Measured on the dev
+    set, 2026-09-27: one pass lost 0 relevant sections on one run and 4 on the
+    next, when only the candidate list in the prompt had changed. A verdict that
+    flips with prompt order must not be able to remove the right charge.
+    """
+    verified = state["verified_sections"]
     if not verified:
         return {"applicability": []}
+    runs = []
+    for p in range(passes):
+        order = verified if p % 2 == 0 else list(reversed(verified))
+        recs = _assess_once({**state, "verified_sections": order}, llm, text_of)
+        by = {(r["section"], r["subsection"]): r for r in recs}
+        runs.append([by[(v["section"], v["subsection"])] for v in verified])
+    out = []
+    for i, v in enumerate(verified):
+        recs = [run[i] for run in runs]
+        best = next((r for r in recs if r["supported"]), recs[0])
+        out.append({**best, "passes": [r["supported"] for r in recs]})
+    return {"applicability": out}
+
+
+def _assess_once(state, llm, text_of):
+    era, verified = state["era"], state["verified_sections"]
     reply = llm(build_messages(state, text_of), SCHEMA)
     assessments = reply.get("assessments") or []
     # The model echoes the reference loosely -- "[BNS 303(1)] Theft", measured
@@ -185,4 +212,4 @@ def assess(state, llm, text_of=statute_text):
                     "grounded_quotes": kept, "dropped_quotes": [q for q in quotes if q not in kept],
                     "missing_ingredient": missing, "model_applies": model_applies,
                     "rule_rejected": rule})
-    return {"applicability": out}
+    return out
