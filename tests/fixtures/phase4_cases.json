@@ -1,0 +1,69 @@
+{
+  "_README": [
+    "Phase 4 gate cases (CLAUDE.md Section 8): 10 cases, 5 pre-2024 and 5 post-2024, must route correctly every time; an adversarial case must trigger and survive the retry loop.",
+    "gate: taken from tests/fixtures/phase2_testset.json by 1-based index, so the facts, dates and expected sections stay in one place. IPC 1/4/5/7/8 and BNS 9/10/12/13/15 cover theft, criminal breach of trust, assault, cheating and common intention on both sides. Case 8 is there because s34 ranks 146th in retrieval and only Node 1 can supply it; case 9 is the Section 3 motorcycle worked example.",
+    "adversarial (gate: true): retrieval context WITHHELD, so Node 1 falls back on the model's own memory -- the exact failure Node 2 exists for. Asked about a BNS theft with no context, qwen3.5:4b cited IPC 378/379 and an invented 379A (measured 2026-09-27). These must trigger the retry loop and end with a verified BNS section every rep.",
+    "adversarial (gate: false, reported): BNS-era facts in which the complaint names an IPC section out of habit. On the first gate run the model did NOT take either bait when given retrieval context (it answered BNS 318 and BNS 85), so these cannot be relied on to exercise the loop; kept because resisting the bait is itself worth tracking.",
+    "Original design note for the bait cases: Neither BNS 420 nor BNS 498A exists (the BNS stops at 358), so a model that echoes the number is caught by Node 2 and must be corrected on retry. 420 has a verified BNS counterpart (318), which Node 2's feedback names; 498A's mapping row is outside the reviewed in-scope set, so the feedback can only say there is no verified counterpart and the model has to find the cruelty provision itself. Synthetic facts, written for this fixture.",
+    "probes: inputs the pipeline should decline -- one the guardrail must stop before any LLM call, one civil dispute that passes the guardrail (civil facts score inside the criminal range, see docs/phase4_pipeline.md) where Node 1 should propose nothing. Reported, not gated."
+  ],
+  "gate_from": "tests/fixtures/phase2_testset.json",
+  "gate": [1, 4, 5, 7, 8, 9, 10, 12, 13, 15],
+  "adversarial": [
+    {
+      "name": "bns_theft_no_context",
+      "gate": true,
+      "withhold_retrieval": true,
+      "era": "bns",
+      "offence_date": "2024-08-15",
+      "query": "The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it.",
+      "bait": null,
+      "relevant": ["bns_s303"]
+    },
+    {
+      "name": "bns_cheating_no_context",
+      "gate": false,
+      "_note": "Reported, not gated: on the design check (2026-09-27) the model answered BNS 66/67/68 -- real sections (sexual offences), so they verify and the loop never fires. That is the existence-only limit of graph verification, not a retry-loop failure; see docs/phase4_pipeline.md.",
+      "withhold_retrieval": true,
+      "era": "bns",
+      "offence_date": "2024-10-20",
+      "query": "The accused told the complainant he could arrange admission for his daughter in a medical college through a management quota and took six lakh rupees in cash for it. No such quota existed, the accused stopped answering calls, and the money was never returned.",
+      "bait": null,
+      "relevant": ["bns_s318"]
+    },
+    {
+      "name": "bns_era_420",
+      "gate": false,
+      "withhold_retrieval": false,
+      "era": "bns",
+      "offence_date": "2024-10-20",
+      "query": "The complainant has lodged an FIR under Section 420. The accused told him he could arrange admission for his daughter in a medical college through a management quota and took six lakh rupees in cash for it. No such quota existed, the accused stopped answering calls, and the money was never returned.",
+      "bait": "420",
+      "relevant": ["bns_s318"]
+    },
+    {
+      "name": "bns_era_498A",
+      "gate": false,
+      "withhold_retrieval": false,
+      "era": "bns",
+      "offence_date": "2024-11-05",
+      "query": "The wife's complaint invokes Section 498A. Since the marriage her husband and mother-in-law have repeatedly beaten her and demanded that her parents pay five lakh rupees more as dowry, and told her she would be thrown out of the house if the money did not come.",
+      "bait": "498A",
+      "relevant": ["bns_s85", "bns_s86"]
+    }
+  ],
+  "probes": [
+    {
+      "name": "recipe",
+      "offence_date": "2024-09-01",
+      "query": "Preheat the oven to 180 degrees, cream the butter and sugar, then fold in the flour and bake for 25 minutes.",
+      "expect": "insufficient_data"
+    },
+    {
+      "name": "tenancy",
+      "offence_date": "2024-09-01",
+      "query": "The tenant has not paid rent for six months and the landlord wants to evict him and recover the arrears under the rent agreement.",
+      "expect": "no_proposals"
+    }
+  ]
+}

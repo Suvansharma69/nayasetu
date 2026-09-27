@@ -1,0 +1,1880 @@
+{
+ "model": "qwen3.5:4b",
+ "reps": 3,
+ "gate": [
+  {
+   "rep": 0,
+   "case": 1,
+   "offence_type": "theft",
+   "want": [
+    "378",
+    "379"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "378",
+     "411"
+    ]
+   },
+   "verified": [
+    "378",
+    "411"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6861,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 9.2,
+    "retrieve_s": 0.5,
+    "graph_s": 8.0
+   },
+   "wall_s": 18.5,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "case": 4,
+   "offence_type": "criminal breach of trust",
+   "want": [
+    "405",
+    "406",
+    "408"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "408",
+     "420",
+     "415"
+    ]
+   },
+   "verified": [
+    "408",
+    "420",
+    "415"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6756,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.3,
+    "graph_s": 12.9
+   },
+   "wall_s": 15.6,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "case": 5,
+   "offence_type": "assault",
+   "want": [
+    "320",
+    "322",
+    "325",
+    "326"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "326",
+     "325",
+     "324"
+    ]
+   },
+   "verified": [
+    "326",
+    "325",
+    "324"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7399,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.3,
+    "graph_s": 12.2
+   },
+   "wall_s": 14.8,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "case": 7,
+   "offence_type": "cheating",
+   "want": [
+    "415",
+    "420"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "420",
+     "468",
+     "471"
+    ]
+   },
+   "verified": [
+    "420",
+    "468",
+    "471"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6614,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.4,
+    "graph_s": 12.3
+   },
+   "wall_s": 15.1,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "case": 8,
+   "offence_type": "common intention",
+   "want": [
+    "322",
+    "34"
+   ],
+   "relevant_verified": false,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "323",
+     "114",
+     "307"
+    ]
+   },
+   "verified": [
+    "323",
+    "114",
+    "307"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.5964,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.3,
+    "graph_s": 11.7
+   },
+   "wall_s": 14.5,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "case": 9,
+   "offence_type": "theft",
+   "want": [
+    "303"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "303(1)"
+    ]
+   },
+   "verified": [
+    "303(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6861,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.6,
+    "graph_s": 7.2
+   },
+   "wall_s": 10.3,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "case": 10,
+   "offence_type": "theft",
+   "want": [
+    "303",
+    "304"
+   ],
+   "relevant_verified": false,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "309(2)",
+     "134"
+    ]
+   },
+   "verified": [
+    "309(2)",
+    "134"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6332,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.4,
+    "graph_s": 9.0
+   },
+   "wall_s": 11.9,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "case": 12,
+   "offence_type": "assault",
+   "want": [
+    "116",
+    "117",
+    "118"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "116",
+     "118(1)"
+    ]
+   },
+   "verified": [
+    "116",
+    "118(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6962,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.5,
+    "graph_s": 9.9
+   },
+   "wall_s": 12.8,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "case": 13,
+   "offence_type": "cheating",
+   "want": [
+    "318"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "318(4)",
+     "61(2)",
+     "316"
+    ]
+   },
+   "verified": [
+    "318(4)",
+    "61(2)",
+    "316"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6769,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.5,
+    "graph_s": 11.6
+   },
+   "wall_s": 14.5,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "case": 15,
+   "offence_type": "common intention",
+   "want": [
+    "3"
+   ],
+   "relevant_verified": false,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "115(1)",
+     "309(6)"
+    ]
+   },
+   "verified": [
+    "115(1)",
+    "309(6)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6804,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.5,
+    "graph_s": 9.6
+   },
+   "wall_s": 12.7,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 1,
+   "offence_type": "theft",
+   "want": [
+    "378",
+    "379"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "378",
+     "411"
+    ]
+   },
+   "verified": [
+    "378",
+    "411"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6861,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.3,
+    "graph_s": 7.6
+   },
+   "wall_s": 10.2,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 4,
+   "offence_type": "criminal breach of trust",
+   "want": [
+    "405",
+    "406",
+    "408"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "408",
+     "420",
+     "415"
+    ]
+   },
+   "verified": [
+    "408",
+    "420",
+    "415"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6756,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.3,
+    "graph_s": 13.1
+   },
+   "wall_s": 15.7,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 5,
+   "offence_type": "assault",
+   "want": [
+    "320",
+    "322",
+    "325",
+    "326"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "326",
+     "325",
+     "324"
+    ]
+   },
+   "verified": [
+    "326",
+    "325",
+    "324"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7399,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.2,
+    "graph_s": 11.7
+   },
+   "wall_s": 14.3,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 7,
+   "offence_type": "cheating",
+   "want": [
+    "415",
+    "420"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "420",
+     "468",
+     "471"
+    ]
+   },
+   "verified": [
+    "420",
+    "468",
+    "471"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6614,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.8,
+    "retrieve_s": 0.3,
+    "graph_s": 11.4
+   },
+   "wall_s": 14.0,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 8,
+   "offence_type": "common intention",
+   "want": [
+    "322",
+    "34"
+   ],
+   "relevant_verified": false,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "323",
+     "114",
+     "307"
+    ]
+   },
+   "verified": [
+    "323",
+    "114",
+    "307"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.5964,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.8,
+    "retrieve_s": 0.3,
+    "graph_s": 11.8
+   },
+   "wall_s": 14.3,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 9,
+   "offence_type": "theft",
+   "want": [
+    "303"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "303(1)"
+    ]
+   },
+   "verified": [
+    "303(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6861,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.4,
+    "graph_s": 7.2
+   },
+   "wall_s": 10.0,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 10,
+   "offence_type": "theft",
+   "want": [
+    "303",
+    "304"
+   ],
+   "relevant_verified": false,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "309(2)",
+     "134"
+    ]
+   },
+   "verified": [
+    "309(2)",
+    "134"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6332,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.4,
+    "graph_s": 8.8
+   },
+   "wall_s": 11.5,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 12,
+   "offence_type": "assault",
+   "want": [
+    "116",
+    "117",
+    "118"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "116",
+     "118(1)"
+    ]
+   },
+   "verified": [
+    "116",
+    "118(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6962,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.4,
+    "graph_s": 9.6
+   },
+   "wall_s": 12.4,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 13,
+   "offence_type": "cheating",
+   "want": [
+    "318"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "318(4)",
+     "61(2)",
+     "316"
+    ]
+   },
+   "verified": [
+    "318(4)",
+    "61(2)",
+    "316"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6769,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.4,
+    "graph_s": 11.3
+   },
+   "wall_s": 14.0,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "case": 15,
+   "offence_type": "common intention",
+   "want": [
+    "3"
+   ],
+   "relevant_verified": false,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "115(1)",
+     "309(6)"
+    ]
+   },
+   "verified": [
+    "115(1)",
+    "309(6)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6804,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.4,
+    "graph_s": 9.5
+   },
+   "wall_s": 12.4,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 1,
+   "offence_type": "theft",
+   "want": [
+    "378",
+    "379"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "378",
+     "411"
+    ]
+   },
+   "verified": [
+    "378",
+    "411"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6861,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.8,
+    "retrieve_s": 0.3,
+    "graph_s": 7.7
+   },
+   "wall_s": 10.2,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 4,
+   "offence_type": "criminal breach of trust",
+   "want": [
+    "405",
+    "406",
+    "408"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "408",
+     "420",
+     "415"
+    ]
+   },
+   "verified": [
+    "408",
+    "420",
+    "415"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6756,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.8,
+    "retrieve_s": 0.2,
+    "graph_s": 12.9
+   },
+   "wall_s": 15.3,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 5,
+   "offence_type": "assault",
+   "want": [
+    "320",
+    "322",
+    "325",
+    "326"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "326",
+     "325",
+     "324"
+    ]
+   },
+   "verified": [
+    "326",
+    "325",
+    "324"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7399,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.8,
+    "retrieve_s": 0.3,
+    "graph_s": 11.7
+   },
+   "wall_s": 14.1,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 7,
+   "offence_type": "cheating",
+   "want": [
+    "415",
+    "420"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "420",
+     "468",
+     "471"
+    ]
+   },
+   "verified": [
+    "420",
+    "468",
+    "471"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6614,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.8,
+    "retrieve_s": 0.2,
+    "graph_s": 11.4
+   },
+   "wall_s": 13.9,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 8,
+   "offence_type": "common intention",
+   "want": [
+    "322",
+    "34"
+   ],
+   "relevant_verified": false,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "ipc",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "323",
+     "114",
+     "307"
+    ]
+   },
+   "verified": [
+    "323",
+    "114",
+    "307"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.5964,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.8,
+    "retrieve_s": 0.3,
+    "graph_s": 12.0
+   },
+   "wall_s": 14.5,
+   "collections": [
+    "ipc_sections",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 9,
+   "offence_type": "theft",
+   "want": [
+    "303"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "303(1)"
+    ]
+   },
+   "verified": [
+    "303(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6861,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.4,
+    "graph_s": 7.2
+   },
+   "wall_s": 10.0,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 10,
+   "offence_type": "theft",
+   "want": [
+    "303",
+    "304"
+   ],
+   "relevant_verified": false,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "309(2)",
+     "134"
+    ]
+   },
+   "verified": [
+    "309(2)",
+    "134"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6332,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 4.0,
+    "retrieve_s": 251.2,
+    "graph_s": 10.0
+   },
+   "wall_s": 266.9,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 12,
+   "offence_type": "assault",
+   "want": [
+    "116",
+    "117",
+    "118"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "116",
+     "118(1)"
+    ]
+   },
+   "verified": [
+    "116",
+    "118(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6962,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.0,
+    "retrieve_s": 0.5,
+    "graph_s": 10.8
+   },
+   "wall_s": 14.8,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 13,
+   "offence_type": "cheating",
+   "want": [
+    "318"
+   ],
+   "relevant_verified": true,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "318(4)",
+     "61(2)",
+     "316"
+    ]
+   },
+   "verified": [
+    "318(4)",
+    "61(2)",
+    "316"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6769,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.6,
+    "graph_s": 12.2
+   },
+   "wall_s": 15.3,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "case": 15,
+   "offence_type": "common intention",
+   "want": [
+    "3"
+   ],
+   "relevant_verified": false,
+   "routing_problems": [],
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "115(1)",
+     "309(6)"
+    ]
+   },
+   "verified": [
+    "115(1)",
+    "309(6)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6804,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.5,
+    "graph_s": 10.1
+   },
+   "wall_s": 13.2,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  }
+ ],
+ "adversarial": [
+  {
+   "rep": 0,
+   "name": "bns_theft_no_context",
+   "gate": true,
+   "withhold_retrieval": true,
+   "triggered": true,
+   "survived": true,
+   "relevant_verified": true,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 2,
+   "rounds": {
+    "0": [
+     "421"
+    ],
+    "1": [
+     "378"
+    ],
+    "2": [
+     "303"
+    ]
+   },
+   "verified": [
+    "303"
+   ],
+   "unconfirmed": [
+    {
+     "raw": "421",
+     "round": 0,
+     "why": "BNS 421 is not a section of the ingested BNS (sections 1 to 358). IPC 421 is an IPC section with no verified BNS counterpart."
+    },
+    {
+     "raw": "378",
+     "round": 1,
+     "why": "BNS 378 is not a section of the ingested BNS (sections 1 to 358). IPC 378 is an IPC section; under the verified mapping its BNS counterpart is BNS 303."
+    }
+   ],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6861,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.0,
+    "graph_s": 17.1
+   },
+   "wall_s": 19.5,
+   "collections": [
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "name": "bns_cheating_no_context",
+   "gate": false,
+   "withhold_retrieval": true,
+   "triggered": false,
+   "survived": true,
+   "relevant_verified": false,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "66",
+     "67",
+     "68"
+    ]
+   },
+   "verified": [
+    "66",
+    "67",
+    "68"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6438,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.0,
+    "graph_s": 11.1
+   },
+   "wall_s": 13.5,
+   "collections": [
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "name": "bns_era_420",
+   "gate": false,
+   "withhold_retrieval": false,
+   "triggered": false,
+   "survived": true,
+   "relevant_verified": true,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "318(1)",
+     "308(1)",
+     "351(1)"
+    ]
+   },
+   "verified": [
+    "318(1)",
+    "308(1)",
+    "351(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.674,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.5,
+    "graph_s": 14.3
+   },
+   "wall_s": 17.4,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 0,
+   "name": "bns_era_498A",
+   "gate": false,
+   "withhold_retrieval": false,
+   "triggered": false,
+   "survived": true,
+   "relevant_verified": true,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "85",
+     "308(1)",
+     "351(3)"
+    ]
+   },
+   "verified": [
+    "85",
+    "308(1)",
+    "351(3)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7814,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.5,
+    "graph_s": 12.2
+   },
+   "wall_s": 15.2,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "name": "bns_theft_no_context",
+   "gate": true,
+   "withhold_retrieval": true,
+   "triggered": true,
+   "survived": true,
+   "relevant_verified": true,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 2,
+   "rounds": {
+    "0": [
+     "421"
+    ],
+    "1": [
+     "378"
+    ],
+    "2": [
+     "303"
+    ]
+   },
+   "verified": [
+    "303"
+   ],
+   "unconfirmed": [
+    {
+     "raw": "421",
+     "round": 0,
+     "why": "BNS 421 is not a section of the ingested BNS (sections 1 to 358). IPC 421 is an IPC section with no verified BNS counterpart."
+    },
+    {
+     "raw": "378",
+     "round": 1,
+     "why": "BNS 378 is not a section of the ingested BNS (sections 1 to 358). IPC 378 is an IPC section; under the verified mapping its BNS counterpart is BNS 303."
+    }
+   ],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6861,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.0,
+    "graph_s": 17.0
+   },
+   "wall_s": 19.3,
+   "collections": [
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "name": "bns_cheating_no_context",
+   "gate": false,
+   "withhold_retrieval": true,
+   "triggered": false,
+   "survived": true,
+   "relevant_verified": false,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "66",
+     "67",
+     "68"
+    ]
+   },
+   "verified": [
+    "66",
+    "67",
+    "68"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6438,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.0,
+    "graph_s": 11.1
+   },
+   "wall_s": 13.4,
+   "collections": [
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "name": "bns_era_420",
+   "gate": false,
+   "withhold_retrieval": false,
+   "triggered": false,
+   "survived": true,
+   "relevant_verified": true,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "318(1)",
+     "308(1)",
+     "351(1)"
+    ]
+   },
+   "verified": [
+    "318(1)",
+    "308(1)",
+    "351(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.674,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.4,
+    "graph_s": 14.2
+   },
+   "wall_s": 17.1,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 1,
+   "name": "bns_era_498A",
+   "gate": false,
+   "withhold_retrieval": false,
+   "triggered": false,
+   "survived": true,
+   "relevant_verified": true,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "85",
+     "308(1)",
+     "351(3)"
+    ]
+   },
+   "verified": [
+    "85",
+    "308(1)",
+    "351(3)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7814,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.5,
+    "graph_s": 12.2
+   },
+   "wall_s": 15.1,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "name": "bns_theft_no_context",
+   "gate": true,
+   "withhold_retrieval": true,
+   "triggered": true,
+   "survived": true,
+   "relevant_verified": true,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 2,
+   "rounds": {
+    "0": [
+     "421"
+    ],
+    "1": [
+     "378"
+    ],
+    "2": [
+     "303"
+    ]
+   },
+   "verified": [
+    "303"
+   ],
+   "unconfirmed": [
+    {
+     "raw": "421",
+     "round": 0,
+     "why": "BNS 421 is not a section of the ingested BNS (sections 1 to 358). IPC 421 is an IPC section with no verified BNS counterpart."
+    },
+    {
+     "raw": "378",
+     "round": 1,
+     "why": "BNS 378 is not a section of the ingested BNS (sections 1 to 358). IPC 378 is an IPC section; under the verified mapping its BNS counterpart is BNS 303."
+    }
+   ],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6861,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.0,
+    "graph_s": 17.6
+   },
+   "wall_s": 20.1,
+   "collections": [
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "name": "bns_cheating_no_context",
+   "gate": false,
+   "withhold_retrieval": true,
+   "triggered": false,
+   "survived": true,
+   "relevant_verified": false,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "66",
+     "67",
+     "68"
+    ]
+   },
+   "verified": [
+    "66",
+    "67",
+    "68"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6438,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.0,
+    "graph_s": 11.5
+   },
+   "wall_s": 14.2,
+   "collections": [
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "name": "bns_era_420",
+   "gate": false,
+   "withhold_retrieval": false,
+   "triggered": false,
+   "survived": true,
+   "relevant_verified": true,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "318(1)",
+     "308(1)",
+     "351(1)"
+    ]
+   },
+   "verified": [
+    "318(1)",
+    "308(1)",
+    "351(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.674,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.5,
+    "graph_s": 14.9
+   },
+   "wall_s": 18.0,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "rep": 2,
+   "name": "bns_era_498A",
+   "gate": false,
+   "withhold_retrieval": false,
+   "triggered": false,
+   "survived": true,
+   "relevant_verified": true,
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "85",
+     "308(1)",
+     "351(3)"
+    ]
+   },
+   "verified": [
+    "85",
+    "308(1)",
+    "351(3)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7814,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.5,
+    "graph_s": 12.7
+   },
+   "wall_s": 15.8,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  }
+ ],
+ "probes": [
+  {
+   "name": "recipe",
+   "expect": "insufficient_data",
+   "status": "insufficient_data",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {},
+   "verified": [],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": "the closest ingested judgment scores 0.485, below the 0.576 relevance threshold: nothing in the corpus resembles these facts closely enough to ground an answer",
+    "top_similarity": 0.4853,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2
+   },
+   "wall_s": 2.6,
+   "collections": [
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  },
+  {
+   "name": "tenancy",
+   "expect": "no_proposals",
+   "status": "ok",
+   "era": "bns",
+   "retry_count": 0,
+   "rounds": {
+    "0": [
+     "BNS 314",
+     "BNS 308(1)",
+     "BNS 351(1)"
+    ]
+   },
+   "verified": [
+    "314",
+    "308(1)",
+    "351(1)"
+   ],
+   "unconfirmed": [],
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.62,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.4,
+    "graph_s": 14.8
+   },
+   "wall_s": 17.7,
+   "collections": [
+    "bns_sections",
+    "judgments_post2024",
+    "judgments_pre2024"
+   ]
+  }
+ ]
+}

@@ -20,10 +20,12 @@ networkx                   # in-memory, no server
 langgraph                  # StateGraph; schema pinned in CLAUDE.md Section 3
 
 # --- Generation ---
-# Nothing to install. Generation is fully local via Ollama (a native install,
-# not a pip package) -- see CLAUDE.md Section 2. google-genai was removed on
-# 2026-09-22 along with the cloud path; do not add an LLM SDK back here
-# without flagging it first.
+# Generation is fully local via Ollama (a native install, not a pip package)
+# -- see CLAUDE.md Section 2. google-genai was removed on 2026-09-22 along
+# with the cloud path; do not add an LLM SDK back here without flagging it
+# first. src/pipeline/llm.py talks to Ollama's REST API with plain httpx
+# (already pulled in by chromadb; listed because we now import it directly).
+httpx
 
 # --- Backend / frontend ---
 fastapi
