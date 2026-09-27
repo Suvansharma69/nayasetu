@@ -32,21 +32,21 @@
     "415",
     "Cheating",
     6,
-    8
+    11
    ],
    [
     "420",
     "420",
     "Cheating and dishonestly inducing delivery of property",
     3,
-    12
+    19
    ],
    [
-    "378",
-    "378",
-    "Theft",
-    1,
-    30
+    "411",
+    "411",
+    "Dishonestly receiving stolen property",
+    16,
+    6
    ]
   ]
  },
@@ -62,6 +62,11 @@
   ],
   "statute_top3": [
    [
+    "464",
+    "464",
+    "Making a false document"
+   ],
+   [
     "177",
     "177",
     "Furnishing false information"
@@ -70,11 +75,6 @@
     "178",
     "178",
     "Refusing oath or affirmation when duly required by public servant to make it"
-   ],
-   [
-    "179",
-    "179",
-    "Refusing to answer public servant authorized to question"
    ]
   ],
   "fused_top3": [
@@ -82,22 +82,22 @@
     "468",
     "468",
     "Forgery for purpose of cheating",
-    4,
-    4
-   ],
-   [
-    "420",
-    "420",
-    "Cheating and dishonestly inducing delivery of property",
-    31,
-    1
+    5,
+    6
    ],
    [
     "467",
     "467",
     "Forgery of valuable security, will, etc.",
-    24,
-    6
+    18,
+    7
+   ],
+   [
+    "464",
+    "464",
+    "Making a false document",
+    1,
+    34
    ]
   ]
  },
@@ -140,7 +140,7 @@
     "504",
     "504",
     "Intentional insult with intent to provoke breach of the peace",
-    23,
+    24,
     4
    ],
    [
@@ -169,14 +169,14 @@
     "Criminal breach of trust by carrier, etc."
    ],
    [
+    "370",
+    "370",
+    "Trafficking of persons"
+   ],
+   [
     "282",
     "282",
     "Conveying person by water for hire in unsafe or overloaded vessel"
-   ],
-   [
-    "254",
-    "254",
-    "Delivery of coin as genuine which, when first possessed, the deliverer did not know to be altered"
    ]
   ],
   "fused_top3": [
@@ -184,22 +184,22 @@
     "420",
     "420",
     "Cheating and dishonestly inducing delivery of property",
-    12,
+    13,
     1
    ],
    [
     "405",
     "405",
     "Criminal breach of trust",
-    17,
-    5
+    18,
+    6
    ],
    [
     "407",
     "407",
     "Criminal breach of trust by carrier, etc.",
     1,
-    45
+    51
    ]
   ]
  },
@@ -243,14 +243,14 @@
     "324",
     "324",
     "Voluntarily causing hurt by dangerous weapons or means",
-    24,
+    26,
     1
    ],
    [
     "323",
     "323",
     "Punishment for voluntarily causing hurt",
-    22,
+    24,
     4
    ]
   ]
@@ -283,25 +283,25 @@
   ],
   "fused_top3": [
    [
+    "3",
+    "3(3)",
+    "General explanations",
+    13,
+    1
+   ],
+   [
     "316",
     "316(4)",
     "Criminal breach of trust",
     3,
-    8
+    14
    ],
    [
     "303",
     "303",
     "Theft",
     8,
-    7
-   ],
-   [
-    "3",
-    "3(3)",
-    "General explanations",
-    13,
-    4
+    12
    ]
   ]
  },
@@ -337,21 +337,21 @@
     "303(1)",
     "Theft",
     1,
-    7
+    5
    ],
    [
     "309",
     "309(3)",
     "Robbery",
     2,
-    6
+    8
    ],
    [
-    "307",
-    "307",
-    "Theft after preparation made for causing death, hurt or restraint in order to committing of theft",
-    8,
-    10
+    "2",
+    "2(38)",
+    "Definitions",
+    10,
+    7
    ]
   ]
  },
@@ -396,11 +396,11 @@
     2
    ],
    [
-    "308",
-    "308(1)",
-    "Extortion",
-    11,
-    8
+    "335",
+    "335",
+    "Making a false document",
+    2,
+    20
    ]
   ]
  },
@@ -440,18 +440,18 @@
     2
    ],
    [
-    "116",
-    "116",
-    "Grievous hurt",
-    2,
-    12
-   ],
-   [
     "115",
     "115(2)",
     "Voluntarily causing hurt",
     12,
     3
+   ],
+   [
+    "117",
+    "117(3)",
+    "Voluntarily causing grievous hurt",
+    6,
+    18
    ]
   ]
  },
@@ -496,11 +496,11 @@
     2
    ],
    [
-    "319",
-    "319(1)",
-    "Cheating by personation",
-    1,
-    10
+    "335",
+    "335",
+    "Making a false document",
+    2,
+    19
    ]
   ]
  }

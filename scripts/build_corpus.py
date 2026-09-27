@@ -41,7 +41,7 @@ from src.ingest.sections import section_index
 from src.ingest.statutes import parse_bns, parse_ipc
 
 OUT = ROOT / "data" / "processed"
-YEARS = (2023, 2024, 2025)
+YEARS = (2023, 2024, 2025, 2026)
 
 
 class Writer:

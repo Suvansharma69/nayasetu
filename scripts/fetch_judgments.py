@@ -17,7 +17,8 @@ same judgments into Hindi/Punjabi/Odia/etc. Pramana is an English-language
 system end to end (InLegal-Sbert is English-only), so they are pure cost.
 Dropping them takes 2023+2024 from the budgeted 4-5 GB down to ~604 MB.
 
-Years: 2023, 2024, 2025. Section 4 originally said "2023 and 2024 only".
+Years: 2023, 2024, 2025, 2026 (2026 added 2026-09-27 -- partial year, 43.8 MB,
+for the same reason as 2025: BNS precedent). Section 4 originally said "2023 and 2024 only".
 2025 was added deliberately -- see CLAUDE.md Known Gotchas. In short: BNS
 applies to offences on/after 2024-07-01, and nothing charged under BNS had
 reached a Supreme Court judgment by Dec 2024, so without 2025 the
@@ -48,7 +49,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DEST = ROOT / "data" / "raw" / "judgments"
 
 BUCKET = "https://indian-supreme-court-judgments.s3.ap-south-1.amazonaws.com"
-YEARS = [2023, 2024, 2025]
+YEARS = [2023, 2024, 2025, 2026]
 
 # (key template, local filename template). English tar + its index + metadata.
 # The index json maps tar members -> case paths; it is 30 KB and saves us

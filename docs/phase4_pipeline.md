@@ -92,3 +92,28 @@ Probes: the recipe → `insufficient_data` in 2.6 s, no LLM call. The tenancy di
 - **`think: false`.** qwen3.5 is a thinking model and runs ~half on CPU here.
 - **Query encoding is on CPU at runtime** (`device="cpu"`, threaded through `ranker`). Ollama keeps the model resident after a call, so a GPU-loaded embedder on the next query would share the 4GB card with it. The first CPU encode includes a ~9 s model load; later ones are sub-second.
 - **Tests:** 56 new in `tests/pipeline/` (router boundary days, the citation parser, verifier invariants, and loop mechanics with a scripted LLM: cap at exactly 3 Node 1 calls, verified sections survive retries, an empty retry ends the loop, no LLM call on the guardrail path). 258 pass in all.
+
+## Re-run after the data update (2026-09-27, later the same day)
+
+The IPC↔BNS mapping was completed (97 → 574 rows reviewed, 538 with a BNS counterpart), 2026 Supreme Court judgments were ingested, and the index was rebuilt. Then `run_phase4.py --reps 3` was re-run unchanged. Raw output was overwritten in `docs/phase4_pipeline_raw.json`.
+
+| | first run | re-run |
+|---|---|---|
+| routing | 30/30 | **30/30** |
+| gated adversarial triggered + survived | 3/3 | **3/3** |
+| relevant section verified (reported) | 21/30 | **24/30**; case 10 now hits (303 with robbery) |
+| tenancy probe | charged as BNS 314/308/351 | **`no_proposals`**, as intended |
+| bait cases triggered | 0/9 | 0/9 |
+
+**The gated adversarial case changed path, and the change is instructive.** The first run went `421` ✗ → `378` ✗ (hint: BNS 303) → `303` ✓. The re-run goes `421` ✗ → `320` ✓. IPC 421 now has a verified BNS counterpart, BNS 320 (dishonest removal of property to prevent distribution among creditors). Node 2's hint says so, and the model takes it. The mapping is right and the hint is right. They faithfully translated the model's wrong first guess into that guess's real BNS equivalent, which verifies. The loop still fires, and no fabricated number is ever verified. The case now ends on a real section that doesn't apply, which is the existence-only limit again, reached through the hint. For Phase 5/6: a hint that translates a *wrong* guess is still a wrong guess, so the catch-rate metric should separate "caught" from "corrected to something relevant".
+
+Case 8 (common intention) still misses: s34 is not proposed; it gets 149 (unlawful assembly, which needs five people, and the facts have four). Case 15 now retries once (`120B(1)` rejected) and still does not reach BNS 3(5).
+
+## Broad-coverage baseline (held out, scored once)
+
+`scripts/eval_broad.py` was run on `tests/fixtures/broad_coverage.json`: 20 cases written after Phase 4 covering homicide, dowry death, kidnapping, robbery, intimidation, forgery, negligent death, extortion, a lawyer-style brief and both boundary days. Raw output is in `docs/broad_coverage_raw.json`.
+
+- **Routing 19/19; a relevant section verified in 19/19** (case 20 is an ungated limitation probe). On clear-cut offences, retrieval plus Node 1 finds the charge.
+- **The weakness is over-charging, not missing charges.** Extra verified sections include IPC 302 on a dowry death, 120B (conspiracy) and 372 on a kidnapping, 307 on a single-blow sudden fight, 387 on a phone threat, and IPC 25, the *definition* of "fraudulently", on a forgery. Each is a real section, so each verifies. This is the same "verified ≠ applicable" problem, and it is now the main quality issue for Phase 5.
+- **The boundary days route correctly.** 2024-06-30 → IPC 457/380; 2024-07-01 → BNS 331/303.
+- **Case 20 (cruelty from January to September 2024)** routes to the BNS on the last incident's date and says nothing about the IPC-era acts. This is expected behaviour for a single-date router, and it is something the Phase 7 report has to warn about.
