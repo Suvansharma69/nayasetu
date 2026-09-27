@@ -53,7 +53,7 @@ IPC s34 ranks **146th** of 672 IPC records for case 8 (similarity 0.45 against t
 
 Tried and **rejected** (all on the development set only): hubness centring (InLegal-Sbert 3→5, BGE-M3 8→6), title-only and title+600-char statute text, IDF-weighted votes (11→10), RRF k=10 (10), interleaving (9), CombSUM (9), votes restricted to statute candidates (11, no change).
 
-## Index
+## Index (at the Phase 2 gate; current sizes in the re-score section below)
 
 | collection | records | from |
 |---|---|---|
@@ -63,3 +63,21 @@ Tried and **rejected** (all on the development set only): hubness centring (InLe
 | `judgments_post2024` | 2,634 | BNS-era judgment chunks (28 SC judgments) |
 
 `BAAI/bge-m3`, 1024-d, cosine, fp16 on GPU. ChromaDB at `chroma_db/` (1.2 GB). Each collection records its embedding model and `retrieve()` refuses a query from any other.
+
+## Re-score after the data update (2026-09-27)
+
+Two data changes altered retrieval without changing the method:
+- the IPC↔BNS mapping went from the 97 in-scope rows to all 574 (538 with a BNS counterpart, 36 with none; see CLAUDE.md §10), so 441 more IPC sections gained a verified-BNS-text index view and many more IPC judgments now vote in BNS-era queries;
+- the 2026 Supreme Court judgments were ingested.
+
+| | before | after |
+|---|---|---|
+| index `ipc_sections` | 672 | 1,113 |
+| index `judgments_pre2024` / `judgments_post2024` | 81,834 / 2,634 | 84,680 / 3,105 |
+| dev set, fused, strict recall@3 | 11/15 | **12/15** (case 4 now hits: s405 enters the top 3) |
+| held-out, fused, strict recall@3 (scored once) | 10/10 | **8/10** |
+| all 25 | 21/25 | **20/25**, at the gate's 80% bar |
+
+The two held-out drops are both IPC rank-3/rank-4 swaps. For theft, s378 fell to 4th behind s411. For cheating, s420 fell to 4th behind the forgery sections 464/467/468, which now also carry their BNS counterpart text. **Nothing was changed in response.** The method is the frozen Phase 2 method, now running on complete data, and adjusting it because of held-out results is what this set exists to prevent. Future method changes should be scored on `tests/fixtures/broad_coverage.json` (written after this), not re-tuned here.
+
+New noise worth knowing for Phase 5: in BNS-era queries, **BNS 2 "Definitions"** now reaches the top 3 (dev case 9). IPC judgments citing definition sections (public servant, dishonestly, …) vote for it through the mapping. A definition is never a charge, so Node 1 should not be offered it as a candidate. This is a Phase 5 design point, not fixed here.

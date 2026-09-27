@@ -15,9 +15,16 @@
     "",
     "Written by scripts/review_mapping.py. Node 3 (Phase 5) reads this for",
     "the IPC-predecessor check on post-2024 cases; it must never read",
-    "ipc_bns_candidates.json, which is unverified machine output."
+    "ipc_bns_candidates.json, which is unverified machine output.",
+    "",
+    "ALL 574 ROWS REVIEWED 2026-09-27: the remaining 477 were reviewed by Claude the",
+    "same way (IPC text read against gazette BNS text; every correction and every",
+    "'none' settled by exact phrase search of the ingested BNS, never from memory).",
+    "'none' covers repealed IPC provisions and offences the BNS dropped (e.g. 309",
+    "attempt to suicide, 377, 497 adultery, thugs, weights and measures). Still",
+    "Claude, not a lawyer: reviewer=claude on every entry."
   ],
-  "verified_on": "2026-09-25",
+  "verified_on": "2026-09-27",
   "entries": {
     "34": {
       "bns_section": "3",
@@ -950,10 +957,4815 @@
       "low_evidence": true,
       "reviewer": "claude",
       "bns_subsection": "318(2)"
+    },
+    "8": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Gender",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "9": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Number",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "10": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Man and  Woman",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "11": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Person",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "12": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Public",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "17": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Government",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "23": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Wrongful gain",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "26": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Reason to believe",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "29": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Document",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "33": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Act .  Omission",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "35": {
+      "bns_section": "3",
+      "decision": "confirmed",
+      "ipc_title": "When such an act is criminal by reason of its being done with a criminal knowledge or intention",
+      "bns_title": "General explanations",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "36": {
+      "bns_section": "3",
+      "decision": "confirmed",
+      "ipc_title": "Effect caused partly by act and partly by omission",
+      "bns_title": "General explanations",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "38": {
+      "bns_section": "3",
+      "decision": "confirmed",
+      "ipc_title": "Persons concerned in criminal Act may be guilty of different offences",
+      "bns_title": "General explanations",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "39": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Voluntarily",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "41": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Special law",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "42": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Local law",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "43": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Illegal .  Legally bound to do",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "45": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Life",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "46": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Death",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "47": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Animal",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "48": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Vessel",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "52": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Good faith",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "63": {
+      "bns_section": "8",
+      "decision": "confirmed",
+      "ipc_title": "Amount of fine",
+      "bns_title": "Amount of fine, liability in default of payment of fine, etc",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "64": {
+      "bns_section": "8",
+      "decision": "confirmed",
+      "ipc_title": "Sentence of imprisonment for non-payment of fine",
+      "bns_title": "Amount of fine, liability in default of payment of fine, etc",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "66": {
+      "bns_section": "8",
+      "decision": "confirmed",
+      "ipc_title": "Description of imprisonment for non-payment of fine",
+      "bns_title": "Amount of fine, liability in default of payment of fine, etc",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "68": {
+      "bns_section": "8",
+      "decision": "confirmed",
+      "ipc_title": "Imprisonment to terminate on payment of fine",
+      "bns_title": "Amount of fine, liability in default of payment of fine, etc",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "72": {
+      "bns_section": "10",
+      "decision": "confirmed",
+      "ipc_title": "Punishment of person guilty of one of several offences, the judgment stating that it is doubtful of which",
+      "bns_title": "Punishment of person guilty of one of several offences, judgment stating that it is doubtful of which",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "78": {
+      "bns_section": "16",
+      "decision": "confirmed",
+      "ipc_title": "Act done pursuant to the judgment or order of Court",
+      "bns_title": "Act done pursuant to judgment or order of Court",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "82": {
+      "bns_section": "20",
+      "decision": "corrected",
+      "ipc_title": "Act of a child under seven years of age",
+      "bns_title": "Act of a child under seven years of age",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "83": {
+      "bns_section": "21",
+      "decision": "corrected",
+      "ipc_title": "Act of a child above seven and under twelve of immature understanding",
+      "bns_title": "Act of a child above seven and under twelve years of age of immature understanding",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "20"
+    },
+    "97": {
+      "bns_section": "35",
+      "decision": "confirmed",
+      "ipc_title": "Right of private defence of the body and of property",
+      "bns_title": "Right of private defence of body and of property",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "98": {
+      "bns_section": "36",
+      "decision": "confirmed",
+      "ipc_title": "Right of private defence against the act of a person of unsound mind, etc.",
+      "bns_title": "Right of private defence against act of a person of unsound mind, etc",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "102": {
+      "bns_section": "40",
+      "decision": "confirmed",
+      "ipc_title": "Commencement and continuance of the right of private defence of the body",
+      "bns_title": "Commencement and continuance of right of private defence of body",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "122": {
+      "bns_section": "149",
+      "decision": "confirmed",
+      "ipc_title": "Collecting arms, etc., with intention of waging war against the Government of India",
+      "bns_title": "Collecting arms, etc., with intention of waging war against Government of India",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "142": {
+      "bns_section": "189",
+      "decision": "confirmed",
+      "ipc_title": "Being member of unlawful assembly",
+      "bns_title": "Unlawful assembly",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "153": {
+      "bns_section": "192",
+      "decision": "confirmed",
+      "ipc_title": "Wantonly giving provocation with intent to cause riot",
+      "bns_title": "Wantonly giving provocation with intent to cause riot-if rioting be committed; if not committed",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "183": {
+      "bns_section": "218",
+      "decision": "confirmed",
+      "ipc_title": "Resistance to the taking of property by the lawful authority of a public servant",
+      "bns_title": "Resistance to taking of property by lawful authority of a public servant",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "209": {
+      "bns_section": "246",
+      "decision": "confirmed",
+      "ipc_title": "Dishonesty making false claim in Court",
+      "bns_title": "Dishonestly making false claim in Court",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "229": {
+      "bns_section": "268",
+      "decision": "confirmed",
+      "ipc_title": "Personation of a juror or assessor",
+      "bns_title": "Personation of assessor",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "255": {
+      "bns_section": "178",
+      "decision": "confirmed",
+      "ipc_title": "Counterfeiting Government stamp",
+      "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "270": {
+      "bns_section": "272",
+      "decision": "confirmed",
+      "ipc_title": "Malignant act likely to spread infection of disease dangerous to life",
+      "bns_title": "Malignant act likely to spread infection of diseasedangerous to life",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "295": {
+      "bns_section": "298",
+      "decision": "confirmed",
+      "ipc_title": "Injuring or defiling place of worship, with intent to insult the religion of any class",
+      "bns_title": "Injuring or defiling place of worship with intent to insult religion of any class",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "305": {
+      "bns_section": "107",
+      "decision": "corrected",
+      "ipc_title": "Abetment of suicide of child or insane person",
+      "bns_title": "Abetment of suicide of child or person of unsound mind",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "108"
+    },
+    "315": {
+      "bns_section": "91",
+      "decision": "confirmed",
+      "ipc_title": "Act done with intent to prevent child being born alive or to cause it to die after birth",
+      "bns_title": "Act done with intent to prevent child being born alive or to cause to die after birth",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "343": {
+      "bns_section": "127",
+      "decision": "confirmed",
+      "ipc_title": "Wrongful confinement for three or more days",
+      "bns_title": "Wrongful confinement",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "344": {
+      "bns_section": "127",
+      "decision": "confirmed",
+      "ipc_title": "Wrongful confinement for ten or more days",
+      "bns_title": "Wrongful confinement",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "364A": {
+      "bns_section": "140",
+      "decision": "confirmed",
+      "ipc_title": "Kidnapping for ransom, etc.",
+      "bns_title": "Kidnapping or abducting in order to murder or for ransom, etc",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "369": {
+      "bns_section": "97",
+      "decision": "confirmed",
+      "ipc_title": "Kidnapping or abducting child under ten years with intent to steal from its person",
+      "bns_title": "Kidnapping or abducting child under ten years of age with intent to steal from its person",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "429": {
+      "bns_section": "325",
+      "decision": "confirmed",
+      "ipc_title": "Mischief by killing or maiming cattle, etc., of any value or any animal of the value of fifty rupees",
+      "bns_title": "Mischief by killing or maiming animal",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "431": {
+      "bns_section": "326",
+      "decision": "confirmed",
+      "ipc_title": "Mischief by injury to public road, bridge, river or channel",
+      "bns_title": "Mischief by injury, inundation, fire or explosive substance, etc",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "434": {
+      "bns_section": "326",
+      "decision": "confirmed",
+      "ipc_title": "Mischief by destroying or moving, etc., a land-mark fixed by public authority",
+      "bns_title": "Mischief by injury, inundation, fire or explosive substance, etc",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "441": {
+      "bns_section": "329",
+      "decision": "confirmed",
+      "ipc_title": "Criminal trespass",
+      "bns_title": "Criminal trespass and house-trespass",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "442": {
+      "bns_section": "329",
+      "decision": "confirmed",
+      "ipc_title": "House-trespass",
+      "bns_title": "Criminal trespass and house-trespass",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "443": {
+      "bns_section": "330",
+      "decision": "confirmed",
+      "ipc_title": "Lurking house-trespass",
+      "bns_title": "House-trespass and house- breaking",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "445": {
+      "bns_section": "330",
+      "decision": "confirmed",
+      "ipc_title": "House-breaking",
+      "bns_title": "House-trespass and house- breaking",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "462": {
+      "bns_section": "334",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for same offence when committed by person entrusted with custody",
+      "bns_title": "Dishonestly breaking open receptacle containing property",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "470": {
+      "bns_section": "340",
+      "decision": "confirmed",
+      "ipc_title": "Forged document",
+      "bns_title": "Forged document or electronic record and using it as genuine",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "493": {
+      "bns_section": "81",
+      "decision": "confirmed",
+      "ipc_title": "Cohabitation caused by a man deceitfully inducing a belief of lawful marriage",
+      "bns_title": "Cohabitation caused by man deceitfully inducing belief of lawful marriage",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "502": {
+      "bns_section": "356",
+      "decision": "confirmed",
+      "ipc_title": "Sale of printed or engraved substance containing defamatory matter",
+      "bns_title": "Defamation",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "154": {
+      "bns_section": "193",
+      "decision": "confirmed",
+      "ipc_title": "Owner or occupier of land on which an unlawful assembly is held",
+      "bns_title": "Liability of owner, occupier, etc., of land on which an unlawful assembly or riot takes place",
+      "similarity": 0.979,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "370": {
+      "bns_section": "143",
+      "decision": "confirmed",
+      "ipc_title": "Trafficking of persons",
+      "bns_title": "Trafficking of person",
+      "similarity": 0.975,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "354A": {
+      "bns_section": "75",
+      "decision": "confirmed",
+      "ipc_title": "Sexual harassment and punishment for sexual harassment",
+      "bns_title": "Sexual harassment",
+      "similarity": 0.971,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "376C": {
+      "bns_section": "68",
+      "decision": "confirmed",
+      "ipc_title": "Sexual intercourse by person in authority",
+      "bns_title": "Sexual intercourse by a person in authority",
+      "similarity": 0.97,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "476": {
+      "bns_section": "342",
+      "decision": "confirmed",
+      "ipc_title": "Counterfeiting device or mark used for authenticating documents other than those described in section 467, or possessing counterfeit marked material",
+      "bns_title": "Counterfeiting device or mark used for authenticating documents described in section 338, or possessing counterfeit marked material",
+      "similarity": 0.97,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "89": {
+      "bns_section": "27",
+      "decision": "confirmed",
+      "ipc_title": "Act done in good faith for benefit of child or insane person, by or by consent of guardian",
+      "bns_title": "Act done in good faith for benefit of child or person of unsound mind, by, or by consent of guardian",
+      "similarity": 0.966,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "376AB": {
+      "bns_section": "65",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for rape on woman under twelve years of age",
+      "bns_title": "Punishment for rape in certain cases",
+      "similarity": 0.966,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "484": {
+      "bns_section": "347",
+      "decision": "confirmed",
+      "ipc_title": "Counterfeiting a mark used by a public servant",
+      "bns_title": "Counterfeiting a property mark",
+      "similarity": 0.964,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "104": {
+      "bns_section": "42",
+      "decision": "confirmed",
+      "ipc_title": "When such right to causing any harm other than death",
+      "bns_title": "When such right extends to causing any harm other than death",
+      "similarity": 0.963,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "181": {
+      "bns_section": "216",
+      "decision": "confirmed",
+      "ipc_title": "False statement on oath or affirmation to public servant or person authorized to administer an oath or affirmation",
+      "bns_title": "False statement on oath or affirmation to public servant or person authorised to administer an oath or affirmation",
+      "similarity": 0.963,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "508": {
+      "bns_section": "354",
+      "decision": "confirmed",
+      "ipc_title": "Act caused by inducing person to believe that he will be rendered an object of the Divine displeasure",
+      "bns_title": "Act caused by inducing person to believe that he will be rendered an object of Divine displeasure",
+      "similarity": 0.963,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "19": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Judge",
+      "bns_title": "Definitions",
+      "similarity": 0.96,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "293": {
+      "bns_section": "295",
+      "decision": "confirmed",
+      "ipc_title": "Sale, etc., of obscene objects to young person",
+      "bns_title": "Sale, etc., of obscene objects to child",
+      "similarity": 0.96,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "481": {
+      "bns_section": "345",
+      "decision": "confirmed",
+      "ipc_title": "Using a false property mark",
+      "bns_title": "Property mark",
+      "similarity": 0.96,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "113": {
+      "bns_section": "53",
+      "decision": "confirmed",
+      "ipc_title": "Liability of abettor for an effect caused by the act abetted different from that intended by the abettor",
+      "bns_title": "Liability of abettor for an effect caused by act abetted different from that intended by abettor",
+      "similarity": 0.958,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "118": {
+      "bns_section": "58",
+      "decision": "corrected",
+      "ipc_title": "Concealing design to commit offence punishable with death or imprisonment for life",
+      "bns_title": "Concealing design to commit offence punishable with death or imprisonment for life",
+      "similarity": 0.958,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "59"
+    },
+    "157": {
+      "bns_section": "189",
+      "decision": "confirmed",
+      "ipc_title": "Harbouring persons hired for an unlawful assembly",
+      "bns_title": "Unlawful assembly",
+      "similarity": 0.958,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "75": {
+      "bns_section": "13",
+      "decision": "confirmed",
+      "ipc_title": "Enhanced punishment for certain offences under Chapter XII or Chapter XVII after previous conviction",
+      "bns_title": "Enhanced punishment for certain offences after previous conviction",
+      "similarity": 0.957,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "366B": {
+      "bns_section": "141",
+      "decision": "confirmed",
+      "ipc_title": "Importation of girl from foreign country",
+      "bns_title": "Importation of girl or boy from foreign country",
+      "similarity": 0.957,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "120": {
+      "bns_section": "60",
+      "decision": "corrected",
+      "ipc_title": "Concealing design to commit offence punishable with imprisonment",
+      "bns_title": "Concealing design to commit offence punishable with imprisonment",
+      "similarity": 0.955,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "59"
+    },
+    "346": {
+      "bns_section": "127",
+      "decision": "confirmed",
+      "ipc_title": "Wrongful confinement in secret",
+      "bns_title": "Wrongful confinement",
+      "similarity": 0.955,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "153A": {
+      "bns_section": "196",
+      "decision": "confirmed",
+      "ipc_title": "Promoting enmity between different groups on ground of religion, race, place of birth, residence, language, etc., and doing acts prejudicial to maintenance of harmony",
+      "bns_title": "Promoting enmity between different groups on grounds of religion, race, place of birth, residence, language, etc., and doing acts prejudicial to maintenance of harmony",
+      "similarity": 0.953,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "155": {
+      "bns_section": "193",
+      "decision": "confirmed",
+      "ipc_title": "Liability of person for whose benefit riot is committed",
+      "bns_title": "Liability of owner, occupier, etc., of land on which an unlawful assembly or riot takes place",
+      "similarity": 0.953,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "179": {
+      "bns_section": "214",
+      "decision": "confirmed",
+      "ipc_title": "Refusing to answer public servant authorized to question",
+      "bns_title": "Refusing to answer public servant authorised to question",
+      "similarity": 0.952,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "156": {
+      "bns_section": "193",
+      "decision": "confirmed",
+      "ipc_title": "Liability of agent of owner or occupier for whose benefit riot is committed",
+      "bns_title": "Liability of owner, occupier, etc., of land on which an unlawful assembly or riot takes place",
+      "similarity": 0.951,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "6": {
+      "bns_section": "3",
+      "decision": "confirmed",
+      "ipc_title": "Definitions in the Code to be understood subject to exceptions",
+      "bns_title": "General explanations",
+      "similarity": 0.95,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "256": {
+      "bns_section": "181",
+      "decision": "confirmed",
+      "ipc_title": "Having possession of instrument or material for counterfeiting Government stamp",
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.95,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "51": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Oath",
+      "bns_title": "Definitions",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "115": {
+      "bns_section": "55",
+      "decision": "confirmed",
+      "ipc_title": "Abetment of offence punishable with death or imprisonment for life if offence not committed",
+      "bns_title": "Abetment of offence punishable with death or imprisonment for life",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "366A": {
+      "bns_section": "96",
+      "decision": "confirmed",
+      "ipc_title": "Procuration of minor girl",
+      "bns_title": "Procuration of child",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "469": {
+      "bns_section": "336",
+      "decision": "confirmed",
+      "ipc_title": "Forgery for purpose of harming reputation",
+      "bns_title": "Forgery",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "345": {
+      "bns_section": "127",
+      "decision": "confirmed",
+      "ipc_title": "Wrongful confinement of person for whose liberation writ has been issued",
+      "bns_title": "Wrongful confinement",
+      "similarity": 0.944,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "504": {
+      "bns_section": "352",
+      "decision": "confirmed",
+      "ipc_title": "Intentional insult with intent to provoke breach of the peace",
+      "bns_title": "Intentional insult with intent to provoke breach of peace",
+      "similarity": 0.944,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "69": {
+      "bns_section": "8",
+      "decision": "confirmed",
+      "ipc_title": "Termination of imprisonment on payment of proportional part of fine",
+      "bns_title": "Amount of fine, liability in default of payment of fine, etc",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "91": {
+      "bns_section": "29",
+      "decision": "confirmed",
+      "ipc_title": "Exclusion of acts which are offences independently of harm cause",
+      "bns_title": "Exclusion of acts which are offences independently of harm caused",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "432": {
+      "bns_section": "326",
+      "decision": "confirmed",
+      "ipc_title": "Mischief by causing inundation or obstruction to public drainage attended with damage",
+      "bns_title": "Mischief by injury, inundation, fire or explosive substance, etc",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "489C": {
+      "bns_section": "180",
+      "decision": "confirmed",
+      "ipc_title": "Possession of forged or counterfeit currency-notes or bank-notes",
+      "bns_title": "Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "116": {
+      "bns_section": "56",
+      "decision": "confirmed",
+      "ipc_title": "Abetment of offence punishable with imprisonment -- if offence be not committed",
+      "bns_title": "Abetment of offence punishable with imprisonment",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "298": {
+      "bns_section": "302",
+      "decision": "confirmed",
+      "ipc_title": "Uttering words, etc., with deliberate intent to wound religious feelings",
+      "bns_title": "Uttering words, etc., with deliberate intent to wound religious feelings of any person",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "348": {
+      "bns_section": "127",
+      "decision": "confirmed",
+      "ipc_title": "Wrongful confinement to extort confession, or compel restoration of property",
+      "bns_title": "Wrongful confinement",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "70": {
+      "bns_section": "8",
+      "decision": "confirmed",
+      "ipc_title": "Fine leviable within six years, or during imprisonment. Death not to discharge property from liability",
+      "bns_title": "Amount of fine, liability in default of payment of fine, etc",
+      "similarity": 0.935,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "22": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Movable property",
+      "bns_title": "Definitions",
+      "similarity": 0.933,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "144": {
+      "bns_section": "189",
+      "decision": "confirmed",
+      "ipc_title": "Joining unlawful assembly armed with deadly weapon",
+      "bns_title": "Unlawful assembly",
+      "similarity": 0.933,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "203": {
+      "bns_section": "240",
+      "decision": "corrected",
+      "ipc_title": "Giving false information respecting an offence committed",
+      "bns_title": "Giving false information respecting an offence committed",
+      "similarity": 0.933,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "238"
+    },
+    "449": {
+      "bns_section": "332",
+      "decision": "confirmed",
+      "ipc_title": "House-trespass in order to commit offence punishable with death",
+      "bns_title": "House-trespass in order to commit offence",
+      "similarity": 0.933,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "40": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Offence",
+      "bns_title": "Definitions",
+      "similarity": 0.929,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "148": {
+      "bns_section": "191",
+      "decision": "confirmed",
+      "ipc_title": "Rioting, armed with deadly weapon",
+      "bns_title": "Rioting",
+      "similarity": 0.929,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "454": {
+      "bns_section": "331",
+      "decision": "confirmed",
+      "ipc_title": "Lurking house-trespass or house-breaking in order to commit offence punishable with imprisonment",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "similarity": 0.929,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "489A": {
+      "bns_section": "178",
+      "decision": "confirmed",
+      "ipc_title": "Counterfeiting currency-notes or bank-notes",
+      "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "similarity": 0.929,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "103": {
+      "bns_section": "41",
+      "decision": "confirmed",
+      "ipc_title": "When the right of private defence of property extends to causing death",
+      "bns_title": "When right of private defence of property extends to causing death",
+      "similarity": 0.926,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "257": {
+      "bns_section": "181",
+      "decision": "confirmed",
+      "ipc_title": "Making or selling instrument for counterfeiting Government stamp",
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.926,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "347": {
+      "bns_section": "127",
+      "decision": "confirmed",
+      "ipc_title": "Wrongful confinement to extort property, or constrain to illegal act",
+      "bns_title": "Wrongful confinement",
+      "similarity": 0.923,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "360": {
+      "bns_section": "137",
+      "decision": "confirmed",
+      "ipc_title": "Kidnapping from India",
+      "bns_title": "Kidnapping",
+      "similarity": 0.923,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "411": {
+      "bns_section": "317",
+      "decision": "confirmed",
+      "ipc_title": "Dishonestly receiving stolen property",
+      "bns_title": "Stolen property",
+      "similarity": 0.923,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "413": {
+      "bns_section": "317",
+      "decision": "confirmed",
+      "ipc_title": "Habitually dealing in stolen property",
+      "bns_title": "Stolen property",
+      "similarity": 0.923,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "450": {
+      "bns_section": "332",
+      "decision": "confirmed",
+      "ipc_title": "House-trespass in order to commit offence punishable with imprisonment for life",
+      "bns_title": "House-trespass in order to commit offence",
+      "similarity": 0.923,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "372": {
+      "bns_section": "98",
+      "decision": "confirmed",
+      "ipc_title": "Selling minor for purposes of prostitution, etc.",
+      "bns_title": "Selling child for purposes of prostitution, etc",
+      "similarity": 0.92,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "489B": {
+      "bns_section": "179",
+      "decision": "confirmed",
+      "ipc_title": "Using as genuine, forged or counterfeit currency-notes or bank-notes",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.92,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "20": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Court of Justice",
+      "bns_title": "Definitions",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "232": {
+      "bns_section": "178",
+      "decision": "confirmed",
+      "ipc_title": "Counterfeiting Indian coin",
+      "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "427": {
+      "bns_section": "324",
+      "decision": "confirmed",
+      "ipc_title": "Mischief causing damage to the amount of fifty rupees",
+      "bns_title": "Mischief",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "471": {
+      "bns_section": "340",
+      "decision": "confirmed",
+      "ipc_title": "Using as genuine a forged document",
+      "bns_title": "Forged document or electronic record and using it as genuine",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "150": {
+      "bns_section": "189",
+      "decision": "confirmed",
+      "ipc_title": "Hiring, or conniving at hiring, of persons to join unlawful assembly",
+      "bns_title": "Unlawful assembly",
+      "similarity": 0.913,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "44": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Injury",
+      "bns_title": "Definitions",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "231": {
+      "bns_section": "178",
+      "decision": "confirmed",
+      "ipc_title": "Counterfeiting coin",
+      "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "363": {
+      "bns_section": "137",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for kidnapping",
+      "bns_title": "Kidnapping",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "451": {
+      "bns_section": "332",
+      "decision": "corrected",
+      "ipc_title": "House-trespass in order to commit offence punishable with imprisonment",
+      "bns_title": "House-trespass in order to commit offence",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "331"
+    },
+    "509": {
+      "bns_section": "79",
+      "decision": "confirmed",
+      "ipc_title": "Word, gesture or act intended to insult the modesty of a woman",
+      "bns_title": "Word, gesture or act intended to insult modesty of a woman",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "473": {
+      "bns_section": "341",
+      "decision": "confirmed",
+      "ipc_title": "Making or possessing counterfeit seal, etc., with intent to commit forgery punishable otherwise",
+      "bns_title": "Making or possessing counterfeit seal, etc., with intent to commit forgery punishable under section 338",
+      "similarity": 0.906,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "30": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Valuable security",
+      "bns_title": "Definitions",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "126": {
+      "bns_section": "154",
+      "decision": "confirmed",
+      "ipc_title": "Committing depredation on territories of Power at peace with the Government of India",
+      "bns_title": "Committing depredation on territories of foreign State at peace with Government of India",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "229A": {
+      "bns_section": "269",
+      "decision": "confirmed",
+      "ipc_title": "Failure by person released on bail or bond to appear in Court",
+      "bns_title": "Failure by person released on bail bond or bond to appear in Court",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "437": {
+      "bns_section": "327",
+      "decision": "confirmed",
+      "ipc_title": "Mischief with intent to destroy or make unsafe a decked vessel or one of twenty tons burden",
+      "bns_title": "Mischief with intent to destroy or make unsafe a rail, aircraft, decked vessel or one of twenty tons burden",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "474": {
+      "bns_section": "339",
+      "decision": "confirmed",
+      "ipc_title": "Having possession of document described in section 466 or 467, knowing it to be forged and intending to use it genuine",
+      "bns_title": "Having possession of document described in section 337 or section 338, knowing it to be forged and intending to use it as genuine",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "24": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Dishonestly",
+      "bns_title": "Definitions",
+      "similarity": 0.9,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "49": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Year .  Month",
+      "bns_title": "Definitions",
+      "similarity": 0.9,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "151": {
+      "bns_section": "189",
+      "decision": "confirmed",
+      "ipc_title": "Knowingly joining or continuing in assembly of five or more persons after it has been commanded to disperse",
+      "bns_title": "Unlawful assembly",
+      "similarity": 0.9,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "428": {
+      "bns_section": "325",
+      "decision": "confirmed",
+      "ipc_title": "Mischief by killing or maiming animal of the value of ten rupees",
+      "bns_title": "Mischief by killing or maiming animal",
+      "similarity": 0.9,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "326B": {
+      "bns_section": "124",
+      "decision": "confirmed",
+      "ipc_title": "Voluntarily throwing or attempting to throw acid, etc.",
+      "bns_title": "Voluntarily causing grievous hurt by use of acid, etc",
+      "similarity": 0.897,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "175": {
+      "bns_section": "210",
+      "decision": "confirmed",
+      "ipc_title": "Omission to produce document to public servant by person legally bound to produce it",
+      "bns_title": "Omission to produce document or electronic record to public servant by person legally bound to produce it",
+      "similarity": 0.895,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "317": {
+      "bns_section": "93",
+      "decision": "confirmed",
+      "ipc_title": "Exposure and abandonment of child under twelve years, by parent or person having care of it",
+      "bns_title": "Exposure and abandonment of child under twelve years of age, by parent or person having care of it",
+      "similarity": 0.895,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "376DB": {
+      "bns_section": "70",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for gang rape on woman under twelve years of age",
+      "bns_title": "Gang rape",
+      "similarity": 0.893,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "436": {
+      "bns_section": "326",
+      "decision": "confirmed",
+      "ipc_title": "Mischief by fire or explosive substance with intent destroy house, etc.",
+      "bns_title": "Mischief by injury, inundation, fire or explosive substance, etc",
+      "similarity": 0.893,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "363A": {
+      "bns_section": "139",
+      "decision": "confirmed",
+      "ipc_title": "Kidnapping or maiming a minor for purposes of begging",
+      "bns_title": "Kidnapping or maiming a child for purposes of begging",
+      "similarity": 0.892,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "182": {
+      "bns_section": "217",
+      "decision": "confirmed",
+      "ipc_title": "False information, with intent to cause public servant to use his lawful power to the injury of another person",
+      "bns_title": "False information, with intent to cause public servant to use his lawful power to injury of another person",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "233": {
+      "bns_section": "181",
+      "decision": "confirmed",
+      "ipc_title": "Making or selling instrument for counterfeiting coin",
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "234": {
+      "bns_section": "181",
+      "decision": "confirmed",
+      "ipc_title": "Making or selling instrument for counterfeiting Indian coin",
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "342": {
+      "bns_section": "127",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for wrongful confinement",
+      "bns_title": "Wrongful confinement",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "376DA": {
+      "bns_section": "70",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for gang rape on woman under sixteen years of age",
+      "bns_title": "Gang rape",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "453": {
+      "bns_section": "331",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for lurking house-trespass or house-breaking",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "288": {
+      "bns_section": "290",
+      "decision": "confirmed",
+      "ipc_title": "Negligent conduct with respect to pulling down or repairing buildings",
+      "bns_title": "Negligent conduct with respect to pulling down, repairing or constructing buildings, etc",
+      "similarity": 0.88,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "373": {
+      "bns_section": "99",
+      "decision": "confirmed",
+      "ipc_title": "Buying minor for purposes of prostitution, etc.",
+      "bns_title": "Buying child for purposes of prostitution, etc",
+      "similarity": 0.88,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "489D": {
+      "bns_section": "181",
+      "decision": "confirmed",
+      "ipc_title": "Making or possessing instruments or materials for forging or counterfeiting currency notes or bank-notes",
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.879,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "2": {
+      "bns_section": "1",
+      "decision": "confirmed",
+      "ipc_title": "Punishment of offences committed within India",
+      "bns_title": "Short title, commencement and application",
+      "similarity": 0.875,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "65": {
+      "bns_section": "8",
+      "decision": "confirmed",
+      "ipc_title": "Limit to imprisonment for non-payment of fine, when imprisonment and fine awardable",
+      "bns_title": "Amount of fine, liability in default of payment of fine, etc",
+      "similarity": 0.875,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "67": {
+      "bns_section": "8",
+      "decision": "confirmed",
+      "ipc_title": "Imprisonment for non-payment of fine, when offence punishable with fine only",
+      "bns_title": "Amount of fine, liability in default of payment of fine, etc",
+      "similarity": 0.875,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "158": {
+      "bns_section": "189",
+      "decision": "confirmed",
+      "ipc_title": "Being hired to take part in an unlawful assembly or riot",
+      "bns_title": "Unlawful assembly",
+      "similarity": 0.875,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "204": {
+      "bns_section": "241",
+      "decision": "confirmed",
+      "ipc_title": "Destruction of document to prevent its production as evidence",
+      "bns_title": "Destruction of document or electronic record to prevent its production as evidence",
+      "similarity": 0.872,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "28": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Counterfeit",
+      "bns_title": "Definitions",
+      "similarity": 0.867,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "125": {
+      "bns_section": "153",
+      "decision": "confirmed",
+      "ipc_title": "Waging war against any Asiatic Power in alliance with the Government of India",
+      "bns_title": "Waging war against Government of any foreign State at peace with Government of India",
+      "similarity": 0.867,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "414": {
+      "bns_section": "317",
+      "decision": "confirmed",
+      "ipc_title": "Assisting in concealment of stolen property",
+      "bns_title": "Stolen property",
+      "similarity": 0.867,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "457": {
+      "bns_section": "331",
+      "decision": "confirmed",
+      "ipc_title": "Lurking house-trespass or house-breaking by night in order to commit offence punishable with imprisonment",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "similarity": 0.867,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "109": {
+      "bns_section": "49",
+      "decision": "confirmed",
+      "ipc_title": "Punishment of abetment if the act abetted is committed in consequence and where no express provision is made for its punishment",
+      "bns_title": "Punishment of abetment if act abetted is committed in consequence and where no express provision is made for its punishment",
+      "similarity": 0.857,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "117": {
+      "bns_section": "57",
+      "decision": "confirmed",
+      "ipc_title": "Abetting commission of offence by the public or by more than ten persons",
+      "bns_title": "Abetting commission of offence by public or by more than ten persons",
+      "similarity": 0.857,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "121": {
+      "bns_section": "147",
+      "decision": "confirmed",
+      "ipc_title": "Waging, or attempting to wage war, or abetting waging of war, against the Government of India",
+      "bns_title": "Waging, or attempting to wage war, or abetting waging of war, against Government of India",
+      "similarity": 0.857,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "228A": {
+      "bns_section": "72",
+      "decision": "confirmed",
+      "ipc_title": "Disclosure of identity of the victim of certain offences, etc",
+      "bns_title": "Disclosure of identity of victim of certain offences, etc",
+      "similarity": 0.857,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "365": {
+      "bns_section": "140",
+      "decision": "confirmed",
+      "ipc_title": "Kidnapping or abducting with intent secretly and wrongfully to confine person",
+      "bns_title": "Kidnapping or abducting in order to murder or for ransom, etc",
+      "similarity": 0.857,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "430": {
+      "bns_section": "326",
+      "decision": "confirmed",
+      "ipc_title": "Mischief by injury to works of irrigation or by wrongfully diverting water",
+      "bns_title": "Mischief by injury, inundation, fire or explosive substance, etc",
+      "similarity": 0.857,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "448": {
+      "bns_section": "329",
+      "decision": "corrected",
+      "ipc_title": "Punishment for house-trespass",
+      "bns_title": "Criminal trespass and house-trespass",
+      "similarity": 0.857,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "303"
+    },
+    "32": {
+      "bns_section": "3",
+      "decision": "confirmed",
+      "ipc_title": "Words referring to acts include illegal omissions",
+      "bns_title": "General explanations",
+      "similarity": 0.85,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "482": {
+      "bns_section": "345",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for using a false property mark",
+      "bns_title": "Property mark",
+      "similarity": 0.846,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "505": {
+      "bns_section": "353",
+      "decision": "corrected",
+      "ipc_title": "Statements conducing public mischief",
+      "bns_title": "Statements conducing to public mischief",
+      "similarity": 0.842,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "196"
+    },
+    "100": {
+      "bns_section": "38",
+      "decision": "confirmed",
+      "ipc_title": "When the right of private defence of the body extends to causing death",
+      "bns_title": "When right of private defence of body extends to causing death",
+      "similarity": 0.84,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "3": {
+      "bns_section": "1",
+      "decision": "confirmed",
+      "ipc_title": "Punishment of offences committed beyond, but which by law may be tried within, India",
+      "bns_title": "Short title, commencement and application",
+      "similarity": 0.833,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "25": {
+      "bns_section": "2",
+      "decision": "corrected",
+      "ipc_title": "Fraudulently",
+      "bns_title": "Definitions",
+      "similarity": 0.833,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "335"
+    },
+    "235": {
+      "bns_section": "181",
+      "decision": "confirmed",
+      "ipc_title": "Possession of instrument or material for the purpose of using the same for counterfeiting coin",
+      "bns_title": "Making or possessing instruments or materials for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.833,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "500": {
+      "bns_section": "356",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for defamation",
+      "bns_title": "Defamation",
+      "similarity": 0.833,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "52A": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Harbour",
+      "bns_title": "Definitions",
+      "similarity": 0.828,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "195": {
+      "bns_section": "231",
+      "decision": "confirmed",
+      "ipc_title": "Giving or fabricating false evidence with intent to procure conviction of an offence punishable with imprisonment for life or with imprisonment for 7 Years or upwards",
+      "bns_title": "Giving or fabricating false evidence with intent to procure conviction of offence punishable with imprisonment for life or imprisonment",
+      "similarity": 0.828,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "37": {
+      "bns_section": "3",
+      "decision": "confirmed",
+      "ipc_title": "Co-operation by doing one of several acts constituting an offence",
+      "bns_title": "General explanations",
+      "similarity": 0.824,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "222": {
+      "bns_section": "260",
+      "decision": "confirmed",
+      "ipc_title": "Intentional omission to apprehend on the part of public servant bound to apprehend person under sentence or lawfully committed",
+      "bns_title": "Intentional omission to apprehend on part of public servant bound to apprehend person under sentence or lawfully committed",
+      "similarity": 0.821,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "27": {
+      "bns_section": "3",
+      "decision": "confirmed",
+      "ipc_title": "Property in possession of wife, clerk or servant",
+      "bns_title": "General explanations",
+      "similarity": 0.818,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "105": {
+      "bns_section": "43",
+      "decision": "confirmed",
+      "ipc_title": "Commencement and continuance of the right of private defence of property",
+      "bns_title": "Commencement and continuance of right of private defence of property",
+      "similarity": 0.818,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "456": {
+      "bns_section": "331",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for lurking house-trespass or house-breaking by night",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "similarity": 0.818,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "174A": {
+      "bns_section": "209",
+      "decision": "confirmed",
+      "ipc_title": "Non-appearance in response to a proclamation under section 82 of Act 2 of 1974",
+      "bns_title": "Non- appearance in response to a proclamation under section 84 of Bharatiya Nagarik Suraksha Sanhita, 2023",
+      "similarity": 0.815,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "491": {
+      "bns_section": "357",
+      "decision": "confirmed",
+      "ipc_title": "Breach of contract to attend on and supply wants of helpless persons",
+      "bns_title": "Breach of contract to attend on and supply wants of helpless person",
+      "similarity": 0.815,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "5": {
+      "bns_section": "1",
+      "decision": "confirmed",
+      "ipc_title": "Certain laws not to be affected by this Act",
+      "bns_title": "Short title, commencement and application",
+      "similarity": 0.8,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "21": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Public servant",
+      "bns_title": "Definitions",
+      "similarity": 0.8,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "31": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "A will",
+      "bns_title": "Definitions",
+      "similarity": 0.8,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "143": {
+      "bns_section": "189",
+      "decision": "confirmed",
+      "ipc_title": "Punishment",
+      "bns_title": "Unlawful assembly",
+      "similarity": 0.8,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "221": {
+      "bns_section": "259",
+      "decision": "confirmed",
+      "ipc_title": "Intentional omission to apprehend on the part of public servant bound to apprehend",
+      "bns_title": "Intentional omission to apprehend on part of public servant bound to apprehend",
+      "similarity": 0.8,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "230": {
+      "bns_section": "178",
+      "decision": "confirmed",
+      "ipc_title": "Coin  defined",
+      "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "similarity": 0.8,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "311": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Punishment",
+      "bns_title": null,
+      "similarity": 0.8,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "444": {
+      "bns_section": "331",
+      "decision": "confirmed",
+      "ipc_title": "Lurking house-trespass by night",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "similarity": 0.8,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "495": {
+      "bns_section": "82",
+      "decision": "confirmed",
+      "ipc_title": "Same offence with concealment of former marriage from person with whom subsequent marriage is contracted",
+      "bns_title": "Marrying again during lifetime of husband or wife",
+      "similarity": 0.8,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "145": {
+      "bns_section": "189",
+      "decision": "confirmed",
+      "ipc_title": "Joining or continuing in unlawful assembly, knowing it has been commanded to disperse",
+      "bns_title": "Unlawful assembly",
+      "similarity": 0.786,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "501": {
+      "bns_section": "356",
+      "decision": "confirmed",
+      "ipc_title": "Printing or engraving matter known to be defamatory",
+      "bns_title": "Defamation",
+      "similarity": 0.786,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "401": {
+      "bns_section": "313",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for belonging to gang of thieves",
+      "bns_title": "Punishment for belonging to gang of robbers, etc",
+      "similarity": 0.778,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "446": {
+      "bns_section": "331",
+      "decision": "corrected",
+      "ipc_title": "House-breaking by night",
+      "bns_title": "Punishment for house-trespass or house- breaking",
+      "similarity": 0.778,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "41"
+    },
+    "447": {
+      "bns_section": "329",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for criminal trespass",
+      "bns_title": "Criminal trespass and house-trespass",
+      "similarity": 0.778,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "438": {
+      "bns_section": "327",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for the mischief described in section 437 committed by fire or explosive substance",
+      "bns_title": "Mischief with intent to destroy or make unsafe a rail, aircraft, decked vessel or one of twenty tons burden",
+      "similarity": 0.765,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "433": {
+      "bns_section": "326",
+      "decision": "confirmed",
+      "ipc_title": "Mischief by destroying, moving or rendering less useful a light-house or sea-mark",
+      "bns_title": "Mischief by injury, inundation, fire or explosive substance, etc",
+      "similarity": 0.762,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "16": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Government of India",
+      "bns_title": null,
+      "similarity": 0.75,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "147": {
+      "bns_section": "191",
+      "decision": "corrected",
+      "ipc_title": "Punishment for rioting",
+      "bns_title": "Rioting",
+      "similarity": 0.75,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "46"
+    },
+    "465": {
+      "bns_section": "336",
+      "decision": "corrected",
+      "ipc_title": "Punishment for forgery",
+      "bns_title": "Forgery",
+      "similarity": 0.75,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "46"
+    },
+    "483": {
+      "bns_section": "347",
+      "decision": "corrected",
+      "ipc_title": "Counterfeiting a property mark used by another",
+      "bns_title": "Counterfeiting a property mark",
+      "similarity": 0.75,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "2"
+    },
+    "488": {
+      "bns_section": "350",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for making use of any such false mark",
+      "bns_title": "Making a false mark upon any receptacle containing goods",
+      "similarity": 0.737,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "435": {
+      "bns_section": "326",
+      "decision": "confirmed",
+      "ipc_title": "Mischief by fire or explosive substance with intent to cause damage to amount of one hundred or (in case of agricultural produce) ten rupees",
+      "bns_title": "Mischief by injury, inundation, fire or explosive substance, etc",
+      "similarity": 0.731,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "7": {
+      "bns_section": "3",
+      "decision": "confirmed",
+      "ipc_title": "Sense of expression once explained",
+      "bns_title": "General explanations",
+      "similarity": 0.727,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "14": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Servant of Government",
+      "bns_title": null,
+      "similarity": 0.727,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "309": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Attempt to commit suicide",
+      "bns_title": null,
+      "similarity": 0.7,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "361": {
+      "bns_section": "137",
+      "decision": "confirmed",
+      "ipc_title": "Kidnapping from lawful guardianship",
+      "bns_title": "Kidnapping",
+      "similarity": 0.7,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "258": {
+      "bns_section": "179",
+      "decision": "corrected",
+      "ipc_title": "Sale of counterfeit Government stamp",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.688,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "181"
+    },
+    "15": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "British India",
+      "bns_title": null,
+      "similarity": 0.667,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "55A": {
+      "bns_section": "5",
+      "decision": "corrected",
+      "ipc_title": "Definition of  appropriate Government",
+      "bns_title": "Commutation of sentence",
+      "similarity": 0.667,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "259": {
+      "bns_section": "180",
+      "decision": "corrected",
+      "ipc_title": "Having possession of counterfeit Government stamp",
+      "bns_title": "Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.632,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "178"
+    },
+    "260": {
+      "bns_section": "179",
+      "decision": "corrected",
+      "ipc_title": "Using as genuine a Government stamp known to be counterfeit",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.615,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "178"
+    },
+    "237": {
+      "bns_section": "179",
+      "decision": "confirmed",
+      "ipc_title": "Import or export of counterfeit coin",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.611,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "236": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Abetting in India the counterfeiting out of India of coin",
+      "bns_title": null,
+      "similarity": 0.6,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "341": {
+      "bns_section": "126",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for wrongful restraint",
+      "bns_title": "Wrongful restraint",
+      "similarity": 0.6,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "400": {
+      "bns_section": "310",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for belonging to gang of dacoits",
+      "bns_title": "Dacoity",
+      "similarity": 0.6,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "426": {
+      "bns_section": "324",
+      "decision": "corrected",
+      "ipc_title": "Punishment for mischief",
+      "bns_title": "Mischief",
+      "similarity": 0.6,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "131"
+    },
+    "50": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Section",
+      "bns_title": null,
+      "similarity": 0.583,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "54": {
+      "bns_section": "5",
+      "decision": "confirmed",
+      "ipc_title": "Commutation of sentence of death",
+      "bns_title": "Commutation of sentence",
+      "similarity": 0.579,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "238": {
+      "bns_section": "179",
+      "decision": "confirmed",
+      "ipc_title": "Import or export of counterfeits of the Indian coin",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.579,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "160": {
+      "bns_section": "194",
+      "decision": "corrected",
+      "ipc_title": "Punishment for committing affray",
+      "bns_title": "Affray",
+      "similarity": 0.571,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "222"
+    },
+    "377": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Unnatural offences",
+      "bns_title": null,
+      "similarity": 0.571,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "124A": {
+      "bns_section": "152",
+      "decision": "confirmed",
+      "ipc_title": "Sedition",
+      "bns_title": "Act endangering sovereignty, unity and integrity of India",
+      "similarity": 0.56,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "note": "successor provision, substantially redrafted: BNS 152 penalises acts endangering sovereignty, unity and integrity, not disaffection towards Government; treat IPC 124A precedent as persuasive only"
+    },
+    "62": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Forfeiture of property, in respect of offenders punishable with death, transportation or imprisonment.",
+      "bns_title": null,
+      "similarity": 0.556,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "4": {
+      "bns_section": "1",
+      "decision": "confirmed",
+      "ipc_title": "Extension of Code to extra-territorial offences",
+      "bns_title": "Short title, commencement and application",
+      "similarity": 0.545,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "246": {
+      "bns_section": "178",
+      "decision": "confirmed",
+      "ipc_title": "Fraudulently or dishonestly diminishing weight or altering composition of coin",
+      "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "similarity": 0.533,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "497": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Adultery",
+      "bns_title": null,
+      "similarity": 0.524,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "53A": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Construction of reference to transportation",
+      "bns_title": null,
+      "similarity": 0.511,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "13": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Queen",
+      "bns_title": null,
+      "similarity": 0.5,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "55": {
+      "bns_section": "5",
+      "decision": "corrected",
+      "ipc_title": "Commutation of sentence of imprisonment for life",
+      "bns_title": "Commutation of sentence",
+      "similarity": 0.5,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "8"
+    },
+    "61": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Sentence of forfeiture of property.",
+      "bns_title": null,
+      "similarity": 0.5,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "165A": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Rep. by the Prevention of Corruption Act, 1988",
+      "bns_title": null,
+      "similarity": 0.5,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "216B": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Definition of  harbour  in sections 212, 216 and 216A.",
+      "bns_title": null,
+      "similarity": 0.5,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "243": {
+      "bns_section": "180",
+      "decision": "corrected",
+      "ipc_title": "Possession of Indian coin by person who knew it to be counterfeit when he became possessed thereof",
+      "bns_title": "Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.5,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "247": {
+      "bns_section": "178",
+      "decision": "confirmed",
+      "ipc_title": "Fraudulently or dishonestly diminishing weight or altering composition of Indian coin",
+      "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "similarity": 0.5,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "248": {
+      "bns_section": "178",
+      "decision": "confirmed",
+      "ipc_title": "Altering appearance of coin with intent that it shall pass as coin of different description",
+      "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "similarity": 0.5,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "250": {
+      "bns_section": "179",
+      "decision": "corrected",
+      "ipc_title": "Delivery of coin possessed with knowledge that it is altered",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.5,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "251": {
+      "bns_section": "179",
+      "decision": "corrected",
+      "ipc_title": "Delivery of Indian coin, possessed with knowledge that it is altered",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.5,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "264": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Fraudulent use of false instrument for weighing",
+      "bns_title": null,
+      "similarity": 0.5,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "252": {
+      "bns_section": "180",
+      "decision": "corrected",
+      "ipc_title": "Possession of coin by person who knew it to be altered when he became possessed thereof",
+      "bns_title": "Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.48,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "242": {
+      "bns_section": "180",
+      "decision": "corrected",
+      "ipc_title": "Possession of counterfeit coin by person who knew it to be counterfeit when he became possessed thereof",
+      "bns_title": "Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.474,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "310": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Thug",
+      "bns_title": null,
+      "similarity": 0.474,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "249": {
+      "bns_section": "178",
+      "decision": "corrected",
+      "ipc_title": "Altering appearance of Indian coin with intent that it shall pass as coin of different description",
+      "bns_title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+      "similarity": 0.467,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "266": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Being in possession of false weight or measure",
+      "bns_title": null,
+      "similarity": 0.467,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "253": {
+      "bns_section": "180",
+      "decision": "corrected",
+      "ipc_title": "Possession of Indian coin by person who knew it to be altered when he became possessed thereof",
+      "bns_title": "Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.462,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "239": {
+      "bns_section": "179",
+      "decision": "corrected",
+      "ipc_title": "Delivery of coin possessed with knowledge that it is counterfeit",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.458,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "492": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Breach of contract to serve at distant place to which servant is conveyed at master",
+      "bns_title": null,
+      "similarity": 0.455,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "240": {
+      "bns_section": "179",
+      "decision": "corrected",
+      "ipc_title": "Delivery of Indian coin, possessed with knowledge that it is counterfeit",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.435,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "3"
+    },
+    "1": {
+      "bns_section": "1",
+      "decision": "corrected",
+      "ipc_title": "Title and extent of operation of the Code",
+      "bns_title": "Short title, commencement and application",
+      "similarity": 0.429,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "358"
+    },
+    "18": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "India",
+      "bns_title": null,
+      "similarity": 0.429,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "480": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Using a false trade mark.",
+      "bns_title": null,
+      "similarity": 0.429,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "241": {
+      "bns_section": "179",
+      "decision": "corrected",
+      "ipc_title": "Delivery of coin as genuine, which, when first possessed, the deliverer did not know to be counterfeit",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.417,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "303"
+    },
+    "267": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Making or selling false weight or measure",
+      "bns_title": null,
+      "similarity": 0.4,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "478": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Trade Mark.",
+      "bns_title": null,
+      "similarity": 0.4,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "254": {
+      "bns_section": "179",
+      "decision": "corrected",
+      "ipc_title": "Delivery of coin as genuine which, when first possessed, the deliverer did not know to be altered",
+      "bns_title": "Using as genuine, forged or counterfeit coin, Government stamp, currency-notes or bank-notes",
+      "similarity": 0.382,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27",
+      "proposed_was": "303"
+    },
+    "138A": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Application of foregoing sections to the Indian Marine Service.",
+      "bns_title": null,
+      "similarity": 0.375,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "153AA": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Punishment for knowingly carrying arms in any procession or organising or holding or taking part in any mass drill or mass training with arms",
+      "bns_title": null,
+      "similarity": 0.355,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "161": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Rep. by the Prevention of Corruption Act, 1988",
+      "bns_title": null,
+      "similarity": 0.333,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "162": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Rep. by the Prevention of Corruption Act, 1988",
+      "bns_title": null,
+      "similarity": 0.333,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "163": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Rep. by the Prevention of Corruption Act, 1988",
+      "bns_title": null,
+      "similarity": 0.333,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "164": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Rep. by the Prevention of Corruption Act, 1988",
+      "bns_title": null,
+      "similarity": 0.333,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "165": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Rep. by the Prevention of Corruption Act, 1988",
+      "bns_title": null,
+      "similarity": 0.333,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "226": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Unlawful return from transportation.",
+      "bns_title": null,
+      "similarity": 0.333,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "265": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Fraudulent use of false weight or measure",
+      "bns_title": null,
+      "similarity": 0.333,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "490": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Breach of contract of service during voyage or journey.",
+      "bns_title": null,
+      "similarity": 0.333,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "59": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Transportation instead of imprisonment.",
+      "bns_title": null,
+      "similarity": 0.286,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "58": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Offenders sentenced to transportation how dealt with until transported.",
+      "bns_title": null,
+      "similarity": 0.273,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "56": {
+      "bns_section": null,
+      "decision": "none",
+      "ipc_title": "Sentence of Europeans and Americans to penal servitude.",
+      "bns_title": null,
+      "similarity": 0.2,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "29A": {
+      "bns_section": "2",
+      "decision": "confirmed",
+      "ipc_title": "Electronic record",
+      "bns_title": "Definitions",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "57": {
+      "bns_section": "6",
+      "decision": "confirmed",
+      "ipc_title": "Fractions of terms of punishment",
+      "bns_title": "Fractions of terms of punishment",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "60": {
+      "bns_section": "7",
+      "decision": "confirmed",
+      "ipc_title": "Sentence may be (in certain cases of imprisonment) wholly or partly rigorous or simple",
+      "bns_title": "Sentence may be (in certain cases of imprisonment) wholly or partly rigorous or simple",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "74": {
+      "bns_section": "12",
+      "decision": "confirmed",
+      "ipc_title": "Limit of solitary confinement",
+      "bns_title": "Limit of solitary confinement",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "76": {
+      "bns_section": "14",
+      "decision": "confirmed",
+      "ipc_title": "Act done by a person bound, or by mistake of fact believing himself bound, by law",
+      "bns_title": "Act done by a person bound, or by mistake of fact believing himself bound, by law",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "77": {
+      "bns_section": "15",
+      "decision": "confirmed",
+      "ipc_title": "Act of Judge when acting judicially",
+      "bns_title": "Act of Judge when acting judicially",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "80": {
+      "bns_section": "18",
+      "decision": "confirmed",
+      "ipc_title": "Accident in doing a lawful act",
+      "bns_title": "Accident in doing a lawful act",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "84": {
+      "bns_section": "22",
+      "decision": "confirmed",
+      "ipc_title": "Act of a person of unsound mind",
+      "bns_title": "Act of a person of unsound mind",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "85": {
+      "bns_section": "23",
+      "decision": "confirmed",
+      "ipc_title": "Act of a person incapable of judgment by reason of intoxication caused against his will",
+      "bns_title": "Act of a person incapable of judgment by reason of intoxication caused against his will",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "86": {
+      "bns_section": "24",
+      "decision": "confirmed",
+      "ipc_title": "Offence requiring a particular intent or knowledge committed by one who is intoxicated",
+      "bns_title": "Offence requiring a particular intent or knowledge committed by one who is intoxicated",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "88": {
+      "bns_section": "26",
+      "decision": "confirmed",
+      "ipc_title": "Act not intended to cause death, done by consent in good faith for person's benefit",
+      "bns_title": "Act not intended to cause death, done by consent in good faith for person's benefit",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "93": {
+      "bns_section": "31",
+      "decision": "confirmed",
+      "ipc_title": "Communication made in good faith",
+      "bns_title": "Communication made in good faith",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "94": {
+      "bns_section": "32",
+      "decision": "confirmed",
+      "ipc_title": "Act to which a person is compelled by threats",
+      "bns_title": "Act to which a person is compelled by threats",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "96": {
+      "bns_section": "34",
+      "decision": "confirmed",
+      "ipc_title": "Things done in private defence",
+      "bns_title": "Things done in private defence",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "99": {
+      "bns_section": "37",
+      "decision": "confirmed",
+      "ipc_title": "Acts against which there is no right of private defence",
+      "bns_title": "Acts against which there is no right of private defence",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "108": {
+      "bns_section": "46",
+      "decision": "confirmed",
+      "ipc_title": "Abettor",
+      "bns_title": "Abettor",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "110": {
+      "bns_section": "50",
+      "decision": "confirmed",
+      "ipc_title": "Punishment of abetment if person abetted does act with different intention from that of abettor",
+      "bns_title": "Punishment of abetment if person abetted does act with different intention from that of abettor",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "114": {
+      "bns_section": "54",
+      "decision": "confirmed",
+      "ipc_title": "Abettor present when offence is committed",
+      "bns_title": "Abettor present when offence is committed",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "121A": {
+      "bns_section": "148",
+      "decision": "confirmed",
+      "ipc_title": "Conspiracy to commit offences punishable by section 121",
+      "bns_title": "Conspiracy to commit offences punishable by section 147",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "123": {
+      "bns_section": "150",
+      "decision": "confirmed",
+      "ipc_title": "Concealing with intent to facilitate design to wage war",
+      "bns_title": "Concealing with intent to facilitate design to wage war",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "127": {
+      "bns_section": "155",
+      "decision": "confirmed",
+      "ipc_title": "Receiving property taken by war or depredation mentioned in sections 125 and 126",
+      "bns_title": "Receiving property taken by war or depredation mentioned in sections 153 and 154",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "128": {
+      "bns_section": "156",
+      "decision": "confirmed",
+      "ipc_title": "Public servant voluntarily allowing prisoner of state or war to escape",
+      "bns_title": "Public servant voluntarily allowing prisoner of State or war to escape",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "129": {
+      "bns_section": "157",
+      "decision": "confirmed",
+      "ipc_title": "Public servant negligently suffering such prisoner to escape",
+      "bns_title": "Public servant negligently suffering such prisoner to escape",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "131": {
+      "bns_section": "159",
+      "decision": "confirmed",
+      "ipc_title": "Abetting mutiny, or attempting to seduce a soldier, sailor or airman from his duty",
+      "bns_title": "Abetting mutiny, or attempting to seduce a soldier, sailor or airman from his duty",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "132": {
+      "bns_section": "160",
+      "decision": "confirmed",
+      "ipc_title": "Abetment of mutiny, if mutiny is committed in consequence thereof",
+      "bns_title": "Abetment of mutiny, if mutiny is committed in consequence thereof",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "135": {
+      "bns_section": "163",
+      "decision": "confirmed",
+      "ipc_title": "Abetment of desertion of soldier, sailor or airman",
+      "bns_title": "Abetment of desertion of soldier, sailor or airman",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "141": {
+      "bns_section": "189",
+      "decision": "confirmed",
+      "ipc_title": "Unlawful assembly",
+      "bns_title": "Unlawful assembly",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "146": {
+      "bns_section": "191",
+      "decision": "confirmed",
+      "ipc_title": "Rioting",
+      "bns_title": "Rioting",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "149": {
+      "bns_section": "190",
+      "decision": "confirmed",
+      "ipc_title": "Every member of unlawful assembly guilty of offence committed in prosecution of common object",
+      "bns_title": "Every member of unlawful assembly guilty of offence committed in prosecution of common object",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "159": {
+      "bns_section": "194",
+      "decision": "confirmed",
+      "ipc_title": "Affray",
+      "bns_title": "Affray",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "169": {
+      "bns_section": "203",
+      "decision": "confirmed",
+      "ipc_title": "Public servant unlawfully buying or bidding for property",
+      "bns_title": "Public servant unlawfully buying or bidding for property",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171B": {
+      "bns_section": "170",
+      "decision": "confirmed",
+      "ipc_title": "Bribery",
+      "bns_title": "Bribery",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171F": {
+      "bns_section": "174",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for undue influence or personation at an election",
+      "bns_title": "Punishment for undue influence or personation at an election",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171G": {
+      "bns_section": "175",
+      "decision": "confirmed",
+      "ipc_title": "False statement in connection with an election",
+      "bns_title": "False statement in connection with an election",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "185": {
+      "bns_section": "220",
+      "decision": "confirmed",
+      "ipc_title": "Illegal purchase or bid for property offered for sale by authority of public servant",
+      "bns_title": "Illegal purchase or bid for property offered for sale by authority of public servant",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "189": {
+      "bns_section": "224",
+      "decision": "confirmed",
+      "ipc_title": "Threat of injury to public servant",
+      "bns_title": "Threat of injury to public servant",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "190": {
+      "bns_section": "225",
+      "decision": "confirmed",
+      "ipc_title": "Threat of injury to induce person to refrain from applying for protection to public servant",
+      "bns_title": "Threat of injury to induce person to refrain from applying for protection to public servant",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "191": {
+      "bns_section": "227",
+      "decision": "confirmed",
+      "ipc_title": "Giving false evidence",
+      "bns_title": "Giving false evidence",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "196": {
+      "bns_section": "233",
+      "decision": "confirmed",
+      "ipc_title": "Using evidence known to be false",
+      "bns_title": "Using evidence known to be false",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "197": {
+      "bns_section": "234",
+      "decision": "confirmed",
+      "ipc_title": "Issuing or signing false certificate",
+      "bns_title": "Issuing or signing false certificate",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "198": {
+      "bns_section": "235",
+      "decision": "confirmed",
+      "ipc_title": "Using as true a certificate known to be false",
+      "bns_title": "Using as true a certificate known to be false",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "205": {
+      "bns_section": "242",
+      "decision": "confirmed",
+      "ipc_title": "False personation for purpose of act or proceeding in suit or prosecution",
+      "bns_title": "False personation for purpose of act or proceeding in suit or prosecution",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "210": {
+      "bns_section": "247",
+      "decision": "confirmed",
+      "ipc_title": "Fraudulently obtaining decree for sum not due",
+      "bns_title": "Fraudulently obtaining decree for sum not due",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "217": {
+      "bns_section": "255",
+      "decision": "confirmed",
+      "ipc_title": "Public servant disobeying direction of law with intent to save person from punishment or property from forfeiture",
+      "bns_title": "Public servant disobeying direction of law with intent to save person from punishment or property from forfeiture",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "218": {
+      "bns_section": "256",
+      "decision": "confirmed",
+      "ipc_title": "Public servant framing incorrect record or writing with intent to save person from punishment or property from forfeiture",
+      "bns_title": "Public servant framing incorrect record or writing with intent to save person from punishment or property from forfeiture",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "219": {
+      "bns_section": "257",
+      "decision": "confirmed",
+      "ipc_title": "Public servant in judicial proceeding corruptly making report, etc., contrary to law",
+      "bns_title": "Public servant in judicial proceeding corruptly making report, etc., contrary to law",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "220": {
+      "bns_section": "258",
+      "decision": "confirmed",
+      "ipc_title": "Commitment for trial or confinement by person having authority who knows that he is acting contrary to law",
+      "bns_title": "Commitment for trial or confinement by person having authority who knows that he is acting contrary to law",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "223": {
+      "bns_section": "261",
+      "decision": "confirmed",
+      "ipc_title": "Escape from confinement or custody negligently suffered by public servant",
+      "bns_title": "Escape from confinement or custody negligently suffered by public servant",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "224": {
+      "bns_section": "262",
+      "decision": "confirmed",
+      "ipc_title": "Resistance or obstruction by a person to his lawful apprehension",
+      "bns_title": "Resistance or obstruction by a person to his lawful apprehension",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "225B": {
+      "bns_section": "265",
+      "decision": "confirmed",
+      "ipc_title": "Resistance or obstruction to lawful apprehension, or escape or rescue in cases not otherwise provided for",
+      "bns_title": "Resistance or obstruction to lawful apprehension or escape or rescue in cases not otherwise provided for",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "227": {
+      "bns_section": "266",
+      "decision": "confirmed",
+      "ipc_title": "Violation of condition of remission of punishment",
+      "bns_title": "Violation of condition of remission of punishment",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "244": {
+      "bns_section": "187",
+      "decision": "confirmed",
+      "ipc_title": "Person employed in mint causing coin to be of different weight or composition from that fixed by law",
+      "bns_title": "Person employed in mint causing coin to be of different weight or composition from that fixed by law",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "245": {
+      "bns_section": "188",
+      "decision": "confirmed",
+      "ipc_title": "Unlawfully taking coining instrument from mint",
+      "bns_title": "Unlawfully taking coining instrument from mint",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "261": {
+      "bns_section": "183",
+      "decision": "confirmed",
+      "ipc_title": "Effacing writing from substance bearing Government stamp, or removing from document a stamp used for it, with intent to cause loss to Government",
+      "bns_title": "Effacing writing from substance bearing Government stamp, or removing from document a stamp used for it, with intent to cause loss to Government",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "262": {
+      "bns_section": "184",
+      "decision": "confirmed",
+      "ipc_title": "Using Government stamp known to have been before used",
+      "bns_title": "Using Government stamp known to have been before used",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "263": {
+      "bns_section": "185",
+      "decision": "confirmed",
+      "ipc_title": "Erasure of mark denoting that stamp has been used",
+      "bns_title": "Erasure of mark denoting that stamp has been used",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "268": {
+      "bns_section": "270",
+      "decision": "confirmed",
+      "ipc_title": "Public nuisance",
+      "bns_title": "Public nuisance",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "269": {
+      "bns_section": "271",
+      "decision": "confirmed",
+      "ipc_title": "Negligent act likely to spread infection of disease dangerous to life",
+      "bns_title": "Negligent act likely to spread infection of disease dangerous to life",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "273": {
+      "bns_section": "275",
+      "decision": "confirmed",
+      "ipc_title": "Sale of noxious food or drink",
+      "bns_title": "Sale of noxious food or drink",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "276": {
+      "bns_section": "278",
+      "decision": "confirmed",
+      "ipc_title": "Sale of drug as a different drug or preparation",
+      "bns_title": "Sale of drug as a different drug or preparation",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "279": {
+      "bns_section": "281",
+      "decision": "confirmed",
+      "ipc_title": "Rash driving or riding on a public way",
+      "bns_title": "Rash driving or riding on a public way",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "280": {
+      "bns_section": "282",
+      "decision": "confirmed",
+      "ipc_title": "Rash navigation of vessel",
+      "bns_title": "Rash navigation of vessel",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "281": {
+      "bns_section": "283",
+      "decision": "confirmed",
+      "ipc_title": "Exhibition of false light, mark or buoy",
+      "bns_title": "Exhibition of false light, mark or buoy",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "285": {
+      "bns_section": "287",
+      "decision": "confirmed",
+      "ipc_title": "Negligent conduct with respect to fire or combustible matter",
+      "bns_title": "Negligent conduct with respect to fire or combustible matter",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "296": {
+      "bns_section": "300",
+      "decision": "confirmed",
+      "ipc_title": "Disturbing religious assembly",
+      "bns_title": "Disturbing religious assembly",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "306": {
+      "bns_section": "108",
+      "decision": "confirmed",
+      "ipc_title": "Abetment of suicide",
+      "bns_title": "Abetment of suicide",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "318": {
+      "bns_section": "94",
+      "decision": "confirmed",
+      "ipc_title": "Concealment of birth by secret disposal of dead body",
+      "bns_title": "Concealment of birth by secret disposal of dead body",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "340": {
+      "bns_section": "127",
+      "decision": "confirmed",
+      "ipc_title": "Wrongful confinement",
+      "bns_title": "Wrongful confinement",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "349": {
+      "bns_section": "128",
+      "decision": "confirmed",
+      "ipc_title": "Force",
+      "bns_title": "Force",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "350": {
+      "bns_section": "129",
+      "decision": "confirmed",
+      "ipc_title": "Criminal force",
+      "bns_title": "Criminal force",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "359": {
+      "bns_section": "137",
+      "decision": "confirmed",
+      "ipc_title": "Kidnapping",
+      "bns_title": "Kidnapping",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "362": {
+      "bns_section": "138",
+      "decision": "confirmed",
+      "ipc_title": "Abduction",
+      "bns_title": "Abduction",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "368": {
+      "bns_section": "142",
+      "decision": "confirmed",
+      "ipc_title": "Wrongfully concealing or keeping in confinement, kidnapped or abducted person",
+      "bns_title": "Wrongfully concealing or keeping in confinement, kidnapped or abducted person",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "371": {
+      "bns_section": "145",
+      "decision": "confirmed",
+      "ipc_title": "Habitual dealing in slaves",
+      "bns_title": "Habitual dealing in slaves",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "374": {
+      "bns_section": "146",
+      "decision": "confirmed",
+      "ipc_title": "Unlawful compulsory labour",
+      "bns_title": "Unlawful compulsory labour",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "376A": {
+      "bns_section": "66",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for causing death or resulting in persistent vegetative state of victim",
+      "bns_title": "Punishment for causing death or resulting in persistent vegetative state of victim",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "376E": {
+      "bns_section": "71",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for repeat offenders",
+      "bns_title": "Punishment for repeat offenders",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "410": {
+      "bns_section": "317",
+      "decision": "confirmed",
+      "ipc_title": "Stolen property",
+      "bns_title": "Stolen property",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "422": {
+      "bns_section": "321",
+      "decision": "confirmed",
+      "ipc_title": "Dishonestly or fraudulently preventing debt being available for creditors",
+      "bns_title": "Dishonestly or fraudulently preventing debt being available for creditors",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "425": {
+      "bns_section": "324",
+      "decision": "confirmed",
+      "ipc_title": "Mischief",
+      "bns_title": "Mischief",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "463": {
+      "bns_section": "336",
+      "decision": "confirmed",
+      "ipc_title": "Forgery",
+      "bns_title": "Forgery",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "464": {
+      "bns_section": "335",
+      "decision": "confirmed",
+      "ipc_title": "Making a false document",
+      "bns_title": "Making a false document",
+      "similarity": 1.0,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "467": {
+      "bns_section": "338",
+      "decision": "confirmed",
+      "ipc_title": "Forgery of valuable security, will, etc.",
+      "bns_title": "Forgery of valuable security, will, etc",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "477": {
+      "bns_section": "343",
+      "decision": "confirmed",
+      "ipc_title": "Fraudulent cancellation, destruction, etc., of will, authority to adopt, or valuable security",
+      "bns_title": "Fraudulent cancellation, destruction, etc., of will, authority to adopt, or valuable security",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "479": {
+      "bns_section": "345",
+      "decision": "confirmed",
+      "ipc_title": "Property mark",
+      "bns_title": "Property mark",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "485": {
+      "bns_section": "348",
+      "decision": "confirmed",
+      "ipc_title": "Making or possession of any instrument for counterfeiting a property mark",
+      "bns_title": "Making or possession of any instrument for counterfeiting a property mark",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "489": {
+      "bns_section": "346",
+      "decision": "confirmed",
+      "ipc_title": "Tampering with property mark with intent to cause injury",
+      "bns_title": "Tampering with property mark with intent to cause injury",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "496": {
+      "bns_section": "83",
+      "decision": "confirmed",
+      "ipc_title": "Marriage ceremony fraudulently gone through without lawful marriage",
+      "bns_title": "Marriage ceremony fraudulently gone through without lawful marriage",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "498": {
+      "bns_section": "84",
+      "decision": "confirmed",
+      "ipc_title": "Enticing or taking away or detaining with criminal intent a married woman",
+      "bns_title": "Enticing or taking away or detaining with criminal intent a married woman",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "498A": {
+      "bns_section": "85",
+      "decision": "confirmed",
+      "ipc_title": "Husband or relative of husband of a woman subjecting her to cruelty",
+      "bns_title": "Husband or relative of husband of a woman subjecting her to cruelty",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "499": {
+      "bns_section": "356",
+      "decision": "confirmed",
+      "ipc_title": "Defamation",
+      "bns_title": "Defamation",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "376": {
+      "bns_section": "64",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for rape",
+      "bns_title": "Punishment for rape",
+      "similarity": 0.983,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "292": {
+      "bns_section": "294",
+      "decision": "confirmed",
+      "ipc_title": "Sale, etc., of obscene books, etc.",
+      "bns_title": "Sale, etc., of obscene books, etc",
+      "similarity": 0.982,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "354D": {
+      "bns_section": "78",
+      "decision": "confirmed",
+      "ipc_title": "Stalking",
+      "bns_title": "Stalking",
+      "similarity": 0.982,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171C": {
+      "bns_section": "171",
+      "decision": "confirmed",
+      "ipc_title": "Undue influence at elections",
+      "bns_title": "Undue influence at elections",
+      "similarity": 0.98,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "489E": {
+      "bns_section": "182",
+      "decision": "confirmed",
+      "ipc_title": "Making or using documents resembling currency-notes or bank-notes",
+      "bns_title": "Making or using documents resembling currency-notes or bank-notes",
+      "similarity": 0.98,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "173": {
+      "bns_section": "207",
+      "decision": "confirmed",
+      "ipc_title": "Preventing service of summons or other proceeding, or preventing publication thereof",
+      "bns_title": "Preventing service of summons or other proceeding, or preventing publication thereof",
+      "similarity": 0.976,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "207": {
+      "bns_section": "244",
+      "decision": "confirmed",
+      "ipc_title": "Fraudulent claim to property to prevent its seizure as forfeited or in execution",
+      "bns_title": "Fraudulent claim to property to prevent its seizure as forfeited or in execution",
+      "similarity": 0.974,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "375": {
+      "bns_section": "63",
+      "decision": "confirmed",
+      "ipc_title": "Rape",
+      "bns_title": "Rape",
+      "similarity": 0.973,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "487": {
+      "bns_section": "350",
+      "decision": "confirmed",
+      "ipc_title": "Making a false mark upon any receptacle containing goods",
+      "bns_title": "Making a false mark upon any receptacle containing goods",
+      "similarity": 0.972,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "275": {
+      "bns_section": "277",
+      "decision": "confirmed",
+      "ipc_title": "Sale of adulterated drugs",
+      "bns_title": "Sale of adulterated drugs",
+      "similarity": 0.969,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "297": {
+      "bns_section": "301",
+      "decision": "confirmed",
+      "ipc_title": "Trespassing on burial places, etc",
+      "bns_title": "Trespassing on burial places, etc",
+      "similarity": 0.969,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "354C": {
+      "bns_section": "77",
+      "decision": "confirmed",
+      "ipc_title": "Voyeurism",
+      "bns_title": "Voyeurism",
+      "similarity": 0.968,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "90": {
+      "bns_section": "28",
+      "decision": "confirmed",
+      "ipc_title": "Consent known to be given under fear or misconception",
+      "bns_title": "Consent known to be given under fear or misconception",
+      "similarity": 0.967,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "73": {
+      "bns_section": "11",
+      "decision": "confirmed",
+      "ipc_title": "Solitary confinement",
+      "bns_title": "Solitary confinement",
+      "similarity": 0.966,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "263A": {
+      "bns_section": "186",
+      "decision": "confirmed",
+      "ipc_title": "Prohibition of fictitious stamps",
+      "bns_title": "Prohibition of fictitious stamps",
+      "similarity": 0.966,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "284": {
+      "bns_section": "286",
+      "decision": "confirmed",
+      "ipc_title": "Negligent conduct with respect to poisonous substance",
+      "bns_title": "Negligent conduct with respect to poisonous substance",
+      "similarity": 0.966,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "287": {
+      "bns_section": "289",
+      "decision": "confirmed",
+      "ipc_title": "Negligent conduct with respect to machinery",
+      "bns_title": "Negligent conduct with respect to machinery",
+      "similarity": 0.966,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "92": {
+      "bns_section": "30",
+      "decision": "confirmed",
+      "ipc_title": "Act done in good faith for benefit of a person without consent",
+      "bns_title": "Act done in good faith for benefit of a person without consent",
+      "similarity": 0.964,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "172": {
+      "bns_section": "206",
+      "decision": "confirmed",
+      "ipc_title": "Absconding to avoid service of summons or other proceeding",
+      "bns_title": "Absconding to avoid service of summons or other proceeding",
+      "similarity": 0.964,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "199": {
+      "bns_section": "236",
+      "decision": "confirmed",
+      "ipc_title": "False statement made in declaration which is by law receivable as evidence",
+      "bns_title": "False statement made in declaration which is by law receivable as evidence",
+      "similarity": 0.964,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "215": {
+      "bns_section": "252",
+      "decision": "confirmed",
+      "ipc_title": "Taking gift to help to recover stolen property, etc",
+      "bns_title": "Taking gift to help to recover stolen property, etc",
+      "similarity": 0.964,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "286": {
+      "bns_section": "288",
+      "decision": "confirmed",
+      "ipc_title": "Negligent conduct with respect to explosive substance",
+      "bns_title": "Negligent conduct with respect to explosive substance",
+      "similarity": 0.964,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "376D": {
+      "bns_section": "70",
+      "decision": "confirmed",
+      "ipc_title": "Gang Rape",
+      "bns_title": "Gang rape",
+      "similarity": 0.964,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "423": {
+      "bns_section": "322",
+      "decision": "confirmed",
+      "ipc_title": "Dishonest or fraudulent execution of deed of transfer containing false statement of consideration",
+      "bns_title": "Dishonest or fraudulent execution of deed of transfer containing false statement of consideration",
+      "similarity": 0.964,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "119": {
+      "bns_section": "59",
+      "decision": "confirmed",
+      "ipc_title": "Public servant concealing design to commit offence which it is his duty to prevent",
+      "bns_title": "Public servant concealing design to commit offence which it is his duty to prevent",
+      "similarity": 0.962,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "195A": {
+      "bns_section": "232",
+      "decision": "confirmed",
+      "ipc_title": "Threatening any person to give false evidence",
+      "bns_title": "Threatening any person to give false evidence",
+      "similarity": 0.962,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "167": {
+      "bns_section": "201",
+      "decision": "confirmed",
+      "ipc_title": "Public servant framing an incorrect document with intent to cause injury",
+      "bns_title": "Public servant framing an incorrect document with intent to cause injury",
+      "similarity": 0.958,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171D": {
+      "bns_section": "172",
+      "decision": "confirmed",
+      "ipc_title": "Personation at elections",
+      "bns_title": "Personation at elections",
+      "similarity": 0.957,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "187": {
+      "bns_section": "222",
+      "decision": "confirmed",
+      "ipc_title": "Omission to assist public servant when bound by law to give assistance",
+      "bns_title": "Omission to assist public servant when bound by law to give assistance",
+      "similarity": 0.956,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "81": {
+      "bns_section": "19",
+      "decision": "confirmed",
+      "ipc_title": "Act likely to cause harm, but done without criminal intent, and to prevent other harm",
+      "bns_title": "Act likely to cause harm, but done without criminal intent, and to prevent other harm",
+      "similarity": 0.955,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "477A": {
+      "bns_section": "344",
+      "decision": "confirmed",
+      "ipc_title": "Falsification of accounts",
+      "bns_title": "Falsification of accounts",
+      "similarity": 0.953,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "136": {
+      "bns_section": "164",
+      "decision": "confirmed",
+      "ipc_title": "Harbouring deserter",
+      "bns_title": "Harbouring deserter",
+      "similarity": 0.952,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "370A": {
+      "bns_section": "144",
+      "decision": "confirmed",
+      "ipc_title": "Exploitation of a trafficked person",
+      "bns_title": "Exploitation of a trafficked person",
+      "similarity": 0.95,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "170": {
+      "bns_section": "204",
+      "decision": "confirmed",
+      "ipc_title": "Personating a public servant",
+      "bns_title": "Personating a public servant",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "177": {
+      "bns_section": "212",
+      "decision": "confirmed",
+      "ipc_title": "Furnishing false information",
+      "bns_title": "Furnishing false information",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "178": {
+      "bns_section": "213",
+      "decision": "confirmed",
+      "ipc_title": "Refusing oath or affirmation when duly required by public servant to make it",
+      "bns_title": "Refusing oath or affirmation when duly required by public servant to make it",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "193": {
+      "bns_section": "229",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for false evidence",
+      "bns_title": "Punishment for false evidence",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "312": {
+      "bns_section": "88",
+      "decision": "confirmed",
+      "ipc_title": "Causing miscarriage",
+      "bns_title": "Causing miscarriage",
+      "similarity": 0.947,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "101": {
+      "bns_section": "39",
+      "decision": "confirmed",
+      "ipc_title": "When such right extends to causing any harm other than death",
+      "bns_title": "When such right extends to causing any harm other than death",
+      "similarity": 0.944,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "107": {
+      "bns_section": "45",
+      "decision": "confirmed",
+      "ipc_title": "Abetment of a thing",
+      "bns_title": "Abetment of a thing",
+      "similarity": 0.944,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "192": {
+      "bns_section": "228",
+      "decision": "confirmed",
+      "ipc_title": "Fabricating false evidence",
+      "bns_title": "Fabricating false evidence",
+      "similarity": 0.944,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "225": {
+      "bns_section": "263",
+      "decision": "confirmed",
+      "ipc_title": "Resistance or obstruction to lawful apprehension of another person",
+      "bns_title": "Resistance or obstruction to lawful apprehension of another person",
+      "similarity": 0.944,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "278": {
+      "bns_section": "280",
+      "decision": "confirmed",
+      "ipc_title": "Making atmosphere noxious to health",
+      "bns_title": "Making atmosphere noxious to health",
+      "similarity": 0.944,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "138": {
+      "bns_section": "166",
+      "decision": "confirmed",
+      "ipc_title": "Abetment of act of insubordination by soldier, sailor or airman",
+      "bns_title": "Abetment of act of insubordination by soldier, sailor or airman",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "212": {
+      "bns_section": "249",
+      "decision": "confirmed",
+      "ipc_title": "Harbouring offender",
+      "bns_title": "Harbouring offender",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "228": {
+      "bns_section": "267",
+      "decision": "confirmed",
+      "ipc_title": "Intentional insult or interruption to public servant sitting in judicial proceeding",
+      "bns_title": "Intentional insult or interruption to public servant sitting in judicial proceeding",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "272": {
+      "bns_section": "274",
+      "decision": "confirmed",
+      "ipc_title": "Adulteration of food or drink intended for sale",
+      "bns_title": "Adulteration of food or drink intended for sale",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "282": {
+      "bns_section": "284",
+      "decision": "confirmed",
+      "ipc_title": "Conveying person by water for hire in unsafe or overloaded vessel",
+      "bns_title": "Conveying person by water for hire in unsafe or overloaded vessel",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "283": {
+      "bns_section": "285",
+      "decision": "confirmed",
+      "ipc_title": "Danger or obstruction in public way or line of navigation",
+      "bns_title": "Danger or obstruction in public way or line of navigation",
+      "similarity": 0.941,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "174": {
+      "bns_section": "208",
+      "decision": "confirmed",
+      "ipc_title": "Non-attendance in obedience to an order from public servant",
+      "bns_title": "Non- attendance in obedience to an order from public servant",
+      "similarity": 0.939,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "71": {
+      "bns_section": "9",
+      "decision": "confirmed",
+      "ipc_title": "Limit of punishment of offence made up of several offences",
+      "bns_title": "Limit of punishment of offence made up of several offences",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "95": {
+      "bns_section": "33",
+      "decision": "confirmed",
+      "ipc_title": "Act causing slight harm",
+      "bns_title": "Act causing slight harm",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171I": {
+      "bns_section": "177",
+      "decision": "confirmed",
+      "ipc_title": "Failure to keep election accounts",
+      "bns_title": "Failure to keep election accounts",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "180": {
+      "bns_section": "215",
+      "decision": "confirmed",
+      "ipc_title": "Refusing to sign statement",
+      "bns_title": "Refusing to sign statement",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "277": {
+      "bns_section": "279",
+      "decision": "confirmed",
+      "ipc_title": "Fouling water of public spring or reservoir",
+      "bns_title": "Fouling water of public spring or reservoir",
+      "similarity": 0.938,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "153B": {
+      "bns_section": "197",
+      "decision": "confirmed",
+      "ipc_title": "Imputations, assertions prejudicial to national integration",
+      "bns_title": "Imputations, assertions prejudicial to national integration",
+      "similarity": 0.936,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "137": {
+      "bns_section": "165",
+      "decision": "confirmed",
+      "ipc_title": "Deserter concealed on board merchant vessel through negligence of master",
+      "bns_title": "Deserter concealed on board merchant vessel through negligence of master",
+      "similarity": 0.933,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171A": {
+      "bns_section": "169",
+      "decision": "confirmed",
+      "ipc_title": "Candidate ,  Electoral right  defined",
+      "bns_title": "Candidate, electoral right defined",
+      "similarity": 0.933,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "200": {
+      "bns_section": "237",
+      "decision": "confirmed",
+      "ipc_title": "Using as true such declaration knowing it to be false",
+      "bns_title": "Using as true such declaration knowing it to be false",
+      "similarity": 0.929,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "313": {
+      "bns_section": "89",
+      "decision": "confirmed",
+      "ipc_title": "Causing miscarriage without woman's consent",
+      "bns_title": "Causing miscarriage without woman's consent",
+      "similarity": 0.929,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "79": {
+      "bns_section": "17",
+      "decision": "confirmed",
+      "ipc_title": "Act done by a person justified, or by mistake of fact believing himself, justified, by law",
+      "bns_title": "Act done by a person justified, or by mistake of fact believing himself justified, by law",
+      "similarity": 0.923,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "184": {
+      "bns_section": "219",
+      "decision": "confirmed",
+      "ipc_title": "Obstructing sale of property offered for sale by authority of public servant",
+      "bns_title": "Obstructing sale of property offered for sale by authority of public servant",
+      "similarity": 0.923,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "314": {
+      "bns_section": "90",
+      "decision": "confirmed",
+      "ipc_title": "Death caused by act done with intent to cause miscarriage",
+      "bns_title": "Death caused by act done with intent to cause miscarriage",
+      "similarity": 0.923,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "274": {
+      "bns_section": "276",
+      "decision": "confirmed",
+      "ipc_title": "Adulteration of drugs",
+      "bns_title": "Adulteration of drugs",
+      "similarity": 0.92,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "186": {
+      "bns_section": "221",
+      "decision": "confirmed",
+      "ipc_title": "Obstructing public servant in discharge of public functions",
+      "bns_title": "Obstructing public servant in discharge of public functions",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "211": {
+      "bns_section": "248",
+      "decision": "confirmed",
+      "ipc_title": "False charge of offence made with intent to injure",
+      "bns_title": "False charge of offence made with intent to injure",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "294A": {
+      "bns_section": "297",
+      "decision": "confirmed",
+      "ipc_title": "Keeping lottery office",
+      "bns_title": "Keeping lottery office",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "466": {
+      "bns_section": "337",
+      "decision": "confirmed",
+      "ipc_title": "Forgery of record of Court or of public register, etc.",
+      "bns_title": "Forgery of record of Court or of public register, etc",
+      "similarity": 0.917,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "188": {
+      "bns_section": "223",
+      "decision": "confirmed",
+      "ipc_title": "Disobedience to order duly promulgated by public servant",
+      "bns_title": "Disobedience to order duly promulgated by public servant",
+      "similarity": 0.912,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "111": {
+      "bns_section": "51",
+      "decision": "confirmed",
+      "ipc_title": "Liability of abettor when one act abetted and different act done",
+      "bns_title": "Liability of abettor when one act abetted and different act done",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "139": {
+      "bns_section": "167",
+      "decision": "confirmed",
+      "ipc_title": "Persons subject to certain Acts",
+      "bns_title": "Persons subject to certain Acts",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "208": {
+      "bns_section": "245",
+      "decision": "confirmed",
+      "ipc_title": "Fraudulently suffering decree for sum not due",
+      "bns_title": "Fraudulently suffering decree for sum not due",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "486": {
+      "bns_section": "349",
+      "decision": "confirmed",
+      "ipc_title": "Selling goods marked with a counterfeit property mark",
+      "bns_title": "Selling goods marked with a counterfeit property mark",
+      "similarity": 0.909,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "140": {
+      "bns_section": "168",
+      "decision": "confirmed",
+      "ipc_title": "Wearing garb or carrying token used by soldier, sailor or airman",
+      "bns_title": "Wearing garb or carrying token used by soldier, sailor or airman",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171": {
+      "bns_section": "205",
+      "decision": "confirmed",
+      "ipc_title": "Wearing garb or carrying token used by public servant with fraudulent intent",
+      "bns_title": "Wearing garb or carrying token used by public servant with fraudulent intent",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "176": {
+      "bns_section": "211",
+      "decision": "confirmed",
+      "ipc_title": "Omission to give notice or information to public servant by person legally bound to give it",
+      "bns_title": "Omission to give notice or information to public servant by person legally bound to give it",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "271": {
+      "bns_section": "273",
+      "decision": "confirmed",
+      "ipc_title": "Disobedience to quarantine rule",
+      "bns_title": "Disobedience to quarantine rule",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "289": {
+      "bns_section": "291",
+      "decision": "confirmed",
+      "ipc_title": "Negligent conduct with respect to animal",
+      "bns_title": "Negligent conduct with respect to animal",
+      "similarity": 0.905,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "472": {
+      "bns_section": "341",
+      "decision": "confirmed",
+      "ipc_title": "Making or possessing counterfeit seal, etc., with intent to commit forgery punishable under section 467",
+      "bns_title": "Making or possessing counterfeit seal, etc., with intent to commit forgery punishable under section 338",
+      "similarity": 0.903,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "510": {
+      "bns_section": "355",
+      "decision": "confirmed",
+      "ipc_title": "Misconduct in public by a drunken person",
+      "bns_title": "Misconduct in public by a drunken person",
+      "similarity": 0.9,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "166": {
+      "bns_section": "198",
+      "decision": "confirmed",
+      "ipc_title": "Public servant disobeying law, with intent to cause injury to any person",
+      "bns_title": "Public servant disobeying law, with intent to cause injury to any person",
+      "similarity": 0.895,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "206": {
+      "bns_section": "243",
+      "decision": "confirmed",
+      "ipc_title": "Fraudulent removal or concealment of property to prevent its seizure as forfeited or in execution",
+      "bns_title": "Fraudulent removal or concealment of property to prevent its seizure as forfeited or in execution",
+      "similarity": 0.892,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "130": {
+      "bns_section": "158",
+      "decision": "confirmed",
+      "ipc_title": "Aiding escape of, rescuing or harbouring such prisoner",
+      "bns_title": "Aiding escape of, rescuing or harbouring such prisoner",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "421": {
+      "bns_section": "320",
+      "decision": "confirmed",
+      "ipc_title": "Dishonest or fraudulent removal or concealment of property to prevent distribution among creditors",
+      "bns_title": "Dishonest or fraudulent removal or concealment of property to prevent distribution among creditors",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "424": {
+      "bns_section": "323",
+      "decision": "confirmed",
+      "ipc_title": "Dishonest or fraudulent removal or concealment of property",
+      "bns_title": "Dishonest or fraudulent removal or concealment of property",
+      "similarity": 0.889,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "295A": {
+      "bns_section": "299",
+      "decision": "confirmed",
+      "ipc_title": "Deliberate and malicious acts intended to outrage religious feelings of any class by insulting its religion or religious beliefs",
+      "bns_title": "Deliberate and malicious acts, intended to outrage religious feelings of any class by insulting its religion or religious beliefs",
+      "similarity": 0.885,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "294": {
+      "bns_section": "296",
+      "decision": "confirmed",
+      "ipc_title": "Obscene acts and songs",
+      "bns_title": "Obscene acts and songs",
+      "similarity": 0.882,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "511": {
+      "bns_section": "62",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for attempting to commit offences punishable with imprisonment for life or other imprisonment",
+      "bns_title": "Punishment for attempting to commit offences punishable with imprisonment for life or other imprisonment",
+      "similarity": 0.88,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "475": {
+      "bns_section": "342",
+      "decision": "confirmed",
+      "ipc_title": "Counterfeiting device or mark used for authenticating documents described in section 467, or possessing counterfeit marked material",
+      "bns_title": "Counterfeiting device or mark used for authenticating documents described in section 338, or possessing counterfeit marked material",
+      "similarity": 0.879,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "214": {
+      "bns_section": "251",
+      "decision": "confirmed",
+      "ipc_title": "Offering gift or restoration of property in consideration of screening offender",
+      "bns_title": "Offering gift or restoration of property in consideration of screening offender",
+      "similarity": 0.875,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "216": {
+      "bns_section": "253",
+      "decision": "confirmed",
+      "ipc_title": "Harbouring offender who has escaped from custody or whose apprehension has been ordered",
+      "bns_title": "Harbouring offender who has escaped from custody or whose apprehension has been ordered",
+      "similarity": 0.875,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "461": {
+      "bns_section": "334",
+      "decision": "confirmed",
+      "ipc_title": "Dishonestly breaking open receptacle containing property",
+      "bns_title": "Dishonestly breaking open receptacle containing property",
+      "similarity": 0.875,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "336": {
+      "bns_section": "125",
+      "decision": "confirmed",
+      "ipc_title": "Act endangering life or personal safety of others",
+      "bns_title": "Act endangering life or personal safety of others",
+      "similarity": 0.867,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "216A": {
+      "bns_section": "254",
+      "decision": "confirmed",
+      "ipc_title": "Penalty for harbouring robbers or dacoits",
+      "bns_title": "Penalty for harbouring robbers or dacoits",
+      "similarity": 0.862,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "53": {
+      "bns_section": "4",
+      "decision": "confirmed",
+      "ipc_title": "Punishments",
+      "bns_title": "Punishments",
+      "similarity": 0.857,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "201": {
+      "bns_section": "238",
+      "decision": "confirmed",
+      "ipc_title": "Causing disappearance of evidence of offence, or giving false information to screen offender",
+      "bns_title": "Causing disappearance of evidence of offence, or giving false information to screen offender",
+      "similarity": 0.852,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "166A": {
+      "bns_section": "199",
+      "decision": "confirmed",
+      "ipc_title": "Public Servant disobeying direction under Law",
+      "bns_title": "Public servant disobeying direction under law",
+      "similarity": 0.85,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "494": {
+      "bns_section": "82",
+      "decision": "confirmed",
+      "ipc_title": "Marrying again during lifetime of husband or wife",
+      "bns_title": "Marrying again during lifetime of husband or wife",
+      "similarity": 0.85,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "291": {
+      "bns_section": "293",
+      "decision": "confirmed",
+      "ipc_title": "Continuance of nuisance after injunction to discontinue",
+      "bns_title": "Continuance of nuisance after injunction to discontinue",
+      "similarity": 0.842,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "213": {
+      "bns_section": "250",
+      "decision": "confirmed",
+      "ipc_title": "Taking gift, etc., to screen an offender from punishment",
+      "bns_title": "Taking gift, etc., to screen an offender from punishment",
+      "similarity": 0.84,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "202": {
+      "bns_section": "239",
+      "decision": "confirmed",
+      "ipc_title": "Intentional omission to give information of offence by person bound to inform",
+      "bns_title": "Intentional omission to give information of offence by person bound to inform",
+      "similarity": 0.833,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "339": {
+      "bns_section": "126",
+      "decision": "confirmed",
+      "ipc_title": "Wrongful restraint",
+      "bns_title": "Wrongful restraint",
+      "similarity": 0.833,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "168": {
+      "bns_section": "202",
+      "decision": "confirmed",
+      "ipc_title": "Public servant unlawfully engaging in trade",
+      "bns_title": "Public servant unlawfully engaging in trade",
+      "similarity": 0.818,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "304A": {
+      "bns_section": "106",
+      "decision": "confirmed",
+      "ipc_title": "Causing death by negligence",
+      "bns_title": "Causing death by negligence",
+      "similarity": 0.818,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "376B": {
+      "bns_section": "67",
+      "decision": "confirmed",
+      "ipc_title": "Sexual intercourse by husband upon his wife during separation",
+      "bns_title": "Sexual intercourse by husband upon his wife during separation",
+      "similarity": 0.818,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "166B": {
+      "bns_section": "200",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for non treatment of victim",
+      "bns_title": "Punishment for non- treatment of victim",
+      "similarity": 0.8,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171E": {
+      "bns_section": "173",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for bribery",
+      "bns_title": "Punishment for bribery",
+      "similarity": 0.8,
+      "low_evidence": true,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "290": {
+      "bns_section": "292",
+      "decision": "confirmed",
+      "ipc_title": "Punishment for public nuisance in cases not otherwise provided for",
+      "bns_title": "Punishment for public nuisance in cases not otherwise provided for",
+      "similarity": 0.8,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "171H": {
+      "bns_section": "176",
+      "decision": "confirmed",
+      "ipc_title": "Illegal payments in connection with an election",
+      "bns_title": "Illegal payments in connection with an election",
+      "similarity": 0.793,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "194": {
+      "bns_section": "230",
+      "decision": "confirmed",
+      "ipc_title": "Giving or fabricating false evidence with intent to procure conviction of capital offence",
+      "bns_title": "Giving or fabricating false evidence with intent to procure conviction of capital offence",
+      "similarity": 0.786,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "225A": {
+      "bns_section": "264",
+      "decision": "confirmed",
+      "ipc_title": "Omission to apprehend, or sufferance of escape, on part of public servant, in cases not otherwise, provided for",
+      "bns_title": "Omission to apprehend, or sufferance of escape, on part of public servant, in cases not otherwise provided for",
+      "similarity": 0.783,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "366": {
+      "bns_section": "87",
+      "decision": "confirmed",
+      "ipc_title": "Kidnapping, abducting or inducing woman to compel her marriage, etc.",
+      "bns_title": "Kidnapping, abducting or inducing woman to compel her marriage, etc",
+      "similarity": 0.783,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "108A": {
+      "bns_section": "47",
+      "decision": "confirmed",
+      "ipc_title": "Abetment in India of offences outside India",
+      "bns_title": "Abetment in India of offences outside India",
+      "similarity": 0.75,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
+    },
+    "112": {
+      "bns_section": "52",
+      "decision": "confirmed",
+      "ipc_title": "Abettor when liable to cumulative punishment for act abetted and for act done",
+      "bns_title": "Abettor when liable to cumulative punishment for act abetted and for act done",
+      "similarity": 0.722,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-09-27"
     }
   },
   "counts": {
-    "decided": 97,
-    "with_bns": 97
+    "decided": 574,
+    "with_bns": 538,
+    "none": 36
   }
 }

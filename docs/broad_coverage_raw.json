@@ -1,0 +1,834 @@
+{
+ "model": "qwen3.5:4b",
+ "cases": [
+  {
+   "id": 1,
+   "era": "ipc",
+   "offence_type": "murder",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "300",
+    "302"
+   ],
+   "verified_titles": {
+    "300": "Murder",
+    "302": "Punishment for murder"
+   },
+   "outside_expected": [],
+   "want": [
+    "300",
+    "302"
+   ],
+   "arguable": [],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7325,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 11.7,
+    "retrieve_s": 0.5,
+    "graph_s": 10.9
+   },
+   "gated": true
+  },
+  {
+   "id": 2,
+   "era": "ipc",
+   "offence_type": "culpable homicide (sudden fight)",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "300",
+    "304(1)",
+    "326",
+    "307"
+   ],
+   "verified_titles": {
+    "300": "Murder",
+    "304": "Punishment for culpable homicide not amounting to murder",
+    "326": "Voluntarily causing grievous hurt by dangerous weapons or means",
+    "307": "Attempt to murder"
+   },
+   "outside_expected": [
+    "300",
+    "307",
+    "326"
+   ],
+   "want": [
+    "299",
+    "304"
+   ],
+   "arguable": [
+    "302",
+    "325"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6875,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.4,
+    "graph_s": 18.6
+   },
+   "gated": true
+  },
+  {
+   "id": 3,
+   "era": "ipc",
+   "offence_type": "dowry death",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "498A",
+    "304B",
+    "302"
+   ],
+   "verified_titles": {
+    "498A": "Husband or relative of husband of a woman subjecting her to cruelty",
+    "304B": "Dowry death",
+    "302": "Punishment for murder"
+   },
+   "outside_expected": [
+    "302"
+   ],
+   "want": [
+    "304B",
+    "498A"
+   ],
+   "arguable": [
+    "306"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7314,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.4,
+    "graph_s": 12.8
+   },
+   "gated": true
+  },
+  {
+   "id": 4,
+   "era": "ipc",
+   "offence_type": "kidnapping",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "361",
+    "366",
+    "372",
+    "367",
+    "120B"
+   ],
+   "verified_titles": {
+    "361": "Kidnapping from lawful guardianship",
+    "366": "Kidnapping, abducting or inducing woman to compel her marriage, etc.",
+    "372": "Selling minor for purposes of prostitution, etc.",
+    "367": "Kidnapping or abducting in order to subject person to grievous hurt, slavery, etc.",
+    "120B": "Punishment of criminal conspiracy"
+   },
+   "outside_expected": [
+    "367",
+    "372",
+    "120B"
+   ],
+   "want": [
+    "361",
+    "363",
+    "366"
+   ],
+   "arguable": [],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6752,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.4,
+    "graph_s": 20.8
+   },
+   "gated": true
+  },
+  {
+   "id": 5,
+   "era": "ipc",
+   "offence_type": "robbery",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "392",
+    "378",
+    "390"
+   ],
+   "verified_titles": {
+    "392": "Punishment for robbery",
+    "378": "Theft",
+    "390": "Robbery"
+   },
+   "outside_expected": [
+    "378"
+   ],
+   "want": [
+    "390",
+    "392"
+   ],
+   "arguable": [
+    "34",
+    "397"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.693,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.3,
+    "graph_s": 13.3
+   },
+   "gated": true
+  },
+  {
+   "id": 6,
+   "era": "ipc",
+   "offence_type": "criminal intimidation",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "503",
+    "387"
+   ],
+   "verified_titles": {
+    "503": "Criminal intimidation",
+    "387": "Putting person in fear of death or of grievous hurt, in order to commit extortion"
+   },
+   "outside_expected": [
+    "387"
+   ],
+   "want": [
+    "503",
+    "506"
+   ],
+   "arguable": [
+    "195A"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6516,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.3,
+    "graph_s": 11.9
+   },
+   "gated": true
+  },
+  {
+   "id": 7,
+   "era": "ipc",
+   "offence_type": "forgery / cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "468",
+    "415",
+    "463",
+    "423",
+    "465",
+    "25"
+   ],
+   "verified_titles": {
+    "468": "Forgery for purpose of cheating",
+    "415": "Cheating",
+    "463": "Forgery",
+    "423": "Dishonest or fraudulent execution of deed of transfer containing false statement of consideration",
+    "465": "Punishment for forgery",
+    "25": "Fraudulently"
+   },
+   "outside_expected": [
+    "25",
+    "415",
+    "423",
+    "463"
+   ],
+   "want": [
+    "420",
+    "467",
+    "468",
+    "471"
+   ],
+   "arguable": [
+    "465"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6968,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.4,
+    "graph_s": 22.2
+   },
+   "gated": true
+  },
+  {
+   "id": 8,
+   "era": "ipc",
+   "offence_type": "death by negligence",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "304A",
+    "294"
+   ],
+   "verified_titles": {
+    "304A": "Causing death by negligence",
+    "294": "Obscene acts and songs"
+   },
+   "outside_expected": [
+    "294"
+   ],
+   "want": [
+    "279",
+    "304A"
+   ],
+   "arguable": [],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.5822,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.9,
+    "retrieve_s": 0.4,
+    "graph_s": 10.4
+   },
+   "gated": true
+  },
+  {
+   "id": 9,
+   "era": "bns",
+   "offence_type": "murder",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "101",
+    "103(1)"
+   ],
+   "verified_titles": {
+    "101": "Murder",
+    "103": "Punishment for murder"
+   },
+   "outside_expected": [],
+   "want": [
+    "101",
+    "103"
+   ],
+   "arguable": [],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7325,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.7,
+    "graph_s": 11.6
+   },
+   "gated": true
+  },
+  {
+   "id": 10,
+   "era": "bns",
+   "offence_type": "dowry death",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "85",
+    "103(1)"
+   ],
+   "verified_titles": {
+    "85": "Husband or relative of husband of a woman subjecting her to cruelty",
+    "103": "Punishment for murder"
+   },
+   "outside_expected": [
+    "103"
+   ],
+   "want": [
+    "80",
+    "85"
+   ],
+   "arguable": [
+    "108",
+    "86"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.7411,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.5,
+    "graph_s": 10.3
+   },
+   "gated": true
+  },
+  {
+   "id": 11,
+   "era": "bns",
+   "offence_type": "kidnapping",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "87",
+    "137(1)",
+    "96"
+   ],
+   "verified_titles": {
+    "87": "Kidnapping, abducting or inducing woman to compel her marriage, etc",
+    "137": "Kidnapping",
+    "96": "Procuration of child"
+   },
+   "outside_expected": [
+    "96"
+   ],
+   "want": [
+    "137",
+    "87"
+   ],
+   "arguable": [],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6752,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.5,
+    "graph_s": 12.9
+   },
+   "gated": true
+  },
+  {
+   "id": 12,
+   "era": "bns",
+   "offence_type": "robbery",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "309(1)"
+   ],
+   "verified_titles": {
+    "309": "Robbery"
+   },
+   "outside_expected": [],
+   "want": [
+    "309"
+   ],
+   "arguable": [
+    "3"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.693,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.5,
+    "graph_s": 10.7
+   },
+   "gated": true
+  },
+  {
+   "id": 13,
+   "era": "bns",
+   "offence_type": "criminal intimidation",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "351(3)"
+   ],
+   "verified_titles": {
+    "351": "Criminal intimidation"
+   },
+   "outside_expected": [],
+   "want": [
+    "351"
+   ],
+   "arguable": [
+    "232"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6516,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.4,
+    "graph_s": 7.3
+   },
+   "gated": true
+  },
+  {
+   "id": 14,
+   "era": "bns",
+   "offence_type": "forgery / cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "318(1)",
+    "335",
+    "340(2)"
+   ],
+   "verified_titles": {
+    "318": "Cheating",
+    "335": "Making a false document",
+    "340": "Forged document or electronic record and using it as genuine"
+   },
+   "outside_expected": [
+    "335"
+   ],
+   "want": [
+    "318",
+    "336",
+    "338",
+    "340"
+   ],
+   "arguable": [],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6968,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.5,
+    "graph_s": 13.9
+   },
+   "gated": true
+  },
+  {
+   "id": 15,
+   "era": "bns",
+   "offence_type": "death by negligence",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "106(2)",
+    "281"
+   ],
+   "verified_titles": {
+    "106": "Causing death by negligence",
+    "281": "Rash driving or riding on a public way"
+   },
+   "outside_expected": [],
+   "want": [
+    "106",
+    "281"
+   ],
+   "arguable": [],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.5822,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.5,
+    "graph_s": 10.8
+   },
+   "gated": true
+  },
+  {
+   "id": 16,
+   "era": "bns",
+   "offence_type": "extortion",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "308(1)",
+    "351(1)"
+   ],
+   "verified_titles": {
+    "308": "Extortion",
+    "351": "Criminal intimidation"
+   },
+   "outside_expected": [],
+   "want": [
+    "308"
+   ],
+   "arguable": [
+    "351"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6352,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.5,
+    "graph_s": 10.3
+   },
+   "gated": true
+  },
+  {
+   "id": 17,
+   "era": "bns",
+   "offence_type": "theft by servant (lawyer-style brief)",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "316",
+    "303"
+   ],
+   "verified_titles": {
+    "316": "Criminal breach of trust",
+    "303": "Theft"
+   },
+   "outside_expected": [
+    "316"
+   ],
+   "want": [
+    "303",
+    "306"
+   ],
+   "arguable": [
+    "317"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6619,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.7,
+    "retrieve_s": 1.0,
+    "graph_s": 10.1
+   },
+   "gated": true
+  },
+  {
+   "id": 18,
+   "era": "ipc",
+   "offence_type": "house-breaking by night + theft (last IPC day)",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "457",
+    "380",
+    "461"
+   ],
+   "verified_titles": {
+    "457": "Lurking house-trespass or house-breaking by night in order to commit offence punishable with imprisonment",
+    "380": "Theft in dwelling house, etc.",
+    "461": "Dishonestly breaking open receptacle containing property"
+   },
+   "outside_expected": [
+    "461"
+   ],
+   "want": [
+    "380",
+    "457"
+   ],
+   "arguable": [
+    "379",
+    "454"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.688,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.3,
+    "graph_s": 11.7
+   },
+   "gated": true
+  },
+  {
+   "id": 19,
+   "era": "bns",
+   "offence_type": "house-breaking by night + theft (first BNS day)",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "331(2)",
+    "303"
+   ],
+   "verified_titles": {
+    "331": "Punishment for house-trespass or house- breaking",
+    "303": "Theft"
+   },
+   "outside_expected": [],
+   "want": [
+    "305",
+    "331"
+   ],
+   "arguable": [
+    "303"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.688,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.4,
+    "graph_s": 9.6
+   },
+   "gated": true
+  },
+  {
+   "id": 20,
+   "era": "bns",
+   "offence_type": "LIMITATION PROBE: cruelty straddling the transition",
+   "status": "ok",
+   "routed_ok": true,
+   "relevant_verified": true,
+   "relevant_or_arguable": true,
+   "verified": [
+    "85",
+    "333"
+   ],
+   "verified_titles": {
+    "85": "Husband or relative of husband of a woman subjecting her to cruelty",
+    "333": "House-trespass after preparation for hurt, assault or wrongful restraint"
+   },
+   "outside_expected": [
+    "333"
+   ],
+   "want": [
+    "85"
+   ],
+   "arguable": [
+    "115",
+    "86"
+   ],
+   "unconfirmed": [],
+   "retry_count": 0,
+   "guardrail": {
+    "reason": null,
+    "top_similarity": 0.6552,
+    "threshold": 0.576
+   },
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.4,
+    "retrieve_s": 0.5,
+    "graph_s": 11.2
+   },
+   "gated": false
+  }
+ ]
+}

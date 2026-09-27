@@ -20,9 +20,9 @@
     "Lurking house-trespass by night"
    ],
    [
-    "456",
-    "456",
-    "Punishment for lurking house-trespass or house-breaking by night"
+    "350",
+    "350",
+    "Criminal force"
    ]
   ],
   "fused_top3": [
@@ -30,22 +30,22 @@
     "201",
     "201",
     "Causing disappearance of evidence of offence, or giving false information to screen offender",
-    4,
-    12
+    5,
+    8
    ],
    [
     "378",
     "378",
     "Theft",
-    8,
-    23
+    10,
+    37
    ],
    [
-    "411",
-    "411",
-    "Dishonestly receiving stolen property",
-    51,
-    5
+    "392",
+    "392",
+    "Punishment for robbery",
+    26,
+    28
    ]
   ]
  },
@@ -65,37 +65,37 @@
     "Theft"
    ],
    [
-    "206",
-    "206",
-    "Fraudulent removal or concealment of property to prevent its seizure as forfeited or in execution"
+    "496",
+    "496",
+    "Marriage ceremony fraudulently gone through without lawful marriage"
    ],
    [
-    "405",
-    "405",
-    "Criminal breach of trust"
+    "443",
+    "443",
+    "Lurking house-trespass"
    ]
   ],
   "fused_top3": [
    [
+    "457",
+    "457",
+    "Lurking house-trespass or house-breaking by night in order to commit offence punishable with imprisonment",
+    7,
+    31
+   ],
+   [
+    "454",
+    "454",
+    "Lurking house-trespass or house-breaking in order to commit offence punishable with imprisonment",
+    5,
+    39
+   ],
+   [
     "380",
     "380",
     "Theft in dwelling house, etc.",
-    7,
+    21,
     19
-   ],
-   [
-    "382",
-    "382",
-    "Theft after preparation made for causing death, hurt or restraint in order to the committing of the theft",
-    26,
-    12
-   ],
-   [
-    "378",
-    "378",
-    "Theft",
-    1,
-    65
    ]
   ]
  },
@@ -120,9 +120,9 @@
     "Theft by clerk or servant of property in possession of master"
    ],
    [
-    "409",
-    "409",
-    "Criminal breach of trust by public servant, or by banker, merchant or agent"
+    "486",
+    "486",
+    "Selling goods marked with a counterfeit property mark"
    ]
   ],
   "fused_top3": [
@@ -130,22 +130,22 @@
     "409",
     "409",
     "Criminal breach of trust by public servant, or by banker, merchant or agent",
-    3,
-    13
+    4,
+    17
    ],
    [
     "411",
     "411",
     "Dishonestly receiving stolen property",
-    23,
-    2
+    26,
+    1
    ],
    [
     "420",
     "420",
     "Cheating and dishonestly inducing delivery of property",
-    27,
-    1
+    29,
+    2
    ]
   ]
  },
@@ -171,9 +171,9 @@
     "Criminal breach of trust"
    ],
    [
-    "403",
-    "403",
-    "Dishonest misappropriation of property"
+    "464",
+    "464",
+    "Making a false document"
    ]
   ],
   "fused_top3": [
@@ -181,22 +181,22 @@
     "420",
     "420",
     "Cheating and dishonestly inducing delivery of property",
-    10,
+    15,
     1
    ],
    [
     "409",
     "409",
     "Criminal breach of trust by public servant, or by banker, merchant or agent",
-    6,
+    10,
     8
    ],
    [
-    "415",
-    "415",
-    "Cheating",
-    4,
-    15
+    "405",
+    "405",
+    "Criminal breach of trust",
+    2,
+    19
    ]
   ]
  },
@@ -290,14 +290,14 @@
     "307",
     "307",
     "Attempt to murder",
-    38,
+    43,
     2
    ],
    [
     "324",
     "324",
     "Voluntarily causing hurt by dangerous weapons or means",
-    42,
+    47,
     1
    ]
   ]
@@ -313,6 +313,11 @@
   ],
   "statute_top3": [
    [
+    "464",
+    "464",
+    "Making a false document"
+   ],
+   [
     "207",
     "207",
     "Fraudulent claim to property to prevent its seizure as forfeited or in execution"
@@ -321,11 +326,6 @@
     "206",
     "206",
     "Fraudulent removal or concealment of property to prevent its seizure as forfeited or in execution"
-   ],
-   [
-    "403",
-    "403",
-    "Dishonest misappropriation of property"
    ]
   ],
   "fused_top3": [
@@ -333,22 +333,22 @@
     "415",
     "415",
     "Cheating",
-    4,
+    6,
     11
    ],
    [
     "467",
     "467",
     "Forgery of valuable security, will, etc.",
-    14,
+    17,
     5
    ],
    [
-    "420",
-    "420",
-    "Cheating and dishonestly inducing delivery of property",
-    21,
-    1
+    "464",
+    "464",
+    "Making a false document",
+    1,
+    28
    ]
   ]
  },
@@ -391,14 +391,14 @@
     "357",
     "Assault or criminal force in attempt wrongfully to confine a person",
     14,
-    21
+    19
    ],
    [
-    "307",
-    "307",
-    "Attempt to murder",
-    56,
-    2
+    "143",
+    "143",
+    "Punishment",
+    28,
+    12
    ]
   ]
  },
@@ -433,21 +433,21 @@
     "303(1)",
     "Theft",
     3,
-    1
+    2
    ],
    [
-    "309",
-    "309(4)",
-    "Robbery",
-    10,
-    17
+    "317",
+    "317(5)",
+    "Stolen property",
+    8,
+    6
    ],
    [
-    "324",
-    "324(1)",
-    "Mischief",
-    7,
-    26
+    "2",
+    "2(33)",
+    "Definitions",
+    13,
+    14
    ]
   ]
  },
@@ -483,21 +483,21 @@
     "303(1)",
     "Theft",
     2,
-    4
+    10
+   ],
+   [
+    "317",
+    "317(1)",
+    "Stolen property",
+    6,
+    8
    ],
    [
     "309",
     "309(3)",
     "Robbery",
     3,
-    12
-   ],
-   [
-    "351",
-    "351(4)",
-    "Criminal intimidation",
-    37,
-    1
+    29
    ]
   ]
  },
@@ -540,14 +540,14 @@
     "303(1)",
     "Theft",
     7,
-    6
+    11
    ],
    [
     "336",
     "336(1)",
     "Forgery",
     10,
-    7
+    14
    ]
   ]
  },
@@ -598,7 +598,7 @@
     "115(2)",
     "Voluntarily causing hurt",
     6,
-    7
+    8
    ]
   ]
  },
@@ -636,18 +636,18 @@
     1
    ],
    [
-    "308",
-    "308(7)",
-    "Extortion",
-    2,
-    10
-   ],
-   [
     "336",
     "336(3)",
     "Forgery",
     8,
     5
+   ],
+   [
+    "335",
+    "335",
+    "Making a false document",
+    3,
+    18
    ]
   ]
  },
@@ -686,18 +686,18 @@
     2
    ],
    [
-    "319",
-    "319(1)",
-    "Cheating by personation",
-    1,
-    7
-   ],
-   [
     "318",
     "318(1)",
     "Cheating",
     7,
     1
+   ],
+   [
+    "319",
+    "319(1)",
+    "Cheating by personation",
+    1,
+    12
    ]
   ]
  },
@@ -732,21 +732,21 @@
     "115(1)",
     "Voluntarily causing hurt",
     2,
-    2
+    3
    ],
    [
-    "333",
-    "333",
-    "House-trespass after preparation for hurt, assault or wrongful restraint",
-    1,
-    10
+    "109",
+    "109(1)",
+    "Attempt to murder",
+    10,
+    2
    ],
    [
     "3",
     "3(9)",
     "General explanations",
     6,
-    5
+    7
    ]
   ]
  }
