@@ -1,0 +1,82 @@
+[
+ {
+  "kind": "civil",
+  "text": "The tenant has not paid rent for six months and the landlord wants to evict him and recover the arrears under the rent agreement.",
+  "status": "no_offence_disclosed",
+  "passed": true,
+  "charges": [],
+  "why": "The facts describe a civil dispute regarding unpaid rent and eviction proceedings, which do not disclose any criminal act such as theft, cheating, or assault."
+ },
+ {
+  "kind": "civil",
+  "text": "Our company supplied steel under a contract and the buyer has refused to pay the final invoice, citing a delay in delivery.",
+  "status": "no_offence_disclosed",
+  "passed": true,
+  "charges": [],
+  "why": "The facts describe a commercial dispute over payment and delivery delay, which constitutes a civil breach of contract rather than a criminal act."
+ },
+ {
+  "kind": "civil",
+  "text": "Two brothers dispute the partition of their late father's agricultural land; one claims the will is invalid.",
+  "status": "no_offence_disclosed",
+  "passed": true,
+  "charges": [],
+  "why": "The facts describe a civil dispute regarding land partition and the validity of a will, which involves no criminal act such as violence, theft, forgery, or breach of trust."
+ },
+ {
+  "kind": "tax",
+  "text": "The assessing officer disallowed our depreciation claim on plant and machinery for the assessment year 2021-22.",
+  "status": "no_offence_disclosed",
+  "passed": true,
+  "charges": [],
+  "why": "The facts describe a tax assessment dispute regarding depreciation claims, which is a civil and administrative matter not constituting a criminal offence."
+ },
+ {
+  "kind": "labour",
+  "text": "The workman was retrenched without one month's notice or retrenchment compensation after eleven years of service.",
+  "status": "no_offence_disclosed",
+  "passed": true,
+  "charges": [],
+  "why": "The facts describe a labor dispute regarding retrenchment procedures and compensation, which constitutes a civil or administrative matter rather than a criminal offence."
+ },
+ {
+  "kind": "family",
+  "text": "The couple wants a divorce by mutual consent and needs to agree custody of their two children.",
+  "status": "no_offence_disclosed",
+  "passed": true,
+  "charges": [],
+  "why": "The facts describe a civil dispute regarding divorce and child custody with no indication of any criminal act, illegal agreement, or wrongful conduct."
+ },
+ {
+  "kind": "not legal",
+  "text": "Preheat the oven to 180 degrees, cream the butter and sugar, then fold in the flour and bake for 25 minutes.",
+  "status": "insufficient_data",
+  "passed": true,
+  "charges": [],
+  "why": "the closest ingested judgment scores 0.485, below the 0.576 relevance threshold: nothing in the corpus resembles these facts closely enough to ground an answer"
+ },
+ {
+  "kind": "not legal",
+  "text": "The match went to a super over after both teams scored 176, and the chasing side won off the final ball.",
+  "status": "insufficient_data",
+  "passed": true,
+  "charges": [],
+  "why": "the closest ingested judgment scores 0.557, below the 0.576 relevance threshold: nothing in the corpus resembles these facts closely enough to ground an answer"
+ },
+ {
+  "kind": "not legal",
+  "text": "Please summarise the plot of the novel and describe its main characters in about two hundred words.",
+  "status": "insufficient_data",
+  "passed": true,
+  "charges": [],
+  "why": "the closest ingested judgment scores 0.460, below the 0.576 relevance threshold: nothing in the corpus resembles these facts closely enough to ground an answer"
+ },
+ {
+  "kind": "not legal",
+  "text": "asdf qwerty lorem ipsum dolor sit amet 12345",
+  "status": "insufficient_data",
+  "passed": true,
+  "charges": [],
+  "why": "the closest ingested judgment scores 0.472, below the 0.576 relevance threshold: nothing in the corpus resembles these facts closely enough to ground an answer"
+ }
+]
