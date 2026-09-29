@@ -67,10 +67,31 @@ Dev set end to end (`docs/hardening_dev_v2_raw.json`): routed 15/15; a relevant 
 - **Phase 4 gate re-run: stopped by Claude Code for low memory after 23 of 42 runs.** In those 23: routing 23/23, identical across reps; a relevant section verified in every gate case, including both common-intention cases and the snatching case; the gated adversarial case triggered and survived; the second no-context case now also triggers and self-corrects to BNS 318.
 - **Row 12 (the stall) explained**: in the stopped run, one case took 1,819 s. The new instrumentation logged **no** slow retrieval, so the time went in the LLM stage while system memory was critically low (the job was reaped minutes later). Both stalls seen so far were memory pressure paging Ollama out, not a code defect. Mitigation is operational: run long evaluations with memory-heavy apps closed, or from a terminal outside Claude Code's background reaper.
 
+## Frozen results (2026-09-29)
+
+**Phase 4 gate, full re-run (resumable runner): PASS.** Routing 30/30 (identical across reps); relevant section verified **30/30** (Phase 4 original 21/30, after the data update 24/30); gated adversarial triggered + survived 3/3; recipe → `insufficient_data`, tenancy → `no_offence_disclosed`. Slowest run 103 s, no stalls.
+
+**Broad-coverage held-out set, scored once: a SETBACK, recorded as is.**
+
+| 19 gated cases | before hardening (Phase 4 pipeline) | after hardening |
+|---|---|---|
+| routed | 19/19 | 19/19 |
+| relevant section verified | **19/19** | **17/19** |
+| relevant section among charges | – | 16/19 |
+| extra sections | 19 | 15 (−21%) |
+
+Done-criteria: routing met; **recall ≥ 18/19 NOT met; extras halved NOT met. The dev-set gains did not generalise.**
+- Case 2 (single-blow sudden fight): Node 1 now proposes murder (IPC 300/302) instead of culpable homicide (299/304). New, and legally wrong.
+- Case 18 (house-breaking by night): Node 1 proposes 379 instead of 380/457.
+- Case 4 (kidnapping a 15-year-old): 361 and 366 verified, but the two-pass applicability check rejected both.
+Cases 2 and 18 point at Node 1's prompt change (the fact-profile fields added for the decline and liability rules) shifting the 4B model's proposals. Case 4 is the applicability judge's known weakness. The run was also memory-starved (a slow retrieval logged with 0.4 GB free).
+
+Per the anti-overfitting protocol, this set is now spent for the current method: **nothing may be changed because of these results without writing a new held-out set.** Any diagnosis must happen on the dev set.
+
 ## Pending measurements (to be filled by the frozen runs)
 
 - Phase 2 retrieval re-score (dev + held-out, once).
-- Out-of-domain probes (`scripts/eval_probes.py`).
-- Phase 4 gate (`scripts/run_phase4.py --reps 3`).
-- Broad-coverage, frozen (`scripts/eval_broad.py`).
+- ~~Out-of-domain probes~~ done: 10/10.
+- ~~Phase 4 gate~~ done: PASS.
+- ~~Broad-coverage, frozen~~ done: setback (above).
 - IL-TUR LSI dev sample and frozen test sample: **blocked on access** (row 13).
