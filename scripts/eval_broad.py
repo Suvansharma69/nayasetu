@@ -48,26 +48,40 @@ def main():
     rows = []
     tot = {"n": 0, "routed": 0, "rec_verified": 0, "rec_charges": 0, "extra_verified": 0,
            "extra_charges": 0, "relevant_rejected_by_2b": 0, "quotes": 0, "quotes_grounded": 0}
+    # Resumable, like run_phase4.py: each finished case is appended here and
+    # skipped on a re-run (long runs on this machine get killed for low memory).
+    ckpt_path = ROOT / "docs" / f"{out_name}_runs.jsonl"
+    done = {}
+    if ckpt_path.exists():
+        done = {json.loads(l)["id"]: json.loads(l) for l in
+                ckpt_path.read_text(encoding="utf-8").splitlines() if l.strip()}
+    ckpt = ckpt_path.open("a", encoding="utf-8")
     for i, c in enumerate(cases, 1):
         cid = c.get("id", i)
-        out = pipeline.run(c["query"], c["offence_date"], g=g, cli=cli,
-                           check_applicability=not args.no_applicability)
-        st = out["state"]
         rel = {_sec(x) for x in c["relevant"]}
         ok_set = rel | {_sec(x) for x in c.get("arguable", [])}
-        ver = {v["section"] for v in st["verified_sections"]}
-        chg = {v["section"] for v in out["charges"]}
-        gated = c.get("gated", True)
-        r = {"id": cid, "era": c["era"], "offence_type": c.get("offence_type"), "status": out["status"],
-             "routed_ok": out["era"] == c["era"], "want": sorted(rel),
-             "verified": sorted(ver), "charges": sorted(chg), "unsupported": sorted(ver - chg),
-             "extra_verified": sorted(ver - ok_set), "extra_charges": sorted(chg - ok_set),
-             "relevant_rejected_by_2b": sorted((ver & rel) - chg),
-             "facts_profile": st.get("facts_profile"), "applicability": st.get("applicability"),
-             "unconfirmed": [u["raw"] for u in st["unconfirmed"]],
-             "timings": {k: round(v, 1) for k, v in out["timings"].items()}, "gated": gated}
+        if cid in done:
+            r = done[cid]
+        else:
+            out = pipeline.run(c["query"], c["offence_date"], g=g, cli=cli,
+                               check_applicability=not args.no_applicability)
+            st = out["state"]
+            ver = {v["section"] for v in st["verified_sections"]}
+            chg = {v["section"] for v in out["charges"]}
+            r = {"id": cid, "era": c["era"], "offence_type": c.get("offence_type"), "status": out["status"],
+                 "routed_ok": out["era"] == c["era"], "want": sorted(rel),
+                 "verified": sorted(ver), "charges": sorted(chg), "unsupported": sorted(ver - chg),
+                 "extra_verified": sorted(ver - ok_set), "extra_charges": sorted(chg - ok_set),
+                 "relevant_rejected_by_2b": sorted((ver & rel) - chg),
+                 "facts_profile": st.get("facts_profile"), "applicability": st.get("applicability"),
+                 "unconfirmed": [u["raw"] for u in st["unconfirmed"]],
+                 "timings": {k: round(v, 1) for k, v in out["timings"].items()},
+                 "gated": c.get("gated", True)}
+            ckpt.write(json.dumps(r) + "\n")
+            ckpt.flush()
         rows.append(r)
-        if gated:
+        ver, chg = set(r["verified"]), set(r["charges"])
+        if r["gated"]:
             tot["n"] += 1
             tot["routed"] += r["routed_ok"]
             tot["rec_verified"] += bool(ver & rel)
@@ -75,13 +89,14 @@ def main():
             tot["extra_verified"] += len(r["extra_verified"])
             tot["extra_charges"] += len(r["extra_charges"])
             tot["relevant_rejected_by_2b"] += len(r["relevant_rejected_by_2b"])
-            for a in st.get("applicability") or []:
+            for a in r.get("applicability") or []:
                 tot["quotes"] += len(a["grounded_quotes"]) + len(a["dropped_quotes"])
                 tot["quotes_grounded"] += len(a["grounded_quotes"])
-        print(f"#{cid:>2} [{c['era']}] {str(c.get('offence_type'))[:30]:<30} {out['status']:<20} "
+        print(f"#{cid:>2} [{c['era']}] {str(c.get('offence_type'))[:30]:<30} {r['status']:<20} "
               f"want={sorted(rel)} charges={sorted(chg)} unsupported={r['unsupported']} "
               f"extra={r['extra_charges']} lost={r['relevant_rejected_by_2b']} "
-              f"{out['timings'].get('graph_s', 0):.0f}s", flush=True)
+              f"{r['timings'].get('graph_s', 0):.0f}s{' (checkpoint)' if cid in done else ''}", flush=True)
+    ckpt.close()
     embedder.free()
     n = tot["n"]
     print(f"\nmodel {llm.model()}  {fixture.name}  gated {n}: routed {tot['routed']}/{n}")

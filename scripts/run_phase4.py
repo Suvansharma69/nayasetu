@@ -91,21 +91,48 @@ def summary(out):
     }
 
 
+CHECKPOINT = ROOT / "docs" / "phase4_runs.jsonl"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--reps", type=int, default=3)
+    ap.add_argument("--fresh", action="store_true", help="discard the checkpoint and start over")
     args = ap.parse_args()
+
+    # Resumable: every finished run is appended to CHECKPOINT and skipped on a
+    # re-run. Twice on 2026-09-27 the whole gate run was killed for low system
+    # memory 20+ runs in, losing everything, because results were only written
+    # at the end.
+    if args.fresh and CHECKPOINT.exists():
+        CHECKPOINT.unlink()
+    done = {}
+    if CHECKPOINT.exists():
+        for line in CHECKPOINT.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                r = json.loads(line)
+                done[tuple(r["key"])] = r["record"]
+    ckpt = CHECKPOINT.open("a", encoding="utf-8")
+
+    def remember(key, record):
+        ckpt.write(json.dumps({"key": list(key), "record": record}) + "\n")
+        ckpt.flush()
 
     fx = json.loads(FIXTURE.read_text(encoding="utf-8"))
     base = json.loads((ROOT / fx["gate_from"]).read_text(encoding="utf-8"))["cases"]
     g, cli = cg.load(), store.client()
-    print(f"model {llm.model()}  reps {args.reps}", flush=True)
+    print(f"model {llm.model()}  reps {args.reps}  ({len(done)} runs already in the checkpoint)", flush=True)
 
     results = {"model": llm.model(), "reps": args.reps, "gate": [], "adversarial": [], "probes": []}
     gate_fail = 0
     for rep in range(args.reps):
         for idx in fx["gate"]:
             c = base[idx - 1]
+            key = ("gate", rep, idx)
+            if key in done:
+                results["gate"].append(done[key])
+                gate_fail += bool(done[key]["routing_problems"])
+                continue
             out = run_case(c["query"], c["offence_date"], g, cli)
             probs = routing_ok(out, c["era"], g)
             gate_fail += bool(probs)
@@ -115,6 +142,7 @@ def main():
             results["gate"].append({"rep": rep, "case": idx, "offence_type": c["offence_type"],
                                     "want": sorted(want), "relevant_verified": hit,
                                     "routing_problems": probs, **s})
+            remember(key, results["gate"][-1])
             print(f"rep{rep} case {idx:2} [{c['era']}] {c['offence_type']:<24} "
                   f"{'ROUTE-OK' if not probs else 'ROUTE-FAIL ' + '; '.join(probs)}  "
                   f"verified={s['verified']} want={sorted(want)} {'hit' if hit else 'MISS'} "
@@ -122,6 +150,10 @@ def main():
                   f"{s['wall_s']}s", flush=True)
 
         for a in fx["adversarial"]:
+            key = ("adv", rep, a["name"])
+            if key in done:
+                results["adversarial"].append(done[key])
+                continue
             out = run_case(a["query"], a["offence_date"], g, cli,
                            withhold_retrieval=a.get("withhold_retrieval", False))
             st = out["state"]
@@ -143,17 +175,24 @@ def main():
                                            "withhold_retrieval": a.get("withhold_retrieval", False),
                                            "triggered": triggered,
                                            "survived": survived, "relevant_verified": hit, **s})
+            remember(key, results["adversarial"][-1])
             print(f"rep{rep} ADV{'*' if a.get('gate', True) else ' '} {a['name']:<24} triggered={triggered} survived={survived} "
                   f"relevant={hit} rounds={s['rounds']} verified={s['verified']} {s['wall_s']}s",
                   flush=True)
 
     for p in fx["probes"]:
+        key = ("probe", p["name"])
+        if key in done:
+            results["probes"].append(done[key])
+            continue
         out = run_case(p["query"], p["offence_date"], g, cli)
         s = summary(out)
         results["probes"].append({"name": p["name"], "expect": p["expect"], **s})
+        remember(key, results["probes"][-1])
         print(f"PROBE {p['name']:<8} status={s['status']} (expected {p['expect']}) "
               f"rounds={s['rounds']} verified={s['verified']} {s['wall_s']}s", flush=True)
 
+    ckpt.close()
     embedder.free()
     gated = [a for a in results["adversarial"] if a["gate"]]
     adv_ok = bool(gated) and all(a["triggered"] and a["survived"] for a in gated)
