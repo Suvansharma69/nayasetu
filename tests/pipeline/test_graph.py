@@ -5,6 +5,8 @@ unconfirmed section, feeds it back, caps at retry_count < 2, and never lets an
 unconfirmed section into verified_sections."""
 import re
 
+import pytest
+
 from src.pipeline import graph
 from src.pipeline.state import SECTION3_FIELDS
 
@@ -238,3 +240,14 @@ def test_a_section_is_demoted_only_if_every_pass_rejects_it(g, scripted):
     assert [a["supported"] for a in one] == [False, True]      # single pass: order decides
     assert [a["supported"] for a in two] == [True, True]       # consensus: neither demoted
     assert two[0]["passes"] == [False, True]
+
+
+def test_ablation_switches(g, scripted, monkeypatch):
+    monkeypatch.setenv("PRAMANA_ABLATE", "judge,profile")
+    llm = scripted(["323"], profile=_joint(4))
+    out = _run(g, llm, date="2023-12-03")
+    assert llm.assess_calls == []                                   # judge off
+    assert not [c for c in out["state"]["candidate_sections"] if c["source"] == "rule"]   # profile off
+    monkeypatch.setenv("PRAMANA_ABLATE", "nonsense")
+    with pytest.raises(ValueError):
+        _run(g, scripted(["323"]))

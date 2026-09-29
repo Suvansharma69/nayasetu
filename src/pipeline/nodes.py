@@ -35,7 +35,7 @@ import re
 
 from src.graph import citation_graph as cg
 
-from . import chargeability
+from . import ablation, chargeability
 from .router import CODE_NAME
 
 MAX_RETRIES = 2
@@ -123,6 +123,14 @@ PROPOSAL_SCHEMA = {
     "required": ["discloses_offence", "why", "accused_count", "acted_together",
                  "shared_plan_or_object", "sections"],
 }
+# Sections only -- the Phase 4 schema, used when the profile is ablated.
+SECTIONS_ONLY_SCHEMA = {"type": "object",
+                        "properties": {"sections": PROPOSAL_SCHEMA["properties"]["sections"]},
+                        "required": ["sections"]}
+
+
+def proposal_schema():
+    return SECTIONS_ONLY_SCHEMA if ablation.off("profile") else PROPOSAL_SCHEMA
 
 
 def _code_short(era):
@@ -145,7 +153,12 @@ def _system_prompt(era):
         "For each section give the bare number (with the sub-section in brackets if one is "
         "specifically engaged, e.g. 303(2)) and a one-sentence reason tied to the facts. "
         "A case usually engages one to three sections; propose at most "
-        f"{MAX_PROPOSALS - 2}, most important first.\n"
+        f"{MAX_PROPOSALS - 2}, most important first."
+        + ("" if ablation.off("profile") else "\n" + _PROFILE_PROMPT)
+    )
+
+
+_PROFILE_PROMPT = (
         "Before the sections, answer about the facts:\n"
         "- discloses_offence: false if the facts describe only a civil, contractual, tax, "
         "service or family dispute and no criminal act; then give no sections. `why`: one "
@@ -214,9 +227,9 @@ def statute_identifier(state, llm):
     # rejections -- so their presence is what marks a retry.
     is_retry = bool(_open_rejections(state))
     rnd = state["retry_count"] + 1 if is_retry else 0
-    reply = llm(build_messages(state), PROPOSAL_SCHEMA)
+    reply = llm(build_messages(state), proposal_schema())
     update = {"retry_count": rnd}
-    if not is_retry:
+    if not is_retry and not ablation.off("profile"):
         profile = {k: reply.get(k) for k in PROFILE_FIELDS}
         update["facts_profile"] = profile
         if profile.get("discloses_offence") is False:
@@ -241,7 +254,7 @@ def statute_identifier(state, llm):
             continue
         proposals.append({"raw": raw, "reason": str(item.get("reason", "")).strip(), "round": rnd,
                           "source": "llm"})
-    if not is_retry:
+    if not is_retry and not ablation.off("profile"):
         proposals += liability_rule(state["era"], update["facts_profile"], proposals)
     update["candidate_sections"] = state["candidate_sections"] + proposals
     return update
@@ -339,6 +352,8 @@ def check(g, era, proposal):
         else:
             title = _title(g, era, sec)
             role, why = chargeability.classify(era, sec, p["subsection"])
+            if ablation.off("chargeability") and role == "non_chargeable":
+                role = "unchecked"
             if role == "non_chargeable":
                 # Real, but not a charge: a definition, general exception or
                 # punishment rule. Rejected like any other unconfirmed citation,

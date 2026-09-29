@@ -23,7 +23,7 @@ from functools import partial
 from src.graph import citation_graph as cg
 from src.retrieval import embedder, ranker
 
-from . import applicability, chargeability, guardrail, llm as llm_mod, nodes
+from . import ablation, applicability, chargeability, guardrail, llm as llm_mod, nodes
 from .router import STRADDLE_WARNING, route, route_period
 from .state import initial_state
 
@@ -73,7 +73,8 @@ def _excerpt(text):
 
 def retrieve_candidates(case_facts, era, cli=None, device=RUNTIME_DEVICE):
     rows = ranker.rank_sections(case_facts, era, top_k=TOP_K_CANDIDATES, cli=cli, device=device,
-                                exclude=chargeability.non_chargeable_sections(era))
+                                exclude=None if ablation.off("exclude")
+                                else chargeability.non_chargeable_sections(era))
     for r in rows:
         r["excerpt"] = _excerpt(ranker._section_record(era, r["section"]).get("text"))
     return rows
@@ -93,6 +94,7 @@ def run(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, suf
     `llm`, `g`, `retrieve`, `sufficient` and `text_of` are injectable so tests
     run with no Ollama, no index and no GPU.
     """
+    check_applicability = check_applicability and not ablation.off("judge")
     kw = dict(llm=llm, g=g, cli=cli, retrieve=retrieve, sufficient=sufficient, text_of=text_of,
               check_applicability=check_applicability)
     if offence_date_to is not None:
