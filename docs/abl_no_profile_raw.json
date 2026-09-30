@@ -1,0 +1,1611 @@
+{
+ "model": "qwen3.5:4b",
+ "fixture": "tests/fixtures/phase2_testset.json",
+ "totals": {
+  "n": 15,
+  "routed": 15,
+  "rec_verified": 12,
+  "rec_charges": 10,
+  "extra_verified": 37,
+  "extra_charges": 21,
+  "relevant_rejected_by_2b": 2,
+  "quotes": 99,
+  "quotes_grounded": 99
+ },
+ "cases": [
+  {
+   "id": 1,
+   "era": "ipc",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "378",
+    "379"
+   ],
+   "verified": [
+    "379",
+    "380",
+    "392",
+    "405",
+    "411",
+    "446"
+   ],
+   "charges": [],
+   "unsupported": [
+    "379",
+    "380",
+    "392",
+    "405",
+    "411",
+    "446"
+   ],
+   "extra_verified": [
+    "380",
+    "392",
+    "405",
+    "411",
+    "446"
+   ],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [
+    "379"
+   ],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "379",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The complainant parked his motorcycle outside his house at night.",
+      "In the morning it was gone."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The accused did not enter a dwelling or place of custody; the theft occurred on a public lane after the vehicle had been moved, not inside a building used as a dwelling or for custody. The facts show the act of stealing (taking away without",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "405",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The accused had no permission to take it and did not return it."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The accused was not 'entrusted with property' or had 'dominion over property'. The facts state he had 'no permission', which negates the requirement of lawful possession or trust necessary for this offence.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "392",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The accused pushing it away down the lane and riding off."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "Robbery requires the use of force or threat with intent to commit theft, cheat, or steal. The facts describe moving a parked motorcycle without mentioning any violence, threat, or intimidation against a person.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "446",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The complainant parked his motorcycle outside his house at night."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "House-breaking requires the act of breaking or attempting to break into a building. The facts state the motorcycle was 'gone' and pushed away down the lane; there is no mention of entering a house or breaking any barrier.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "380",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The complainant parked his motorcycle outside his house at night.",
+      "In the morning it was gone."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "This section requires theft committed 'in any building... used as a human dwelling'. The motorcycle was taken from outside the house (down the lane), not inside the dwelling itself.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "411",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The accused pushing it away down the lane and riding off."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "This section requires the accused to have 'received or retained' stolen property. The facts describe the commission of the theft itself (taking the bike), not the subsequent act of receiving or keeping it.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 9.2,
+    "retrieve_s": 0.4,
+    "graph_s": 112.9
+   },
+   "gated": true
+  },
+  {
+   "id": 2,
+   "era": "ipc",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "378",
+    "380"
+   ],
+   "verified": [
+    "378",
+    "380",
+    "457"
+   ],
+   "charges": [
+    "378",
+    "380",
+    "457"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "457"
+   ],
+   "extra_charges": [
+    "457"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "457",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "While the family was away at a wedding",
+      "the accused entered their home through an unlatched window",
+      "removed gold ornaments and cash from an almirah in the bedroom"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "380",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "entered their home",
+      "removed gold ornaments and cash from an almirah in the bedroom"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "378",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "removed gold ornaments and cash",
+      "from an almirah in the bedroom"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.6,
+    "retrieve_s": 0.3,
+    "graph_s": 45.4
+   },
+   "gated": true
+  },
+  {
+   "id": 3,
+   "era": "ipc",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "378",
+    "381"
+   ],
+   "verified": [
+    "378",
+    "408",
+    "409"
+   ],
+   "charges": [
+    "378",
+    "408",
+    "409"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "408",
+    "409"
+   ],
+   "extra_charges": [
+    "408",
+    "409"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "408",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused worked as a salesman at the complainant's cloth shop.",
+      "Over four months he removed bolts of cloth from the stock room and sold them to a third party."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "378",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "he removed bolts of cloth from the stock room",
+      "sold them to a third party"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "409",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused worked as a salesman at the complainant's cloth shop.",
+      "Over four months he removed bolts of cloth from the stock room and sold them to a third party."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.0,
+    "retrieve_s": 0.5,
+    "graph_s": 61.4
+   },
+   "gated": true
+  },
+  {
+   "id": 4,
+   "era": "ipc",
+   "offence_type": "criminal breach of trust",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "405",
+    "406",
+    "408"
+   ],
+   "verified": [
+    "34",
+    "408",
+    "409",
+    "415",
+    "420"
+   ],
+   "charges": [
+    "34",
+    "408",
+    "409",
+    "415",
+    "420"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "34",
+    "409",
+    "415",
+    "420"
+   ],
+   "extra_charges": [
+    "34",
+    "409",
+    "415",
+    "420"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "408",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused was the accountant of a firm",
+      "He transferred those deposits into an account in his wife's name"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "420",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused was the accountant of a firm",
+      "He transferred those deposits into an account in his wife's name"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "415",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused was the accountant of a firm",
+      "He transferred those deposits into an account in his wife's name"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "409",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused was the accountant of a firm",
+      "He transferred those deposits into an account in his wife's name"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "34",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused was the accountant of a firm",
+      "He transferred those deposits into an account in his wife's name"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.4,
+    "graph_s": 71.4
+   },
+   "gated": true
+  },
+  {
+   "id": 5,
+   "era": "ipc",
+   "offence_type": "assault",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "320",
+    "322",
+    "325",
+    "326"
+   ],
+   "verified": [
+    "324",
+    "325",
+    "326"
+   ],
+   "charges": [
+    "324",
+    "325",
+    "326"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "324"
+   ],
+   "extra_charges": [
+    "324"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "326",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "struck the complainant on the forearm with an iron rod",
+      "fracture of the radius",
+      "fifteen days of hospitalisation"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "325",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "struck the complainant on the forearm with an iron rod",
+      "fracture of the radius"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "324",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "struck the complainant on the forearm with an iron rod",
+      "fracture of the radius",
+      "fifteen days of hospitalisation"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.0,
+    "retrieve_s": 0.4,
+    "graph_s": 46.7
+   },
+   "gated": true
+  },
+  {
+   "id": 6,
+   "era": "ipc",
+   "offence_type": "assault",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "351",
+    "352"
+   ],
+   "verified": [
+    "324",
+    "503"
+   ],
+   "charges": [
+    "503"
+   ],
+   "unsupported": [
+    "324"
+   ],
+   "extra_verified": [
+    "324",
+    "503"
+   ],
+   "extra_charges": [
+    "503"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "503",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "raised a stick above his head and advanced towards the complainant shouting that he would break his legs"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "324",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "raised a stick above his head and advanced towards the complainant shouting that he would break his legs"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "Voluntarily causing hurt (the complainant was not touched and suffered no injury)",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.0,
+    "retrieve_s": 0.4,
+    "graph_s": 35.4
+   },
+   "gated": true
+  },
+  {
+   "id": 7,
+   "era": "ipc",
+   "offence_type": "cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "415",
+    "420"
+   ],
+   "verified": [
+    "307",
+    "415",
+    "420",
+    "463",
+    "465",
+    "468"
+   ],
+   "charges": [
+    "415",
+    "420",
+    "463",
+    "465",
+    "468"
+   ],
+   "unsupported": [
+    "307"
+   ],
+   "extra_verified": [
+    "307",
+    "463",
+    "465",
+    "468"
+   ],
+   "extra_charges": [
+    "463",
+    "465",
+    "468"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "420",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "advertised a flat for sale",
+      "showed the complainant forged ownership papers",
+      "accepted eleven lakh rupees as advance"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "468",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "showed the complainant forged ownership papers",
+      "accepted eleven lakh rupees as advance"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "463",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "showed the complainant forged ownership papers"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "415",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "advertised a flat for sale",
+      "showed the complainant forged ownership papers",
+      "accepted eleven lakh rupees as advance"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "465",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "showed the complainant forged ownership papers"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "307",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts describe a completed transaction (acceptance of money) based on deception, not an act with intent to cause death.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.3,
+    "retrieve_s": 0.4,
+    "graph_s": 92.1
+   },
+   "gated": true
+  },
+  {
+   "id": 8,
+   "era": "ipc",
+   "offence_type": "common intention",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "322",
+    "34"
+   ],
+   "verified": [
+    "114",
+    "147",
+    "149",
+    "323"
+   ],
+   "charges": [
+    "114",
+    "147",
+    "149",
+    "323"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "114",
+    "147",
+    "149",
+    "323"
+   ],
+   "extra_charges": [
+    "114",
+    "147",
+    "149",
+    "323"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "147",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Four men arrived together at the shop, having agreed beforehand to teach the shopkeeper a lesson.",
+      "Two held him down while a third beat him; the fourth kept watch at the door."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "149",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "having agreed beforehand to teach the shopkeeper a lesson",
+      "Two held him down while a third beat him; the fourth kept watch at the door"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "323",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "a third beat him",
+      "Only one of them actually inflicted the injuries"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "114",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Two held him down while a third beat him; the fourth kept watch at the door"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.4,
+    "graph_s": 59.6
+   },
+   "gated": true
+  },
+  {
+   "id": 9,
+   "era": "bns",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303"
+   ],
+   "verified": [
+    "303",
+    "329"
+   ],
+   "charges": [
+    "303",
+    "329"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "329"
+   ],
+   "extra_charges": [
+    "329"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "303",
+     "subsection": "303(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused pushing it away down the lane and riding off.",
+      "The accused had no permission to take it",
+      "did not return it"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "329",
+     "subsection": "329(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The complainant parked his motorcycle outside his house at night.",
+      "In the morning it was gone.",
+      "CCTV shows the accused pushing it away down the lane and riding off."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.4,
+    "retrieve_s": 0.7,
+    "graph_s": 43.1
+   },
+   "gated": true
+  },
+  {
+   "id": 10,
+   "era": "bns",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303",
+    "304"
+   ],
+   "verified": [
+    "303",
+    "309"
+   ],
+   "charges": [
+    "303",
+    "309"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "309"
+   ],
+   "extra_charges": [
+    "309"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "309",
+     "subsection": "309(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "grabbed the phone out of her hand",
+      "accelerated away"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "303",
+     "subsection": "303(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "grabbed the phone out of her hand",
+      "accelerated away"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.9,
+    "retrieve_s": 0.5,
+    "graph_s": 38.2
+   },
+   "gated": true
+  },
+  {
+   "id": 11,
+   "era": "bns",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303",
+    "305"
+   ],
+   "verified": [
+    "305",
+    "306",
+    "318"
+   ],
+   "charges": [
+    "305"
+   ],
+   "unsupported": [
+    "306",
+    "318"
+   ],
+   "extra_verified": [
+    "306",
+    "318"
+   ],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "305",
+     "subsection": "305(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "broke the seal on a goods container",
+      "on a stationary freight lorry",
+      "removed thirty cartons of electronics"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "306",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The accused's status as a clerk or servant, or employment in that capacity, is not shown.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "318",
+     "subsection": "318(1)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show any deception used to induce delivery or consent; the accused acted by physical force (breaking a seal) rather than fraud.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.3,
+    "retrieve_s": 0.6,
+    "graph_s": 54.1
+   },
+   "gated": true
+  },
+  {
+   "id": 12,
+   "era": "bns",
+   "offence_type": "assault",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "116",
+    "117",
+    "118"
+   ],
+   "verified": [
+    "109",
+    "118"
+   ],
+   "charges": [
+    "109",
+    "118"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "109"
+   ],
+   "extra_charges": [
+    "109"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "118",
+     "subsection": "118(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused drew a knife",
+      "and stabbed the complainant twice in the abdomen"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "109",
+     "subsection": "109(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused drew a knife",
+      "and stabbed the complainant twice in the abdomen"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.9,
+    "retrieve_s": 0.5,
+    "graph_s": 5068.0
+   },
+   "gated": true
+  },
+  {
+   "id": 13,
+   "era": "bns",
+   "offence_type": "cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "318"
+   ],
+   "verified": [
+    "317",
+    "318",
+    "61"
+   ],
+   "charges": [],
+   "unsupported": [
+    "317",
+    "318",
+    "61"
+   ],
+   "extra_verified": [
+    "317",
+    "61"
+   ],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [
+    "318"
+   ],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "318",
+     "subsection": "318(4)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The accused ran a scheme promising forty per cent returns in ninety days",
+      "collected deposits from twenty-three people"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not explicitly state that the accused induced the victims to deliver property (the deposits) by *dishonestly* inducing them, nor does it confirm the specific act of making/altering a valuable security or anything capable of its",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "61",
+     "subsection": "61(2)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The accused ran a scheme promising forty per cent returns in ninety days",
+      "collected deposits from twenty-three people"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show an agreement between two or more persons to commit an offence; they only describe the actions of 'the accused' (singular).",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "317",
+     "subsection": "317(4)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "collected deposits from twenty-three people",
+      "stopped paying once collections slowed"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused 'habitually received or dealt in property which he knows or has reason to believe to be stolen property'. The scheme itself is fraudulent, but there is no evidence of receiving *stolen* goods.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 16.4,
+    "retrieve_s": 0.7,
+    "graph_s": 80.6
+   },
+   "gated": true
+  },
+  {
+   "id": 14,
+   "era": "bns",
+   "offence_type": "cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "318",
+    "319"
+   ],
+   "verified": [
+    "318",
+    "319",
+    "340"
+   ],
+   "charges": [
+    "318",
+    "319",
+    "340"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "340"
+   ],
+   "extra_charges": [
+    "340"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "318",
+     "subsection": "318(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused telephoned the complainant claiming to be a bank fraud-prevention officer",
+      "gave a false employee number, and persuaded her to read out a one-time password",
+      "after which two lakh rupees left her account"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "319",
+     "subsection": "319(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused telephoned the complainant claiming to be a bank fraud-prevention officer"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "340",
+     "subsection": "340(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "claiming to be a bank fraud-prevention officer",
+      "gave a false employee number"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.0,
+    "retrieve_s": 0.5,
+    "graph_s": 53.4
+   },
+   "gated": true
+  },
+  {
+   "id": 15,
+   "era": "bns",
+   "offence_type": "common intention",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "3"
+   ],
+   "verified": [
+    "115",
+    "118",
+    "122",
+    "309",
+    "333",
+    "351"
+   ],
+   "charges": [
+    "115"
+   ],
+   "unsupported": [
+    "118",
+    "122",
+    "309",
+    "333",
+    "351"
+   ],
+   "extra_verified": [
+    "115",
+    "118",
+    "122",
+    "309",
+    "333",
+    "351"
+   ],
+   "extra_charges": [
+    "115"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {},
+   "applicability": [
+    {
+     "section": "115",
+     "subsection": "115(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "One waited in the car, one forced the gate, and the third assaulted the victim inside.",
+      "The prosecution seeks to hold all three liable for the injuries caused by one of them."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "309",
+     "subsection": "309(6)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The three accused went to the victim's house together under a plan settled that morning.",
+      "One waited in the car, one forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the assault was committed with the intention of stealing property or taking possession of any property (the essential element of robbery).",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "122",
+     "subsection": "122(1)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The three accused went to the victim's house together under a plan settled that morning.",
+      "One waited in the car, one forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the hurt was caused on 'grave and sudden provocation' nor that the accused neither intended nor knew they were likely to cause hurt to anyone other than the person who gave the provocation.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "333",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The three accused went to the victim's house together under a plan settled that morning.",
+      "One waited in the car, one forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not explicitly state that the entry into the house was made 'after preparation for causing hurt' or 'for assaulting any person'. While an assault occurred, the specific sequence of preparing for the assault *before* entering to",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "118",
+     "subsection": "118(2)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The third assaulted the victim inside.",
+      "One waited in the car, one forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not specify that the hurt was caused by 'any means referred to in sub-section (1)' (i.e., dangerous weapons or means).",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "351",
+     "subsection": "351(3)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The three accused went to the victim's house together under a plan settled that morning.",
+      "One waited in the car, one forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show any act of 'threatening to cause death or grievous hurt' or other forms of intimidation specified in the section.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.9,
+    "retrieve_s": 0.6,
+    "graph_s": 120.9
+   },
+   "gated": true
+  }
+ ]
+}

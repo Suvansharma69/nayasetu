@@ -151,13 +151,29 @@ def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None
             **split_by_applicability(final, check_applicability)}
 
 
-def split_by_applicability(state, checked=True):
-    """charges = verified and supported; unsupported = verified, not shown to apply.
-    With the check off (Phase 4 behaviour) every verified section is a charge."""
+# Node 2b is ADVISORY, not a gate (decided 2026-09-30 on the dev-set ablation):
+# as a gate it cut extra sections by a third but removed the right charge in 4
+# of 15 cases (charges recall 14 -> 10), for a precision gain of 38% -> 42%.
+# So every verified section is a charge, and the judge's doubts travel beside
+# it (`doubted`, with the missing ingredient it named) for the report to show.
+# JUDGE_GATES = True restores the gate for comparison.
+JUDGE_GATES = False
+
+
+def split_by_applicability(state, checked=True, gates=None):
+    """charges, unsupported (only when the judge gates) and doubted.
+
+    doubted = verified sections the judge did not support, each with its reason;
+    advisory -- never removed from charges unless `gates`."""
+    gates = JUDGE_GATES if gates is None else gates
     if not checked:
-        return {"charges": list(state["verified_sections"]), "unsupported": []}
+        return {"charges": list(state["verified_sections"]), "unsupported": [], "doubted": []}
     ok = {(a["section"], a["subsection"]) for a in state["applicability"] if a["supported"]}
-    charges, unsupported = [], []
-    for v in state["verified_sections"]:
-        (charges if (v["section"], v["subsection"]) in ok else unsupported).append(v)
-    return {"charges": charges, "unsupported": unsupported}
+    why = {(a["section"], a["subsection"]): a.get("rule_rejected") or a.get("missing_ingredient") or ""
+           for a in state["applicability"]}
+    doubted = [{**v, "doubt": why.get((v["section"], v["subsection"]), "")}
+               for v in state["verified_sections"] if (v["section"], v["subsection"]) not in ok]
+    if not gates:
+        return {"charges": list(state["verified_sections"]), "unsupported": [], "doubted": doubted}
+    charges = [v for v in state["verified_sections"] if (v["section"], v["subsection"]) in ok]
+    return {"charges": charges, "unsupported": [d for d in doubted], "doubted": doubted}

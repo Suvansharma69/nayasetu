@@ -1,0 +1,23 @@
+# 1 [ipc] theft                          ok                   want=['378', '379'] charges=[] unsupported=['379', '380', '392', '405', '411', '446'] extra=[] lost=['379'] 113s (checkpoint)
+# 2 [ipc] theft                          ok                   want=['378', '380'] charges=['378', '380', '457'] unsupported=[] extra=['457'] lost=[] 45s (checkpoint)
+# 3 [ipc] theft                          ok                   want=['378', '381'] charges=['378', '408', '409'] unsupported=[] extra=['408', '409'] lost=[] 61s (checkpoint)
+# 4 [ipc] criminal breach of trust       ok                   want=['405', '406', '408'] charges=['34', '408', '409', '415', '420'] unsupported=[] extra=['34', '409', '415', '420'] lost=[] 71s (checkpoint)
+# 5 [ipc] assault                        ok                   want=['320', '322', '325', '326'] charges=['324', '325', '326'] unsupported=[] extra=['324'] lost=[] 47s (checkpoint)
+# 6 [ipc] assault                        ok                   want=['351', '352'] charges=['503'] unsupported=['324'] extra=['503'] lost=[] 35s (checkpoint)
+# 7 [ipc] cheating                       ok                   want=['415', '420'] charges=['415', '420', '463', '465', '468'] unsupported=['307'] extra=['463', '465', '468'] lost=[] 92s (checkpoint)
+# 8 [ipc] common intention               ok                   want=['322', '34'] charges=['114', '147', '149', '323'] unsupported=[] extra=['114', '147', '149', '323'] lost=[] 60s (checkpoint)
+# 9 [bns] theft                          ok                   want=['303'] charges=['303', '329'] unsupported=[] extra=['329'] lost=[] 43s (checkpoint)
+#10 [bns] theft                          ok                   want=['303', '304'] charges=['303', '309'] unsupported=[] extra=['309'] lost=[] 38s (checkpoint)
+#11 [bns] theft                          ok                   want=['303', '305'] charges=['305'] unsupported=['306', '318'] extra=[] lost=[] 54s (checkpoint)
+#12 [bns] assault                        ok                   want=['116', '117', '118'] charges=['109', '118'] unsupported=[] extra=['109'] lost=[] 5068s (checkpoint)
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 35045.90it/s]
+#13 [bns] cheating                       ok                   want=['318'] charges=[] unsupported=['317', '318', '61'] extra=[] lost=['318'] 81s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 25801.96it/s]
+#14 [bns] cheating                       ok                   want=['318', '319'] charges=['318', '319', '340'] unsupported=[] extra=['340'] lost=[] 53s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 22988.45it/s]
+#15 [bns] common intention               ok                   want=['3'] charges=['115'] unsupported=['118', '122', '309', '333', '351'] extra=['115'] lost=[] 121s
+
+model qwen3.5:4b  phase2_testset.json  gated 15: routed 15/15
+  recall  verified 12/15   charges 10/15
+  extras  verified 37   charges 21   relevant sections rejected by 2b: 2
+  quotes grounded 99/99

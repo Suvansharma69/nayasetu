@@ -1,0 +1,13 @@
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 37174.95it/s]
+# 1 [ipc] theft                          ok                   want=['378', '379'] charges=['378', '405'] unsupported=[] extra=['405'] lost=[] 50s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 37161.47it/s]
+# 2 [ipc] theft                          ok                   want=['378', '380'] charges=['378', '380', '457'] unsupported=[] extra=['457'] lost=[] 50s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 23492.28it/s]
+# 3 [ipc] theft                          ok                   want=['378', '381'] charges=['378', '381'] unsupported=['408'] extra=[] lost=[] 74s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 32372.14it/s]
+# 4 [ipc] criminal breach of trust       ok                   want=['405', '406', '408'] charges=['408'] unsupported=['409', '420'] extra=[] lost=[] 72s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 22971.06it/s]
+# 5 [ipc] assault                        ok                   want=['320', '322', '325', '326'] charges=['324'] unsupported=['307', '326'] extra=['324'] lost=['326'] 71s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 25150.64it/s]
+# 6 [ipc] assault                        ok                   want=['351', '352'] charges=['307', '504'] unsupported=[] extra=['307', '504'] lost=[] 44s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 23668.93it/s]

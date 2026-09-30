@@ -88,6 +88,24 @@ Cases 2 and 18 point at Node 1's prompt change (the fact-profile fields added fo
 
 Per the anti-overfitting protocol, this set is now spent for the current method: **nothing may be changed because of these results without writing a new held-out set.** Any diagnosis must happen on the dev set.
 
+## Dev-set ablation and the frozen method (2026-09-30)
+
+After the broad-coverage setback, each hardening change was switched off in turn on the **dev set only** (`PRAMANA_ABLATE`, `src/pipeline/ablation.py`; results in `docs/abl_*_runs.jsonl`):
+
+| dev set, 15 cases | relevant verified | relevant among charges | extras verified / charges |
+|---|---|---|---|
+| full | 14 | 10 | 30 / 19 |
+| judge off | 14 | **14** | 29 / 29 |
+| profile off | **12** | 10 | **37** / 21 |
+
+Decisions:
+- **Node 2b becomes advisory** (`graph.JUDGE_GATES = False`). As a gate it removed the right charge in 4 of 15 cases for a precision gain of 38% → 42%. Every verified section is now a charge, and the judge's doubts travel beside it as `doubted`, with the missing ingredient it named, for the report to show.
+- **The fact-profile questions stay.** With them off, recall falls (14 → 12: common intention is lost again) and extras rise (30 → 37).
+- The chargeability rule stays regardless: a definition is never a charge.
+- `no_exclude`, `no_chargeability` and the all-off baseline did not finish (the runs kept being killed for low memory; 6/15 of `no_exclude` done). They do not change the decisions above and are queued in `scripts/run_final_evals.bat` for the record.
+
+**Method frozen 2026-09-30.** The next step is `tests/fixtures/heldout_2.json` (written and committed before any ablation result existed), scored once. It must run from a normal terminal: `scripts\run_final_evals.bat`. Jobs started from inside Claude Code, even as a "detached" process, are killed under memory pressure on this laptop.
+
 ## Pending measurements (to be filled by the frozen runs)
 
 - Phase 2 retrieval re-score (dev + held-out, once).

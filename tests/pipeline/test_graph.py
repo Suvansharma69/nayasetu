@@ -134,11 +134,15 @@ def test_applicability_splits_charges_from_unsupported(g, scripted):
         "BNS 302": {"facts_quotes": ["rode away"], "missing_ingredient": "no words about religion",
                     "applies": False}})
     out = _run(g, llm)
-    assert [v["section"] for v in out["charges"]] == ["303"]
-    assert [v["section"] for v in out["unsupported"]] == ["302"]
-    # both stay verified -- the check adds a verdict, it never deletes
+    # advisory (the default): both stay charges; the doubt travels with 302
+    assert [v["section"] for v in out["charges"]] == ["303", "302"]
+    assert [(d["section"], d["doubt"]) for d in out["doubted"]] == [("302", "no words about religion")]
     assert [v["section"] for v in out["state"]["verified_sections"]] == ["303", "302"]
     assert len(llm.assess_calls) == 2          # two self-consistency passes
+    # the gate, kept for comparison runs, removes it from charges
+    gated = graph.split_by_applicability(out["state"], gates=True)
+    assert [v["section"] for v in gated["charges"]] == ["303"]
+    assert [v["section"] for v in gated["unsupported"]] == ["302"]
 
 
 def test_invented_quote_never_supports_a_section(g, scripted):
@@ -147,7 +151,8 @@ def test_invented_quote_never_supports_a_section(g, scripted):
                     "missing_ingredient": "", "applies": True}})
     out = _run(g, llm)
     a = out["state"]["applicability"][0]
-    assert not a["supported"] and a["grounded_quotes"] == [] and out["charges"] == []
+    assert not a["supported"] and a["grounded_quotes"] == []
+    assert [d["section"] for d in out["doubted"]] == ["303"]
     assert a["dropped_quotes"] == ["the accused broke the lock at midnight"]
 
 
@@ -162,7 +167,9 @@ def test_named_missing_ingredient_defeats_support(g, scripted):
     llm = scripted(["303"], assess={"BNS 303": {
         "facts_quotes": ["took the complainant's motorcycle"],
         "missing_ingredient": "dishonest intention is not shown", "applies": True}})
-    assert _run(g, llm)["charges"] == []
+    out = _run(g, llm)
+    assert [(d["section"], d["doubt"]) for d in out["doubted"]] == [("303", "dishonest intention is not shown")]
+    assert graph.split_by_applicability(out["state"], gates=True)["charges"] == []
 
 
 def test_headcount_rule_rejects_assembly_with_four_accused(g, scripted):
