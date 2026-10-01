@@ -26,7 +26,7 @@
 |---|---|---|---|---|
 | 1 | **The model can never decline a case**; prima facie (FIR/charge-stage) framing in Node 1 | owner: missing an offence is the primary error; two measured false declines | none | done (`0203e85`) |
 | 2 | **Node 1 two-ordering union** (original and reversed candidate order) | COLIEE's best system decided with multiple LLMs; our measured order-sensitivity | +1 LLM call | **tried and switched off** (`nodes.NODE1_UNION = False`): see "Node 1 union" below |
-| 3 | **Cross-encoder reranking** of the top 40 statute candidates (bge-reranker-v2-m3) | ILSIC: retriever bottleneck; COLIEE: multi-stage pattern | 2.27 GB download (offset by pruning BGE-M3's unused 2.2 GB `onnx/`); CPU time | code done, weights downloading |
+| 3 | **Cross-encoder reranking** of the top 40 statute candidates (bge-reranker-v2-m3) | ILSIC: retriever bottleneck; COLIEE: multi-stage pattern | 2.27 GB download; ~11 s/case on CPU | **tried and rejected**: see "Cross-encoder reranker" below. Code removed (in git history at `02c756e`). |
 | 4 | BGE-M3 sparse/hybrid statute scoring | MIRACL 67.8 → 70.0 | no download | **tried and rejected**: on the dev set, sparse alone scored top-3 2/15 and top-10 5/15; fused with the current ranking it scored 7/15 and 11/15 against 11/15 and 13/15 without it. Facts are narrative and statutes abstract, so lexical overlap is the wrong signal (the MIRACL gain comes from queries that share vocabulary with their passages). Code removed. |
 | — | Fine-tuning | out of scope: CLAUDE.md §2 forbids it (RAG, not fine-tuning) | | not adopted |
 | — | Listwise LLM reranking with qwen3.5:4b | 4B judgments measured unstable (dev ablation) | | not adopted |
@@ -55,3 +55,17 @@ The two gains were IPC 405 in case 4 (the *definition* of criminal breach of tru
 **Bug found by this run, fixed (`e193a90`):** the joint-liability rule compared section numbers only, so the model proposing a bare BNS `3` (general explanations, rejected by Node 2 as non-chargeable) suppressed the rule's BNS 3(5). Dev case 15 lost common intention that way. The baseline comparison above includes the fix; case 15 charges BNS 3(5) in both runs.
 
 Note on the earlier comparison: the first union run was compared with `abl_full` (2026-09-29), which predates the recall-first prompt (`0203e85`). That comparison mixed two changes; the table above does not.
+
+## Cross-encoder reranker, measured on the dev set (2026-10-01)
+
+`bge-reranker-v2-m3` (weights sha256-verified against the hub), rescoring the top 40 of the pipeline's ranking (non-chargeable sections excluded, as Node 1 sees it). Raw: `docs/rerank_phase2_testset_raw.json`, `docs/rerank_dev.log`.
+
+| 15 dev cases | recall@1 | recall@3 | recall@5 | recall@10 |
+|---|---|---|---|---|
+| current ranking | 4 | **11** | 11 | 13 |
+| reranker alone | 3 | 5 | 9 | 13 |
+| RRF of the two (k=60) | 4 | 8 | 11 | 14 |
+
+**Rejected.** The reranker halves top-3 recall. It fails the way BGE-M3 sparse did: it rewards surface overlap between narrative facts and the statute text. A theft from a house ranks the house-breaking sections (IPC 442, 448, 453) above theft. A two-man phone snatching ranks BNS 78 (stalking) first, and a cheating case ranks BNS 344 first. RRF buys one case at recall@10 for three lost at recall@3. The current ranking's precedent votes, which come from what courts actually charged on similar facts, carry the signal this general-domain cross-encoder lacks. A reranker fine-tuned on Indian charge data could change this, but CLAUDE.md section 2 rules out fine-tuning.
+
+The weights are still in `D:\hf-cache\local\bge-reranker-v2-m3` (2.2 GB) and can be deleted whenever needed. Nothing loads them.
