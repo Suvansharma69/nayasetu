@@ -260,3 +260,28 @@ def test_ablation_switches(g, scripted, monkeypatch):
     monkeypatch.setenv("PRAMANA_ABLATE", "nonsense")
     with pytest.raises(ValueError):
         _run(g, scripted(["323"]))
+
+
+def test_node1_union_of_two_candidate_orderings(g):
+    two = [{"section": "303", "title": "Theft", "matched": "303", "excerpt": "x"},
+           {"section": "318", "title": "Cheating", "matched": "318", "excerpt": "y"}]
+
+    class OrderLLM:
+        """Proposes whichever candidate it reads first -- an order-sensitive model."""
+        def __init__(self):
+            self.prompts = []
+
+        def __call__(self, messages, schema):
+            if "assessments" in schema["properties"]:
+                return {"assessments": []}
+            user = messages[1]["content"]
+            self.prompts.append(user)
+            first = "303" if user.find("BNS 303") < user.find("BNS 318") else "318"
+            return {"sections": [{"section": first, "reason": "r"}, {"section": "303", "reason": "r"}]}
+
+    llm = OrderLLM()
+    out = graph.run(FACTS, "2024-08-15", llm=llm, g=g, retrieve=lambda f, era: two,
+                    sufficient=lambda f, era: (True, {}), text_of=lambda *a: "t")
+    assert len(llm.prompts) == 2                                   # original + reversed order
+    raws = [c["raw"] for c in out["state"]["candidate_sections"]]
+    assert sorted(raws) == ["303", "318"]                          # union, duplicates collapsed

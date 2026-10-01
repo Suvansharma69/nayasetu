@@ -50,7 +50,7 @@ def main():
         print(f"{'PASS' if passed else 'FAIL'}  {kind:<10} {out['status']:<22} "
               f"charges={rows[-1]['charges']}  {str(why)[:90]}", flush=True)
     embedder.free()
-    print(f"\n{ok}/{len(rows)} probes declined correctly")
+    print(f"\n{ok}/{len(rows)} probes handled correctly")
     (ROOT / "docs" / "probes_raw.json").write_text(json.dumps(rows, indent=1), encoding="utf-8")
     return 0 if ok == len(rows) else 1
 

@@ -248,11 +248,24 @@ def statute_identifier(state, llm):
                 "The model considers that these facts may not disclose a criminal offence "
                 f"(\"{profile.get('why') or 'no reason given'}\"). Review the sections shown before "
                 "relying on that view."]
-    proposals = []
-    for item in (reply.get("sections") or [])[:MAX_PROPOSALS]:
+    items = list(reply.get("sections") or [])[:MAX_PROPOSALS]
+    if not is_retry and not ablation.off("union") and len(state["retrieved"]) > 1:
+        # Recall-first ensembling (COLIEE 2025's best statute system decided
+        # with several LLMs; missing an offence is this system's primary
+        # error): ask again with the candidates in REVERSED order and take the
+        # union. A small model's proposals shift with what it reads first; two
+        # orderings catch each other's misses. Every proposal still goes
+        # through Node 2, so the union cannot add an unverified section.
+        flipped = {**state, "retrieved": list(reversed(state["retrieved"]))}
+        second = llm(build_messages(flipped), proposal_schema())
+        items += list(second.get("sections") or [])[:MAX_PROPOSALS]
+    proposals, seen = [], set()
+    for item in items:
         raw = str(item.get("section", "")).strip()
-        if not raw:
+        key = tuple((p["section"], p["subsection"]) for p in parse_citation(raw)) or raw
+        if not raw or key in seen:
             continue
+        seen.add(key)
         proposals.append({"raw": raw, "reason": str(item.get("reason", "")).strip(), "round": rnd,
                           "source": "llm"})
     if not is_retry and not ablation.off("profile"):

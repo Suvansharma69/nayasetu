@@ -7,6 +7,7 @@ PRAMANA_ABLATE is a comma list of changes to switch OFF (default: none):
     exclude        non-chargeable sections are NOT removed from Node 1's candidates
     chargeability  Node 2 does NOT reject non-chargeable sections
     judge          Node 2b (applicability) does not run; every verified section is a charge
+    union          Node 1 is asked once, not twice (original + reversed candidate order)
 
 Used by the dev-set diagnosis of 2026-09-29, after the held-out broad-coverage
 set showed the hardening pass had not generalised. Never set in production.
@@ -15,7 +16,7 @@ from __future__ import annotations
 
 import os
 
-KNOWN = {"profile", "exclude", "chargeability", "judge"}
+KNOWN = {"profile", "exclude", "chargeability", "judge", "union"}
 
 
 def off(name):
