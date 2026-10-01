@@ -1,0 +1,34 @@
+# Research notes: improving statute identification (2026-10-01)
+
+*Prompted by the hardening pass's held-out results: right section charged 87.5–89%, about one extra section per case, one false "no offence". The owner asked for the best known methods from the literature and existing tools.*
+
+## What the literature says
+
+**1. The retriever, not the LLM, is usually the bottleneck.**
+- [ILSIC (EACL Findings 2026)](https://arxiv.org/abs/2602.00881), Indian statute identification from 8K layperson queries over 567 statutes: RAG with an SBERT retriever *underperformed* two-shot prompting, because the retriever put the right statute in its top 15 only ~32% of the time.
+- Same paper, calibration for us: **GPT-4.1 reaches ~32% micro-F1** zero-shot (14.4% macro-F1). Llama-3-8B and Gemma-3-12B reach 18–30% micro-F1, and fine-tuning raises Gemma-3 to 33.2%.
+- Its failure taxonomy matches ours exactly: *hallucinated* statutes, *non-applicable* statutes, and *technically misaligned* statutes (related but wrongly scoped, like our IPC 409 for 408).
+
+**2. Multi-stage retrieval with reranking is the standard winning pattern.**
+- [COLIEE 2025 overview](https://dl.acm.org/doi/10.1145/3769126.3785016): every team in the case-retrieval task used multi-stage pipelines. The best statute-retrieval system (Task 3) retrieved a small candidate set, reranked it with an LLM-based cross-encoder, then decided with multiple LLMs. Another system: BGE-M3 pre-ranking, then a fine-tuned BGE-M3 or LLM2Vec reranker, then majority voting.
+- [Hybrid approaches for COLIEE 2025](https://link.springer.com/article/10.1007/s12626-026-00208-x): BM25 + dense candidates, query reformulation, ensembling, reranking.
+- `BAAI/bge-reranker-v2-m3` (568M cross-encoder) is the reranker trained alongside our BGE-M3 embedder and is used in legal search pipelines ([e.g.](https://arxiv.org/pdf/2508.00679)).
+
+**3. Hybrid scoring beats dense-only.** [BGE-M3](https://huggingface.co/BAAI/bge-m3) produces dense, sparse (lexical) and multi-vector scores from one forward pass. On MIRACL, dense-only scores 67.8 nDCG@10 and all three combined 70.0. Our index uses dense only.
+
+**4. Structure-aware recall expansion helps recall but needs reranking.** [NyayGraph (NLLP 2025)](https://aclanthology.org/2025.nllp-1.11.pdf) built an IPC knowledge graph (chapters, cross-references, NCRB crime heads) and expanded retrieved sections through it on IL-TUR LSI: "explicit KG inference significantly enhances recall", but feeding the KG into the LLM prompt "enhances coverage at the expense of precision, underscoring the importance of good reranking". A later study reports its test recall@10 as 0.090, so it is a weak baseline.
+
+**5. Listwise LLM reranking** (RankGPT and its open distillations RankZephyr/RankVicuna, the [RankLLM](https://castorini.github.io/rank_llm/) toolkit) is state of the art on general reranking. It needs 7B+ models to be reliable; our 4B model's measured instability makes it a poor fit here.
+
+## What Pramana adopts, and why
+
+| # | Change | Evidence | Cost | Status |
+|---|---|---|---|---|
+| 1 | **The model can never decline a case**; prima facie (FIR/charge-stage) framing in Node 1 | owner: missing an offence is the primary error; two measured false declines | none | done (`0203e85`) |
+| 2 | **Node 1 two-ordering union** (original and reversed candidate order) | COLIEE's best system decided with multiple LLMs; our measured order-sensitivity | +1 LLM call | done, dev evaluation pending |
+| 3 | **Cross-encoder reranking** of the top 40 statute candidates (bge-reranker-v2-m3) | ILSIC: retriever bottleneck; COLIEE: multi-stage pattern | 2.27 GB download (offset by pruning BGE-M3's unused 2.2 GB `onnx/`); CPU time | code done, weights downloading |
+| 4 | BGE-M3 sparse/hybrid statute scoring | MIRACL 67.8 → 70.0 | no download (`sparse_linear.pt` already present) | next, if 3 leaves room |
+| — | Fine-tuning | out of scope: CLAUDE.md §2 forbids it (RAG, not fine-tuning) | | not adopted |
+| — | Listwise LLM reranking with qwen3.5:4b | 4B judgments measured unstable (dev ablation) | | not adopted |
+
+Every change is evaluated on the dev set (ablation switches in `src/pipeline/ablation.py`) and then on a **new** held-out set. `heldout_2.json` is spent for the method it scored.
