@@ -8,11 +8,11 @@
 
 | # | Issue | Status | Evidence (details below) |
 |---|---|---|---|
-| 1 | Over-charging: verified ≠ applicable | ⏳ | dev: extra sections 28 → 12 with **no** relevant section lost; frozen broad-coverage pending |
+| 1 | Over-charging: verified ≠ applicable | partly | held-out 2: precision 44% (57% with the advisory doubts set aside); extras about 1 per case; not halved
 | 2 | Definitional sections proposed and voted (BNS 2, IPC 25) | ✅ | `chargeability.json` from the codes' chapters; Node 2 rejects non-chargeable proposals; excluded from candidates and votes |
 | 3 | Common intention never proposed | ✅ (dev) / ⏳ (frozen) | liability rule from Node 1's fact profile: dev case 8 → IPC 34, case 15 → BNS 3(5), both now charged |
 | 4 | Retry hint faithfully translated a wrong guess | ✅ | hint now names both titles plus a caveat; Node 2b judges the result |
-| 5 | Civil disputes not declined | ✅ | probes 10/10 declined; decline needs "no offence" AND no sections |
+| 5 | Civil disputes and false declines | ⚠ open | civil probes 10/10 declined correctly, BUT held-out 2 #14 was a FALSE decline of a real threat case; design proposed
 | 6 | Offence period straddling 1 Jul 2024 | ✅ | `route_period` + dual-code run with a warning; tests at the boundary |
 | 7 | Phase 2 held-out 10 → 8/10 after the mapping change | ⏳ | re-score pending (retrieval changed again: graph edges and exclusions) |
 | 8 | **Citation-graph edges: 63% precision (found in this pass)** | ✅ | fresh 100-edge audit: **96%** after the fix |
@@ -105,6 +105,27 @@ Decisions:
 - `no_exclude`, `no_chargeability` and the all-off baseline did not finish (the runs kept being killed for low memory; 6/15 of `no_exclude` done). They do not change the decisions above and are queued in `scripts/run_final_evals.bat` for the record.
 
 **Method frozen 2026-09-30.** The next step is `tests/fixtures/heldout_2.json` (written and committed before any ablation result existed), scored once. It must run from a normal terminal: `scripts\run_final_evals.bat`. Jobs started from inside Claude Code, even as a "detached" process, are killed under memory pressure on this laptop.
+
+## Held-out set 2: the frozen method, scored once (2026-10-01)
+
+Run from a normal terminal (`scripts\run_final_evals.bat`); raw: `docs/heldout_2_hardened_runs.jsonl`.
+
+| 16 cases, never seen while building | result |
+|---|---|
+| routed correctly | **16/16** |
+| right section charged | **14/16 (87.5%)**, in line with broad-coverage (17/19 = 89%) |
+| charge precision | 17/39 = 44% |
+| extra sections the advisory judge flagged as doubtful | **10 of 17**, and it doubted **0** correct sections |
+| precision if doubted sections were set aside in the report | 17/30 = 57%, recall unchanged (14/16) |
+| supporting quotes found verbatim in the facts | 69/69 |
+
+The advisory judge did well here (it flagged three of the four bogus murder sections on an attempted murder, and both unlawful-assembly sections on a three-person case), while on the dev set it had rejected correct charges. That is exactly why it informs and does not decide. No method change is made on the strength of this one-shot result.
+
+**Misses:**
+- #3 (petrol-pump cashier keeps the cash): IPC 409 (breach of trust by a public servant or banker) instead of 408 (by a clerk or servant).
+- **#14, a false "no offence disclosed": open, SAFETY.** A man shouting that he will burn a family's house down with them inside was declined as "a civil dispute". The 2026-09-27 fix (decline only on "no offence" AND no sections) cannot catch this, because the model said both. **A false decline is the most harmful output this system can produce.** Proposed design, to be built and tested on the dev set, then checked on a NEW held-out set: never return a bare decline. Either (a) decline only when two independent prompts agree, or (b) on a decline, still show the top retrieved candidate sections under "the system found no offence; review these".
+
+**Dev ablation, complete** (verified level, 15 cases): all changes off (the Phase 4 pipeline on corrected data) recall 12/15, precision 33%; all on 14/15, 38%; profile off 12/15, 30%; exclusion off 14/15, 39%; chargeability off 14/15, 39%. The hardening helped modestly. The exclusion and chargeability switches move results by less than one case.
 
 ## Pending measurements (to be filled by the frozen runs)
 
