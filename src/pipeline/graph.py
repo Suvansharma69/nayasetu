@@ -30,6 +30,7 @@ from .state import initial_state
 TOP_K_CANDIDATES = 10
 EXCERPT_CHARS = 300
 RUNTIME_DEVICE = "cpu"
+REVIEW_CANDIDATES = 5
 
 _graph = None
 
@@ -139,16 +140,21 @@ def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None
     final = graph.invoke(initial_state(case_facts, offence_date, era, retrieved))
     timings["graph_s"] = time.perf_counter() - t
 
-    if final["facts_profile"].get("discloses_offence") is False:
-        status = "no_offence_disclosed"
-    elif final["verified_sections"]:
+    if final["verified_sections"]:
         status = "ok"
     elif final["candidate_sections"]:
         status = "no_verified_sections"
     else:
         status = "no_proposals"
+    # Never a bare "nothing found": with no verified section, the closest
+    # retrieved sections are surfaced for the lawyer to review. They are
+    # retrieval results from the ingested statutes, labelled as such -- not
+    # verified charges.
+    review = [] if final["verified_sections"] else [
+        {"section": r["section"], "matched": r.get("matched"), "title": r.get("title")}
+        for r in final["retrieved"][:REVIEW_CANDIDATES]]
     return {"status": status, "era": era, "guardrail": detail, "state": final, "timings": timings,
-            **split_by_applicability(final, check_applicability)}
+            "review_candidates": review, **split_by_applicability(final, check_applicability)}
 
 
 # Node 2b is ADVISORY, not a gate (decided 2026-09-30 on the dev-set ablation):

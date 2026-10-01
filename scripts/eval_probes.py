@@ -1,14 +1,17 @@
-r"""Out-of-domain probes: inputs the pipeline must decline, never charge.
+r"""Out-of-domain probes: non-legal text is stopped; civil disputes are flagged.
 
 The ten inputs are exactly those scripts/calibrate_guardrail.py measured
 (civil, tax, labour and family disputes; text that is not legal at all), run
 through the full pipeline with a BNS-era date. Expected outcome per kind:
 
-    not legal                    insufficient_data     (the guardrail, no LLM call)
-    civil / tax / labour / family  no_offence_disclosed  (Node 1's decline)
+    not legal                      insufficient_data  (the guardrail, no LLM call)
+    civil / tax / labour / family  a "may not disclose a criminal offence" WARNING on the
+                                   report (since 2026-10-01 the model can no longer decline
+                                   a case outright; sections it finds are still shown)
                                    or insufficient_data
 
-A probe that ends with any charge fails. Results: docs/probes_raw.json.
+A non-legal probe that ends with any charge fails; a civil probe fails only if the
+report carries no warning. Results: docs/probes_raw.json.
 
 Run:  venv\Scripts\python.exe -u scripts\eval_probes.py
 """
@@ -27,7 +30,7 @@ from src.graph import citation_graph as cg  # noqa: E402
 from src.pipeline import graph as pipeline  # noqa: E402
 from src.retrieval import embedder, store  # noqa: E402
 
-DECLINED = {"insufficient_data", "no_offence_disclosed"}
+WARNING = "may not disclose a criminal offence"
 
 
 def main():
@@ -35,8 +38,11 @@ def main():
     rows, ok = [], 0
     for kind, text in OUT_OF_DOMAIN:
         out = pipeline.run(text, "2024-09-01", g=g, cli=cli)
-        expect = {"insufficient_data"} if kind == "not legal" else DECLINED
-        passed = out["status"] in expect and not out.get("charges")
+        warned = any(WARNING in w for w in out["state"].get("warnings", []))
+        if kind == "not legal":
+            passed = out["status"] == "insufficient_data" and not out.get("charges")
+        else:
+            passed = out["status"] == "insufficient_data" or warned
         ok += passed
         why = (out["state"].get("facts_profile") or {}).get("why") or (out.get("guardrail") or {}).get("reason")
         rows.append({"kind": kind, "text": text, "status": out["status"], "passed": passed,

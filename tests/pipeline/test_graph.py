@@ -80,20 +80,22 @@ def test_no_proposals_is_explicit(g, scripted):
     assert _run(g, scripted([]))["status"] == "no_proposals"
 
 
-def test_decline_needs_no_offence_and_no_sections(g, scripted):
+def test_the_model_can_never_decline_a_case(g, scripted):
+    # "no offence" and nothing proposed: no decline status exists any more; the
+    # report carries a warning and surfaces the retrieved sections for review.
     llm = scripted([], profile={"discloses_offence": False, "why": "a rent dispute"})
     out = _run(g, llm)
-    assert out["status"] == "no_offence_disclosed" and out["state"]["candidate_sections"] == []
-    assert out["state"]["facts_profile"]["why"] == "a rent dispute" and len(llm.calls) == 1
+    assert out["status"] == "no_proposals"
+    assert "may not disclose a criminal offence" in out["state"]["warnings"][0]
+    assert "a rent dispute" in out["state"]["warnings"][0]
+    assert [r["section"] for r in out["review_candidates"]] == ["303"]
 
 
-def test_contradictory_decline_is_overridden_not_obeyed(g, scripted):
-    # "no offence" but a section proposed: the case must NOT be declined
+def test_no_offence_view_with_sections_still_verifies_them(g, scripted):
     llm = scripted(["303"], profile={"discloses_offence": False, "why": "unclear"})
     out = _run(g, llm)
     assert out["status"] == "ok" and [v["section"] for v in out["state"]["verified_sections"]] == ["303"]
-    assert out["state"]["facts_profile"]["decline_overridden"] is True
-    assert "NOT declined" in out["state"]["warnings"][0]
+    assert out["state"]["warnings"] and out["review_candidates"] == []
 
 
 def _joint(n, together=True, plan=True):

@@ -141,7 +141,11 @@ def _system_prompt(era):
     code = _code_short(era)
     return (
         f"You assist an Indian criminal lawyer. Identify the sections of the {CODE_NAME[era]} "
-        f"that the facts disclose. The offence date decides the code, and for this case it is "
+        "that the facts disclose. Read the facts as a court reads a complaint at the stage of "
+        "registering an FIR or framing a charge: take the allegations as true and ask whether they "
+        "disclose an offence prima facie -- do not demand proof, and do not dismiss a threat, "
+        "injury or taking of property as a civil matter. "
+        f"The offence date decides the code, and for this case it is "
         f"the {code}: cite {code} section numbers ONLY, never those of any other enactment.\n"
         "Name only the sections the accused could be CHARGED under: sections whose every "
         "ingredient the facts disclose. Do not name general exceptions, private defence or "
@@ -160,9 +164,9 @@ def _system_prompt(era):
 
 _PROFILE_PROMPT = (
         "Before the sections, answer about the facts:\n"
-        "- discloses_offence: false if the facts describe only a civil, contractual, tax, "
-        "service or family dispute and no criminal act; then give no sections. `why`: one "
-        "sentence saying why.\n"
+        "- discloses_offence: taking every allegation as true, do the facts disclose any criminal "
+        "offence? Answer false only for a purely civil, contractual, tax, service or family dispute "
+        "in which no criminal act is alleged at all. `why`: one sentence saying why.\n"
         "- accused_count: how many distinct accused persons took part (0 if the facts do not say).\n"
         "- acted_together: true if two or more accused took part in the criminal act jointly.\n"
         "- shared_plan_or_object: true if they shared an intention, plan or object, whether "
@@ -233,20 +237,17 @@ def statute_identifier(state, llm):
         profile = {k: reply.get(k) for k in PROFILE_FIELDS}
         update["facts_profile"] = profile
         if profile.get("discloses_offence") is False:
-            if not (reply.get("sections") or []):
-                # Declined: "no offence" AND no sections. Reported as its own
-                # status with `why`.
-                update["candidate_sections"] = state["candidate_sections"]
-                return update
-            # Contradiction: "no offence" but sections proposed. NOT declined.
-            # Measured 2026-09-27: trusting the boolean alone declined a two-man
-            # phone snatching (dev case 10) -- a false "no offence" is the worst
-            # thing this system can say, so a decline needs both signals.
-            profile["discloses_offence"] = None
-            profile["decline_overridden"] = True
+            # The model may NOT decline a case. Missing an offence is this
+            # system's primary error (owner, 2026-10-01): a bare "no offence"
+            # tells the lawyer to stop looking. Measured twice -- a two-man
+            # phone snatching (dev 10) and a threat to burn a family's house
+            # down (held-out 2 #14) were both called civil disputes. "No
+            # offence" is a WARNING; whatever was proposed is verified as usual,
+            # and if nothing was, the report surfaces the retrieved sections.
             update["warnings"] = state.get("warnings", []) + [
-                "Node 1 said the facts disclose no offence but still proposed sections; the case "
-                "was NOT declined and the sections were verified as usual."]
+                "The model considers that these facts may not disclose a criminal offence "
+                f"(\"{profile.get('why') or 'no reason given'}\"). Review the sections shown before "
+                "relying on that view."]
     proposals = []
     for item in (reply.get("sections") or [])[:MAX_PROPOSALS]:
         raw = str(item.get("section", "")).strip()
