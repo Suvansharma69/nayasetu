@@ -27,8 +27,13 @@
 | 1 | **The model can never decline a case**; prima facie (FIR/charge-stage) framing in Node 1 | owner: missing an offence is the primary error; two measured false declines | none | done (`0203e85`) |
 | 2 | **Node 1 two-ordering union** (original and reversed candidate order) | COLIEE's best system decided with multiple LLMs; our measured order-sensitivity | +1 LLM call | done, dev evaluation pending |
 | 3 | **Cross-encoder reranking** of the top 40 statute candidates (bge-reranker-v2-m3) | ILSIC: retriever bottleneck; COLIEE: multi-stage pattern | 2.27 GB download (offset by pruning BGE-M3's unused 2.2 GB `onnx/`); CPU time | code done, weights downloading |
-| 4 | BGE-M3 sparse/hybrid statute scoring | MIRACL 67.8 → 70.0 | no download (`sparse_linear.pt` already present) | next, if 3 leaves room |
+| 4 | BGE-M3 sparse/hybrid statute scoring | MIRACL 67.8 → 70.0 | no download | **tried and rejected**: on the dev set, sparse alone scored top-3 2/15 and top-10 5/15; fused with the current ranking it scored 7/15 and 11/15 against 11/15 and 13/15 without it. Facts are narrative and statutes abstract, so lexical overlap is the wrong signal (the MIRACL gain comes from queries that share vocabulary with their passages). Code removed. |
 | — | Fine-tuning | out of scope: CLAUDE.md §2 forbids it (RAG, not fine-tuning) | | not adopted |
 | — | Listwise LLM reranking with qwen3.5:4b | 4B judgments measured unstable (dev ablation) | | not adopted |
 
 Every change is evaluated on the dev set (ablation switches in `src/pipeline/ablation.py`) and then on a **new** held-out set. `heldout_2.json` is spent for the method it scored.
+
+## Measured on the dev set (2026-10-01)
+
+- Current ranking (pipeline mode): **top-3 11/15, top-10 13/15**. So for 13 of 15 cases the right section is already in Node 1's ten candidates. That is the room a reranker (item 3) has to work with: lifting top-3 towards 13.
+- Hybrid sparse: rejected (see the table).
