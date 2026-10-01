@@ -115,6 +115,14 @@ def test_bns_joint_liability_is_sub_section_3_5(g, scripted):
     assert [(v["section"], v["subsection"]) for v in st["verified_sections"]] == [("115", None), ("3", "3(5)")]
 
 
+def test_bare_bns_3_proposal_does_not_suppress_the_3_5_rule(g, scripted):
+    # Dev case 15: the model proposed a bare "3" (general explanations, rejected
+    # as non-chargeable) and that used to block the rule's 3(5).
+    st = _run(g, scripted(["115", "3"], profile=_joint(3)))["state"]
+    assert [c["raw"] for c in st["candidate_sections"] if c["source"] == "rule"] == ["BNS 3(5)"]
+    assert ("3", "3(5)") in {(v["section"], v["subsection"]) for v in st["verified_sections"]}
+
+
 def test_five_accused_with_common_object_get_unlawful_assembly_rule(g, scripted):
     st = _run(g, scripted(["323"], profile=_joint(5)), date="2023-12-03")["state"]
     assert [c["raw"] for c in st["candidate_sections"] if c["source"] == "rule"] == ["IPC 149"]

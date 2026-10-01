@@ -294,9 +294,12 @@ def liability_rule(era, profile, proposals):
         return []
     kind = "assembly" if n >= 5 else "joint"
     raw, what = LIABILITY_RULE[era][kind]
-    target = parse_citation(raw)[0]["section"]
-    already = {p["section"] for prop in proposals for p in parse_citation(prop["raw"])}
-    if target in already:
+    # Compare (section, sub-section), not the section alone: a bare "3" is BNS
+    # "General explanations", which Node 2 rejects as non-chargeable, and it
+    # must not stand in for 3(5). Dev case 15 lost common intention this way.
+    t = parse_citation(raw)[0]
+    already = {(p["section"], p["subsection"]) for prop in proposals for p in parse_citation(prop["raw"])}
+    if (t["section"], t["subsection"]) in already:
         return []
     return [{"raw": raw, "reason": f"rule: {n} accused acted together with a shared plan or object ({what})",
              "round": 0, "source": "rule"}]
