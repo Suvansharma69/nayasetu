@@ -25,7 +25,7 @@
 | # | Change | Evidence | Cost | Status |
 |---|---|---|---|---|
 | 1 | **The model can never decline a case**; prima facie (FIR/charge-stage) framing in Node 1 | owner: missing an offence is the primary error; two measured false declines | none | done (`0203e85`) |
-| 2 | **Node 1 two-ordering union** (original and reversed candidate order) | COLIEE's best system decided with multiple LLMs; our measured order-sensitivity | +1 LLM call | done, dev evaluation pending |
+| 2 | **Node 1 two-ordering union** (original and reversed candidate order) | COLIEE's best system decided with multiple LLMs; our measured order-sensitivity | +1 LLM call | **tried and switched off** (`nodes.NODE1_UNION = False`): see "Node 1 union" below |
 | 3 | **Cross-encoder reranking** of the top 40 statute candidates (bge-reranker-v2-m3) | ILSIC: retriever bottleneck; COLIEE: multi-stage pattern | 2.27 GB download (offset by pruning BGE-M3's unused 2.2 GB `onnx/`); CPU time | code done, weights downloading |
 | 4 | BGE-M3 sparse/hybrid statute scoring | MIRACL 67.8 → 70.0 | no download | **tried and rejected**: on the dev set, sparse alone scored top-3 2/15 and top-10 5/15; fused with the current ranking it scored 7/15 and 11/15 against 11/15 and 13/15 without it. Facts are narrative and statutes abstract, so lexical overlap is the wrong signal (the MIRACL gain comes from queries that share vocabulary with their passages). Code removed. |
 | — | Fine-tuning | out of scope: CLAUDE.md §2 forbids it (RAG, not fine-tuning) | | not adopted |
@@ -37,3 +37,21 @@ Every change is evaluated on the dev set (ablation switches in `src/pipeline/abl
 
 - Current ranking (pipeline mode): **top-3 11/15, top-10 13/15**. So for 13 of 15 cases the right section is already in Node 1's ten candidates. That is the room a reranker (item 3) has to work with: lifting top-3 towards 13.
 - Hybrid sparse: rejected (see the table).
+
+## Node 1 union, measured on the dev set (2026-10-01)
+
+Both runs on the same code (`e193a90` plus the switch), only `union` differing; raw: `docs/single_dev_runs.jsonl`, `docs/union_dev_runs.jsonl`.
+
+| 15 dev cases | single call | union of two orderings |
+|---|---|---|
+| a relevant section charged | 14/15 | 14/15 |
+| relevant sections charged | 20/31 | 22/31 |
+| sections per case | 3.8 | 5.6 |
+| precision | 20/57 = 35% | 22/84 = 26% |
+| Node 1 time | 1 call | 2 calls (~+40 s/case on this laptop) |
+
+The two gains were IPC 405 in case 4 (the *definition* of criminal breach of trust; the charge is 406) and BNS 303 in case 11, where the aggravated theft (305) was already charged. Neither is a missed offence, which was the reason for adopting the union. **Switched off.** `NODE1_UNION = True` restores it.
+
+**Bug found by this run, fixed (`e193a90`):** the joint-liability rule compared section numbers only, so the model proposing a bare BNS `3` (general explanations, rejected by Node 2 as non-chargeable) suppressed the rule's BNS 3(5). Dev case 15 lost common intention that way. The baseline comparison above includes the fix; case 15 charges BNS 3(5) in both runs.
+
+Note on the earlier comparison: the first union run was compared with `abl_full` (2026-09-29), which predates the recall-first prompt (`0203e85`). That comparison mixed two changes; the table above does not.

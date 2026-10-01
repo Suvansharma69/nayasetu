@@ -41,6 +41,15 @@ from .router import CODE_NAME
 MAX_RETRIES = 2
 MAX_PROPOSALS = 8
 
+# Node 1 two-ordering union: OFF (decided 2026-10-01 on the dev set, both runs on
+# the same code, only this switch differing). Union vs single call: cases with a
+# relevant section 14/15 vs 14/15; wanted sections 22/31 vs 20/31; sections per
+# case 5.6 vs 3.8; precision 26% vs 35%. Its two gains were a definition (IPC
+# 405, where the charge is 406) and plain theft beside an aggravated theft
+# already found (BNS 303 beside 305) -- no missed offence was caught -- for 27
+# extra sections and a second LLM call per case. NODE1_UNION = True restores it.
+NODE1_UNION = False
+
 # --- parsing a proposed citation ------------------------------------------------
 
 _IPC = re.compile(r"\bI\.?\s?P\.?\s?C\b\.?|Indian\s+Penal\s+Code|Penal\s+Code", re.I)
@@ -249,7 +258,7 @@ def statute_identifier(state, llm):
                 f"(\"{profile.get('why') or 'no reason given'}\"). Review the sections shown before "
                 "relying on that view."]
     items = list(reply.get("sections") or [])[:MAX_PROPOSALS]
-    if not is_retry and not ablation.off("union") and len(state["retrieved"]) > 1:
+    if NODE1_UNION and not is_retry and not ablation.off("union") and len(state["retrieved"]) > 1:
         # Recall-first ensembling (COLIEE 2025's best statute system decided
         # with several LLMs; missing an offence is this system's primary
         # error): ask again with the candidates in REVERSED order and take the

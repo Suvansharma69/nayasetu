@@ -7,7 +7,7 @@ import re
 
 import pytest
 
-from src.pipeline import graph
+from src.pipeline import graph, nodes
 from src.pipeline.state import SECTION3_FIELDS
 
 FACTS = "The accused took the complainant's motorcycle without consent and rode away."
@@ -270,8 +270,9 @@ def test_ablation_switches(g, scripted, monkeypatch):
         _run(g, scripted(["323"]))
 
 
-def test_node1_union_of_two_candidate_orderings(g):
-    two = [{"section": "303", "title": "Theft", "matched": "303", "excerpt": "x"},
+def test_node1_union_of_two_candidate_orderings(g, monkeypatch):
+    monkeypatch.setattr(nodes, "NODE1_UNION", True)                # off by default
+    two =[{"section": "303", "title": "Theft", "matched": "303", "excerpt": "x"},
            {"section": "318", "title": "Cheating", "matched": "318", "excerpt": "y"}]
 
     class OrderLLM:
@@ -293,3 +294,12 @@ def test_node1_union_of_two_candidate_orderings(g):
     assert len(llm.prompts) == 2                                   # original + reversed order
     raws = [c["raw"] for c in out["state"]["candidate_sections"]]
     assert sorted(raws) == ["303", "318"]                          # union, duplicates collapsed
+
+
+def test_node1_asks_once_by_default(g, scripted):
+    two = [{"section": "303", "title": "Theft", "matched": "303", "excerpt": "x"},
+           {"section": "318", "title": "Cheating", "matched": "318", "excerpt": "y"}]
+    llm = scripted(["303"])
+    graph.run(FACTS, "2024-08-15", llm=llm, g=g, retrieve=lambda f, era: two,
+              sufficient=lambda f, era: (True, {}), text_of=lambda *a: "t")
+    assert len(llm.calls) == 1                                     # no second ordering

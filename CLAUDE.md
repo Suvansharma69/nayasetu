@@ -220,6 +220,8 @@ FastAPI endpoint wrapping the full pipeline. Streamlit form (case facts + offenc
 
 **Current phase:** Phases 1-4 are DONE and merged to `main` (Phase 4: 2026-09-27). Phase 5 (Full Pipeline) is next, in Plan Mode. Phase 2 was accepted **one case short of its 12/15 gate** - see the Phase 2 entry below for why, and `docs/phase2_retrieval.md` for every case.
 
+**Session of 2026-10-01, part 2 (still `hardening`).** Node 1 two-ordering union measured on dev against a same-code single call: relevant sections 22/31 vs 20/31, precision 26% vs 35%, no missed offence caught - **switched off** (`nodes.NODE1_UNION = False`; `docs/research_2026-10.md`). Found and fixed a joint-liability bug (bare BNS `3` suppressed the 3(5) rule; `e193a90`). Still open: cross-encoder reranker eval (weights downloading to `D:\hf-cache\local\bge-reranker-v2-m3`), held-out 2 #14 false-decline safety design, Phase 2 re-score, IL-TUR access. 317 tests pass.
+
 **Session of 2026-09-27, part 3 - HARDENING PASS, IN PROGRESS on branch `hardening` (not merged).** Owner's rule (memory `no-advance-with-open-issues`): **no Phase 5 until every Phase 1-4 issue is closed; the bar is state of the art.** The evidence record and open-issue register are in `docs/hardening.md`; read it first.
   - **Largest finding: citation-graph edges were only ~63% penal-code sections** (other Acts' and CrPC sections read as IPC). Fixed in `sections.py` + corpus-derived `bare_citation_trust.json`: **96% on a fresh 100-edge audit**; edges 24,475 -> 16,514.
   - New pipeline pieces: chargeability layer (definitions/exceptions rejected by Node 2), Node 2b grounded applicability check (`charges` vs `unsupported`), joint-liability rule from Node 1's fact profile, headcount rules, straddling-period runs. Dev set: common intention now charged in cases 8 and 15; extras 28 -> 12.
@@ -432,5 +434,10 @@ No API keys are needed anywhere in this project any more.
 - **An access check must probe a gated file.** `fetch_iltur.py --check` once said "OK" because the first file in its list was the public README. It now probes a parquet file.
 - **A single model boolean must never erase the rest of its answer.** "discloses_offence: false" together with proposed sections declined a real snatching case. Decline only when both signals agree.
 - **Background evaluation chains get killed under memory pressure** (Ollama ~4 GB + BGE-M3 on CPU ~2.2 GB + Chroma + desktop apps). Run long evals with other apps closed, and keep runners resumable.
+
+*Added 2026-10-01 while evaluating the Node 1 union.*
+
+- **A rule that skips "if already proposed" must compare (section, sub-section), not the section alone.** The joint-liability rule treated a bare BNS `3` proposal as "3(5) already there". Node 2 rejects bare `3` (general explanations, non-chargeable), so common intention vanished from dev case 15. Same trap anywhere a sub-section is the chargeable unit inside a non-chargeable section.
+- **Compare a method change against a run of the SAME code with only that switch flipped.** The union looked like recall 18 -> 21 sections against `abl_full`, but that baseline predated the recall-first prompt. Against a same-code single-call run the gain was 20 -> 22, and both were definitions or redundant parent sections.
 
 *(Add to this as you hit real issues during the build.)*
