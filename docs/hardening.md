@@ -12,7 +12,7 @@
 | 2 | Definitional sections proposed and voted (BNS 2, IPC 25) | ✅ | `chargeability.json` from the codes' chapters; Node 2 rejects non-chargeable proposals; excluded from candidates and votes |
 | 3 | Common intention never proposed | ✅ (dev) / ⏳ (frozen) | liability rule from Node 1's fact profile: dev case 8 → IPC 34, case 15 → BNS 3(5), both now charged |
 | 4 | Retry hint faithfully translated a wrong guess | ✅ | hint now names both titles plus a caveat; Node 2b judges the result |
-| 5 | Civil disputes and false declines | ⚠ open | civil probes 10/10 declined correctly, BUT held-out 2 #14 was a FALSE decline of a real threat case; design proposed
+| 5 | Civil disputes and false declines | ⏳ | model decline removed (`0203e85`, #14 re-run: BNS 351 charged); held-out 3 found a SECOND path, the guardrail (#7), now fixed (`6f09d4f`: never a bare refusal). Certify on held-out 4 |
 | 6 | Offence period straddling 1 Jul 2024 | ✅ | `route_period` + dual-code run with a warning; tests at the boundary |
 | 7 | Phase 2 held-out 10 → 8/10 after the mapping change | ⏳ | re-score pending (retrieval changed again: graph edges and exclusions) |
 | 8 | **Citation-graph edges: 63% precision (found in this pass)** | ✅ | fresh 100-edge audit: **96%** after the fix |
@@ -134,3 +134,16 @@ The advisory judge did well here (it flagged three of the four bogus murder sect
 - ~~Phase 4 gate~~ done: PASS.
 - ~~Broad-coverage, frozen~~ done: setback (above).
 - IL-TUR LSI dev sample and frozen test sample: **blocked on access** (row 13).
+
+## 2026-10-03: held-out 3, the guardrail false decline, and three changes
+
+**Held-out 3** (`tests/fixtures/heldout_3.json`, criminal facts inside civil-looking disputes; frozen `41fd7c5`, scored once): routed 10/10, **recall 6/10** (`score_runs.py`, definition == punishment), precision 31% (60% with the judge's doubts set aside: it doubted 13 of 23 extras and **no** correct charge), civil controls 2/2 with a warning and a review list. **One false decline, by the guardrail** (#7, mischief, judgment similarity 0.555 < 0.576). Misses #2, #9, #10 are retrieval: the right section ranked 4th, 17th and 17th, and Node 1 charges what it is shown.
+
+**Changes (`6f09d4f`), each with an ablation switch:**
+1. Guardrail: no LLM on weak context, but never a bare refusal - the nearest statute sections are returned for review.
+2. `punish`: a verified IPC definition becomes its punishing section (405 -> 406), the judge reading both texts.
+3. `dual`: Node 1 sees fused top 10 + statute-text top 10. Dev top-10 coverage: fused 13/15, statute 14/15.
+
+Also: runtime query encoding moved to the GPU after evicting Ollama (`41fd7c5`), 36 s -> 18 s per case, same output.
+
+**Pending:** dev comparison (`scriptsun_dev_compare.bat`, baseline 9/15 done when a memory kill stopped it), then held-out 4 (`tests/fixtures/heldout_4.json`, committed `de982c0` before any dev result), scored once.
