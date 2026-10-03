@@ -12,7 +12,7 @@
 | 2 | Definitional sections proposed and voted (BNS 2, IPC 25) | ✅ | `chargeability.json` from the codes' chapters; Node 2 rejects non-chargeable proposals; excluded from candidates and votes |
 | 3 | Common intention never proposed | ✅ (dev) / ⏳ (frozen) | liability rule from Node 1's fact profile: dev case 8 → IPC 34, case 15 → BNS 3(5), both now charged |
 | 4 | Retry hint faithfully translated a wrong guess | ✅ | hint now names both titles plus a caveat; Node 2b judges the result |
-| 5 | Civil disputes and false declines | ⏳ | model decline removed (`0203e85`, #14 re-run: BNS 351 charged); held-out 3 found a SECOND path, the guardrail (#7), now fixed (`6f09d4f`: never a bare refusal). Certify on held-out 4 |
+| 5 | Civil disputes and false declines | ✅ | no bare refusal on any path: model (`0203e85`) and guardrail (`6f09d4f`). Held-out 4 (new, scored once): **0 false declines in 12**; held-out 3 #7 re-run returns a review list with BNS 324 (mischief) 6th. Civil controls 4/4 carry a no-offence warning; #14 of held-out 4 still charged 420, which the judge doubted |
 | 6 | Offence period straddling 1 Jul 2024 | ✅ | `route_period` + dual-code run with a warning; tests at the boundary |
 | 7 | Phase 2 held-out 10 → 8/10 after the mapping change | ⏳ | re-score pending (retrieval changed again: graph edges and exclusions) |
 | 8 | **Citation-graph edges: 63% precision (found in this pass)** | ✅ | fresh 100-edge audit: **96%** after the fix |
@@ -146,4 +146,23 @@ The advisory judge did well here (it flagged three of the four bogus murder sect
 
 Also: runtime query encoding moved to the GPU after evicting Ollama (`41fd7c5`), 36 s -> 18 s per case, same output.
 
-**Pending:** dev comparison (`scriptsun_dev_compare.bat`, baseline 9/15 done when a memory kill stopped it), then held-out 4 (`tests/fixtures/heldout_4.json`, committed `de982c0` before any dev result), scored once.
+**Pending:** dev comparison (`scripts
+un_dev_compare.bat`, baseline 9/15 done when a memory kill stopped it), then held-out 4 (`tests/fixtures/heldout_4.json`, committed `de982c0` before any dev result), scored once.
+
+### Dev comparison and held-out 4 (2026-10-03)
+
+**Dev** (same code, only `PRAMANA_ABLATE=dual,punish` differing): recall 14/15 -> **15/15**, precision 33% -> 35%, 4.0 -> 3.6 sections/case, doubted-set-aside precision 45% -> 49%, false declines 0 -> 0. Kept. (Dev #6, assault without a blow: IPC 351 ranked 16th fused, 3rd by statute text.)
+
+**Held-out 4** (`tests/fixtures/heldout_4.json`, committed before any dev result; scored once; raw `docs/heldout_4_runs.jsonl`):
+
+| 12 gated cases | result |
+|---|---|
+| routed | 12/12 |
+| right section charged | **8/12** (67%) |
+| precision | 16/38 = 42%; **59%** with the judge's doubts set aside |
+| false declines | **0** |
+| judge doubted a correct charge | **0** (it has not done so on any of the three held-out sets: 0 of 31 correct charges) |
+
+Misses: #1 defamation (209/417; the model also warned "no offence"); **#7 a death threat by phone charged as attempt to murder (307)** - the same failure as held-out 3 #10, now seen twice: an IPC threat to kill is read as an attempt; #9 forged sale deed got forgery 465/468 (arguable) but not 467/471; #11 got **IPC 347 (wrongful confinement to extort property)**, which arguably fits the facts better than the key's 342 - the key is left as written, it is held out.
+
+**Open after this:** the threat -> attempt-to-murder over-charge (#1 in the register; two held-out sets). Held-out 4 is spent for these changes.

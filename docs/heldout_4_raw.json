@@ -1,0 +1,1499 @@
+{
+ "model": "qwen3.5:4b",
+ "fixture": "tests/fixtures/heldout_4.json",
+ "totals": {
+  "n": 12,
+  "routed": 12,
+  "rec_verified": 8,
+  "rec_charges": 8,
+  "extra_verified": 22,
+  "extra_charges": 22,
+  "relevant_rejected_by_2b": 0,
+  "quotes": 66,
+  "quotes_grounded": 63,
+  "said_no_offence": 1,
+  "false_decline": 1
+ },
+ "cases": [
+  {
+   "id": 1,
+   "era": "ipc",
+   "offence_type": "defamation",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "500"
+   ],
+   "verified": [
+    "209",
+    "417"
+   ],
+   "charges": [
+    "209",
+    "417"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "209",
+    "417"
+   ],
+   "extra_charges": [
+    "209",
+    "417"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "417",
+     "doubt": "The facts do not show that the accused induced anyone to deliver property, consent to retain property, or do/omit an act causing damage or harm. The statement was a false claim made at a meeting, not an inducement resulting in loss."
+    },
+    {
+     "section": "209",
+     "doubt": "The facts do not show that the false claim was made 'in a Court of Justice'. The meeting described is a village meeting, not a court."
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": false,
+    "why": "The facts disclose only an allegation of theft by the complainant and a false accusation made by the accused; no criminal act (such as moving property, forgery, cheating, or breach of trust) is imput\u00e9",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "417",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "No money was missing"
+     ],
+     "dropped_quotes": [
+      "the accused stood up and said that the complainant... had stolen the money"
+     ],
+     "missing_ingredient": "The facts do not show that the accused induced anyone to deliver property, consent to retain property, or do/omit an act causing damage or harm. The statement was a false claim made at a meeting, not an inducement resulting in loss.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "209",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "No money was missing"
+     ],
+     "dropped_quotes": [
+      "the accused stood up and said that the complainant... had stolen the money"
+     ],
+     "missing_ingredient": "The facts do not show that the false claim was made 'in a Court of Justice'. The meeting described is a village meeting, not a court.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 6.9,
+    "guardrail_s": 10.9,
+    "retrieve_s": 0.2,
+    "graph_s": 57.9
+   },
+   "said_no_offence": true,
+   "review": [],
+   "warnings": [
+    "The model considers that these facts may not disclose a criminal offence (\"The facts disclose only an allegation of theft by the complainant and a false accusation made by the accused; no criminal act (such as moving property, forgery, cheating, or breach of trust) is imput\u00e9\"). Review the sections shown before relying on that view."
+   ],
+   "gated": true
+  },
+  {
+   "id": 2,
+   "era": "bns",
+   "offence_type": "assault on a woman to outrage modesty",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "74"
+   ],
+   "verified": [
+    "304",
+    "74"
+   ],
+   "charges": [
+    "304",
+    "74"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "304"
+   ],
+   "extra_charges": [
+    "304"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "304",
+     "doubt": "Theft (the intent to permanently deprive oneself of property)"
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the use of criminal force to outrage a woman's modesty and the taking of property by snatching, which are criminal offences under the Bharatiya Nyaya Sanhita.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "74",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "grabbed her by the waist",
+      "pulled her scarf off",
+      "ran off when she screamed"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "304",
+     "subsection": "304(1)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "grabbed her by the waist",
+      "pulled her scarf off"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "Theft (the intent to permanently deprive oneself of property)",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.5,
+    "retrieve_s": 0.3,
+    "graph_s": 55.3
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 3,
+   "era": "ipc",
+   "offence_type": "mischief by fire",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "435"
+   ],
+   "verified": [
+    "426",
+    "435"
+   ],
+   "charges": [
+    "426",
+    "435"
+   ],
+   "unsupported": [],
+   "extra_verified": [],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a criminal offence as the accused intentionally set fire to agricultural produce, causing significant property loss, which constitutes mischief by fire with intent to cause damage.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "435",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "set fire to his stacked wheat harvest",
+      "destroying produce worth about eighty thousand rupees"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "426",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "set fire to his stacked wheat harvest",
+      "destroying produce"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.2,
+    "graph_s": 49.5
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 4,
+   "era": "bns",
+   "offence_type": "wrongful restraint",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "126"
+   ],
+   "verified": [
+    "126",
+    "129",
+    "351"
+   ],
+   "charges": [
+    "126",
+    "129",
+    "351"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "129",
+    "351"
+   ],
+   "extra_charges": [
+    "129",
+    "351"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose criminal acts of obstruction and intimidation which are distinct from civil disputes over land use or property rights.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "351",
+     "subsection": "351(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused parked his tractor across the path",
+      "and stood in front of it, telling the complainant he would not be allowed to pass that way to his field."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "126",
+     "subsection": "126(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The complainant uses a village path to reach his own field.",
+      "The accused parked his tractor across the path and stood in front of it, telling the complainant he would not be allowed to pass that way to his field."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "129",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused parked his tractor across the path and stood in front of it",
+      "telling the complainant he would not be allowed to pass that way to his field"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.5,
+    "guardrail_s": 3.3,
+    "retrieve_s": 0.2,
+    "graph_s": 69.3
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 5,
+   "era": "ipc",
+   "offence_type": "cruelty by husband and in-laws",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "498A"
+   ],
+   "verified": [
+    "323",
+    "34",
+    "498A"
+   ],
+   "charges": [
+    "323",
+    "34",
+    "498A"
+   ],
+   "unsupported": [],
+   "extra_verified": [],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose criminal offences under IPC Section 498A because they allege repeated beating (cruelty) and coercion for the purpose of obtaining property by deception from the complainant's father",
+    "accused_count": 2,
+    "acted_together": true,
+    "shared_plan_or_object": true
+   },
+   "applicability": [
+    {
+     "section": "498A",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Within a year of the marriage",
+      "the husband and his mother repeatedly beat the complainant"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "323",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "repeatedly beat the complainant"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "34",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Within a year of the marriage, the husband and his mother repeatedly beat the complainant"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.5,
+    "retrieve_s": 0.2,
+    "graph_s": 56.1
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 6,
+   "era": "bns",
+   "offence_type": "online sale cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "318"
+   ],
+   "verified": [
+    "318",
+    "335"
+   ],
+   "charges": [
+    "318",
+    "335"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "335"
+   ],
+   "extra_charges": [
+    "335"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "335",
+     "doubt": "The facts do not show the accused made, signed, sealed, executed, transmitted an electronic record with false intent, altered a document, or caused another to sign falsely."
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the offence of cheating under BNS 318(1) as the accused deceived the complainant into transferring money without delivering the promised goods.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "318",
+     "subsection": "318(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "took twenty-two thousand rupees from the complainant by bank transfer",
+      "never sent the phone",
+      "blocked the complainant's number and deleted the page"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "335",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show the accused made, signed, sealed, executed, transmitted an electronic record with false intent, altered a document, or caused another to sign falsely.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.2,
+    "graph_s": 53.5
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 7,
+   "era": "ipc",
+   "offence_type": "criminal intimidation by telephone",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "506"
+   ],
+   "verified": [
+    "307",
+    "384"
+   ],
+   "charges": [
+    "307",
+    "384"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "307",
+    "384"
+   ],
+   "extra_charges": [
+    "307",
+    "384"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "384",
+     "doubt": "delivery of property, valuable security or anything signed/sealed"
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the crime of extortion under IPC Section 383 because the accused intentionally put the complainant in fear of death and injury to his sons to induce him to deliver property (signing",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "384",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The accused phoned him twice and said that if he did not sign the sale papers by Sunday he would be killed",
+      "he would be killed and his sons would be next"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "delivery of property, valuable security or anything signed/sealed",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "307",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused phoned him twice and said that if he did not sign the sale papers by Sunday he would be killed",
+      "his sons would be next"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.1,
+    "graph_s": 57.4
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 8,
+   "era": "bns",
+   "offence_type": "house-breaking by night and theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "305",
+    "331"
+   ],
+   "verified": [
+    "127",
+    "305",
+    "309",
+    "317",
+    "331"
+   ],
+   "charges": [
+    "127",
+    "305",
+    "309",
+    "317",
+    "331"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "127",
+    "309",
+    "317"
+   ],
+   "extra_charges": [
+    "127",
+    "309",
+    "317"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "317",
+     "doubt": "The facts do not show that the accused 'received or retained' stolen property; they only show the act of taking it."
+    },
+    {
+     "section": "309",
+     "doubt": "The facts do not show that the offender put the victim in fear of instant death, hurt, or wrongful restraint to extort property."
+    },
+    {
+     "section": "127",
+     "doubt": "The facts do not show that the accused confined any person for the purpose of extorting a confession, information, or property."
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the criminal offences of theft and house-trespass as the accused entered a dwelling at night to take property dishonestly.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "305",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "climbed into the complainant's house",
+      "took gold jewellery and cash from a cupboard"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "317",
+     "subsection": "317(2)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "took gold jewellery and cash from a cupboard"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused 'received or retained' stolen property; they only show the act of taking it.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "331",
+     "subsection": "331(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "At about two in the morning",
+      "climbed into the complainant's house"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "309",
+     "subsection": "309(3)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the offender put the victim in fear of instant death, hurt, or wrongful restraint to extort property.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "127",
+     "subsection": "127(8)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused confined any person for the purpose of extorting a confession, information, or property.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.3,
+    "retrieve_s": 0.2,
+    "graph_s": 89.7
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 9,
+   "era": "ipc",
+   "offence_type": "forged sale deed",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "467",
+    "471"
+   ],
+   "verified": [
+    "120B",
+    "417",
+    "423",
+    "465",
+    "468"
+   ],
+   "charges": [
+    "120B",
+    "417",
+    "423",
+    "465",
+    "468"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "120B",
+    "417",
+    "423"
+   ],
+   "extra_charges": [
+    "120B",
+    "417",
+    "423"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "423",
+     "doubt": "The facts do not show that the deed contained any false statement relating to the consideration for the transfer."
+    },
+    {
+     "section": "468",
+     "doubt": "The facts do not explicitly state that the accused forged the document (i.e., created a false document or altered an existing one) with the specific intent to cheat, though this is implied by the act of signing another's name falsely."
+    },
+    {
+     "section": "417",
+     "doubt": "The facts do not show that the accused induced the third person to deliver property or consent to retain property by deceiving them, nor does it show damage/harm resulting from such deception."
+    },
+    {
+     "section": "465",
+     "doubt": "The facts do not explicitly state the intent to cause damage or injury, support a claim/title, or commit fraud (though implied by the nature of the act)."
+    },
+    {
+     "section": "120B",
+     "doubt": "joint liability needs two or more persons; the facts show 1"
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the criminal offence of cheating by executing a false sale deed and attempting to sell property obtained through deception.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "423",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "prepared a sale deed",
+      "signed the complainant's name on it himself"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the deed contained any false statement relating to the consideration for the transfer.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "468",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "prepared a sale deed",
+      "signed the complainant's name on it himself",
+      "got it registered in his own favour"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not explicitly state that the accused forged the document (i.e., created a false document or altered an existing one) with the specific intent to cheat, though this is implied by the act of signing another's name falsely.",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "417",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "tried to sell the plot to a third person"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused induced the third person to deliver property or consent to retain property by deceiving them, nor does it show damage/harm resulting from such deception.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "465",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "prepared a sale deed",
+      "signed the complainant's name on it himself"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not explicitly state the intent to cause damage or injury, support a claim/title, or commit fraud (though implied by the nature of the act).",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "120B",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "prepared a sale deed",
+      "signed the complainant's name on it himself",
+      "got it registered in his own favour"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that there was a conspiracy (agreement between two or more persons) to commit an offence punishable by death, life imprisonment, or rigorous imprisonment for two years or upwards.",
+     "model_applies": false,
+     "rule_rejected": "joint liability needs two or more persons; the facts show 1",
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.5,
+    "guardrail_s": 3.5,
+    "retrieve_s": 0.2,
+    "graph_s": 115.3
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 10,
+   "era": "bns",
+   "offence_type": "kidnapping a child",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "137"
+   ],
+   "verified": [
+    "137",
+    "142"
+   ],
+   "charges": [
+    "137",
+    "142"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "142"
+   ],
+   "extra_charges": [
+    "142"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a criminal offence as the accused abducted a minor from lawful guardianship without consent, which is prima facie kidnapping under the Bharatiya Nyaya Sanhita.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "137",
+     "subsection": "137(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "took her away on his motorcycle",
+      "without her parents' knowledge"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "142",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "took her away on his motorcycle",
+      "She was found two days later in another town"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.6,
+    "retrieve_s": 0.2,
+    "graph_s": 53.8
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 11,
+   "era": "ipc",
+   "offence_type": "wrongful confinement by two men",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "342"
+   ],
+   "verified": [
+    "34",
+    "347",
+    "384",
+    "385",
+    "392",
+    "417",
+    "420"
+   ],
+   "charges": [
+    "34",
+    "347",
+    "384",
+    "385",
+    "392",
+    "417",
+    "420"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "347",
+    "385",
+    "392",
+    "417",
+    "420"
+   ],
+   "extra_charges": [
+    "347",
+    "385",
+    "392",
+    "417",
+    "420"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "384",
+     "doubt": "The facts do not explicitly state that the men 'intentionally put' the complainant in fear of injury as the primary mechanism; they used confinement (threat) rather than inducing fear to deliver property."
+    },
+    {
+     "section": "392",
+     "doubt": "The facts do not show that the act was committed 'on the highway' or involve 'robbery' (taking property by force/threat from a person in possession)."
+    },
+    {
+     "section": "385",
+     "doubt": "The facts do not explicitly state that the men 'put' or 'attempted to put' the person in fear of injury; they used physical confinement which is a different mode of coercion than inducing fear."
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a criminal act involving wrongful confinement and the use of that confinement to extort property (a promissory note), which constitutes an offence under the IPC.",
+    "accused_count": 2,
+    "acted_together": true,
+    "shared_plan_or_object": true
+   },
+   "applicability": [
+    {
+     "section": "347",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Two men to whom the complainant owed money took him to a godown",
+      "locked him inside overnight and released him the next morning only after he signed a promissory note"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "384",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "released him the next morning only after he signed a promissory note"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not explicitly state that the men 'intentionally put' the complainant in fear of injury as the primary mechanism; they used confinement (threat) rather than inducing fear to deliver property.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "417",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "signed a promissory note"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "392",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the act was committed 'on the highway' or involve 'robbery' (taking property by force/threat from a person in possession).",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "420",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "signed a promissory note"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "385",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "Two men to whom the complainant owed money took him to a godown",
+      "locked him inside overnight"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not explicitly state that the men 'put' or 'attempted to put' the person in fear of injury; they used physical confinement which is a different mode of coercion than inducing fear.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "34",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "took him to a godown",
+      "locked him inside overnight"
+     ],
+     "dropped_quotes": [
+      "Two men"
+     ],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.2,
+    "graph_s": 113.1
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 12,
+   "era": "bns",
+   "offence_type": "simple hurt",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "115"
+   ],
+   "verified": [
+    "114",
+    "115",
+    "131"
+   ],
+   "charges": [
+    "114",
+    "115",
+    "131"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "114",
+    "131"
+   ],
+   "extra_charges": [
+    "114",
+    "131"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the voluntary causing of bodily hurt through physical assault, which is a criminal offence under the Bharatiya Nyaya Sanhita.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "114",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "slapped the complainant twice",
+      "punched him in the face"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "115",
+     "subsection": "115(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "During an argument over a parking space, the accused slapped the complainant twice and punched him in the face",
+      "giving him a bruised cheek"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "131",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "During an argument over a parking space, the accused slapped the complainant twice and punched him in the face",
+      "giving him a bruised cheek"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.6,
+    "retrieve_s": 0.2,
+    "graph_s": 60.9
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 13,
+   "era": "bns",
+   "offence_type": "CIVIL CONTROL: delayed salary",
+   "status": "no_proposals",
+   "routed_ok": true,
+   "want": [],
+   "verified": [],
+   "charges": [],
+   "unsupported": [],
+   "extra_verified": [],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {
+    "discloses_offence": false,
+    "why": "The facts describe a civil dispute regarding delayed salary payment and a claim for interest, which does not disclose any criminal act such as cheating, theft, misappropriation, or extortion.",
+    "accused_count": 0,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.6,
+    "retrieve_s": 0.2,
+    "graph_s": 17.9
+   },
+   "said_no_offence": true,
+   "review": [
+    "318",
+    "316",
+    "3",
+    "308",
+    "324"
+   ],
+   "warnings": [
+    "The model considers that these facts may not disclose a criminal offence (\"The facts describe a civil dispute regarding delayed salary payment and a claim for interest, which does not disclose any criminal act such as cheating, theft, misappropriation, or extortion.\"). Review the sections shown before relying on that view."
+   ],
+   "gated": false
+  },
+  {
+   "id": 14,
+   "era": "ipc",
+   "offence_type": "CIVIL CONTROL: overhanging tree",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [],
+   "verified": [
+    "420"
+   ],
+   "charges": [
+    "420"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "420"
+   ],
+   "extra_charges": [
+    "420"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "420",
+     "doubt": ""
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": false,
+    "why": "The facts describe a civil dispute over tree branches and a refusal to trim them, which does not disclose any criminal act such as trespass, theft, hurt, or intimidation.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "420",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "He has asked the neighbour to trim them",
+      "the neighbour says the tree is on his land and he will not"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.3,
+    "retrieve_s": 0.2,
+    "graph_s": 38.6
+   },
+   "said_no_offence": true,
+   "review": [],
+   "warnings": [
+    "The model considers that these facts may not disclose a criminal offence (\"The facts describe a civil dispute over tree branches and a refusal to trim them, which does not disclose any criminal act such as trespass, theft, hurt, or intimidation.\"). Review the sections shown before relying on that view."
+   ],
+   "gated": false
+  }
+ ]
+}
