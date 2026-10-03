@@ -73,7 +73,15 @@ def test_insufficient_data_returns_early_without_llm(g, scripted):
     llm = scripted(["303"])
     out = _run(g, llm, sufficient=False)
     assert out["status"] == "insufficient_data" and llm.calls == []
-    assert out["state"]["verified_sections"] == []
+    assert out["state"]["verified_sections"] == [] and out["charges"] == []
+
+
+def test_insufficient_data_is_never_a_bare_refusal(g, scripted):
+    # Held-out 3 #7: the guardrail refused a real mischief case. The nearest
+    # statute sections are still surfaced, unverified, and the LLM is not called.
+    llm = scripted(["303"])
+    out = _run(g, llm, sufficient=False)
+    assert llm.calls == [] and [r["section"] for r in out["review_candidates"]] == ["303"]
 
 
 def test_no_proposals_is_explicit(g, scripted):

@@ -43,6 +43,11 @@ def chargeable(code, section, subsection=None):
     return classify(code, section, subsection)[0] in ("offence", "liability")
 
 
+def punished_by(code, section):
+    """The section that punishes this definition (IPC 405 -> 406), or None."""
+    return _load().get("punished_by", {}).get(code, {}).get(section)
+
+
 def non_chargeable_sections(code):
     """Sections that can never be a charge at section level (for filtering
     retrieval candidates and precedent votes). Sections with a sub-section

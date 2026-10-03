@@ -133,7 +133,12 @@ def build_messages(state, text_of):
     era = state["era"]
     blocks = []
     for v in state["verified_sections"]:
-        t = re.sub(r"\s+", " ", text_of(era, v["section"], v.get("subsection")))[:MAX_STATUTE_CHARS]
+        t = text_of(era, v["section"], v.get("subsection"))
+        if v.get("defined_in"):
+            # A punishment section ("Whoever commits criminal breach of trust
+            # shall be punished...") names no ingredients; they are in the definition.
+            t = text_of(era, v["defined_in"], None) + "\n" + t
+        t = re.sub(r"\s+", " ", t)[:MAX_STATUTE_CHARS]
         blocks.append(f"[{_ref(era, v)}] {v.get('title') or ''}\n{t}")
     system = (
         "You check whether sections of Indian criminal law apply to a set of facts. For EACH "

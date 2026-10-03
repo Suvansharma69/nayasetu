@@ -27,6 +27,7 @@ Output: data/mappings/chargeability.json. Run after any statute rebuild:
     venv\Scripts\python.exe scripts\build_chargeability.py
 """
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -83,6 +84,23 @@ def main():
             out[code][sec] = {"class": cls, "why": why, "title": c.get("section_title"), "chapter": ch}
             counts[cls] += 1
         print(code, dict(counts))
+    # The IPC defines an offence in one section and punishes it in another
+    # (405 / 406), and a charge is framed under the PUNISHING section. Pairs are
+    # read off the titles: "Punishment for X" punishes the section titled "X",
+    # exact match only -- "Punishment for culpable homicide not amounting to
+    # murder" (304) must NOT attach to 299, which also covers murder. The BNS
+    # puts definition and punishment in one section, so it has no pairs.
+    out["punished_by"] = {"ipc": {}, "bns": {}}
+    norm = lambda t: re.sub(r"[^a-z ]", "", (t or "").lower()).strip()  # noqa: E731
+    titled = {}
+    for sec, e in out["ipc"].items():
+        titled.setdefault(norm(e["title"]), []).append(sec)
+    for sec, e in out["ipc"].items():
+        m = re.match(r"punishment for (.*)", norm(e["title"]))
+        defs = titled.get(m.group(1), []) if m else []
+        if len(defs) == 1 and out["ipc"][defs[0]]["class"] == "offence":
+            out["punished_by"]["ipc"][defs[0]] = sec
+    print("ipc definition -> punishment pairs:", len(out["punished_by"]["ipc"]))
     for code, rules in SUBSECTION_LIABILITY.items():
         for sec in rules:
             if out[code][sec]["class"] != "non_chargeable":

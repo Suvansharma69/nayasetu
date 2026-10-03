@@ -76,9 +76,22 @@ def _excerpt(text):
 
 
 def retrieve_candidates(case_facts, era, cli=None, device=RUNTIME_DEVICE):
+    exclude = None if ablation.off("exclude") else chargeability.non_chargeable_sections(era)
     rows = ranker.rank_sections(case_facts, era, top_k=TOP_K_CANDIDATES, cli=cli, device=device,
-                                exclude=None if ablation.off("exclude")
-                                else chargeability.non_chargeable_sections(era))
+                                exclude=exclude)
+    if not ablation.off("dual"):
+        # Two lists, not one. Precedent votes are a popularity prior: they put
+        # the right section in the top 3 more often (dev 11/15 vs 9/15 by
+        # statute text alone) but crowd out sections the facts match textually
+        # (dev top-10: fused 13/15, statute text 14/15; held-out 3 #10, a
+        # threat with an axe, got attempt to murder and murder on top). The
+        # fused top 10 comes first, then the statute-text top 10's new sections.
+        seen = {r["section"] for r in rows}
+        for r in ranker.rank_sections(case_facts, era, top_k=TOP_K_CANDIDATES, cli=cli,
+                                      device=device, exclude=exclude, use_votes=False):
+            if r["section"] not in seen:
+                rows.append(r)
+                seen.add(r["section"])
     for r in rows:
         r["excerpt"] = _excerpt(ranker._section_record(era, r["section"]).get("text"))
     return rows
@@ -112,6 +125,11 @@ def run(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, suf
         # One side only: date the run by the period's end, which is on that side.
         return _run_one(case_facts, offence_date_to, **kw)
     return _run_one(case_facts, offence_date, **kw)
+
+
+def _review(retrieved, n):
+    return [{"section": r["section"], "matched": r.get("matched"), "title": r.get("title")}
+            for r in retrieved[:n]]
 
 
 def _encode_device(uses_embedder=True):
@@ -157,9 +175,22 @@ def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None
         ok, detail = sufficient(case_facts, era)
     timings["guardrail_s"] = time.perf_counter() - t
     if not ok:
+        # No LLM call on weak context (CLAUDE.md Section 2) -- but never a bare
+        # refusal either. The guardrail's signal is judgment similarity, which
+        # measures CORPUS COVERAGE, not whether the facts allege a crime: held-out
+        # 3 #7 (a contractor smashing a water meter, mischief) scored 0.555,
+        # below the cricket text in the calibration set (0.557). So the nearest
+        # statute sections are still shown, labelled as unverified retrieval.
+        t = time.perf_counter()
+        review = [] if not case_facts or not case_facts.strip() else (
+            retrieve(case_facts, era) if retrieve else _on_device(
+                lambda d: retrieve_candidates(case_facts, era, cli=cli, device=d), device))
+        timings["retrieve_s"] = time.perf_counter() - t
         embedder.free()
         return {"status": "insufficient_data", "era": era, "guardrail": detail,
-                "state": initial_state(case_facts, offence_date, era, []), "timings": timings}
+                "state": initial_state(case_facts, offence_date, era, review), "timings": timings,
+                "review_candidates": _review(review, TOP_K_CANDIDATES),
+                "charges": [], "unsupported": [], "doubted": []}
 
     t = time.perf_counter()
     retrieved = retrieve(case_facts, era) if retrieve else _on_device(
@@ -183,9 +214,7 @@ def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None
     # retrieved sections are surfaced for the lawyer to review. They are
     # retrieval results from the ingested statutes, labelled as such -- not
     # verified charges.
-    review = [] if final["verified_sections"] else [
-        {"section": r["section"], "matched": r.get("matched"), "title": r.get("title")}
-        for r in final["retrieved"][:REVIEW_CANDIDATES]]
+    review = [] if final["verified_sections"] else _review(final["retrieved"], REVIEW_CANDIDATES)
     return {"status": status, "era": era, "guardrail": detail, "state": final, "timings": timings,
             "review_candidates": review, **split_by_applicability(final, check_applicability)}
 

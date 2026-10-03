@@ -387,7 +387,16 @@ def check(g, era, proposal):
                 bad.append({**entry, "why": f"{code} {sec} ({title}) is {why}, not an offence a "
                                             "person can be charged under"})
             else:
-                ok.append({**entry, "code": era, "title": title, "role": role})
+                pun = None if ablation.off("punish") else chargeability.punished_by(era, sec)
+                if pun and cg.verify_section(g, era, pun):
+                    # An IPC charge is framed under the punishing section: the
+                    # definition (405) becomes its punishment (406), which keeps
+                    # the definition as `defined_in` for the applicability check.
+                    # Held-out 3 #8 charged 405 for a 406 case.
+                    ok.append({**entry, "section": pun, "subsection": None, "code": era,
+                               "title": _title(g, era, pun), "role": role, "defined_in": sec})
+                else:
+                    ok.append({**entry, "code": era, "title": title, "role": role})
     return ok, bad
 
 

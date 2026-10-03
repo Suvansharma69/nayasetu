@@ -141,3 +141,39 @@ def test_non_chargeable_sections_are_rejected_with_reason(g2, era, raw, why):
 def test_chargeable_sections_verify_with_role(g2, era, raw, role):
     ok, bad = nodes.check(g2, era, _prop(raw))
     assert not bad and ok[0]["role"] == role
+
+
+# --- IPC definition -> punishing section (405 -> 406) ------------------------
+
+def _one(raw):
+    return {"raw": raw, "reason": "r", "round": 0}
+
+
+def test_ipc_definition_is_charged_under_its_punishing_section(g):
+    ok, bad = nodes.check(g, "ipc", _one("378"))
+    assert bad == [] and [(v["section"], v["defined_in"]) for v in ok] == [("379", "378")]
+    assert ok[0]["title"] == "Punishment for theft"
+
+
+def test_punishing_section_proposed_directly_is_unchanged(g):
+    ok, _ = nodes.check(g, "ipc", _one("379"))
+    assert [v["section"] for v in ok] == ["379"] and "defined_in" not in ok[0]
+
+
+def test_bns_has_no_definition_pairs(g):
+    ok, _ = nodes.check(g, "bns", _one("303"))
+    assert [v["section"] for v in ok] == ["303"]
+
+
+def test_punish_ablation_keeps_the_definition(g, monkeypatch):
+    monkeypatch.setenv("PRAMANA_ABLATE", "punish")
+    ok, _ = nodes.check(g, "ipc", _one("378"))
+    assert [v["section"] for v in ok] == ["378"]
+
+
+def test_applicability_reads_the_definition_beside_the_punishment():
+    from src.pipeline import applicability
+    st = {"era": "ipc", "case_facts": "f", "verified_sections": [
+        {"section": "379", "subsection": None, "title": "Punishment for theft", "defined_in": "378"}]}
+    msgs = applicability.build_messages(st, lambda era, s, sub: f"TEXT{s}")
+    assert "TEXT378" in msgs[1]["content"] and "TEXT379" in msgs[1]["content"]
