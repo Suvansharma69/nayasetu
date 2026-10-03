@@ -303,3 +303,48 @@ def test_node1_asks_once_by_default(g, scripted):
     graph.run(FACTS, "2024-08-15", llm=llm, g=g, retrieve=lambda f, era: two,
               sufficient=lambda f, era: (True, {}), text_of=lambda *a: "t")
     assert len(llm.calls) == 1                                     # no second ordering
+
+
+# --- VRAM handoff: query encoded on the GPU only after Ollama lets go ---------
+
+def test_injected_retrieval_never_touches_ollama_or_the_gpu(monkeypatch):
+    from src.pipeline import graph as gr
+    called = []
+    monkeypatch.setattr(gr.llm_mod, "unload", lambda *a, **k: called.append(1))
+    monkeypatch.setattr(gr, "RUNTIME_DEVICE", "cuda")
+    assert gr._encode_device(uses_embedder=False) == "cpu" and not called
+
+
+def test_cpu_setting_skips_the_unload(monkeypatch):
+    from src.pipeline import graph as gr
+    called = []
+    monkeypatch.setattr(gr.llm_mod, "unload", lambda *a, **k: called.append(1))
+    monkeypatch.setattr(gr, "RUNTIME_DEVICE", "cpu")
+    assert gr._encode_device() == "cpu" and not called
+
+
+def test_cuda_unloads_ollama_first(monkeypatch):
+    import torch
+
+    from src.pipeline import graph as gr
+    called = []
+    monkeypatch.setattr(gr.llm_mod, "unload", lambda *a, **k: called.append(1))
+    monkeypatch.setattr(gr, "RUNTIME_DEVICE", "cuda")
+    monkeypatch.setattr(torch.cuda, "is_available", lambda: True)
+    assert gr._encode_device() == "cuda" and called == [1]
+
+
+def test_gpu_out_of_memory_falls_back_to_cpu(monkeypatch):
+    import torch
+
+    from src.pipeline import graph as gr
+    monkeypatch.setattr(gr.embedder, "free", lambda: None)
+    tried = []
+
+    def fn(device):
+        tried.append(device)
+        if device == "cuda":
+            raise torch.cuda.OutOfMemoryError("card is full")
+        return "ok"
+
+    assert gr._on_device(fn, "cuda") == "ok" and tried == ["cuda", "cpu"]

@@ -9,13 +9,16 @@ r"""The Phase 4 runtime: router -> retrieval -> guardrail -> LangGraph (Node 1 <
         verifier --(unconfirmed and retry_count < 2)--> statute_identifier
         verifier --(otherwise)--> END
 
-Why CPU encoding at runtime: Ollama keeps qwen3.5:4b resident for minutes after
-a call, so the NEXT query's embedder, loaded onto the GPU, would land beside it
-on a 4GB card. One query on CPU is sub-second once the model is loaded. GPU
-stays the bulk-indexing path (scripts/build_index.py).
+The VRAM handoff (CLAUDE.md Section 2): the 4GB card holds either BGE-M3 or
+qwen3.5:4b, never both, and Ollama keeps its model resident for minutes after a
+call. So the query is encoded on the GPU only after llm.unload() has evicted the
+model; embedder.free() then returns the card before Node 1 reloads it. If the
+card is still short (another process holds it), encoding falls back to CPU.
+PRAMANA_RUNTIME_DEVICE=cpu restores the CPU-only path.
 """
 from __future__ import annotations
 
+import os
 import re
 import time
 from functools import partial
@@ -29,7 +32,7 @@ from .state import initial_state
 
 TOP_K_CANDIDATES = 10
 EXCERPT_CHARS = 300
-RUNTIME_DEVICE = "cpu"
+RUNTIME_DEVICE = os.environ.get("PRAMANA_RUNTIME_DEVICE", "cuda").strip().lower()
 REVIEW_CANDIDATES = 5
 
 _graph = None
@@ -111,6 +114,31 @@ def run(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, suf
     return _run_one(case_facts, offence_date, **kw)
 
 
+def _encode_device(uses_embedder=True):
+    """Where this run encodes its query: the GPU, after Ollama has let go of it."""
+    if RUNTIME_DEVICE != "cuda" or not uses_embedder:
+        return "cpu"
+    import torch
+
+    if not torch.cuda.is_available():
+        return "cpu"
+    llm_mod.unload()
+    return "cuda"
+
+
+def _on_device(fn, device):
+    """fn(device); on a CUDA out-of-memory error, free the card and redo it on CPU."""
+    if device != "cuda":
+        return fn("cpu")
+    import torch
+
+    try:
+        return fn("cuda")
+    except torch.cuda.OutOfMemoryError:
+        embedder.free()
+        return fn("cpu")
+
+
 def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, sufficient=None,
              text_of=None, check_applicability=True):
     timings = {}
@@ -119,8 +147,12 @@ def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None
     timings["route_s"] = time.perf_counter() - t0
 
     t = time.perf_counter()
+    device = _encode_device(uses_embedder=sufficient is None or retrieve is None)
+    timings["unload_s"] = time.perf_counter() - t
+
+    t = time.perf_counter()
     if sufficient is None:
-        ok, detail = guardrail.check(case_facts, era, cli=cli)
+        ok, detail = _on_device(lambda d: guardrail.check(case_facts, era, cli=cli, device=d), device)
     else:
         ok, detail = sufficient(case_facts, era)
     timings["guardrail_s"] = time.perf_counter() - t
@@ -130,7 +162,8 @@ def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None
                 "state": initial_state(case_facts, offence_date, era, []), "timings": timings}
 
     t = time.perf_counter()
-    retrieved = retrieve(case_facts, era) if retrieve else retrieve_candidates(case_facts, era, cli=cli)
+    retrieved = retrieve(case_facts, era) if retrieve else _on_device(
+        lambda d: retrieve_candidates(case_facts, era, cli=cli, device=d), device)
     timings["retrieve_s"] = time.perf_counter() - t
     embedder.free()
 

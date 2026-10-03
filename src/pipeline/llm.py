@@ -51,6 +51,31 @@ def context_size(messages, num_predict):
     raise LLMError(f"prompt needs ~{need} tokens, over the 32K this machine can hold")
 
 
+def unload(model_name=None, wait_s=15.0):
+    """Ask Ollama to drop the model from VRAM now (keep_alive 0) and wait until it has.
+
+    The 4GB card cannot hold qwen3.5:4b and BGE-M3 together, and Ollama keeps
+    the model resident for minutes after a call. Unloading it lets the query
+    be encoded on the GPU; the next chat_json() reloads it. Returns True once
+    the model is gone, False if Ollama is unreachable or slow to let go."""
+    import time
+
+    import httpx
+
+    name = model_name or model()
+    try:
+        httpx.post(f"{host()}/api/generate", json={"model": name, "keep_alive": 0}, timeout=30)
+        deadline = time.monotonic() + wait_s
+        while time.monotonic() < deadline:
+            ps = httpx.get(f"{host()}/api/ps", timeout=5).json().get("models") or []
+            if not any(m.get("name") == name or m.get("model") == name for m in ps):
+                return True
+            time.sleep(0.25)
+    except httpx.HTTPError:
+        return False
+    return False
+
+
 def chat_json(messages, schema, model_name=None, num_ctx=None, num_predict=1024):
     """Send `messages`, return the reply parsed as JSON conforming to `schema`."""
     import httpx
