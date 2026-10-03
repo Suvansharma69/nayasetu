@@ -70,7 +70,8 @@ def main():
                                check_applicability=not args.no_applicability)
             st = out["state"]
             ver = {v["section"] for v in st["verified_sections"]}
-            chg = {v["section"] for v in out["charges"]}
+            # An insufficient-data return stops before the graph: no charges key.
+            chg = {v["section"] for v in out.get("charges", [])}
             r = {"id": cid, "era": c["era"], "offence_type": c.get("offence_type"), "status": out["status"],
                  "routed_ok": out["era"] == c["era"], "want": sorted(rel),
                  "verified": sorted(ver), "charges": sorted(chg), "unsupported": sorted(ver - chg),

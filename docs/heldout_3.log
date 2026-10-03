@@ -1,0 +1,44 @@
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.50it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.17it/s]
+# 1 [bns] criminal breach of trust by pa ok                   want=['316'] charges=['303', '314', '316'] unsupported=[] extra=['303', '314'] lost=[] 69s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.49it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 422.77it/s]
+# 2 [ipc] house-trespass during rent dis ok                   want=['448'] charges=['380', '447', '454'] unsupported=[] extra=['380', '447', '454'] lost=[] 76s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.39it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 413.95it/s]
+# 3 [bns] cheating in a land sale        ok                   want=['318'] charges=['314', '316', '318', '61'] unsupported=[] extra=['314', '61'] lost=[] 110s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.43it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 415.35it/s]
+# 4 [ipc] hurt with a dangerous weapon i ok                   want=['324'] charges=['324', '334'] unsupported=[] extra=['334'] lost=[] 46s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.47it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.32it/s]
+# 5 [bns] criminal intimidation over sal ok                   want=['351'] charges=['119', '308', '351'] unsupported=[] extra=['119'] lost=[] 70s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.48it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.95it/s]
+# 6 [ipc] forgery of a will in a family  ok                   want=['467'] charges=['114', '120B', '300', '306', '467'] unsupported=[] extra=['114', '120B', '300', '306'] lost=[] 88s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.36it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 414.54it/s]
+Traceback (most recent call last):
+  File "D:\nayasetu\scripts\eval_broad.py", line 126, in <module>
+    main()
+  File "D:\nayasetu\scripts\eval_broad.py", line 73, in main
+    chg = {v["section"] for v in out["charges"]}
+                                 ~~~^^^^^^^^^^^
+KeyError: 'charges'
+# 1 [bns] criminal breach of trust by pa ok                   want=['316'] charges=['303', '314', '316'] unsupported=[] extra=['303', '314'] lost=[] 69s (checkpoint)
+# 2 [ipc] house-trespass during rent dis ok                   want=['448'] charges=['380', '447', '454'] unsupported=[] extra=['380', '447', '454'] lost=[] 76s (checkpoint)
+# 3 [bns] cheating in a land sale        ok                   want=['318'] charges=['314', '316', '318', '61'] unsupported=[] extra=['314', '61'] lost=[] 110s (checkpoint)
+# 4 [ipc] hurt with a dangerous weapon i ok                   want=['324'] charges=['324', '334'] unsupported=[] extra=['334'] lost=[] 46s (checkpoint)
+# 5 [bns] criminal intimidation over sal ok                   want=['351'] charges=['119', '308', '351'] unsupported=[] extra=['119'] lost=[] 70s (checkpoint)
+# 6 [ipc] forgery of a will in a family  ok                   want=['467'] charges=['114', '120B', '300', '306', '467'] unsupported=[] extra=['114', '120B', '300', '306'] lost=[] 88s (checkpoint)
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<00:35, 10.84it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 823.79it/s]
+# 7 [bns] mischief after a payment dispu insufficient_data    want=['324'] charges=[] unsupported=[] extra=[] lost=[] 0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<00:49,  7.83it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 600.46it/s]
+# 8 [ipc] criminal breach of trust of st ok                   want=['406'] charges=['307', '378', '405', '415', '420', '506'] unsupported=[] extra=['307', '378', '415', '420', '506'] lost=[] NO-OFFENCE 132s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:14,  5.16it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 395.92it/s]
+# 9 [bns] wrongful confinement by a debt ok                   want=['127'] charges=['308', '309', '351'] unsupported=[] extra=['309', '351'] lost=[] 71s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:15,  5.11it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 393.78it/s]
+#10 [ipc] criminal intimidation in a dis ok                   want=['506'] charges=['148', '307', '326'] unsupported=[] extra=['148', '307', '326'] lost=[] 76s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.52it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 422.95it/s]
+#11 [bns] CIVIL CONTROL: delayed constru no_verified_sections want=[] charges=[] unsupported=[] extra=[] lost=[] NO-OFFENCE review=['318', '3', '324', '336', '335'] 27s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.53it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 425.54it/s]
+#12 [ipc] CIVIL CONTROL: tenant overstay no_proposals         want=[] charges=[] unsupported=[] extra=[] lost=[] NO-OFFENCE review=['380', '384', '417', '147', '344'] 17s
+
+model qwen3.5:4b  heldout_3.json  gated 10: routed 10/10
+  recall  verified 5/10   charges 5/10
+  extras  verified 23   charges 23   relevant sections rejected by 2b: 0
+  quotes grounded 46/48
+  model said no offence 1/10   false declines 2/10
