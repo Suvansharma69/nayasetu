@@ -35,10 +35,20 @@ import re
 
 from src.graph import citation_graph as cg
 
+from . import ablation, chargeability
 from .router import CODE_NAME
 
 MAX_RETRIES = 2
 MAX_PROPOSALS = 8
+
+# Node 1 two-ordering union: OFF (decided 2026-10-01 on the dev set, both runs on
+# the same code, only this switch differing). Union vs single call: cases with a
+# relevant section 14/15 vs 14/15; wanted sections 22/31 vs 20/31; sections per
+# case 5.6 vs 3.8; precision 26% vs 35%. Its two gains were a definition (IPC
+# 405, where the charge is 406) and plain theft beside an aggravated theft
+# already found (BNS 303 beside 305) -- no missed offence was caught -- for 27
+# extra sections and a second LLM call per case. NODE1_UNION = True restores it.
+NODE1_UNION = False
 
 # --- parsing a proposed citation ------------------------------------------------
 
@@ -95,9 +105,19 @@ def parse_citation(raw):
 # sections until Ollama's 5-minute request limit killed it (~4,000 tokens at
 # ~16 tok/s, measured 2026-09-27). Ollama compiles maxItems/maxLength into the
 # decoding grammar, so the reply ends by construction.
+# The fact-profile fields come BEFORE `sections`: the grammar makes the model
+# commit to "is this an offence at all, and how many acted together" before it
+# names sections. They drive two deterministic rules in statute_identifier():
+# declining non-criminal facts (F) and proposing the joint-liability section (D).
+PROFILE_FIELDS = ("discloses_offence", "why", "accused_count", "acted_together", "shared_plan_or_object")
 PROPOSAL_SCHEMA = {
     "type": "object",
     "properties": {
+        "discloses_offence": {"type": "boolean"},
+        "why": {"type": "string", "maxLength": 200},
+        "accused_count": {"type": "integer", "minimum": 0, "maximum": 99},
+        "acted_together": {"type": "boolean"},
+        "shared_plan_or_object": {"type": "boolean"},
         "sections": {
             "type": "array",
             "maxItems": MAX_PROPOSALS - 2,
@@ -109,8 +129,17 @@ PROPOSAL_SCHEMA = {
             },
         }
     },
-    "required": ["sections"],
+    "required": ["discloses_offence", "why", "accused_count", "acted_together",
+                 "shared_plan_or_object", "sections"],
 }
+# Sections only -- the Phase 4 schema, used when the profile is ablated.
+SECTIONS_ONLY_SCHEMA = {"type": "object",
+                        "properties": {"sections": PROPOSAL_SCHEMA["properties"]["sections"]},
+                        "required": ["sections"]}
+
+
+def proposal_schema():
+    return SECTIONS_ONLY_SCHEMA if ablation.off("profile") else PROPOSAL_SCHEMA
 
 
 def _code_short(era):
@@ -121,7 +150,11 @@ def _system_prompt(era):
     code = _code_short(era)
     return (
         f"You assist an Indian criminal lawyer. Identify the sections of the {CODE_NAME[era]} "
-        f"that the facts disclose. The offence date decides the code, and for this case it is "
+        "that the facts disclose. Read the facts as a court reads a complaint at the stage of "
+        "registering an FIR or framing a charge: take the allegations as true and ask whether they "
+        "disclose an offence prima facie -- do not demand proof, and do not dismiss a threat, "
+        "injury or taking of property as a civil matter. "
+        f"The offence date decides the code, and for this case it is "
         f"the {code}: cite {code} section numbers ONLY, never those of any other enactment.\n"
         "Name only the sections the accused could be CHARGED under: sections whose every "
         "ingredient the facts disclose. Do not name general exceptions, private defence or "
@@ -133,9 +166,20 @@ def _system_prompt(era):
         "For each section give the bare number (with the sub-section in brackets if one is "
         "specifically engaged, e.g. 303(2)) and a one-sentence reason tied to the facts. "
         "A case usually engages one to three sections; propose at most "
-        f"{MAX_PROPOSALS - 2}, most important first. If the facts "
-        "disclose no criminal offence (for example a purely civil, contractual or family "
-        "dispute), return an empty list."
+        f"{MAX_PROPOSALS - 2}, most important first."
+        + ("" if ablation.off("profile") else "\n" + _PROFILE_PROMPT)
+    )
+
+
+_PROFILE_PROMPT = (
+        "Before the sections, answer about the facts:\n"
+        "- discloses_offence: taking every allegation as true, do the facts disclose any criminal "
+        "offence? Answer false only for a purely civil, contractual, tax, service or family dispute "
+        "in which no criminal act is alleged at all. `why`: one sentence saying why.\n"
+        "- accused_count: how many distinct accused persons took part (0 if the facts do not say).\n"
+        "- acted_together: true if two or more accused took part in the criminal act jointly.\n"
+        "- shared_plan_or_object: true if they shared an intention, plan or object, whether "
+        "agreed beforehand or formed on the spot."
     )
 
 
@@ -196,31 +240,107 @@ def statute_identifier(state, llm):
     # rejections -- so their presence is what marks a retry.
     is_retry = bool(_open_rejections(state))
     rnd = state["retry_count"] + 1 if is_retry else 0
-    reply = llm(build_messages(state), PROPOSAL_SCHEMA)
-    proposals = []
-    for item in (reply.get("sections") or [])[:MAX_PROPOSALS]:
+    reply = llm(build_messages(state), proposal_schema())
+    update = {"retry_count": rnd}
+    if not is_retry and not ablation.off("profile"):
+        profile = {k: reply.get(k) for k in PROFILE_FIELDS}
+        update["facts_profile"] = profile
+        if profile.get("discloses_offence") is False:
+            # The model may NOT decline a case. Missing an offence is this
+            # system's primary error (owner, 2026-10-01): a bare "no offence"
+            # tells the lawyer to stop looking. Measured twice -- a two-man
+            # phone snatching (dev 10) and a threat to burn a family's house
+            # down (held-out 2 #14) were both called civil disputes. "No
+            # offence" is a WARNING; whatever was proposed is verified as usual,
+            # and if nothing was, the report surfaces the retrieved sections.
+            update["warnings"] = state.get("warnings", []) + [
+                "The model considers that these facts may not disclose a criminal offence "
+                f"(\"{profile.get('why') or 'no reason given'}\"). Review the sections shown before "
+                "relying on that view."]
+    items = list(reply.get("sections") or [])[:MAX_PROPOSALS]
+    if NODE1_UNION and not is_retry and not ablation.off("union") and len(state["retrieved"]) > 1:
+        # Recall-first ensembling (COLIEE 2025's best statute system decided
+        # with several LLMs; missing an offence is this system's primary
+        # error): ask again with the candidates in REVERSED order and take the
+        # union. A small model's proposals shift with what it reads first; two
+        # orderings catch each other's misses. Every proposal still goes
+        # through Node 2, so the union cannot add an unverified section.
+        flipped = {**state, "retrieved": list(reversed(state["retrieved"]))}
+        second = llm(build_messages(flipped), proposal_schema())
+        items += list(second.get("sections") or [])[:MAX_PROPOSALS]
+    proposals, seen = [], set()
+    for item in items:
         raw = str(item.get("section", "")).strip()
-        if not raw:
+        key = tuple((p["section"], p["subsection"]) for p in parse_citation(raw)) or raw
+        if not raw or key in seen:
             continue
-        proposals.append({"raw": raw, "reason": str(item.get("reason", "")).strip(), "round": rnd})
-    return {"candidate_sections": state["candidate_sections"] + proposals,
-            "retry_count": rnd}
+        seen.add(key)
+        proposals.append({"raw": raw, "reason": str(item.get("reason", "")).strip(), "round": rnd,
+                          "source": "llm"})
+    if not is_retry and not ablation.off("profile"):
+        proposals += liability_rule(state["era"], update["facts_profile"], proposals)
+    update["candidate_sections"] = state["candidate_sections"] + proposals
+    return update
+
+
+# The joint-liability rule. Phase 2 measured that retrieval cannot surface IPC
+# 34 (rank 146 of 672 for a textbook common-intention case) and Phase 4 that
+# Node 1 does not propose it either -- so it is derived from the facts the model
+# reports, by a rule, and then verified like any other proposal. Five or more
+# persons with a common object is an unlawful assembly: IPC 149 / BNS 190, not 34
+# (the distinction Phase 2 dev case 8's note is about).
+LIABILITY_RULE = {
+    "ipc": {"joint": ("IPC 34", "common intention"), "assembly": ("IPC 149", "unlawful assembly, common object")},
+    "bns": {"joint": ("BNS 3(5)", "common intention"), "assembly": ("BNS 190", "unlawful assembly, common object")},
+}
+
+
+def liability_rule(era, profile, proposals):
+    """Rule-derived liability proposal, or [] (also [] if Node 1 already named it)."""
+    n = profile.get("accused_count")
+    if (not isinstance(n, int) or n < 2 or not profile.get("acted_together")
+            or not profile.get("shared_plan_or_object")):
+        return []
+    kind = "assembly" if n >= 5 else "joint"
+    raw, what = LIABILITY_RULE[era][kind]
+    # Compare (section, sub-section), not the section alone: a bare "3" is BNS
+    # "General explanations", which Node 2 rejects as non-chargeable, and it
+    # must not stand in for 3(5). Dev case 15 lost common intention this way.
+    t = parse_citation(raw)[0]
+    already = {(p["section"], p["subsection"]) for prop in proposals for p in parse_citation(prop["raw"])}
+    if (t["section"], t["subsection"]) in already:
+        return []
+    return [{"raw": raw, "reason": f"rule: {n} accused acted together with a shared plan or object ({what})",
+             "round": 0, "source": "rule"}]
 
 
 # --- Node 2 -------------------------------------------------------------------
 
+def _title(g, code, sec):
+    return g.nodes[cg.section_key(code, sec)].get("title") or "untitled"
+
+
 def _hint(g, era, sec):
-    """Counterpart in the era's code via the VERIFIED mapping, if any."""
+    """Counterpart in the era's code via the VERIFIED mapping, if any.
+
+    Both sides are named with their graph titles, and the hint says the
+    counterpart is only right if the original guess was the right offence.
+    Measured 2026-09-27: without that, a wrong guess ("421" for a theft) was
+    faithfully translated into its real counterpart (BNS 320, concealing
+    property from creditors), which then verified.
+    """
+    caveat = " That is only correct if the original section was the right offence for these facts."
     if era == "bns" and cg.verify_section(g, "ipc", sec):
         succ = cg.get_bns_successor(g, sec)
-        return (f"IPC {sec} is an IPC section; under the verified mapping its BNS counterpart "
-                f"is BNS {succ}." if succ else
-                f"IPC {sec} is an IPC section with no verified BNS counterpart.")
+        return (f"IPC {sec} ({_title(g, 'ipc', sec)}) is an IPC section; under the verified mapping "
+                f"its BNS counterpart is BNS {succ} ({_title(g, 'bns', succ)})." + caveat if succ else
+                f"IPC {sec} ({_title(g, 'ipc', sec)}) is an IPC section with no verified BNS counterpart.")
     if era == "ipc" and cg.verify_section(g, "bns", sec):
         preds = cg.get_ipc_predecessors(g, sec)
-        return (f"BNS {sec} is a BNS section; under the verified mapping its IPC counterpart "
-                f"is IPC {', '.join(preds)}." if preds else
-                f"BNS {sec} is a BNS section with no verified IPC counterpart.")
+        return (f"BNS {sec} ({_title(g, 'bns', sec)}) is a BNS section; under the verified mapping its "
+                f"IPC counterpart is " + ", ".join(f"IPC {p} ({_title(g, 'ipc', p)})" for p in preds)
+                + "." + caveat if preds else
+                f"BNS {sec} ({_title(g, 'bns', sec)}) is a BNS section with no verified IPC counterpart.")
     return ""
 
 
@@ -256,8 +376,27 @@ def check(g, era, proposal):
             bad.append({**entry, "why": (f"{code} {sec} is not a section of the ingested "
                                          f"{code}{_range(g, era)}. " + _hint(g, era, sec)).strip()})
         else:
-            title = g.nodes[cg.section_key(era, sec)].get("title")
-            ok.append({**entry, "code": era, "title": title})
+            title = _title(g, era, sec)
+            role, why = chargeability.classify(era, sec, p["subsection"])
+            if ablation.off("chargeability") and role == "non_chargeable":
+                role = "unchecked"
+            if role == "non_chargeable":
+                # Real, but not a charge: a definition, general exception or
+                # punishment rule. Rejected like any other unconfirmed citation,
+                # so the retry asks for the offence instead.
+                bad.append({**entry, "why": f"{code} {sec} ({title}) is {why}, not an offence a "
+                                            "person can be charged under"})
+            else:
+                pun = None if ablation.off("punish") else chargeability.punished_by(era, sec)
+                if pun and cg.verify_section(g, era, pun):
+                    # An IPC charge is framed under the punishing section: the
+                    # definition (405) becomes its punishment (406), which keeps
+                    # the definition as `defined_in` for the applicability check.
+                    # Held-out 3 #8 charged 405 for a 406 case.
+                    ok.append({**entry, "section": pun, "subsection": None, "code": era,
+                               "title": _title(g, era, pun), "role": role, "defined_in": sec})
+                else:
+                    ok.append({**entry, "code": era, "title": title, "role": role})
     return ok, bad
 
 

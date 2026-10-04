@@ -47,13 +47,33 @@ def _hard_split(sentence):
     """
     parts = []
     while len(sentence) > MAX_CHARS:
-        cut = sentence.rfind(" ", 0, TARGET_CHARS * 3 // 2)
+        cut = _clause_cut(sentence, TARGET_CHARS * 3 // 2)
+        if cut <= 0:
+            cut = sentence.rfind(" ", 0, TARGET_CHARS * 3 // 2)
         if cut <= 0:
             cut = TARGET_CHARS
         parts.append(sentence[:cut].strip())
         sentence = sentence[cut:].strip()
     parts.append(sentence)
     return parts
+
+
+# Clause boundaries, strongest first. SCR headnotes are one long run of clauses
+# joined by " - " (en dash) and ";" with no full stop the sentence rule can see,
+# so the whitespace fallback cut them mid-clause: 965 of 1,190 mid-sentence
+# SC chunk ends found on 2026-09-27 were headnotes cut that way.
+_CLAUSE = (re.compile(r";\s"), re.compile(r"\s[–—]\s"), re.compile(r":\s"), re.compile(r",\s"))
+
+
+def _clause_cut(sentence, limit):
+    """Index just after the last clause boundary before `limit`, preferring
+    stronger boundaries, and only if it leaves a reasonably sized piece."""
+    window = sentence[:limit]
+    for pat in _CLAUSE:
+        ends = [m.end() for m in pat.finditer(window)]
+        if ends and ends[-1] >= TARGET_CHARS // 2:
+            return ends[-1]
+    return -1
 
 
 def chunk_text(text):

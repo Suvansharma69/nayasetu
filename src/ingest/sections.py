@@ -23,13 +23,19 @@ the precedent counts that Phase 5 aggregates over.
 """
 from __future__ import annotations
 
+import json
 import re
+from pathlib import Path
 
 # One section number as courts write it: "302", "120B", "120-B", and -- in the
 # scrubbed High Court text of NyayaAnumana -- "120 B". The spaced form is only
 # a single CAPITAL letter standing alone (case-sensitive even though the outer
 # pattern is not), so "34 IPC" and "34 r w 149" are never read as "34I"/"34R".
-_NUM = r"\d{1,3}(?:\s*-\s*[A-Z]{1,3}|[A-Z]{1,3}|(?-i:\s[A-Z]\b))?"
+# `(?!\d)`: a section number ends at a digit boundary. Without it "S.2587/2011"
+# (a suit number) was read as IPC 258 -- found by the 2026-09-27 edge audit.
+# The spaced capital must not open a dotted acronym: in "Section 138 N.I.Act"
+# the N is not a suffix (it made "138N", fell back to 138, and hid the Act).
+_NUM = r"\d{1,3}(?!\d)(?:\s*-\s*[A-Z]{1,3}|[A-Z]{1,3}|(?-i:\s[A-Z]\b(?!\.[A-Z])))?"
 # "303(2)", "13(1)(d)", "376(2)(i)", "378(1) and (3)", "378 (1) (3)" --
 # sub-section and clause, dropped later. The "and (3)" form must be consumed
 # here, or the enactment check below reads " and (3) of Code of Criminal
@@ -48,7 +54,8 @@ _CITATION = re.compile(
     \s*
     (?P<body>
         {_NUM}{_SUB}
-        (?:\s*(?:/|,|&|and|r\s?/\s?w|r\.?\s+w\.?|read\s+with)\s*{_NUM}{_SUB})*
+        (?:\s*(?:,\s*and|,\s*&|/|,|&|and|r\s?/\s?w\.?|r\.?\s+w\.?|,?\s*read\s+with)
+           (?:\s*(?:sec(?:tion)?s?|ss?)\b\.?)?\s*{_NUM}{_SUB})*
     )
     """,
     re.VERBOSE | re.IGNORECASE,
@@ -105,8 +112,54 @@ _OTHER_ENACTMENT = re.compile(
     # IPC cite followed by prose) is not swallowed as naming the Arms Act.
     r"|(?:[A-Z][\w.()'&-]*\s+"
     r"(?:(?:[A-Z][\w.()'&-]*|of|from|and|for|the|in|to|on)\s+){0,9})?"
-    r"(?:Act|Rules?|Regulations?|Ordinance)\b)",
+    r"(?:Act|Rules?|Regulations?|Ordinance)\b"
+    # "138 N.I.Act", "13(2) of P.C.Act", "21 of the NIA Act": an acronym with or
+    # without dots, glued to or spaced from "Act" (the pattern above needs a
+    # space before Act). Added after the 2026-09-27 edge audit.
+    r"|[A-Z](?:\.?\s?[A-Z]){1,5}\.?\s?Act\b"
+    # "s.34 of the 2017 Act": an Act referred to by its year.
+    r"|(?<=the\s)\d{4}\s+Act\b"
+    # "Section 38(O)(b) thereof", "Sections 6 and 7 of this Schedule".
+    r"|thereof\b|(?i:of\s+this\s+Schedule))",
 )
+# "sub-Section 5 of Section 21 of the NIA Act": the match "Section 5" is a
+# sub-section of another section, not a section of anything.
+_OF_SECTION = re.compile(r"[\s,]*of\s+(?:the\s+)?(?:sub-?)?sections?\b", re.IGNORECASE)
+# SCR headnotes name the enactment BEFORE the sections:
+#   "Evidence Act, 1872 – ss.4, 112"   "Penal Code, 1860 – ss.341, 323, 498A and 34"
+# The words after such a citation name nothing, so without a look behind, every
+# Evidence/Arms/PMLA/JJ Act headnote section became a bare -- i.e. penal -- cite.
+_HEADNOTE = re.compile(
+    # "<Name>, <year> -" is a headnote enactment whatever its last word
+    # ("Code of Criminal Procedure, 1973 -"); without a year, the name must end
+    # in a statute word ("IPC -", "Arms Act -").
+    r"(?:,\s*\d{4}|(?:Act|Code|Sanhita|Rules?|Regulations?|Ordinance|I\.?\s?P\.?\s?C|Cr\.?\s?P\.?\s?C)\.?)"
+    r"\s*[–—-]\s*$")
+_PENAL_NAME = re.compile(r"Penal\s+Code|\bI\.?\s?P\.?\s?C\b|Bharatiya\s+Nyaya|\bB\.?\s?N\.?\s?S\b(?!\.?\s?S\b)",
+                         re.IGNORECASE)
+
+
+def _preceding_enactment(text, start):
+    """'penal' / 'other' if a headnote names the enactment just before the
+    citation at `start`, else None."""
+    window = text[max(0, start - 160):start]
+    if not _HEADNOTE.search(window):
+        return None
+    segment = re.split(r"[–—]|\s-\s|;", window.rstrip(" –—-"))[-1]
+    return "penal" if _PENAL_NAME.search(segment) else "other"
+
+
+def citation_kind(text, m):
+    """What citation match `m` is a section OF: 'penal', 'other', 'subsection'
+    (a sub-section of another section) or 'bare' (names nothing)."""
+    trail = text[m.end():m.end() + 120]
+    if _PENAL.match(trail):
+        return "penal"
+    if _OF_SECTION.match(trail):
+        return "subsection"
+    if _OTHER_ENACTMENT.match(trail):
+        return "other"
+    return _preceding_enactment(text, m.start()) or "bare"
 
 
 def _names_other_enactment(text, end):
@@ -155,19 +208,42 @@ def _members(m, valid):
     return out
 
 
-def extract_sections(text, valid):
+# Numbers a bare citation may not yield. Empty unless a build loads
+# data/mappings/bare_citation_trust.json (scripts/build_corpus.py does), so
+# unit tests see the extractor's rules alone.
+DISTRUST = frozenset()
+
+
+def load_distrust(path):
+    global DISTRUST
+    DISTRUST = frozenset(json.loads(Path(path).read_text(encoding="utf-8"))["distrust"])
+    return DISTRUST
+
+
+def extract_sections(text, valid, distrust=None):
     """Section numbers cited in `text` that exist in `valid`.
 
     `valid` is a set of canonical section strings from the ingested statutes.
     Passing an empty set returns nothing -- deliberately. Callers must supply
     the real corpus; there is no "trust the regex" mode, because an unchecked
     reference is exactly the fabricated citation this project exists to stop.
+
+    `distrust` is a set of section numbers that a BARE citation (one naming no
+    enactment) may not yield -- numbers the corpus itself names as another
+    Act's far more often than as the penal code's ("Section 482" is the CrPC's
+    quashing power 3,044 times to twice as IPC 482). Built by
+    scripts/build_citation_trust.py. A citation that NAMES the penal code is
+    always kept, distrusted number or not.
     """
+    distrust = DISTRUST if distrust is None else distrust
     found = []
     for m in _CITATION.finditer(text):
-        if _names_other_enactment(text, m.end()):
+        kind = citation_kind(text, m)
+        if kind in ("other", "subsection"):
             continue
         for s in _members(m, valid):
+            if kind == "bare" and s in distrust:
+                continue
             if s not in found:
                 found.append(s)
     return found

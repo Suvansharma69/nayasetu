@@ -1,0 +1,668 @@
+{
+ "model": "qwen3.5:4b",
+ "fixture": "tests/fixtures/phase2_testset.json",
+ "totals": {
+  "n": 15,
+  "routed": 15,
+  "rec_verified": 12,
+  "rec_charges": 12,
+  "extra_verified": 34,
+  "extra_charges": 34,
+  "relevant_rejected_by_2b": 0,
+  "quotes": 0,
+  "quotes_grounded": 0
+ },
+ "cases": [
+  {
+   "id": 1,
+   "era": "ipc",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "378",
+    "379"
+   ],
+   "verified": [
+    "379",
+    "392",
+    "401"
+   ],
+   "charges": [
+    "379",
+    "392",
+    "401"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "392",
+    "401"
+   ],
+   "extra_charges": [
+    "392",
+    "401"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 15.0,
+    "retrieve_s": 0.3,
+    "graph_s": 12.8
+   },
+   "gated": true
+  },
+  {
+   "id": 2,
+   "era": "ipc",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "378",
+    "380"
+   ],
+   "verified": [
+    "378",
+    "380",
+    "457"
+   ],
+   "charges": [
+    "378",
+    "380",
+    "457"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "457"
+   ],
+   "extra_charges": [
+    "457"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.3,
+    "graph_s": 12.6
+   },
+   "gated": true
+  },
+  {
+   "id": 3,
+   "era": "ipc",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "378",
+    "381"
+   ],
+   "verified": [
+    "378",
+    "381",
+    "408",
+    "409"
+   ],
+   "charges": [
+    "378",
+    "381",
+    "408",
+    "409"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "408",
+    "409"
+   ],
+   "extra_charges": [
+    "408",
+    "409"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.3,
+    "graph_s": 16.3
+   },
+   "gated": true
+  },
+  {
+   "id": 4,
+   "era": "ipc",
+   "offence_type": "criminal breach of trust",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "405",
+    "406",
+    "408"
+   ],
+   "verified": [
+    "307",
+    "408",
+    "409",
+    "415",
+    "420"
+   ],
+   "charges": [
+    "307",
+    "408",
+    "409",
+    "415",
+    "420"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "307",
+    "409",
+    "415",
+    "420"
+   ],
+   "extra_charges": [
+    "307",
+    "409",
+    "415",
+    "420"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.3,
+    "graph_s": 21.3
+   },
+   "gated": true
+  },
+  {
+   "id": 5,
+   "era": "ipc",
+   "offence_type": "assault",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "320",
+    "322",
+    "325",
+    "326"
+   ],
+   "verified": [
+    "324",
+    "325",
+    "326"
+   ],
+   "charges": [
+    "324",
+    "325",
+    "326"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "324"
+   ],
+   "extra_charges": [
+    "324"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 1.9,
+    "retrieve_s": 0.3,
+    "graph_s": 13.2
+   },
+   "gated": true
+  },
+  {
+   "id": 6,
+   "era": "ipc",
+   "offence_type": "assault",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "351",
+    "352"
+   ],
+   "verified": [
+    "324",
+    "503"
+   ],
+   "charges": [
+    "324",
+    "503"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "324",
+    "503"
+   ],
+   "extra_charges": [
+    "324",
+    "503"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.3,
+    "graph_s": 10.3
+   },
+   "gated": true
+  },
+  {
+   "id": 7,
+   "era": "ipc",
+   "offence_type": "cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "415",
+    "420"
+   ],
+   "verified": [
+    "307",
+    "415",
+    "420",
+    "463",
+    "467",
+    "468"
+   ],
+   "charges": [
+    "307",
+    "415",
+    "420",
+    "463",
+    "467",
+    "468"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "307",
+    "463",
+    "467",
+    "468"
+   ],
+   "extra_charges": [
+    "307",
+    "463",
+    "467",
+    "468"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.3,
+    "graph_s": 21.7
+   },
+   "gated": true
+  },
+  {
+   "id": 8,
+   "era": "ipc",
+   "offence_type": "common intention",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "322",
+    "34"
+   ],
+   "verified": [
+    "109",
+    "147",
+    "149",
+    "323"
+   ],
+   "charges": [
+    "109",
+    "147",
+    "149",
+    "323"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "109",
+    "147",
+    "149",
+    "323"
+   ],
+   "extra_charges": [
+    "109",
+    "147",
+    "149",
+    "323"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.3,
+    "graph_s": 17.9
+   },
+   "gated": true
+  },
+  {
+   "id": 9,
+   "era": "bns",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303"
+   ],
+   "verified": [
+    "303",
+    "329"
+   ],
+   "charges": [
+    "303",
+    "329"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "329"
+   ],
+   "extra_charges": [
+    "329"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.6,
+    "graph_s": 10.1
+   },
+   "gated": true
+  },
+  {
+   "id": 10,
+   "era": "bns",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303",
+    "304"
+   ],
+   "verified": [
+    "303",
+    "309"
+   ],
+   "charges": [
+    "303",
+    "309"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "309"
+   ],
+   "extra_charges": [
+    "309"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.4,
+    "graph_s": 10.5
+   },
+   "gated": true
+  },
+  {
+   "id": 11,
+   "era": "bns",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303",
+    "305"
+   ],
+   "verified": [
+    "305",
+    "306",
+    "318"
+   ],
+   "charges": [
+    "305",
+    "306",
+    "318"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "306",
+    "318"
+   ],
+   "extra_charges": [
+    "306",
+    "318"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.0,
+    "retrieve_s": 0.4,
+    "graph_s": 14.2
+   },
+   "gated": true
+  },
+  {
+   "id": 12,
+   "era": "bns",
+   "offence_type": "assault",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "116",
+    "117",
+    "118"
+   ],
+   "verified": [
+    "109",
+    "118"
+   ],
+   "charges": [
+    "109",
+    "118"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "109"
+   ],
+   "extra_charges": [
+    "109"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.4,
+    "graph_s": 10.4
+   },
+   "gated": true
+  },
+  {
+   "id": 13,
+   "era": "bns",
+   "offence_type": "cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "318"
+   ],
+   "verified": [
+    "317",
+    "318",
+    "61"
+   ],
+   "charges": [
+    "317",
+    "318",
+    "61"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "317",
+    "61"
+   ],
+   "extra_charges": [
+    "317",
+    "61"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.5,
+    "graph_s": 12.1
+   },
+   "gated": true
+  },
+  {
+   "id": 14,
+   "era": "bns",
+   "offence_type": "cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "318",
+    "319"
+   ],
+   "verified": [
+    "318",
+    "319",
+    "340"
+   ],
+   "charges": [
+    "318",
+    "319",
+    "340"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "340"
+   ],
+   "extra_charges": [
+    "340"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.4,
+    "graph_s": 12.9
+   },
+   "gated": true
+  },
+  {
+   "id": 15,
+   "era": "bns",
+   "offence_type": "common intention",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "3"
+   ],
+   "verified": [
+    "115",
+    "118",
+    "122",
+    "309",
+    "333",
+    "351"
+   ],
+   "charges": [
+    "115",
+    "118",
+    "122",
+    "309",
+    "333",
+    "351"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "115",
+    "118",
+    "122",
+    "309",
+    "333",
+    "351"
+   ],
+   "extra_charges": [
+    "115",
+    "118",
+    "122",
+    "309",
+    "333",
+    "351"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "facts_profile": {},
+   "applicability": [],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.1,
+    "retrieve_s": 0.5,
+    "graph_s": 26.0
+   },
+   "gated": true
+  }
+ ]
+}

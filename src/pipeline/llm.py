@@ -36,10 +36,51 @@ def model():
     return os.environ.get("OLLAMA_MODEL", DEFAULT_MODEL).strip()
 
 
-def chat_json(messages, schema, model_name=None, num_ctx=8192, num_predict=1024):
+def context_size(messages, num_predict):
+    """Smallest of 8K/16K/32K that holds the prompt plus the reply.
+
+    A lawyer's brief fits 8K; IL-TUR LSI facts average ~2,400 words and do not.
+    Ollama silently TRUNCATES a prompt longer than num_ctx -- the model would
+    then judge facts it never saw -- so the size follows the prompt. Estimated
+    at ~3 characters per token, deliberately pessimistic for legal English.
+    """
+    need = sum(len(m["content"]) for m in messages) // 3 + num_predict + 256
+    for size in (8192, 16384, 32768):
+        if need <= size:
+            return size
+    raise LLMError(f"prompt needs ~{need} tokens, over the 32K this machine can hold")
+
+
+def unload(model_name=None, wait_s=15.0):
+    """Ask Ollama to drop the model from VRAM now (keep_alive 0) and wait until it has.
+
+    The 4GB card cannot hold qwen3.5:4b and BGE-M3 together, and Ollama keeps
+    the model resident for minutes after a call. Unloading it lets the query
+    be encoded on the GPU; the next chat_json() reloads it. Returns True once
+    the model is gone, False if Ollama is unreachable or slow to let go."""
+    import time
+
+    import httpx
+
+    name = model_name or model()
+    try:
+        httpx.post(f"{host()}/api/generate", json={"model": name, "keep_alive": 0}, timeout=30)
+        deadline = time.monotonic() + wait_s
+        while time.monotonic() < deadline:
+            ps = httpx.get(f"{host()}/api/ps", timeout=5).json().get("models") or []
+            if not any(m.get("name") == name or m.get("model") == name for m in ps):
+                return True
+            time.sleep(0.25)
+    except httpx.HTTPError:
+        return False
+    return False
+
+
+def chat_json(messages, schema, model_name=None, num_ctx=None, num_predict=1024):
     """Send `messages`, return the reply parsed as JSON conforming to `schema`."""
     import httpx
 
+    num_ctx = num_ctx or context_size(messages, num_predict)
     body = {
         "model": model_name or model(),
         "messages": messages,

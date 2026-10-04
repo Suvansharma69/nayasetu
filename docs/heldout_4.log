@@ -1,0 +1,34 @@
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.55it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 427.91it/s]
+# 1 [ipc] defamation                     ok                   want=['500'] charges=['209', '417'] unsupported=[] extra=['209', '417'] lost=[] NO-OFFENCE 58s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.59it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 428.90it/s]
+# 2 [bns] assault on a woman to outrage  ok                   want=['74'] charges=['304', '74'] unsupported=[] extra=['304'] lost=[] 55s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.51it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.52it/s]
+# 3 [ipc] mischief by fire               ok                   want=['435'] charges=['426', '435'] unsupported=[] extra=[] lost=[] 50s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.57it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 428.96it/s]
+# 4 [bns] wrongful restraint             ok                   want=['126'] charges=['126', '129', '351'] unsupported=[] extra=['129', '351'] lost=[] 69s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.48it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 420.99it/s]
+# 5 [ipc] cruelty by husband and in-laws ok                   want=['498A'] charges=['323', '34', '498A'] unsupported=[] extra=[] lost=[] 56s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.55it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 427.07it/s]
+# 6 [bns] online sale cheating           ok                   want=['318'] charges=['318', '335'] unsupported=[] extra=['335'] lost=[] 54s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.61it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 431.87it/s]
+# 7 [ipc] criminal intimidation by telep ok                   want=['506'] charges=['307', '384'] unsupported=[] extra=['307', '384'] lost=[] 57s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.50it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 422.34it/s]
+# 8 [bns] house-breaking by night and th ok                   want=['305', '331'] charges=['127', '305', '309', '317', '331'] unsupported=[] extra=['127', '309', '317'] lost=[] 90s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.48it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 421.75it/s]
+# 9 [ipc] forged sale deed               ok                   want=['467', '471'] charges=['120B', '417', '423', '465', '468'] unsupported=[] extra=['120B', '417', '423'] lost=[] 115s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.44it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.21it/s]
+#10 [bns] kidnapping a child             ok                   want=['137'] charges=['137', '142'] unsupported=[] extra=['142'] lost=[] 54s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.45it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 418.23it/s]
+#11 [ipc] wrongful confinement by two me ok                   want=['342'] charges=['34', '347', '384', '385', '392', '417', '420'] unsupported=[] extra=['347', '385', '392', '417', '420'] lost=[] 113s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:13,  5.28it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 407.96it/s]
+#12 [bns] simple hurt                    ok                   want=['115'] charges=['114', '115', '131'] unsupported=[] extra=['114', '131'] lost=[] 61s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.46it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.12it/s]
+#13 [bns] CIVIL CONTROL: delayed salary  no_proposals         want=[] charges=[] unsupported=[] extra=[] lost=[] NO-OFFENCE review=['318', '316', '3', '308', '324'] 18s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.54it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 428.82it/s]
+#14 [ipc] CIVIL CONTROL: overhanging tre ok                   want=[] charges=['420'] unsupported=[] extra=['420'] lost=[] NO-OFFENCE 39s
+
+model qwen3.5:4b  heldout_4.json  gated 12: routed 12/12
+  recall  verified 8/12   charges 8/12
+  extras  verified 22   charges 22   relevant sections rejected by 2b: 0
+  quotes grounded 63/66
+  model said no offence 1/12   false declines 1/12

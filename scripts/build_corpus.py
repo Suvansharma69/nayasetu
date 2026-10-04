@@ -34,13 +34,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from src.ingest import nyaya
+from src.ingest import nyaya, sections
 from src.ingest.judgments import iter_judgments, load_metadata, route
 from src.ingest.schema import SchemaError, validate_chunk
 from src.ingest.sections import section_index
 from src.ingest.statutes import parse_bns, parse_ipc
 
 OUT = ROOT / "data" / "processed"
+TRUST = ROOT / "data" / "mappings" / "bare_citation_trust.json"
 YEARS = (2023, 2024, 2025, 2026)
 
 
@@ -238,6 +239,18 @@ def main():
     report["verification_sets"] = {k: len(v) for k, v in index.items()}
     print(f"  verification sets: ipc={len(index['ipc'])} bns={len(index['bns'])}"
           f" union={len(index['_union'])}\n")
+
+    # Bare citations of numbers the corpus names as other Acts' sections are not
+    # read as penal (see scripts/build_citation_trust.py). The table is derived
+    # FROM a corpus, so a first-ever build runs without it; build, run
+    # build_citation_trust.py, rebuild.
+    if TRUST.exists():
+        distrust = sections.load_distrust(TRUST)
+        report["bare_citation_distrust"] = len(distrust)
+        print(f"  bare-citation trust: {len(distrust)} numbers distrusted when bare\n")
+    else:
+        report["bare_citation_distrust"] = None
+        print("  [warn] no bare-citation trust table - bare procedure citations will read as penal\n")
 
     print("judgments:")
     pre = Writer(OUT / "judgments_pre2024.jsonl")

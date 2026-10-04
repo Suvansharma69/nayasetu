@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 
+from src.pipeline import chargeability, hyde, llm  # noqa: E402
 from src.retrieval import embedder, ranker, store  # noqa: E402
 
 FIXTURE = ROOT / "tests" / "fixtures" / "phase2_testset.json"
@@ -39,6 +40,13 @@ def main():
     import argparse
 
     ap = argparse.ArgumentParser()
+    ap.add_argument("--pipeline", action="store_true",
+                    help="score the ranking the PIPELINE uses: non-chargeable sections "
+                         "(definitions, general exceptions) excluded and IPC definition/punishment "
+                         "ranks pooled, as graph.retrieve_candidates does")
+    ap.add_argument("--hyde", action="store_true",
+                    help="with --pipeline: search statutes with the LLM's abstract restatement "
+                         "of the facts (src/pipeline/hyde.py); needs Ollama")
     ap.add_argument("--heldout", action="store_true",
                     help="score tests/fixtures/phase2_heldout.json instead (never tune on it)")
     args = ap.parse_args()
@@ -51,7 +59,12 @@ def main():
         want = {section_of(r) for r in case["relevant"]}
         statute = store.retrieve_sections(case["query"], ranker.ERA[era]["statutes"],
                                           top_k=3, cli=cli)
-        fused = ranker.rank_sections(case["query"], era, top_k=3, cli=cli)
+        sq = hyde.restate(case["query"], llm.chat_json) if args.hyde else None
+        fused = ranker.rank_sections(case["query"], era, top_k=3, cli=cli, statute_query=sq,
+                                     exclude=chargeability.non_chargeable_sections(era) if args.pipeline else None,
+                                     pairs=chargeability.pairs(era) if args.pipeline else None)
+        if sq:
+            print(f"    hyde: {sq[:160]}")
         for name, res in (("statute", statute), ("fused", fused)):
             if want & {r["section"] for r in res}:
                 hits[name] += 1
@@ -71,7 +84,9 @@ def main():
           + ("(held out: a check, not the gate)" if args.heldout
              else "(gate: 12/15 top-3 relevant, judged manually)"))
     embedder.free()
-    out = ROOT / "docs" / ("phase2_retrieval_heldout_raw.json" if args.heldout else "phase2_retrieval_raw.json")
+    out = ROOT / "docs" / (("phase2_retrieval_heldout" if args.heldout else "phase2_retrieval")
+                           + ("_pipeline" if args.pipeline else "") + ("_hyde" if args.hyde else "")
+                           + "_raw.json")
     out.write_text(json.dumps([
         {"case": i, "era": c["era"], "offence_type": c.get("offence_type"),
          "query": c["query"], "want": sorted(w),

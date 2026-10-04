@@ -1,0 +1,313 @@
+{
+ "status": "ok",
+ "era": "ipc",
+ "code_applied": "Indian Penal Code, 1860 (offence before 1 July 2024)",
+ "offence_date": "2023-01-20",
+ "facts": "The accused told the complainant that he could get her son a clerk's job in the railways through his contacts. He took four lakh rupees from her in cash, later handed over an appointment letter bearing a forged railway seal, and stopped answering her calls when her son reported for duty and was turned away.",
+ "charges": [
+  {
+   "code": "IPC",
+   "section": "420",
+   "subsection": null,
+   "title": "Cheating and dishonestly inducing delivery of property",
+   "reason": "The accused dishonestly induced the complainant to deliver property by falsely representing he could secure a railway clerk's job and subsequently absconded with the money.",
+   "doubt": null
+  },
+  {
+   "code": "IPC",
+   "section": "468",
+   "subsection": null,
+   "title": "Forgery for purpose of cheating",
+   "reason": "The accused forged an appointment letter bearing a railway seal for the specific purpose of cheating the complainant out of her property.",
+   "doubt": null
+  },
+  {
+   "code": "IPC",
+   "section": "417",
+   "subsection": null,
+   "title": "Punishment for cheating",
+   "reason": "By making false representations about his contacts and job placement, the accused deceived the complainant into handing over four lakh rupees.",
+   "doubt": null
+  }
+ ],
+ "unconfirmed": [],
+ "retries": 0,
+ "review_candidates": [],
+ "precedents": [
+  {
+   "label": "P1",
+   "for_charge": "IPC 420",
+   "applies": "IPC 420",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_KA_HC_2020_2865",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6531,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The accused as defendant No.1 in his in the form of affidavit has stated that he was working under the complainant as a coolie often. He had taken a sum of from the complainant in the year at which time, the complainant had collected a blank cheque from him. Though he repaid the loan amount of said to the complainant, but he (complainant) did not return the cheque given to him and went on postponing the matter on one or the other pretext. It is the said cheque which the complainant has misused ...",
+   "verified": true
+  },
+  {
+   "label": "P2",
+   "for_charge": "IPC 420",
+   "applies": "IPC 420",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Punjab_HC_2020_3897",
+   "title": null,
+   "court": "Punjab and Haryana High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6249,
+   "matched_by": "similarity to the facts",
+   "excerpt": "It has further stated in the complaint that the 4 of 12 of 2020 -5- petitioner and his son have taken to arrange PR and employment in USA from his son, namely, Gurbaksh Singh and the son of the petitioner has also taken 3500 dollars in cash and 3500 dollars in his account forcefully but neither arranged any PR for his son nor got him employment and has done cheating and forgery and he should return back the money and dollars. In this way, dispute arose both the complainant and the petitioner ...",
+   "verified": true
+  },
+  {
+   "label": "P3",
+   "for_charge": "IPC 420",
+   "applies": "IPC 420",
+   "via_ipc_predecessor": null,
+   "doc_id": "2023_4_1144_1155",
+   "title": "PEETHAMBARAN versus STATE OF KERALA & ANR.",
+   "court": "Supreme Court of India",
+   "date": "2023-05-03",
+   "citation": "[2023] 4 S.C.R. 1144",
+   "disposal_nature": "Appeal(s) allowed",
+   "similarity": 0.6169,
+   "matched_by": "similarity to the facts",
+   "excerpt": "3. The Appellant has been charged under Section 420 of the Indian Penal Code, 1860, for having cheated, alongside accused no.1, now deceased, the de-facto complainant, namely Sunesh and seven other persons of a sum totaling three lakh eighty-three thousand five hundred and eighty-three rupees, in exchange for securing jobs for them or their wives at the Kottayam Rubber Board, as clerks.",
+   "verified": true
+  },
+  {
+   "label": "P4",
+   "for_charge": "IPC 468",
+   "applies": "IPC 468",
+   "via_ipc_predecessor": null,
+   "doc_id": "2026_3_220_230",
+   "title": "RAKESH MITTAL versus AJAY PAL GUPTA @ SONU CHAUDHARY AND ANOTHER",
+   "court": "Supreme Court of India",
+   "date": "2026-02-17",
+   "citation": "[2026] 3 S.C.R. 220",
+   "disposal_nature": "Appeal(s) allowed",
+   "similarity": 0.6163,
+   "matched_by": "similarity to the facts",
+   "excerpt": "3. The case of the complainant was that he had supplied foodgrains to the four named accused in the FIR, including respondent No.1, but he was paid only ₹5,02,57,000/- out of the total sum due and payable to him, i.e., ₹11,52,38,156/-. He claimed that cheques were issued but when those cheques were presented, they were dishonoured for want of funds. He further claimed that his inquiries had revealed that the accused conspired with each other, prepared forged documents with false and fabricated ...",
+   "verified": true
+  },
+  {
+   "label": "P5",
+   "for_charge": "IPC 468",
+   "applies": "IPC 468",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Punjab_HC_2022_33",
+   "title": null,
+   "court": "Punjab and Haryana High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6152,
+   "matched_by": "similarity to the facts",
+   "excerpt": "Gurmail Singh alias Mely S o Bant Singh R o Village Bakhora Khurd, Tehsil Lehra, District Sangrur. Accused Applicant under section 156 (3) Cr.PC for instructing SHO P.S.Lehra for registering case U s 211, 193, 389, 120-B IPC against the accused.39 of 63 40 That after getting false case against the applicant, Gurmail Singh alias Mely had.called up my father on phone and had said that 1 and aforesaid.accused had in got this false case and said that if you will give us Rs.14 lakhs only then we ...",
+   "verified": true
+  },
+  {
+   "label": "P6",
+   "for_charge": "IPC 468",
+   "applies": "IPC 468",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Punjab_HC_2023_2486",
+   "title": null,
+   "court": "Punjab and Haryana High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6094,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The complainant thus, alleged that 12 of 27 013440 Neutral Citation CRM-M No.44830 of 2016 (OM) 2023 PHHC 112007 the petitioner had fraudulently obtained money from him on the pretext of clearing dues of SCO No.96. That on i.e.the target date, the complainant along with balance sale consideration went to the Tehsil Office to get the sale deed however, the petitioner failed to turn up.After registration of the case, when the parties were called by the police, the petitioner deposited 75.00 lacs ...",
+   "verified": true
+  },
+  {
+   "label": "P7",
+   "for_charge": "IPC 417",
+   "applies": "IPC 417",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Guwahati_HC_2020_1774",
+   "title": null,
+   "court": "Gauhati High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6143,
+   "matched_by": "similarity to the facts",
+   "excerpt": "It is alleged that the accused delayed the appointment of sales on one pretext or another. The complainant has alleged that as a result, the goods supplied to it could not be sold as though the complainant had managed to sell a part of it purely on its own efforts. As a a huge amount of the complainant remained blocked.3.7. To the surprise of the complainant, the accused terminated the agency by a letter dated 24.01.2014 falsely blaming the complainant for lack of sales of the products of the ...",
+   "verified": true
+  },
+  {
+   "label": "P8",
+   "for_charge": "IPC 417",
+   "applies": "IPC 417",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Tripura_HC_2021_1523",
+   "title": null,
+   "court": "Tripura High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.5984,
+   "matched_by": "similarity to the facts",
+   "excerpt": "Rather they tried to establish that they had taken the money from PW-1 for processing his application for a government job and they also tried to refund the money when they failed to keep their promise by issuing cheque in favour of the complainant PW-1 which was eventually dishonoured for the fault of the complainant. The facts and emerging from the record would make it clear that the accused petitioners made a promise to the complainant that they would procure a government job for his ...",
+   "verified": true
+  },
+  {
+   "label": "P9",
+   "for_charge": "IPC 417",
+   "applies": "IPC 417",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Madras_HC_2021_1999",
+   "title": null,
+   "court": "Madras High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.5863,
+   "matched_by": "similarity to the facts",
+   "excerpt": "After two days she had gone to the office of the and they had directed her to the All Women police station. The first respondent accused and his father had come for enquiry, the police conducted enquiry and since there was no the police saying that it was 7.00pm had asked them to come on some other day.on the police had called her over phone and she along with her daughter had gone to All women police station and they had enquired her and her daughter narrated about the entire facts. When they ...",
+   "verified": true
+  }
+ ],
+ "analytics": {
+  "note": "How the appeal or petition was disposed of by the court that decided it (allowed = the appellant/petitioner succeeded). Not a conviction rate.",
+  "min_judgments": 5,
+  "sections": [
+   {
+    "charge": "IPC 420",
+    "title": "Cheating and dishonestly inducing delivery of property",
+    "direct": {
+     "code": "ipc",
+     "section": "420",
+     "judgments": 885,
+     "counts": {
+      "allowed": 553,
+      "partly allowed": 6,
+      "dismissed": 290,
+      "other": 36
+     },
+     "suppressed": false,
+     "allowed_share": 0.658
+    },
+    "via_ipc": []
+   },
+   {
+    "charge": "IPC 468",
+    "title": "Forgery for purpose of cheating",
+    "direct": {
+     "code": "ipc",
+     "section": "468",
+     "judgments": 445,
+     "counts": {
+      "allowed": 291,
+      "partly allowed": 5,
+      "dismissed": 136,
+      "other": 13
+     },
+     "suppressed": false,
+     "allowed_share": 0.685
+    },
+    "via_ipc": []
+   },
+   {
+    "charge": "IPC 417",
+    "title": "Punishment for cheating",
+    "direct": {
+     "code": "ipc",
+     "section": "417",
+     "judgments": 155,
+     "counts": {
+      "allowed": 93,
+      "partly allowed": 0,
+      "dismissed": 58,
+      "other": 4
+     },
+     "suppressed": false,
+     "allowed_share": 0.616
+    },
+    "via_ipc": []
+   }
+  ]
+ },
+ "defenses": [
+  {
+   "against": "IPC 420",
+   "argument": "The prosecution has failed to prove that the accused 'dishonestly induced' the complainant to deliver property, as there is no evidence establishing a false representation of fact or a fabrication of facts. The accused merely made a promise based on his own unverified claim of having contacts; he did not actively fabricate a specific document or identity to deceive her into handing over the money. Without proof that the appointment letter was forged (which falls under IPC 468) or that the railway seal was actually forged, the element of dishonest inducement required for IPC 420 is missing.",
+   "fact_quote": "He took four lakh rupees from her in cash, later handed over an appointment letter bearing a forged railway seal",
+   "precedents": [
+    {
+     "label": "P1",
+     "doc_id": "na_KA_HC_2020_2865",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "IPC 468",
+   "argument": "The charge of forgery for the purpose of cheating cannot be sustained because the prosecution has not adduced any evidence that the appointment letter or the railway seal was actually forged. The facts state only that the accused 'handed over an appointment letter bearing a forged railway seal,' but this is an assertion without corroboration. In the absence of proof that the document was a forgery, the essential ingredient of IPC 468—that the accused committed forgery intending it to be used for cheating—is not established.",
+   "fact_quote": "handed over an appointment letter bearing a forged railway seal",
+   "precedents": [
+    {
+     "label": "P4",
+     "doc_id": "2026_3_220_230",
+     "title": "RAKESH MITTAL versus AJAY PAL GUPTA @ SONU CHAUDHARY AND ANOTHER"
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "IPC 417",
+   "argument": "The prosecution has failed to prove that the accused 'cheated' in the sense of inducing delivery of property through deception, as the complainant voluntarily handed over cash based on a verbal promise rather than being induced by a fabricated fact or document. The subsequent failure to deliver the job and the non-appearance of the son do not constitute cheating under IPC 417; they are merely breaches of contract or promises. Mere delay or termination of an agency, without proof of active deception regarding facts, does not amount to cheating.",
+   "fact_quote": "stopped answering her calls when her son reported for duty and was turned away",
+   "precedents": [
+    {
+     "label": "P7",
+     "doc_id": "na_Guwahati_HC_2020_1774",
+     "title": null
+    },
+    {
+     "label": "P8",
+     "doc_id": "na_Tripura_HC_2021_1523",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  }
+ ],
+ "facts_profile": {
+  "discloses_offence": true,
+  "why": "The facts disclose the offence of cheating by dishonestly inducing delivery of property through false representation and subsequent concealment of truth.",
+  "accused_count": 1
+ },
+ "warnings": [],
+ "guardrail": {
+  "reason": null,
+  "top_similarity": 0.6531,
+  "threshold": 0.576
+ },
+ "timings": {
+  "route_s": 0.0,
+  "unload_s": 4.5,
+  "guardrail_s": 3.5,
+  "retrieve_s": 0.3,
+  "graph_s": 102.3
+ },
+ "sample": {
+  "id": "job_scam",
+  "name": "Fake government job scam (IPC era)"
+ }
+}

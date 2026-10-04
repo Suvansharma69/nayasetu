@@ -1,0 +1,38 @@
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 29758.71it/s]
+[slow retrieve] judgments_pre2024: encode 30.7s, query 1.7s, free RAM 1.8 GB
+# 1 [ipc] criminal trespass + hurt       ok                   want=['323', '447'] charges=['350', '447'] unsupported=[] extra=['350'] lost=[] 52s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 26836.85it/s]
+# 2 [ipc] extortion                      ok                   want=['383', '384'] charges=['383', '420'] unsupported=[] extra=['420'] lost=[] 46s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 29948.37it/s]
+# 3 [ipc] criminal breach of trust by se ok                   want=['408'] charges=['378', '409'] unsupported=[] extra=['378', '409'] lost=[] 46s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 22724.38it/s]
+# 4 [ipc] grievous hurt by dangerous wea ok                   want=['326'] charges=['307', '326', '452'] unsupported=[] extra=['307', '452'] lost=[] 55s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 26798.26it/s]
+# 5 [ipc] cheating by personation        ok                   want=['416', '419'] charges=['419', '420', '464'] unsupported=[] extra=['464'] lost=[] 64s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 23111.88it/s]
+# 6 [ipc] rioting with deadly weapons (s ok                   want=['148', '149'] charges=['148', '149', '326'] unsupported=[] extra=[] lost=[] 55s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 33989.07it/s]
+# 7 [ipc] attempt to murder              ok                   want=['307'] charges=['148', '300', '302', '304', '307', '326'] unsupported=[] extra=['148', '300', '302', '304'] lost=[] 94s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 35141.27it/s]
+# 8 [ipc] stalking                       ok                   want=['354D'] charges=['354D'] unsupported=[] extra=[] lost=[] 30s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 20124.84it/s]
+# 9 [bns] theft (cattle)                 ok                   want=['303'] charges=['303', '54'] unsupported=[] extra=['54'] lost=[] 43s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 22990.38it/s]
+#10 [bns] cheating (job fraud)           ok                   want=['318'] charges=['318', '336', '340'] unsupported=[] extra=[] lost=[] 58s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 29084.24it/s]
+#11 [bns] hurt with common intention (th ok                   want=['115', '3'] charges=['115', '189', '191', '3'] unsupported=[] extra=['189', '191'] lost=[] 70s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 25658.25it/s]
+#12 [bns] criminal breach of trust by ba ok                   want=['316'] charges=['303', '316', '61'] unsupported=[] extra=['303', '61'] lost=[] 67s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 37272.11it/s]
+#13 [bns] death by rash driving          ok                   want=['106', '281'] charges=['106', '281'] unsupported=[] extra=[] lost=[] 46s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 24955.84it/s]
+#14 [bns] criminal intimidation          no_offence_disclosed want=['351'] charges=[] unsupported=[] extra=[] lost=[] 9s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 31706.84it/s]
+#15 [bns] mischief                       ok                   want=['324'] charges=['324'] unsupported=[] extra=[] lost=[] 28s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 24796.23it/s]
+#16 [bns] robbery at knifepoint          ok                   want=['309'] charges=['303', '309'] unsupported=[] extra=['303'] lost=[] 45s
+
+model qwen3.5:4b  heldout_2.json  gated 16: routed 16/16
+  recall  verified 14/16   charges 14/16
+  extras  verified 17   charges 17   relevant sections rejected by 2b: 0
+  quotes grounded 69/69

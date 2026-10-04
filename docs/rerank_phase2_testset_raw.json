@@ -1,0 +1,461 @@
+{
+ "pool": 40,
+ "hits": {
+  "fused": {
+   "1": 4,
+   "3": 11,
+   "5": 11,
+   "10": 13
+  },
+  "rerank": {
+   "1": 3,
+   "3": 5,
+   "5": 9,
+   "10": 13
+  },
+  "rrf": {
+   "1": 4,
+   "3": 8,
+   "5": 11,
+   "10": 14
+  }
+ },
+ "rows": [
+  {
+   "query": "The complainant parked his motorcycle outside his house at night. In the morning",
+   "era": "ipc",
+   "want": [
+    "378",
+    "379"
+   ],
+   "fused": [
+    "201",
+    "457",
+    "392",
+    "380",
+    "302"
+   ],
+   "rerank": [
+    "378",
+    "456",
+    "460",
+    "446",
+    "448"
+   ],
+   "rrf": [
+    "457",
+    "446",
+    "456",
+    "444",
+    "380"
+   ]
+  },
+  {
+   "query": "While the family was away at a wedding the accused entered their home through an",
+   "era": "ipc",
+   "want": [
+    "378",
+    "380"
+   ],
+   "fused": [
+    "457",
+    "454",
+    "380",
+    "411",
+    "448"
+   ],
+   "rerank": [
+    "442",
+    "448",
+    "453",
+    "443",
+    "206"
+   ],
+   "rrf": [
+    "448",
+    "454",
+    "457",
+    "427",
+    "443"
+   ]
+  },
+  {
+   "query": "The accused worked as a salesman at the complainant's cloth shop. Over four mont",
+   "era": "ipc",
+   "want": [
+    "378",
+    "381"
+   ],
+   "fused": [
+    "409",
+    "405",
+    "411",
+    "420",
+    "408"
+   ],
+   "rerank": [
+    "421",
+    "381",
+    "370",
+    "408",
+    "405"
+   ],
+   "rrf": [
+    "409",
+    "405",
+    "381",
+    "408",
+    "403"
+   ]
+  },
+  {
+   "query": "The accused was the accountant of a firm and was given charge of client deposits",
+   "era": "ipc",
+   "want": [
+    "405",
+    "406",
+    "408"
+   ],
+   "fused": [
+    "420",
+    "405",
+    "415",
+    "409",
+    "403"
+   ],
+   "rerank": [
+    "405",
+    "403",
+    "408",
+    "409",
+    "415"
+   ],
+   "rrf": [
+    "405",
+    "403",
+    "415",
+    "409",
+    "408"
+   ]
+  },
+  {
+   "query": "During a dispute over a boundary wall the accused struck the complainant on the ",
+   "era": "ipc",
+   "want": [
+    "320",
+    "322",
+    "325",
+    "326"
+   ],
+   "fused": [
+    "323",
+    "324",
+    "326",
+    "325",
+    "307"
+   ],
+   "rerank": [
+    "319",
+    "337",
+    "355",
+    "323",
+    "324"
+   ],
+   "rrf": [
+    "323",
+    "324",
+    "326",
+    "352",
+    "307"
+   ]
+  },
+  {
+   "query": "The accused raised a stick above his head and advanced towards the complainant s",
+   "era": "ipc",
+   "want": [
+    "351",
+    "352"
+   ],
+   "fused": [
+    "504",
+    "307",
+    "354",
+    "324",
+    "326"
+   ],
+   "rerank": [
+    "503",
+    "355",
+    "190",
+    "506",
+    "307"
+   ],
+   "rrf": [
+    "503",
+    "307",
+    "504",
+    "324",
+    "387"
+   ]
+  },
+  {
+   "query": "The accused advertised a flat for sale, showed the complainant forged ownership ",
+   "era": "ipc",
+   "want": [
+    "415",
+    "420"
+   ],
+   "fused": [
+    "415",
+    "464",
+    "467",
+    "420",
+    "468"
+   ],
+   "rerank": [
+    "464",
+    "465",
+    "463",
+    "194",
+    "471"
+   ],
+   "rrf": [
+    "464",
+    "465",
+    "467",
+    "463",
+    "415"
+   ]
+  },
+  {
+   "query": "Four men arrived together at the shop, having agreed beforehand to teach the sho",
+   "era": "ipc",
+   "want": [
+    "322",
+    "34"
+   ],
+   "fused": [
+    "323",
+    "143",
+    "114",
+    "355",
+    "110"
+   ],
+   "rerank": [
+    "323",
+    "355",
+    "357",
+    "34",
+    "324"
+   ],
+   "rrf": [
+    "323",
+    "355",
+    "334",
+    "324",
+    "34"
+   ]
+  },
+  {
+   "query": "The complainant parked his motorcycle outside his house at night. In the morning",
+   "era": "bns",
+   "want": [
+    "303"
+   ],
+   "fused": [
+    "303",
+    "317",
+    "324",
+    "238",
+    "331"
+   ],
+   "rerank": [
+    "329",
+    "317",
+    "303",
+    "331",
+    "106"
+   ],
+   "rrf": [
+    "303",
+    "317",
+    "329",
+    "331",
+    "238"
+   ]
+  },
+  {
+   "query": "The complainant was walking along the roadside using her phone when two men on a",
+   "era": "bns",
+   "want": [
+    "303",
+    "304"
+   ],
+   "fused": [
+    "317",
+    "303",
+    "309",
+    "351",
+    "78"
+   ],
+   "rerank": [
+    "78",
+    "137",
+    "126",
+    "111",
+    "303"
+   ],
+   "rrf": [
+    "78",
+    "303",
+    "137",
+    "309",
+    "126"
+   ]
+  },
+  {
+   "query": "The accused broke the seal on a goods container on a stationary freight lorry at",
+   "era": "bns",
+   "want": [
+    "303",
+    "305"
+   ],
+   "fused": [
+    "316",
+    "303",
+    "336",
+    "318",
+    "317"
+   ],
+   "rerank": [
+    "334",
+    "341",
+    "336",
+    "228",
+    "210"
+   ],
+   "rrf": [
+    "336",
+    "316",
+    "334",
+    "305",
+    "228"
+   ]
+  },
+  {
+   "query": "Following an argument outside a tea stall the accused drew a knife and stabbed t",
+   "era": "bns",
+   "want": [
+    "116",
+    "117",
+    "118"
+   ],
+   "fused": [
+    "118",
+    "109",
+    "115",
+    "3",
+    "114"
+   ],
+   "rerank": [
+    "118",
+    "101",
+    "103",
+    "114",
+    "105"
+   ],
+   "rrf": [
+    "118",
+    "109",
+    "114",
+    "101",
+    "115"
+   ]
+  },
+  {
+   "query": "The accused ran a scheme promising forty per cent returns in ninety days, collec",
+   "era": "bns",
+   "want": [
+    "318"
+   ],
+   "fused": [
+    "318",
+    "336",
+    "335",
+    "308",
+    "60"
+   ],
+   "rerank": [
+    "344",
+    "308",
+    "170",
+    "318",
+    "61"
+   ],
+   "rrf": [
+    "318",
+    "308",
+    "61",
+    "319",
+    "336"
+   ]
+  },
+  {
+   "query": "The accused telephoned the complainant claiming to be a bank fraud-prevention of",
+   "era": "bns",
+   "want": [
+    "318",
+    "319"
+   ],
+   "fused": [
+    "316",
+    "318",
+    "319",
+    "344",
+    "336"
+   ],
+   "rerank": [
+    "344",
+    "194",
+    "238",
+    "319",
+    "248"
+   ],
+   "rrf": [
+    "344",
+    "319",
+    "318",
+    "336",
+    "316"
+   ]
+  },
+  {
+   "query": "The three accused went to the victim's house together under a plan settled that ",
+   "era": "bns",
+   "want": [
+    "3"
+   ],
+   "fused": [
+    "115",
+    "109",
+    "3",
+    "333",
+    "117"
+   ],
+   "rerank": [
+    "333",
+    "100",
+    "331",
+    "329",
+    "309"
+   ],
+   "rrf": [
+    "333",
+    "109",
+    "329",
+    "309",
+    "131"
+   ]
+  }
+ ]
+}

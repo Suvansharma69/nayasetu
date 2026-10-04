@@ -11,6 +11,19 @@ of the eight is renamed or repurposed:
                  Phase 7 report must show unconfirmed citations distinctly, so
                  they have to survive in state rather than be dropped.
 
+Added in the hardening pass (2026-09-27), same rule -- additive only:
+
+    facts_profile  Node 1's answers about the facts (discloses_offence, why,
+                   accused_count, acted_together, shared_plan_or_object)
+    applicability  Node 2b's grounded check of each verified section
+    warnings       things the report must tell the lawyer (e.g. a period that
+                   straddles the IPC->BNS transition)
+
+Added for Phase 5 (2026-10-04):
+
+    precedent_pool the judgment chunks nearest the facts, fetched BEFORE generation
+                   while the embedder still holds the card; Node 3 filters it
+
 Entries of candidate_sections / verified_sections / unconfirmed are dicts:
     {"raw", "section", "subsection", "code_named", "reason", "round"}
 plus "title" on verified entries and "why" (the rejection reason) on unconfirmed.
@@ -35,11 +48,16 @@ class PipelineState(TypedDict):
     era: str
     retrieved: list
     unconfirmed: list
+    facts_profile: dict
+    applicability: list
+    warnings: list
+    precedent_pool: dict
 
 
 def initial_state(case_facts, offence_date, era, retrieved):
     return PipelineState(
         case_facts=case_facts, offence_date=str(offence_date), candidate_sections=[],
         verified_sections=[], precedents=[], analytics={}, defenses=[], retry_count=0,
-        era=era, retrieved=list(retrieved), unconfirmed=[],
+        era=era, retrieved=list(retrieved), unconfirmed=[], facts_profile={}, applicability=[],
+        warnings=[], precedent_pool={},
     )

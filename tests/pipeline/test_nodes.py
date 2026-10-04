@@ -47,7 +47,9 @@ def test_fabricated_section_is_unconfirmed(g):
 def test_ipc_number_in_bns_era_is_caught_with_mapped_hint(g):
     ok, bad = nodes.check(g, "bns", _prop("Section 420"))
     assert not ok
-    assert "IPC 420 is an IPC section" in bad[0]["why"] and "BNS 318" in bad[0]["why"]
+    why = bad[0]["why"]
+    assert "IPC 420 (Cheating and dishonestly inducing delivery of property) is an IPC section" in why
+    assert "BNS 318 (Cheating)" in why and "only correct if the original section" in why
 
 
 def test_named_wrong_code_is_never_reread_as_era_code(g):
@@ -58,7 +60,7 @@ def test_named_wrong_code_is_never_reread_as_era_code(g):
 
 def test_bns_number_in_ipc_era_gets_predecessor_hint(g):
     ok, bad = nodes.check(g, "ipc", _prop("303"))
-    assert not ok and "IPC counterpart is IPC 378, 379" in bad[0]["why"]
+    assert not ok and "IPC counterpart is IPC 378 (Theft), IPC 379 (Punishment for theft)" in bad[0]["why"]
 
 
 def test_other_enactment_is_unconfirmed(g):
@@ -118,3 +120,60 @@ def test_retry_replays_previous_answer_and_bans_rejected_numbers(g):
 def test_nonexistent_section_reason_states_the_codes_span(g):
     ok, bad = nodes.check(g, "bns", _prop("421"))
     assert "(sections 3 to 318)" in bad[0]["why"]      # span of the synthetic BNS
+
+
+@pytest.mark.parametrize("era, raw, why", [
+    ("ipc", "25", "definition or general explanation"),     # "fraudulently", proposed at Phase 4
+    ("ipc", "76", "general exception"),
+    ("bns", "2", "preliminary provision or definition"),    # BNS 2 reached the top 3 by votes
+    ("bns", "3", "cite that sub-section"),                  # bare BNS 3 is not common intention
+])
+def test_non_chargeable_sections_are_rejected_with_reason(g2, era, raw, why):
+    ok, bad = nodes.check(g2, era, _prop(raw))
+    assert not ok and why in bad[0]["why"] and "not an offence a person can be charged under" in bad[0]["why"]
+
+
+@pytest.mark.parametrize("era, raw, role", [
+    ("ipc", "34", "liability"), ("ipc", "120B", "liability"), ("ipc", "511", "liability"),
+    ("ipc", "302", "offence"), ("bns", "3(5)", "liability"), ("bns", "61(2)", "liability"),
+    ("bns", "103", "offence"),
+])
+def test_chargeable_sections_verify_with_role(g2, era, raw, role):
+    ok, bad = nodes.check(g2, era, _prop(raw))
+    assert not bad and ok[0]["role"] == role
+
+
+# --- IPC definition -> punishing section (405 -> 406) ------------------------
+
+def _one(raw):
+    return {"raw": raw, "reason": "r", "round": 0}
+
+
+def test_ipc_definition_is_charged_under_its_punishing_section(g):
+    ok, bad = nodes.check(g, "ipc", _one("378"))
+    assert bad == [] and [(v["section"], v["defined_in"]) for v in ok] == [("379", "378")]
+    assert ok[0]["title"] == "Punishment for theft"
+
+
+def test_punishing_section_proposed_directly_is_unchanged(g):
+    ok, _ = nodes.check(g, "ipc", _one("379"))
+    assert [v["section"] for v in ok] == ["379"] and "defined_in" not in ok[0]
+
+
+def test_bns_has_no_definition_pairs(g):
+    ok, _ = nodes.check(g, "bns", _one("303"))
+    assert [v["section"] for v in ok] == ["303"]
+
+
+def test_punish_ablation_keeps_the_definition(g, monkeypatch):
+    monkeypatch.setenv("PRAMANA_ABLATE", "punish")
+    ok, _ = nodes.check(g, "ipc", _one("378"))
+    assert [v["section"] for v in ok] == ["378"]
+
+
+def test_applicability_reads_the_definition_beside_the_punishment():
+    from src.pipeline import applicability
+    st = {"era": "ipc", "case_facts": "f", "verified_sections": [
+        {"section": "379", "subsection": None, "title": "Punishment for theft", "defined_in": "378"}]}
+    msgs = applicability.build_messages(st, lambda era, s, sub: f"TEXT{s}")
+    assert "TEXT378" in msgs[1]["content"] and "TEXT379" in msgs[1]["content"]

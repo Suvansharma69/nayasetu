@@ -1,0 +1,1966 @@
+{
+ "model": "qwen3.5:4b",
+ "fixture": "tests/fixtures/broad_coverage.json",
+ "totals": {
+  "n": 19,
+  "routed": 19,
+  "rec_verified": 17,
+  "rec_charges": 16,
+  "extra_verified": 24,
+  "extra_charges": 15,
+  "relevant_rejected_by_2b": 3,
+  "quotes": 101,
+  "quotes_grounded": 99
+ },
+ "cases": [
+  {
+   "id": 1,
+   "era": "ipc",
+   "offence_type": "murder",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "300",
+    "302"
+   ],
+   "verified": [
+    "299",
+    "300",
+    "302",
+    "307",
+    "324",
+    "34"
+   ],
+   "charges": [
+    "299",
+    "300",
+    "302",
+    "307",
+    "324"
+   ],
+   "unsupported": [
+    "34"
+   ],
+   "extra_verified": [
+    "299",
+    "307",
+    "324",
+    "34"
+   ],
+   "extra_charges": [
+    "299",
+    "307",
+    "324"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe an intentional act with knowledge that death was likely, resulting in death, which constitutes the offence of murder under the IPC.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "302",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "After a quarrel over repayment of a loan, the accused went home, returned twenty minutes later with a kitchen knife and stabbed the deceased twice in the chest.",
+      "The post-mortem records that either wound was sufficient in the ordinary course of nature to cause death."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "300",
+     "subsection": "300(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The post-mortem records that either wound was sufficient in the ordinary course of nature to cause death."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "299",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the accused went home, returned twenty minutes later with a kitchen knife and stabbed the deceased twice in the chest.",
+      "The post-mortem records that either wound was sufficient in the ordinary course of nature to cause death."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "324",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the accused went home, returned twenty minutes later with a kitchen knife and stabbed the deceased twice in the chest.",
+      "The post-mortem records that either wound was sufficient in the ordinary course of nature to cause death."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "307",
+     "subsection": "307(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the accused went home, returned twenty minutes later with a kitchen knife and stabbed the deceased twice in the chest.",
+      "The post-mortem records that either wound was sufficient in the ordinary course of nature to cause death."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "34",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "After a quarrel over repayment of a loan, the accused went home, returned twenty minutes later with a kitchen knife and stabbed the deceased twice in the chest.",
+      "The deceased died on the way to hospital."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "Facts do not show that the criminal act was done by several persons in furtherance of a common intention.",
+     "model_applies": false,
+     "rule_rejected": "joint liability needs two or more persons; the facts show 1",
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 32.4,
+    "retrieve_s": 0.5,
+    "graph_s": 112.6
+   },
+   "gated": true
+  },
+  {
+   "id": 2,
+   "era": "ipc",
+   "offence_type": "culpable homicide (sudden fight)",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "299",
+    "304"
+   ],
+   "verified": [
+    "300",
+    "302"
+   ],
+   "charges": [
+    "300",
+    "302"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "300"
+   ],
+   "extra_charges": [
+    "300"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a criminal act where the accused intentionally struck the deceased with a stick, causing death, which constitutes culpable homicide.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "300",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the accused picked up a stick lying nearby and struck the deceased once on the head",
+      "There was no earlier enmity"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "302",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the accused picked up a stick lying nearby and struck the deceased once on the head",
+      "The deceased died two days later of a head injury"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.3,
+    "retrieve_s": 0.4,
+    "graph_s": 41.6
+   },
+   "gated": true
+  },
+  {
+   "id": 3,
+   "era": "ipc",
+   "offence_type": "dowry death",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "304B",
+    "498A"
+   ],
+   "verified": [
+    "304B",
+    "323",
+    "498A"
+   ],
+   "charges": [
+    "304B",
+    "323",
+    "498A"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "323"
+   ],
+   "extra_charges": [
+    "323"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a death of a woman within seven years of marriage accompanied by burn injuries and alleged cruelty/harassment for dowry demands, which constitutes the offence of dowry death under 3",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "304B",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The deceased married the accused in 2021.",
+      "Her parents say the husband and his mother repeatedly demanded a car and two lakh rupees",
+      "In February 2023, less than two years after the marriage, she died of burn injuries at the matrimonial home."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "323",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Her parents say the husband and his mother repeatedly demanded a car and two lakh rupees and beat her",
+      "In February 2023, less than two years after the marriage, she died of burn injuries at the matrimonial home."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "498A",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Her parents say the husband and his mother repeatedly demanded a car and two lakh rupees and beat her when her family could not pay.",
+      "In February 2023, less than two years after the marriage, she died of burn injuries at the matrimonial home."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.3,
+    "retrieve_s": 0.4,
+    "graph_s": 68.1
+   },
+   "gated": true
+  },
+  {
+   "id": 4,
+   "era": "ipc",
+   "offence_type": "kidnapping",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "361",
+    "363",
+    "366"
+   ],
+   "verified": [
+    "361",
+    "366",
+    "493"
+   ],
+   "charges": [],
+   "unsupported": [
+    "361",
+    "366",
+    "493"
+   ],
+   "extra_verified": [
+    "493"
+   ],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [
+    "361",
+    "366"
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe the abduction of a minor girl by deceit and false promise of marriage, which constitutes kidnapping from lawful guardianship.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "361",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "took the complainant's fifteen-year-old daughter from outside her school",
+      "kept her in a rented room"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused took or enticed the girl 'out of the keeping' of her lawful guardian (i.e., she was already under the guardian's control at the time of taking).",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "366",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "telling her he would marry her",
+      "without her parents' knowledge or consent"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not explicitly state the accused's 'intent that she may be compelled... to marry any person against her will'. While he told her he would marry her, it is not stated that he intended to force her into a marriage against her vol",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "493",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "kept her in a rented room",
+      "telling her he would marry her"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused 'causes any woman... to believe that she is lawfully married to him'. The deception was about his future intent to marry, not an induced belief of an existing lawful marriage.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.7,
+    "retrieve_s": 0.4,
+    "graph_s": 69.2
+   },
+   "gated": true
+  },
+  {
+   "id": 5,
+   "era": "ipc",
+   "offence_type": "robbery",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "390",
+    "392"
+   ],
+   "verified": [
+    "34",
+    "392"
+   ],
+   "charges": [
+    "34",
+    "392"
+   ],
+   "unsupported": [],
+   "extra_verified": [],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe two individuals using violence and threat of injury to take property from a victim on a public road, which constitutes the offence of robbery.",
+    "accused_count": 2,
+    "acted_together": true,
+    "shared_plan_or_object": true
+   },
+   "applicability": [
+    {
+     "section": "392",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "one held a knife to his neck",
+      "the other took his wallet, phone and gold chain"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "34",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "two men stopped the complainant"
+     ],
+     "dropped_quotes": [
+      "one held a knife... the other took"
+     ],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.9,
+    "retrieve_s": 0.4,
+    "graph_s": 39.6
+   },
+   "gated": true
+  },
+  {
+   "id": 6,
+   "era": "ipc",
+   "offence_type": "criminal intimidation",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "503",
+    "506"
+   ],
+   "verified": [
+    "387",
+    "503"
+   ],
+   "charges": [
+    "387",
+    "503"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "387"
+   ],
+   "extra_charges": [
+    "387"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a criminal act involving threats of death intended to compel the complainant to withdraw a police complaint.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "503",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "After the complainant filed a police complaint against him",
+      "the accused phoned her three times and said he would kill her and her son if she did not withdraw it"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "387",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "After the complainant filed a police complaint against him",
+      "the accused phoned her three times and said he would kill her and her son if she did not withdraw it"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.9,
+    "retrieve_s": 0.4,
+    "graph_s": 48.1
+   },
+   "gated": true
+  },
+  {
+   "id": 7,
+   "era": "ipc",
+   "offence_type": "forgery / cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "420",
+    "467",
+    "468",
+    "471"
+   ],
+   "verified": [
+    "307",
+    "415",
+    "463",
+    "465",
+    "468",
+    "471"
+   ],
+   "charges": [
+    "415",
+    "463",
+    "465",
+    "468"
+   ],
+   "unsupported": [
+    "307",
+    "471"
+   ],
+   "extra_verified": [
+    "307",
+    "415",
+    "463"
+   ],
+   "extra_charges": [
+    "415",
+    "463"
+   ],
+   "relevant_rejected_by_2b": [
+    "471"
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe the preparation and use of a document with a forged signature to induce a transfer of property for illegal possession, which constitutes criminal acts under the IPC.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "468",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "prepared a sale deed of the complainant's plot bearing a forged signature of the complainant",
+      "got it registered, and then sold the plot to a third person for thirty lakh rupees"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "415",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "sold the plot to a third person for thirty lakh rupees, which he kept"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "463",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "prepared a sale deed of the complainant's plot bearing a forged signature of the complainant"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "471",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts state that the accused prepared and registered the document; they do not explicitly describe an act of 'using' the forged document as genuine in a transaction where he was not the seller, nor does it mention him using it to induce",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "465",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "prepared a sale deed of the complainant's plot bearing a forged signature of the complainant"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "307",
+     "subsection": "307(1)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts describe a completed transaction involving property sale and possession of money; there is no act done with the intention or knowledge that it would cause death if carried out to its natural conclusion.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.3,
+    "retrieve_s": 0.4,
+    "graph_s": 104.7
+   },
+   "gated": true
+  },
+  {
+   "id": 8,
+   "era": "ipc",
+   "offence_type": "death by negligence",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "279",
+    "304A"
+   ],
+   "verified": [
+    "293",
+    "304A"
+   ],
+   "charges": [
+    "304A"
+   ],
+   "unsupported": [
+    "293"
+   ],
+   "extra_verified": [
+    "293"
+   ],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe an act resulting in death where the accused lost control of a vehicle due to negligence, which constitutes a criminal offence under Indian law.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "304A",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "ran over a pedestrian",
+      "who died at the spot"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "293",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not mention any sale, exhibition, or distribution of obscene objects.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.3,
+    "retrieve_s": 0.3,
+    "graph_s": 41.7
+   },
+   "gated": true
+  },
+  {
+   "id": 9,
+   "era": "bns",
+   "offence_type": "murder",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "101",
+    "103"
+   ],
+   "verified": [
+    "101",
+    "103",
+    "118"
+   ],
+   "charges": [
+    "101",
+    "103",
+    "118"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "118"
+   ],
+   "extra_charges": [
+    "118"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe an act resulting in death with specific intent or knowledge sufficient to constitute murder under Indian law.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "101",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the accused went home, returned twenty minutes later with a kitchen knife",
+      "and stabbed the deceased twice in the chest",
+      "The post-mortem records that either wound was sufficient in the ordinary course of nature to cause death"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "103",
+     "subsection": "103(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the accused went home, returned twenty minutes later with a kitchen knife and stabbed the deceased twice in the chest",
+      "The deceased died on the way to hospital"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "118",
+     "subsection": "118(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the accused went home, returned twenty minutes later with a kitchen knife",
+      "and stabbed the deceased twice in the chest"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.7,
+    "retrieve_s": 0.7,
+    "graph_s": 63.4
+   },
+   "gated": true
+  },
+  {
+   "id": 10,
+   "era": "bns",
+   "offence_type": "dowry death",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "80",
+    "85"
+   ],
+   "verified": [
+    "103",
+    "109",
+    "85"
+   ],
+   "charges": [
+    "103",
+    "85"
+   ],
+   "unsupported": [
+    "109"
+   ],
+   "extra_verified": [
+    "103",
+    "109"
+   ],
+   "extra_charges": [
+    "103"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe a death resulting from burn injuries at the matrimonial home following repeated demands for money and physical violence, which constitutes a criminal act under Indian law.",
+    "accused_count": 2,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "103",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "In January 2025, less than two years after the marriage, she died of burn injuries at the matrimonial home"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    },
+    {
+     "section": "109",
+     "subsection": "109(2)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "Her parents say the husband and his mother repeatedly demanded a car and two lakh rupees and beat her when her family could not pay.",
+      "In January 2025, less than two years after the marriage, she died of burn injuries at the matrimonial home."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "No specific act of attempting to kill (such as buying poison, loading a gun with intent to fire, or exposing a child in a desert) is shown; the facts describe cruelty and financial demands, not an attempt to murder.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "85",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "and beat her when her family could not pay"
+     ],
+     "dropped_quotes": [
+      "Her parents say the husband ... repeatedly demanded a car and two lakh rupees"
+     ],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.4,
+    "retrieve_s": 0.6,
+    "graph_s": 84.4
+   },
+   "gated": true
+  },
+  {
+   "id": 11,
+   "era": "bns",
+   "offence_type": "kidnapping",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "137",
+    "87"
+   ],
+   "verified": [
+    "127",
+    "137",
+    "87"
+   ],
+   "charges": [
+    "137",
+    "87"
+   ],
+   "unsupported": [
+    "127"
+   ],
+   "extra_verified": [
+    "127"
+   ],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe the abduction of a minor girl with the specific intent to compel her marriage against her will.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "87",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "took the complainant's fifteen-year-old daughter from outside her school",
+      "kept her in a rented room in another town",
+      "telling her he would marry her"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "137",
+     "subsection": "137(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "took the complainant's fifteen-year-old daughter from outside her school",
+      "kept her in a rented room in another town"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "127",
+     "subsection": "127(8)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "took the complainant's fifteen-year-old daughter from outside her school",
+      "kept her in a rented room in another town"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The purpose of extorting a confession, information leading to detection of an offence, constraining restoration of property, or satisfying a claim/demand.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 6.4,
+    "retrieve_s": 2.7,
+    "graph_s": 69.2
+   },
+   "gated": true
+  },
+  {
+   "id": 12,
+   "era": "bns",
+   "offence_type": "robbery",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "309"
+   ],
+   "verified": [
+    "126",
+    "189",
+    "191",
+    "3",
+    "303",
+    "309"
+   ],
+   "charges": [
+    "126",
+    "3",
+    "303",
+    "309"
+   ],
+   "unsupported": [
+    "189",
+    "191"
+   ],
+   "extra_verified": [
+    "126",
+    "189",
+    "191",
+    "303"
+   ],
+   "extra_charges": [
+    "126",
+    "303"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe a violent taking of property by force, which constitutes the offence of robbery under the Bharatiya Nyaya Sanhita.",
+    "accused_count": 2,
+    "acted_together": true,
+    "shared_plan_or_object": true
+   },
+   "applicability": [
+    {
+     "section": "309",
+     "subsection": "309(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "one held a knife to his neck",
+      "the other took his wallet, phone and gold chain",
+      "They ran off with the property"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "303",
+     "subsection": "303(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the other took his wallet, phone and gold chain",
+      "They ran off with the property"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "189",
+     "subsection": "189(1)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "two men stopped the complainant on a lonely road"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "An assembly of five or more persons",
+     "model_applies": false,
+     "rule_rejected": "an unlawful assembly needs five or more persons; the facts show 2",
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "191",
+     "subsection": "191(3)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "one held a knife to his neck"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "Gathering in a large crowd or assembly with common intention to commit an offence",
+     "model_applies": false,
+     "rule_rejected": "an unlawful assembly needs five or more persons; the facts show 2",
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "126",
+     "subsection": "126(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "one held a knife to his neck"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "3",
+     "subsection": "3(5)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "two men stopped the complainant on a lonely road",
+      "one held a knife to his neck and the other took his wallet, phone and gold chain"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.9,
+    "retrieve_s": 0.5,
+    "graph_s": 103.7
+   },
+   "gated": true
+  },
+  {
+   "id": 13,
+   "era": "bns",
+   "offence_type": "criminal intimidation",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "351"
+   ],
+   "verified": [
+    "351"
+   ],
+   "charges": [
+    "351"
+   ],
+   "unsupported": [],
+   "extra_verified": [],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": null,
+    "why": "The facts describe a threat made over the phone without any physical act of violence, injury, or attempt to cause death, which does not satisfy the ingredients for murder, attempted murder, or other B",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "decline_overridden": true
+   },
+   "applicability": [
+    {
+     "section": "351",
+     "subsection": "351(3)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "the accused phoned her three times and said he would kill her",
+      "and her son if she did not withdraw it"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.4,
+    "retrieve_s": 0.5,
+    "graph_s": 31.6
+   },
+   "gated": true
+  },
+  {
+   "id": 14,
+   "era": "bns",
+   "offence_type": "forgery / cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "318",
+    "336",
+    "338",
+    "340"
+   ],
+   "verified": [
+    "318",
+    "335",
+    "336",
+    "340"
+   ],
+   "charges": [
+    "318",
+    "335",
+    "336",
+    "340"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "335"
+   ],
+   "extra_charges": [
+    "335"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe a deliberate act of creating a false document and using it to induce a transfer of property for personal gain, which constitutes criminal offences under the Bharatiya Nyaya Sanhita.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "336",
+     "subsection": "336(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "prepared a sale deed of the complainant's plot bearing a forged signature of the complainant",
+      "got it registered, and then sold the plot to a third person"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "335",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "prepared a sale deed of the complainant's plot bearing a forged signature of the complainant",
+      "got it registered"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "340",
+     "subsection": "340(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "sold the plot to a third person for thirty lakh rupees, which he kept"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "318",
+     "subsection": "318(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "prepared a sale deed of the complainant's plot bearing a forged signature of the complainant",
+      "sold the plot to a third person for thirty lakh rupees, which he kept"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.2,
+    "retrieve_s": 0.5,
+    "graph_s": 71.9
+   },
+   "gated": true
+  },
+  {
+   "id": 15,
+   "era": "bns",
+   "offence_type": "death by negligence",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "106",
+    "281"
+   ],
+   "verified": [
+    "106"
+   ],
+   "charges": [
+    "106"
+   ],
+   "unsupported": [],
+   "extra_verified": [],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe a criminal act resulting in death through negligence while driving.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "106",
+     "subsection": "106(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "ran over a pedestrian on the footpath, who died at the spot"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 4.0,
+    "retrieve_s": 0.6,
+    "graph_s": 28.4
+   },
+   "gated": true
+  },
+  {
+   "id": 16,
+   "era": "bns",
+   "offence_type": "extortion",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "308"
+   ],
+   "verified": [
+    "308",
+    "351"
+   ],
+   "charges": [
+    "308",
+    "351"
+   ],
+   "unsupported": [],
+   "extra_verified": [],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe a scenario where the accused used threats of fire to induce payment under fear, which constitutes extortion.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "308",
+     "subsection": "308(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused sent the complainant, a shopkeeper, messages saying that his shop would be set on fire unless he paid fifty thousand rupees every month.",
+      "Out of fear the complainant paid him twice."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "351",
+     "subsection": "351(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused sent the complainant, a shopkeeper, messages saying that his shop would be set on fire unless he paid fifty thousand rupees every month.",
+      "Out of fear the complainant paid him twice."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.3,
+    "retrieve_s": 0.5,
+    "graph_s": 51.2
+   },
+   "gated": true
+  },
+  {
+   "id": 17,
+   "era": "bns",
+   "offence_type": "theft by servant (lawyer-style brief)",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303",
+    "306"
+   ],
+   "verified": [
+    "303",
+    "316"
+   ],
+   "charges": [
+    "303",
+    "316"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "316"
+   ],
+   "extra_charges": [
+    "316"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe an act of dishonestly taking movable property (gold chains) from the complainant's possession without consent, constituting theft.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "303",
+     "subsection": "303(1)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "On 3 October 2024 stock verification disclosed a shortfall of four gold chains.",
+      "CCTV footage dated 3.10.2024 shows the accused slipping two chains into his pocket at closing time.",
+      "one chain was recovered from a pawn shop in Karol Bagh."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "316",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Complainant Sh. Anil Gupta (proprietor, Gupta Jewellers) states that the accused Ramesh Kumar, employed with him as a salesman since March 2022, had access to the display counters.",
+      "On 3 October 2024 stock verification disclosed a shortfall of four gold chains."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 4.4,
+    "retrieve_s": 1.0,
+    "graph_s": 58.7
+   },
+   "gated": true
+  },
+  {
+   "id": 18,
+   "era": "ipc",
+   "offence_type": "house-breaking by night + theft (last IPC day)",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "380",
+    "457"
+   ],
+   "verified": [
+    "379",
+    "458"
+   ],
+   "charges": [
+    "379"
+   ],
+   "unsupported": [
+    "458"
+   ],
+   "extra_verified": [
+    "458"
+   ],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe a criminal act of breaking into a dwelling at night to steal property, which constitutes an offence under the IPC.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "458",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "In the night",
+      "broke the lock of the complainant's house",
+      "entered and took cash and jewellery from a cupboard"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    },
+    {
+     "section": "379",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "took cash and jewellery from a cupboard"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 3.1,
+    "retrieve_s": 0.5,
+    "graph_s": 43.2
+   },
+   "gated": true
+  },
+  {
+   "id": 19,
+   "era": "bns",
+   "offence_type": "house-breaking by night + theft (first BNS day)",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "305",
+    "331"
+   ],
+   "verified": [
+    "303",
+    "331",
+    "334"
+   ],
+   "charges": [
+    "303",
+    "331",
+    "334"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "334"
+   ],
+   "extra_charges": [
+    "334"
+   ],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe a criminal act involving unauthorized entry and taking of property, which constitutes theft and house-breaking under the Bharatiya Nyaya Sanhita.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "303",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "broke the lock of the complainant's house",
+      "entered and took cash and jewellery from a cupboard"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "331",
+     "subsection": "331(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "In the night",
+      "broke the lock of the complainant's house"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ]
+    },
+    {
+     "section": "334",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "broke the lock of the complainant's house",
+      "took cash and jewellery from a cupboard"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.7,
+    "retrieve_s": 0.5,
+    "graph_s": 57.7
+   },
+   "gated": true
+  },
+  {
+   "id": 20,
+   "era": "bns",
+   "offence_type": "LIMITATION PROBE: cruelty straddling the transition",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "85"
+   ],
+   "verified": [
+    "333",
+    "85"
+   ],
+   "charges": [
+    "85"
+   ],
+   "unsupported": [
+    "333"
+   ],
+   "extra_verified": [
+    "333"
+   ],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts describe physical violence (beating) by the husband against his wife, which constitutes an offence under criminal law.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false
+   },
+   "applicability": [
+    {
+     "section": "85",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "her husband beat her regularly",
+      "The last and most serious beating was on 10 September 2024"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ]
+    },
+    {
+     "section": "333",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "after which she left the matrimonial home"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the wife committed house-trespass, nor that she made preparation for hurt, assault, or wrongful restraint before leaving. The act of leaving is a response to cruelty, not an independent trespass with preparatory\u610f\u56fe",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ]
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "route_s": 0.0,
+    "guardrail_s": 2.9,
+    "retrieve_s": 0.7,
+    "graph_s": 53.3
+   },
+   "gated": false
+  }
+ ]
+}
