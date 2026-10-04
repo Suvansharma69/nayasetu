@@ -1,0 +1,507 @@
+[
+ {
+  "case": 1,
+  "era": "ipc",
+  "offence_type": "theft",
+  "query": "The accused attended a family function at the complainant's house as a guest. After he left, a gold chain was found missing from the dressing table in the bedroom. Two days later he pledged the same chain at a pawn shop.",
+  "want": [
+   "378",
+   "379",
+   "380"
+  ],
+  "statute_top3": [
+   [
+    "378",
+    "378",
+    "Theft"
+   ],
+   [
+    "250",
+    "250",
+    "Delivery of coin possessed with knowledge that it is altered"
+   ],
+   [
+    "420",
+    "420",
+    "Cheating and dishonestly inducing delivery of property"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "379",
+    "379",
+    "Punishment for theft",
+    1,
+    2
+   ],
+   [
+    "378",
+    "378",
+    "Theft",
+    1,
+    2
+   ],
+   [
+    "417",
+    "417",
+    "Punishment for cheating",
+    6,
+    8
+   ]
+  ]
+ },
+ {
+  "case": 2,
+  "era": "ipc",
+  "offence_type": "cheating",
+  "query": "The accused told the complainant he could get her son a government job through his contacts, took three lakh rupees from her for processing fees, handed over an appointment letter that turned out to be fake, and then stopped answering her calls.",
+  "want": [
+   "415",
+   "417",
+   "420"
+  ],
+  "statute_top3": [
+   [
+    "464",
+    "464",
+    "Making a false document"
+   ],
+   [
+    "177",
+    "177",
+    "Furnishing false information"
+   ],
+   [
+    "178",
+    "178",
+    "Refusing oath or affirmation when duly required by public servant to make it"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "468",
+    "468",
+    "Forgery for purpose of cheating",
+    5,
+    6
+   ],
+   [
+    "464",
+    "464",
+    "Making a false document",
+    1,
+    27
+   ],
+   [
+    "467",
+    "467",
+    "Forgery of valuable security, will, etc.",
+    18,
+    7
+   ]
+  ]
+ },
+ {
+  "case": 3,
+  "era": "ipc",
+  "offence_type": "assault",
+  "query": "In a quarrel over a parking space the accused slapped the complainant and punched him in the face. The doctor recorded a swollen lip and bruises on the cheek and described the injuries as simple.",
+  "want": [
+   "319",
+   "321",
+   "323"
+  ],
+  "statute_top3": [
+   [
+    "355",
+    "355",
+    "Assault or criminal force with intent to dishonour person, otherwise than on grave provocation"
+   ],
+   [
+    "44",
+    "44",
+    "Injury"
+   ],
+   [
+    "358",
+    "358",
+    "Assault or criminal force on grave provocation"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "323",
+    "323",
+    "Punishment for voluntarily causing hurt",
+    15,
+    2
+   ],
+   [
+    "321",
+    "321",
+    "Voluntarily causing hurt",
+    15,
+    2
+   ],
+   [
+    "504",
+    "504",
+    "Intentional insult with intent to provoke breach of the peace",
+    23,
+    4
+   ]
+  ]
+ },
+ {
+  "case": 4,
+  "era": "ipc",
+  "offence_type": "criminal breach of trust",
+  "query": "The accused, a truck operator, was engaged to carry two hundred bags of cement from the factory to the buyer's warehouse. He delivered only one hundred and twenty bags and sold the remaining eighty to a hardware shop on the way.",
+  "want": [
+   "405",
+   "406",
+   "407"
+  ],
+  "statute_top3": [
+   [
+    "407",
+    "407",
+    "Criminal breach of trust by carrier, etc."
+   ],
+   [
+    "370",
+    "370",
+    "Trafficking of persons"
+   ],
+   [
+    "282",
+    "282",
+    "Conveying person by water for hire in unsafe or overloaded vessel"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "420",
+    "420",
+    "Cheating and dishonestly inducing delivery of property",
+    13,
+    1
+   ],
+   [
+    "406",
+    "406",
+    "Punishment for criminal breach of trust",
+    18,
+    2
+   ],
+   [
+    "405",
+    "405",
+    "Criminal breach of trust",
+    18,
+    2
+   ]
+  ]
+ },
+ {
+  "case": 5,
+  "era": "ipc",
+  "offence_type": "common intention",
+  "query": "Two brothers came to the complainant's house carrying sticks after telling the neighbours they would settle scores with him. One stood in the doorway to stop him escaping while the other struck him repeatedly, fracturing his forearm.",
+  "want": [
+   "322",
+   "325",
+   "326",
+   "34"
+  ],
+  "statute_top3": [
+   [
+    "459",
+    "459",
+    "Grievous hurt caused whilst committing lurking house-trespass or house-breaking"
+   ],
+   [
+    "460",
+    "460",
+    "All persons jointly concerned in lurking house-trespass or house-breaking by night punishable where death or grievous hurt caused by one of them"
+   ],
+   [
+    "452",
+    "452",
+    "House-trespass after preparation for hurt, assault or wrongful restraint"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "326",
+    "326",
+    "Voluntarily causing grievous hurt by dangerous weapons or means",
+    10,
+    8
+   ],
+   [
+    "323",
+    "323",
+    "Punishment for voluntarily causing hurt",
+    24,
+    2
+   ],
+   [
+    "321",
+    "321",
+    "Voluntarily causing hurt",
+    24,
+    2
+   ]
+  ]
+ },
+ {
+  "case": 6,
+  "era": "bns",
+  "offence_type": "theft",
+  "query": "The accused worked as a domestic help in the complainant's flat. Over several weeks she took cash and a mobile phone from her employer's cupboard; the phone was traced to her through its IMEI number.",
+  "want": [
+   "303",
+   "306"
+  ],
+  "statute_top3": [
+   [
+    "306",
+    "306",
+    "Theft by clerk or servant of property in possession of master"
+   ],
+   [
+    "315",
+    "315",
+    "Dishonest misappropriation of property possessed by deceased person at the time of his death"
+   ],
+   [
+    "316",
+    "316(4)",
+    "Criminal breach of trust"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "316",
+    "316(4)",
+    "Criminal breach of trust",
+    3,
+    10
+   ],
+   [
+    "3",
+    "3(3)",
+    "General explanations",
+    13,
+    4
+   ],
+   [
+    "127",
+    "127(8)",
+    "Wrongful confinement",
+    6,
+    13
+   ]
+  ]
+ },
+ {
+  "case": 7,
+  "era": "bns",
+  "offence_type": "theft",
+  "query": "A man on foot ran up behind the complainant while she waited at a bus stop, pulled the gold chain from her neck in one quick movement and ran off into a side lane.",
+  "want": [
+   "303",
+   "304"
+  ],
+  "statute_top3": [
+   [
+    "303",
+    "303(1)",
+    "Theft"
+   ],
+   [
+    "309",
+    "309(3)",
+    "Robbery"
+   ],
+   [
+    "304",
+    "304(1)",
+    "Snatching"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "303",
+    "303(1)",
+    "Theft",
+    1,
+    10
+   ],
+   [
+    "309",
+    "309(3)",
+    "Robbery",
+    2,
+    9
+   ],
+   [
+    "317",
+    "317(1)",
+    "Stolen property",
+    21,
+    2
+   ]
+  ]
+ },
+ {
+  "case": 8,
+  "era": "bns",
+  "offence_type": "cheating",
+  "query": "The accused sold the complainant a used car for four lakh rupees, concealing that it was hypothecated to a bank and showing him a no-objection certificate that the bank had never issued. The bank later repossessed the car.",
+  "want": [
+   "318"
+  ],
+  "statute_top3": [
+   [
+    "314",
+    "314",
+    "Dishonest misappropriation of property"
+   ],
+   [
+    "335",
+    "335",
+    "Making a false document"
+   ],
+   [
+    "318",
+    "318(1)",
+    "Cheating"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "318",
+    "318(1)",
+    "Cheating",
+    3,
+    1
+   ],
+   [
+    "316",
+    "316(1)",
+    "Criminal breach of trust",
+    4,
+    2
+   ],
+   [
+    "335",
+    "335",
+    "Making a false document",
+    2,
+    13
+   ]
+  ]
+ },
+ {
+  "case": 9,
+  "era": "bns",
+  "offence_type": "assault",
+  "query": "During a dispute over farmland the accused hit the complainant on the head with a brick. The complainant suffered a skull fracture and remained in hospital for twenty-five days.",
+  "want": [
+   "116",
+   "117",
+   "118"
+  ],
+  "statute_top3": [
+   [
+    "2",
+    "2(14)",
+    "Definitions"
+   ],
+   [
+    "116",
+    "116",
+    "Grievous hurt"
+   ],
+   [
+    "114",
+    "114",
+    "Hurt"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "109",
+    "109",
+    "Attempt to murder",
+    9,
+    2
+   ],
+   [
+    "115",
+    "115(2)",
+    "Voluntarily causing hurt",
+    11,
+    3
+   ],
+   [
+    "116",
+    "116",
+    "Grievous hurt",
+    1,
+    19
+   ]
+  ]
+ },
+ {
+  "case": 10,
+  "era": "bns",
+  "offence_type": "criminal breach of trust",
+  "query": "The accused was the cashier of a private company and was handed the day's cash collections to deposit in the company's bank account. Instead of depositing the money he used it to repay his personal loans.",
+  "want": [
+   "316"
+  ],
+  "statute_top3": [
+   [
+    "319",
+    "319(1)",
+    "Cheating by personation"
+   ],
+   [
+    "335",
+    "335",
+    "Making a false document"
+   ],
+   [
+    "182",
+    "182(3)",
+    "Making or using documents resembling currency-notes or bank-notes"
+   ]
+  ],
+  "fused_top3": [
+   [
+    "318",
+    "318(1)",
+    "Cheating",
+    6,
+    1
+   ],
+   [
+    "316",
+    "316",
+    "Criminal breach of trust",
+    5,
+    2
+   ],
+   [
+    "335",
+    "335",
+    "Making a false document",
+    2,
+    10
+   ]
+  ]
+ }
+]

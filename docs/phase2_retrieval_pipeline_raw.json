@@ -34,18 +34,18 @@
     5
    ],
    [
-    "457",
-    "457",
-    "Lurking house-trespass or house-breaking by night in order to commit offence punishable with imprisonment",
-    6,
-    49
+    "379",
+    "379",
+    "Punishment for theft",
+    9,
+    2
    ],
    [
-    "392",
-    "392",
-    "Punishment for robbery",
-    23,
-    27
+    "378",
+    "378",
+    "Theft",
+    9,
+    2
    ]
   ]
  },
@@ -77,25 +77,25 @@
   ],
   "fused_top3": [
    [
-    "457",
-    "457",
-    "Lurking house-trespass or house-breaking by night in order to commit offence punishable with imprisonment",
-    7,
-    24
+    "379",
+    "379",
+    "Punishment for theft",
+    1,
+    7
    ],
    [
-    "454",
-    "454",
-    "Lurking house-trespass or house-breaking in order to commit offence punishable with imprisonment",
-    5,
-    29
+    "378",
+    "378",
+    "Theft",
+    1,
+    7
    ],
    [
-    "380",
-    "380",
-    "Theft in dwelling house, etc.",
-    20,
-    15
+    "405",
+    "405",
+    "Criminal breach of trust",
+    15,
+    2
    ]
   ]
  },
@@ -127,25 +127,25 @@
   ],
   "fused_top3": [
    [
+    "405",
+    "405",
+    "Criminal breach of trust",
+    5,
+    5
+   ],
+   [
+    "406",
+    "406",
+    "Punishment for criminal breach of trust",
+    5,
+    5
+   ],
+   [
     "409",
     "409",
     "Criminal breach of trust by public servant, or by banker, merchant or agent",
     4,
     11
-   ],
-   [
-    "405",
-    "405",
-    "Criminal breach of trust",
-    5,
-    17
-   ],
-   [
-    "411",
-    "411",
-    "Dishonestly receiving stolen property",
-    25,
-    2
    ]
   ]
  },
@@ -178,25 +178,25 @@
   ],
   "fused_top3": [
    [
+    "405",
+    "405",
+    "Criminal breach of trust",
+    1,
+    3
+   ],
+   [
+    "406",
+    "406",
+    "Punishment for criminal breach of trust",
+    1,
+    3
+   ],
+   [
     "420",
     "420",
     "Cheating and dishonestly inducing delivery of property",
     14,
     1
-   ],
-   [
-    "405",
-    "405",
-    "Criminal breach of trust",
-    1,
-    15
-   ],
-   [
-    "415",
-    "415",
-    "Cheating",
-    5,
-    10
    ]
   ]
  },
@@ -237,18 +237,18 @@
     3
    ],
    [
+    "321",
+    "321",
+    "Voluntarily causing hurt",
+    2,
+    3
+   ],
+   [
     "324",
     "324",
     "Voluntarily causing hurt by dangerous weapons or means",
     6,
     1
-   ],
-   [
-    "326",
-    "326",
-    "Voluntarily causing grievous hurt by dangerous weapons or means",
-    15,
-    5
    ]
   ]
  },
@@ -280,25 +280,25 @@
   ],
   "fused_top3": [
    [
+    "503",
+    "503",
+    "Criminal intimidation",
+    4,
+    5
+   ],
+   [
+    "506",
+    "506",
+    "Punishment for criminal intimidation",
+    4,
+    5
+   ],
+   [
     "504",
     "504",
     "Intentional insult with intent to provoke breach of the peace",
     15,
     7
-   ],
-   [
-    "307",
-    "307",
-    "Attempt to murder",
-    37,
-    2
-   ],
-   [
-    "354",
-    "354",
-    "Assault or criminal force to woman with intent to outrage her modesty",
-    12,
-    20
    ]
   ]
  },
@@ -337,18 +337,18 @@
     9
    ],
    [
+    "417",
+    "417",
+    "Punishment for cheating",
+    6,
+    9
+   ],
+   [
     "464",
     "464",
     "Making a false document",
     1,
     22
-   ],
-   [
-    "467",
-    "467",
-    "Forgery of valuable security, will, etc.",
-    17,
-    6
    ]
   ]
  },
@@ -387,18 +387,18 @@
     3
    ],
    [
+    "321",
+    "321",
+    "Voluntarily causing hurt",
+    9,
+    3
+   ],
+   [
     "143",
     "143",
     "Punishment",
     26,
     10
-   ],
-   [
-    "114",
-    "114",
-    "Abettor present when offence is committed",
-    6,
-    49
    ]
   ]
  },
