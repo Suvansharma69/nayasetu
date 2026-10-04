@@ -60,6 +60,15 @@ def render(r):
     st.markdown(f"#### Code applied: **{r['era'].upper()}**")
     st.caption(f"{r['code_applied']} · offence date {r['offence_date']} · chosen by the deterministic "
                "offence-date router, not by the model")
+    it = r.get("intake") or {}
+    if it.get("extracted"):
+        st.info("**Court order / FIR detected.** The analysis below is of the alleged facts the local model "
+                "extracted from it (procedure, section and case numbers removed). Check them against the original.")
+        st.markdown(f"> {e(it['facts'])}")
+        with st.expander("Original text"):
+            st.write(it["original_input"])
+    elif it.get("why", "").endswith("original used"):
+        st.caption(f"Intake: {it['why']}.")
     for w in r.get("warnings", []):
         st.warning(w)
     if r["status"] == "insufficient_data":

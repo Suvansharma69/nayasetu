@@ -10,6 +10,7 @@ PRAMANA_ABLATE is a comma list of changes to switch OFF (default: none):
     union          Node 1 is asked once, not twice (original + reversed candidate order)
     dual           Node 1 gets only the fused candidate list, not fused + statute-text
     punish         Node 2 keeps an IPC definition (405) instead of its punishing section (406)
+    intake         a pasted court order/FIR is NOT reduced to its alleged facts first
     pair           retrieval does NOT pool an IPC definition's ranks with its punishing
                    section's (503 found by text, 506 by votes; see ranker.pool_pairs)
 
@@ -20,7 +21,7 @@ from __future__ import annotations
 
 import os
 
-KNOWN = {"profile", "exclude", "chargeability", "judge", "union", "dual", "punish", "pair"}
+KNOWN = {"profile", "exclude", "chargeability", "judge", "union", "dual", "punish", "pair", "intake"}
 
 
 def off(name):

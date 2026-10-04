@@ -26,7 +26,7 @@ from functools import partial
 from src.graph import citation_graph as cg
 from src.retrieval import embedder, ranker
 
-from . import ablation, analytics, applicability, chargeability, defense, guardrail, llm as llm_mod, nodes, precedents
+from . import ablation, analytics, applicability, chargeability, defense, guardrail, intake, llm as llm_mod, nodes, precedents
 from .router import STRADDLE_WARNING, route, route_period
 from .state import initial_state
 
@@ -178,6 +178,23 @@ def _on_device(fn, device):
 
 def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, sufficient=None,
              text_of=None, check_applicability=True, full=False):
+    """Intake first: a pasted court order or FIR is reduced to its alleged facts
+    (src/pipeline/intake.py), and everything downstream reads those. It runs
+    before the VRAM handoff, so the unload below also frees the card from it."""
+    t = time.perf_counter()
+    taken = {"facts": case_facts, "extracted": False, "why": "intake switched off"}
+    if not ablation.off("intake") and case_facts and case_facts.strip():
+        taken = intake.extract(case_facts, llm or llm_mod.chat_json)
+    intake_s = time.perf_counter() - t
+    out = _run_core(taken["facts"], offence_date, llm=llm, g=g, cli=cli, retrieve=retrieve,
+                    sufficient=sufficient, text_of=text_of, check_applicability=check_applicability, full=full)
+    out["timings"] = {"intake_s": intake_s, **out["timings"]}
+    out["intake"] = {**taken, "original_input": case_facts}
+    return out
+
+
+def _run_core(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, sufficient=None,
+              text_of=None, check_applicability=True, full=False):
     timings = {}
     t0 = time.perf_counter()
     era = route(offence_date)
