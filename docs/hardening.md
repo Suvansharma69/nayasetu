@@ -14,7 +14,7 @@
 | 4 | Retry hint faithfully translated a wrong guess | ✅ | hint now names both titles plus a caveat; Node 2b judges the result |
 | 5 | Civil disputes and false declines | ✅ | no bare refusal on any path: model (`0203e85`) and guardrail (`6f09d4f`). Held-out 4 (new, scored once): **0 false declines in 12**; held-out 3 #7 re-run returns a review list with BNS 324 (mischief) 6th. Civil controls 4/4 carry a no-offence warning; #14 of held-out 4 still charged 420, which the judge doubted |
 | 6 | Offence period straddling 1 Jul 2024 | ✅ | `route_period` + dual-code run with a warning; tests at the boundary |
-| 7 | Phase 2 held-out 10 → 8/10 after the mapping change | ⏳ | re-score pending (retrieval changed again: graph edges and exclusions) |
+| 7 | Phase 2 held-out 10 → 8/10 after the mapping change | ✅ | re-scored 2026-10-04 (`docs/phase2_retrieval.md`, last section): pipeline ranking judged dev **12/15** (gate met) + held-out 9/10 = 84%; strict 19/25 (76%) reported as is. The dual list Node 1 reads holds a relevant section in 26/27 cases; the miss is common intention, supplied by rule |
 | 8 | **Citation-graph edges: 63% precision (found in this pass)** | ✅ | fresh 100-edge audit: **96%** after the fix |
 | 9 | Bombay HC lost-ligature words | ✅ | 140 reviewed repairs, 1,294 occurrences in 137 judgments |
 | 10 | spotcheck "4.6% tails cut off" unexplained | ✅ | explained; true mid-sentence splits 1,190 → **122 (0.1%)** |
@@ -129,7 +129,7 @@ The advisory judge did well here (it flagged three of the four bogus murder sect
 
 ## Pending measurements (to be filled by the frozen runs)
 
-- Phase 2 retrieval re-score (dev + held-out, once).
+- ~~Phase 2 retrieval re-score~~ done 2026-10-04: row 7 closed.
 - ~~Out-of-domain probes~~ done: 10/10.
 - ~~Phase 4 gate~~ done: PASS.
 - ~~Broad-coverage, frozen~~ done: setback (above).
@@ -166,3 +166,22 @@ un_dev_compare.bat`, baseline 9/15 done when a memory kill stopped it), then hel
 Misses: #1 defamation (209/417; the model also warned "no offence"); **#7 a death threat by phone charged as attempt to murder (307)** - the same failure as held-out 3 #10, now seen twice: an IPC threat to kill is read as an attempt; #9 forged sale deed got forgery 465/468 (arguable) but not 467/471; #11 got **IPC 347 (wrongful confinement to extort property)**, which arguably fits the facts better than the key's 342 - the key is left as written, it is held out.
 
 **Open after this:** the threat -> attempt-to-murder over-charge (#1 in the register; two held-out sets). Held-out 4 is spent for these changes.
+
+## 2026-10-04: Phase 2 re-score (row 7 closed) and definition/punishment pooling (row 1)
+
+**Row 7:** see `docs/phase2_retrieval.md`, last section. Judged dev 12/15 (the gate, met for the first time), held-out 9/10; strict 19/25. The list Node 1 reads holds a relevant section in 26/27 cases.
+
+**Row 1, threat to kill → attempt to murder (held-out 3 #10, held-out 4 #7).** Cause found in retrieval, not the model: in the IPC era neither 503 nor 506 was among the 16-18 candidates. Statute text finds the definition 503 (ranks 25 and 27, because 506's text is one line of boilerplate). Precedent votes find 506 (vote ranks 7 and 2, because judgments cite "506 IPC"). RRF fused them as two unrelated sections, so each held half the evidence for one offence. In the BNS, which keeps both in s351, the same facts rank 351 1st and 3rd.
+
+**Change (`9d60a00`, switch `pair`):** `ranker.pool_pairs` gives each of the 23 IPC definition/punishment pairs (`chargeability.json` `punished_by`) its best rank on each side of the fusion. Retrieval only: the two threat cases now have 506/503 at ranks 4 and 2; list coverage over 27 cases 24 → 26; IPC theft improves (dev 1: 8th → 2nd). One regression: dev 5 (fracture) now has simple hurt 323/321 above grievous 326 (4th).
+
+**Dev, pipeline** (14 of 15 cases: the run was killed for low memory at case 15; `dual_dev` is the same code with `pair` off, and the BNS cases, which `pair` cannot touch, reproduced exactly):
+
+| | pair off | pair on |
+|---|---|---|
+| recall | 14/14 | 14/14 |
+| precision | 38% | 39% |
+| doubted set aside | 49% | 44% |
+| sections/case | 3.4 | 3.5 |
+
+Neutral, as expected: dev has no threat-to-kill case (dev 6 already charged 506). Dev 5 still charged grievous hurt (326) despite the retrieval regression. **Kept provisionally; held-out 5 (`tests/fixtures/heldout_5.json`, committed `94dae5d` before any pipeline run) decides.** Pending: `scripts\run_heldout5.bat` from a normal terminal.
