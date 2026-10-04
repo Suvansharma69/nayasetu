@@ -236,3 +236,19 @@ def test_sync_can_remove_a_metadata_key_keeping_the_vector(fake, monkeypatch):
     got = col.get(ids=["bns_s303"], include=["metadatas", "embeddings"])
     assert "sections_involved" not in got["metadatas"][0]
     assert [round(x, 6) for x in got["embeddings"][0]] == [round(x, 6) for x in vec[0]]
+
+
+def test_pool_pairs_gives_definition_and_punishment_their_best_rank_per_side():
+    # 503 found by statute text, 506 by precedent votes: each takes the other's
+    # rank on that side, so the offence carries both halves of its evidence.
+    s_rank = {"307": 1, "503": 25}
+    v_rank = {"307": 2, "506": 7}
+    ranker.pool_pairs(s_rank, v_rank, {"503": "506"})
+    assert s_rank == {"307": 1, "503": 25, "506": 25}
+    assert v_rank == {"307": 2, "506": 7, "503": 7}
+
+
+def test_pool_pairs_leaves_unpaired_and_excluded_sections_alone():
+    s_rank, v_rank = {"378": 3}, {"411": 1}
+    ranker.pool_pairs(s_rank, v_rank, {"378": "379", "405": "406"}, exclude={"379"})
+    assert s_rank == {"378": 3} and v_rank == {"411": 1}

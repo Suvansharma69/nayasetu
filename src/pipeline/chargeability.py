@@ -48,6 +48,11 @@ def punished_by(code, section):
     return _load().get("punished_by", {}).get(code, {}).get(section)
 
 
+def pairs(code):
+    """{definition: punishing section} for a code (IPC 503 -> 506); BNS has none."""
+    return dict(_load().get("punished_by", {}).get(code, {}))
+
+
 def non_chargeable_sections(code):
     """Sections that can never be a charge at section level (for filtering
     retrieval candidates and precedent votes). Sections with a sub-section

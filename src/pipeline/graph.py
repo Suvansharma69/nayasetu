@@ -77,8 +77,9 @@ def _excerpt(text):
 
 def retrieve_candidates(case_facts, era, cli=None, device=RUNTIME_DEVICE):
     exclude = None if ablation.off("exclude") else chargeability.non_chargeable_sections(era)
+    pairs = None if ablation.off("pair") else chargeability.pairs(era)
     rows = ranker.rank_sections(case_facts, era, top_k=TOP_K_CANDIDATES, cli=cli, device=device,
-                                exclude=exclude)
+                                exclude=exclude, pairs=pairs)
     if not ablation.off("dual"):
         # Two lists, not one. Precedent votes are a popularity prior: they put
         # the right section in the top 3 more often (dev 11/15 vs 9/15 by
@@ -88,7 +89,8 @@ def retrieve_candidates(case_facts, era, cli=None, device=RUNTIME_DEVICE):
         # fused top 10 comes first, then the statute-text top 10's new sections.
         seen = {r["section"] for r in rows}
         for r in ranker.rank_sections(case_facts, era, top_k=TOP_K_CANDIDATES, cli=cli,
-                                      device=device, exclude=exclude, use_votes=False):
+                                      device=device, exclude=exclude, use_votes=False,
+                                      pairs=pairs):
             if r["section"] not in seen:
                 rows.append(r)
                 seen.add(r["section"])

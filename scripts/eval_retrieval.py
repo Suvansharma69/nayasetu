@@ -42,7 +42,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pipeline", action="store_true",
                     help="score the ranking the PIPELINE uses: non-chargeable sections "
-                         "(definitions, general exceptions) excluded, as graph.retrieve_candidates does")
+                         "(definitions, general exceptions) excluded and IPC definition/punishment "
+                         "ranks pooled, as graph.retrieve_candidates does")
     ap.add_argument("--hyde", action="store_true",
                     help="with --pipeline: search statutes with the LLM's abstract restatement "
                          "of the facts (src/pipeline/hyde.py); needs Ollama")
@@ -60,7 +61,8 @@ def main():
                                           top_k=3, cli=cli)
         sq = hyde.restate(case["query"], llm.chat_json) if args.hyde else None
         fused = ranker.rank_sections(case["query"], era, top_k=3, cli=cli, statute_query=sq,
-                                     exclude=chargeability.non_chargeable_sections(era) if args.pipeline else None)
+                                     exclude=chargeability.non_chargeable_sections(era) if args.pipeline else None,
+                                     pairs=chargeability.pairs(era) if args.pipeline else None)
         if sq:
             print(f"    hyde: {sq[:160]}")
         for name, res in (("statute", statute), ("fused", fused)):

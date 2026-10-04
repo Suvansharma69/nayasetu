@@ -93,10 +93,36 @@ def precedent_votes(query_text, era, pool=60, cli=None, device=None):
     return dict(votes)
 
 
+def pool_pairs(s_rank, v_rank, pairs, exclude=()):
+    """Give a definition and its punishing section each other's best rank, in
+    place, on each side of the fusion separately.
+
+    The IPC splits many offences in two: 503 defines criminal intimidation and
+    506 punishes it in one line of boilerplate. Statute text finds the
+    definition, because it carries the ingredients; precedent votes find the
+    punishment, because that is what judgments cite ("u/s 506 IPC"). Fused
+    apart, each holds half the evidence for one offence and neither reaches the
+    candidate list: on held-out 3 #10 and held-out 4 #7 (threats to kill), 503
+    ranked 25th and 27th by text and 506 2nd and 7th by votes, and both cases
+    were charged as attempt to murder instead.
+    """
+    for d, p in pairs.items():
+        if d in exclude or p in exclude:
+            continue
+        for rank in (s_rank, v_rank):
+            best = min((rank[s] for s in (d, p) if s in rank), default=None)
+            if best is not None:
+                rank[d] = rank[p] = best
+
+
 def rank_sections(query_text, era, top_k=5, pool=60, cli=None, use_votes=True, device=None,
-                  exclude=None, statute_query=None):
+                  exclude=None, statute_query=None, pairs=None):
     """Fused section ranking for one case. Returns a list, best first, of
     {section, score, statute_rank, statute_score, vote_rank, title, matched, id}.
+
+    `pairs` maps an IPC definition to its punishing section (503 -> 506); see
+    pool_pairs. The pipeline passes chargeability's pairs; None is the frozen
+    Phase 2 method.
 
     `statute_query`, if given, is what the STATUTE side is searched with, while
     precedent votes still use `query_text`. The pipeline passes a HyDE-style
@@ -132,6 +158,8 @@ def rank_sections(query_text, era, top_k=5, pool=60, cli=None, use_votes=True, d
         valid = _era_sections(era)
         ordered = sorted((s for s in votes if s in valid and s not in exclude), key=lambda s: -votes[s])
         v_rank = {s: i + 1 for i, s in enumerate(ordered)}
+
+    pool_pairs(s_rank, v_rank, pairs or {}, exclude)
 
     fused = {}
     for sec in set(s_rank) | set(v_rank):
