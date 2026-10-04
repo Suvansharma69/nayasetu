@@ -1,0 +1,76 @@
+{
+ "status": "no_verified_sections",
+ "era": "bns",
+ "code_applied": "Bharatiya Nyaya Sanhita, 2023 (offence on/after 1 July 2024)",
+ "offence_date": "2025-03-01",
+ "facts": "When the tenant moved out, the landlord kept twenty thousand rupees of the security deposit for repainting, saying the walls were damaged. The tenant says the marks were ordinary wear and wants the full deposit back.",
+ "charges": [],
+ "unconfirmed": [
+  {
+   "code": "BNS",
+   "raw": "3(3)",
+   "section": "3",
+   "why": "BNS 3 (General explanations) is BNS 3 is a preliminary provision or definition; only BNS 3(5) (common intention) extends liability -- cite that sub-section, not an offence a person can be charged under",
+   "round": 0
+  }
+ ],
+ "retries": 1,
+ "review_candidates": [
+  {
+   "section": "316",
+   "matched": "316",
+   "title": "Criminal breach of trust"
+  },
+  {
+   "section": "317",
+   "matched": "317(1)",
+   "title": "Stolen property"
+  },
+  {
+   "section": "303",
+   "matched": "303",
+   "title": "Theft"
+  },
+  {
+   "section": "308",
+   "matched": "308(1)",
+   "title": "Extortion"
+  },
+  {
+   "section": "318",
+   "matched": "318(4)",
+   "title": "Cheating"
+  }
+ ],
+ "precedents": [],
+ "analytics": {
+  "note": "How the appeal or petition was disposed of by the court that decided it (allowed = the appellant/petitioner succeeded). Not a conviction rate.",
+  "min_judgments": 5,
+  "sections": []
+ },
+ "defenses": [],
+ "facts_profile": {
+  "discloses_offence": false,
+  "why": "The facts describe a civil dispute over the return of a security deposit based on alleged property damage, which is a matter for civil adjudication and does not disclose any criminal act such as theft",
+  "accused_count": 1
+ },
+ "warnings": [
+  "The model considers that these facts may not disclose a criminal offence (\"The facts describe a civil dispute over the return of a security deposit based on alleged property damage, which is a matter for civil adjudication and does not disclose any criminal act such as theft\"). Review the sections shown before relying on that view."
+ ],
+ "guardrail": {
+  "reason": null,
+  "top_similarity": 0.6428,
+  "threshold": 0.576
+ },
+ "timings": {
+  "route_s": 0.0,
+  "unload_s": 4.6,
+  "guardrail_s": 3.5,
+  "retrieve_s": 0.4,
+  "graph_s": 28.0
+ },
+ "sample": {
+  "id": "civil_deposit",
+  "name": "Security deposit dispute (civil, BNS era)"
+ }
+}

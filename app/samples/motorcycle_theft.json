@@ -1,0 +1,326 @@
+{
+ "status": "ok",
+ "era": "bns",
+ "code_applied": "Bharatiya Nyaya Sanhita, 2023 (offence on/after 1 July 2024)",
+ "offence_date": "2024-08-15",
+ "facts": "The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it.",
+ "charges": [
+  {
+   "code": "BNS",
+   "section": "303",
+   "subsection": "303(1)",
+   "title": "Theft",
+   "reason": "The accused moved the complainant's motorcycle out of his possession without consent with dishonest intent, satisfying the ingredients of theft.",
+   "doubt": null
+  },
+  {
+   "code": "BNS",
+   "section": "329",
+   "subsection": "329(1)",
+   "title": "Criminal trespass and house-trespass",
+   "reason": "The accused entered or remained upon the complainant's property (the lane outside his house) with the intent to commit an offence, constituting criminal trespass.",
+   "doubt": null
+  }
+ ],
+ "unconfirmed": [],
+ "retries": 0,
+ "review_candidates": [],
+ "precedents": [
+  {
+   "label": "P1",
+   "for_charge": "BNS 303",
+   "applies": "IPC 379",
+   "via_ipc_predecessor": "BNS 303 <- IPC 379",
+   "doc_id": "na_Telangana_HC_2020_1862",
+   "title": null,
+   "court": "Telangana High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6861,
+   "matched_by": "similarity to the facts",
+   "excerpt": "This appeal is directed against the judgment of the learned IV-Additional District and Judge (Fast Track Court), in of 2017, dated whereby the appellant A-1 was convicted for the offence punishable under Section 411 of and to undergo simple imprisonment for a period of six months, by reversing the judgment of acquittal, dated passed by the I-Additional Judicial Magistrate of First Class, against the appellant A-1 for the offence punishable under Section 379 of P.C.in of 2015. The gravamen of ...",
+   "verified": true
+  },
+  {
+   "label": "P2",
+   "for_charge": "BNS 303",
+   "applies": "IPC 379",
+   "via_ipc_predecessor": "BNS 303 <- IPC 379",
+   "doc_id": "na_Telangana_HC_2020_1863",
+   "title": null,
+   "court": "Telangana High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6811,
+   "matched_by": "similarity to the facts",
+   "excerpt": "This appeal is directed against the judgment of the learned IV-Additional District and Judge (Fast Track Court), in of 2017, dated 16.04.2019, whereby the appellant A-1 was convicted for the offence punishable under Section 411 of and to undergo simple imprisonment for a period of six months, by reversing the judgment of acquittal, dated passed by the I-Additional Judicial Magistrate of First Class, against the appellant A-1 for the offence punishable under Section 379 of P.C.in of 2015. The ...",
+   "verified": true
+  },
+  {
+   "label": "P3",
+   "for_charge": "BNS 303",
+   "applies": "IPC 379",
+   "via_ipc_predecessor": "BNS 303 <- IPC 379",
+   "doc_id": "na_Telangana_HC_2020_1859",
+   "title": null,
+   "court": "Telangana High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6785,
+   "matched_by": "similarity to the facts",
+   "excerpt": "This appeal is directed against the judgment of the learned IV-Additional District and Judge (Fast Track Court), in of 2017, dated 17.04.2019, whereby the appellant A-1 was convicted for the offence punishable under Section 411 of and to undergo simple imprisonment for a period of six months, by reversing the judgment of acquittal, dated passed by the I-Additional Judicial Magistrate of First Class, against the appellant A-1 for the offence punishable under Section 379 of P.C.in of 2015. The ...",
+   "verified": true
+  },
+  {
+   "label": "P4",
+   "for_charge": "BNS 329",
+   "applies": "IPC 448",
+   "via_ipc_predecessor": "BNS 329 <- IPC 448",
+   "doc_id": "na_KA_HC_2020_3079",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6301,
+   "matched_by": "similarity to the facts",
+   "excerpt": "Again of this witness creates doubt, as the medical certificate indicates that injured were brought to the hospital through police even prior to the registration of any FIR i.e., about p.m. itself. So, the registration of this complaint also creates doubt. PW.16 - Somayya is the who has conducted the He has stated about done by him. He has stated that he do not know the name of any of the neighbours of the complainants house. He has not verified the records as to whom the said motorcycle ...",
+   "verified": true
+  },
+  {
+   "label": "P5",
+   "for_charge": "BNS 329",
+   "applies": "IPC 448",
+   "via_ipc_predecessor": "BNS 329 <- IPC 448",
+   "doc_id": "na_KA_HC_2020_3075",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6211,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The accused ran away from the spot to the extent of meters from the house of He himself, C.Ws.4 and 3 chased him and accused threw the rod outside the house. It is also his that the accused was stamping the stomach and chest of P.W.1 came out from the house and fell down outside the house. The police have not given any notice to come for P.W.2 has produced the clothes. M.Os.1 to 3 were seized by packing the same in the cloth and he is not having any special marks. It is suggested that he is ...",
+   "verified": true
+  },
+  {
+   "label": "P6",
+   "for_charge": "BNS 329",
+   "applies": "IPC 447",
+   "via_ipc_predecessor": "BNS 329 <- IPC 447",
+   "doc_id": "na_Gujarat_HC_2020_1595",
+   "title": null,
+   "court": "Gujarat High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.5926,
+   "matched_by": "similarity to the facts",
+   "excerpt": "It is to be noted that the all the have been granted regular bail by the Court with certain terms and conditions. Yet another which has been upon by the authority concerned for arriving at subjective satisfaction is of Naroda Police Station. The complainant has alleged in the said complained that on 11.3.2020 at mid night, while he was returning from his job and goin home, he saw a truck which was going towards his and in absence of any other mode of commutation, he had boarded the truck so as ...",
+   "verified": true
+  }
+ ],
+ "analytics": {
+  "note": "How the appeal or petition was disposed of by the court that decided it (allowed = the appellant/petitioner succeeded). Not a conviction rate.",
+  "min_judgments": 5,
+  "sections": [
+   {
+    "charge": "BNS 303",
+    "title": "Theft",
+    "direct": {
+     "code": "bns",
+     "section": "303",
+     "judgments": 0,
+     "counts": {
+      "allowed": 0,
+      "partly allowed": 0,
+      "dismissed": 0,
+      "other": 0
+     },
+     "suppressed": true
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "378",
+      "judgments": 11,
+      "counts": {
+       "allowed": 8,
+       "partly allowed": 0,
+       "dismissed": 3,
+       "other": 0
+      },
+      "suppressed": false,
+      "allowed_share": 0.727
+     },
+     {
+      "code": "ipc",
+      "section": "379",
+      "judgments": 158,
+      "counts": {
+       "allowed": 76,
+       "partly allowed": 1,
+       "dismissed": 76,
+       "other": 5
+      },
+      "suppressed": false,
+      "allowed_share": 0.503
+     }
+    ]
+   },
+   {
+    "charge": "BNS 329",
+    "title": "Criminal trespass and house-trespass",
+    "direct": {
+     "code": "bns",
+     "section": "329",
+     "judgments": 0,
+     "counts": {
+      "allowed": 0,
+      "partly allowed": 0,
+      "dismissed": 0,
+      "other": 0
+     },
+     "suppressed": true
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "441",
+      "judgments": 8,
+      "counts": {
+       "allowed": 6,
+       "partly allowed": 1,
+       "dismissed": 1,
+       "other": 0
+      },
+      "suppressed": false,
+      "allowed_share": 0.875
+     },
+     {
+      "code": "ipc",
+      "section": "442",
+      "judgments": 6,
+      "counts": {
+       "allowed": 3,
+       "partly allowed": 1,
+       "dismissed": 2,
+       "other": 0
+      },
+      "suppressed": false,
+      "allowed_share": 0.667
+     },
+     {
+      "code": "ipc",
+      "section": "447",
+      "judgments": 66,
+      "counts": {
+       "allowed": 41,
+       "partly allowed": 1,
+       "dismissed": 20,
+       "other": 4
+      },
+      "suppressed": false,
+      "allowed_share": 0.677
+     },
+     {
+      "code": "ipc",
+      "section": "448",
+      "judgments": 66,
+      "counts": {
+       "allowed": 39,
+       "partly allowed": 2,
+       "dismissed": 21,
+       "other": 4
+      },
+      "suppressed": false,
+      "allowed_share": 0.661
+     }
+    ]
+   }
+  ]
+ },
+ "defenses": [
+  {
+   "against": "BNS 303",
+   "argument": "The prosecution has failed to prove that the accused moved the motorcycle with the specific intent to take it 'dishonestly' under Section 303(1). The facts state the accused pushed the bike away and rode off, but there is no evidence establishing a pre-meditated plan or knowledge of the complainant's ownership prior to the act. Without proof that the accused knew the property belonged to another person at the time of moving it, the essential ingredient of 'dishonest intention' remains unproven.",
+   "fact_quote": "The accused pushing it away down the lane and riding off",
+   "precedents": [
+    {
+     "label": "P1",
+     "doc_id": "na_Telangana_HC_2020_1862",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "BNS 329",
+   "argument": "The charge of criminal trespass under Section 329(1) is not established because the prosecution has not proven that the accused entered or remained on the complainant's property with the specific intent to 'intimidate, insult or annoy' any person. The CCTV footage shows the accused moving the motorcycle down a lane and riding away; it does not demonstrate an unlawful entry onto the house or an act of intimidation/annoyance directed at the occupier.",
+   "fact_quote": "The accused pushing it away down the lane and riding off",
+   "precedents": [
+    {
+     "label": "P4",
+     "doc_id": "na_KA_HC_2020_3079",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "BNS 303",
+   "argument": "The prosecution relies on circumstantial evidence that is insufficient to prove the accused's knowledge of the complainant's possession. Mere absence of permission or failure to return the property does not automatically equate to dishonest intent under Section 303(1). The burden lies on the state to show the accused knew the bike belonged to someone else, which has not been clearly established by the facts provided.",
+   "fact_quote": "The accused had no permission to take it and did not return it",
+   "precedents": [
+    {
+     "label": "P2",
+     "doc_id": "na_Telangana_HC_2020_1863",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "BNS 329",
+   "argument": "There is no evidence that the accused entered 'into or upon property' belonging to another person. The facts describe the accused pushing the motorcycle down a lane, which may constitute moving property from one location to another, but it does not substantiate an entry onto the complainant's house or land with the requisite intent for criminal trespass.",
+   "fact_quote": "The accused pushing it away down the lane",
+   "precedents": [
+    {
+     "label": "P5",
+     "doc_id": "na_KA_HC_2020_3075",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  }
+ ],
+ "facts_profile": {
+  "discloses_offence": true,
+  "why": "The facts disclose the offence of theft as the accused moved property out of the complainant's possession without consent with dishonest intent.",
+  "accused_count": 1
+ },
+ "warnings": [],
+ "guardrail": {
+  "reason": null,
+  "top_similarity": 0.6861,
+  "threshold": 0.576
+ },
+ "timings": {
+  "route_s": 0.0,
+  "unload_s": 6.4,
+  "guardrail_s": 10.1,
+  "retrieve_s": 0.4,
+  "graph_s": 96.8
+ },
+ "sample": {
+  "id": "motorcycle_theft",
+  "name": "Motorcycle theft (BNS era, the worked example)"
+ }
+}

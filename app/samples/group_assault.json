@@ -1,0 +1,470 @@
+{
+ "status": "ok",
+ "era": "ipc",
+ "code_applied": "Indian Penal Code, 1860 (offence before 1 July 2024)",
+ "offence_date": "2023-03-12",
+ "facts": "Three brothers who had quarrelled with the complainant over a drain waited for him outside the temple. Two of them caught hold of his arms while the third struck him on the head with an iron rod. The medical report records a fracture of the skull. All three ran away together.",
+ "charges": [
+  {
+   "code": "IPC",
+   "section": "324",
+   "subsection": null,
+   "title": "Voluntarily causing hurt by dangerous weapons or means",
+   "reason": "The accused voluntarily caused hurt to the complainant using an iron rod, which is an instrument likely to cause death.",
+   "doubt": null
+  },
+  {
+   "code": "IPC",
+   "section": "147",
+   "subsection": null,
+   "title": "Punishment for rioting",
+   "reason": "Three brothers acted together with a common object of hurting the complainant, constituting a riot punishable under this section.",
+   "doubt": "an unlawful assembly needs five or more persons; the facts show 3"
+  },
+  {
+   "code": "IPC",
+   "section": "302",
+   "subsection": null,
+   "title": "Punishment for murder",
+   "reason": "The use of an iron rod to strike the head causing a skull fracture indicates an intention or knowledge that death might be caused, engaging the offence of murder by attempt.",
+   "doubt": "The facts show a fracture of the skull but do not establish that the act was done with the intention to cause death or that death actually occurred."
+  },
+  {
+   "code": "IPC",
+   "section": "148",
+   "subsection": null,
+   "title": "Rioting, armed with deadly weapon",
+   "reason": "The riot was committed while armed with a deadly weapon (iron rod), attracting enhanced punishment under this section.",
+   "doubt": "an unlawful assembly needs five or more persons; the facts show 3"
+  },
+  {
+   "code": "IPC",
+   "section": "34",
+   "subsection": null,
+   "title": "Acts done by several persons in furtherance of common intention -",
+   "reason": "All three brothers acted in furtherance of the common intention to hurt the complainant, making them jointly liable.",
+   "doubt": null
+  }
+ ],
+ "unconfirmed": [],
+ "retries": 0,
+ "review_candidates": [],
+ "precedents": [
+  {
+   "label": "P1",
+   "for_charge": "IPC 324",
+   "applies": "IPC 324",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_MP_HC_2024_202",
+   "title": null,
+   "court": "Madhya Pradesh High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6489,
+   "matched_by": "similarity to the facts",
+   "excerpt": "At about 9-10 p.m. when he was coming to his house, appellant Babulal Kori and Bhagchand Kori met him behind the house of Babulal and Babulal assaulted him by an iron rod, as a result he sustained injury on his head. Bhagchand assaulted him by a knife, as a result he sustained injury near his lips. The appellants Savitri, Uma and Nanhi assaulted him by rod and lathi. Savitri also pelted stone on him, as a result he sustained injury on his teeth. Savitri had also pelted stone on his left hand, ...",
+   "verified": true
+  },
+  {
+   "label": "P2",
+   "for_charge": "IPC 324",
+   "applies": "IPC 324",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Madras_HC_2021_704",
+   "title": null,
+   "court": "Madras High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6295,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The in his complaint under Ex.P.9 has stated that there arose a dispute his sister Chitra and third accused Maheswai on in taking of water and that at about pm on that day, when he was in the house all the accused came with weapons and started to quarrel with him, that in of wordy altercation at about 03.30 pm, the appellant had stabbed him on his upper stomach with a knife and that the other accused had attacked with wooden logs on his head, hands and legs. P.W.3 father of the in his before ...",
+   "verified": true
+  },
+  {
+   "label": "P3",
+   "for_charge": "IPC 324",
+   "applies": "IPC 324",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_KA_HC_2020_1644",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6293,
+   "matched_by": "similarity to the facts",
+   "excerpt": "When himself and PW.3 were returning to their house on motor cycle, when they came near the house of one Moulali Sagar, at that time this appellant No.1/accused No.1 Gurusiddappa along with his wife accused No.2 and his son Laxman accused No.3 stopped his motor cycle and abused him in filthy language stating that why un- necessarily he is quarreling for taking water, accused No.1 assaulted on his head with iron palga, due to which he sustained injury. Accused No.3 Laxman assaulted with hand and ...",
+   "verified": true
+  },
+  {
+   "label": "P4",
+   "for_charge": "IPC 147",
+   "applies": "IPC 147",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_KA_HC_2023_213",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6301,
+   "matched_by": "similarity to the facts",
+   "excerpt": "On at about 6.00 p.m., the complainant, his brother and his Vijaylaxmi, and Kaveri were sitting in front of their house. At that juncture, the accused persons came to the house and picked quarrel with them and abused them in filthy language. When the said act was questioned by the accused No.1 got enraged and caused fist injury to the by holding his shirt. Accused No.2 scratched the neck of the and other accused persons Dattu and Ramkumar also fisted on the stomach and chest of the The kicked ...",
+   "verified": true
+  },
+  {
+   "label": "P5",
+   "for_charge": "IPC 147",
+   "applies": "IPC 147",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_MP_HC_2022_1717",
+   "title": null,
+   "court": "Madhya Pradesh High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.616,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The next question for consideration is whether the appellant is an author of the offence or not ?(PW-2) has stated that the was his father, whereas Amar Singh was his younger brother. On at about 0930 PM, this witness had a dispute with the accused Hemant and appellant Chhaviram on the question of fetching water from the water tanker. Accordingly, he had lodged a report Ex.P/2. On the next day, i.e., at about 0730 AM, his father was sitting on the platform constructed in front of his house. On ...",
+   "verified": true
+  },
+  {
+   "label": "P6",
+   "for_charge": "IPC 147",
+   "applies": "IPC 147",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Bombay_HC_2022_2080",
+   "title": null,
+   "court": "Bombay High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.611,
+   "matched_by": "similarity to the facts",
+   "excerpt": "On at 600 a.m. in the morning, complainants son took bath at 615 a.m. Nirmala (PW-3) heard screams of accused Nos.1 and 2 along with Original Accused Nos.3 Vithabai and No.4 Sulouchana hurling abuses at Patil Family while standing in the open space in front of their house on hearing abuses, father of complainant i.e.Laxman Patil came out of the house but he was assaulted by accused No.1 with axe on his chest and by accused No.2 with sword on his left arm. Laxman sustained grievous injuries and ...",
+   "verified": true
+  },
+  {
+   "label": "P7",
+   "for_charge": "IPC 302",
+   "applies": "IPC 302",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_KA_HC_2022_1348",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6233,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The testimony of PW-18 shows that the came home to inform the assault against him at 8.00 p.m on by the accused at tank bund. They resolved to file police complaint. Hence at 8.30 p.m., she, PW-1, PW20 and were going to police station and on the way, i.e near the house of the accused, the accused had formed a group abusing them near their house. They obstructed them, accused No.1 assaulted on the head with a stone, accused no.2 inflicted injury with a kathi and axe on the right neck, nose, ...",
+   "verified": true
+  },
+  {
+   "label": "P8",
+   "for_charge": "IPC 302",
+   "applies": "IPC 302",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_KA_HC_2020_1698",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6229,
+   "matched_by": "similarity to the facts",
+   "excerpt": "All the accused persons told that they 11 will not give water since the complainant party behaving arrogantly and they will not leave the complainant party. At that time, the accused Nos.1 and 2 were holding sickle and the accused No.3 was holding the stick. The accused No.2 assaulted the victim with sickle on his left palm, wrist and head, accused No.3 assaulted on his back, hands and legs so also the accused No.1 assaulted with sickle on his stomach. As a result of the assault, the stomach of ...",
+   "verified": true
+  },
+  {
+   "label": "P9",
+   "for_charge": "IPC 302",
+   "applies": "IPC 302",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Guwahati_HC_2022_1484",
+   "title": null,
+   "court": "Gauhati High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6175,
+   "matched_by": "similarity to the facts",
+   "excerpt": "While his mother and another brother were waiting outside, the brother was again assaulted with sticks, kicks, blows, etc.and his mother and brother could see the injury on the wrist, back, knee and buttocks of his brother. The petitioner then asked informants mother and Page No.7/14 brother to leave as he would take the brother to Panbari Range Office and the petitioner then took his brother in custody at Panbari Forest Range. Then on the mother of the informant had a phone call from a mobile ...",
+   "verified": true
+  },
+  {
+   "label": "P10",
+   "for_charge": "IPC 148",
+   "applies": "IPC 148",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_Bombay_HC_2023_1740",
+   "title": null,
+   "court": "Bombay High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6066,
+   "matched_by": "similarity to the facts",
+   "excerpt": "They saw Rushi and Rama assaulting Ganesh with knife and sword and other accused giving fist and kick blows. His son was shifted to the hospital and when declared dead, he lodged report Exhibit 51. PW3 Vilas Laxman Yeole, brother of Ganesh, deposed about reason of quarrel his brother and Rushi. That, mother of Rushi coming with her son in law and abusing Ganesh and challenging him to come to their house and hence Ganesh going towards their house to question them for abuse. This witness claims ...",
+   "verified": true
+  },
+  {
+   "label": "P11",
+   "for_charge": "IPC 148",
+   "applies": "IPC 148",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_MP_HC_2022_1471",
+   "title": null,
+   "court": "Madhya Pradesh High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6065,
+   "matched_by": "similarity to the facts",
+   "excerpt": "On the next day, i.e., at about 0730 AM, his father was sitting on the platform constructed in front of his house. On the question of dispute which arose in the previous night, the accused Chhaviram, Hemant, Sodam, Thakurdas, Chunge, Janki, Tillu (absconding) and Bhaggo Bai (absconding) came there. Chhaviram was having Baka, whereas Hemant, Sodam, Thakurdas and Tillu were having sword and Janki was having iron rod. Chunge was having lathi and Bhaggo Bai was empty handed. All the accused persons ...",
+   "verified": true
+  },
+  {
+   "label": "P12",
+   "for_charge": "IPC 148",
+   "applies": "IPC 148",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_MP_HC_2023_2241",
+   "title": null,
+   "court": "Madhya Pradesh High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6063,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The prosecution has examined (PW-1) as eye witness who categorically stated that there was some dispute regarding the drainage made by accused persons and on the date of incident at about 11 am a quarrel took place Balram and Ramesh then he lodged the report at police station Ingoriya and after the report, when he reached to the home and taking food at that time all accused persons broke down the gate and inside their home. When they ran towards the field at that time accused persons inflicted ...",
+   "verified": true
+  },
+  {
+   "label": "P13",
+   "for_charge": "IPC 34",
+   "applies": "IPC 34",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_KA_HC_2020_2871",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6234,
+   "matched_by": "similarity to the facts",
+   "excerpt": "So far as the incident said to have been occurred on 29.07.2011 is concerned which is the subject matter of this case, on that day at about 11.00 pm while the complainant was walking on the road in front of the house of the accused No.1, on seeing the complainant, the accused No.1 and his brother- Anand Kumar accused No.2 and brother-in-law of the accused No.1 by name Krishna (accused No.3) (now dead), picked up quarrel with the complainant and abused him in foul language. The accused ...",
+   "verified": true
+  },
+  {
+   "label": "P14",
+   "for_charge": "IPC 34",
+   "applies": "IPC 34",
+   "via_ipc_predecessor": null,
+   "doc_id": "na_KA_HC_2022_473",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6208,
+   "matched_by": "similarity to the facts",
+   "excerpt": "Heard Sri R.M.Javed, learned counsel for the appellants and learned High Court Government Pleader for the respondent - State and perused the records. Present appeal is filed challenging the judgment and order of conviction passed in Spl.(SC ST) C.No.38/2008 on the file of the Special Judge at Haveri. Brief facts of the case are as under A complaint came to be lodged that there was an altercation on when the complainant and his brother were consuming alcohol in Temple. Accused-appellants advised ...",
+   "verified": true
+  },
+  {
+   "label": "P15",
+   "for_charge": "IPC 34",
+   "applies": "IPC 34",
+   "via_ipc_predecessor": null,
+   "doc_id": "2025_4_336_343",
+   "title": "MAUKAM SINGH & OTHERS versus STATE OF MADHYA PRADESH",
+   "court": "Supreme Court of India",
+   "date": "2025-04-01",
+   "citation": "[2025] 4 S.C.R. 336",
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6156,
+   "matched_by": "similarity to the facts",
+   "excerpt": "As for his own injuries, he claimed that one of the accused inflicted a blow with the cutting weapon on his shoulder and another hit his leg with a lathi. The medical evidence of PW11 with respect to PW2 indicates abrasion of the right shoulder and left thumb and abrasion on the left leg; in consonance with his deposition. PW2 also stated that the deceased was beaten by all the accused and the first accused inflicted a blow with the axe and the third accused hit him with the cutting weapon. The ...",
+   "verified": true
+  }
+ ],
+ "analytics": {
+  "note": "How the appeal or petition was disposed of by the court that decided it (allowed = the appellant/petitioner succeeded). Not a conviction rate.",
+  "min_judgments": 5,
+  "sections": [
+   {
+    "charge": "IPC 324",
+    "title": "Voluntarily causing hurt by dangerous weapons or means",
+    "direct": {
+     "code": "ipc",
+     "section": "324",
+     "judgments": 414,
+     "counts": {
+      "allowed": 221,
+      "partly allowed": 5,
+      "dismissed": 182,
+      "other": 6
+     },
+     "suppressed": false,
+     "allowed_share": 0.554
+    },
+    "via_ipc": []
+   },
+   {
+    "charge": "IPC 147",
+    "title": "Punishment for rioting",
+    "direct": {
+     "code": "ipc",
+     "section": "147",
+     "judgments": 355,
+     "counts": {
+      "allowed": 216,
+      "partly allowed": 4,
+      "dismissed": 121,
+      "other": 14
+     },
+     "suppressed": false,
+     "allowed_share": 0.645
+    },
+    "via_ipc": []
+   },
+   {
+    "charge": "IPC 302",
+    "title": "Punishment for murder",
+    "direct": {
+     "code": "ipc",
+     "section": "302",
+     "judgments": 688,
+     "counts": {
+      "allowed": 344,
+      "partly allowed": 33,
+      "dismissed": 259,
+      "other": 52
+     },
+     "suppressed": false,
+     "allowed_share": 0.593
+    },
+    "via_ipc": []
+   },
+   {
+    "charge": "IPC 148",
+    "title": "Rioting, armed with deadly weapon",
+    "direct": {
+     "code": "ipc",
+     "section": "148",
+     "judgments": 373,
+     "counts": {
+      "allowed": 230,
+      "partly allowed": 6,
+      "dismissed": 123,
+      "other": 14
+     },
+     "suppressed": false,
+     "allowed_share": 0.657
+    },
+    "via_ipc": []
+   },
+   {
+    "charge": "IPC 34",
+    "title": "Acts done by several persons in furtherance of common intention -",
+    "direct": {
+     "code": "ipc",
+     "section": "34",
+     "judgments": 821,
+     "counts": {
+      "allowed": 477,
+      "partly allowed": 22,
+      "dismissed": 268,
+      "other": 54
+     },
+     "suppressed": false,
+     "allowed_share": 0.651
+    },
+    "via_ipc": []
+   }
+  ]
+ },
+ "defenses": [
+  {
+   "against": "IPC 324",
+   "argument": "The prosecution has failed to prove that the iron rod used was an instrument 'likely to cause death' as required by Section 324. The facts merely state a fracture of the skull, which is a grievous hurt but does not establish the specific intent or objective likelihood of causing death necessary for this aggravated charge.",
+   "fact_quote": "The medical report records a fracture of the skull",
+   "precedents": [
+    {
+     "label": "P1",
+     "doc_id": "na_MP_HC_2024_202",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "IPC 147",
+   "argument": "Section 147 requires an 'unlawful assembly' consisting of five or more persons acting in common. The facts explicitly state that only three brothers were present and involved in the incident, which falls short of the statutory minimum for a riot.",
+   "fact_quote": "All three ran away together",
+   "precedents": [
+    {
+     "label": "P4",
+     "doc_id": "na_KA_HC_2023_213",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "IPC 302",
+   "argument": "The charge of murder requires proof of the intention to cause death or knowledge that death would be a probable consequence. The facts only record a fracture of the skull, which constitutes grievous hurt but does not establish the specific intent (mens rea) required for murder.",
+   "fact_quote": "The medical report records a fracture of the skull",
+   "precedents": [
+    {
+     "label": "P7",
+     "doc_id": "na_KA_HC_2022_1348",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "IPC 148",
+   "argument": "Similar to Section 147, the elements of 'riot' and 'unlawful assembly' are not met because the facts show only three persons involved. The presence of a deadly weapon (iron rod) is irrelevant if the requisite number of persons for an unlawful assembly is absent.",
+   "fact_quote": "All three ran away together",
+   "precedents": [
+    {
+     "label": "P10",
+     "doc_id": "na_Bombay_HC_2023_1740",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  }
+ ],
+ "facts_profile": {
+  "discloses_offence": true,
+  "why": "The facts disclose a criminal assault involving violence and injury caused by an unlawful assembly acting on a common object.",
+  "accused_count": 3
+ },
+ "warnings": [],
+ "guardrail": {
+  "reason": null,
+  "top_similarity": 0.6489,
+  "threshold": 0.576
+ },
+ "timings": {
+  "route_s": 0.0,
+  "unload_s": 4.5,
+  "guardrail_s": 3.4,
+  "retrieve_s": 0.4,
+  "graph_s": 142.2
+ },
+ "sample": {
+  "id": "group_assault",
+  "name": "Group assault with an iron rod (IPC era)"
+ }
+}
