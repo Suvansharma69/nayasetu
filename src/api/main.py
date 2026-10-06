@@ -33,6 +33,7 @@ os.environ.setdefault("HF_HUB_OFFLINE", "1")
 
 from fastapi import FastAPI, HTTPException, Request  # noqa: E402
 from fastapi.responses import FileResponse  # noqa: E402
+from fastapi.staticfiles import StaticFiles  # noqa: E402
 from pydantic import BaseModel, Field  # noqa: E402
 
 
@@ -45,6 +46,8 @@ WEB = ROOT / "app" / "web" / "index.html"
 MAX_JOBS = 20
 
 app = FastAPI(title="Pramana", description="AI-assisted legal research for Indian criminal law")
+# Fonts (IBM Plex, Spectral; OFL) are served from here, so the page makes no outside requests.
+app.mount("/static", StaticFiles(directory=ROOT / "app" / "web" / "static"), name="static")
 _lock = threading.Lock()
 _jobs: dict[str, dict] = {}
 
