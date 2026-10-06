@@ -107,9 +107,9 @@ def start_job(case: Case):
     for old in sorted(_jobs, key=lambda k: _jobs[k]["started"])[:-MAX_JOBS]:
         _jobs.pop(old, None)
 
-    def on_stage(stage):
+    def on_stage(ev):
         job["state"] = "running"
-        job["stages"].append({"stage": stage, "label": progress.STAGES.get(stage, stage),
+        job["stages"].append({**ev, "label": progress.STAGES.get(ev["stage"], ev["stage"]),
                               "at": round(time.time() - job["started"], 1)})
 
     def work():

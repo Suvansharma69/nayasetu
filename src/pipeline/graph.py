@@ -147,6 +147,12 @@ def run(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, suf
     return _run_one(case_facts, offence_date, **kw)
 
 
+def _brief(rows, n=TOP_K_CANDIDATES + 4):
+    """Retrieved candidates as the live view shows them."""
+    return [{"section": r["section"], "ref": r.get("matched") or r["section"], "title": r.get("title")}
+            for r in (rows or [])[:n]]
+
+
 def _review(retrieved, n):
     return [{"section": r["section"], "matched": r.get("matched"), "title": r.get("title")}
             for r in retrieved[:n]]
@@ -187,6 +193,7 @@ def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None
     if not ablation.off("intake") and case_facts and case_facts.strip():
         progress.mark("intake")
         taken = intake.extract(case_facts, llm or llm_mod.chat_json)
+        progress.mark("intake", "done", {"extracted": bool(taken.get("extracted"))})
     intake_s = time.perf_counter() - t
     out = _run_core(taken["facts"], offence_date, llm=llm, g=g, cli=cli, retrieve=retrieve,
                     sufficient=sufficient, text_of=text_of, check_applicability=check_applicability, full=full)
@@ -201,6 +208,7 @@ def _run_core(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=Non
     t0 = time.perf_counter()
     progress.mark("route")
     era = route(offence_date)
+    progress.mark("route", "done", {"era": era, "offence_date": str(offence_date)})
     timings["route_s"] = time.perf_counter() - t0
 
     t = time.perf_counter()
@@ -227,6 +235,7 @@ def _run_core(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=Non
                 lambda d: retrieve_candidates(case_facts, era, cli=cli, device=d), device))
         timings["retrieve_s"] = time.perf_counter() - t
         embedder.free()
+        progress.mark("retrieve", "done", {"insufficient": True, "candidates": _brief(review)})
         return {"status": "insufficient_data", "era": era, "guardrail": detail,
                 "state": initial_state(case_facts, offence_date, era, review), "timings": timings,
                 "review_candidates": _review(review, TOP_K_CANDIDATES),
@@ -241,6 +250,7 @@ def _run_core(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=Non
         pool = _on_device(lambda d: precedents.prefetch(case_facts, era, cli=cli, device=d), device)
     timings["retrieve_s"] = time.perf_counter() - t
     embedder.free()
+    progress.mark("retrieve", "done", {"insufficient": False, "candidates": _brief(retrieved)})
 
     graph = build_graph(llm or llm_mod.chat_json, g if g is not None else citation_graph(),
                         text_of=text_of, check_applicability=check_applicability, full=full)

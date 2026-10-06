@@ -12,6 +12,7 @@ def client(monkeypatch):
     def fake_run(facts, offence_date, offence_date_to=None, full=False):
         for stage in ("route", "retrieve", "statute_identifier", "verifier"):
             progress.mark(stage)
+        progress.mark("verifier", "done", {"verified": [{"ref": "303"}], "unconfirmed": []})
         return {"facts": facts, "date": offence_date}
 
     monkeypatch.setattr(main.graph, "run", fake_run)
@@ -42,7 +43,10 @@ def test_job_reports_stages_then_the_report(client):
             break
         time.sleep(0.02)
     assert s["state"] == "done", s
-    assert [x["stage"] for x in s["stages"]] == ["route", "retrieve", "statute_identifier", "verifier"]
+    assert [(x["stage"], x["phase"]) for x in s["stages"]] == [
+        ("route", "start"), ("retrieve", "start"), ("statute_identifier", "start"), ("verifier", "start"),
+        ("verifier", "done")]
+    assert s["stages"][-1]["data"] == {"verified": [{"ref": "303"}], "unconfirmed": []}
     assert s["stages"][0]["label"] == progress.STAGES["route"]
     assert s["report"] == {"status": "ok", "facts": FACTS, "date": "2024-08-15"}
 
@@ -67,4 +71,25 @@ def test_progress_is_silent_without_a_listener():
     with progress.listening(seen.append):
         progress.mark("verifier")
     progress.mark("defense")
-    assert seen == ["verifier"]
+    assert seen == [{"stage": "verifier", "phase": "start", "data": None}]
+
+
+def test_staged_node_reports_what_it_produced():
+    seen = []
+    node = progress.staged("verifier", lambda st: {
+        "verified_sections": [{"section": "303", "subsection": "303(2)", "title": "Theft", "raw": "303(2)"}],
+        "unconfirmed": [{"raw": "421", "why": "not real", "round": 0}]})
+    with progress.listening(seen.append):
+        out = node({})
+    assert out["verified_sections"][0]["section"] == "303"
+    assert [e["phase"] for e in seen] == ["start", "done"]
+    assert seen[1]["data"]["verified"][0]["ref"] == "303(2)"
+    assert seen[1]["data"]["unconfirmed"][0]["raw"] == "421"
+
+
+def test_a_broken_summary_never_breaks_the_node():
+    seen = []
+    node = progress.staged("precedents", lambda st: {"precedents": [{"no_for_charge": 1}]})
+    with progress.listening(seen.append):
+        assert node({}) == {"precedents": [{"no_for_charge": 1}]}
+    assert seen[-1] == {"stage": "precedents", "phase": "done", "data": None}
