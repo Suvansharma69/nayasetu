@@ -5761,11 +5761,23 @@
       "low_evidence": false,
       "reviewer": "claude",
       "reviewed_on": "2026-09-27"
+    },
+    "304B": {
+      "bns_section": "80",
+      "decision": "confirmed",
+      "ipc_title": "Dowry death",
+      "bns_title": "Dowry death",
+      "similarity": 1.0,
+      "low_evidence": false,
+      "reviewer": "claude",
+      "reviewed_on": "2026-10-06",
+      "bns_subsection": "80(1)",
+      "note": "added 2026-10-06: IPC 304B was patched into the corpus after the 574-row review and never got a row. Evidence: sub-section (1) is word for word the same in both texts, and the phrase 'dowry death' occurs in exactly one BNS section (80)."
     }
   },
   "counts": {
-    "decided": 574,
-    "with_bns": 538,
+    "decided": 575,
+    "with_bns": 539,
     "none": 36
   }
 }

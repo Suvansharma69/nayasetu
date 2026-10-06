@@ -6,6 +6,11 @@ r"""FastAPI backend: the full pipeline, and the chat-style web interface (Phase 
     GET  /jobs/{id}         {"state": running|done|error, "stages": [...], "report"?, "error"?}
     POST /dates             {"text"} -> the offence dates written in it, each with its code
     GET  /samples           the demo cases;  GET /samples/{id}  a saved report
+    GET  /section/{code}/{s}  bare-act text, punishment, classification, counterpart (graph-checked)
+    GET  /compare/{code}/{s}  IPC <-> BNS side by side with a word diff (verified mapping)
+    POST /pdf               raw PDF bytes -> its text (digital PDFs; no OCR)
+    POST /ask               {"report", "question", "history"?} -> grounded answer, citations checked
+    POST /summarise         {"doc_id"} -> headnote of an ingested judgment, quote checked verbatim
     GET  /health            Ollama reachable? graph and outcomes table present?
 
 One analysis at a time: the 4GB card holds either BGE-M3 or the LLM, and the
@@ -18,6 +23,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import threading
 import time
 import uuid
@@ -25,11 +31,12 @@ from pathlib import Path
 
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 
-from fastapi import FastAPI, HTTPException  # noqa: E402
+from fastapi import FastAPI, HTTPException, Request  # noqa: E402
 from fastapi.responses import FileResponse  # noqa: E402
 from pydantic import BaseModel, Field  # noqa: E402
 
-from src.api import dates, report  # noqa: E402
+
+from src.api import assistant, dates, lawtools, report  # noqa: E402
 from src.pipeline import analytics, graph, llm, progress, router  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -43,13 +50,23 @@ _jobs: dict[str, dict] = {}
 
 
 class Case(BaseModel):
-    facts: str = Field(min_length=20, max_length=5000)
+    facts: str = Field(min_length=20, max_length=12000)   # a pasted FIR/order; intake reduces it
     offence_date: str
     offence_date_to: str | None = None
 
 
 class Text(BaseModel):
-    text: str = Field(max_length=5000)
+    text: str = Field(max_length=12000)
+
+
+class Question(BaseModel):
+    report: dict
+    question: str = Field(min_length=3, max_length=600)
+    history: list[list[str]] = Field(default_factory=list, max_length=6)
+
+
+class DocId(BaseModel):
+    doc_id: str = Field(min_length=1, max_length=200)
 
 
 def _check_dates(case):
@@ -161,3 +178,71 @@ def sample(sid: str):
     if sid not in ids or not path.exists():
         raise HTTPException(status_code=404, detail="no saved report for that sample")
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+# --- lawyer tools ------------------------------------------------------------------
+
+MAX_PDF_BYTES, MAX_PDF_PAGES, MAX_PDF_CHARS = 20_000_000, 60, 12000
+
+
+@app.get("/section/{code}/{section}")
+def section(code: str, section: str):
+    info = lawtools.section_info(graph.citation_graph(), code, section)
+    if info is None:
+        raise HTTPException(status_code=404, detail=f"{code.upper()} {section} is not a section of the ingested {code.upper()}")
+    return info
+
+
+@app.get("/compare/{code}/{section}")
+def compare(code: str, section: str):
+    out = lawtools.compare(graph.citation_graph(), code, section)
+    if out is None:
+        raise HTTPException(status_code=404, detail=f"{code.upper()} {section} is not a section of the ingested {code.upper()}")
+    return out
+
+
+@app.post("/pdf")
+async def pdf(request: Request):
+    """The text of an uploaded PDF, read locally. A scanned PDF has no text layer
+    (no OCR here), and says so instead of returning nothing."""
+    data = await request.body()
+    if not data:
+        raise HTTPException(status_code=422, detail="empty upload")
+    if len(data) > MAX_PDF_BYTES:
+        raise HTTPException(status_code=413, detail="PDF larger than 20 MB")
+    import pymupdf
+
+    try:
+        doc = pymupdf.open(stream=data, filetype="pdf")
+    except Exception as e:  # noqa: BLE001
+        raise HTTPException(status_code=422, detail=f"not a readable PDF: {e}") from e
+    pages = len(doc)
+    raw = "\n".join(doc[i].get_text() for i in range(min(pages, MAX_PDF_PAGES)))
+    text = "\n".join(re.sub(r"[ \t]+", " ", line).strip() for line in raw.splitlines())
+    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    return {"text": text[:MAX_PDF_CHARS], "pages": pages, "chars": len(text),
+            "truncated": len(text) > MAX_PDF_CHARS or pages > MAX_PDF_PAGES,
+            "scanned": len(text) < 40 * min(pages, 3)}
+
+
+@app.post("/ask")
+def ask(q: Question):
+    if q.report.get("era") not in assistant.ERAS:
+        raise HTTPException(status_code=422, detail="report has no valid era")
+    with _lock:   # shares the GPU with analyses
+        try:
+            return assistant.ask(q.report, q.question, llm.chat_json, graph.citation_graph(),
+                                 [tuple(h[:2]) for h in q.history if len(h) >= 2])
+        except llm.LLMError as e:
+            raise HTTPException(status_code=503, detail=f"local model unavailable: {e}") from e
+
+
+@app.post("/summarise")
+def summarise(body: DocId):
+    with _lock:
+        try:
+            return assistant.summarise(body.doc_id, llm.chat_json, graph.citation_graph())
+        except LookupError as e:
+            raise HTTPException(status_code=404, detail=str(e)) from e
+        except llm.LLMError as e:
+            raise HTTPException(status_code=503, detail=f"local model unavailable: {e}") from e
