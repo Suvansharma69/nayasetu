@@ -25,7 +25,13 @@ FACTS = "The accused took the complainant's motorcycle from outside his house at
 
 def test_web_page_is_served(client):
     r = client.get("/")
-    assert r.status_code == 200 and "Tell me about the case" in r.text
+    assert r.status_code == 200 and "Start a matter from its facts." in r.text
+    # Fonts are served locally: the page must make no request outside this machine.
+    assert "/static/fonts/fonts.css" in r.text and "fonts.googleapis.com" not in r.text
+    css = client.get("/static/fonts/fonts.css")
+    assert css.status_code == 200 and "https://" not in css.text and "/static/fonts/" in css.text
+    font = client.get(css.text.split("url(")[1].split(")")[0])
+    assert font.status_code == 200 and len(font.content) > 5000
 
 
 def test_dates_endpoint_routes_each_date(client):
