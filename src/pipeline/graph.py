@@ -26,7 +26,8 @@ from functools import partial
 from src.graph import citation_graph as cg
 from src.retrieval import embedder, ranker
 
-from . import ablation, analytics, applicability, chargeability, defense, guardrail, intake, llm as llm_mod, nodes, precedents
+from . import (ablation, analytics, applicability, chargeability, defense, guardrail, intake, llm as llm_mod, nodes,
+               precedents, progress)
 from .router import STRADDLE_WARNING, route, route_period
 from .state import initial_state
 
@@ -56,23 +57,23 @@ def build_graph(llm, g, text_of=None, check_applicability=True, full=False):
     from .state import PipelineState
 
     sg = StateGraph(PipelineState)
-    sg.add_node("statute_identifier", partial(nodes.statute_identifier, llm=llm))
-    sg.add_node("verifier", partial(nodes.verifier, g=g))
+    sg.add_node("statute_identifier", progress.staged("statute_identifier", partial(nodes.statute_identifier, llm=llm)))
+    sg.add_node("verifier", progress.staged("verifier", partial(nodes.verifier, g=g)))
     sg.add_edge(START, "statute_identifier")
     sg.add_edge("statute_identifier", "verifier")
     after = "applicability" if check_applicability else ("fan_out" if full else END)
     if check_applicability:
-        sg.add_node("applicability", partial(applicability.assess, llm=llm,
-                                             text_of=text_of or applicability.statute_text))
+        sg.add_node("applicability", progress.staged("applicability", partial(
+            applicability.assess, llm=llm, text_of=text_of or applicability.statute_text)))
     if full:
         # Phase 5: Node 3 and Node 5 in parallel (Node 5 reads only
         # verified_sections, pure SQL), then Node 4 + the final verification
         # pass once Node 3's precedents exist.
         sg.add_node("fan_out", lambda state: {})
-        sg.add_node("precedents", partial(precedents.precedent_matcher, g=g))
-        sg.add_node("analytics", partial(analytics.outcome_analytics, g=g))
-        sg.add_node("defense", partial(defense.defense_generator, llm=llm, g=g,
-                                       text_of=text_of or applicability.statute_text))
+        sg.add_node("precedents", progress.staged("precedents", partial(precedents.precedent_matcher, g=g)))
+        sg.add_node("analytics", progress.staged("analytics", partial(analytics.outcome_analytics, g=g)))
+        sg.add_node("defense", progress.staged("defense", partial(
+            defense.defense_generator, llm=llm, g=g, text_of=text_of or applicability.statute_text)))
         if check_applicability:
             sg.add_edge("applicability", "fan_out")
         sg.add_edge("fan_out", "precedents")
@@ -184,6 +185,7 @@ def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None
     t = time.perf_counter()
     taken = {"facts": case_facts, "extracted": False, "why": "intake switched off"}
     if not ablation.off("intake") and case_facts and case_facts.strip():
+        progress.mark("intake")
         taken = intake.extract(case_facts, llm or llm_mod.chat_json)
     intake_s = time.perf_counter() - t
     out = _run_core(taken["facts"], offence_date, llm=llm, g=g, cli=cli, retrieve=retrieve,
@@ -197,6 +199,7 @@ def _run_core(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=Non
               text_of=None, check_applicability=True, full=False):
     timings = {}
     t0 = time.perf_counter()
+    progress.mark("route")
     era = route(offence_date)
     timings["route_s"] = time.perf_counter() - t0
 
@@ -205,6 +208,7 @@ def _run_core(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=Non
     timings["unload_s"] = time.perf_counter() - t
 
     t = time.perf_counter()
+    progress.mark("retrieve")
     if sufficient is None:
         ok, detail = _on_device(lambda d: guardrail.check(case_facts, era, cli=cli, device=d), device)
     else:
