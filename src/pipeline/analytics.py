@@ -54,6 +54,8 @@ def outcome_analytics(state, g=None, db_path=None):
     """Node 5. {"analytics": {"note", "min_judgments", "sections": [...]}}."""
     from src.graph import citation_graph as cg
 
+    from .applicability import charged
+
     db = Path(db_path or DB_PATH)
     if not db.exists():
         return {"analytics": {"error": f"outcomes table missing: run scripts/build_outcomes.py ({db.name})"}}
@@ -61,7 +63,7 @@ def outcome_analytics(state, g=None, db_path=None):
     con = sqlite3.connect(db)
     try:
         sections, seen = [], set()
-        for v in state["verified_sections"]:
+        for v in charged(state):  # verified, less sections included in a greater charge
             if v["section"] in seen:
                 continue
             seen.add(v["section"])

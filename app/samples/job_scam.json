@@ -4,13 +4,19 @@
  "code_applied": "Indian Penal Code, 1860 (offence before 1 July 2024)",
  "offence_date": "2023-01-20",
  "facts": "The accused told the complainant that he could get her son a clerk's job in the railways through his contacts. He took four lakh rupees from her in cash, later handed over an appointment letter bearing a forged railway seal, and stopped answering her calls when her son reported for duty and was turned away.",
+ "intake": {
+  "facts": "The accused told the complainant that he could get her son a clerk's job in the railways through his contacts. He took four lakh rupees from her in cash, later handed over an appointment letter bearing a forged railway seal, and stopped answering her calls when her son reported for duty and was turned away.",
+  "extracted": false,
+  "why": "reads as a fact statement",
+  "original_input": "The accused told the complainant that he could get her son a clerk's job in the railways through his contacts. He took four lakh rupees from her in cash, later handed over an appointment letter bearing a forged railway seal, and stopped answering her calls when her son reported for duty and was turned away."
+ },
  "charges": [
   {
    "code": "IPC",
    "section": "420",
    "subsection": null,
    "title": "Cheating and dishonestly inducing delivery of property",
-   "reason": "The accused dishonestly induced the complainant to deliver property by falsely representing he could secure a railway clerk's job and subsequently absconded with the money.",
+   "reason": "The accused dishonestly induced the complainant to deliver property (four lakh rupees) by deceiving her about obtaining a clerk's job and using a forged appointment letter.",
    "doubt": null
   },
   {
@@ -18,19 +24,23 @@
    "section": "468",
    "subsection": null,
    "title": "Forgery for purpose of cheating",
-   "reason": "The accused forged an appointment letter bearing a railway seal for the specific purpose of cheating the complainant out of her property.",
+   "reason": "The accused committed forgery of a document purporting to be a valuable security (the appointment letter with a railway seal) specifically for the purpose of cheating.",
    "doubt": null
-  },
+  }
+ ],
+ "unconfirmed": [],
+ "withdrawn": [],
+ "included": [
   {
    "code": "IPC",
    "section": "417",
    "subsection": null,
    "title": "Punishment for cheating",
-   "reason": "By making false representations about his contacts and job placement, the accused deceived the complainant into handing over four lakh rupees.",
-   "doubt": null
+   "reason": "The accused, by deceiving the complainant regarding his ability to secure employment, fraudulently induced her to deliver property which she would not have delivered had she known the truth.",
+   "doubt": null,
+   "included_in": "IPC 420"
   }
  ],
- "unconfirmed": [],
  "retries": 0,
  "review_candidates": [],
  "precedents": [
@@ -129,54 +139,6 @@
    "matched_by": "similarity to the facts",
    "excerpt": "The complainant thus, alleged that 12 of 27 013440 Neutral Citation CRM-M No.44830 of 2016 (OM) 2023 PHHC 112007 the petitioner had fraudulently obtained money from him on the pretext of clearing dues of SCO No.96. That on i.e.the target date, the complainant along with balance sale consideration went to the Tehsil Office to get the sale deed however, the petitioner failed to turn up.After registration of the case, when the parties were called by the police, the petitioner deposited 75.00 lacs ...",
    "verified": true
-  },
-  {
-   "label": "P7",
-   "for_charge": "IPC 417",
-   "applies": "IPC 417",
-   "via_ipc_predecessor": null,
-   "doc_id": "na_Guwahati_HC_2020_1774",
-   "title": null,
-   "court": "Gauhati High Court",
-   "date": null,
-   "citation": null,
-   "disposal_nature": "Allowed",
-   "similarity": 0.6143,
-   "matched_by": "similarity to the facts",
-   "excerpt": "It is alleged that the accused delayed the appointment of sales on one pretext or another. The complainant has alleged that as a result, the goods supplied to it could not be sold as though the complainant had managed to sell a part of it purely on its own efforts. As a a huge amount of the complainant remained blocked.3.7. To the surprise of the complainant, the accused terminated the agency by a letter dated 24.01.2014 falsely blaming the complainant for lack of sales of the products of the ...",
-   "verified": true
-  },
-  {
-   "label": "P8",
-   "for_charge": "IPC 417",
-   "applies": "IPC 417",
-   "via_ipc_predecessor": null,
-   "doc_id": "na_Tripura_HC_2021_1523",
-   "title": null,
-   "court": "Tripura High Court",
-   "date": null,
-   "citation": null,
-   "disposal_nature": "Dismissed",
-   "similarity": 0.5984,
-   "matched_by": "similarity to the facts",
-   "excerpt": "Rather they tried to establish that they had taken the money from PW-1 for processing his application for a government job and they also tried to refund the money when they failed to keep their promise by issuing cheque in favour of the complainant PW-1 which was eventually dishonoured for the fault of the complainant. The facts and emerging from the record would make it clear that the accused petitioners made a promise to the complainant that they would procure a government job for his ...",
-   "verified": true
-  },
-  {
-   "label": "P9",
-   "for_charge": "IPC 417",
-   "applies": "IPC 417",
-   "via_ipc_predecessor": null,
-   "doc_id": "na_Madras_HC_2021_1999",
-   "title": null,
-   "court": "Madras High Court",
-   "date": null,
-   "citation": null,
-   "disposal_nature": "Dismissed",
-   "similarity": 0.5863,
-   "matched_by": "similarity to the facts",
-   "excerpt": "After two days she had gone to the office of the and they had directed her to the All Women police station. The first respondent accused and his father had come for enquiry, the police conducted enquiry and since there was no the police saying that it was 7.00pm had asked them to come on some other day.on the police had called her over phone and she along with her daughter had gone to All women police station and they had enquired her and her daughter narrated about the entire facts. When they ...",
-   "verified": true
   }
  ],
  "analytics": {
@@ -218,37 +180,19 @@
      "allowed_share": 0.685
     },
     "via_ipc": []
-   },
-   {
-    "charge": "IPC 417",
-    "title": "Punishment for cheating",
-    "direct": {
-     "code": "ipc",
-     "section": "417",
-     "judgments": 155,
-     "counts": {
-      "allowed": 93,
-      "partly allowed": 0,
-      "dismissed": 58,
-      "other": 4
-     },
-     "suppressed": false,
-     "allowed_share": 0.616
-    },
-    "via_ipc": []
    }
   ]
  },
  "defenses": [
   {
    "against": "IPC 420",
-   "argument": "The prosecution has failed to prove that the accused 'dishonestly induced' the complainant to deliver property, as there is no evidence establishing a false representation of fact or a fabrication of facts. The accused merely made a promise based on his own unverified claim of having contacts; he did not actively fabricate a specific document or identity to deceive her into handing over the money. Without proof that the appointment letter was forged (which falls under IPC 468) or that the railway seal was actually forged, the element of dishonest inducement required for IPC 420 is missing.",
-   "fact_quote": "He took four lakh rupees from her in cash, later handed over an appointment letter bearing a forged railway seal",
+   "argument": "The prosecution has failed to prove that the accused 'dishonestly induced' the complainant to deliver property. The facts state the accused handed over an appointment letter with a forged seal, but there is no evidence establishing that the complainant was deceived into believing the job existed or that she would receive it. She reported her son for duty and was turned away; this outcome suggests she may have known the position was unavailable or that the arrangement was fraudulent from the outset, negating the essential element of 'inducement' by deception required under IPC 420.",
+   "fact_quote": "\"stopped answering her calls when her son reported for duty and was turned away\"",
    "precedents": [
     {
-     "label": "P1",
-     "doc_id": "na_KA_HC_2020_2865",
-     "title": null
+     "label": "P3",
+     "doc_id": "2023_4_1144_1155",
+     "title": "PEETHAMBARAN versus STATE OF KERALA & ANR."
     }
    ],
    "verified": true,
@@ -256,31 +200,17 @@
   },
   {
    "against": "IPC 468",
-   "argument": "The charge of forgery for the purpose of cheating cannot be sustained because the prosecution has not adduced any evidence that the appointment letter or the railway seal was actually forged. The facts state only that the accused 'handed over an appointment letter bearing a forged railway seal,' but this is an assertion without corroboration. In the absence of proof that the document was a forgery, the essential ingredient of IPC 468—that the accused committed forgery intending it to be used for cheating—is not established.",
-   "fact_quote": "handed over an appointment letter bearing a forged railway seal",
+   "argument": "The charge of forgery under IPC 468 requires proof that the accused forged the document 'for the purpose of cheating'. The facts show the accused provided a letter with a forged seal, but do not establish an intent to use that specific document to cheat. If the complainant was already aware the job did not exist or if the forgery was merely a tool in a broader scheme not proven here, the specific intent for IPC 468 remains unproven. The prosecution must fill the gap between the act of forging and the specific purpose of cheating as defined in the section.",
+   "fact_quote": "\"handed over an appointment letter bearing a forged railway seal\"",
    "precedents": [
     {
      "label": "P4",
      "doc_id": "2026_3_220_230",
      "title": "RAKESH MITTAL versus AJAY PAL GUPTA @ SONU CHAUDHARY AND ANOTHER"
-    }
-   ],
-   "verified": true,
-   "issues": []
-  },
-  {
-   "against": "IPC 417",
-   "argument": "The prosecution has failed to prove that the accused 'cheated' in the sense of inducing delivery of property through deception, as the complainant voluntarily handed over cash based on a verbal promise rather than being induced by a fabricated fact or document. The subsequent failure to deliver the job and the non-appearance of the son do not constitute cheating under IPC 417; they are merely breaches of contract or promises. Mere delay or termination of an agency, without proof of active deception regarding facts, does not amount to cheating.",
-   "fact_quote": "stopped answering her calls when her son reported for duty and was turned away",
-   "precedents": [
-    {
-     "label": "P7",
-     "doc_id": "na_Guwahati_HC_2020_1774",
-     "title": null
     },
     {
-     "label": "P8",
-     "doc_id": "na_Tripura_HC_2021_1523",
+     "label": "P5",
+     "doc_id": "na_Punjab_HC_2022_33",
      "title": null
     }
    ],
@@ -290,7 +220,7 @@
  ],
  "facts_profile": {
   "discloses_offence": true,
-  "why": "The facts disclose the offence of cheating by dishonestly inducing delivery of property through false representation and subsequent concealment of truth.",
+  "why": "The facts disclose cheating by inducing delivery of property through deception and forgery, which are criminal offences under the IPC.",
   "accused_count": 1
  },
  "warnings": [],
@@ -300,11 +230,12 @@
   "threshold": 0.576
  },
  "timings": {
+  "intake_s": 0.0,
   "route_s": 0.0,
-  "unload_s": 4.5,
-  "guardrail_s": 3.5,
+  "unload_s": 4.6,
+  "guardrail_s": 3.2,
   "retrieve_s": 0.3,
-  "graph_s": 102.3
+  "graph_s": 101.0
  },
  "sample": {
   "id": "job_scam",

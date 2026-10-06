@@ -48,6 +48,12 @@ def punished_by(code, section):
     return _load().get("punished_by", {}).get(code, {}).get(section)
 
 
+def definition_punished_by(code, section):
+    """For a definition the title rule could not pair (IPC 319 Hurt -> 323,
+    BNS 116 Grievous hurt -> 117), its punishing section, or None. Node 2 only."""
+    return _load().get("definition_punished_by", {}).get(code, {}).get(section)
+
+
 def pairs(code):
     """{definition: punishing section} for a code (IPC 503 -> 506); BNS has none."""
     return dict(_load().get("punished_by", {}).get(code, {}))

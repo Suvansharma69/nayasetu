@@ -18,6 +18,8 @@ import re
 from src.graph import citation_graph as cg
 from src.retrieval import ranker, store
 
+from .applicability import charged as _charged
+
 POOL_PER_COLLECTION = 200
 PER_CHARGE = 3
 EXCERPT_CHARS = 500
@@ -58,7 +60,7 @@ def precedent_matcher(state, g):
     each verified as an ingested judgment."""
     era, pool = state["era"], state.get("precedent_pool") or {}
     out, used, texts = [], set(), set()
-    for v in state["verified_sections"]:
+    for v in _charged(state):
         rows = _for_section(g, era, v["section"], pool)
         if era == "bns":
             for ipc in cg.get_ipc_predecessors(g, v["section"]):

@@ -1,0 +1,710 @@
+{
+ "status": "ok",
+ "era": "bns",
+ "code_applied": "Bharatiya Nyaya Sanhita, 2023 (offence on/after 1 July 2024)",
+ "offence_date": "2025-02-10",
+ "facts": "A caller who said he was an officer of the complainant's bank told her that her debit card had been blocked and gave a fake employee number. Believing him, she read out the one-time password that arrived on her phone. Within minutes Rs 1,85,000 was transferred out of her account to an account controlled by the accused.",
+ "intake": {
+  "facts": "A caller who said he was an officer of the complainant's bank told her that her debit card had been blocked and gave a fake employee number. Believing him, she read out the one-time password that arrived on her phone. Within minutes Rs 1,85,000 was transferred out of her account to an account controlled by the accused.",
+  "extracted": false,
+  "why": "reads as a fact statement",
+  "original_input": "A caller who said he was an officer of the complainant's bank told her that her debit card had been blocked and gave a fake employee number. Believing him, she read out the one-time password that arrived on her phone. Within minutes Rs 1,85,000 was transferred out of her account to an account controlled by the accused."
+ },
+ "charges": [
+  {
+   "code": "BNS",
+   "section": "318",
+   "subsection": null,
+   "title": "Cheating",
+   "reason": "The accused committed cheating by deceiving the victim into voluntarily transferring property via OTP.",
+   "doubt": null
+  },
+  {
+   "code": "BNS",
+   "section": "319",
+   "subsection": null,
+   "title": "Cheating by personation",
+   "reason": "The accused cheated by personation, pretending to be a bank officer to gain the victim's trust.",
+   "doubt": null
+  },
+  {
+   "code": "BNS",
+   "section": "336",
+   "subsection": null,
+   "title": "Forgery",
+   "reason": "The accused made a false electronic record by transmitting a fake employee number and OTP details.",
+   "doubt": "The facts do not show the specific act of making, signing, sealing, executing, transmitting an electronic record, affixing an electronic signature, or altering a document/record with dishonest intent."
+  },
+  {
+   "code": "BNS",
+   "section": "340",
+   "subsection": null,
+   "title": "Forged document or electronic record and using it as genuine",
+   "reason": "The accused fraudulently used the forged electronic record (fake employee number/OTP) as if it were genuine to transfer funds.",
+   "doubt": "The facts do not show that the accused used any forged document or electronic record as genuine."
+  },
+  {
+   "code": "BNS",
+   "section": "317",
+   "subsection": null,
+   "title": "Stolen property",
+   "reason": "The property transferred was deemed stolen property because it was obtained through cheating.",
+   "doubt": "The facts do not show that the accused received or retained the property dishonestly knowing it to be stolen."
+  }
+ ],
+ "unconfirmed": [],
+ "withdrawn": [],
+ "included": [],
+ "retries": 0,
+ "review_candidates": [],
+ "precedents": [
+  {
+   "label": "P1",
+   "for_charge": "BNS 318",
+   "applies": "IPC 420",
+   "via_ipc_predecessor": "BNS 318 <- IPC 420",
+   "doc_id": "na_Delhi_HC_2023_2276",
+   "title": null,
+   "court": "Delhi High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.7345,
+   "matched_by": "similarity to the facts",
+   "excerpt": "It was further stated by the complainant that after about one minute, he had a call from another number i.e.9448 and the caller had introduced himself as customer care It was alleged that by involving him into conversation, the caller had hacked the complainants mobile and had him of which had got from his savings bank account in three installments, two of and one of During the course of it was discovered that the amount so from the bank account of the complainant had got credited to the bank ...",
+   "verified": true
+  },
+  {
+   "label": "P2",
+   "for_charge": "BNS 318",
+   "applies": "IPC 420",
+   "via_ipc_predecessor": "BNS 318 <- IPC 420",
+   "doc_id": "na_Himachal_Pradesh_HC_2021_552",
+   "title": null,
+   "court": "Himachal Pradesh High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.7094,
+   "matched_by": "similarity to the facts",
+   "excerpt": "On when he enquired from the bank, he came to know that there is no money in his account. When the complainant visited the bank, the bank officials have asked him to register FIR.Based on this information, the police started inquiry. HCHP It came in the that the petitioner had a phone call from mobile No.7469980751. Investigation further that an amount of Rs.25,74,435/- has been withdrawn from both the accounts of the complainant. The further that the mobile No.7469980751 was traced in West ...",
+   "verified": true
+  },
+  {
+   "label": "P3",
+   "for_charge": "BNS 318",
+   "applies": "IPC 420",
+   "via_ipc_predecessor": "BNS 318 <- IPC 420",
+   "doc_id": "na_Himachal_Pradesh_HC_2021_419",
+   "title": null,
+   "court": "Himachal Pradesh High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.7011,
+   "matched_by": "similarity to the facts",
+   "excerpt": "After that, he did not any message. On when he enquired from the bank, he came to know that there is no money in his account. When the complainant visited the bank, HCHP the bank officials have asked him to register FIR.Based on this information, the police started inquiry. It came in the that the petitioner had a phone call from mobile No.7469980751. Investigation further that an amount of Rs.25,74,435/- has been withdrawn from both the accounts of the complainant. The further that the mobile ...",
+   "verified": true
+  },
+  {
+   "label": "P4",
+   "for_charge": "BNS 319",
+   "applies": "IPC 419",
+   "via_ipc_predecessor": "BNS 319 <- IPC 419",
+   "doc_id": "na_KA_HC_2020_393",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6875,
+   "matched_by": "similarity to the facts",
+   "excerpt": "In the meantime, one who is also having savings bank account in the said bank remitted Rs.2,62,440/- to the said savings bank account on through NEFT by Axis Bank but by mistake, the said amount was remitted to the account of The Axis Bank authorities the complainant to remit the amount to the account of On due enquiry, it was found that Bank officer accused 1, on 21.04.2017, upgraded his identity as officer, though there was no application, without having any identity card of the customer the ...",
+   "verified": true
+  },
+  {
+   "label": "P5",
+   "for_charge": "BNS 319",
+   "applies": "IPC 419",
+   "via_ipc_predecessor": "BNS 319 <- IPC 419",
+   "doc_id": "na_Andhra_HC_2023_421",
+   "title": null,
+   "court": "Andhra Pradesh High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6355,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The appellant would also be entitled to his cost which is quantified at Rs The learned counsel for the respondents filed a counter on behalf of the 1st respondent, wherein it is stated that the petitioner was appointed in the 1st respondent Bank, while working as Manager in the 2nd respondent branch committed grave misconduct of of funds to an extent of Rs.conveying with other of the bank and the preliminary enquiry was to conduct enquiry in the alleged He further stated that in the Preliminary ...",
+   "verified": true
+  },
+  {
+   "label": "P6",
+   "for_charge": "BNS 319",
+   "applies": "IPC 416",
+   "via_ipc_predecessor": "BNS 319 <- IPC 416",
+   "doc_id": "na_Tripura_HC_2021_1523",
+   "title": null,
+   "court": "Tripura High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6324,
+   "matched_by": "similarity to the facts",
+   "excerpt": "On accused petitioner Subhash Debbarma issued another cheque payable to the informant drawn on SBI, Sabroom branch. When the cheque was at the bank, the said cheque was also dishonoured by the bank and the cheque was returned to the informant stating that petitioner Subhash Debbarma had already closed his account in the bank. After the said incidence, informant failed to contact the petitioners despite several The informant PW-1 then reported the matter to police by lodging the said FIR.4 Based ...",
+   "verified": true
+  },
+  {
+   "label": "P7",
+   "for_charge": "BNS 336",
+   "applies": "IPC 468",
+   "via_ipc_predecessor": "BNS 336 <- IPC 468",
+   "doc_id": "na_Tripura_HC_2022_160",
+   "title": null,
+   "court": "Tripura High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6868,
+   "matched_by": "similarity to the facts",
+   "excerpt": "Police also seized the bank of accused petitioner Sujata Ghosh of the relevant period of her SB account No.26335 two pages Exbt.8 series.23 Sri Uttam Kr.Sinha PW-8 stated that he was a Clerk-cum-Cashier in the bank. On he paid Rs.21,545/- in cash to the petitioner against Crl.Rev.P. No.50 of 2016 cheque No.799147 and later on he heard that the petitioner had overdrawn a total sum of by forging 6 (six) No.of cheques.24 Sri Biswadeb Datta Choudhury PW-9, the Branch Manager of the bank the bank ...",
+   "verified": true
+  },
+  {
+   "label": "P8",
+   "for_charge": "BNS 336",
+   "applies": "IPC 465",
+   "via_ipc_predecessor": "BNS 336 <- IPC 465",
+   "doc_id": "na_Bombay_HC_2022_1810",
+   "title": null,
+   "court": "Bombay High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6784,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The Complainant brought to the notice that the assignment is not proper, yet in a conspiracy with the Bank, and the ARC is proceeding against the Complainant. Because of the promise given by the Bank, the Complainant has suffered a serious loss both the Bank and the ARC have committed an offence. These are broadly the contents of the FIR.The perusal of the FIR shows that it is nothing but a narration of documentary transactions the Bank and the Complainant. The FIR reads more like a written ...",
+   "verified": true
+  },
+  {
+   "label": "P9",
+   "for_charge": "BNS 336",
+   "applies": "IPC 465",
+   "via_ipc_predecessor": "BNS 336 <- IPC 465",
+   "doc_id": "2025_2_708_726",
+   "title": "HIRALAL BABULAL SONI versus THE STATE OF MAHARASHTRA & ORS.",
+   "court": "Supreme Court of India",
+   "date": "2025-02-24",
+   "citation": "[2025] 2 S.C.R. 708",
+   "disposal_nature": "Disposed off",
+   "similarity": 0.6655,
+   "matched_by": "similarity to the facts",
+   "excerpt": "2. The offence pertains to commission of fraud by remittance through fake Telegraphic Transfers1 and subsequent withdrawals to the tune of Rs. 6,70,00,000/- at Vijaya Bank, Nasik Branch, Maharashtra. 2.1. On 30.01.1997, one person disclosing as a representative of M/s. Globe International, a proprietary concern, approached the bank for opening an account which was not immediately accepted by the accused no. 1 (S.K. Sheenappa Rai), Branch Manager as he wanted to verify the documents as there was ...",
+   "verified": true
+  },
+  {
+   "label": "P10",
+   "for_charge": "BNS 340",
+   "applies": "IPC 471",
+   "via_ipc_predecessor": "BNS 340 <- IPC 471",
+   "doc_id": "na_Madras_HC_2022_4058",
+   "title": null,
+   "court": "Madras High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.658,
+   "matched_by": "similarity to the facts",
+   "excerpt": "As per the contents of the FIR, A1 along with others, A2 to A17, had caused loss of Rs.15 Crores to the Company. The learned Counsel for the Petitioners also invited the of this Court to column number 3 in the FIR, where the date of is given as from 19.06.2014 to Column 3/16 Crl.O.P (MD) No.13829 of number 4 is the date of registration of the complaint. It is given as As per the contents of the FIR, the defacto complainant came to know about the acts of omission and commission by the accused 1 ...",
+   "verified": true
+  },
+  {
+   "label": "P11",
+   "for_charge": "BNS 340",
+   "applies": "IPC 471",
+   "via_ipc_predecessor": "BNS 340 <- IPC 471",
+   "doc_id": "na_Punjab_HC_2022_619",
+   "title": null,
+   "court": "Punjab and Haryana High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6509,
+   "matched_by": "similarity to the facts",
+   "excerpt": "It is further alleged that in order to extort money from the complainant the petitioner, along with had also filed a false complaint against the complainant and his wife at Police Station, on the allegations that the complainant had taken Rs.14 lakhs on the pretext of sending a relative of the abroad, and accordingly, FIR No.68 dated under Sections 420, 406 and 506 IPC, at Police Station was The said FIR was cancelled after and in the same, it was found that a forged affidavit in the name of ...",
+   "verified": true
+  },
+  {
+   "label": "P12",
+   "for_charge": "BNS 340",
+   "applies": "IPC 471",
+   "via_ipc_predecessor": "BNS 340 <- IPC 471",
+   "doc_id": "na_KA_HC_2020_2865",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6478,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The accused as defendant No.1 in his in the form of affidavit has stated that he was working under the complainant as a coolie often. He had taken a sum of from the complainant in the year at which time, the complainant had collected a blank cheque from him. Though he repaid the loan amount of said to the complainant, but he (complainant) did not return the cheque given to him and went on postponing the matter on one or the other pretext. It is the said cheque which the complainant has misused ...",
+   "verified": true
+  },
+  {
+   "label": "P13",
+   "for_charge": "BNS 317",
+   "applies": "IPC 411",
+   "via_ipc_predecessor": "BNS 317 <- IPC 411",
+   "doc_id": "na_Delhi_HC_2022_3020",
+   "title": null,
+   "court": "Delhi High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6283,
+   "matched_by": "similarity to the facts",
+   "excerpt": "He was informed later on by police that he was using a stolen mobile phone.petitioner no.1 had CRL.M.C.664/2020 Neutral Citation Number contacted the police at Delhi, who had informed that the phone belonged to respondent no.5, who is the complainant in this case. In the year 2016, she had gone to the Police Station and respondent no.4 had taken the phone from her on the pretext that he will return it to respondent no.5, the complainant. After about 1 years, she a call that a case for stealing ...",
+   "verified": true
+  },
+  {
+   "label": "P14",
+   "for_charge": "BNS 317",
+   "applies": "IPC 411",
+   "via_ipc_predecessor": "BNS 317 <- IPC 411",
+   "doc_id": "na_Delhi_HC_2023_1705",
+   "title": null,
+   "court": "Delhi High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6229,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The petitioner was arrested on by police patrolling team within the of P.S.Mundka and recovery of robbed amount of Rs.600/- in FIR no.586/2020 was from him. Two mobile phones were also from his which were reported to have been stolen earlier for which separate complaints had been lodged with P.S.Mundka, which had culminated into the present FIR and FIR no.59/2020 dated both under Section 379 of IPC.Accordingly, the petitioner was also arrested in these two FIRs under Section 411 of IPC.as far ...",
+   "verified": true
+  },
+  {
+   "label": "P15",
+   "for_charge": "BNS 317",
+   "applies": "IPC 411",
+   "via_ipc_predecessor": "BNS 317 <- IPC 411",
+   "doc_id": "2023_11_313_347",
+   "title": "MOHAMMAD WAJID AND ANR. versus STATE OF U.P. AND ORS.",
+   "court": "Supreme Court of India",
+   "date": "2023-08-08",
+   "citation": "[2023] 11 S.C.R. 313",
+   "disposal_nature": "Appeal(s) allowed",
+   "similarity": 0.6201,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The accused persons threatened the Complainant that in case he told anyone about the incident then all his family members will be eliminated. It is further alleged that the accused persons forcibly got the signatures of the Complainant and his brother on a blank stamp paper and after being robbed of their money the Complainant and his brother quietly returned home. 3. It is respectfully submitted that the alleged First Information Report is absolutely false and frivolous, and on a reading of ...",
+   "verified": true
+  }
+ ],
+ "analytics": {
+  "note": "How the appeal or petition was disposed of by the court that decided it (allowed = the appellant/petitioner succeeded). Not a conviction rate.",
+  "min_judgments": 5,
+  "sections": [
+   {
+    "charge": "BNS 318",
+    "title": "Cheating",
+    "direct": {
+     "code": "bns",
+     "section": "318",
+     "judgments": 5,
+     "counts": {
+      "allowed": 2,
+      "partly allowed": 0,
+      "dismissed": 1,
+      "other": 2
+     },
+     "suppressed": false,
+     "allowed_share": 0.667
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "415",
+      "judgments": 129,
+      "counts": {
+       "allowed": 103,
+       "partly allowed": 0,
+       "dismissed": 25,
+       "other": 1
+      },
+      "suppressed": false,
+      "allowed_share": 0.805
+     },
+     {
+      "code": "ipc",
+      "section": "417",
+      "judgments": 155,
+      "counts": {
+       "allowed": 93,
+       "partly allowed": 0,
+       "dismissed": 58,
+       "other": 4
+      },
+      "suppressed": false,
+      "allowed_share": 0.616
+     },
+     {
+      "code": "ipc",
+      "section": "418",
+      "judgments": 57,
+      "counts": {
+       "allowed": 46,
+       "partly allowed": 0,
+       "dismissed": 9,
+       "other": 2
+      },
+      "suppressed": false,
+      "allowed_share": 0.836
+     },
+     {
+      "code": "ipc",
+      "section": "420",
+      "judgments": 885,
+      "counts": {
+       "allowed": 553,
+       "partly allowed": 6,
+       "dismissed": 290,
+       "other": 36
+      },
+      "suppressed": false,
+      "allowed_share": 0.658
+     }
+    ]
+   },
+   {
+    "charge": "BNS 319",
+    "title": "Cheating by personation",
+    "direct": {
+     "code": "bns",
+     "section": "319",
+     "judgments": 2,
+     "counts": {
+      "allowed": 1,
+      "partly allowed": 0,
+      "dismissed": 1,
+      "other": 0
+     },
+     "suppressed": true
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "416",
+      "judgments": 10,
+      "counts": {
+       "allowed": 5,
+       "partly allowed": 0,
+       "dismissed": 5,
+       "other": 0
+      },
+      "suppressed": false,
+      "allowed_share": 0.5
+     },
+     {
+      "code": "ipc",
+      "section": "419",
+      "judgments": 118,
+      "counts": {
+       "allowed": 81,
+       "partly allowed": 0,
+       "dismissed": 32,
+       "other": 5
+      },
+      "suppressed": false,
+      "allowed_share": 0.717
+     }
+    ]
+   },
+   {
+    "charge": "BNS 336",
+    "title": "Forgery",
+    "direct": {
+     "code": "bns",
+     "section": "336",
+     "judgments": 2,
+     "counts": {
+      "allowed": 1,
+      "partly allowed": 0,
+      "dismissed": 1,
+      "other": 0
+     },
+     "suppressed": true
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "463",
+      "judgments": 42,
+      "counts": {
+       "allowed": 27,
+       "partly allowed": 0,
+       "dismissed": 10,
+       "other": 5
+      },
+      "suppressed": false,
+      "allowed_share": 0.73
+     },
+     {
+      "code": "ipc",
+      "section": "465",
+      "judgments": 142,
+      "counts": {
+       "allowed": 71,
+       "partly allowed": 2,
+       "dismissed": 61,
+       "other": 8
+      },
+      "suppressed": false,
+      "allowed_share": 0.545
+     },
+     {
+      "code": "ipc",
+      "section": "468",
+      "judgments": 445,
+      "counts": {
+       "allowed": 291,
+       "partly allowed": 5,
+       "dismissed": 136,
+       "other": 13
+      },
+      "suppressed": false,
+      "allowed_share": 0.685
+     },
+     {
+      "code": "ipc",
+      "section": "469",
+      "judgments": 19,
+      "counts": {
+       "allowed": 12,
+       "partly allowed": 0,
+       "dismissed": 5,
+       "other": 2
+      },
+      "suppressed": false,
+      "allowed_share": 0.706
+     }
+    ]
+   },
+   {
+    "charge": "BNS 340",
+    "title": "Forged document or electronic record and using it as genuine",
+    "direct": {
+     "code": "bns",
+     "section": "340",
+     "judgments": 2,
+     "counts": {
+      "allowed": 1,
+      "partly allowed": 0,
+      "dismissed": 1,
+      "other": 0
+     },
+     "suppressed": true
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "470",
+      "judgments": 16,
+      "counts": {
+       "allowed": 9,
+       "partly allowed": 1,
+       "dismissed": 5,
+       "other": 1
+      },
+      "suppressed": false,
+      "allowed_share": 0.667
+     },
+     {
+      "code": "ipc",
+      "section": "471",
+      "judgments": 430,
+      "counts": {
+       "allowed": 274,
+       "partly allowed": 3,
+       "dismissed": 138,
+       "other": 15
+      },
+      "suppressed": false,
+      "allowed_share": 0.667
+     }
+    ]
+   },
+   {
+    "charge": "BNS 317",
+    "title": "Stolen property",
+    "direct": {
+     "code": "bns",
+     "section": "317",
+     "judgments": 0,
+     "counts": {
+      "allowed": 0,
+      "partly allowed": 0,
+      "dismissed": 0,
+      "other": 0
+     },
+     "suppressed": true
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "410",
+      "judgments": 3,
+      "counts": {
+       "allowed": 2,
+       "partly allowed": 0,
+       "dismissed": 1,
+       "other": 0
+      },
+      "suppressed": true
+     },
+     {
+      "code": "ipc",
+      "section": "411",
+      "judgments": 73,
+      "counts": {
+       "allowed": 42,
+       "partly allowed": 2,
+       "dismissed": 24,
+       "other": 5
+      },
+      "suppressed": false,
+      "allowed_share": 0.647
+     },
+     {
+      "code": "ipc",
+      "section": "412",
+      "judgments": 7,
+      "counts": {
+       "allowed": 4,
+       "partly allowed": 0,
+       "dismissed": 2,
+       "other": 1
+      },
+      "suppressed": false,
+      "allowed_share": 0.667
+     },
+     {
+      "code": "ipc",
+      "section": "413",
+      "judgments": 13,
+      "counts": {
+       "allowed": 9,
+       "partly allowed": 0,
+       "dismissed": 2,
+       "other": 2
+      },
+      "suppressed": false,
+      "allowed_share": 0.818
+     },
+     {
+      "code": "ipc",
+      "section": "414",
+      "judgments": 8,
+      "counts": {
+       "allowed": 4,
+       "partly allowed": 0,
+       "dismissed": 2,
+       "other": 2
+      },
+      "suppressed": false,
+      "allowed_share": 0.667
+     }
+    ]
+   }
+  ]
+ },
+ "defenses": [
+  {
+   "against": "BNS 318",
+   "argument": "The prosecution has failed to prove the specific act of 'deceiving' as defined in Section 318. The facts merely state that the accused *said* he was an officer and provided a fake number; they do not establish that the complainant was actually deceived into believing his identity or that she acted based on a false representation of fact regarding his authority to block her card. Mere assertion without corroboration of the deception's effect does not satisfy the ingredient of cheating.",
+   "fact_quote": "A caller who said he was an officer of the complainant's bank told her that her debit card had been blocked and gave a fake employee number.",
+   "precedents": [
+    {
+     "label": "P1",
+     "doc_id": "na_Delhi_HC_2023_2276",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "BNS 340",
+   "argument": "The charge under Section 340 requires the accused to have 'used as genuine' a forged document or electronic record. The facts show the transfer of money but do not demonstrate that the accused utilized any specific forged document, signature, or electronic record in his possession to effectuate the transaction. Without evidence of the accused possessing or using such a false instrument, this charge cannot be sustained.",
+   "fact_quote": "",
+   "precedents": [
+    {
+     "label": "P4",
+     "doc_id": "na_KA_HC_2020_393",
+     "title": null
+    },
+    {
+     "label": "P9",
+     "doc_id": "2025_2_708_726",
+     "title": "HIRALAL BABULAL SONI versus THE STATE OF MAHARASHTRA & ORS."
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "BNS 317",
+   "argument": "The elements of Section 317 are not made out because the facts do not show that the accused received or retained the property 'dishonestly knowing' it to be stolen. The transfer was executed by the complainant herself upon reading a OTP, and there is no evidence placing the accused in possession of the funds with the requisite mens rea of dishonest knowledge.",
+   "fact_quote": "",
+   "precedents": [
+    {
+     "label": "P13",
+     "doc_id": "na_Delhi_HC_2022_3020",
+     "title": null
+    },
+    {
+     "label": "P14",
+     "doc_id": "na_Delhi_HC_2023_1705",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "BNS 336",
+   "argument": "The prosecution has not adduced evidence of any act of forgery, such as making, signing, sealing, executing, transmitting an electronic record, or altering a document with dishonest intent. The facts describe the result (transfer of money) but fail to identify any specific false document or electronic record created by the accused.",
+   "fact_quote": "",
+   "precedents": [
+    {
+     "label": "P7",
+     "doc_id": "na_Tripura_HC_2022_160",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  }
+ ],
+ "facts_profile": {
+  "discloses_offence": true,
+  "why": "The facts disclose criminal offences because the accused used deception to induce the victim to voluntarily part with property, constituting cheating and related fraud under the Bharatiya Nyaya Sanhja",
+  "accused_count": 1
+ },
+ "warnings": [],
+ "guardrail": {
+  "reason": null,
+  "top_similarity": 0.7345,
+  "threshold": 0.576
+ },
+ "timings": {
+  "intake_s": 0.0,
+  "route_s": 0.0,
+  "unload_s": 6.2,
+  "guardrail_s": 10.1,
+  "retrieve_s": 0.5,
+  "graph_s": 145.6
+ },
+ "sample": {
+  "id": "otp_fraud",
+  "name": "Bank impersonation OTP fraud (BNS era)"
+ }
+}

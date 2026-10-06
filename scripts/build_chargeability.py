@@ -53,6 +53,12 @@ LIABILITY_SECTIONS = {
 # Sub-section rules: section -> {liability sub-sections}; any other citation of
 # the section (including the bare number) is non-chargeable.
 SUBSECTION_LIABILITY = {"bns": {"3": {"3(5)": "common intention"}}}
+DEFINITION_PUNISHED_BY = {
+    "ipc": {"319": "323", "320": "325", "349": "352", "350": "352", "351": "352", "464": "465",
+            "141": "143", "159": "160", "360": "363", "361": "363", "410": "411"},
+    "bns": {"114": "115", "116": "117", "128": "131", "129": "131", "130": "131", "101": "103",
+            "330": "331", "335": "336", "63": "64", "86": "85"},
+}
 
 KIND = {"ipc": {"1": "a preliminary provision", "2": "a definition or general explanation",
                 "3": "a general rule about punishments", "4": "a general exception"},
@@ -101,6 +107,19 @@ def main():
         if len(defs) == 1 and out["ipc"][defs[0]]["class"] == "offence":
             out["punished_by"]["ipc"][defs[0]] = sec
     print("ipc definition -> punishment pairs:", len(out["punished_by"]["ipc"]))
+    # Definitions the title rule cannot pair (2026-10-06): "Hurt" is punished by
+    # "Punishment for voluntarily causing hurt", "Assault" by "Punishment for
+    # assault or criminal force otherwise than...", and the BNS splits a few
+    # (114 Hurt / 115). Charged bare, they reached the demo's output (IPC 319,
+    # 464). Each pair was checked against the ingested title and text of the
+    # punishing section, by Claude, not a lawyer. Culpable homicide (IPC 299 /
+    # BNS 100) is left out for the reason above. Read by Node 2 only: retrieval
+    # pooling and scoring keep using `punished_by`.
+    out["definition_punished_by"] = DEFINITION_PUNISHED_BY
+    for code, m in DEFINITION_PUNISHED_BY.items():
+        for d, p in m.items():
+            if out[code][d]["class"] != "offence" or out[code][p]["class"] != "offence" or d in out["punished_by"][code]:
+                sys.exit(f"{code} {d} -> {p}: not an unpaired offence-chapter definition and an offence")
     for code, rules in SUBSECTION_LIABILITY.items():
         for sec in rules:
             if out[code][sec]["class"] != "non_chargeable":

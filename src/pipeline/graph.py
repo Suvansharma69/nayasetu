@@ -277,13 +277,23 @@ def split_by_applicability(state, checked=True, gates=None):
     advisory -- never removed from charges unless `gates`."""
     gates = JUDGE_GATES if gates is None else gates
     if not checked:
-        return {"charges": list(state["verified_sections"]), "unsupported": [], "doubted": []}
+        return {"charges": list(state["verified_sections"]), "unsupported": [], "doubted": [], "included": []}
     ok = {(a["section"], a["subsection"]) for a in state["applicability"] if a["supported"]}
-    why = {(a["section"], a["subsection"]): a.get("rule_rejected") or a.get("missing_ingredient") or ""
+    # Never an empty doubt: the report reads an empty one as "supported".
+    why = {(a["section"], a["subsection"]): a.get("rule_rejected") or a.get("missing_ingredient")
+           or ("no passage of the facts could be quoted for it" if a.get("assessed", True)
+               and not a.get("grounded_quotes") else "the two readings of the facts disagreed")
            for a in state["applicability"]}
+    # Sections included in a supported aggravated charge (417 in 420) are listed
+    # apart, with the charge that covers them -- not charged twice.
+    inc = {(a["section"], a["subsection"]): a["included_in"]
+           for a in state["applicability"] if a.get("included_in")}
+    included = [{**v, "included_in": inc[(v["section"], v["subsection"])]}
+                for v in state["verified_sections"] if (v["section"], v["subsection"]) in inc]
+    main = [v for v in state["verified_sections"] if (v["section"], v["subsection"]) not in inc]
     doubted = [{**v, "doubt": why.get((v["section"], v["subsection"]), "")}
-               for v in state["verified_sections"] if (v["section"], v["subsection"]) not in ok]
+               for v in main if (v["section"], v["subsection"]) not in ok]
     if not gates:
-        return {"charges": list(state["verified_sections"]), "unsupported": [], "doubted": doubted}
-    charges = [v for v in state["verified_sections"] if (v["section"], v["subsection"]) in ok]
-    return {"charges": charges, "unsupported": [d for d in doubted], "doubted": doubted}
+        return {"charges": main, "unsupported": [], "doubted": doubted, "included": included}
+    charges = [v for v in main if (v["section"], v["subsection"]) in ok]
+    return {"charges": charges, "unsupported": [d for d in doubted], "doubted": doubted, "included": included}

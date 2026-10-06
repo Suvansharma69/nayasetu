@@ -17,7 +17,7 @@ import re
 
 from src.graph import citation_graph as cg
 
-from .applicability import grounded, normalise, statute_text
+from .applicability import charged, grounded, normalise, statute_text
 
 MAX_ARGUMENTS = 4
 STATUTE_CHARS = 700
@@ -53,7 +53,7 @@ def build_messages(state, text_of=statute_text):
     doubts = {(a["section"], a["subsection"]): a.get("rule_rejected") or a.get("missing_ingredient")
               for a in state.get("applicability", []) if not a.get("supported")}
     charges = []
-    for v in state["verified_sections"]:
+    for v in charged(state):
         text = re.sub(r"\s+", " ", text_of(state["era"], v["section"], v.get("subsection")))[:STATUTE_CHARS]
         line = f"- {era} {v.get('subsection') or v['section']} ({v.get('title')}): {text}"
         d = doubts.get((v["section"], v.get("subsection")))

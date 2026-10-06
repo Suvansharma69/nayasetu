@@ -1,14 +1,8 @@
 [
- {"id": "motorcycle_theft", "name": "Motorcycle theft (BNS era, the worked example)",
-  "offence_date": "2024-08-15",
-  "facts": "The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it."},
- {"id": "group_assault", "name": "Group assault with an iron rod (IPC era)",
-  "offence_date": "2023-03-12",
-  "facts": "Three brothers who had quarrelled with the complainant over a drain waited for him outside the temple. Two of them caught hold of his arms while the third struck him on the head with an iron rod. The medical report records a fracture of the skull. All three ran away together."},
- {"id": "job_scam", "name": "Fake government job scam (IPC era)",
-  "offence_date": "2023-01-20",
-  "facts": "The accused told the complainant that he could get her son a clerk's job in the railways through his contacts. He took four lakh rupees from her in cash, later handed over an appointment letter bearing a forged railway seal, and stopped answering her calls when her son reported for duty and was turned away."},
- {"id": "civil_deposit", "name": "Security deposit dispute (civil, BNS era)",
-  "offence_date": "2025-03-01",
-  "facts": "When the tenant moved out, the landlord kept twenty thousand rupees of the security deposit for repainting, saying the walls were damaged. The tenant says the marks were ordinary wear and wants the full deposit back."}
+ {"id": "motorcycle_theft", "name": "Motorcycle theft (BNS era, the worked example)", "offence_date": "2024-08-15", "facts": "The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it."},
+ {"id": "group_assault", "name": "Group assault with an iron rod (IPC era)", "offence_date": "2023-03-12", "facts": "Three brothers who had quarrelled with the complainant over a drain waited for him outside the temple. Two of them caught hold of his arms while the third struck him on the head with an iron rod. The medical report records a fracture of the skull. All three ran away together."},
+ {"id": "job_scam", "name": "Fake government job scam (IPC era)", "offence_date": "2023-01-20", "facts": "The accused told the complainant that he could get her son a clerk's job in the railways through his contacts. He took four lakh rupees from her in cash, later handed over an appointment letter bearing a forged railway seal, and stopped answering her calls when her son reported for duty and was turned away."},
+ {"id": "otp_fraud", "name": "Bank impersonation OTP fraud (BNS era)", "offence_date": "2025-02-10", "facts": "A caller who said he was an officer of the complainant's bank told her that her debit card had been blocked and gave a fake employee number. Believing him, she read out the one-time password that arrived on her phone. Within minutes Rs 1,85,000 was transferred out of her account to an account controlled by the accused."},
+ {"id": "knife_stabbing", "name": "Knife stabbing after a parking quarrel (BNS era)", "offence_date": "2024-11-03", "facts": "After a quarrel over a parking space, the accused took a kitchen knife from his car and stabbed the complainant in the abdomen. Surgeons repaired a perforated intestine, and the medical report records the injury as dangerous to life."},
+ {"id": "civil_deposit", "name": "Security deposit dispute (civil, BNS era)", "offence_date": "2025-03-01", "facts": "When the tenant moved out, the landlord kept twenty thousand rupees of the security deposit for repainting, saying the walls were damaged. The tenant says the marks were ordinary wear and wants the full deposit back."}
 ]

@@ -35,7 +35,7 @@ import re
 
 from src.graph import citation_graph as cg
 
-from . import ablation, chargeability
+from . import ablation, chargeability, offence_rules
 from .router import CODE_NAME
 
 MAX_RETRIES = 2
@@ -139,7 +139,17 @@ SECTIONS_ONLY_SCHEMA = {"type": "object",
 
 
 def proposal_schema():
-    return SECTIONS_ONLY_SCHEMA if ablation.off("profile") else PROPOSAL_SCHEMA
+    if ablation.off("profile"):
+        return SECTIONS_ONLY_SCHEMA
+    if ablation.off("injury"):
+        return PROPOSAL_SCHEMA
+    # The injury fields go after the joint-liability ones and before `sections`,
+    # for the same reason: commit to the facts before naming sections.
+    props = {k: v for k, v in PROPOSAL_SCHEMA["properties"].items() if k != "sections"}
+    props.update(offence_rules.INJURY_SCHEMA)
+    props["sections"] = PROPOSAL_SCHEMA["properties"]["sections"]
+    return {"type": "object", "properties": props,
+            "required": PROPOSAL_SCHEMA["required"][:-1] + list(offence_rules.INJURY_FIELDS) + ["sections"]}
 
 
 def _code_short(era):
@@ -168,6 +178,7 @@ def _system_prompt(era):
         "A case usually engages one to three sections; propose at most "
         f"{MAX_PROPOSALS - 2}, most important first."
         + ("" if ablation.off("profile") else "\n" + _PROFILE_PROMPT)
+        + ("" if ablation.off("profile") or ablation.off("injury") else "\n" + offence_rules.injury_prompt(era))
     )
 
 
@@ -243,7 +254,7 @@ def statute_identifier(state, llm):
     reply = llm(build_messages(state), proposal_schema())
     update = {"retry_count": rnd}
     if not is_retry and not ablation.off("profile"):
-        profile = {k: reply.get(k) for k in PROFILE_FIELDS}
+        profile = {k: reply.get(k) for k in PROFILE_FIELDS + offence_rules.INJURY_FIELDS}
         update["facts_profile"] = profile
         if profile.get("discloses_offence") is False:
             # The model may NOT decline a case. Missing an offence is this
@@ -268,17 +279,20 @@ def statute_identifier(state, llm):
         flipped = {**state, "retrieved": list(reversed(state["retrieved"]))}
         second = llm(build_messages(flipped), proposal_schema())
         items += list(second.get("sections") or [])[:MAX_PROPOSALS]
-    proposals, seen = [], set()
+    proposals, withdrawn, seen = [], [], set()
     for item in items:
         raw = str(item.get("section", "")).strip()
         key = tuple((p["section"], p["subsection"]) for p in parse_citation(raw)) or raw
         if not raw or key in seen:
             continue
         seen.add(key)
-        proposals.append({"raw": raw, "reason": str(item.get("reason", "")).strip(), "round": rnd,
-                          "source": "llm"})
+        p = {"raw": raw, "reason": str(item.get("reason", "")).strip(), "round": rnd, "source": "llm"}
+        (withdrawn if self_negated(p["reason"]) else proposals).append(p)
+    if withdrawn:
+        update["withdrawn"] = state.get("withdrawn", []) + withdrawn
     if not is_retry and not ablation.off("profile"):
         proposals += liability_rule(state["era"], update["facts_profile"], proposals)
+        proposals = add_injury_rule(state["era"], update["facts_profile"], proposals)
     update["candidate_sections"] = state["candidate_sections"] + proposals
     return update
 
@@ -312,6 +326,43 @@ def liability_rule(era, profile, proposals):
         return []
     return [{"raw": raw, "reason": f"rule: {n} accused acted together with a shared plan or object ({what})",
              "round": 0, "source": "rule"}]
+
+
+# A proposal whose own reason says the section does not apply. Measured
+# 2026-10-06 on the civil deposit demo: having answered discloses_offence=false,
+# the model still listed six sections, each reason opening "The facts do not
+# disclose ..." -- a list of what it had ruled out, not proposals. Anchored to
+# the START of the reason (or to an explicit "not applicable"), so a reason
+# that merely contains a negation ("the accused did not return it") is kept.
+_SELF_NEGATED = re.compile(
+    r"^\W*(?:the\s+|these\s+)?(?:facts?|complaint|allegations?|case|record)\s+(?:do|does|did)\s+not\b"
+    r"|^\W*(?:there\s+is\s+)?no\s+(?:evidence|allegation|indication|act|fact)s?\b"
+    r"|^\W*(?:this|the)\s+(?:section|offence|provision)\s+(?:is|does)\s+not\b"
+    r"|\bnot\s+(?:applicable|attracted|made\s+out)\b", re.I)
+
+
+def self_negated(reason):
+    return bool(_SELF_NEGATED.search(reason or ""))
+
+
+def add_injury_rule(era, profile, proposals):
+    """Add the hurt section the reported injury calls for (offence_rules.injury_rule).
+
+    Node 2 keeps one entry per section, the first it sees. So when the model
+    proposed the same section with a different sub-section (BNS 118(1), hurt by
+    weapon, for a fracture that is 118(2)), the rule's proposal goes in front of
+    it; otherwise it is appended. If the model named the same thing, no-op."""
+    rule = offence_rules.injury_rule(era, profile)
+    if rule is None:
+        return proposals
+    t = parse_citation(rule["raw"])[0]
+    parsed = [parse_citation(p["raw"]) for p in proposals]
+    if any((q["section"], q["subsection"]) == (t["section"], t["subsection"]) for ps in parsed for q in ps):
+        return proposals
+    for i, ps in enumerate(parsed):
+        if any(q["section"] == t["section"] for q in ps):
+            return proposals[:i] + [rule] + proposals[i:]
+    return proposals + [rule]
 
 
 # --- Node 2 -------------------------------------------------------------------
@@ -387,7 +438,8 @@ def check(g, era, proposal):
                 bad.append({**entry, "why": f"{code} {sec} ({title}) is {why}, not an offence a "
                                             "person can be charged under"})
             else:
-                pun = None if ablation.off("punish") else chargeability.punished_by(era, sec)
+                pun = None if ablation.off("punish") else (chargeability.punished_by(era, sec)
+                                                           or chargeability.definition_punished_by(era, sec))
                 if pun and cg.verify_section(g, era, pun):
                     # An IPC charge is framed under the punishing section: the
                     # definition (405) becomes its punishment (406), which keeps
@@ -396,6 +448,16 @@ def check(g, era, proposal):
                     ok.append({**entry, "section": pun, "subsection": None, "code": era,
                                "title": _title(g, era, pun), "role": role, "defined_in": sec})
                 else:
+                    if (p["subsection"] and role != "liability" and proposal.get("source") != "rule"
+                            and not ablation.off("subsection")):
+                        # The model's sub-section is cited as the whole section. Measured
+                        # on the demo cases, 2026-10-06: attempt to murder came back as
+                        # BNS 109(2) (attempt by a life convict), cheating as 318(1) and
+                        # personation as 319(1) (the definitions), and IPC 324, which
+                        # has no sub-sections, as 324(1). The section is verified; the
+                        # sub-section never was. Rule-chosen sub-sections (118(2),
+                        # 3(5)) are kept: a rule picked them from the statute's text.
+                        entry = {**entry, "subsection": None, "proposed_subsection": p["subsection"]}
                     ok.append({**entry, "code": era, "title": title, "role": role})
     return ok, bad
 

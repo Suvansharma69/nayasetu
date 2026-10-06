@@ -26,6 +26,8 @@ import re
 
 from src.retrieval import ranker, store
 
+from . import ablation, offence_rules
+
 MAX_STATUTE_CHARS = 1200
 
 SCHEMA = {
@@ -129,6 +131,19 @@ def _ref(era, v):
     return f"{era.upper()} {v['subsection'] or v['section']}"
 
 
+# Node 1 is told to read facts as a court framing a charge; the judge was not,
+# and it read them like a statute. Measured on the demo cases, 2026-10-06: it
+# doubted IPC 34 because common intention was "implied but not stated", IPC
+# 468 because the intent to cheat was "implied by the context", and IPC 326
+# because "fracture of the skull" did not say "bone".
+_PRIMA_FACIE = (
+    "Read the facts as a court does when framing a charge: take every allegation as true and "
+    "draw the ordinary inferences a court would draw from it. Intention, knowledge and common "
+    "intention are inferred from conduct and need not be stated in words, and a fact need not "
+    "use the statute's wording to establish an ingredient. An ingredient is missing only if "
+    "nothing in the facts supports it, or the facts contradict it. ")
+
+
 def build_messages(state, text_of):
     era = state["era"]
     blocks = []
@@ -146,24 +161,34 @@ def build_messages(state, text_of):
         "the facts that establish the offence (copy exactly; do not paraphrase); name the "
         "essential ingredient of the section that the facts do not show, or leave it empty if "
         "every ingredient is shown; and say whether the section applies. A section applies only "
-        "if the facts show every essential ingredient. Assess every section, in the order given, "
-        "using the section reference exactly as written in the brackets.")
+        "if the facts show every essential ingredient. "
+        + ("" if ablation.off("prima_facie") else _PRIMA_FACIE)
+        + "Assess every section, in the order given, using the section reference exactly as "
+        "written in the brackets.")
     user = f"Facts:\n{state['case_facts']}\n\nSections:\n\n" + "\n\n".join(blocks)
     return [{"role": "system", "content": system}, {"role": "user", "content": user}]
 
 
 PASSES = 2
 
+# Supported = EVERY pass supports (decided 2026-10-06). The "any pass" rule
+# below was chosen when the judge was a gate and a flip could delete the right
+# charge; since 2026-09-30 it is advisory (graph.JUDGE_GATES), so a split
+# verdict only turns a card amber. Saved dev runs, green-card precision:
+# pair_dev any 17 right / 22 extra -> unanimous 16 / 8; dual_dev 18/19 -> 12/8.
+# (Held-out 3 and 4 runs, read afterwards, agree: 56/57 -> 42/22 over all four.)
+UNANIMOUS = True
+
 
 def assess(state, llm, text_of=statute_text, passes=PASSES):
     """Node 2b. Returns {"applicability": [...]}, one record per verified section.
 
     Self-consistency: the check runs `passes` times, the section order reversed
-    on each alternate pass, and a section is supported if ANY pass supports it
-    -- i.e. it is demoted only when every pass rejects it. Measured on the dev
-    set, 2026-09-27: one pass lost 0 relevant sections on one run and 4 on the
-    next, when only the candidate list in the prompt had changed. A verdict that
-    flips with prompt order must not be able to remove the right charge.
+    on each alternate pass. Measured on the dev set, 2026-09-27: one pass lost 0
+    relevant sections on one run and 4 on the next, when only the candidate list
+    in the prompt had changed. While the judge was a gate, a section was
+    supported if ANY pass supported it, so an order flip could not remove the
+    right charge. It is advisory now, and supported means EVERY pass (UNANIMOUS).
     """
     verified = state["verified_sections"]
     if not verified:
@@ -177,9 +202,31 @@ def assess(state, llm, text_of=statute_text, passes=PASSES):
     out = []
     for i, v in enumerate(verified):
         recs = [run[i] for run in runs]
-        best = next((r for r in recs if r["supported"]), recs[0])
+        if UNANIMOUS:
+            best = next((r for r in recs if not r["supported"]), recs[0])
+        else:
+            best = next((r for r in recs if r["supported"]), recs[0])
         out.append({**best, "passes": [r["supported"] for r in recs]})
+    for key, why in offence_rules.grievous_consistency(state["era"], verified, out,
+                                                       state.get("facts_profile")).items():
+        a = next(a for a in out if (a["section"], a["subsection"]) == key)
+        a.update(supported=True, supported_by_rule=why, overruled_doubt=a.get("missing_ingredient"),
+                 missing_ingredient="")
+    # A plain offence beside a supported aggravated form of it (417 beside 420)
+    # is marked, not removed: see offence_rules.included_in.
+    inc = offence_rules.included_in(state["era"], verified,
+                                    {(a["section"], a["subsection"]) for a in out if a["supported"]})
+    for a in out:
+        a["included_in"] = inc.get((a["section"], a["subsection"]))
     return {"applicability": out}
+
+
+def charged(state):
+    """The verified sections that stand as charges in their own right: all of
+    them, less any included in a supported aggravated form (Nodes 3, 4 and 5
+    work on these, so a redundant 417 gets no precedents of its own)."""
+    inc = {(a["section"], a["subsection"]) for a in state.get("applicability") or [] if a.get("included_in")}
+    return [v for v in state["verified_sections"] if (v["section"], v.get("subsection")) not in inc]
 
 
 def _assess_once(state, llm, text_of):
@@ -211,7 +258,8 @@ def _assess_once(state, llm, text_of):
         if nothing_missing(missing):
             missing = ""
         model_applies = bool(a.get("applies"))
-        rule = headcount_rule(era, v["section"], state.get("facts_profile"))
+        rule = (headcount_rule(era, v["section"], state.get("facts_profile"))
+                or offence_rules.death_rule(era, v["section"], state.get("facts_profile")))
         out.append({"section": v["section"], "subsection": v["subsection"], "assessed": True,
                     "supported": model_applies and bool(kept) and not missing and not rule,
                     "grounded_quotes": kept, "dropped_quotes": [q for q in quotes if q not in kept],

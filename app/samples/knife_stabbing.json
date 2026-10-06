@@ -1,0 +1,389 @@
+{
+ "status": "ok",
+ "era": "bns",
+ "code_applied": "Bharatiya Nyaya Sanhita, 2023 (offence on/after 1 July 2024)",
+ "offence_date": "2024-11-03",
+ "facts": "After a quarrel over a parking space, the accused took a kitchen knife from his car and stabbed the complainant in the abdomen. Surgeons repaired a perforated intestine, and the medical report records the injury as dangerous to life.",
+ "intake": {
+  "facts": "After a quarrel over a parking space, the accused took a kitchen knife from his car and stabbed the complainant in the abdomen. Surgeons repaired a perforated intestine, and the medical report records the injury as dangerous to life.",
+  "extracted": false,
+  "why": "reads as a fact statement",
+  "original_input": "After a quarrel over a parking space, the accused took a kitchen knife from his car and stabbed the complainant in the abdomen. Surgeons repaired a perforated intestine, and the medical report records the injury as dangerous to life."
+ },
+ "charges": [
+  {
+   "code": "BNS",
+   "section": "109",
+   "subsection": null,
+   "title": "Attempt to murder",
+   "reason": "The accused stabbed the complainant with a knife causing an injury dangerous to life, which constitutes an act where death would have been murder if caused.",
+   "doubt": null
+  },
+  {
+   "code": "BNS",
+   "section": "118",
+   "subsection": "118(2)",
+   "title": "Voluntarily causing hurt or grievous hurt by dangerous weapons or means",
+   "reason": "rule: grievous hurt caused intentionally, with a dangerous weapon or means",
+   "doubt": null
+  },
+  {
+   "code": "BNS",
+   "section": "100",
+   "subsection": null,
+   "title": "Culpable homicide",
+   "reason": "The act of stabbing with a knife causing an injury dangerous to life falls within the definition of culpable homicide involving bodily injury likely to cause death.",
+   "doubt": "this offence requires a death; the facts report grievous hurt, not death"
+  }
+ ],
+ "unconfirmed": [],
+ "withdrawn": [],
+ "included": [
+  {
+   "code": "BNS",
+   "section": "117",
+   "subsection": null,
+   "title": "Voluntarily causing grievous hurt",
+   "reason": "The accused voluntarily caused grievous hurt by using a kitchen knife, as defined when the intended or known likely harm is grievous and the actual harm is grievous.",
+   "doubt": null,
+   "included_in": "BNS 118(2)"
+  }
+ ],
+ "retries": 0,
+ "review_candidates": [],
+ "precedents": [
+  {
+   "label": "P1",
+   "for_charge": "BNS 109",
+   "applies": "IPC 307",
+   "via_ipc_predecessor": "BNS 109 <- IPC 307",
+   "doc_id": "2024_12_392_417",
+   "title": "KUNHIMUHAMMED@KUNHEETHU versus THE STATE OF KERALA",
+   "court": "Supreme Court of India",
+   "date": "2024-12-06",
+   "citation": "[2024] 12 S.C.R. 392",
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6313,
+   "matched_by": "similarity to the facts",
+   "excerpt": "According to the testimony of the injured eyewitness, the appellant stabbed the deceased with considerable force, further corroborating the prosecution’s argument that the injuries were inflicted intentionally or at least with the knowledge of their natural consequence. While other co-accused were reportedly armed with sticks, the appellant–accused no. 1 was in possession of a sharp knife, which was used to inflict severe injuries. The decision to carry and use such a weapon during the scuffle ...",
+   "verified": true
+  },
+  {
+   "label": "P2",
+   "for_charge": "BNS 109",
+   "applies": "IPC 307",
+   "via_ipc_predecessor": "BNS 109 <- IPC 307",
+   "doc_id": "na_Andhra_HC_2023_2939",
+   "title": null,
+   "court": "Andhra Pradesh High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6272,
+   "matched_by": "similarity to the facts",
+   "excerpt": "Accused caught hold of the tuft of AVRB,J Crl.A.hair of PW.2 and pushed her down.with the accused. The accused the not to and took out a knife and stabbed the due to which the intestines came out from the stomach of When PW.2 she was also stabbed by the accused with a knife. After seeing the blood, he could not bear it.Later, both the injured were taken to NTR Government Hospital, and from there they were to KGH, He the knife under MO.1 as the weapon. The witness i.e., PW.7 supported the case ...",
+   "verified": true
+  },
+  {
+   "label": "P3",
+   "for_charge": "BNS 109",
+   "applies": "IPC 307",
+   "via_ipc_predecessor": "BNS 109 <- IPC 307",
+   "doc_id": "na_KA_HC_2022_974",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6218,
+   "matched_by": "similarity to the facts",
+   "excerpt": "Per contra, learned High Court Government Pleader would contend that the charge sheet has been filed against this petitioner for the offences punishable under Section 323, 341, 307, 504 and 506 of IPC.The petitioner who is the brother of the complainant has quarreled with the complainant demanding share in the property and assaulted him with hands on his chest and face and took the cutter with an to assault the complainant on his neck and when he tried the son -6- CRL.P No.102733 of of the ...",
+   "verified": true
+  },
+  {
+   "label": "P4",
+   "for_charge": "BNS 118",
+   "applies": "IPC 326",
+   "via_ipc_predecessor": "BNS 118 <- IPC 326",
+   "doc_id": "na_Guwahati_HC_2024_191",
+   "title": null,
+   "court": "Gauhati High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6921,
+   "matched_by": "similarity to the facts",
+   "excerpt": "It was alleged that at about 05- 00 a.m. on 21.05.2017, the quarreled with his father again in with the compensation amount and in the process, he suddenly bringing a knife from his house, stabbed his father in the abdomen and other parts of his body in the courtyard. As a result, the intestine of their father, Page No.3/18 Thaneswar came out. The informant-P.W.2 had further stated that they took Thaneswar to Samaguri Primary Health Centre immediately but finding his condition critical, the ...",
+   "verified": true
+  },
+  {
+   "label": "P5",
+   "for_charge": "BNS 118",
+   "applies": "IPC 324",
+   "via_ipc_predecessor": "BNS 118 <- IPC 324",
+   "doc_id": "na_KA_HC_2020_2541",
+   "title": null,
+   "court": "Karnataka High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6596,
+   "matched_by": "similarity to the facts",
+   "excerpt": "At that time, the accused came and stabbed the on his stomach, chest and other parts of his body saying that he has spoiled his life by having relationship with his wife. Both the also stated that, later the injured was taken to hospital in the auto-rickshaw of PW.2. Shifting of the injured and of PWs.7 and 9 were not disputed by the learned counsel. Though learned counsel for the accused suggested that the accused did not come to the spot and assaulted the but he failed to suggest that PWs.7 ...",
+   "verified": true
+  },
+  {
+   "label": "P6",
+   "for_charge": "BNS 118",
+   "applies": "IPC 324",
+   "via_ipc_predecessor": "BNS 118 <- IPC 324",
+   "doc_id": "na_Madras_HC_2021_706",
+   "title": null,
+   "court": "Madras High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.619,
+   "matched_by": "similarity to the facts",
+   "excerpt": "It is the case of the prosecution that after treating the as inpatient till and since the health condition of the has become critical, the hospital authority has him to the Government Hospital at Chennai and that while he was taken to Chennai, at the place near he breathed his last and that his body was brought back to the Thanjavur Medical College Hospital. As already pointed out, P.W.9 Medical Officer, who conducted the postmortem on the body of the would say that the had stab wound (3x2cm x ...",
+   "verified": true
+  },
+  {
+   "label": "P7",
+   "for_charge": "BNS 100",
+   "applies": "IPC 299",
+   "via_ipc_predecessor": "BNS 100 <- IPC 299",
+   "doc_id": "na_Delhi_HC_2021_923",
+   "title": null,
+   "court": "Delhi High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.5794,
+   "matched_by": "similarity to the facts",
+   "excerpt": "The prosecution has been able to prove on record that the appellant, Dinesh and injured Shravan had gathered in the night of 6/7-06-2012 at house No.A-1/38, SJ Enclave for a party where the incident took place. PW 14 had given a very CRL.A.846/2018 descriptive detailed narration of the of events which took place and the manner in which the appellant stabbed the and him. PW 14 has also stated in his testimony as to the manner in which the fight started. He has stated that they were taking liquor ...",
+   "verified": true
+  },
+  {
+   "label": "P8",
+   "for_charge": "BNS 100",
+   "applies": "IPC 299",
+   "via_ipc_predecessor": "BNS 100 <- IPC 299",
+   "doc_id": "na_Kerala_HC_2022_728",
+   "title": null,
+   "court": "Kerala High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.5762,
+   "matched_by": "similarity to the facts",
+   "excerpt": "He questioned this act. Then held him by his neck. Palani Durai(A1) with a knife stabbed him, which he warded off with his left hand. He sustained an injury on his left hand. Palani Durai(A1) then stabbed him on his stomach abdomen injuring him. Seeing this Arulmani(PW7) Palani Durai(A1) opened the door, sent Arulmani(PW7) also outside the canteen, came back and stabbed him twice on his stomach. He fell down. Palani Durai(A1) then stabbed him several times while he was on the ground. He does ...",
+   "verified": true
+  },
+  {
+   "label": "P9",
+   "for_charge": "BNS 100",
+   "applies": "IPC 299",
+   "via_ipc_predecessor": "BNS 100 <- IPC 299",
+   "doc_id": "2025_10_212_252",
+   "title": "MANIKLAL SAHU versus STATE OF CHHATTISGARH",
+   "court": "Supreme Court of India",
+   "date": "2025-09-12",
+   "citation": "[2025] 10 S.C.R. 212",
+   "disposal_nature": "Dismissed",
+   "similarity": 0.5701,
+   "matched_by": "similarity to the facts",
+   "excerpt": "51. The problem of supervening cause intervening arose for consideration In re, Periaswami, C.A. 166 of 1961 (Mad). In that case, the accused whipped out his knife and stabbed the deceased in his abdomen in the course of a sudden quarrel. The deceased had a tear in his stomach and an incised cut in the liver. He was under treatment for 17 days and was having a sinus through which he was discharging bile and some pus. Due to the constant discharge of bile and pus, the abdomen suddenly burst. The ...",
+   "verified": true
+  }
+ ],
+ "analytics": {
+  "note": "How the appeal or petition was disposed of by the court that decided it (allowed = the appellant/petitioner succeeded). Not a conviction rate.",
+  "min_judgments": 5,
+  "sections": [
+   {
+    "charge": "BNS 109",
+    "title": "Attempt to murder",
+    "direct": {
+     "code": "bns",
+     "section": "109",
+     "judgments": 2,
+     "counts": {
+      "allowed": 0,
+      "partly allowed": 0,
+      "dismissed": 0,
+      "other": 2
+     },
+     "suppressed": true
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "307",
+      "judgments": 522,
+      "counts": {
+       "allowed": 308,
+       "partly allowed": 10,
+       "dismissed": 185,
+       "other": 19
+      },
+      "suppressed": false,
+      "allowed_share": 0.632
+     }
+    ]
+   },
+   {
+    "charge": "BNS 118",
+    "title": "Voluntarily causing hurt or grievous hurt by dangerous weapons or means",
+    "direct": {
+     "code": "bns",
+     "section": "118",
+     "judgments": 1,
+     "counts": {
+      "allowed": 0,
+      "partly allowed": 0,
+      "dismissed": 0,
+      "other": 1
+     },
+     "suppressed": true
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "324",
+      "judgments": 414,
+      "counts": {
+       "allowed": 221,
+       "partly allowed": 5,
+       "dismissed": 182,
+       "other": 6
+      },
+      "suppressed": false,
+      "allowed_share": 0.554
+     },
+     {
+      "code": "ipc",
+      "section": "326",
+      "judgments": 198,
+      "counts": {
+       "allowed": 113,
+       "partly allowed": 2,
+       "dismissed": 78,
+       "other": 5
+      },
+      "suppressed": false,
+      "allowed_share": 0.596
+     }
+    ]
+   },
+   {
+    "charge": "BNS 100",
+    "title": "Culpable homicide",
+    "direct": {
+     "code": "bns",
+     "section": "100",
+     "judgments": 0,
+     "counts": {
+      "allowed": 0,
+      "partly allowed": 0,
+      "dismissed": 0,
+      "other": 0
+     },
+     "suppressed": true
+    },
+    "via_ipc": [
+     {
+      "code": "ipc",
+      "section": "299",
+      "judgments": 48,
+      "counts": {
+       "allowed": 13,
+       "partly allowed": 6,
+       "dismissed": 27,
+       "other": 2
+      },
+      "suppressed": false,
+      "allowed_share": 0.413
+     }
+    ]
+   }
+  ]
+ },
+ "defenses": [
+  {
+   "against": "BNS 109",
+   "argument": "The prosecution has failed to prove the specific intention or knowledge required for attempt to murder under Section 109, as the act was committed in a sudden quarrel over a parking space without evidence of premeditation or intent to kill. The medical report confirms grievous hurt but explicitly records no death; since the accused did not cause death and there is no evidence he intended to cause an injury likely to cause death, the essential ingredient of 'intention of causing death' or 'knowledge that death is likely' remains unproven.",
+   "fact_quote": "After a quarrel over a parking space, the accused took a kitchen knife from his car and stabbed the complainant in the abdomen. Surgeons repaired a perforated intestine, and the medical report records the injury as dangerous to life.",
+   "precedents": [
+    {
+     "label": "P9",
+     "doc_id": "2025_10_212_252",
+     "title": "MANIKLAL SAHU versus STATE OF CHHATTISGARH"
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "BNS 118",
+   "argument": "The charge under Section 118(2) is unsustainable because it requires the voluntary causing of 'grievous hurt' by dangerous means, and the prosecution has not established that the injury inflicted was grievous in nature. The facts state the surgeons repaired a perforated intestine, but do not explicitly characterize the wound as 'grievous' under the relevant definition; without this specific finding, the statutory element of causing grievous hurt is missing.",
+   "fact_quote": "Surgeons repaired a perforated intestine, and the medical report records the injury as dangerous to life.",
+   "precedents": [
+    {
+     "label": "P4",
+     "doc_id": "na_Guwahati_HC_2024_191",
+     "title": null
+    },
+    {
+     "label": "P5",
+     "doc_id": "na_KA_HC_2020_2541",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  },
+  {
+   "against": "BNS 100",
+   "argument": "The offence of culpable homicide under Section 100 is not made out because the facts do not establish that death was caused or that the accused had the intention/knowledge to cause death. The reviewer correctly notes that this section requires a death, yet the medical report only records grievous hurt; consequently, the essential consequence of causing death required for culpable homicide is absent.",
+   "fact_quote": "",
+   "precedents": [
+    {
+     "label": "P1",
+     "doc_id": "2024_12_392_417",
+     "title": "KUNHIMUHAMMED@KUNHEETHU versus THE STATE OF KERALA"
+    },
+    {
+     "label": "P2",
+     "doc_id": "na_Andhra_HC_2023_2939",
+     "title": null
+    }
+   ],
+   "verified": true,
+   "issues": []
+  }
+ ],
+ "facts_profile": {
+  "discloses_offence": true,
+  "why": "The facts disclose the voluntary causing of grievous hurt by a dangerous weapon (knife) with intent to cause bodily injury likely to cause death, which prima facie constitutes culpable homicide not量到于",
+  "accused_count": 1
+ },
+ "warnings": [],
+ "guardrail": {
+  "reason": null,
+  "top_similarity": 0.6921,
+  "threshold": 0.576
+ },
+ "timings": {
+  "intake_s": 0.0,
+  "route_s": 0.0,
+  "unload_s": 4.5,
+  "guardrail_s": 3.2,
+  "retrieve_s": 0.4,
+  "graph_s": 125.0
+ },
+ "sample": {
+  "id": "knife_stabbing",
+  "name": "Knife stabbing after a parking quarrel (BNS era)"
+ }
+}
