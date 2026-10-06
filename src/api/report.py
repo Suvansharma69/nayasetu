@@ -36,6 +36,7 @@ def build(result):
         "code_applied": ERA_NAME[era],
         "offence_date": st.get("offence_date"),
         "facts": st.get("case_facts"),
+        "intake": result.get("intake"),
         "charges": charges,
         "unconfirmed": unconfirmed,
         "retries": st.get("retry_count", 0),
