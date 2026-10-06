@@ -1,0 +1,36 @@
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.52it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 425.04it/s]
+# 1 [ipc] theft                          ok                   want=['378', '379'] charges=['379', '392'] unsupported=[] extra=['392'] lost=[] 61s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:13,  5.28it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 405.56it/s]
+# 2 [ipc] theft                          ok                   want=['378', '380'] charges=['380', '445', '457'] unsupported=['379'] extra=['445', '457'] lost=[] 75s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.49it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.60it/s]
+# 3 [ipc] theft                          ok                   want=['378', '381'] charges=['381', '406'] unsupported=['379'] extra=['406'] lost=[] 77s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.49it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.51it/s]
+# 4 [ipc] criminal breach of trust       ok                   want=['405', '406', '408'] charges=['409', '420'] unsupported=['406'] extra=['409', '420'] lost=['406'] 67s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.46it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 420.86it/s]
+# 5 [ipc] assault                        ok                   want=['320', '322', '325', '326'] charges=['307', '326'] unsupported=[] extra=['307'] lost=[] 57s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.47it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 418.70it/s]
+# 6 [ipc] assault                        ok                   want=['351', '352'] charges=['352', '506'] unsupported=[] extra=['506'] lost=[] 54s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.48it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 421.33it/s]
+# 7 [ipc] cheating                       ok                   want=['415', '420'] charges=['403', '420', '468'] unsupported=['417', '465'] extra=['403', '468'] lost=[] 96s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.44it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.10it/s]
+# 8 [ipc] common intention               ok                   want=['322', '34'] charges=['147', '149', '307', '323', '34'] unsupported=[] extra=['147', '149', '307', '323'] lost=[] 90s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.43it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 414.98it/s]
+# 9 [bns] theft                          ok                   want=['303'] charges=['303'] unsupported=[] extra=[] lost=[] 41s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.45it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.00it/s]
+#10 [bns] theft                          ok                   want=['303', '304'] charges=['131', '3', '304', '309'] unsupported=['303'] extra=['131', '3', '309'] lost=['303'] 123s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.46it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 418.45it/s]
+#11 [bns] theft                          ok                   want=['303', '305'] charges=['305', '334'] unsupported=[] extra=['334'] lost=[] 54s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.36it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 412.67it/s]
+#12 [bns] assault                        ok                   want=['116', '117', '118'] charges=['109', '118'] unsupported=[] extra=['109'] lost=[] 58s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.44it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 417.02it/s]
+#13 [bns] cheating                       ok                   want=['318'] charges=['317', '318', '61'] unsupported=[] extra=['317', '61'] lost=[] 69s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.48it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 421.54it/s]
+#14 [bns] cheating                       ok                   want=['318', '319'] charges=['318', '319'] unsupported=[] extra=[] lost=[] 55s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:13,  5.26it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 404.78it/s]
+#15 [bns] common intention               ok                   want=['3'] charges=['115', '120', '3', '333'] unsupported=[] extra=['115', '120', '333'] lost=[] 89s
+
+model qwen3.5:4b  phase2_testset.json  gated 15: routed 15/15
+  recall  verified 15/15   charges 14/15
+  extras  verified 28   charges 24   relevant sections rejected by 2b: 2
+  quotes grounded 85/85
+  model said no offence 0/15   false declines 0/15

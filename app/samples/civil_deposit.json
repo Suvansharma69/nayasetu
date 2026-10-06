@@ -1,20 +1,51 @@
 {
- "status": "no_verified_sections",
+ "status": "no_proposals",
  "era": "bns",
  "code_applied": "Bharatiya Nyaya Sanhita, 2023 (offence on/after 1 July 2024)",
  "offence_date": "2025-03-01",
  "facts": "When the tenant moved out, the landlord kept twenty thousand rupees of the security deposit for repainting, saying the walls were damaged. The tenant says the marks were ordinary wear and wants the full deposit back.",
+ "intake": {
+  "facts": "When the tenant moved out, the landlord kept twenty thousand rupees of the security deposit for repainting, saying the walls were damaged. The tenant says the marks were ordinary wear and wants the full deposit back.",
+  "extracted": false,
+  "why": "reads as a fact statement",
+  "original_input": "When the tenant moved out, the landlord kept twenty thousand rupees of the security deposit for repainting, saying the walls were damaged. The tenant says the marks were ordinary wear and wants the full deposit back."
+ },
  "charges": [],
- "unconfirmed": [
+ "unconfirmed": [],
+ "withdrawn": [
   {
    "code": "BNS",
-   "raw": "3(3)",
-   "section": "3",
-   "why": "BNS 3 (General explanations) is BNS 3 is a preliminary provision or definition; only BNS 3(5) (common intention) extends liability -- cite that sub-section, not an offence a person can be charged under",
-   "round": 0
+   "raw": "316",
+   "reason": "The facts do not disclose dishonest misappropriation or conversion of property to the landlord's own use."
+  },
+  {
+   "code": "BNS",
+   "raw": "303",
+   "reason": "The facts do not disclose any movement of property with intent to take it dishonestly without consent."
+  },
+  {
+   "code": "BNS",
+   "raw": "308(1)",
+   "reason": "The facts do not disclose that the landlord intentionally put the tenant in fear of injury to induce delivery of property."
+  },
+  {
+   "code": "BNS",
+   "raw": "318(4)",
+   "reason": "The facts do not disclose any deception by which the tenant was induced to deliver or retain property."
+  },
+  {
+   "code": "BNS",
+   "raw": "324(4)",
+   "reason": "The facts do not disclose any act causing wrongful loss or damage to property beyond a disputed claim for repair costs."
+  },
+  {
+   "code": "BNS",
+   "raw": "335",
+   "reason": "The facts do not disclose the making of a false document, as the dispute concerns the validity of the deposit claim itself."
   }
  ],
- "retries": 1,
+ "included": [],
+ "retries": 0,
  "review_candidates": [
   {
    "section": "316",
@@ -63,11 +94,12 @@
   "threshold": 0.576
  },
  "timings": {
+  "intake_s": 0.0,
   "route_s": 0.0,
-  "unload_s": 4.6,
-  "guardrail_s": 3.5,
+  "unload_s": 4.5,
+  "guardrail_s": 3.3,
   "retrieve_s": 0.4,
-  "graph_s": 28.0
+  "graph_s": 38.9
  },
  "sample": {
   "id": "civil_deposit",

@@ -24,6 +24,12 @@ Added for Phase 5 (2026-10-04):
     precedent_pool the judgment chunks nearest the facts, fetched BEFORE generation
                    while the embedder still holds the card; Node 3 filters it
 
+Added 2026-10-06:
+
+    withdrawn      sections Node 1 listed with a reason saying they do NOT apply
+                   ("The facts do not disclose ..."); never verified or charged,
+                   kept so the report can show what the model ruled out
+
 Entries of candidate_sections / verified_sections / unconfirmed are dicts:
     {"raw", "section", "subsection", "code_named", "reason", "round"}
 plus "title" on verified entries and "why" (the rejection reason) on unconfirmed.
@@ -52,6 +58,7 @@ class PipelineState(TypedDict):
     applicability: list
     warnings: list
     precedent_pool: dict
+    withdrawn: list
 
 
 def initial_state(case_facts, offence_date, era, retrieved):
@@ -59,5 +66,5 @@ def initial_state(case_facts, offence_date, era, retrieved):
         case_facts=case_facts, offence_date=str(offence_date), candidate_sections=[],
         verified_sections=[], precedents=[], analytics={}, defenses=[], retry_count=0,
         era=era, retrieved=list(retrieved), unconfirmed=[], facts_profile={}, applicability=[],
-        warnings=[], precedent_pool={},
+        warnings=[], precedent_pool={}, withdrawn=[],
     )

@@ -247,7 +247,7 @@ def test_period_on_one_side_is_a_single_run(g, scripted):
     assert out["era"] == "bns" and out["status"] == "ok"
 
 
-def test_a_section_is_demoted_only_if_every_pass_rejects_it(g, scripted):
+def test_a_section_is_supported_only_if_every_pass_supports_it(g, scripted, monkeypatch):
     from src.pipeline import applicability as ap
 
     class FlipLLM:
@@ -263,8 +263,12 @@ def test_a_section_is_demoted_only_if_every_pass_rejects_it(g, scripted):
     one = ap.assess(st, FlipLLM(), text_of=lambda *a: "t", passes=1)["applicability"]
     two = ap.assess(st, FlipLLM(), text_of=lambda *a: "t", passes=2)["applicability"]
     assert [a["supported"] for a in one] == [False, True]      # single pass: order decides
-    assert [a["supported"] for a in two] == [True, True]       # consensus: neither demoted
+    # Advisory judge (UNANIMOUS): a split verdict is a doubt, not support.
+    assert [a["supported"] for a in two] == [False, False]
     assert two[0]["passes"] == [False, True]
+    monkeypatch.setattr(ap, "UNANIMOUS", False)                # the gate-era rule: any pass
+    two = ap.assess(st, FlipLLM(), text_of=lambda *a: "t", passes=2)["applicability"]
+    assert [a["supported"] for a in two] == [True, True]
 
 
 def test_ablation_switches(g, scripted, monkeypatch):

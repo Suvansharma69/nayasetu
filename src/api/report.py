@@ -39,6 +39,10 @@ def build(result):
         "intake": result.get("intake"),
         "charges": charges,
         "unconfirmed": unconfirmed,
+        "withdrawn": [{"code": era.upper(), "raw": w.get("raw"), "reason": w.get("reason")}
+                      for w in st.get("withdrawn", [])],
+        "included": [{**_charge(v), "code": era.upper(), "included_in": v["included_in"]}
+                     for v in result.get("included", [])],
         "retries": st.get("retry_count", 0),
         "review_candidates": result.get("review_candidates", []),
         "precedents": [{k: p.get(k) for k in ("label", "for_charge", "applies", "via_ipc_predecessor",

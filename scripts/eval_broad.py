@@ -78,6 +78,7 @@ def main():
                  "extra_verified": sorted(ver - ok_set), "extra_charges": sorted(chg - ok_set),
                  "relevant_rejected_by_2b": sorted((ver & rel) - chg),
                  "doubted": [{"section": d["section"], "doubt": d["doubt"]} for d in out.get("doubted", [])],
+                 "included": [{"section": v["section"], "in": v["included_in"]} for v in out.get("included", [])],
                  "facts_profile": st.get("facts_profile"), "applicability": st.get("applicability"),
                  "unconfirmed": [u["raw"] for u in st["unconfirmed"]],
                  "timings": {k: round(v, 1) for k, v in out["timings"].items()},

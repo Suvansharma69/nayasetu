@@ -33,10 +33,21 @@ def _prop(raw, rnd=0):
     return {"raw": raw, "reason": "r", "round": rnd}
 
 
-def test_real_era_section_verifies_with_graph_title(g):
+def test_real_era_section_verifies_with_graph_title(g, monkeypatch):
     ok, bad = nodes.check(g, "bns", _prop("303(2)"))
-    assert not bad and ok[0]["section"] == "303" and ok[0]["subsection"] == "303(2)"
+    # The section is verified; the model's sub-section is kept only as a note.
+    assert not bad and ok[0]["section"] == "303" and ok[0]["subsection"] is None
+    assert ok[0]["proposed_subsection"] == "303(2)"
     assert ok[0]["title"] == "Theft" and ok[0]["code"] == "bns"
+    monkeypatch.setenv("PRAMANA_ABLATE", "subsection")
+    assert nodes.check(g, "bns", _prop("303(2)"))[0][0]["subsection"] == "303(2)"
+
+
+def test_rule_and_liability_subsections_are_kept(g):
+    ok, _ = nodes.check(g, "bns", {**_prop("BNS 303(2)"), "source": "rule"})
+    assert ok[0]["subsection"] == "303(2)"
+    ok, _ = nodes.check(g, "bns", _prop("3(5)"))
+    assert ok[0]["subsection"] == "3(5)"
 
 
 def test_fabricated_section_is_unconfirmed(g):
