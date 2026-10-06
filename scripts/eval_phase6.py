@@ -46,6 +46,9 @@ OUT = {"retrieval": DOCS / "phase6_retrieval_runs.jsonl", "pipeline": DOCS / "ph
        "stress": DOCS / "phase6_stress_runs.jsonl"}
 REPORT = DOCS / "evaluation_results.md"
 N_RETRIEVAL, N_PIPELINE, SEED = 300, 30, 0
+# Intake (2026-10-04) was tuned on ext0030-0039 and scored on ext0040-0059.
+FRESH_START, N_FRESH = 40, 20
+FRESH = {arm: DOCS / f"phase6_fresh_intake_{arm}_runs.jsonl" for arm in ("on", "off")}
 MAX_FACTS = 3000
 
 # Procedure, evidence and bail-adjacent IPC sections: real, so they verify, but
@@ -141,20 +144,23 @@ def _record(cid, res, gold=None):
             "verified": pick(st["verified_sections"], ("raw", "section", "round", "defined_in")),
             "unconfirmed": pick(st["unconfirmed"], ("raw", "section", "round", "why")),
             "retry_count": st["retry_count"], "profile": st.get("facts_profile"),
+            "list": [r["section"] for r in st.get("retrieved", [])],
+            "intake": {k: (res.get("intake") or {}).get(k) for k in ("extracted", "why", "facts")},
             "timings": {k: round(v, 1) for k, v in res.get("timings", {}).items()}}
 
 
-def run_pipeline(n, max_cases):
+def run_pipeline(n, max_cases, start=0, path=None):
     from src.pipeline import graph
 
-    done, k = _done(OUT["pipeline"]), 0
-    for c in external_cases(n):
+    path = path or OUT["pipeline"]
+    done, k = _done(path), 0
+    for c in external_cases(start + n)[start:]:
         if c["id"] in done:
             continue
         t = time.perf_counter()
         res = graph.run(c["facts"], c["offence_date"])
         rec = _record(c["id"], res, gold=c["gold"])
-        _append(OUT["pipeline"], rec)
+        _append(path, rec)
         print(f"{c['id']} gold={c['gold']} charges={rec['charges']} unconfirmed={len(rec['unconfirmed'])} "
               f"{time.perf_counter() - t:.0f}s", flush=True)
         k += 1
@@ -363,7 +369,39 @@ def report():
         L += ["", f"Stress-condition accuracy (dev, no retrieval): right section charged {s['hit']}/{s['n']}. "
               "This is what the pipeline would do without its retrieval context.", ""]
 
-    L += ["## 4. The project's own fixtures (saved runs, re-scored)", "",
+    arms = {arm: _load(path) for arm, path in FRESH.items()}
+    if all(arms.values()):
+        ids = {r["id"] for r in arms["on"]} & {r["id"] for r in arms["off"]}
+        L += ["## 4. Intake: reducing a court order to its alleged facts (fresh cases)", "",
+              "Built after Sections 1-2 showed the input problem (`src/pipeline/intake.py`). Tuned on external "
+              f"cases ext0030-0039 only, frozen, then scored once on ext{FRESH_START:04d}-{FRESH_START + N_FRESH - 1:04d}, "
+              "which were never read. The two arms are the same code with only the `intake` switch differing "
+              "(`eval_phase6.py fresh` runs the on arm; set `PRAMANA_ABLATE=intake` for the off arm).", "",
+              "| arm | cases | right section charged | right section in Node 1's list | precision | recall | sections/case | procedural sections charged |",
+              "|---|---|---|---|---|---|---|---|"]
+        for arm in ("off", "on"):
+            runs = [r for r in arms[arm] if r["id"] in ids]
+            m = multilabel(runs)
+            inlist = sum(1 for r in runs if {canon("ipc", s) for s in r["gold"]} & {canon("ipc", s) for s in r["list"]})
+            proc = sum(1 for r in runs for s in r["charges"] if s in PROCEDURAL)
+            L.append(f"| intake {arm} | {m['n']} | **{m['hit']}/{m['n']} ({m['hit'] / m['n']:.0%})** | "
+                     f"{inlist}/{m['n']} | {m['precision']:.0%} | {m['recall']:.0%} | {m['per_case']:.1f} | {proc} |")
+        on = [r for r in arms["on"] if r["id"] in ids]
+        ex = sum(1 for r in on if (r.get("intake") or {}).get("extracted"))
+        nofacts = sum(1 for r in on if "no alleged facts" in ((r.get("intake") or {}).get("why") or ""))
+        off_by = {r["id"]: r for r in arms["off"]}
+        hit = lambda r: bool({canon("ipc", s) for s in r["gold"]} & {canon("ipc", s) for s in r["charges"]})  # noqa: E731
+        flips = [r for r in on if hit(r) != hit(off_by[r["id"]])]
+        noise = [r for r in flips if not (r.get("intake") or {}).get("extracted")]
+        L += ["", f"**Read the hit rate with care.** {len(flips)} cases changed outcome between the arms, and "
+              f"{len(noise)} of them did so with intake NOT extracting anything (identical input to Node 1): that "
+              "is run-to-run variation in the local model, not the intake. At n=20 a one- or two-case difference "
+              "is noise. The effect the intake was built for, procedural sections charged, is the clear one."]
+        L += ["", f"Intake extracted facts from {ex}/{len(on)} orders; {nofacts} were judged to state no alleged "
+              "facts at all (only procedure), and the original text was used for them. Plain fact statements never "
+              "trigger it: 0 of the project's fixtures and demo cases match its procedural-marker test.", ""]
+
+    L += ["## 5. The project's own fixtures (saved runs, re-scored)", "",
           "Hand-written by Claude, not reviewed by a lawyer. Each held-out set was written before the change "
           "it certifies and scored once.", "", "| set | result |", "|---|---|"] + own_fixtures()
     L += ["", "## What this does and does not show", ""]
@@ -376,11 +414,12 @@ def report():
                  "renumbering trap the graph check exists for.")
     if pipe:
         a = multilabel(pipe)
-        L.append(f"- **On unseen real court orders the system is weak:** a right section is charged in "
-                 f"{a['hit']}/{a['n']} cases ({a['hit'] / a['n']:.0%}), against 60-100% on the hand-written fixtures. "
-                 "Most of the gap is the input (procedural orders, not fact statements; see Section 2), and part "
-                 "is the known precision problem. A fact-extraction step before retrieval is the obvious next change, "
-                 "to be scored on a FRESH sample of this set, since this one has now been read.")
+        L.append(f"- **On unseen real court orders the system is weak to middling:** a right section is charged in "
+                 f"{a['hit']}/{a['n']} cases ({a['hit'] / a['n']:.0%}) on the first sample and 60-65% on the second "
+                 "(Section 4), against 60-100% on the hand-written fixtures. The spread between two samples of the "
+                 "same set shows how wide the uncertainty is at these sizes. The input is part of the gap "
+                 "(procedural orders, not fact statements; Section 2); the intake step (Section 4) removes most of "
+                 "the procedural charges it caused, and precision is the rest.")
     L += ["- **Not shown: state of the art.** There is no published baseline on this set, IL-TUR could not be "
           "used, and prior case retrieval is not evaluated.",
           "- **Weak point on every set: precision** (extra sections that exist but do not apply)."]
@@ -390,7 +429,7 @@ def report():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("part", choices=["retrieval", "pipeline", "stress", "report", "all"])
+    ap.add_argument("part", choices=["retrieval", "pipeline", "stress", "fresh", "report", "all"])
     ap.add_argument("--n", type=int, default=None)
     ap.add_argument("--max-cases", type=int, default=0, help="stop after this many new cases (a batch)")
     a = ap.parse_args()
@@ -400,6 +439,12 @@ def main():
         run_pipeline(a.n or N_PIPELINE, a.max_cases)
     if a.part in ("stress", "all"):
         run_stress(a.max_cases)
+    if a.part in ("fresh", "all"):
+        # Intake comparison on cases never read while building it: same code,
+        # only the switch differs (PRAMANA_ABLATE=intake for the "off" arm).
+        from src.pipeline import ablation
+        arm = "off" if ablation.off("intake") else "on"
+        run_pipeline(N_FRESH, a.max_cases, start=FRESH_START, path=FRESH[arm])
     if a.part in ("report", "all"):
         report()
 
