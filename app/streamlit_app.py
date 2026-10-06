@@ -87,10 +87,18 @@ def render(r):
         card("doubt", "VERIFIED · APPLICABILITY DOUBTED",
              f"{c['code']} {e(c.get('subsection') or c['section'])} — {e(c.get('title') or '')}",
              "<b>Doubt:</b> " + e(c["doubt"]))
+    for c in r.get("included", []):
+        card("grey", f"VERIFIED · INCLUDED IN {c['included_in']}",
+             f"{c['code']} {e(c.get('subsection') or c['section'])} — {e(c.get('title') or '')}",
+             f"{e(c['included_in'])} is an aggravated form of this offence and is supported on the facts, "
+             "so it covers this one; it is not listed as a separate charge.")
     for u in r.get("unconfirmed", []):
         card("bad", "UNCONFIRMED · REJECTED BY CITATION GRAPH",
              f'<span class="strike">{u["code"]} {e(str(u.get("raw") or u.get("section")))}</span>',
              e(u.get("why") or "") + (f" (round {u['round']})" if u.get("round") is not None else ""))
+    for w in r.get("withdrawn", []):
+        card("grey", "CONSIDERED · RULED OUT BY THE MODEL", f"{w['code']} {e(str(w['raw']))}",
+             e(w.get("reason") or "") + " (not verified, not charged)")
     if r.get("review_candidates"):
         st.markdown("**Nearest statute sections, for review (retrieval results, NOT verified charges):**")
         for c in r["review_candidates"]:
@@ -101,7 +109,10 @@ def render(r):
             "- **Verified** means the section exists in the ingested code, checked against the citation "
             "graph. The language model's proposals are never shown as real without this check.\n"
             "- **Supported / doubted** is a second check: the model must quote the facts that establish "
-            "each ingredient. Rule checks (e.g. rioting needs five or more persons) also apply here.\n"
+            "each ingredient. Rule checks (e.g. rioting needs five or more persons, murder needs a "
+            "death) also apply here.\n"
+            "- **Included in** marks a lesser offence covered by a supported aggravated charge "
+            "(simple cheating inside IPC 420), so it is not counted twice.\n"
             "- **Unconfirmed** citations were proposed by the model and rejected by the graph. They are "
             "shown so nothing is hidden, and they were sent back to the model with feedback.")
 
