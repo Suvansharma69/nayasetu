@@ -71,7 +71,9 @@ def render(r):
         st.caption(f"Intake: {it['why']}.")
     for w in r.get("warnings", []):
         st.warning(w)
-    if r["status"] == "insufficient_data":
+    if r["status"] == "insufficient_data" and (r.get("guardrail") or {}).get("reason") == "no_facts_stated":
+        st.warning("No allegation stated. " + r["guardrail"]["message"])
+    elif r["status"] == "insufficient_data":
         st.info("Insufficient data: nothing in the corpus is close enough to these facts to ground an "
                 "analysis, so the model was not asked. The nearest statute sections are listed for review.")
 

@@ -195,11 +195,47 @@ def _run_one(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None
         taken = intake.extract(case_facts, llm or llm_mod.chat_json)
         progress.mark("intake", "done", {"extracted": bool(taken.get("extracted"))})
     intake_s = time.perf_counter() - t
+    if taken.get("no_facts") and not ablation.off("nofacts"):
+        out = _no_facts(case_facts, offence_date, taken)
+        out["timings"] = {"intake_s": intake_s}
+        out["intake"] = {**taken, "original_input": case_facts}
+        return out
     out = _run_core(taken["facts"], offence_date, llm=llm, g=g, cli=cli, retrieve=retrieve,
                     sufficient=sufficient, text_of=text_of, check_applicability=check_applicability, full=full)
     out["timings"] = {"intake_s": intake_s, **out["timings"]}
     out["intake"] = {**taken, "original_input": case_facts}
     return out
+
+
+NO_FACTS = ("This text states no allegation against the accused, only procedure (hearing, bail, "
+            "withdrawal, custody). Paste the FIR, the complaint, or the paragraph of the order that "
+            "states what the accused is alleged to have done.")
+
+
+def _no_facts(case_facts, offence_date, taken):
+    """A court order with no alleged facts: nothing for Node 1 to charge.
+
+    Phase 6, fresh external cases: 4 of 20 Patna orders were pure procedure
+    ("Heard... permission to withdraw... disposed of"). Run anyway, Node 1
+    charged procedure (IPC 173, 174, 204, 224 for a withdrawn bail plea; 173
+    for a 498A quashing order) -- sections that exist, verify, and are wrong.
+    The right answer is that the text supports no charge. Unlike the guardrail
+    path, no nearest sections are listed: for procedural text they are the
+    summons and custody offences, which would read as suggestions.
+
+    Declines only when intake's flag AND its empty extraction agree, and only
+    for text that already reads as a court order (intake.looks_procedural): a
+    plain fact statement never reaches this.
+    """
+    progress.mark("route")
+    era = route(offence_date)
+    progress.mark("route", "done", {"era": era, "offence_date": str(offence_date)})
+    progress.mark("retrieve")
+    progress.mark("retrieve", "done", {"insufficient": True, "no_facts": True, "candidates": []})
+    return {"status": "insufficient_data", "era": era,
+            "guardrail": {"reason": "no_facts_stated", "why": taken.get("why"), "message": NO_FACTS},
+            "state": initial_state(case_facts, offence_date, era, []),
+            "review_candidates": [], "charges": [], "unsupported": [], "doubted": []}
 
 
 def _run_core(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, sufficient=None,

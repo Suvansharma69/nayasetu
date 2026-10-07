@@ -162,6 +162,8 @@ def test_a_named_offence_is_not_the_penalty():
 def test_real_maxima_survive_truncated_ipc_text():
     rg = cg.load()
     p506 = lawtools.section_info(rg, "ipc", "506")["punishment"]
-    assert p506["text_incomplete"] and p506["max"] == "7 years"            # threat-to-kill limb, from the Schedule
+    # 506's threat-to-kill limb was missing upstream and the Schedule supplied the
+    # 7 years; since 2026-10-07 the official text completes it (statute_patches.json).
+    assert not p506["text_incomplete"] and p506["max"] == "7 years"
     assert lawtools.section_info(rg, "ipc", "307")["punishment"]["max"] == "death"
     assert lawtools.section_info(rg, "bns", "351")["punishment"]["max"] == "7 years"

@@ -567,7 +567,8 @@ class LiveRun {
       p.innerHTML = this.cands.size
         ? `${this.cands.size} candidate sections retrieved: <span class="mono">${[...this.cands.values()].map(c => esc(c.ref)).join(", ")}</span>`
         : (this.replay ? "Retrieved candidates are not kept in a saved analysis." : "No candidate sections were retrieved.");
-      if (d.insufficient) this.setNow("<b>Insufficient data.</b> Nothing in the corpus is close enough, so the model will not be asked.");
+      if (d.no_facts) this.setNow("<b>No allegation stated.</b> The text is procedure only, so there is nothing to charge and the model will not be asked.");
+      else if (d.insufficient) this.setNow("<b>Insufficient data.</b> Nothing in the corpus is close enough, so the model will not be asked.");
     }
     if (st === "statute_identifier" && d) {
       (d.proposals || []).forEach(p => {
@@ -644,7 +645,8 @@ function eventsFromReport(r) {
   const add = (stage, data) => { ev.push({stage, phase: "start"}); ev.push({stage, phase: "done", data}); };
   add("route", {era: r.era, offence_date: r.offence_date});
   add("retrieve", {candidates: (r.review_candidates || []).map(c => ({section: c.section, ref: c.matched || c.section, title: c.title})),
-                   insufficient: r.status === "insufficient_data"});
+                   insufficient: r.status === "insufficient_data",
+                   no_facts: (r.guardrail || {}).reason === "no_facts_stated"});
   if (r.status === "insufficient_data") return ev;
   const verified = [...r.charges, ...(r.included || [])];
   const rounds = Math.max(0, ...(r.unconfirmed || []).map(u => u.round || 0));
@@ -859,7 +861,9 @@ function renderRun(r, box) {
   const it = r.intake || {};
   if (it.extracted) h += `<div class="banner info" style="margin-top:14px"><b>Court order or FIR detected.</b> The analysis is of the alleged facts extracted from it. Check them against the original:<p style="font-family:var(--f-display);margin:6px 0 0">${esc(it.facts)}</p></div>`;
   (r.warnings || []).forEach(w => h += `<div class="banner warn" style="margin-top:12px">${esc(w)}</div>`);
-  if (r.status === "insufficient_data") h += `<div class="banner info" style="margin-top:12px">Nothing in the corpus is close enough to these facts to ground an analysis, so the model was not asked. The nearest statute sections are listed for review.</div>`;
+  if (r.status === "insufficient_data" && (r.guardrail || {}).reason === "no_facts_stated")
+    h += `<div class="banner warn" style="margin-top:12px"><b>No allegation stated.</b> ${esc(r.guardrail.message)}</div>`;
+  else if (r.status === "insufficient_data") h += `<div class="banner info" style="margin-top:12px">Nothing in the corpus is close enough to these facts to ground an analysis, so the model was not asked. The nearest statute sections are listed for review.</div>`;
   h += verdictHTML(r);
   h += `<div class="toolbar"><button class="tbtn" data-memo>${ICON.download}Download research memo</button>
     ${r.charges.length ? `<button class="tbtn" data-askfocus>${ICON.ask}Ask about this matter</button>` : ""}</div>`;

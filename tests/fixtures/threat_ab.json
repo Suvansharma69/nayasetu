@@ -1,0 +1,93 @@
+{
+ "note": "IPC threat-to-kill vs attempt-to-murder cases, gathered from the held-out fixtures for the 2026-10-07 IPC text A/B. Not a new fixture: never tune on it.",
+ "cases": [
+  {
+   "id": 1,
+   "era": "ipc",
+   "offence_date": "2023-04-30",
+   "offence_type": "criminal intimidation",
+   "query": "After the complainant filed a police complaint against him, the accused phoned her three times and said he would kill her and her son if she did not withdraw it.",
+   "relevant": [
+    "ipc_s506",
+    "ipc_s503"
+   ],
+   "arguable": [
+    "ipc_s195A"
+   ],
+   "source": "broad_coverage.json#6"
+  },
+  {
+   "id": 2,
+   "era": "ipc",
+   "offence_date": "2023-01-30",
+   "offence_type": "criminal intimidation in a dispute over a tree",
+   "query": "The parties disagree over who owns a mango tree on the boundary of their fields. When the complainant came to cut it, the accused raised an axe and told him he would kill him if he touched the tree.",
+   "relevant": [
+    "ipc_s506"
+   ],
+   "arguable": [
+    "ipc_s503"
+   ],
+   "source": "heldout_3.json#10"
+  },
+  {
+   "id": 3,
+   "era": "ipc",
+   "offence_date": "2023-10-07",
+   "offence_type": "criminal intimidation by telephone",
+   "query": "The complainant had refused to sell his shop to the accused. The accused phoned him twice and said that if he did not sign the sale papers by Sunday he would be killed and his sons would be next.",
+   "relevant": [
+    "ipc_s506"
+   ],
+   "arguable": [
+    "ipc_s503"
+   ],
+   "source": "heldout_4.json#7"
+  },
+  {
+   "id": 4,
+   "era": "ipc",
+   "offence_date": "2023-05-14",
+   "offence_type": "criminal intimidation, threat to kill",
+   "query": "The complainant had filed a police complaint about the accused's illegal sand mining. The accused came to his house at night and told him, in front of his wife, that if the complaint was not withdrawn within a week he would be killed and his house burnt down. He then left.",
+   "relevant": [
+    "ipc_s506"
+   ],
+   "arguable": [
+    "ipc_s503"
+   ],
+   "source": "heldout_5.json#1"
+  },
+  {
+   "id": 5,
+   "era": "ipc",
+   "offence_date": "2023-08-30",
+   "offence_type": "attempt to murder",
+   "query": "The accused fired two shots from a country-made pistol at the complainant's chest from close range. One bullet hit him in the shoulder; he survived after surgery.",
+   "relevant": [
+    "ipc_s307"
+   ],
+   "arguable": [
+    "ipc_s326"
+   ],
+   "source": "heldout_2.json#7"
+  },
+  {
+   "id": 6,
+   "era": "ipc",
+   "offence_date": "2022-11-02",
+   "offence_type": "attempt to murder, blow missed",
+   "query": "During a fight over a drain, the accused shouted that he would finish the complainant and swung an axe at his head with full force. The complainant ducked; the axe struck the door frame behind him and split it. Neighbours then disarmed the accused.",
+   "relevant": [
+    "ipc_s307"
+   ],
+   "arguable": [
+    "ipc_s506",
+    "ipc_s503",
+    "ipc_s351",
+    "ipc_s352"
+   ],
+   "source": "heldout_5.json#2"
+  }
+ ]
+}

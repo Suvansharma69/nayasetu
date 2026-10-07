@@ -28,16 +28,16 @@
   ],
   "fused_top3": [
    [
-    "379",
-    "379",
-    "Punishment for theft",
+    "378",
+    "378",
+    "Theft",
     1,
     2
    ],
    [
-    "378",
-    "378",
-    "Theft",
+    "379",
+    "379",
+    "Punishment for theft",
     1,
     2
    ],
@@ -67,14 +67,14 @@
     "Making a false document"
    ],
    [
-    "177",
-    "177",
-    "Furnishing false information"
-   ],
-   [
     "178",
     "178",
     "Refusing oath or affirmation when duly required by public servant to make it"
+   ],
+   [
+    "177",
+    "177",
+    "Furnishing false information"
    ]
   ],
   "fused_top3": [
@@ -82,7 +82,7 @@
     "468",
     "468",
     "Forgery for purpose of cheating",
-    5,
+    6,
     6
    ],
    [
@@ -130,13 +130,6 @@
   ],
   "fused_top3": [
    [
-    "323",
-    "323",
-    "Punishment for voluntarily causing hurt",
-    15,
-    2
-   ],
-   [
     "321",
     "321",
     "Voluntarily causing hurt",
@@ -144,11 +137,18 @@
     2
    ],
    [
-    "504",
-    "504",
-    "Intentional insult with intent to provoke breach of the peace",
-    23,
-    4
+    "323",
+    "323",
+    "Punishment for voluntarily causing hurt",
+    15,
+    2
+   ],
+   [
+    "354",
+    "354",
+    "Assault or criminal force to woman with intent to outrage her modesty",
+    8,
+    16
    ]
   ]
  },
@@ -191,14 +191,14 @@
     "406",
     "406",
     "Punishment for criminal breach of trust",
-    18,
+    17,
     2
    ],
    [
     "405",
     "405",
     "Criminal breach of trust",
-    18,
+    17,
     2
    ]
   ]
@@ -240,17 +240,17 @@
     8
    ],
    [
-    "323",
-    "323",
-    "Punishment for voluntarily causing hurt",
-    24,
-    2
-   ],
-   [
     "321",
     "321",
     "Voluntarily causing hurt",
-    24,
+    23,
+    2
+   ],
+   [
+    "323",
+    "323",
+    "Punishment for voluntarily causing hurt",
+    23,
     2
    ]
   ]

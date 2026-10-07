@@ -64,6 +64,29 @@ def load_patches(code, path=None):
     return {sec: e for sec, e in entries.items()
             if (e.get("text") or "").strip() and (e.get("source") or "").strip()}
 
+def _words(text):
+    return re.findall(r"[a-z0-9]+", text.lower().replace("’", "'"))
+
+
+def continues(upstream, patched, min_share=0.95):
+    """True if `patched` is `upstream` continued: upstream's words are found,
+    in order, from patched's first words, and patched has more after them.
+
+    The guard on a "complete" patch. Those patches come from a 1997 official
+    consolidation, so they are only safe while upstream is still a cut-short
+    copy of the same text; if upstream is ever corrected or re-amended, the
+    two diverge and the patch stops applying instead of reverting the law.
+    """
+    import difflib
+    a, b = _words(upstream), _words(patched)
+    if not a or len(b) <= len(a):
+        return False
+    sm = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    blocks = [x for x in sm.get_matching_blocks() if x.size]
+    matched = sum(x.size for x in blocks)
+    return bool(blocks) and blocks[0].b <= 2 and matched / len(a) >= min_share
+
+
 IPC_SOURCE = (
     "https://raw.githubusercontent.com/civictech-India/"
     "Indian-Law-Penal-Code-Json/main/ipc.json"
@@ -318,7 +341,7 @@ def parse_ipc(json_path=None, patches_path=None):
     records = json.loads(json_path.read_text(encoding="utf-8"))
     patches = load_patches("ipc", patches_path)
 
-    chunks, skipped = [], []
+    chunks, skipped, stale = [], [], []
     for r in records:
         section = normalise_section(r.get("Section"))
         if section is None:
@@ -327,12 +350,22 @@ def parse_ipc(json_path=None, patches_path=None):
         title = (r.get("section_title") or "").strip() or None
         desc = (r.get("section_desc") or "").strip()
         source = IPC_SOURCE
-        if not desc and section in patches:
+        patch = patches.get(section)
+        if patch and not desc:
             # s304B (dowry death): empty upstream in both civictech formats,
             # filled from the official text with provenance in the patch file.
-            desc = patches[section]["text"].strip()
-            title = title or patches[section].get("section_title")
-            source = patches[section]["source"]
+            desc = patch["text"].strip()
+            title = title or patch.get("section_title")
+            source = patch["source"]
+        elif patch and patch.get("mode") == "complete":
+            # civictech cut the section short (s300 stops before its clauses,
+            # s506 before the threat-to-kill limb); the official text continues
+            # it. Applied only while upstream is still a prefix of the patch.
+            if continues(desc, patch["text"]):
+                desc = patch["text"].strip()
+                source = patch["source"]
+            else:
+                stale.append(section)
         if not desc:
             # One record in the file has an empty description. A section with
             # no text cannot be retrieved or meaningfully cited, so it is
@@ -357,4 +390,9 @@ def parse_ipc(json_path=None, patches_path=None):
             "chapter": str(chapter) if chapter is not None else None,
             "chapter_title": (r.get("chapter_title") or "").strip() or None,
         })
+    if stale:
+        raise ValueError(
+            f"statute_patches.json 'complete' patches no longer continue the "
+            f"upstream text for IPC {stale}: upstream changed - re-run "
+            f"scripts/ipc_official_text.py --report and review them")
     return chunks, skipped
