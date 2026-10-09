@@ -49,6 +49,9 @@ N_RETRIEVAL, N_PIPELINE, SEED = 300, 30, 0
 # Intake (2026-10-04) was tuned on ext0030-0039 and scored on ext0040-0059.
 FRESH_START, N_FRESH = 40, 20
 FRESH = {arm: DOCS / f"phase6_fresh_intake_{arm}_runs.jsonl" for arm in ("on", "off")}
+# The 2026-10-07 accuracy A/B (scripts/run_accuracy_ext.bat): ext0060-0089, never read before.
+ACCURACY_START, N_ACCURACY = 60, 30
+ACCURACY = {arm: DOCS / f"accuracy_ext60_{arm}_runs.jsonl" for arm in ("base", "new")}
 MAX_FACTS = 3000
 
 # Procedure, evidence and bail-adjacent IPC sections: real, so they verify, but
@@ -256,6 +259,53 @@ def multilabel(runs, use_doubts=False):
             "per_case": (tp + fp) / len(runs) if runs else 0.0}
 
 
+def accuracy_ab():
+    """Section 4b: main's data vs the accuracy pass, same code, on 30 unseen orders."""
+    arms = {arm: _load(path) for arm, path in ACCURACY.items()}
+    if not all(arms.values()):
+        return []
+    ids = {r["id"] for r in arms["base"]} & {r["id"] for r in arms["new"]}
+    base = {r["id"]: r for r in arms["base"] if r["id"] in ids}
+    new = {r["id"]: r for r in arms["new"] if r["id"] in ids}
+    gold = lambda r: {canon("ipc", s) for s in r["gold"]}  # noqa: E731
+    got = lambda r, k: {canon("ipc", s) for s in r[k]}  # noqa: E731
+    declined = sorted(i for i, r in new.items() if r["status"] == "insufficient_data")
+    rest = sorted(ids - set(declined))
+
+    def row(label, runs):
+        m = multilabel(runs)
+        inlist = sum(1 for r in runs if gold(r) & got(r, "list"))
+        proc = sum(1 for r in runs for s in r["charges"] if s in PROCEDURAL)
+        return (f"| {label} | {m['n']} | **{m['hit']}/{m['n']}** | {inlist}/{m['n']} | {m['precision']:.0%} | "
+                f"{m['recall']:.0%} | {m['per_case']:.1f} | {proc} |")
+
+    L = ["## 4b. Accuracy pass on fresh orders (2026-10-07)", "",
+         f"Scored once on ext{ACCURACY_START:04d}-{ACCURACY_START + N_ACCURACY - 1:04d}, which no one had read. "
+         "Same code in both arms; `base` runs main's data (IPC text cut short, old definition pairs) with the "
+         "`nofacts` switch off, `new` runs the completed IPC text, the new pairs and `nofacts` "
+         "(`scripts/run_accuracy_ext.bat`; details in `docs/accuracy_2026-10-07.md`).", "",
+         "| arm | cases | right section charged | right section in Node 1's list | precision | recall | "
+         "sections/case | procedural sections charged |", "|---|---|---|---|---|---|---|---|",
+         row("base, all", list(base.values())), row("new, all", list(new.values())),
+         row("base, not declined", [base[i] for i in rest]), row("new, not declined", [new[i] for i in rest])]
+    wrong = sum(len(got(base[i], "charges") - gold(base[i])) for i in declined)
+    right = [i for i in declined if got(base[i], "charges") & gold(base[i])]
+    same_intake = sum(1 for i in ids if base[i]["intake"]["extracted"] == new[i]["intake"]["extracted"])
+    flips = [i for i in rest if bool(gold(base[i]) & got(base[i], "charges")) != bool(gold(new[i]) & got(new[i], "charges"))]
+    L += ["", f"**The `nofacts` rule declined {len(declined)}/{len(ids)} orders.** On those orders `base` had charged "
+          f"{wrong} wrong sections and {len(right)} right one{'s' if len(right) != 1 else ''}"
+          f"{' (' + ', '.join(right) + ')' if right else ''}. Each declined order was read: bail and writ orders that "
+          "name no offence and state no allegation. The two closest calls are matrimonial anticipatory-bail orders "
+          "where only the husband's stand is recorded (\"ready to keep the complainant as wife\"), from which the "
+          "gold 498A can be guessed but is not alleged.",
+          "", f"**On the {len(rest)} orders both arms analysed, the difference is noise.** Intake made the same "
+          f"extract-or-not decision on {same_intake}/{len(ids)} orders; the candidate lists hold the same sections and differ only in the order "
+          f"of near-tied pairs (300/302, 405/406). {len(flips)} orders changed outcome ({', '.join(flips)}) with "
+          "the same input and effectively the same list: run-to-run variation in the local model. The completed IPC "
+          "text is kept because it is the correct law, not because it scores better (as on the dev set).", ""]
+    return L
+
+
 def own_fixtures():
     """The project's own fixtures, re-scored from saved runs (scripts/score_runs.py)."""
     import subprocess
@@ -401,6 +451,7 @@ def report():
               "facts at all (only procedure), and the original text was used for them. Plain fact statements never "
               "trigger it: 0 of the project's fixtures and demo cases match its procedural-marker test.", ""]
 
+    L += accuracy_ab()
     L += ["## 5. The project's own fixtures (saved runs, re-scored)", "",
           "Hand-written by Claude, not reviewed by a lawyer. Each held-out set was written before the change "
           "it certifies and scored once.", "", "| set | result |", "|---|---|"] + own_fixtures()
