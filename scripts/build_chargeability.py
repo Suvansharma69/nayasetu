@@ -53,11 +53,19 @@ LIABILITY_SECTIONS = {
 # Sub-section rules: section -> {liability sub-sections}; any other citation of
 # the section (including the bare number) is non-chargeable.
 SUBSECTION_LIABILITY = {"bns": {"3": {"3(5)": "common intention"}}}
+# Definitions whose punishing section has a different title. Each pair read from
+# the ingested titles. Added 2026-10-07 after Phase 6 external runs charged 299
+# beside 302 for one death: 299 -> 304 ('Punishment for culpable homicide not
+# amounting to murder'), BNS 100 -> 105 likewise; 443/445 -> 453 and 444/446 ->
+# 456 (the house-trespass/house-breaking definitions' basic punishments - the
+# purpose-aggravated forms 454/455/457/458 are separate offences Node 1 proposes
+# on its own).
 DEFINITION_PUNISHED_BY = {
     "ipc": {"319": "323", "320": "325", "349": "352", "350": "352", "351": "352", "464": "465",
-            "141": "143", "159": "160", "360": "363", "361": "363", "410": "411"},
+            "141": "143", "159": "160", "360": "363", "361": "363", "410": "411",
+            "299": "304", "443": "453", "445": "453", "444": "456", "446": "456"},
     "bns": {"114": "115", "116": "117", "128": "131", "129": "131", "130": "131", "101": "103",
-            "330": "331", "335": "336", "63": "64", "86": "85"},
+            "330": "331", "335": "336", "63": "64", "86": "85", "100": "105"},
 }
 
 KIND = {"ipc": {"1": "a preliminary provision", "2": "a definition or general explanation",

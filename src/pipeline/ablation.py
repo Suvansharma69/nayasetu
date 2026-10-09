@@ -30,7 +30,7 @@ from __future__ import annotations
 import os
 
 KNOWN = {"profile", "exclude", "chargeability", "judge", "union", "dual", "punish", "pair", "intake", "lesser",
-         "injury", "prima_facie", "subsection"}
+         "injury", "prima_facie", "subsection", "nofacts"}
 
 
 def off(name):

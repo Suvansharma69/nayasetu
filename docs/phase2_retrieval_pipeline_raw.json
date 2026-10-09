@@ -27,25 +27,25 @@
   ],
   "fused_top3": [
    [
-    "201",
-    "201",
-    "Causing disappearance of evidence of offence, or giving false information to screen offender",
-    5,
-    5
-   ],
-   [
     "379",
     "379",
     "Punishment for theft",
-    9,
+    4,
     2
    ],
    [
     "378",
     "378",
     "Theft",
-    9,
+    4,
     2
+   ],
+   [
+    "201",
+    "201",
+    "Causing disappearance of evidence of offence, or giving false information to screen offender",
+    18,
+    5
    ]
   ]
  },
@@ -77,13 +77,6 @@
   ],
   "fused_top3": [
    [
-    "379",
-    "379",
-    "Punishment for theft",
-    1,
-    7
-   ],
-   [
     "378",
     "378",
     "Theft",
@@ -91,10 +84,17 @@
     7
    ],
    [
+    "379",
+    "379",
+    "Punishment for theft",
+    1,
+    7
+   ],
+   [
     "405",
     "405",
     "Criminal breach of trust",
-    15,
+    16,
     2
    ]
   ]
@@ -268,14 +268,14 @@
     "Threat of injury to induce person to refrain from applying for protection to public servant"
    ],
    [
+    "94",
+    "94",
+    "Act to which a person is compelled by threats"
+   ],
+   [
     "355",
     "355",
     "Assault or criminal force with intent to dishonour person, otherwise than on grave provocation"
-   ],
-   [
-    "351",
-    "351",
-    "Assault"
    ]
   ],
   "fused_top3": [
@@ -283,14 +283,14 @@
     "503",
     "503",
     "Criminal intimidation",
-    4,
+    7,
     5
    ],
    [
     "506",
     "506",
     "Punishment for criminal intimidation",
-    4,
+    7,
     5
    ],
    [
@@ -330,16 +330,16 @@
   ],
   "fused_top3": [
    [
-    "415",
-    "415",
-    "Cheating",
+    "417",
+    "417",
+    "Punishment for cheating",
     6,
     9
    ],
    [
-    "417",
-    "417",
-    "Punishment for cheating",
+    "415",
+    "415",
+    "Cheating",
     6,
     9
    ],
@@ -397,7 +397,7 @@
     "143",
     "143",
     "Punishment",
-    26,
+    25,
     10
    ]
   ]

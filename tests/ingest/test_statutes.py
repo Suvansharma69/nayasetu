@@ -278,3 +278,74 @@ def test_real_patch_file_carries_304B_with_provenance():
     p = load_patches("ipc")
     assert "304B" in p
     assert "Act 43 of 1986" in p["304B"]["source"] and "sha256" in p["304B"]["source"]
+
+
+# --- "complete" patches: civictech text cut short, official text continues ---
+
+_CUT = ("Whoever commits the offence of criminal intimidation shall be punished with "
+        "imprisonment of either description for a term which may extend to two years, "
+        "or with fine, or with both;")
+_FULL = (_CUT + " and if the threat be to cause death or grievous hurt, ... shall be "
+         "punished with imprisonment of either description for a term which may extend "
+         "to seven years, or with fine, or with both.")
+
+
+def _ipc_506(tmp_path, desc, patch):
+    j = tmp_path / "ipc.json"
+    j.write_text(json.dumps([{"Section": 506, "section_title": "Punishment for criminal intimidation",
+                              "section_desc": desc, "chapter": 22, "chapter_title": "X"}]),
+                 encoding="utf-8")
+    p = tmp_path / "patches.json"
+    p.write_text(json.dumps({"ipc": {"506": patch}}), encoding="utf-8")
+    return j, p
+
+
+def test_continues_accepts_a_cut_short_prefix_only():
+    from src.ingest.statutes import continues
+    assert continues(_CUT, _FULL)
+    assert continues(_CUT.replace("’", "'"), _FULL)          # quote style is not a difference
+    assert not continues(_FULL, _FULL)                        # nothing to add
+    assert not continues(_FULL, _CUT)                         # patch shorter than upstream
+    # Upstream re-amended (different words up front): the 1997 text must not win.
+    assert not continues("Whoever, by any electronic means, commits criminal intimidation "
+                         "shall be punished with imprisonment for three years;", _FULL)
+
+
+def test_complete_patch_replaces_cut_short_text_with_provenance(tmp_path):
+    j, p = _ipc_506(tmp_path, _CUT, {"text": _FULL, "source": "official p.237", "mode": "complete"})
+    chunks, _ = parse_ipc(j, p)
+    c = chunks[0]
+    assert "seven years" in c["text"] and c["text"].startswith("Punishment for criminal intimidation.")
+    assert c["source"] == "official p.237"
+
+
+def test_complete_patch_that_no_longer_fits_fails_the_build(tmp_path):
+    """If upstream is corrected or re-amended, a stale patch must be looked at,
+    not silently applied (it would revert the law) or silently dropped."""
+    j, p = _ipc_506(tmp_path, "Whoever threatens by electronic means shall be punished with "
+                    "imprisonment for three years.",
+                    {"text": _FULL, "source": "official p.237", "mode": "complete"})
+    with pytest.raises(ValueError, match="506"):
+        parse_ipc(j, p)
+
+
+def test_patch_without_mode_never_overrides_nonempty_upstream(tmp_path):
+    j, p = _ipc_506(tmp_path, _CUT, {"text": _FULL, "source": "official p.237"})
+    chunks, _ = parse_ipc(j, p)
+    assert "seven years" not in chunks[0]["text"]
+
+
+def test_real_complete_patches_apply_and_carry_the_official_source():
+    """The ingested IPC holds the completed text: 300's clauses and Exceptions,
+    506's threat-to-kill limb, 307's life-convict clause."""
+    chunks, _ = parse_ipc()
+    s = {c["section"]: c for c in chunks}
+    assert "sufficient in the ordinary course of nature to cause death" in s["300"]["text"]
+    assert "grave and sudden provocation" in s["300"]["text"]
+    assert "if the threat be to cause death or grievous hurt" in s["506"]["text"]
+    assert "punished with death" in s["307"]["text"]
+    for sec in ("300", "506", "307"):
+        assert "sha256 576a485b" in s[sec]["source"] and "amended to 1997" in s[sec]["source"]
+    # Sections rejected or held back stay as civictech has them.
+    assert "goapolice" not in s["214"]["source"] and "goapolice" not in s["405"]["source"]
+    assert "goapolice" not in s["4"]["source"]

@@ -90,8 +90,8 @@ def extract(text, llm):
     # "No facts" only when the flag AND an empty extraction agree: a single
     # boolean never erases the rest of the answer (Known Gotchas, 2026-09-27).
     if reply.get("facts_stated") is False and len(facts) < 20:
-        return {"facts": text, "extracted": False,
-                "why": "the text states no alleged facts, only procedure; original used"}
+        return {"facts": text, "extracted": False, "no_facts": True,
+                "why": "the text states no alleged facts, only procedure"}
     if len(facts) < 20:
         return {"facts": text, "extracted": False, "why": "the extraction was empty; original used"}
     share = overlap(facts, text)
