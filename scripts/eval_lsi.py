@@ -53,11 +53,20 @@ def main():
             t = time.perf_counter()
             try:
                 res = pipeline.run(r["facts"], lsi.IPC_ERA_DATE, g=g, cli=cli)
+                st = res["state"]
+                pick = lambda xs, ks: [{k: x.get(k) for k in ks} for x in xs]  # noqa: E731
                 rec = {"id": r["id"], "gold": r["labels"], "status": res["status"],
-                       "verified": [v["section"] for v in res["state"]["verified_sections"]],
+                       "verified": [v["section"] for v in st["verified_sections"]],
                        "charges": [v["section"] for v in res.get("charges", [])],
-                       "retry_count": res["state"]["retry_count"],
-                       "seconds": round(time.perf_counter() - t, 1)}
+                       "retry_count": st["retry_count"],
+                       "seconds": round(time.perf_counter() - t, 1),
+                       # as in eval_phase6._record, so Phase 6's catch rate can be read off LSI too
+                       "chars": len(r["facts"]),
+                       "doubted": [d["section"] for d in res.get("doubted", [])],
+                       "candidates": pick(st["candidate_sections"], ("raw", "section", "round")),
+                       "unconfirmed": pick(st["unconfirmed"], ("raw", "section", "round", "why")),
+                       "list": [x["section"] for x in st.get("retrieved", [])],
+                       "intake": {k: (res.get("intake") or {}).get(k) for k in ("extracted", "why")}}
             except Exception as e:                  # recorded, never silently skipped
                 rec = {"id": r["id"], "gold": r["labels"], "status": f"error: {e!r}"[:300],
                        "verified": [], "charges": [], "seconds": round(time.perf_counter() - t, 1)}
