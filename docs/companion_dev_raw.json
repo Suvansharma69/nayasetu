@@ -1,0 +1,1978 @@
+{
+ "model": "qwen3.5:4b",
+ "fixture": "tests/fixtures/phase2_testset.json",
+ "totals": {
+  "n": 15,
+  "routed": 15,
+  "rec_verified": 14,
+  "rec_charges": 13,
+  "extra_verified": 33,
+  "extra_charges": 32,
+  "relevant_rejected_by_2b": 1,
+  "quotes": 90,
+  "quotes_grounded": 87,
+  "said_no_offence": 0,
+  "false_decline": 0
+ },
+ "cases": [
+  {
+   "id": 1,
+   "era": "ipc",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "378",
+    "379"
+   ],
+   "verified": [
+    "379",
+    "392",
+    "456"
+   ],
+   "charges": [
+    "379",
+    "392",
+    "456"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "392",
+    "456"
+   ],
+   "extra_charges": [
+    "392",
+    "456"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "392",
+     "doubt": "Voluntarily causing or attempting to cause death, hurt, wrongful restraint, or fear of instant death/hurt/restraint to any person."
+    },
+    {
+     "section": "456",
+     "doubt": "Entering a house or building (the motorcycle was parked 'outside' the house, not inside)."
+    }
+   ],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the offence of theft as the accused moved property out of the complainant's possession without consent for dishonest purposes.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": false,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "379",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The complainant parked his motorcycle outside his house at night.",
+      "In the morning it was gone.",
+      "CCTV shows the accused pushing it away down the lane and riding off."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "392",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The complainant parked his motorcycle outside his house at night.",
+      "In the morning it was gone.",
+      "CCTV shows the accused pushing it away down the lane and riding off."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "Voluntarily causing or attempting to cause death, hurt, wrongful restraint, or fear of instant death/hurt/restraint to any person.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "456",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The complainant parked his motorcycle outside his house at night.",
+      "In the morning it was gone.",
+      "CCTV shows the accused pushing it away down the lane and riding off."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "Entering a house or building (the motorcycle was parked 'outside' the house, not inside).",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 7.2,
+    "guardrail_s": 9.0,
+    "retrieve_s": 0.2,
+    "graph_s": 73.4
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 2,
+   "era": "ipc",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "378",
+    "380"
+   ],
+   "verified": [
+    "379",
+    "380",
+    "448",
+    "453",
+    "454",
+    "456"
+   ],
+   "charges": [
+    "380",
+    "448",
+    "453",
+    "454",
+    "456"
+   ],
+   "unsupported": [
+    "379"
+   ],
+   "extra_verified": [
+    "379",
+    "448",
+    "453",
+    "454",
+    "456"
+   ],
+   "extra_charges": [
+    "448",
+    "453",
+    "454",
+    "456"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "included": [
+    {
+     "section": "379",
+     "in": "IPC 380"
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the offence of theft committed in a dwelling house by entering through an unlatched window at night with the intent to dishonestly take property.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": false,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "379",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "entered their home through an unlatched window",
+      "removed gold ornaments and cash from an almirah"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": "IPC 380"
+    },
+    {
+     "section": "380",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "entered their home through an unlatched window",
+      "removed gold ornaments and cash from an almirah"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "454",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "entered their home through an unlatched window",
+      "removed gold ornaments and cash from an almirah"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "456",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "While the family was away at a wedding",
+      "entered their home through an unlatched window"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "453",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "entered their home through an unlatched window",
+      "removed gold ornaments and cash from an almirah"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "448",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "entered their home through an unlatched window",
+      "removed gold ornaments and cash from an almirah"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.1,
+    "graph_s": 106.5
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 3,
+   "era": "ipc",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "378",
+    "381"
+   ],
+   "verified": [
+    "379",
+    "408"
+   ],
+   "charges": [
+    "379",
+    "408"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "379",
+    "408"
+   ],
+   "extra_charges": [
+    "379",
+    "408"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "408",
+     "doubt": "being in any manner entrusted... with property, or with any dominion over property"
+    }
+   ],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the dishonest conversion of cloth belonging to the complainant by an employee who had dominion over it but was not entrusted with possession, constituting theft.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": false,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "379",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "he removed bolts of cloth from the stock room",
+      "sold them to a third party"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "408",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The accused worked as a salesman at the complainant's cloth shop",
+      "he simply had access to the premises"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "being in any manner entrusted... with property, or with any dominion over property",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.6,
+    "retrieve_s": 0.1,
+    "graph_s": 63.1
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 4,
+   "era": "ipc",
+   "offence_type": "criminal breach of trust",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "405",
+    "406",
+    "408"
+   ],
+   "verified": [
+    "406",
+    "409",
+    "417",
+    "420"
+   ],
+   "charges": [
+    "409",
+    "417",
+    "420"
+   ],
+   "unsupported": [
+    "406"
+   ],
+   "extra_verified": [
+    "409",
+    "417",
+    "420"
+   ],
+   "extra_charges": [
+    "409",
+    "417",
+    "420"
+   ],
+   "relevant_rejected_by_2b": [
+    "406"
+   ],
+   "doubted": [
+    {
+     "section": "420",
+     "doubt": "The facts do not show that the accused deceived a specific person to induce them to deliver property or consent to its retention. The transfer was made directly by the accused into his wife's account without mentioning any deception of a 'p"
+    },
+    {
+     "section": "417",
+     "doubt": "The facts do not show that the accused deceived any person to induce them to deliver property, consent to its retention, or do/omit an act causing damage. The transaction was a direct misappropriation by the accused himself."
+    }
+   ],
+   "included": [
+    {
+     "section": "406",
+     "in": "IPC 409"
+    }
+   ],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the accused, entrusted with client deposits, dishonestly converted them to his own use by transferring them to his wife's account and using the proceeds for personal property, which",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "406",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused was the accountant of a firm and was given charge of client deposits held in the firm's account.",
+      "He transferred those deposits into an account in his wife's name and used them to buy property."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": "IPC 409"
+    },
+    {
+     "section": "409",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused was the accountant of a firm and was given charge of client deposits held in the firm's account.",
+      "He transferred those deposits into an account in his wife's name and used them to buy property."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "420",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused deceived a specific person to induce them to deliver property or consent to its retention. The transfer was made directly by the accused into his wife's account without mentioning any deception of a 'p",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "417",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused deceived any person to induce them to deliver property, consent to its retention, or do/omit an act causing damage. The transaction was a direct misappropriation by the accused himself.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.1,
+    "graph_s": 85.3
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 5,
+   "era": "ipc",
+   "offence_type": "assault",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "320",
+    "322",
+    "325",
+    "326"
+   ],
+   "verified": [
+    "307",
+    "326"
+   ],
+   "charges": [
+    "307",
+    "326"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "307"
+   ],
+   "extra_charges": [
+    "307"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "307",
+     "doubt": "intention to cause death or knowledge that his act would likely cause death"
+    }
+   ],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the voluntary causing of bodily injury (fracture) with an instrument likely to cause death, which constitutes a criminal offence under the IPC.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "grievous hurt",
+    "dangerous_weapon": true,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "326",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "struck the complainant on the forearm with an iron rod",
+      "fracture of the radius"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "307",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "During a dispute over a boundary wall the accused struck the complainant on the forearm with an iron rod",
+      "The medical report records a fracture of the radius"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "intention to cause death or knowledge that his act would likely cause death",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.1,
+    "graph_s": 54.3
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 6,
+   "era": "ipc",
+   "offence_type": "assault",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "351",
+    "352"
+   ],
+   "verified": [
+    "352",
+    "506"
+   ],
+   "charges": [
+    "352",
+    "506"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "506"
+   ],
+   "extra_charges": [
+    "506"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "352",
+     "doubt": "no passage of the facts could be quoted for it"
+    },
+    {
+     "section": "506",
+     "doubt": "The threat must be to cause death, grievous hurt, destruction of property by fire, or an offence punishable with death/life imprisonment; a threat to 'break legs' does not constitute a threat to cause grievous hurt under this specific limb."
+    }
+   ],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The accused raised a stick and advanced with a specific threat to cause grievous hurt (breaking legs), which constitutes an act creating apprehension of such harm under IPC 351.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": true,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "death or grievous hurt",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "352",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [],
+     "dropped_quotes": [
+      "made any gesture",
+      "intending... to cause any person present to apprehend that he who makes that gesture... is about to use criminal force"
+     ],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "506",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "shouting that he would break his legs"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The threat must be to cause death, grievous hurt, destruction of property by fire, or an offence punishable with death/life imprisonment; a threat to 'break legs' does not constitute a threat to cause grievous hurt under this specific limb.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.5,
+    "guardrail_s": 3.3,
+    "retrieve_s": 0.1,
+    "graph_s": 54.6
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 7,
+   "era": "ipc",
+   "offence_type": "cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "415",
+    "420"
+   ],
+   "verified": [
+    "420",
+    "465",
+    "468"
+   ],
+   "charges": [
+    "420",
+    "465",
+    "468"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "465",
+    "468"
+   ],
+   "extra_charges": [
+    "465",
+    "468"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "468",
+     "doubt": "intending that the document forged shall be used for the purpose of cheating"
+    }
+   ],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a clear criminal offence of cheating by inducing delivery of property through deception and forgery.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "420",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "showed the complainant forged ownership papers",
+      "accepted eleven lakh rupees as advance"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "468",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "never intended to convey it"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "intending that the document forged shall be used for the purpose of cheating",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "465",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "showed the complainant forged ownership papers"
+     ],
+     "dropped_quotes": [
+      "made any false document... with intent to cause... part with property"
+     ],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.5,
+    "guardrail_s": 3.5,
+    "retrieve_s": 0.1,
+    "graph_s": 59.3
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 8,
+   "era": "ipc",
+   "offence_type": "common intention",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "322",
+    "34"
+   ],
+   "verified": [
+    "114",
+    "323",
+    "34"
+   ],
+   "charges": [
+    "114",
+    "323",
+    "34"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "114",
+    "323"
+   ],
+   "extra_charges": [
+    "114",
+    "323"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a criminal offence as four men acted jointly to inflict bodily harm on the shopkeeper, which constitutes an assault and hurt under the IPC.",
+    "accused_count": 4,
+    "acted_together": true,
+    "shared_plan_or_object": true,
+    "injury": "hurt",
+    "dangerous_weapon": false,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "34",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Four men arrived together at the shop",
+      "having agreed beforehand to teach the shopkeeper a lesson"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "323",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "a third beat him",
+      "Only one of them actually inflicted the injuries"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "114",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Four men arrived together at the shop",
+      "Two held him down while a third beat him; the fourth kept watch at the door"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.2,
+    "retrieve_s": 0.1,
+    "graph_s": 64.1
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 9,
+   "era": "bns",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303"
+   ],
+   "verified": [
+    "303",
+    "317"
+   ],
+   "charges": [
+    "303",
+    "317"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "317"
+   ],
+   "extra_charges": [
+    "317"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the offence of theft as the accused moved property out of the complainant's possession without consent with dishonest intent.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "303",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The complainant parked his motorcycle outside his house at night.",
+      "In the morning it was gone.",
+      "CCTV shows the accused pushing it away down the lane and riding off."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "317",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused had no permission to take it and did not return it.",
+      "CCTV shows the accused pushing it away down the lane and riding off."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.5,
+    "guardrail_s": 3.4,
+    "retrieve_s": 0.3,
+    "graph_s": 56.9
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 10,
+   "era": "bns",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303",
+    "304"
+   ],
+   "verified": [
+    "131",
+    "3",
+    "304",
+    "307",
+    "309"
+   ],
+   "charges": [
+    "131",
+    "3",
+    "304",
+    "307",
+    "309"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "131",
+    "3",
+    "307",
+    "309"
+   ],
+   "extra_charges": [
+    "131",
+    "3",
+    "307",
+    "309"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "309",
+     "doubt": "voluntarily causes or attempts to cause to any person death or hurt or wrongful restraint, or fear of instant death or of instant hurt, or of instant wrongful restraint"
+    },
+    {
+     "section": "131",
+     "doubt": "assault or criminal force to any person"
+    },
+    {
+     "section": "307",
+     "doubt": "having made preparation for causing death, or hurt, or restraint, or fear of death, or of hurt, or of restraint, to any person, in order to the committing of such theft, or in order to the effecting of his escape after the committing of the"
+    },
+    {
+     "section": "3",
+     "doubt": "common intention of all"
+    }
+   ],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the offence of snatching under BNS 304(1), as they describe two men suddenly and forcibly seizing a movable property (the phone) from the complainant's possession without consent.",
+    "accused_count": 2,
+    "acted_together": true,
+    "shared_plan_or_object": true,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": false,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "304",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "grabbed the phone out of her hand",
+      "accelerated away"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "309",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "grabbed the phone out of her hand",
+      "accelerated away"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "voluntarily causes or attempts to cause to any person death or hurt or wrongful restraint, or fear of instant death or of instant hurt, or of instant wrongful restraint",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "131",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "grabbed the phone out of her hand"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "assault or criminal force to any person",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "307",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "grabbed the phone out of her hand"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "having made preparation for causing death, or hurt, or restraint, or fear of death, or of hurt, or of restraint, to any person, in order to the committing of such theft, or in order to the effecting of his escape after the committing of the",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "3",
+     "subsection": "3(5)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "two men on a scooter"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "common intention of all",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [
+    "3(8)"
+   ],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.6,
+    "retrieve_s": 0.2,
+    "graph_s": 120.4
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 11,
+   "era": "bns",
+   "offence_type": "theft",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "303",
+    "305"
+   ],
+   "verified": [
+    "305",
+    "334"
+   ],
+   "charges": [
+    "305",
+    "334"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "334"
+   ],
+   "extra_charges": [
+    "334"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the dishonest taking of movable property from the possession of another without consent, which constitutes theft.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "305",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "broke the seal on a goods container",
+      "on a stationary freight lorry",
+      "removed thirty cartons of electronics"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "334",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "broke the seal on a goods container",
+      "before the driver returned"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.6,
+    "retrieve_s": 0.2,
+    "graph_s": 53.0
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 12,
+   "era": "bns",
+   "offence_type": "assault",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "116",
+    "117",
+    "118"
+   ],
+   "verified": [
+    "109",
+    "118"
+   ],
+   "charges": [
+    "109",
+    "118"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "109"
+   ],
+   "extra_charges": [
+    "109"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a criminal act involving the voluntary causing of grievous hurt by means of a dangerous weapon (knife), which is prima facie an offence under the Bharatiya Nyaya Sanhita.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "grievous hurt",
+    "dangerous_weapon": true,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "118",
+     "subsection": "118(2)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The accused drew a knife",
+      "and stabbed the complainant twice in the abdomen"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "109",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "Following an argument outside a tea stall the accused drew a knife and stabbed the complainant twice in the abdomen"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.7,
+    "retrieve_s": 0.2,
+    "graph_s": 54.8
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 13,
+   "era": "bns",
+   "offence_type": "cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "318"
+   ],
+   "verified": [
+    "317",
+    "318",
+    "61"
+   ],
+   "charges": [
+    "317",
+    "318",
+    "61"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "317",
+    "61"
+   ],
+   "extra_charges": [
+    "317",
+    "61"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "61",
+     "doubt": "joint liability needs two or more persons; the facts show 1"
+    },
+    {
+     "section": "317",
+     "doubt": "The facts do not show that the accused dishonestly received or retained any stolen property knowing it to be such; they describe a scheme of collection and non-payment, not the receipt of property already obtained by theft/extortion/cheat."
+    }
+   ],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose the commission of cheating by inducing victims to part with property through a fraudulent scheme involving false promises and misappropriation.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "318",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "promising forty per cent returns in ninety days",
+      "collected deposits from twenty-three people",
+      "stopped paying once collections slowed"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    },
+    {
+     "section": "61",
+     "subsection": "61(2)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The accused ran a scheme",
+      "collected deposits from twenty-three people"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "Whether the conspiracy was to commit an offence punishable with death, imprisonment for life or rigorous imprisonment for two years or upwards is not shown.",
+     "model_applies": false,
+     "rule_rejected": "joint liability needs two or more persons; the facts show 1",
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "317",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "collected deposits from twenty-three people",
+      "stopped paying once collections slowed"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused dishonestly received or retained any stolen property knowing it to be such; they describe a scheme of collection and non-payment, not the receipt of property already obtained by theft/extortion/cheat.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.5,
+    "guardrail_s": 3.6,
+    "retrieve_s": 0.2,
+    "graph_s": 69.7
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 14,
+   "era": "bns",
+   "offence_type": "cheating",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "318",
+    "319"
+   ],
+   "verified": [
+    "318",
+    "319"
+   ],
+   "charges": [
+    "318",
+    "319"
+   ],
+   "unsupported": [],
+   "extra_verified": [],
+   "extra_charges": [],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "319",
+     "doubt": "the two readings of the facts disagreed"
+    }
+   ],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a clear criminal offence of cheating by personation where the accused deceived the victim into parting with property.",
+    "accused_count": 1,
+    "acted_together": false,
+    "shared_plan_or_object": false,
+    "injury": "none",
+    "dangerous_weapon": false,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "319",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "claiming to be a bank fraud-prevention officer"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "318",
+     "subsection": null,
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "persuaded her to read out a one-time password",
+      "two lakh rupees left her account"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.6,
+    "guardrail_s": 3.6,
+    "retrieve_s": 0.2,
+    "graph_s": 51.1
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  },
+  {
+   "id": 15,
+   "era": "bns",
+   "offence_type": "common intention",
+   "status": "ok",
+   "routed_ok": true,
+   "want": [
+    "3"
+   ],
+   "verified": [
+    "115",
+    "118",
+    "122",
+    "3",
+    "309",
+    "333",
+    "351"
+   ],
+   "charges": [
+    "115",
+    "118",
+    "122",
+    "3",
+    "309",
+    "333",
+    "351"
+   ],
+   "unsupported": [],
+   "extra_verified": [
+    "115",
+    "118",
+    "122",
+    "309",
+    "333",
+    "351"
+   ],
+   "extra_charges": [
+    "115",
+    "118",
+    "122",
+    "309",
+    "333",
+    "351"
+   ],
+   "relevant_rejected_by_2b": [],
+   "doubted": [
+    {
+     "section": "115",
+     "doubt": "The specific exclusion of Section 122 (provocation) is not shown, but generally this applies to voluntary hurt unless an exception applies; however, without knowing if it was grievous hurt or under provocation, we cannot confirm the exact '"
+    },
+    {
+     "section": "309",
+     "doubt": "The facts do not show whether property was taken (theft) or demanded (extortion), nor whether the fear of instant death/hurt was used to induce delivery of property. The assault alone does not constitute robbery unless it was done in order/"
+    },
+    {
+     "section": "122",
+     "doubt": "The facts do not show that the accused acted on 'grave and sudden provocation' or that they did not intend/know they were likely to cause hurt to anyone other than the person who gave the provocation."
+    },
+    {
+     "section": "333",
+     "doubt": "The facts do not explicitly state that the entry was made 'after preparation for causing hurt' or 'for assaulting', though it is inferred from the plan. However, without explicit mention of preparation prior to entry, this ingredient is not"
+    },
+    {
+     "section": "118",
+     "doubt": "The facts do not specify that the assault was committed 'by means of any instrument for shooting, stabbing or cutting' or other dangerous weapons/means specified in Section 118."
+    },
+    {
+     "section": "351",
+     "doubt": "The facts do not show any threat made with intent to cause alarm or induce an act which the victim was not legally bound to do."
+    }
+   ],
+   "included": [],
+   "facts_profile": {
+    "discloses_offence": true,
+    "why": "The facts disclose a joint criminal conspiracy to enter a house with intent to assault, resulting in actual bodily harm caused by one of the accused.",
+    "accused_count": 3,
+    "acted_together": true,
+    "shared_plan_or_object": true,
+    "injury": "hurt",
+    "dangerous_weapon": false,
+    "harm_intended": true,
+    "other_hurt": false,
+    "threat": "none",
+    "insult": false,
+    "obscene_in_public": false
+   },
+   "applicability": [
+    {
+     "section": "115",
+     "subsection": "115(2)",
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "the third assaulted the victim inside"
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The specific exclusion of Section 122 (provocation) is not shown, but generally this applies to voluntary hurt unless an exception applies; however, without knowing if it was grievous hurt or under provocation, we cannot confirm the exact '",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "309",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The three accused went to the victim's house together under a plan settled that morning.",
+      "One forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show whether property was taken (theft) or demanded (extortion), nor whether the fear of instant death/hurt was used to induce delivery of property. The assault alone does not constitute robbery unless it was done in order/",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "122",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The three accused went to the victim's house together under a plan settled that morning.",
+      "One waited in the car, one forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show that the accused acted on 'grave and sudden provocation' or that they did not intend/know they were likely to cause hurt to anyone other than the person who gave the provocation.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "333",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The three accused went to the victim's house together under a plan settled that morning.",
+      "One forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not explicitly state that the entry was made 'after preparation for causing hurt' or 'for assaulting', though it is inferred from the plan. However, without explicit mention of preparation prior to entry, this ingredient is not",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "118",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "One waited in the car, one forced the gate, and the third assaulted the victim inside.",
+      "The prosecution seeks to hold all three liable for the injuries caused by one of them."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not specify that the assault was committed 'by means of any instrument for shooting, stabbing or cutting' or other dangerous weapons/means specified in Section 118.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "351",
+     "subsection": null,
+     "assessed": true,
+     "supported": false,
+     "grounded_quotes": [
+      "The three accused went to the victim's house together under a plan settled that morning.",
+      "One forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "The facts do not show any threat made with intent to cause alarm or induce an act which the victim was not legally bound to do.",
+     "model_applies": false,
+     "rule_rejected": null,
+     "passes": [
+      false,
+      false
+     ],
+     "included_in": null
+    },
+    {
+     "section": "3",
+     "subsection": "3(5)",
+     "assessed": true,
+     "supported": true,
+     "grounded_quotes": [
+      "The three accused went to the victim's house together under a plan settled that morning.",
+      "One waited in the car, one forced the gate, and the third assaulted the victim inside."
+     ],
+     "dropped_quotes": [],
+     "missing_ingredient": "",
+     "model_applies": true,
+     "rule_rejected": null,
+     "passes": [
+      true,
+      true
+     ],
+     "included_in": null
+    }
+   ],
+   "unconfirmed": [],
+   "timings": {
+    "intake_s": 0.0,
+    "route_s": 0.0,
+    "unload_s": 4.5,
+    "guardrail_s": 3.6,
+    "retrieve_s": 0.2,
+    "graph_s": 145.4
+   },
+   "said_no_offence": false,
+   "review": [],
+   "warnings": [],
+   "gated": true
+  }
+ ]
+}

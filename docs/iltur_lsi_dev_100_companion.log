@@ -1,0 +1,136 @@
+model qwen3.5:4b  dev sample 100 (seed 20260927); 0 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.43it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 417.89it/s]
+   1/100 ok             gold=['Section 201', 'Section 3', 'Section 302', 'Section 34'] charges=['302', '34', '304', '307', '118'] 131.9s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.66it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 435.18it/s]
+   2/100 ok             gold=['Section 498A'] charges=['489B', '489C', '471', '489D', '205', '34'] 119.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.53it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.45it/s]
+   3/100 ok             gold=['Section 143', 'Section 188'] charges=['143', '153AA'] 70.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.53it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 425.86it/s]
+   4/100 ok             gold=['Section 302'] charges=['302', '304', '326', '34', '148'] 143.6s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.58it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 425.73it/s]
+   5/100 ok             gold=['Section 376'] charges=['376AB', '354B', '367', '506'] 100.8s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.53it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 424.71it/s]
+   6/100 ok             gold=['Section 302'] charges=['302', '304B'] 74.0s
+   7/100 insufficient_data gold=['Section 307', 'Section 323', 'Section 325', 'Section 326', 'Section 34', 'Section 341'] charges=[] 4.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.60it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 428.12it/s]
+   8/100 ok             gold=['Section 107', 'Section 302', 'Section 306', 'Section 323', 'Section 324', 'Section 34', 'Section 498', 'Section 498A'] charges=['306', '506', '34', '302', '498A', '326'] 199.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.46it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 420.56it/s]
+   9/100 ok             gold=['Section 155', 'Section 156', 'Section 406', 'Section 409', 'Section 419', 'Section 420', 'Section 467', 'Section 468', 'Section 471', 'Section 482'] charges=['406', '506'] 83.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.42it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 414.40it/s]
+  10/100 ok             gold=['Section 107', 'Section 306'] charges=['306', '108', '307', '506', '111', '308', '504'] 147.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.58it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 426.69it/s]
+  11/100 ok             gold=['Section 307', 'Section 326'] charges=['326', '307', '323'] 118.9s
+  12/100 insufficient_data gold=['Section 294'] charges=[] 4.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.53it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 426.14it/s]
+  13/100 ok             gold=['Section 376'] charges=['376', '366A', '363', '34', '325'] 109.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.51it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 422.32it/s]
+  14/100 ok             gold=['Section 147', 'Section 148', 'Section 149', 'Section 302', 'Section 323', 'Section 324', 'Section 326', 'Section 34'] charges=['396', '302', '148', '147', '149', '326'] 169.9s
+  15/100 insufficient_data gold=['Section 294'] charges=[] 4.4s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.46it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.94it/s]
+  16/100 no_proposals   gold=['Section 147', 'Section 148', 'Section 149', 'Section 323', 'Section 324', 'Section 342', 'Section 365'] charges=[] 33.9s
+  17/100 insufficient_data gold=['Section 323', 'Section 341', 'Section 354', 'Section 379', 'Section 427', 'Section 438', 'Section 448', 'Section 506'] charges=[] 4.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.62it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 434.12it/s]
+  18/100 ok             gold=['Section 506'] charges=['506'] 57.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.45it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.73it/s]
+  19/100 ok             gold=['Section 302', 'Section 34'] charges=['302', '34', '149', '307', '109', '182'] 165.9s
+  20/100 insufficient_data gold=['Section 304B'] charges=[] 4.5s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.44it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.23it/s]
+  21/100 ok             gold=['Section 164', 'Section 201', 'Section 302', 'Section 376'] charges=['302', '307', '34'] 140.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.31it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 406.56it/s]
+  22/100 ok             gold=['Section 376', 'Section 450', 'Section 506'] charges=['376', '376D', '354B', '392', '457', '307', '34', '506'] 178.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.50it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.24it/s]
+  23/100 ok             gold=['Section 164', 'Section 376'] charges=['376AB', '354', '376A', '325'] 105.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:16,  5.02it/s]Loading weights: 100%|##########| 391/391 [00:01<00:00, 386.73it/s]
+  24/100 ok             gold=['Section 300', 'Section 302', 'Section 304', 'Section 324', 'Section 34'] charges=['302', '149', '307', '326', '148', '396', '323'] 138.1s
+  25/100 insufficient_data gold=['Section 389'] charges=[] 4.3s
+  26/100 insufficient_data gold=['Section 307', 'Section 320', 'Section 34', 'Section 406', 'Section 482', 'Section 498A'] charges=[] 4.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.48it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 420.52it/s]
+  27/100 ok             gold=['Section 302', 'Section 304'] charges=['302', '396', '148', '304', '34'] 124.6s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.49it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 420.31it/s]
+  28/100 no_proposals   gold=['Section 147', 'Section 148', 'Section 149', 'Section 173', 'Section 323', 'Section 342'] charges=[] 47.7s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.32it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 411.87it/s]
+  29/100 no_proposals   gold=['Section 114', 'Section 149', 'Section 193', 'Section 467', 'Section 468'] charges=[] 35.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.55it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 429.01it/s]
+  30/100 ok             gold=['Section 325', 'Section 34'] charges=['229A'] 52.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.38it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 414.09it/s]
+  31/100 ok             gold=['Section 307', 'Section 324', 'Section 326', 'Section 341'] charges=['379', '426', '302', '326', '34'] 121.4s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.29it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 407.99it/s]
+  32/100 ok             gold=['Section 147', 'Section 148', 'Section 149', 'Section 186', 'Section 307', 'Section 323', 'Section 325', 'Section 326', 'Section 332', 'Section 341', 'Section 342', 'Section 353', 'Section 504', 'Section 506'] charges=['353', '147', '143'] 81.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.53it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 422.64it/s]
+  33/100 ok             gold=['Section 107', 'Section 306', 'Section 34'] charges=['306', '386', '305', '108', '506', '384', '149'] 148.9s
+  34/100 insufficient_data gold=['Section 120B', 'Section 406', 'Section 409', 'Section 420', 'Section 465', 'Section 467', 'Section 468', 'Section 471'] charges=[] 4.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.55it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 424.13it/s]
+  35/100 ok             gold=['Section 300', 'Section 302'] charges=['302', '304', '326', '307'] 119.6s
+  36/100 insufficient_data gold=['Section 302', 'Section 506'] charges=[] 4.7s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.51it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 420.83it/s]
+  37/100 ok             gold=['Section 332', 'Section 34', 'Section 353', 'Section 504', 'Section 506'] charges=['174'] 65.9s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.54it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 425.94it/s]
+  38/100 ok             gold=['Section 147', 'Section 148', 'Section 149', 'Section 302', 'Section 304', 'Section 307', 'Section 323', 'Section 324', 'Section 504'] charges=['302', '326', '148', '396', '147', '149'] 175.0s
+  39/100 insufficient_data gold=['Section 120B', 'Section 420', 'Section 438'] charges=[] 4.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.30it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 405.40it/s]
+  40/100 ok             gold=['Section 149'] charges=['302', '307', '148'] 86.7s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.45it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 416.08it/s]
+  41/100 ok             gold=['Section 302', 'Section 34', 'Section 354', 'Section 376', 'Section 394', 'Section 504', 'Section 506', 'Section 511'] charges=['302', '376', '307', '326', '392', '404'] 145.8s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.48it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 422.13it/s]
+  42/100 ok             gold=['Section 193'] charges=['468', '419', '471', '192'] 135.9s
+  43/100 insufficient_data gold=['Section 120B', 'Section 406', 'Section 438', 'Section 467', 'Section 468', 'Section 506'] charges=[] 4.5s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:14,  5.21it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 399.45it/s]
+  44/100 ok             gold=['Section 147', 'Section 148', 'Section 149', 'Section 161', 'Section 302', 'Section 313', 'Section 323', 'Section 324', 'Section 452'] charges=['302', '326', '148', '147', '307', '460', '34', '323'] 201.4s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.29it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 405.54it/s]
+  45/100 ok             gold=['Section 324', 'Section 326'] charges=['501', '500', '307'] 100.4s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.30it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 406.74it/s]
+  46/100 ok             gold=['Section 107', 'Section 109', 'Section 120B', 'Section 173', 'Section 406', 'Section 420', 'Section 465'] charges=['34'] 57.6s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.62it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 430.29it/s]
+  47/100 ok             gold=['Section 294', 'Section 323', 'Section 34', 'Section 354'] charges=['352', '34', '323'] 78.9s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.51it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 422.99it/s]
+  48/100 ok             gold=['Section 120B', 'Section 294', 'Section 323', 'Section 324', 'Section 34', 'Section 354', 'Section 376', 'Section 376(2)', 'Section 380', 'Section 420', 'Section 448', 'Section 457', 'Section 467', 'Section 468', 'Section 471', 'Section 504', 'Section 506'] charges=['384', '419', '506', '420', '388', '467', '34'] 136.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.32it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 409.44it/s]
+  49/100 ok             gold=['Section 320', 'Section 406', 'Section 409', 'Section 420', 'Section 467', 'Section 468', 'Section 471', 'Section 482'] charges=['409'] 74.7s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:13,  5.28it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 407.03it/s]
+  50/100 ok             gold=['Section 320', 'Section 323', 'Section 498A', 'Section 504', 'Section 506'] charges=['465', '193'] 72.6s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.43it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 415.51it/s]
+  51/100 ok             gold=['Section 302', 'Section 304', 'Section 323', 'Section 504'] charges=['420'] 51.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.40it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 414.31it/s]
+  52/100 ok             gold=['Section 147', 'Section 320', 'Section 323', 'Section 324', 'Section 325', 'Section 326', 'Section 506'] charges=['147', '148', '326', '294', '149'] 97.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.56it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 427.75it/s]
+  53/100 ok             gold=['Section 143', 'Section 147', 'Section 148', 'Section 149', 'Section 320', 'Section 324', 'Section 395', 'Section 482', 'Section 504', 'Section 506'] charges=['34', '354', '384', '506', '392', '510', '323'] 159.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.32it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 408.92it/s]
+  54/100 ok             gold=['Section 186', 'Section 294', 'Section 353', 'Section 354'] charges=['229A', '178'] 74.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:13,  5.27it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 405.87it/s]
+  55/100 ok             gold=['Section 164', 'Section 354'] charges=['107', '173'] 72.6s
+  56/100 insufficient_data gold=['Section 392', 'Section 397', 'Section 506'] charges=[] 5.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.45it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 416.84it/s]
+  57/100 ok             gold=['Section 323', 'Section 324', 'Section 325', 'Section 34', 'Section 394', 'Section 397', 'Section 504', 'Section 506'] charges=['307', '34', '326', '506'] 123.8s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.47it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 418.51it/s]
+  58/100 ok             gold=['Section 420', 'Section 494'] charges=['494', '495'] 73.6s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.47it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 420.64it/s]
+  59/100 ok             gold=['Section 149'] charges=['506', '504', '448', '427', '149', '354A', '34'] 156.2s
+  60/100 insufficient_data gold=['Section 147', 'Section 148', 'Section 294(b)', 'Section 307', 'Section 323', 'Section 324', 'Section 341', 'Section 506'] charges=[] 4.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.34it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 408.81it/s]
+  61/100 no_proposals   gold=['Section 155', 'Section 156', 'Section 363', 'Section 366', 'Section 482'] charges=[] 30.9s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:14,  5.16it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 397.39it/s]
+  62/100 ok             gold=['Section 300', 'Section 302', 'Section 304', 'Section 304B', 'Section 326', 'Section 498A'] charges=['302', '316', '304B', '312', '34'] 154.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:01<01:17,  4.97it/s]Loading weights: 100%|##########| 391/391 [00:01<00:00, 384.14it/s]
+  63/100 error: LLMError('Ollama returned 500: {"error":"model runner has unexpectedly stopped, this may be due to resource limitations or an internal error, check ollama server logs for details"}') gold=['Section 302', 'Section 307'] charges=[] 93.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:12,  5.35it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 408.92it/s]
+  64/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed before projector CPU offload retry: llama-server reported out-of-memory during startup: GGML_ASSERT(buffer) failed\\ncudaMalloc failed: out of memory\\nggml_backend_buft_alloc_buffer_n_default: failed to allocate CUDA0 buffe gold=['Section 420'] charges=[] 46.1s
+  65/100 error: LLMError('Ollama returned 500: {"error":"llama-server process has terminated: exit status 1: error: Failed to load CLIP model from D:\\\\ollama\\\\models\\\\blobs\\\\sha256-db3830bf825a26fcfed35416378696a47e0cbcf49c5b652a6fe9db90541f86d9"}') gold=['Section 354', 'Section 506'] charges=[] 9.9s
+  66/100 error: LLMError('Ollama returned 500: {"error":"llama-server process has terminated: exit status 1: error: Failed to load CLIP model from D:\\\\ollama\\\\models\\\\blobs\\\\sha256-db3830bf825a26fcfed35416378696a47e0cbcf49c5b652a6fe9db90541f86d9"}') gold=['Section 147', 'Section 148', 'Section 304', 'Section 307', 'Section 323', 'Section 324', 'Section 325', 'Section 332', 'Section 336', 'Section 34', 'Section 342', 'Section 427', 'Section 504', 'Section 506'] charges=[] 9.5s
+  67/100 insufficient_data gold=['Section 174A', 'Section 229A', 'Section 304'] charges=[] 11.1s
+  68/100 insufficient_data gold=['Section 323', 'Section 325', 'Section 341', 'Section 365', 'Section 509', 'Section 511'] charges=[] 4.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.50it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 422.06it/s]
+  69/100 error: LLMError('Ollama returned 500: {"error":"model runner has unexpectedly stopped, this may be due to resource limitations or an internal error, check ollama server logs for details"}') gold=['Section 164', 'Section 302', 'Section 307', 'Section 34', 'Section 389', 'Section 392'] charges=[] 65.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:13,  5.28it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 406.86it/s]
+  70/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed before projector CPU offload retry: llama-server reported out-of-memory during startup: cudaMalloc failed: out of memory\\nGGML_ASSERT(buffer) failed\\nggml_backend_buft_alloc_buffer_n_default: failed to allocate CUDA0 buffe gold=['Section 279', 'Section 304A', 'Section 337'] charges=[] 44.7s
+  71/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed before projector CPU offload retry: llama-server reported out-of-memory during startup: GGML_ASSERT(buffer) failed\\ncudaMalloc failed: out of memory\\nggml_backend_buft_alloc_buffer_n_default: failed to allocate CUDA0 buffe gold=['Section 300', 'Section 302', 'Section 307', 'Section 313', 'Section 320', 'Section 323', 'Section 324', 'Section 326', 'Section 34', 'Section 342'] charges=[] 11.2s
+  72/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed before projector CPU offload retry: llama-server reported out-of-memory during startup: cudaMalloc failed: out of memory\\nGGML_ASSERT(buffer) failed\\nggml_backend_buft_alloc_buffer_n_default: failed to allocate CUDA0 buffe gold=['Section 156', 'Section 34', 'Section 380', 'Section 436', 'Section 452', 'Section 457', 'Section 504', 'Section 506'] charges=[] 10.8s
+  73/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed before projector CPU offload retry: llama-server reported out-of-memory during startup: GGML_ASSERT(buffer) failed\\ncudaMalloc failed: out of memory\\nggml_backend_buft_alloc_buffer_n_default: failed to allocate CUDA0 buffe gold=['Section 147', 'Section 294', 'Section 324', 'Section 325', 'Section 332', 'Section 353'] charges=[] 11.2s
+  74/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed before projector CPU offload retry: llama-server reported out-of-memory during startup: GGML_ASSERT(buffer) failed\\ncudaMalloc failed: out of memory\\nggml_backend_buft_alloc_buffer_n_default: failed to allocate CUDA0 buffe gold=['Section 107', 'Section 306'] charges=[] 12.8s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:15,  5.10it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 394.10it/s]
+  75/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed after projector CPU offload retry: llama-server reported out-of-memory during startup: cudaMalloc failed: out of memory\\nggml_gallocr_reserve_n_impl: failed to allocate CUDA0 buffer of size 111628288\\ngraph_reserve: failed gold=['Section 450'] charges=[] 22.7s
+  76/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed before projector CPU offload retry: llama-server reported out-of-memory during startup: ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 805306368\\nggml_backend_buft_alloc_buffer_n_default: faile gold=['Section 149'] charges=[] 8.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.39it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 414.46it/s]
+  77/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed after projector CPU offload retry: llama-server reported out-of-memory during startup: ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 167772160\\nggml_backend_buft_alloc_buffer_n_default: failed gold=['Section 498A'] charges=[] 22.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.62it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 430.24it/s]
+  78/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed after projector CPU offload retry: llama-server process has terminated: exit status 1: ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 2033784320\\nggml_backend_buft_alloc_buffer_n_default: faile gold=['Section 109', 'Section 4', 'Section 420', 'Section 465', 'Section 471'] charges=[] 18.6s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:03,  6.04it/s]
