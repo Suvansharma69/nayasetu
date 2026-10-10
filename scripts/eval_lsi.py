@@ -32,6 +32,25 @@ from src.retrieval import embedder, store  # noqa: E402
 PUBLISHED_BEST = {"LeSICiN": 28.08, "Hier. InLegalBERT": 26.23, "Hier. LegalBERT": 21.74}
 
 
+def free_ram_gb():
+    """Available physical RAM in GB (Windows), or None where it cannot be read."""
+    import ctypes
+
+    class MEMORYSTATUSEX(ctypes.Structure):
+        _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong),
+                    ("ullTotalPhys", ctypes.c_ulonglong), ("ullAvailPhys", ctypes.c_ulonglong),
+                    ("ullTotalPageFile", ctypes.c_ulonglong), ("ullAvailPageFile", ctypes.c_ulonglong),
+                    ("ullTotalVirtual", ctypes.c_ulonglong), ("ullAvailVirtual", ctypes.c_ulonglong),
+                    ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
+    try:
+        m = MEMORYSTATUSEX(dwLength=ctypes.sizeof(MEMORYSTATUSEX))
+        if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(m)):
+            return None
+        return m.ullAvailPhys / 2**30
+    except (AttributeError, OSError):
+        return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", choices=["dev", "test"], required=True)
@@ -39,6 +58,11 @@ def main():
     ap.add_argument("--seed", type=int, default=20260927)
     ap.add_argument("--tag", default="", help="suffix for the output files, so a changed "
                     "pipeline is scored into its own file instead of resuming into the baseline's")
+    ap.add_argument("--max-new", type=int, default=0,
+                    help="stop after this many documents (0 = no limit), so a wrapper can "
+                    "restart Ollama between batches")
+    ap.add_argument("--min-free-gb", type=float, default=2.0,
+                    help="stop before a document if less physical RAM than this is free")
     args = ap.parse_args()
     stem = f"iltur_lsi_{args.split}_{args.n}" + (f"_{args.tag}" if args.tag else "")
 
@@ -52,10 +76,22 @@ def main():
           f"{len(done)} already done", flush=True)
 
     g, cli = cg.load(), store.client()
+    stopped, ran = None, 0
     with out.open("a", encoding="utf-8") as fh:
         for i, r in enumerate(rows, 1):
             if r["id"] in done:
                 continue
+            # 2026-10-10: once Ollama starts failing to load, every further attempt
+            # leaves memory behind, and a run that kept going froze the laptop. Stop
+            # instead; run_lsi_safe.bat restarts Ollama and resumes.
+            if args.max_new and ran >= args.max_new:
+                stopped = f"batch of {args.max_new} done"
+                break
+            free = free_ram_gb()
+            if free is not None and free < args.min_free_gb:
+                stopped = f"only {free:.1f} GB RAM free"
+                break
+            ran += 1
             t = time.perf_counter()
             try:
                 res = pipeline.run(r["facts"], lsi.IPC_ERA_DATE, g=g, cli=cli)
@@ -80,7 +116,13 @@ def main():
             fh.flush()
             print(f"{i:4}/{len(rows)} {rec['status']:<14} gold={rec['gold']} charges={rec['charges']} "
                   f"{rec['seconds']}s", flush=True)
+            if rec["status"].startswith("error"):
+                stopped = "an error (retried on the next run)"
+                break
     embedder.free()
+    if stopped:
+        print(f"STOPPED EARLY: {stopped}. Re-run to resume.", flush=True)
+        sys.exit(3)
 
     results = {r["id"]: r for r in lsi.read_results(out)}
     recs = [results[r["id"]] for r in rows if r["id"] in results]
