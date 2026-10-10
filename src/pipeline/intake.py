@@ -23,6 +23,8 @@ from __future__ import annotations
 
 import re
 
+from . import ablation
+
 MARKERS = [
     r"\blearned (?:senior )?counsel", r"\bpetitioner", r"\bopposite part", r"\bbail\b",
     r"\banticipatory", r"\bP\.\s?S\.?\s?Case", r"\bpolice station\b", r"\bF\.?I\.?R\b", r"\bCr\.?\s?P\.?\s?C",
@@ -58,6 +60,25 @@ SYSTEM = (
     "then leave alleged_facts empty."
 )
 
+# Past-tense verbs that only describe an act done to someone. A "no facts" answer
+# is overruled when the text contains one (`act_words`). Measured on IL-TUR LSI
+# dev, 2026-10-10: the intake model called an abduction-and-assault complaint
+# (522373), an impersonated surety (277167) and a shooting (1635419) "no facts".
+# Kept to verbs: nouns such as "murder" or "the injured" name the case in bail
+# orders that state no allegation, and "detained" alone is preventive detention.
+_ACTS = re.compile(
+    r"\b(?:assaulted|abducted|kidnapped|murdered|killed|shot|stabbed|attacked|raped|molested"
+    r"|threatened|cheated|impersonated|forged|stole|stolen|snatched|robbed|looted|extorted"
+    r"|poisoned|strangled|misappropriated|embezzled|beat|beaten"
+    r"|(?:illegally|wrongfully)\s+(?:detained|confined)|set\s+(?:fire|ablaze)"
+    r"|demanded\s+(?:\w+\s+){0,2}dowry)\b", re.I)
+
+
+def act_words(text):
+    """The act verbs found in the text (empty when it describes no act)."""
+    return sorted({m.group(0).lower() for m in _ACTS.finditer(text or "")})
+
+
 _WORD = re.compile(r"[a-z]{4,}")
 _STOP = {"that", "with", "from", "this", "were", "have", "been", "they", "their", "which", "when",
          "after", "into", "also", "there", "against", "allegedly", "alleged", "accused", "complainant"}
@@ -90,6 +111,11 @@ def extract(text, llm):
     # "No facts" only when the flag AND an empty extraction agree: a single
     # boolean never erases the rest of the answer (Known Gotchas, 2026-09-27).
     if reply.get("facts_stated") is False and len(facts) < 20:
+        acts = [] if ablation.off("actveto") else act_words(text)
+        if acts:
+            return {"facts": text, "extracted": False,
+                    "why": f"no facts extracted, but the text describes an act ({', '.join(acts[:3])}); "
+                           "original used"}
         return {"facts": text, "extracted": False, "no_facts": True,
                 "why": "the text states no alleged facts, only procedure"}
     if len(facts) < 20:

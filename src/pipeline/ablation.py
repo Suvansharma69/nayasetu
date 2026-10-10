@@ -21,6 +21,12 @@ PRAMANA_ABLATE is a comma list of changes to switch OFF (default: none):
                    (inferences from conduct allowed)
     subsection     Node 2 keeps the model's own sub-section (109(2)) instead of citing
                    the verified section; rule-chosen sub-sections are kept either way
+    nofacts        a court order the intake finds fact-free is NOT declined
+    actveto        intake's "no facts" is NOT overruled when the text names an act
+                   ("assaulted", "abducted"; intake.act_words)
+    companion      Node 1 is NOT asked about other hurt, threats, insult and obscene
+                   words, so 323/506/504/294 (BNS 115/351/352/296) are not derived
+                   from them; see offence_rules.companion_rules
 
 Used by the dev-set diagnosis of 2026-09-29, after the held-out broad-coverage
 set showed the hardening pass had not generalised. Never set in production.
@@ -30,7 +36,7 @@ from __future__ import annotations
 import os
 
 KNOWN = {"profile", "exclude", "chargeability", "judge", "union", "dual", "punish", "pair", "intake", "lesser",
-         "injury", "prima_facie", "subsection", "nofacts"}
+         "injury", "prima_facie", "subsection", "nofacts", "actveto", "companion"}
 
 
 def off(name):

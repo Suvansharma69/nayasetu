@@ -37,11 +37,14 @@ def main():
     ap.add_argument("--split", choices=["dev", "test"], required=True)
     ap.add_argument("--n", type=int, required=True)
     ap.add_argument("--seed", type=int, default=20260927)
+    ap.add_argument("--tag", default="", help="suffix for the output files, so a changed "
+                    "pipeline is scored into its own file instead of resuming into the baseline's")
     args = ap.parse_args()
+    stem = f"iltur_lsi_{args.split}_{args.n}" + (f"_{args.tag}" if args.tag else "")
 
     rows = lsi.sample(lsi.load(args.split), args.n, args.seed)
     labels = sorted(lsi.label_names().values())
-    out = ROOT / "docs" / f"iltur_lsi_{args.split}_{args.n}.jsonl"
+    out = ROOT / "docs" / f"{stem}.jsonl"
     # an error (e.g. Ollama failing to start) is retried on a re-run; the new record
     # is appended and wins below, since `results` keeps the last record per id
     done = {r["id"] for r in lsi.read_results(out) if not r["status"].startswith("error")}
@@ -85,6 +88,7 @@ def main():
     chargeable_labels = [l for l in labels
                          if chargeability.chargeable("ipc", lsi.base_section(l) or "")]
     summary = {"model": llm.model(), "split": args.split, "n": len(recs), "seed": args.seed,
+               "tag": args.tag, "ablate": os.environ.get("PRAMANA_ABLATE", ""),
                "published_best_macro_f1": PUBLISHED_BEST,
                "errors": sum(r["status"].startswith("error") for r in recs)}
     for source in ("charges", "verified"):
@@ -102,7 +106,7 @@ def main():
               f"micro P/R/F1 {100 * m['micro_precision']:.1f}/{100 * m['micro_recall']:.1f}/"
               f"{100 * m['micro_f1']:.1f}  chargeable-labels macro-F1 {100 * mc['macro_f1_supported']:.2f}")
     print(f"published best macro-F1: {PUBLISHED_BEST}")
-    (ROOT / "docs" / f"iltur_lsi_{args.split}_{args.n}_summary.json").write_text(
+    (ROOT / "docs" / f"{stem}_summary.json").write_text(
         json.dumps(summary, indent=1), encoding="utf-8")
 
 

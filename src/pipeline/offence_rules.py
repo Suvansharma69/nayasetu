@@ -1,6 +1,7 @@
 r"""Deterministic offence rules, read off the structure of the codes themselves.
 
-Three rules, each switchable for ablation:
+Four rules, each switchable for ablation (the fourth, `companion`, is
+described at companion_rules):
 
 * Lesser-included offences (`lesser`). When an aggravated form of an offence is
   charged AND Node 2b supports it, the plain form is redundant beside it: IPC
@@ -62,6 +63,8 @@ def included_in(era, verified, supported):
         lesser = table.get(g.get("subsection") or "", table.get(g["section"], set()))
         for v in verified:
             k = (v["section"], v.get("subsection"))
+            if v.get("separate_act"):
+                continue        # hurt to another person: a charge of its own
             if k != gk and v["section"] in lesser and k not in out:
                 out[k] = f"{era.upper()} {g.get('subsection') or g['section']}"
     return out
@@ -145,6 +148,76 @@ def grievous_consistency(era, verified, records, profile):
             out[(v["section"], v.get("subsection"))] = (
                 f"rule: the judge accepted every other ingredient for {era.upper()} {twin}, whose text is "
                 f"the same but for grievous hurt, and the facts report grievous hurt")
+    return out
+
+
+# --- companion offences ----------------------------------------------------------
+#
+# Measured on IL-TUR LSI dev, 2026-10-10 (docs/evaluation_results.md Section 6):
+# the commonest gold sections are the minor ones that ride beside the main
+# charge -- IPC 323 in 25 of 100 documents, 506 in 23, 294 in 12, 504 in 11 --
+# and Node 1's candidate list held 504 0/10 times, 294 0/7, 323 4/15 (never
+# proposed). Retrieval ranks the grave sections first (precedent votes), and the
+# injury rule names only the WORST harm. So Node 1 reports these facts and a rule
+# maps them to the section, which Node 2 verifies like any other proposal.
+# Texts read from the ingested corpus: IPC 294 = BNS 296 (obscene acts and
+# songs), IPC 504 = BNS 352 (intentional insult), IPC 506 = BNS 351(2), and
+# BNS 351(3) for a threat of death, grievous hurt or destruction by fire (IPC 506
+# has both limbs in one section), IPC 323 = BNS 115(2).
+
+THREAT_LEVELS = ["none", "other harm", "death or grievous hurt"]
+COMPANION_FIELDS = ("other_hurt", "threat", "insult", "obscene_in_public")
+COMPANION_SCHEMA = {
+    "other_hurt": {"type": "boolean"},
+    "threat": {"type": "string", "enum": THREAT_LEVELS},
+    "insult": {"type": "boolean"},
+    "obscene_in_public": {"type": "boolean"},
+}
+COMPANION_SECTIONS = {
+    "ipc": {"other_hurt": "IPC 323", ("threat", "other harm"): "IPC 506",
+            ("threat", "death or grievous hurt"): "IPC 506", "insult": "IPC 504",
+            "obscene_in_public": "IPC 294"},
+    "bns": {"other_hurt": "BNS 115(2)", ("threat", "other harm"): "BNS 351(2)",
+            ("threat", "death or grievous hurt"): "BNS 351(3)", "insult": "BNS 352",
+            "obscene_in_public": "BNS 296"},
+}
+
+
+def companion_prompt():
+    return (
+        "- other_hurt: true if, besides the most serious harm above, the accused also caused bodily pain "
+        "to ANOTHER person or by a SEPARATE act (e.g. others in the family were beaten with hands or "
+        "sticks). False if there was only one injury or one victim.\n"
+        "- threat: did the accused threaten anyone? \"none\"; \"death or grievous hurt\" (a threat to "
+        "kill, maim or burn property); or \"other harm\" (any other threat to the person, reputation or "
+        "property).\n"
+        "- insult: true if the accused intentionally insulted or abused someone (e.g. filthy abuse), in a "
+        "way likely to provoke a breach of the peace.\n"
+        "- obscene_in_public: true if the accused uttered obscene words or did an obscene act in or near "
+        "a public place, to the annoyance of others.")
+
+
+def companion_rules(era, profile):
+    """Rule proposals for the companion offences the profile reports, in a fixed
+    order. `separate_act` marks the 323 for another person or act: it is not
+    absorbed into 324/325/326 by `included_in`, which is about ONE act."""
+    if ablation.off("companion") or not profile:
+        return []
+    table = COMPANION_SECTIONS.get(era, {})
+    out = []
+
+    def add(raw, why, **extra):
+        out.append({"raw": raw, "reason": f"rule: {why}", "round": 0, "source": "rule", **extra})
+
+    if profile.get("other_hurt") is True:
+        add(table["other_hurt"], "hurt caused to another person or by a separate act", separate_act=True)
+    threat = profile.get("threat")
+    if threat in ("other harm", "death or grievous hurt"):
+        add(table[("threat", threat)], f"the accused threatened {threat}")
+    if profile.get("insult") is True:
+        add(table["insult"], "intentional insult likely to provoke a breach of the peace")
+    if profile.get("obscene_in_public") is True:
+        add(table["obscene_in_public"], "obscene words or act in or near a public place")
     return out
 
 

@@ -100,3 +100,28 @@ def test_no_facts_switch_restores_the_old_behaviour(g, scripted, monkeypatch):
     out = graph.run(PROCEDURE_ONLY, "2011-05-01", llm=llm, g=g, retrieve=lambda f, era: [],
                     sufficient=lambda f, era: (True, {}), check_applicability=False)
     assert (out.get("guardrail") or {}).get("reason") != "no_facts_stated"
+
+
+ABDUCTION = ("Heard learned counsel for the appellants and the respondent. One complainant lodged a "
+             "complaint that the appellants had gathered dangerous weapons, abducted the complainant and "
+             "assaulted him. The police registered offences and the appellants were granted bail.")
+
+
+def test_act_words_find_acts_not_case_names():
+    assert intake.act_words(ABDUCTION) == ["abducted", "assaulted"]
+    assert intake.act_words(PROCEDURE_ONLY) == []
+    # nouns naming the case and preventive detention are not acts
+    assert intake.act_words("Bail in a murder case; the injured was examined; the detenu was detained.") == []
+    assert intake.act_words("He demanded more dowry and was illegally detained.") == \
+        ["demanded more dowry", "illegally detained"]
+
+
+def test_a_no_facts_answer_is_overruled_when_the_text_names_an_act():
+    out = intake.extract(ABDUCTION, lambda m, s: {"facts_stated": False, "alleged_facts": ""})
+    assert not out.get("no_facts") and out["facts"] == ABDUCTION and "abducted" in out["why"]
+
+
+def test_act_veto_switch(monkeypatch):
+    monkeypatch.setenv("PRAMANA_ABLATE", "actveto")
+    out = intake.extract(ABDUCTION, lambda m, s: {"facts_stated": False, "alleged_facts": ""})
+    assert out["no_facts"]

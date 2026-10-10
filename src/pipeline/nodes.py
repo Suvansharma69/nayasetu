@@ -147,9 +147,18 @@ def proposal_schema():
     # for the same reason: commit to the facts before naming sections.
     props = {k: v for k, v in PROPOSAL_SCHEMA["properties"].items() if k != "sections"}
     props.update(offence_rules.INJURY_SCHEMA)
+    extra = list(offence_rules.INJURY_FIELDS)
+    if _companion_on():
+        props.update(offence_rules.COMPANION_SCHEMA)
+        extra += list(offence_rules.COMPANION_FIELDS)
     props["sections"] = PROPOSAL_SCHEMA["properties"]["sections"]
     return {"type": "object", "properties": props,
-            "required": PROPOSAL_SCHEMA["required"][:-1] + list(offence_rules.INJURY_FIELDS) + ["sections"]}
+            "required": PROPOSAL_SCHEMA["required"][:-1] + extra + ["sections"]}
+
+
+def _companion_on():
+    # other_hurt is defined against the injury answer, so it needs the injury fields
+    return not (ablation.off("profile") or ablation.off("injury") or ablation.off("companion"))
 
 
 def _code_short(era):
@@ -179,6 +188,7 @@ def _system_prompt(era):
         f"{MAX_PROPOSALS - 2}, most important first."
         + ("" if ablation.off("profile") else "\n" + _PROFILE_PROMPT)
         + ("" if ablation.off("profile") or ablation.off("injury") else "\n" + offence_rules.injury_prompt(era))
+        + ("\n" + offence_rules.companion_prompt() if _companion_on() else "")
     )
 
 
@@ -254,7 +264,8 @@ def statute_identifier(state, llm):
     reply = llm(build_messages(state), proposal_schema())
     update = {"retry_count": rnd}
     if not is_retry and not ablation.off("profile"):
-        profile = {k: reply.get(k) for k in PROFILE_FIELDS + offence_rules.INJURY_FIELDS}
+        profile = {k: reply.get(k) for k in
+                   PROFILE_FIELDS + offence_rules.INJURY_FIELDS + offence_rules.COMPANION_FIELDS}
         update["facts_profile"] = profile
         if profile.get("discloses_offence") is False:
             # The model may NOT decline a case. Missing an offence is this
@@ -293,6 +304,8 @@ def statute_identifier(state, llm):
     if not is_retry and not ablation.off("profile"):
         proposals += liability_rule(state["era"], update["facts_profile"], proposals)
         proposals = add_injury_rule(state["era"], update["facts_profile"], proposals)
+        if _companion_on():
+            proposals = add_companion_rules(state["era"], update["facts_profile"], proposals)
     update["candidate_sections"] = state["candidate_sections"] + proposals
     return update
 
@@ -365,6 +378,23 @@ def add_injury_rule(era, profile, proposals):
     return proposals + [rule]
 
 
+def add_companion_rules(era, profile, proposals):
+    """Append the companion-offence proposals (offence_rules.companion_rules) the
+    model did not already name. A section the model already proposed is left as
+    the model's -- except that the separate-act mark is carried onto its 323, so
+    an explicit second victim is never absorbed into the graver hurt."""
+    out = list(proposals)
+    for rule in offence_rules.companion_rules(era, profile):
+        t = parse_citation(rule["raw"])[0]
+        same = [i for i, p in enumerate(out)
+                if any(q["section"] == t["section"] for q in parse_citation(p["raw"]))]
+        if not same:
+            out.append(rule)
+        elif rule.get("separate_act"):
+            out[same[0]] = {**out[same[0]], "separate_act": True}
+    return out
+
+
 # --- Node 2 -------------------------------------------------------------------
 
 def _title(g, code, sec):
@@ -410,6 +440,8 @@ def check(g, era, proposal):
     """Verify one proposal. Returns (verified entries, unconfirmed entries)."""
     code = _code_short(era)
     base = {k: proposal[k] for k in ("raw", "reason", "round")}
+    if proposal.get("separate_act"):
+        base["separate_act"] = True
     parsed = parse_citation(proposal["raw"])
     if not parsed:
         return [], [{**base, "section": None, "subsection": None, "code_named": None,
