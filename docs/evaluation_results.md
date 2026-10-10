@@ -92,9 +92,29 @@ Hand-written by Claude, not reviewed by a lawyer. Each held-out set was written 
 | held-out 5 | not run |
 | broad coverage | n=19  recall 16/19  precision 28/41 = 68%  doubted set aside 28/41 = 68%  sections/case 2.2  false declines 1 |
 
+## 6. IL-TUR Legal Statute Identification, dev split (2026-10-10)
+
+The published benchmark, now that access was granted: 100 documents sampled from the LSI dev split (seed 20260927), the full pipeline as it runs for a user, with the router given an IPC-era date because the benchmark has none (`scripts/eval_lsi.py`, `src/eval/lsi.py`; per-document records in `docs/iltur_lsi_dev_100.jsonl`, summary in `..._summary.json`). Decisions may be made on this split; the test split is still unrun.
+
+| prediction | macro-F1, all 100 labels | macro-F1, 84 labels with support (95% CI) | micro P / R / F1 |
+|---|---|---|---|
+| `charges` (shown to the user) | **9.8** | 11.6 (8.6-14.3) | 29 / 17 / 21 |
+| `verified` (before Node 2b) | 10.0 | 11.9 (8.9-14.8) | 30 / 17 / 22 |
+| published best (supervised, trained on the 42K-document train split) | **28.1** (LeSICiN), 26.2 (Hier. InLegalBERT), 21.7 (Hier. LegalBERT) | | |
+
+**The pipeline is far below the published state of the art on this benchmark.** The baselines are supervised on IL-TUR's own label conventions; Pramana is zero-shot (retrieval + a 4B local model, no fine-tuning by design), so the gap is expected to be large. It is not explained by the declines: on the 70 documents where something was charged, macro-F1 over all labels is 11.6.
+
+Where it goes:
+
+- **30/100 documents got no charge.** 21 were declined by `nofacts`, 9 had no proposals. Read one by one, ~21-25 state no allegation at all (bail conditions, adjournments, compromise recorded, sentence suspension; every section number is masked as `<SECTION>`, so the labels are not recoverable from the text). About 5 were real facts declined: 522373 (abduction and assault by armed men, illegal detention), 277167 (false identification of an impersonated surety), 1635419 (a murder - "caught and shot" - inside an acquittal appeal), 958536 (detention to extort Rs 5 lakh), 132732893 (land-sale MOU, alleged cheating); 69243105, 35119048, 125821001 and 1656849 are borderline (a one-line allegation). So `nofacts` has a false-decline rate worth fixing, but it is not where most of the score is lost.
+- **Minor companion offences are almost never in Node 1's candidate list.** Across the 70 charged documents: 504 (intentional insult) in the list 0/10 times, 294 (obscenity) 0/7, 323 (simple hurt) 4/15 and proposed 0 times, 324 (hurt by dangerous weapon) 9/14 but proposed once, 506 (criminal intimidation) 6/15. These are the most frequent gold labels (323: 25 of 100 documents, 506: 23). Gold sections in the candidate list: 99/290 (34%).
+- **Over-charging up the gravity scale persists**: the commonest wrong charges are 34 (25), 307 (16), 326 (11), 148 (8), 302 (7). Same pattern as the precedent-vote popularity prior in Phase 2 and the "threat to kill charged as attempt to murder" error.
+- **Label noise is real but small**: ~28 of 430 gold labels (7%) are CrPC numbers filed as IPC labels (482, 438, 389, 173, 164, 161, 156, 155, 313), and one smoke document's gold 498A is plainly wrong (fake-currency facts). IPC 2-5 and 13 are labels but are never chargeable; excluding them changes macro-F1 by 0.3.
+- 3 documents first failed on Ollama running out of VRAM; they were re-run (the runner now retries errors), so the table has 0 errors.
+
 ## What this does and does not show
 
 - **The citation check holds:** 20 invented section numbers were caught and 0 reached the charges. With retrieval context the model proposed no invented numbers at all; from memory, on the BNS, most of its numbers were IPC numbers (420, 378-383, 465-468), the renumbering trap the graph check exists for.
 - **On unseen real court orders the system is weak to middling:** a right section is charged in 12/30 cases (40%) on the first sample and 60-65% on the second (Section 4), against 60-100% on the hand-written fixtures. The spread between two samples of the same set shows how wide the uncertainty is at these sizes. The input is part of the gap (procedural orders, not fact statements; Section 2); the intake step (Section 4) removes most of the procedural charges it caused, and precision is the rest.
-- **Not shown: state of the art.** There is no published baseline on this set, IL-TUR could not be used, and prior case retrieval is not evaluated.
+- **Not state of the art on statute identification.** On IL-TUR LSI (Section 6) macro-F1 is 9.8 against a supervised best of 28.1. Prior case retrieval is not evaluated.
 - **Weak point on every set: precision** (extra sections that exist but do not apply).
