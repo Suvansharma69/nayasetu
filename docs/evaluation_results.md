@@ -135,7 +135,7 @@ The fix for the second bullet above: Node 1 also reports other hurt / threat / i
 - **The LSI gains are the rule's.** Node 1 itself almost never writes the code prefix (31 of 359 baseline proposals); the rule writes "IPC 506". Every gold 506/323 hit that only the companion run has carries that prefix (6 of 6).
 - **The dev precision loss is NOT the rule's.** On the dev cases that gained charges (2, 9, 15) the profile reports no threat, insult or other hurt, so the rule proposed nothing. Node 1 itself proposed more: case 15 went from 4 to 7 charges (BNS 118, 122, 309, 351 added), and case 9 added 317. Both companion runs gave identical charges on cases 9 and 15, so this is deterministic, not run-to-run noise. Asking "was there a threat? an insult?" inside the same structured call that then lists sections primes the model to list more.
 
-**Next:** move the four companion questions out of Node 1's call into a separate facts-only call (no candidate list, no sections), so Node 1's prompt is byte-identical to the baseline and only the rule's proposals are added. Then re-run dev twice and LSI once under the same merge rule.
+**Next (implemented 2026-10-11, not yet run):** the four companion questions now go in a separate facts-only call, `nodes.companion_profile` (no candidate list, no sections), so Node 1's prompt, schema and messages are byte-identical to the pre-companion baseline (checked against `6895570`) and only the rule's proposals are added. `scripts/run_companion_split.bat` re-runs dev twice and LSI once; its merge rule is fixed in its header.
 
 ## What this does and does not show
 

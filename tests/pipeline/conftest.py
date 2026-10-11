@@ -54,6 +54,7 @@ class ScriptedLLM:
         self.rounds = list(rounds)
         self.calls = []
         self.assess_calls = []
+        self.companion_calls = []
         self.profile = profile or {}
         self.assess = assess or {}
 
@@ -64,6 +65,10 @@ class ScriptedLLM:
             facts = messages[-1]["content"].split("Facts:\n", 1)[1].split("\n\nSections:", 1)[0]
             default = {"facts_quotes": [facts[:30]], "missing_ingredient": "", "applies": True}
             return {"assessments": [{"section": r, **self.assess.get(r, default)} for r in refs]}
+        if "sections" not in schema["properties"] and "threat" in schema["properties"]:
+            # the separate companion call (nodes.companion_profile)
+            self.companion_calls.append(messages)
+            return {k: self.profile.get(k) for k in schema["properties"]}
         self.calls.append(messages)
         secs = self.rounds[min(len(self.calls) - 1, len(self.rounds) - 1)]
         return {**self.profile, "sections": [{"section": s, "reason": "r"} for s in secs]}

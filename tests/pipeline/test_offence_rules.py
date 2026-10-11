@@ -195,13 +195,43 @@ def test_separate_act_survives_node_2(g):
     assert ok[0]["subsection"] == "115(2)" and ok[0]["separate_act"]   # rule sub-section kept
 
 
-def test_companion_schema_and_switch(monkeypatch):
+def test_companion_questions_are_not_in_node1s_call():
+    # 2026-10-11: inside Node 1's call they primed it to name more sections
+    # (dev precision 41% -> 32-33%); they are asked in a call of their own
     s = nodes.proposal_schema()
-    keys = list(s["properties"])
-    assert all(keys.index(k) < keys.index("sections") for k in offence_rules.COMPANION_FIELDS)
-    assert set(offence_rules.COMPANION_FIELDS) <= set(s["required"])
+    assert not set(offence_rules.COMPANION_FIELDS) & set(s["properties"])
+    for era in ("ipc", "bns"):
+        assert "obscene" not in nodes._system_prompt(era)
+    c = offence_rules.COMPANION_CALL_SCHEMA
+    assert set(c["properties"]) == set(c["required"]) == set(offence_rules.COMPANION_FIELDS)
+    assert "sections" not in c["properties"]
+
+
+def _node1_state(facts="A beat B with a stick and threatened to kill him."):
+    return {"case_facts": facts, "offence_date": "2023-01-01", "era": "ipc", "retrieved": [],
+            "candidate_sections": [], "verified_sections": [], "unconfirmed": [], "retry_count": 0}
+
+
+def test_companion_call_feeds_the_rule(scripted):
+    llm = scripted(["324"], profile={"discloses_offence": True, "injury": "hurt",
+                                     "threat": "death or grievous hurt", "insult": False,
+                                     "other_hurt": False, "obscene_in_public": False})
+    up = nodes.statute_identifier(_node1_state(), llm)
+    assert len(llm.calls) == 1 and len(llm.companion_calls) == 1
+    sent = llm.companion_calls[0]
+    assert "Retrieved candidate" not in sent[-1]["content"]          # facts only
+    assert "Most serious harm already recorded: hurt" in sent[-1]["content"]
+    assert up["facts_profile"]["threat"] == "death or grievous hurt"
+    assert [p["raw"] for p in up["candidate_sections"]][-1] == "IPC 506"
+
+
+def test_companion_switch(monkeypatch, scripted):
     monkeypatch.setenv("PRAMANA_ABLATE", "companion")
-    assert "threat" not in nodes.proposal_schema()["properties"]
+    llm = scripted(["324"], profile={"discloses_offence": True, "injury": "hurt", "threat": "other harm"})
+    up = nodes.statute_identifier(_node1_state(), llm)
+    assert not llm.companion_calls and "threat" not in up["facts_profile"]
     assert offence_rules.companion_rules("ipc", C(insult=True)) == []
     monkeypatch.setenv("PRAMANA_ABLATE", "injury")          # other_hurt is defined against the injury answer
-    assert "other_hurt" not in nodes.proposal_schema()["properties"]
+    llm = scripted(["324"])
+    nodes.statute_identifier(_node1_state(), llm)
+    assert not llm.companion_calls

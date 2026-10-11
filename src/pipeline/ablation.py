@@ -24,9 +24,10 @@ PRAMANA_ABLATE is a comma list of changes to switch OFF (default: none):
     nofacts        a court order the intake finds fact-free is NOT declined
     actveto        intake's "no facts" is NOT overruled when the text names an act
                    ("assaulted", "abducted"; intake.act_words)
-    companion      Node 1 is NOT asked about other hurt, threats, insult and obscene
-                   words, so 323/506/504/294 (BNS 115/351/352/296) are not derived
-                   from them; see offence_rules.companion_rules
+    companion      the separate companion call (nodes.companion_profile) is NOT made:
+                   no question about other hurt, threats, insult or obscene words,
+                   so 323/506/504/294 (BNS 115/351/352/296) are not derived from
+                   them; see offence_rules.companion_rules
 
 Used by the dev-set diagnosis of 2026-09-29, after the held-out broad-coverage
 set showed the hardening pass had not generalised. Never set in production.

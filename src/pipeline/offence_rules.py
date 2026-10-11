@@ -183,9 +183,22 @@ COMPANION_SECTIONS = {
 }
 
 
+COMPANION_CALL_SCHEMA = {"type": "object", "properties": COMPANION_SCHEMA,
+                         "required": list(COMPANION_FIELDS)}
+
+
+def companion_system_prompt():
+    """For the separate companion call (nodes.companion_profile). It names no
+    section: companion_rules maps the answers to sections."""
+    return (
+        "You assist an Indian criminal lawyer. Read the facts as a court reads a complaint: take "
+        "every allegation as true. Answer only these questions about what the facts allege, and do "
+        "not name any law or section.\n" + companion_prompt())
+
+
 def companion_prompt():
     return (
-        "- other_hurt: true if, besides the most serious harm above, the accused also caused bodily pain "
+        "- other_hurt: true if, besides the most serious harm already recorded, the accused also caused bodily pain "
         "to ANOTHER person or by a SEPARATE act (e.g. others in the family were beaten with hands or "
         "sticks). False if there was only one injury or one victim.\n"
         "- threat: did the accused threaten anyone? \"none\"; \"death or grievous hurt\" (a threat to "

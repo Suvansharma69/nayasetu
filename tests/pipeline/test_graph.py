@@ -295,6 +295,8 @@ def test_node1_union_of_two_candidate_orderings(g, monkeypatch):
         def __call__(self, messages, schema):
             if "assessments" in schema["properties"]:
                 return {"assessments": []}
+            if "sections" not in schema["properties"]:            # the companion call
+                return {}
             user = messages[1]["content"]
             self.prompts.append(user)
             first = "303" if user.find("BNS 303") < user.find("BNS 318") else "318"

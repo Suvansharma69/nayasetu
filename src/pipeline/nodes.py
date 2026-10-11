@@ -147,13 +147,9 @@ def proposal_schema():
     # for the same reason: commit to the facts before naming sections.
     props = {k: v for k, v in PROPOSAL_SCHEMA["properties"].items() if k != "sections"}
     props.update(offence_rules.INJURY_SCHEMA)
-    extra = list(offence_rules.INJURY_FIELDS)
-    if _companion_on():
-        props.update(offence_rules.COMPANION_SCHEMA)
-        extra += list(offence_rules.COMPANION_FIELDS)
     props["sections"] = PROPOSAL_SCHEMA["properties"]["sections"]
     return {"type": "object", "properties": props,
-            "required": PROPOSAL_SCHEMA["required"][:-1] + extra + ["sections"]}
+            "required": PROPOSAL_SCHEMA["required"][:-1] + list(offence_rules.INJURY_FIELDS) + ["sections"]}
 
 
 def _companion_on():
@@ -188,7 +184,6 @@ def _system_prompt(era):
         f"{MAX_PROPOSALS - 2}, most important first."
         + ("" if ablation.off("profile") else "\n" + _PROFILE_PROMPT)
         + ("" if ablation.off("profile") or ablation.off("injury") else "\n" + offence_rules.injury_prompt(era))
-        + ("\n" + offence_rules.companion_prompt() if _companion_on() else "")
     )
 
 
@@ -264,8 +259,9 @@ def statute_identifier(state, llm):
     reply = llm(build_messages(state), proposal_schema())
     update = {"retry_count": rnd}
     if not is_retry and not ablation.off("profile"):
-        profile = {k: reply.get(k) for k in
-                   PROFILE_FIELDS + offence_rules.INJURY_FIELDS + offence_rules.COMPANION_FIELDS}
+        profile = {k: reply.get(k) for k in PROFILE_FIELDS + offence_rules.INJURY_FIELDS}
+        if _companion_on():
+            profile.update(companion_profile(state, profile, llm))
         update["facts_profile"] = profile
         if profile.get("discloses_offence") is False:
             # The model may NOT decline a case. Missing an offence is this
@@ -376,6 +372,20 @@ def add_injury_rule(era, profile, proposals):
         if any(q["section"] == t["section"] for q in ps):
             return proposals[:i] + [rule] + proposals[i:]
     return proposals + [rule]
+
+
+def companion_profile(state, profile, llm):
+    """Ask about the companion offences in a call of their own: facts only, no
+    candidate list, no sections. Measured 2026-10-11 (docs/evaluation_results.md
+    6b): with these questions inside Node 1's own call the model named MORE
+    sections on cases where every answer was "no" (dev 15: 4 -> 7 charges, in
+    both runs) and dev precision fell 41% -> 32-33%. Asked separately, Node 1's
+    prompt is the baseline's and only the rule's proposals are added."""
+    user = (f"Facts:\n{state['case_facts']}\n\n"
+            f"Most serious harm already recorded: {profile.get('injury') or 'none'}")
+    reply = llm([{"role": "system", "content": offence_rules.companion_system_prompt()},
+                 {"role": "user", "content": user}], offence_rules.COMPANION_CALL_SCHEMA)
+    return {k: reply.get(k) for k in offence_rules.COMPANION_FIELDS}
 
 
 def add_companion_rules(era, profile, proposals):
