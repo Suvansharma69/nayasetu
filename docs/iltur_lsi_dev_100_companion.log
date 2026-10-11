@@ -133,4 +133,184 @@ model qwen3.5:4b  dev sample 100 (seed 20260927); 0 already done
   77/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed after projector CPU offload retry: llama-server reported out-of-memory during startup: ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 167772160\\nggml_backend_buft_alloc_buffer_n_default: failed gold=['Section 498A'] charges=[] 22.3s
 Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.62it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 430.24it/s]
   78/100 error: LLMError('Ollama returned 500: {"error":"llama-server startup failed after projector CPU offload retry: llama-server process has terminated: exit status 1: ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 2033784320\\nggml_backend_buft_alloc_buffer_n_default: faile gold=['Section 109', 'Section 4', 'Section 420', 'Section 465', 'Section 471'] charges=[] 18.6s
-Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:03,  6.04it/s]
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:03,  6.04it/s]model qwen3.5:4b  dev sample 100 (seed 20260927); 64 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.59it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 431.88it/s]
+[slow retrieve] judgments_pre2024: encode 24.3s, query 1.2s, free RAM 2.1 GB
+  63/100 ok             gold=['Section 302', 'Section 307'] charges=['302', '324', '304B', '323'] 152.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.36it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 411.53it/s]
+  64/100 ok             gold=['Section 420'] charges=['489B', '489C', '471'] 98.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.44it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 418.68it/s]
+  65/100 ok             gold=['Section 354', 'Section 506'] charges=['34', '211', '465', '120B', '468', '506'] 128.9s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.39it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 413.78it/s]
+  66/100 ok             gold=['Section 147', 'Section 148', 'Section 304', 'Section 307', 'Section 323', 'Section 324', 'Section 325', 'Section 332', 'Section 336', 'Section 34', 'Section 342', 'Section 427', 'Section 504', 'Section 506'] charges=['191', '193', '205'] 91.5s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.43it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 415.36it/s]
+Traceback (most recent call last):
+  File "D:\nayasetu\scripts\eval_lsi.py", line 114, in <module>
+    main()
+  File "D:\nayasetu\scripts\eval_lsi.py", line 61, in main
+    res = pipeline.run(r["facts"], lsi.IPC_ERA_DATE, g=g, cli=cli)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\src\pipeline\graph.py", line 147, in run
+    return _run_one(case_facts, offence_date, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\src\pipeline\graph.py", line 203, in _run_one
+    out = _run_core(taken["facts"], offence_date, llm=llm, g=g, cli=cli, retrieve=retrieve,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\src\pipeline\graph.py", line 296, in _run_core
+    final = graph.invoke(init)
+            ^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\langgraph\pregel\main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\langgraph\pregel\main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\langgraph\pregel\_runner.py", line 207, in tick
+    run_with_retry(
+  File "D:\nayasetu\venv\Lib\site-packages\langgraph\pregel\_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\langgraph\_internal\_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\src\pipeline\progress.py", line 91, in node
+    out = fn(state)
+          ^^^^^^^^^
+  File "D:\nayasetu\src\pipeline\applicability.py", line 199, in assess
+    recs = _assess_once({**state, "verified_sections": order}, llm, text_of)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\src\pipeline\applicability.py", line 234, in _assess_once
+    reply = llm(build_messages(state, text_of), SCHEMA)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\src\pipeline\llm.py", line 95, in chat_json
+    r = httpx.post(f"{host()}/api/chat", json=body, timeout=TIMEOUT_S)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpx\_api.py", line 304, in post
+    return request(
+           ^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpx\_api.py", line 109, in request
+    return client.request(
+           ^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "D:\nayasetu\venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "D:\nayasetu\venv\Lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpcore\_sync\http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\nayasetu\venv\Lib\site-packages\httpcore\_backends\sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+^Cmodel qwen3.5:4b  dev sample 100 (seed 20260927); 68 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.51it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.96it/s]
+  69/100 ok             gold=['Section 164', 'Section 302', 'Section 307', 'Section 34', 'Section 389', 'Section 392'] charges=['302', '307', '324', '193', '34', '149'] 171.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.50it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.60it/s]
+  70/100 ok             gold=['Section 279', 'Section 304A', 'Section 337'] charges=['338', '279'] 80.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.43it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 415.50it/s]
+  71/100 ok             gold=['Section 300', 'Section 302', 'Section 307', 'Section 313', 'Section 320', 'Section 323', 'Section 324', 'Section 326', 'Section 34', 'Section 342'] charges=['302', '307', '34'] 119.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.48it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 421.21it/s]
+  72/100 ok             gold=['Section 156', 'Section 34', 'Section 380', 'Section 436', 'Section 452', 'Section 457', 'Section 504', 'Section 506'] charges=['471', '468', '192'] 101.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.54it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 424.06it/s]
+  73/100 ok             gold=['Section 147', 'Section 294', 'Section 324', 'Section 325', 'Section 332', 'Section 353'] charges=['147', '353', '148', '34'] 93.7s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.41it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 416.36it/s]
+  74/100 ok             gold=['Section 107', 'Section 306'] charges=['306', '417', '404', '465'] 121.7s
+STOPPED EARLY: only 2.0 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 74 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.54it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.22it/s]
+  75/100 ok             gold=['Section 450'] charges=['489A', '470', '465', '471', '489C'] 101.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.49it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 418.87it/s]
+  76/100 ok             gold=['Section 149'] charges=['302', '149', '326', '148', '307'] 170.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.42it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 414.09it/s]
+  77/100 no_proposals   gold=['Section 498A'] charges=[] 29.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.50it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.21it/s]
+  78/100 ok             gold=['Section 109', 'Section 4', 'Section 420', 'Section 465', 'Section 471'] charges=['465', '423', '417', '34', '107'] 122.5s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.55it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 427.60it/s]
+  79/100 no_proposals   gold=['Section 294', 'Section 323', 'Section 34', 'Section 392', 'Section 452', 'Section 498A'] charges=[] 30.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.46it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 420.33it/s]
+  80/100 ok             gold=['Section 294(b)', 'Section 353', 'Section 506'] charges=['342', '506', '447', '392', '323'] 126.1s
+STOPPED EARLY: only 1.7 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 80 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.60it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 430.98it/s]
+  81/100 ok             gold=['Section 294', 'Section 323', 'Section 436', 'Section 506'] charges=['324', '498A', '354', '427', '506', '426', '504'] 145.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:07,  5.68it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 433.87it/s]
+  82/100 ok             gold=['Section 294'] charges=['323', '354', '506', '149', '324'] 170.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.48it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 420.63it/s]
+  83/100 ok             gold=['Section 120B', 'Section 406', 'Section 420'] charges=['406', '417'] 75.7s
+STOPPED EARLY: only 1.9 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 83 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.57it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 430.52it/s]
+  84/100 ok             gold=['Section 201', 'Section 302', 'Section 304', 'Section 304A', 'Section 304B', 'Section 306', 'Section 364', 'Section 498A'] charges=['302', '364A', '307', '120B', '34', '506'] 144.4s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.41it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 413.97it/s]
+  85/100 ok             gold=['Section 376'] charges=['376'] 52.4s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.47it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 421.95it/s]
+  86/100 ok             gold=['Section 161', 'Section 306', 'Section 498', 'Section 498A'] charges=['304B', '306', '498A', '506'] 111.7s
+  87/100 insufficient_data gold=['Section 147', 'Section 148', 'Section 149', 'Section 308', 'Section 323', 'Section 324', 'Section 325', 'Section 506'] charges=[] 4.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.44it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.64it/s]
+  88/100 ok             gold=['Section 34'] charges=['302', '34', '108', '307', '304', '149', '506'] 143.1s
+STOPPED EARLY: only 1.9 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 88 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.62it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 433.20it/s]
+  89/100 ok             gold=['Section 143', 'Section 186', 'Section 307', 'Section 332', 'Section 34', 'Section 353', 'Section 427'] charges=['342', '279'] 82.3s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.45it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 419.27it/s]
+  90/100 ok             gold=['Section 392', 'Section 397'] charges=['379', '392', '34'] 89.5s
+  91/100 insufficient_data gold=['Section 3', 'Section 342', 'Section 354'] charges=[] 4.1s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.55it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 425.62it/s]
+  92/100 ok             gold=['Section 229A'] charges=['392', '147', '34', '326'] 106.4s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.45it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 416.52it/s]
+  93/100 ok             gold=['Section 380', 'Section 457'] charges=['302', '396', '34', '148', '395', '143', '149'] 142.5s
+STOPPED EARLY: only 1.9 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 93 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.64it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 435.14it/s]
+  94/100 ok             gold=['Section 120B', 'Section 201', 'Section 302'] charges=['302', '364A'] 92.8s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:07,  5.74it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 441.23it/s]
+  95/100 ok             gold=['Section 323', 'Section 324', 'Section 341'] charges=['174'] 51.9s
+  96/100 insufficient_data gold=['Section 294(b)', 'Section 307', 'Section 323', 'Section 324', 'Section 336', 'Section 341', 'Section 506'] charges=[] 4.5s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.56it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 427.49it/s]
+  97/100 ok             gold=['Section 173', 'Section 323', 'Section 452', 'Section 506'] charges=['376', '34'] 80.8s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.42it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 417.27it/s]
+  98/100 ok             gold=['Section 155', 'Section 482'] charges=['412', '379', '406'] 95.5s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.53it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 425.28it/s]
+  99/100 ok             gold=['Section 193', 'Section 228'] charges=['153A'] 53.5s
+STOPPED EARLY: only 1.8 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 99 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.64it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 435.29it/s]
+ 100/100 ok             gold=['Section 395', 'Section 411'] charges=['379', '392', '506', '406', '120B', '34'] 183.7s
+
+[charges] macro-F1 11.95 (95% CI 9.27-14.76; 84 labels with support)  macro-F1 all-100 10.04  micro P/R/F1 32.2/19.3/24.1  chargeable-labels macro-F1 12.24
+
+[verified] macro-F1 12.06 (95% CI 9.38-14.92; 84 labels with support)  macro-F1 all-100 10.13  micro P/R/F1 32.1/19.8/24.5  chargeable-labels macro-F1 12.36
+published best macro-F1: {'LeSICiN': 28.08, 'Hier. InLegalBERT': 26.23, 'Hier. LegalBERT': 21.74}

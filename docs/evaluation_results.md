@@ -112,6 +112,31 @@ Where it goes:
 - **Label noise is real but small**: ~28 of 430 gold labels (7%) are CrPC numbers filed as IPC labels (482, 438, 389, 173, 164, 161, 156, 155, 313), and one smoke document's gold 498A is plainly wrong (fake-currency facts). IPC 2-5 and 13 are labels but are never chargeable; excluding them changes macro-F1 by 0.3.
 - 3 documents first failed on Ollama running out of VRAM; they were re-run (the runner now retries errors), so the table has 0 errors.
 
+### 6b. Companion-offence rule, branch `companion-offences` (2026-10-10/11) - NOT merged
+
+The fix for the second bullet above: Node 1 also reports other hurt / threat / insult / obscene words, and `offence_rules.companion_rules` proposes IPC 323/506/504/294 (BNS 115(2)/351(2)/351(3)/352/296) from those answers. Plus `actveto` (intake's "no facts" is overruled when the text names an act). Same 100 documents (`docs/iltur_lsi_dev_100_companion.jsonl`, 0 errors), finished by `scripts/run_companion_safe.bat`. Merge rule set beforehand: **LSI must improve without dev-fixture precision dropping.**
+
+| set | baseline | companion | |
+|---|---|---|---|
+| LSI, all 100, macro-F1 (84 labels) | 11.6 | 11.9 | paired bootstrap diff -1.1 .. +2.1 |
+| LSI, all 100, micro P / R / F1 | 29.2 / 16.5 / 21.1 | 32.2 / 19.3 / 24.1 | |
+| LSI, 65 docs both on Ollama 0.40.2, macro-F1 | 12.8 | 12.5 | paired diff -1.7 .. +2.1 |
+| LSI, same 65, micro F1 | 18.1 | 21.4 | |
+| LSI declines | 30 | 24 | |
+| LSI 506 / 323 / 504 / 294 hits | 4/23, 1/25, 0/11, 0/9 | 8/23, 2/25, 0/11, 0/9 | false positives 506: 6 -> 11, 504: 0 -> 3 |
+| dev fixtures, both on 0.40.2: recall | 14/15 | 14/15, 14/15 (two runs) | |
+| dev fixtures: green-card precision | **41%** (16/39) | **33%** (15/46), **32%** (15/47) | sections/case 2.6 -> 3.1 |
+
+(The version confound of 2026-10-10 is removed here: `textfix_dev_v040` is the companion-off dev run on 0.40.2.)
+
+**Verdict: fails its merge rule.** Micro precision and recall both rise on LSI, but macro-F1 does not move outside noise, and dev precision drops by 8-9 points in both companion runs.
+
+**Why, and the two halves come apart cleanly:**
+- **The LSI gains are the rule's.** Node 1 itself almost never writes the code prefix (31 of 359 baseline proposals); the rule writes "IPC 506". Every gold 506/323 hit that only the companion run has carries that prefix (6 of 6).
+- **The dev precision loss is NOT the rule's.** On the dev cases that gained charges (2, 9, 15) the profile reports no threat, insult or other hurt, so the rule proposed nothing. Node 1 itself proposed more: case 15 went from 4 to 7 charges (BNS 118, 122, 309, 351 added), and case 9 added 317. Both companion runs gave identical charges on cases 9 and 15, so this is deterministic, not run-to-run noise. Asking "was there a threat? an insult?" inside the same structured call that then lists sections primes the model to list more.
+
+**Next:** move the four companion questions out of Node 1's call into a separate facts-only call (no candidate list, no sections), so Node 1's prompt is byte-identical to the baseline and only the rule's proposals are added. Then re-run dev twice and LSI once under the same merge rule.
+
 ## What this does and does not show
 
 - **The citation check holds:** 20 invented section numbers were caught and 0 reached the charges. With retrieval context the model proposed no invented numbers at all; from memory, on the BNS, most of its numbers were IPC numbers (420, 378-383, 465-468), the renumbering trap the graph check exists for.
