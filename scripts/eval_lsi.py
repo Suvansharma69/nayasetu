@@ -4,7 +4,8 @@ r"""Score the pipeline on IL-TUR LSI (see src/eval/lsi.py for exactly how).
     --split test --n 1000   FROZEN: run once, after every decision is made
 
 Resumable: each document's result is appended to docs/iltur_lsi_<split>_<n>.jsonl
-as it finishes, and a re-run skips ids already there -- a 1,000-document run
+as it finishes, and a re-run skips ids already there (except errors, which are
+retried) -- a 1,000-document run
 takes ~12 h on this machine. The summary (with a bootstrap 95% CI) is printed
 and written to docs/iltur_lsi_<split>_<n>_summary.json.
 
@@ -41,7 +42,9 @@ def main():
     rows = lsi.sample(lsi.load(args.split), args.n, args.seed)
     labels = sorted(lsi.label_names().values())
     out = ROOT / "docs" / f"iltur_lsi_{args.split}_{args.n}.jsonl"
-    done = {r["id"] for r in lsi.read_results(out)}
+    # an error (e.g. Ollama failing to start) is retried on a re-run; the new record
+    # is appended and wins below, since `results` keeps the last record per id
+    done = {r["id"] for r in lsi.read_results(out) if not r["status"].startswith("error")}
     print(f"model {llm.model()}  {args.split} sample {len(rows)} (seed {args.seed}); "
           f"{len(done)} already done", flush=True)
 
@@ -53,11 +56,20 @@ def main():
             t = time.perf_counter()
             try:
                 res = pipeline.run(r["facts"], lsi.IPC_ERA_DATE, g=g, cli=cli)
+                st = res["state"]
+                pick = lambda xs, ks: [{k: x.get(k) for k in ks} for x in xs]  # noqa: E731
                 rec = {"id": r["id"], "gold": r["labels"], "status": res["status"],
-                       "verified": [v["section"] for v in res["state"]["verified_sections"]],
+                       "verified": [v["section"] for v in st["verified_sections"]],
                        "charges": [v["section"] for v in res.get("charges", [])],
-                       "retry_count": res["state"]["retry_count"],
-                       "seconds": round(time.perf_counter() - t, 1)}
+                       "retry_count": st["retry_count"],
+                       "seconds": round(time.perf_counter() - t, 1),
+                       # as in eval_phase6._record, so Phase 6's catch rate can be read off LSI too
+                       "chars": len(r["facts"]),
+                       "doubted": [d["section"] for d in res.get("doubted", [])],
+                       "candidates": pick(st["candidate_sections"], ("raw", "section", "round")),
+                       "unconfirmed": pick(st["unconfirmed"], ("raw", "section", "round", "why")),
+                       "list": [x["section"] for x in st.get("retrieved", [])],
+                       "intake": {k: (res.get("intake") or {}).get(k) for k in ("extracted", "why")}}
             except Exception as e:                  # recorded, never silently skipped
                 rec = {"id": r["id"], "gold": r["labels"], "status": f"error: {e!r}"[:300],
                        "verified": [], "charges": [], "seconds": round(time.perf_counter() - t, 1)}
