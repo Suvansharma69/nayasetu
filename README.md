@@ -11,24 +11,28 @@ Everything runs locally: BGE-M3 embeddings, ChromaDB, NetworkX and `qwen3.5:4b` 
 
 ## Demo
 
-Needs Ollama running with `qwen3.5:4b`, plus the built index, graph and outcomes table (see "Rebuild" below).
+Needs `qwen3.5:4b` pulled in Ollama, plus the built index, graph and outcomes table (see "Rebuild" below). The launchers start Ollama themselves if it is not running.
 
 ```
-run_demo.bat
+run_web.bat
 ```
 
-This starts the FastAPI backend (port 8000) and opens the Streamlit page. Four sample cases are in the sidebar; **Show saved result** opens their precomputed reports instantly. **Analyse** runs the live pipeline, about 2-3 minutes on a 4GB laptop GPU.
+This starts the backend on port 8000 and opens `http://127.0.0.1:8000/` in the browser. Describe the case in plain words; the offence date is read from the text (the page asks when it cannot tell). The pipeline diagram and section board update live as each stage really finishes. A live run takes about 1-3 minutes on a 4GB laptop GPU; the saved samples open instantly (`/#sample=<id>` links straight to one). The older Streamlit page is still available through `run_demo.bat`.
 
 | sample | what it shows |
 |---|---|
-| Motorcycle theft (BNS) | the worked example: BNS 303 verified; precedent comes from IPC 378/379 because no BNS theft case has reached an appeal yet |
-| Group assault (IPC) | common intention (s34) charged; rioting (147/148) and murder (302) marked **doubted**: rioting needs five or more persons, and no death occurred |
-| Fake job scam (IPC) | cheating (420) and forgery for cheating (468), with Supreme Court precedent |
+| Motorcycle theft (BNS) | the worked example: BNS 303 verified; precedent comes through IPC 379, because no BNS theft case has reached an appeal yet |
+| Group assault (IPC) | common intention (s34) and grievous hurt by a weapon (326) charged; rioting (148) **doubted** - it needs five or more persons, the facts show three; 324 shown as included in 326 |
+| Fake job scam (IPC) | cheating (420) and forgery for cheating (468); 417 shown as included in 420 |
+| OTP impersonation fraud (BNS) | cheating (318) and cheating by personation (319); forgery and stolen-property sections doubted, each with its reason |
+| Knife stabbing (BNS) | attempt to murder (109) and hurt by a dangerous weapon (118); culpable homicide (100) doubted - no death occurred |
 | Security deposit (civil) | no offence charged; a warning that the facts look civil, with the nearest sections listed for review only |
 
-How to read a report: **green** = verified in the citation graph and supported by the facts; **amber** = verified but the applicability check doubts it (the reason is shown); **red, struck through** = a citation the model proposed that the graph rejected.
+How to read a report: **verified** = in the citation graph and supported by the facts; **doubted** = verified, but the applicability check doubts it (the reason is shown); **struck through** = a citation the model proposed that the graph rejected.
 
-API: `POST /analyze {"facts": "...", "offence_date": "YYYY-MM-DD"}` and `GET /health`.
+Tools beside each report, all local: the bare text of any section; an IPC-BNS word diff (`/compare`); punishment and bail from the official First Schedules; PDF upload of an FIR or order; follow-up questions answered only from the report; precedent summaries; a printable research memo.
+
+API: `POST /analyze {"facts": "...", "offence_date": "YYYY-MM-DD"}`, `POST /jobs` + `GET /jobs/{id}` for live progress, `GET /health`.
 
 ## Rebuild
 
@@ -43,10 +47,12 @@ venv\Scripts\python.exe -m pytest tests -q
 
 ## Known limitations (MVP)
 
-- **Over-charging.** The model often proposes extra sections that exist but do not apply. The applicability check marks many of them as doubted, but not all, and it sometimes doubts a correct one. On held-out sets, about 40% of charged sections are relevant; the right section is charged in 60-67% of held-out cases (100% on the development set).
+- **The citation check holds; the choice of sections is the weak part.** No invented section number has reached a report in any evaluation. But the model often proposes extra sections that exist and do not apply: about 40% of charged sections are relevant on the development set, and fewer on real court orders. The applicability check marks many extras as doubted, not all.
+- **Below the state of the art on the standard benchmark.** On IL-TUR statute identification (100 dev documents) macro-F1 is 9.8, against 28.1 for the best supervised model, which is trained on that task; Pramana is not. Details in `docs/evaluation_results.md`, reproducible with `scripts/eval_lsi.py`.
+- **Works best on a statement of facts.** Pasted court orders are reduced to their allegations first; orders that state none are declined rather than charged.
 - **Analytics are appeal outcomes, not conviction rates.** Sentence ranges are not extracted.
 - **Legal labels and the IPC-BNS mapping were reviewed by Claude, not by a lawyer.**
-- **Not evaluated on IL-TUR yet.** Access to the dataset is pending.
-- **Speed.** About 2-3 minutes per case, because the 4GB GPU has to hand off between the embedder and the LLM.
+- **Runs are not perfectly repeatable.** The same facts can occasionally give a different extra section on a second run.
+- **Speed.** About 1-3 minutes per case, because the 4GB GPU hands off between the embedder and the LLM.
 
 Research aid only, not legal advice.
