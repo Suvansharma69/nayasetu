@@ -1,14 +1,14 @@
 @echo off
 rem Finishes step [3/3] of run_companion_split.bat only: IL-TUR LSI dev, tag
 rem companion_split, resuming from the documents already in
-rem docs\iltur_lsi_dev_100_companion_split.jsonl (71 of 100 on 2026-10-14).
+rem docs\iltur_lsi_dev_100_companion_split.jsonl (88 of 100 on 2026-10-14; the RAM guard usually stops a batch after one document, hence the cap of 30).
 rem The dev steps are done and scored (docs\companion_split.log) - not re-run.
 rem
 rem Refuses to run on any Ollama but 0.40.2: every run this result is compared
 rem with used 0.40.2, and the tray app has found 0.40.4 (2026-10-14). Do not
 rem accept that update until this finishes.
 rem
-rem Close Chrome / VS Code / Claude Code first. About 50 minutes. Safe to stop
+rem Close Chrome / VS Code / Claude Code first. About 30 minutes. Safe to stop
 rem with Ctrl+C and re-run.
 cd /d D:\nayasetu
 set HF_HUB_OFFLINE=1
@@ -26,8 +26,8 @@ echo IL-TUR LSI dev, batches of 8 - progress in %LSILOG%
 set /a TRIES=0
 :lsi
 set /a TRIES+=1
-if %TRIES% gtr 15 (
-    echo Gave up after 15 batches - tell Claude.
+if %TRIES% gtr 30 (
+    echo Gave up after 30 batches - tell Claude.
     goto end
 )
 call :restart_ollama
