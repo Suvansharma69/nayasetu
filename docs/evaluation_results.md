@@ -137,6 +137,29 @@ The fix for the second bullet above: Node 1 also reports other hurt / threat / i
 
 **Next (implemented 2026-10-11, not yet run):** the four companion questions now go in a separate facts-only call, `nodes.companion_profile` (no candidate list, no sections), so Node 1's prompt, schema and messages are byte-identical to the pre-companion baseline (checked against `6895570`) and only the rule's proposals are added. `scripts/run_companion_split.bat` re-runs dev twice and LSI once; its merge rule is fixed in its header.
 
+### 6c. Companion questions in a separate call (2026-10-11..14) - FAILS its merge rule, by one condition
+
+Same 100 documents (`docs/iltur_lsi_dev_100_companion_split.jsonl`, 0 errors; finished by `scripts/run_companion_split_lsi.bat`), all on Ollama 0.40.2. Merge rule, fixed in `run_companion_split.bat`'s header before the run: dev recall not below 14/15 and precision not below 39% in both runs; LSI micro-F1 up and macro-F1 not down, on all 100 and on docs 36-100.
+
+| set | baseline | companion (6b) | split | rule |
+|---|---|---|---|---|
+| dev recall | 14/15 | 14/15, 14/15 | **15/15, 14/15** | pass |
+| dev green-card precision | 41% (16/39) | 33%, 32% | **42% (17/40), 40% (16/40)** | pass |
+| dev sections/case | 2.6 | 3.1 | 2.7, 2.7 | |
+| LSI all 100, macro-F1 | 11.6 | 11.9 | **12.3** (paired diff -0.9 .. +2.4) | pass |
+| LSI all 100, micro P / R / F1 | 29.2 / 16.5 / 21.1 | 32.2 / 19.3 / 24.1 | 29.6 / 17.9 / **22.3** | pass |
+| LSI docs 36-100 (65), macro-F1 | 12.8 | 12.5 | **12.6** (paired diff -1.3 .. +1.4) | **FAIL** |
+| LSI docs 36-100, micro F1 | 18.1 | 21.4 | **19.8** | pass |
+| LSI declines | 30 | 24 | 25 | |
+| LSI 506 / 323 / 504 / 294 hits | 4/23, 1/25, 0/11, 0/9 | 8/23, 2/25, 0/11, 0/9 | 5/23, 4/25, 0/11, 1/9 | |
+| false positives 506 / 323 / 504 / 294 | 6 / 4 / 0 / 1 | 11 / 6 / 3 / 1 | 11 / 3 / 8 / 2 | |
+
+(Paired diffs: 1,000 bootstrap resamples of documents, split minus baseline. The baseline file holds repeated ids from retried errors; the last record per id is scored, in sample order.)
+
+**Verdict: not merged.** The dev regression of 6b is gone - moving the questions out of Node 1's call did what it was meant to - and micro-F1 rises on both LSI slices. But macro-F1 on the 65 documents both runs did on 0.40.2 is 0.2 lower, and the rule says "not down". The drop is far inside noise; so is the +0.7 on all 100. What this run shows is that the rule does no harm on dev and adds no measurable macro-F1 on LSI.
+
+**What the rule itself did** (proposals with the rule's "IPC " prefix, 18 documents): 506 correct 5 of 11, 323 3 of 5, 294 1 of 1, **504 0 of 8** (0 of 10 across both companion runs). The 504 limb only adds false positives. Dropping it would lift micro precision but cannot move macro-F1: 504's F1 is 0 either way. And macro-F1 over 84 labels is close to insensitive to a rule that targets four of them - the most the 506/323/294 hits could add is roughly +1 point, against run-to-run noise of the same size.
+
 ## What this does and does not show
 
 - **The citation check holds:** 20 invented section numbers were caught and 0 reached the charges. With retrieval context the model proposed no invented numbers at all; from memory, on the BNS, most of its numbers were IPC numbers (420, 378-383, 465-468), the renumbering trap the graph check exists for.

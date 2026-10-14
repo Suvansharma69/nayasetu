@@ -285,4 +285,41 @@ Traceback (most recent call last):
     return self._sock.recv(max_bytes)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^
 KeyboardInterrupt
-^C
+^Cmodel qwen3.5:4b  dev sample 100 (seed 20260927); 88 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:11,  5.43it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 418.45it/s]
+  89/100 ok             gold=['Section 143', 'Section 186', 'Section 307', 'Section 332', 'Section 34', 'Section 353', 'Section 427'] charges=['342'] 74.4s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.55it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 426.76it/s]
+  90/100 ok             gold=['Section 392', 'Section 397'] charges=['379', '392', '34'] 90.8s
+STOPPED EARLY: only 1.3 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 90 already done
+  91/100 insufficient_data gold=['Section 3', 'Section 342', 'Section 354'] charges=[] 10.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.56it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 427.40it/s]
+  92/100 ok             gold=['Section 229A'] charges=['392', '356', '143', '329', '34', '326'] 147.5s
+STOPPED EARLY: only 2.0 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 92 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.52it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 426.10it/s]
+  93/100 ok             gold=['Section 380', 'Section 457'] charges=['302', '396', '34', '148', '395', '143', '149'] 152.4s
+STOPPED EARLY: only 2.0 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 93 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.68it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 438.65it/s]
+  94/100 ok             gold=['Section 120B', 'Section 201', 'Section 302'] charges=['302', '194'] 103.8s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.64it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 430.52it/s]
+  95/100 no_proposals   gold=['Section 323', 'Section 324', 'Section 341'] charges=[] 30.5s
+STOPPED EARLY: only 1.9 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 95 already done
+  96/100 insufficient_data gold=['Section 294(b)', 'Section 307', 'Section 323', 'Section 324', 'Section 336', 'Section 341', 'Section 506'] charges=[] 10.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:09,  5.58it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 430.64it/s]
+  97/100 ok             gold=['Section 173', 'Section 323', 'Section 452', 'Section 506'] charges=['376', '34', '354', '325'] 111.0s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:08,  5.61it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 432.14it/s]
+  98/100 ok             gold=['Section 155', 'Section 482'] charges=['420', '379'] 71.7s
+STOPPED EARLY: only 1.8 GB RAM free. Re-run to resume.
+model qwen3.5:4b  dev sample 100 (seed 20260927); 98 already done
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.49it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 422.39it/s]
+  99/100 no_proposals   gold=['Section 193', 'Section 228'] charges=[] 39.2s
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/391 [00:00<01:10,  5.49it/s]Loading weights: 100%|##########| 391/391 [00:00<00:00, 423.60it/s]
+ 100/100 ok             gold=['Section 395', 'Section 411'] charges=['379', '392', '406', '384', '506', '413', '34'] 142.5s
+
+[charges] macro-F1 12.28 (95% CI 9.66-14.83; 84 labels with support)  macro-F1 all-100 10.31  micro P/R/F1 29.6/17.9/22.3  chargeable-labels macro-F1 12.58
+
+[verified] macro-F1 12.24 (95% CI 9.60-14.77; 84 labels with support)  macro-F1 all-100 10.28  micro P/R/F1 29.3/17.9/22.2  chargeable-labels macro-F1 12.54
+published best macro-F1: {'LeSICiN': 28.08, 'Hier. InLegalBERT': 26.23, 'Hier. LegalBERT': 21.74}
