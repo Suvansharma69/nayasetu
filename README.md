@@ -7,6 +7,8 @@ AI-assisted legal research for Indian criminal law. Enter case facts and an offe
 4. drafts defence counter-arguments grounded only in verified material;
 5. shows how appeals and petitions on those sections were disposed of.
 
+**Documentation:** `docs/PROJECT_GUIDE.md` (also `.pdf`) explains everything: design, data, results, problems and a 120-question bank. The paper draft is `docs/paper/pramana.tex` (IEEE format; compile on Overleaf).
+
 Everything runs locally: BGE-M3 embeddings, ChromaDB, NetworkX and `qwen3.5:4b` on Ollama. No API keys, and no case facts leave the machine. `CLAUDE.md` is the full design record.
 
 ## Demo
