@@ -104,6 +104,25 @@ def punishment(text):
     # offence punishable with death", carries seven years, not death.
     body = " ".join(m_.group(1) for s_ in sentences for m_ in re.finditer(
         r"(?:be\s+punish\w*|liable\s+(?:either\s+)?to)(.*?)(?=\bpunishable\b|$)", s_.lower()))
+    # A repeat-conviction clause (BNS 303: "in case of second or subsequent
+    # conviction ... not less than one year but ... five years") is not the
+    # range for a first offence, so it is reported beside it, never folded in.
+    rep = _REPEAT.search(body)
+    if rep:
+        mx, mn = _limits(body[:rep.start()])
+        if mx or mn:
+            r_mx, r_mn = _limits(body[rep.end():])
+            return {"sentences": sentences[:6], "max": mx, "min": mn,
+                    "repeat": {"max": r_mx, "min": r_mn} if r_mx or r_mn else None}
+    mx, mn = _limits(body)
+    return {"sentences": sentences[:6], "max": mx, "min": mn}
+
+
+_REPEAT = re.compile(r"\b(?:in\s+(?:the\s+)?case\s+of|in\s+the\s+event\s+of|on|upon|for)\s+(?:a\s+)?second\s+or\s+subsequent\s+conviction")
+
+
+def _limits(body):
+    """(max, min) read off the punishing words of a section."""
     mx = mn = None
     terms = [(_num(n), u) for n, u in re.findall(r"(?:may|shall)\s+extend\s+to\s+" + _TERM, body)]
     terms = [(n, u) for n, u in terms if n]
@@ -121,7 +140,7 @@ def punishment(text):
     if lows:
         n, u = min(lows, key=lambda x: _years(*x))
         mn = f"{n} {u}"
-    return {"sentences": sentences[:6], "max": mx, "min": mn}
+    return mx, mn
 
 
 def _rank(mx):
@@ -193,7 +212,10 @@ def section_info(g, code, section):
     # the two maxima is shown, with where it came from.
     smax = schedule_max(sched)
     pun["text_incomplete"] = bool(re.search(r"[;,:]\s*$", text))
-    if smax and _rank(smax) > _rank(pun["max"]):
+    # The Schedule also lists a repeat-conviction row (BNS 294: 5 years on a
+    # second conviction), which must not overwrite the first-offence maximum.
+    repeat_max = (pun.get("repeat") or {}).get("max")
+    if smax and _rank(smax) > _rank(pun["max"]) and not (repeat_max and _rank(smax) <= _rank(repeat_max)):
         pun["max"], pun["max_source"] = smax, "First Schedule (the section text as ingested is shorter)"
     elif pun["max"]:
         pun["max_source"] = "section text"
