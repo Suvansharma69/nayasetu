@@ -29,6 +29,21 @@ def test_death_in_the_offence_is_not_a_death_sentence():
     assert p["max"] == "3 years"
 
 
+def test_repeat_conviction_range_is_kept_apart_from_the_first_offence():
+    # BNS 303(2): a first theft carries up to 3 years; 1-5 years is for a repeat conviction only.
+    p = lawtools.punishment(
+        "(2) Whoever commits theft shall be punished with imprisonment of either description for a term which may "
+        "extend to three years, or with fine, or with both and in case of second or subsequent conviction of any "
+        "person under this section, he shall be punished with rigorous imprisonment for a term which shall not be "
+        "less than one year but which may extend to five years and with fine")
+    assert (p["max"], p["min"]) == ("3 years", None)
+    assert p["repeat"] == {"max": "5 years", "min": "1 year"}
+    p = lawtools.punishment("shall be punished on first conviction with imprisonment for a term which may extend to "
+                            "two years, and, in the event of a second or subsequent conviction, with imprisonment "
+                            "for a term which may extend to five years")
+    assert p["max"] == "2 years" and p["repeat"]["max"] == "5 years"
+
+
 def test_unreadable_term_is_not_guessed():
     p = lawtools.punishment("shall be punished as provided in the preceding section.")
     assert p["max"] is None and p["sentences"]

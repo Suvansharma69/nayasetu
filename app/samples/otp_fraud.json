@@ -57,6 +57,73 @@
  "included": [],
  "retries": 0,
  "review_candidates": [],
+ "retrieved": [
+  {
+   "section": "316",
+   "ref": "316(1)",
+   "title": "Criminal breach of trust"
+  },
+  {
+   "section": "318",
+   "ref": "318(1)",
+   "title": "Cheating"
+  },
+  {
+   "section": "335",
+   "ref": "335",
+   "title": "Making a false document"
+  },
+  {
+   "section": "319",
+   "ref": "319(1)",
+   "title": "Cheating by personation"
+  },
+  {
+   "section": "336",
+   "ref": "336(3)",
+   "title": "Forgery"
+  },
+  {
+   "section": "344",
+   "ref": "344",
+   "title": "Falsification of accounts"
+  },
+  {
+   "section": "340",
+   "ref": "340(1)",
+   "title": "Forged document or electronic record and using it as genuine"
+  },
+  {
+   "section": "303",
+   "ref": "303",
+   "title": "Theft"
+  },
+  {
+   "section": "317",
+   "ref": "317(1)",
+   "title": "Stolen property"
+  },
+  {
+   "section": "308",
+   "ref": "308(1)",
+   "title": "Extortion"
+  },
+  {
+   "section": "182",
+   "ref": "182",
+   "title": "Making or using documents resembling currency-notes or bank-notes"
+  },
+  {
+   "section": "309",
+   "ref": "309(3)",
+   "title": "Robbery"
+  },
+  {
+   "section": "178",
+   "ref": "178(4)",
+   "title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes"
+  }
+ ],
  "precedents": [
   {
    "label": "P1",
@@ -95,22 +162,6 @@
    "for_charge": "BNS 318",
    "applies": "IPC 420",
    "via_ipc_predecessor": "BNS 318 <- IPC 420",
-   "doc_id": "na_Himachal_Pradesh_HC_2021_419",
-   "title": null,
-   "court": "Himachal Pradesh High Court",
-   "date": null,
-   "citation": null,
-   "disposal_nature": "Allowed",
-   "similarity": 0.7011,
-   "matched_by": "similarity to the facts",
-   "excerpt": "After that, he did not any message. On when he enquired from the bank, he came to know that there is no money in his account. When the complainant visited the bank, HCHP the bank officials have asked him to register FIR.Based on this information, the police started inquiry. It came in the that the petitioner had a phone call from mobile No.7469980751. Investigation further that an amount of Rs.25,74,435/- has been withdrawn from both the accounts of the complainant. The further that the mobile ...",
-   "verified": true
-  },
-  {
-   "label": "P4",
-   "for_charge": "BNS 319",
-   "applies": "IPC 419",
-   "via_ipc_predecessor": "BNS 319 <- IPC 419",
    "doc_id": "na_KA_HC_2020_393",
    "title": null,
    "court": "Karnataka High Court",
@@ -123,7 +174,7 @@
    "verified": true
   },
   {
-   "label": "P5",
+   "label": "P4",
    "for_charge": "BNS 319",
    "applies": "IPC 419",
    "via_ipc_predecessor": "BNS 319 <- IPC 419",
@@ -139,7 +190,7 @@
    "verified": true
   },
   {
-   "label": "P6",
+   "label": "P5",
    "for_charge": "BNS 319",
    "applies": "IPC 416",
    "via_ipc_predecessor": "BNS 319 <- IPC 416",
@@ -152,6 +203,22 @@
    "similarity": 0.6324,
    "matched_by": "similarity to the facts",
    "excerpt": "On accused petitioner Subhash Debbarma issued another cheque payable to the informant drawn on SBI, Sabroom branch. When the cheque was at the bank, the said cheque was also dishonoured by the bank and the cheque was returned to the informant stating that petitioner Subhash Debbarma had already closed his account in the bank. After the said incidence, informant failed to contact the petitioners despite several The informant PW-1 then reported the matter to police by lodging the said FIR.4 Based ...",
+   "verified": true
+  },
+  {
+   "label": "P6",
+   "for_charge": "BNS 319",
+   "applies": "IPC 419",
+   "via_ipc_predecessor": "BNS 319 <- IPC 419",
+   "doc_id": "na_Sikkim_HC_2023_33",
+   "title": null,
+   "court": "Sikkim High Court",
+   "date": null,
+   "citation": null,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6297,
+   "matched_by": "similarity to the facts",
+   "excerpt": "P.W.16 too heard the Appellant voluntarily admitting to W.8 about having cheated the Department, submitting false transfer Orders, false relieving Order, false last pay certificate pertaining to Priya Sharma and Ranjit Rai.P.Ws 7, 14 and 15, officials of the Department have also established the fact of by the Appellant. Inviting the of this Court to Gokak Patel Volkart Ltd. vs. Dundayya Gurushiddaiah Hiremath and Others11, it was contended that the offence was a offence, planned and by the ...",
    "verified": true
   },
   {
@@ -619,7 +686,7 @@
  "defenses": [
   {
    "against": "BNS 318",
-   "argument": "The prosecution has failed to prove the specific act of 'deceiving' as defined in Section 318. The facts merely state that the accused *said* he was an officer and provided a fake number; they do not establish that the complainant was actually deceived into believing his identity or that she acted based on a false representation of fact regarding his authority to block her card. Mere assertion without corroboration of the deception's effect does not satisfy the ingredient of cheating.",
+   "argument": "The prosecution has failed to prove the specific act of 'deceiving' as defined in Section 318. The facts merely state that a caller *said* he was an officer and gave a fake number; they do not establish that the accused actively engaged in any deceptive conduct or made false representations to induce the victim to part with her OTP. Mere verbal assertion by a third party, without evidence of the accused's active participation in the deception or fabrication of facts, does not satisfy the ingredient of 'deceiving' required for this offence.",
    "fact_quote": "A caller who said he was an officer of the complainant's bank told her that her debit card had been blocked and gave a fake employee number.",
    "precedents": [
     {
@@ -633,18 +700,13 @@
   },
   {
    "against": "BNS 340",
-   "argument": "The charge under Section 340 requires the accused to have 'used as genuine' a forged document or electronic record. The facts show the transfer of money but do not demonstrate that the accused utilized any specific forged document, signature, or electronic record in his possession to effectuate the transaction. Without evidence of the accused possessing or using such a false instrument, this charge cannot be sustained.",
+   "argument": "The charge of using a forged document or electronic record as genuine cannot be sustained because the facts do not show that the accused used any such document. The transfer was executed via an OTP received on the victim's phone, which is a standard banking security measure and does not constitute a 'forged document' or 'electronic record' within the meaning of Section 340. There is no evidence linking the accused to the creation, alteration, or use of any false document in this transaction.",
    "fact_quote": "",
    "precedents": [
     {
-     "label": "P4",
-     "doc_id": "na_KA_HC_2020_393",
+     "label": "P8",
+     "doc_id": "na_Bombay_HC_2022_1810",
      "title": null
-    },
-    {
-     "label": "P9",
-     "doc_id": "2025_2_708_726",
-     "title": "HIRALAL BABULAL SONI versus THE STATE OF MAHARASHTRA & ORS."
     }
    ],
    "verified": true,
@@ -652,17 +714,12 @@
   },
   {
    "against": "BNS 317",
-   "argument": "The elements of Section 317 are not made out because the facts do not show that the accused received or retained the property 'dishonestly knowing' it to be stolen. The transfer was executed by the complainant herself upon reading a OTP, and there is no evidence placing the accused in possession of the funds with the requisite mens rea of dishonest knowledge.",
+   "argument": "The element of 'dishonest knowledge' required for property to be deemed 'stolen property' under Section 317 is not established. The facts show the victim voluntarily transferred money based on a phone call; they do not demonstrate that the accused received or retained the funds knowing them to be stolen. Without proof that the accused had reason to believe the transfer was fraudulent at the time of receipt, the property cannot legally be classified as stolen.",
    "fact_quote": "",
    "precedents": [
     {
      "label": "P13",
      "doc_id": "na_Delhi_HC_2022_3020",
-     "title": null
-    },
-    {
-     "label": "P14",
-     "doc_id": "na_Delhi_HC_2023_1705",
      "title": null
     }
    ],
@@ -671,7 +728,7 @@
   },
   {
    "against": "BNS 336",
-   "argument": "The prosecution has not adduced evidence of any act of forgery, such as making, signing, sealing, executing, transmitting an electronic record, or altering a document with dishonest intent. The facts describe the result (transfer of money) but fail to identify any specific false document or electronic record created by the accused.",
+   "argument": "The offence of forgery under Section 336 requires the specific act of making, signing, sealing, executing, or transmitting an electronic record with dishonest intent. The facts only describe a phone call and a subsequent bank transfer; they do not allege that the accused performed any act of forging an electronic record or document. The prosecution must fill the gap between the alleged fraud and the physical or digital act of forgery.",
    "fact_quote": "",
    "precedents": [
     {
@@ -698,10 +755,10 @@
  "timings": {
   "intake_s": 0.0,
   "route_s": 0.0,
-  "unload_s": 6.2,
-  "guardrail_s": 10.1,
+  "unload_s": 6.6,
+  "guardrail_s": 11.0,
   "retrieve_s": 0.5,
-  "graph_s": 145.6
+  "graph_s": 152.7
  },
  "sample": {
   "id": "otp_fraud",

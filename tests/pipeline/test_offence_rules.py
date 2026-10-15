@@ -149,3 +149,35 @@ def test_grievous_consistency_overrules_contradictory_doubt():
     assert offence_rules.grievous_consistency("ipc", ver, recs, {"injury": "hurt"}) == {}
     recs[0]["supported"] = False
     assert offence_rules.grievous_consistency("ipc", ver, recs, {"injury": "grievous hurt"}) == {}
+
+
+# --- attempts ---------------------------------------------------------------------
+
+def test_attempt_is_not_doubted_for_want_of_a_death():
+    for missing in ("death", "Death of the victim", "the actual death", "no death caused."):
+        assert "needs no death" in offence_rules.attempt_without_result("bns", "109", missing)
+    assert offence_rules.attempt_without_result("ipc", "307", "death")
+    # Any other objection stands, and the rule never touches a non-attempt.
+    assert offence_rules.attempt_without_result("bns", "109", "intention to cause death") is None
+    assert offence_rules.attempt_without_result("bns", "109", "") is None
+    assert offence_rules.attempt_without_result("bns", "103", "death") is None
+    assert offence_rules.attempt_without_result("ipc", "109", "death") is None  # IPC 109 is abetment
+
+
+def test_judge_doubt_of_attempt_for_no_death_is_overruled_on_every_pass():
+    facts = "The accused stabbed the complainant in the abdomen; the injury was dangerous to life."
+    state = {"era": "bns", "case_facts": facts, "facts_profile": {"injury": "grievous hurt"},
+             "verified_sections": [v("109")]}
+    reply = {"assessments": [{"section": "BNS 109", "applies": False, "missing_ingredient": "death",
+                              "facts_quotes": ["stabbed the complainant in the abdomen"]}]}
+    rec = applicability.assess(state, lambda msgs, schema: reply, text_of=lambda *a: "Whoever ...")["applicability"][0]
+    assert rec["supported"] and rec["overruled_doubt"] == "death" and rec["missing_ingredient"] == ""
+    # Ungrounded quotes still fail: the rule removes the doubt, not the evidence requirement.
+    reply["assessments"][0]["facts_quotes"] = ["he meant to kill him"]
+    rec = applicability.assess(state, lambda msgs, schema: reply, text_of=lambda *a: "Whoever ...")["applicability"][0]
+    assert not rec["supported"]
+
+
+def test_attempt_switch(monkeypatch):
+    monkeypatch.setenv("PRAMANA_ABLATE", "attempt")
+    assert offence_rules.attempt_without_result("bns", "109", "death") is None

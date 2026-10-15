@@ -260,9 +260,16 @@ def _assess_once(state, llm, text_of):
         model_applies = bool(a.get("applies"))
         rule = (headcount_rule(era, v["section"], state.get("facts_profile"))
                 or offence_rules.death_rule(era, v["section"], state.get("facts_profile")))
-        out.append({"section": v["section"], "subsection": v["subsection"], "assessed": True,
-                    "supported": model_applies and bool(kept) and not missing and not rule,
-                    "grounded_quotes": kept, "dropped_quotes": [q for q in quotes if q not in kept],
-                    "missing_ingredient": missing, "model_applies": model_applies,
-                    "rule_rejected": rule})
+        # The judge's "applies: false" came from the same misreading, so it is
+        # overruled with the doubt; grounded quotes are still required.
+        overrule = offence_rules.attempt_without_result(era, v["section"], missing)
+        rec = {"section": v["section"], "subsection": v["subsection"], "assessed": True,
+               "supported": model_applies and bool(kept) and not missing and not rule,
+               "grounded_quotes": kept, "dropped_quotes": [q for q in quotes if q not in kept],
+               "missing_ingredient": missing, "model_applies": model_applies,
+               "rule_rejected": rule}
+        if overrule:
+            rec.update(supported=bool(kept) and not rule, supported_by_rule=overrule,
+                       overruled_doubt=missing, missing_ingredient="")
+        out.append(rec)
     return out

@@ -94,7 +94,11 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .topbar { display: none; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--rule); background: var(--sheet); }
 .topbar .name { font-family: var(--f-display); font-size: 19px; font-weight: 600; }
 .thread { flex: 1; overflow-y: auto; scroll-behavior: smooth; }
-.col { max-width: 920px; margin: 0 auto; padding: 28px 28px 24px; display: grid; gap: 22px; }
+.col { max-width: 920px; margin: 0 auto; padding: 28px 28px 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+/* Grid items default to min-width: auto, so the ledger's and the evidence
+   map's minimum widths would widen the whole column on a phone instead of
+   scrolling inside their own wrappers. */
+.col > *, .sheet { min-width: 0; }
 .entry { animation: rise .3s ease both; min-width: 0; }
 .label { font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .entry.facts, .entry.question { border-left: 2px solid var(--rule-2); padding: 2px 0 2px 16px; }
@@ -179,6 +183,7 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .cands { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 .cands .mono { color: var(--ink-2); }
 .tally { display: flex; flex-wrap: wrap; gap: 6px 26px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 13.5px; color: var(--ink-2); }
+.tally i { font-style: normal; }
 .tally b { font-family: var(--f-mono); font-size: 17px; font-weight: 500; color: var(--ink); margin-right: 6px; }
 
 /* ---------- the matter file (report) ---------- */
@@ -243,6 +248,8 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .precs .lab { font-family: var(--f-mono); font-size: 12px; color: var(--accent); padding-top: 3px; }
 .precs .case { font-family: var(--f-display); font-style: italic; font-size: 16.5px; line-height: 1.35; }
 .precs .cite { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.precs .peek { display: block; font-size: 13.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.45; }
+.precs details[open] .peek { display: none; }
 .precs .x { padding: 0 0 14px 46px; font-size: 14px; color: var(--ink-2); }
 .precs .x blockquote { margin: 8px 0 10px; padding-left: 14px; border-left: 2px solid var(--rule-2); font-family: var(--f-display); font-size: 15px; color: var(--ink); }
 .summary { margin: 10px 0 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; font-size: 14px; }
@@ -508,7 +515,7 @@ class LiveRun {
       <p class="cands" data-cands hidden></p>
       <div class="ledger-wrap" data-ledger hidden><table class="ledger">
         <thead><tr><th>Section</th><th>Retrieved</th><th>Proposed</th><th>Citation graph</th><th>Facts</th></tr></thead><tbody></tbody></table></div>
-      <div class="tally" data-tally hidden><span><b data-n="precedents">–</b>precedent judgments</span><span><b data-n="analytics">–</b>sections with outcome data</span><span><b data-n="defense">–</b>counter-arguments</span></div>
+      <div class="tally" data-tally hidden><span><b data-n="precedents">–</b><i data-l="precedent judgment|precedent judgments">precedent judgments</i></span><span><b data-n="analytics">–</b><i data-l="section with outcome data|sections with outcome data">sections with outcome data</i></span><span><b data-n="defense">–</b><i data-l="counter-argument|counter-arguments">counter-arguments</i></span></div>
     </div>`);
     this.el = host.lastElementChild;
     if (!replay) this.tick = setInterval(() => {
@@ -566,7 +573,8 @@ class LiveRun {
       const p = $("[data-cands]", this.el); p.hidden = false;
       p.innerHTML = this.cands.size
         ? `${this.cands.size} candidate sections retrieved: <span class="mono">${[...this.cands.values()].map(c => esc(c.ref)).join(", ")}</span>`
-        : (this.replay ? "Retrieved candidates are not kept in a saved analysis." : "No candidate sections were retrieved.");
+        : (this.replay ? "Retrieved candidates were not kept in this saved analysis." : "No candidate sections were retrieved.");
+      this.noRanks = this.replay && !this.cands.size;
       if (d.no_facts) this.setNow("<b>No allegation stated.</b> The text is procedure only, so there is nothing to charge and the model will not be asked.");
       else if (d.insufficient) this.setNow("<b>Insufficient data.</b> Nothing in the corpus is close enough, so the model will not be asked.");
     }
@@ -574,7 +582,7 @@ class LiveRun {
       (d.proposals || []).forEach(p => {
         const key = secNum(p.raw), r = this.row(key, `${E} ${String(p.raw).replace(/^(IPC|BNS)\s*/i, "")}`);
         const c = this.cands.get(key);
-        this.cell(r, 1, c ? `<span class="mono">#${c.rank}</span>` : `<span class="mk-dim">${this.replay ? "—" : "not in list"}</span>`);
+        this.cell(r, 1, c ? `<span class="mono">#${c.rank}</span>` : `<span class="mk-dim">${this.noRanks ? "—" : "not in list"}</span>`);
         this.cell(r, 2, p.source === "rule" ? `<span title="Derived by a fixed rule from the facts">rule</span>` : (d.round ? `<span class="mk-warn">retry ${d.round}</span>` : "model"));
         if (c && c.title) $(".tt", r.tr).textContent = cleanTitle(c.title);
       });
@@ -613,7 +621,9 @@ class LiveRun {
     }
     if (["precedents", "analytics", "defense"].includes(st) && d) {
       $("[data-tally]", this.el).hidden = false;
-      countUp($(`[data-n="${st}"]`, this.el), (st === "analytics" ? (d.sections || []).length : d.count) || 0);
+      const n = (st === "analytics" ? (d.sections || []).length : d.count) || 0, lab = $(`[data-n="${st}"] + [data-l]`, this.el);
+      countUp($(`[data-n="${st}"]`, this.el), n);
+      if (lab) lab.textContent = lab.dataset.l.split("|")[n === 1 ? 0 : 1];
     }
   }
   secondRun() {
@@ -639,12 +649,13 @@ function countUp(el, n) {
 }
 
 /* A saved report replayed as the same events. Only what the report holds:
-   retrieved candidates are not saved, so the ledger says so. */
+   reports saved before `retrieved` was kept have no ranks, and the ledger says so. */
 function eventsFromReport(r) {
   const ref = c => c.subsection || c.section, ev = [];
   const add = (stage, data) => { ev.push({stage, phase: "start"}); ev.push({stage, phase: "done", data}); };
   add("route", {era: r.era, offence_date: r.offence_date});
-  add("retrieve", {candidates: (r.review_candidates || []).map(c => ({section: c.section, ref: c.matched || c.section, title: c.title})),
+  add("retrieve", {candidates: (r.retrieved || []).length ? r.retrieved
+                     : (r.review_candidates || []).map(c => ({section: c.section, ref: c.matched || c.section, title: c.title})),
                    insufficient: r.status === "insufficient_data",
                    no_facts: (r.guardrail || {}).reason === "no_facts_stated"});
   if (r.status === "insufficient_data") return ev;
@@ -810,9 +821,16 @@ const caseName = t => String(t || "").replace(/\s+versus\s+/i, " v. ").replace(/
   w => /^(AIR|SCC|SCR|UOI|CBI|NCB|NIA)$/.test(w) ? w : w.charAt(0) + w.slice(1).toLowerCase()).replace(/\b(Of|The|And)\b/g, (m, x, i) => i ? m.toLowerCase() : m);
 function precTitle(p) {
   if (p.title) return caseName(p.title);
-  const y = (String(p.doc_id).match(/_(\d{4})_/) || [])[1];
-  return `${p.court || "Judgment"}${y ? `, ${y}` : ""}`;
+  return `${p.court || "Unreported"} judgment`;
 }
+/* NyayaAnumana ids carry a filename year that is only a LOWER BOUND on the
+   decision year (CLAUDE.md, Known Gotchas 2026-09-26); never show it as the date. */
+function precYear(p) {
+  if (p.date) return String(p.date).slice(0, 4);
+  const y = (String(p.doc_id).match(/_(\d{4})_/) || [])[1];
+  return y ? (String(p.doc_id).startsWith("na_") ? `${y} or later` : y) : "";
+}
+const firstLine = t => { const s = String(t || "").replace(/\s+/g, " ").trim(); return s.length > 150 ? s.slice(0, 150).replace(/\s+\S*$/, "") + "…" : s; };
 
 function renderReport(r, host) {
   const box = document.createElement("div"); box.className = "sheet matter"; box.style.marginTop = "14px"; host.append(box);
@@ -896,9 +914,9 @@ function renderRun(r, box) {
   if (!(r.precedents || []).length) h += `<p class="note">No precedent: there is no verified section to match.</p>`;
   else h += `<ol class="precs">${r.precedents.map((p, i) => {
     const via = p.via_ipc_predecessor ? ` · through the IPC predecessor` : "";
-    const yr = p.date ? String(p.date).slice(0, 4) : (String(p.doc_id).match(/_(\d{4})_/) || [])[1];
+    const yr = precYear(p);
     return `<li data-prec="${i}" data-for="${esc(p.for_charge)}"><details><summary><span class="lab">${esc(p.label)}</span>
-      <span><span class="case">${esc(precTitle(p))}</span><span class="cite">${esc(p.court || "")}${yr ? ` · ${esc(yr)}` : ""}${p.citation ? ` · ${esc(p.citation)}` : ""} · for ${esc(p.for_charge)}${via}</span></span></summary>
+      <span><span class="case">${esc(precTitle(p))}</span><span class="cite">${[p.title ? p.court : "", yr, p.citation, `for ${p.for_charge}`].filter(Boolean).map(esc).join(" · ")}${via}</span>${p.excerpt ? `<span class="peek">${esc(firstLine(p.excerpt))}</span>` : ""}</span></summary>
       <div class="x"><div class="note">${p.similarity ? `Similarity to these facts ${p.similarity.toFixed(2)}` : "Most cited for this section"} · disposal: ${esc(p.disposal_nature || "not recorded")}${p.via_ipc_predecessor ? ` · ${esc(p.via_ipc_predecessor)}` : ""}</div>
       ${p.excerpt ? `<blockquote>${esc(p.excerpt)}</blockquote>` : ""}
       <button class="link" data-summ="${esc(p.doc_id)}">Summarise this judgment</button><div data-summout></div></div></details></li>`;
@@ -910,7 +928,7 @@ function renderRun(r, box) {
       <h3>Against ${esc(d.against)}${d.verified ? "" : ` <span class="status warn" style="margin-left:8px">Failed the final check</span>`}</h3>
       <p>${esc(d.argument)}</p>
       ${d.fact_quote ? `<blockquote>“${esc(d.fact_quote)}”</blockquote>` : ""}
-      ${(d.precedents || []).length ? `<p class="relies">Relies on ${d.precedents.map(x => `${esc(x.label)}, ${esc(precTitle(x))}`).join("; ")}</p>` : ""}
+      ${(d.precedents || []).length ? `<p class="relies">Relies on ${d.precedents.map(x => x.title ? `${esc(x.label)}, <i>${esc(caseName(x.title))}</i>` : esc(x.label)).join("; ")}</p>` : ""}
       ${(d.issues || []).length ? `<p class="relies">${esc(d.issues.join("; "))}</p>` : ""}</div></li>`).join("")}</ol>`;
 
   h += `<h2>Outcomes in past judgments</h2>`;
@@ -1013,6 +1031,7 @@ const COG = {yes: ["Cognizable", "", "police may arrest without warrant"], no: [
   depends: ["Depends on the offence abetted", "", ""], conditional: ["Cognizable, conditionally", "warn", ""], unclear: ["Unclear in the source", "warn", ""]};
 const BAIL = {yes: ["Bailable", "ok", "bail as of right"], no: ["Non-bailable", "bad", "bail at the court’s discretion"],
   depends: ["Depends on the offence abetted", "", ""], conditional: ["Conditional", "warn", ""], unclear: ["Unclear in the source", "warn", ""]};
+const repeatRange = r => r.min && r.max ? `${r.min} to ${r.max}` : r.max ? `up to ${r.max}` : `at least ${r.min}`;
 async function decorateCharges(box) {
   for (const el of $$("[data-charge]", box)) {
     const [code, sec, sub] = el.dataset.charge.split(":");
@@ -1023,6 +1042,7 @@ async function decorateCharges(box) {
       const bits = [];
       if (p.max) bits.push(`<div><dt>Maximum</dt><dd title="${esc(`From the ${p.max_source || "section text"}`)}">${esc(p.max)}</dd></div>`);
       if (p.min) bits.push(`<div><dt>Minimum</dt><dd>${esc(p.min)}</dd></div>`);
+      if (p.repeat) bits.push(`<div><dt>Repeat conviction</dt><dd title="Second or subsequent conviction under this section">${esc(repeatRange(p.repeat))}</dd></div>`);
       if (row) {
         const [cl, cc, cg] = COG[row.cognizable_flag] || [row.cognizable, ""], [bl, bc, bg] = BAIL[row.bailable_flag] || [row.bailable, ""];
         bits.push(`<div><dt>Arrest</dt><dd class="${cc}" title="${esc(cg || row.cognizable)}">${esc(cl)}</dd></div><div><dt>Bail</dt><dd class="${bc}" title="${esc(bg || row.bailable)}">${esc(bl)}</dd></div><div><dt>Triable by</dt><dd>${esc(row.triable.replace(/\.$/, ""))}</dd></div>`);
@@ -1142,7 +1162,7 @@ function sectionHTML(i) {
       <div class="ch">Chapter ${esc(i.chapter || "")}${i.chapter_title ? ` · ${esc(i.chapter_title)}` : ""}</div></div>
     <p class="verified" style="margin:10px 0 0">In the ingested ${esc(CODE_FULL[i.code])}${cls ? `<span style="color:var(--ink-2)"> · ${esc(cls)}</span>` : ""}</p>
     <h4>Punishment</h4>
-    ${p.max || p.min ? `<dl class="kv">${p.max ? `<div><dt>Maximum</dt><dd>${esc(p.max)}</dd></div>` : ""}${p.min ? `<div><dt>Minimum</dt><dd>${esc(p.min)}</dd></div>` : ""}</dl>
+    ${p.max || p.min ? `<dl class="kv">${p.max ? `<div><dt>Maximum</dt><dd>${esc(p.max)}</dd></div>` : ""}${p.min ? `<div><dt>Minimum</dt><dd>${esc(p.min)}</dd></div>` : ""}${p.repeat ? `<div><dt>Repeat conviction</dt><dd>${esc(repeatRange(p.repeat))}</dd></div>` : ""}</dl>
       ${p.max_source ? `<p class="fine" style="margin-top:4px">Maximum read from the ${esc(p.max_source)}.</p>` : ""}`
       : `<p class="note">${(p.sentences || []).length ? "No term could be read reliably; the section’s own words follow." : "This section states no punishment itself: it is a definition, or another section punishes it."}</p>`}
     ${p.text_incomplete ? `<div class="banner warn" style="margin-top:8px">The ingested text of this section ends mid-sentence: the source copy is cut short, so a later limb may be missing. The First Schedule below lists every limb.</div>` : ""}
@@ -1241,7 +1261,7 @@ function memo(r) {
     ${(r.included || []).length ? `<p class="small">Included in a greater charge: ${r.included.map(c => `${esc(C(c))} (in ${esc(c.included_in)})`).join("; ")}.</p>` : ""}
     ${(r.unconfirmed || []).length ? `<p class="small">Proposed but rejected by the citation graph: ${r.unconfirmed.map(u => esc(u.raw)).join(", ")}.</p>` : ""}
     <h2>Precedents</h2>
-    ${(r.precedents || []).length ? `<ol>${r.precedents.map(p => `<li><i>${esc(precTitle(p))}</i>, ${esc(p.court || "")}${p.date ? `, ${esc(p.date)}` : ""}${p.citation ? `, ${esc(p.citation)}` : ""}. For ${esc(p.for_charge)}${p.via_ipc_predecessor ? ", through the IPC predecessor" : ""}. Disposal: ${esc(p.disposal_nature || "not recorded")}.<br><span class="small">${esc((p.excerpt || "").slice(0, 400))}${(p.excerpt || "").length > 400 ? "…" : ""}</span></li>`).join("")}</ol>` : "<p>None.</p>"}
+    ${(r.precedents || []).length ? `<ol>${r.precedents.map(p => `<li><i>${esc(precTitle(p))}</i>${p.title ? `, ${esc(p.court || "")}` : ""}${p.date ? `, ${esc(p.date)}` : precYear(p) ? `, ${esc(precYear(p))}` : ""}${p.citation ? `, ${esc(p.citation)}` : ""}. For ${esc(p.for_charge)}${p.via_ipc_predecessor ? ", through the IPC predecessor" : ""}. Disposal: ${esc(p.disposal_nature || "not recorded")}.<br><span class="small">${esc((p.excerpt || "").slice(0, 400))}${(p.excerpt || "").length > 400 ? "…" : ""}</span></li>`).join("")}</ol>` : "<p>None.</p>"}
     <h2>Counter-arguments for the defence</h2>
     ${(r.defenses || []).length ? `<ol>${r.defenses.map(d => `<li><b>Against ${esc(d.against)}.</b> ${esc(d.argument)}${d.fact_quote ? `<br><span class="small">Turns on: “${esc(d.fact_quote)}”</span>` : ""}${d.verified ? "" : `<br><span class="small">Failed the final check: ${esc((d.issues || []).join("; "))}</span>`}</li>`).join("")}</ol>` : "<p>None.</p>"}
     ${(a.sections || []).length ? `<h2>Outcomes in past judgments</h2><p class="small">${esc(a.note || "")}</p><table><tr><th>Section</th><th>Judgments</th><th>Appellant or petitioner succeeded</th></tr>

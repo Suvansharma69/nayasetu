@@ -7,6 +7,7 @@ from __future__ import annotations
 
 ERA_NAME = {"ipc": "Indian Penal Code, 1860 (offence before 1 July 2024)",
             "bns": "Bharatiya Nyaya Sanhita, 2023 (offence on/after 1 July 2024)"}
+RETRIEVED_KEPT = 14  # graph._brief's default: what the live view shows
 
 
 def _charge(v, doubt=None):
@@ -45,6 +46,10 @@ def build(result):
                      for v in result.get("included", [])],
         "retries": st.get("retry_count", 0),
         "review_candidates": result.get("review_candidates", []),
+        # The candidate list Node 1 read, in rank order, so a saved report can
+        # replay the ledger's "retrieved" column instead of leaving it blank.
+        "retrieved": [{"section": r["section"], "ref": r.get("matched") or r["section"], "title": r.get("title")}
+                      for r in (st.get("retrieved") or [])[:RETRIEVED_KEPT]],
         "precedents": [{k: p.get(k) for k in ("label", "for_charge", "applies", "via_ipc_predecessor",
                                                "doc_id", "title", "court", "date", "citation",
                                                "disposal_nature", "similarity", "matched_by",

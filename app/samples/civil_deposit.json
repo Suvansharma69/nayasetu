@@ -73,6 +73,73 @@
    "title": "Cheating"
   }
  ],
+ "retrieved": [
+  {
+   "section": "316",
+   "ref": "316",
+   "title": "Criminal breach of trust"
+  },
+  {
+   "section": "317",
+   "ref": "317(1)",
+   "title": "Stolen property"
+  },
+  {
+   "section": "303",
+   "ref": "303",
+   "title": "Theft"
+  },
+  {
+   "section": "308",
+   "ref": "308(1)",
+   "title": "Extortion"
+  },
+  {
+   "section": "318",
+   "ref": "318(4)",
+   "title": "Cheating"
+  },
+  {
+   "section": "324",
+   "ref": "324(4)",
+   "title": "Mischief"
+  },
+  {
+   "section": "3",
+   "ref": "3(3)",
+   "title": "General explanations"
+  },
+  {
+   "section": "335",
+   "ref": "335",
+   "title": "Making a false document"
+  },
+  {
+   "section": "309",
+   "ref": "309",
+   "title": "Robbery"
+  },
+  {
+   "section": "331",
+   "ref": "331(4)",
+   "title": "Punishment for house-trespass or house- breaking"
+  },
+  {
+   "section": "345",
+   "ref": "345(1)",
+   "title": "Property mark"
+  },
+  {
+   "section": "120",
+   "ref": "120(1)",
+   "title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property"
+  },
+  {
+   "section": "193",
+   "ref": "193(1)",
+   "title": "Liability of owner, occupier, etc., of land on which an unlawful assembly or riot takes place"
+  }
+ ],
  "precedents": [],
  "analytics": {
   "note": "How the appeal or petition was disposed of by the court that decided it (allowed = the appellant/petitioner succeeded). Not a conviction rate.",
@@ -96,10 +163,10 @@
  "timings": {
   "intake_s": 0.0,
   "route_s": 0.0,
-  "unload_s": 4.5,
-  "guardrail_s": 3.3,
-  "retrieve_s": 0.4,
-  "graph_s": 38.9
+  "unload_s": 6.5,
+  "guardrail_s": 11.0,
+  "retrieve_s": 0.5,
+  "graph_s": 38.3
  },
  "sample": {
   "id": "civil_deposit",

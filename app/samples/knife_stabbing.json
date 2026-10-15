@@ -29,9 +29,9 @@
   },
   {
    "code": "BNS",
-   "section": "100",
+   "section": "105",
    "subsection": null,
-   "title": "Culpable homicide",
+   "title": "Punishment for culpable homicide not amounting to murder",
    "reason": "The act of stabbing with a knife causing an injury dangerous to life falls within the definition of culpable homicide involving bodily injury likely to cause death.",
    "doubt": "this offence requires a death; the facts report grievous hurt, not death"
   }
@@ -51,6 +51,78 @@
  ],
  "retries": 0,
  "review_candidates": [],
+ "retrieved": [
+  {
+   "section": "118",
+   "ref": "118(1)",
+   "title": "Voluntarily causing hurt or grievous hurt by dangerous weapons or means"
+  },
+  {
+   "section": "109",
+   "ref": "109(2)",
+   "title": "Attempt to murder"
+  },
+  {
+   "section": "103",
+   "ref": "103(1)",
+   "title": "Punishment for murder"
+  },
+  {
+   "section": "115",
+   "ref": "115(1)",
+   "title": "Voluntarily causing hurt"
+  },
+  {
+   "section": "119",
+   "ref": "119(2)",
+   "title": "Voluntarily causing hurt or grievous hurt to extort property, or to constrain to an illegal act"
+  },
+  {
+   "section": "3",
+   "ref": "3(7)",
+   "title": "General explanations"
+  },
+  {
+   "section": "351",
+   "ref": "351(1)",
+   "title": "Criminal intimidation"
+  },
+  {
+   "section": "117",
+   "ref": "117(3)",
+   "title": "Voluntarily causing grievous hurt"
+  },
+  {
+   "section": "100",
+   "ref": "100",
+   "title": "Culpable homicide"
+  },
+  {
+   "section": "110",
+   "ref": "110",
+   "title": "Attempt to commit culpable homicide"
+  },
+  {
+   "section": "124",
+   "ref": "124(1)",
+   "title": "Voluntarily causing grievous hurt by use of acid, etc"
+  },
+  {
+   "section": "114",
+   "ref": "114",
+   "title": "Hurt"
+  },
+  {
+   "section": "120",
+   "ref": "120(2)",
+   "title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property"
+  },
+  {
+   "section": "121",
+   "ref": "121(2)",
+   "title": "Voluntarily causing hurt or grievous hurt to deter public servant from his duty"
+  }
+ ],
  "precedents": [
   {
    "label": "P1",
@@ -150,50 +222,50 @@
   },
   {
    "label": "P7",
-   "for_charge": "BNS 100",
-   "applies": "IPC 299",
-   "via_ipc_predecessor": "BNS 100 <- IPC 299",
-   "doc_id": "na_Delhi_HC_2021_923",
+   "for_charge": "BNS 105",
+   "applies": "IPC 304",
+   "via_ipc_predecessor": "BNS 105 <- IPC 304",
+   "doc_id": "na_KA_HC_2020_2884",
    "title": null,
-   "court": "Delhi High Court",
+   "court": "Karnataka High Court",
    "date": null,
    "citation": null,
-   "disposal_nature": "Dismissed",
-   "similarity": 0.5794,
+   "disposal_nature": "Allowed",
+   "similarity": 0.6291,
    "matched_by": "similarity to the facts",
-   "excerpt": "The prosecution has been able to prove on record that the appellant, Dinesh and injured Shravan had gathered in the night of 6/7-06-2012 at house No.A-1/38, SJ Enclave for a party where the incident took place. PW 14 had given a very CRL.A.846/2018 descriptive detailed narration of the of events which took place and the manner in which the appellant stabbed the and him. PW 14 has also stated in his testimony as to the manner in which the fight started. He has stated that they were taking liquor ...",
+   "excerpt": "In this regard, on a quarrel arose. Both the accused have dragged the out of the auto rickshaw and accused No.1 has assaulted him with hands and kicked on his stomach. Initially, no complaint was lodged since, they wanted to settle the matter amicably. However, since complication arose on account of the internal injuries sustained by the he was admitted to the hospital on and got operated. However he succumbed to the injuries on She contends that PW1 is an eye witness to the incident and her ...",
    "verified": true
   },
   {
    "label": "P8",
-   "for_charge": "BNS 100",
-   "applies": "IPC 299",
-   "via_ipc_predecessor": "BNS 100 <- IPC 299",
-   "doc_id": "na_Kerala_HC_2022_728",
+   "for_charge": "BNS 105",
+   "applies": "IPC 304",
+   "via_ipc_predecessor": "BNS 105 <- IPC 304",
+   "doc_id": "na_MP_HC_2023_1178",
    "title": null,
-   "court": "Kerala High Court",
+   "court": "Madhya Pradesh High Court",
    "date": null,
    "citation": null,
-   "disposal_nature": "Dismissed",
-   "similarity": 0.5762,
+   "disposal_nature": "Allowed",
+   "similarity": 0.611,
    "matched_by": "similarity to the facts",
-   "excerpt": "He questioned this act. Then held him by his neck. Palani Durai(A1) with a knife stabbed him, which he warded off with his left hand. He sustained an injury on his left hand. Palani Durai(A1) then stabbed him on his stomach abdomen injuring him. Seeing this Arulmani(PW7) Palani Durai(A1) opened the door, sent Arulmani(PW7) also outside the canteen, came back and stabbed him twice on his stomach. He fell down. Palani Durai(A1) then stabbed him several times while he was on the ground. He does ...",
+   "excerpt": "Complainants son Balli came out of his house and objected the appellant and Heeralal Ahirwar, then they went towards backside of complainants house and started abusing Balli, on which Bali again came out of his house and objected them, then appellant gave a knife to the Heeralal and caught hold Balli. Co- accused Heeralal assaulted Balli with knife on his chest and stomach, due to which, he was badly injured. Complainant alongwith other members of his family reached there and tried to then co- ...",
    "verified": true
   },
   {
    "label": "P9",
-   "for_charge": "BNS 100",
-   "applies": "IPC 299",
-   "via_ipc_predecessor": "BNS 100 <- IPC 299",
-   "doc_id": "2025_10_212_252",
-   "title": "MANIKLAL SAHU versus STATE OF CHHATTISGARH",
+   "for_charge": "BNS 105",
+   "applies": "IPC 304",
+   "via_ipc_predecessor": "BNS 105 <- IPC 304",
+   "doc_id": "2025_1_1454_1468",
+   "title": "ASHOK SAXENA versus THE STATE OF UTTARAKHAND ETC.",
    "court": "Supreme Court of India",
-   "date": "2025-09-12",
-   "citation": "[2025] 10 S.C.R. 212",
-   "disposal_nature": "Dismissed",
-   "similarity": 0.5701,
+   "date": "2025-01-30",
+   "citation": "[2025] 1 S.C.R. 1454",
+   "disposal_nature": "Disposed off",
+   "similarity": 0.6032,
    "matched_by": "similarity to the facts",
-   "excerpt": "51. The problem of supervening cause intervening arose for consideration In re, Periaswami, C.A. 166 of 1961 (Mad). In that case, the accused whipped out his knife and stabbed the deceased in his abdomen in the course of a sudden quarrel. The deceased had a tear in his stomach and an incised cut in the liver. He was under treatment for 17 days and was having a sinus through which he was discharging bile and some pus. Due to the constant discharge of bile and pus, the abdomen suddenly burst. The ...",
+   "excerpt": "8. The deceased having suffered a stab serious injury in her abdomen was put in a rikshaw for being taken to the hospital. However, she was declared dead on being brought to the hospital.",
    "verified": true
   }
  ],
@@ -277,11 +349,11 @@
     ]
    },
    {
-    "charge": "BNS 100",
-    "title": "Culpable homicide",
+    "charge": "BNS 105",
+    "title": "Punishment for culpable homicide not amounting to murder",
     "direct": {
      "code": "bns",
-     "section": "100",
+     "section": "105",
      "judgments": 0,
      "counts": {
       "allowed": 0,
@@ -294,16 +366,16 @@
     "via_ipc": [
      {
       "code": "ipc",
-      "section": "299",
-      "judgments": 48,
+      "section": "304",
+      "judgments": 174,
       "counts": {
-       "allowed": 13,
-       "partly allowed": 6,
-       "dismissed": 27,
-       "other": 2
+       "allowed": 76,
+       "partly allowed": 19,
+       "dismissed": 69,
+       "other": 10
       },
       "suppressed": false,
-      "allowed_share": 0.413
+      "allowed_share": 0.579
      }
     ]
    }
@@ -312,13 +384,18 @@
  "defenses": [
   {
    "against": "BNS 109",
-   "argument": "The prosecution has failed to prove the specific intention or knowledge required for attempt to murder under Section 109, as the act was committed in a sudden quarrel over a parking space without evidence of premeditation or intent to kill. The medical report confirms grievous hurt but explicitly records no death; since the accused did not cause death and there is no evidence he intended to cause an injury likely to cause death, the essential ingredient of 'intention of causing death' or 'knowledge that death is likely' remains unproven.",
-   "fact_quote": "After a quarrel over a parking space, the accused took a kitchen knife from his car and stabbed the complainant in the abdomen. Surgeons repaired a perforated intestine, and the medical report records the injury as dangerous to life.",
+   "argument": "The prosecution has failed to establish the specific intention or knowledge required for Attempt to Murder under Section 109, as the act was done with the intention of causing grievous hurt (perforated intestine) rather than death. The facts state the accused stabbed the complainant in a fit of quarrel over a parking space; there is no evidence he intended to kill or knew that his act would cause death. Under Section 116, 'grievous hurt' includes injury endangering life, but this does not equate to the specific intent for murder or attempt to murder unless proven beyond reasonable doubt. The '",
+   "fact_quote": "After a quarrel over a parking space, the accused took a kitchen knife from his car and stabbed the complainant in the abdomen.",
    "precedents": [
     {
-     "label": "P9",
-     "doc_id": "2025_10_212_252",
-     "title": "MANIKLAL SAHU versus STATE OF CHHATTISGARH"
+     "label": "P1",
+     "doc_id": "2024_12_392_417",
+     "title": "KUNHIMUHAMMED@KUNHEETHU versus THE STATE OF KERALA"
+    },
+    {
+     "label": "P2",
+     "doc_id": "na_Andhra_HC_2023_2939",
+     "title": null
     }
    ],
    "verified": true,
@@ -326,7 +403,7 @@
   },
   {
    "against": "BNS 118",
-   "argument": "The charge under Section 118(2) is unsustainable because it requires the voluntary causing of 'grievous hurt' by dangerous means, and the prosecution has not established that the injury inflicted was grievous in nature. The facts state the surgeons repaired a perforated intestine, but do not explicitly characterize the wound as 'grievous' under the relevant definition; without this specific finding, the statutory element of causing grievous hurt is missing.",
+   "argument": "The prosecution has not adduced evidence to prove that the accused voluntarily caused 'grievous hurt' as defined in Section 116. While the medical report records a perforated intestine, which falls under clause (h) of Section 116 ('hurt which endangers life'), the facts do not explicitly state that the injury was inflicted with the specific intent to cause grievous hurt or by means specifically enumerated in Section 118(1). The charge relies on an inference that the nature of the wound automatically constitutes 'grievous hurt' without addressing the subjective element of voluntary causation of",
    "fact_quote": "Surgeons repaired a perforated intestine, and the medical report records the injury as dangerous to life.",
    "precedents": [
     {
@@ -344,19 +421,19 @@
    "issues": []
   },
   {
-   "against": "BNS 100",
-   "argument": "The offence of culpable homicide under Section 100 is not made out because the facts do not establish that death was caused or that the accused had the intention/knowledge to cause death. The reviewer correctly notes that this section requires a death, yet the medical report only records grievous hurt; consequently, the essential consequence of causing death required for culpable homicide is absent.",
-   "fact_quote": "",
+   "against": "BNS 105",
+   "argument": "The charge of Culpable Homicide not amounting to Murder under Section 105 is legally unsustainable because the offence of culpable homicide, by definition, requires a death or an act done with the intention of causing death. The Reviewer's doubt correctly identifies that this section presupposes a death has occurred, whereas the facts only report grievous hurt and no mention of death. Since the complainant survived and there is no evidence of death, the essential ingredient of 'culpable homicide' (an act likely to cause death or done with intent to cause death) cannot be established.",
+   "fact_quote": "Surgeons repaired a perforated intestine",
    "precedents": [
     {
-     "label": "P1",
-     "doc_id": "2024_12_392_417",
-     "title": "KUNHIMUHAMMED@KUNHEETHU versus THE STATE OF KERALA"
+     "label": "P7",
+     "doc_id": "na_KA_HC_2020_2884",
+     "title": null
     },
     {
-     "label": "P2",
-     "doc_id": "na_Andhra_HC_2023_2939",
-     "title": null
+     "label": "P9",
+     "doc_id": "2025_1_1454_1468",
+     "title": "ASHOK SAXENA versus THE STATE OF UTTARAKHAND ETC."
     }
    ],
    "verified": true,
@@ -377,10 +454,10 @@
  "timings": {
   "intake_s": 0.0,
   "route_s": 0.0,
-  "unload_s": 4.5,
-  "guardrail_s": 3.2,
+  "unload_s": 6.4,
+  "guardrail_s": 10.8,
   "retrieve_s": 0.4,
-  "graph_s": 125.0
+  "graph_s": 131.1
  },
  "sample": {
   "id": "knife_stabbing",

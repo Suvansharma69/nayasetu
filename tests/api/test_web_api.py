@@ -26,6 +26,7 @@ FACTS = "The accused took the complainant's motorcycle from outside his house at
 def test_web_page_is_served(client):
     r = client.get("/")
     assert r.status_code == 200 and "Start a matter from its facts." in r.text
+    assert r.headers["cache-control"] == "no-cache"  # an update is never hidden by a stale copy
     # Fonts are served locally: the page must make no request outside this machine.
     assert "/static/fonts/fonts.css" in r.text and "fonts.googleapis.com" not in r.text
     css = client.get("/static/fonts/fonts.css")

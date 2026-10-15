@@ -42,6 +42,20 @@ def _excerpt(text):
     return t if len(t) <= EXCERPT_CHARS else t[:EXCERPT_CHARS].rsplit(" ", 1)[0] + " ..."
 
 
+def _shingles(text, n=5):
+    w = re.findall(r"[a-z0-9]+", (text or "").lower())
+    return {" ".join(w[i:i + n]) for i in range(max(len(w) - n + 1, 1))} if w else set()
+
+
+def _near_duplicate(a, b, threshold=0.6):
+    """Companion appeals decided together are filed as separate judgments whose
+    text differs only in a date or a case number (Telangana HC 2020_1862/1863
+    in the motorcycle sample), so exact matching misses them."""
+    if not a or not b:
+        return False
+    return len(a & b) / min(len(a), len(b)) >= threshold
+
+
 def _for_section(g, code, section, pool, via=None):
     rows = []
     for p in cg.get_precedents_for_section(g, code, section):
@@ -59,7 +73,7 @@ def precedent_matcher(state, g):
     """Node 3. {"precedents": [...]} -- up to PER_CHARGE per verified section,
     each verified as an ingested judgment."""
     era, pool = state["era"], state.get("precedent_pool") or {}
-    out, used, texts = [], set(), set()
+    out, used, texts = [], set(), []
     for v in _charged(state):
         rows = _for_section(g, era, v["section"], pool)
         if era == "bns":
@@ -69,14 +83,14 @@ def precedent_matcher(state, g):
         picked = 0
         for r in rows:
             # Companion appeals decided together are filed as separate
-            # judgments with identical text; show one.
-            key = (r["excerpt"] or "")[:200]
-            if r["doc_id"] in used or (key and key in texts):
+            # judgments with (near-)identical text; show one.
+            key = _shingles(r["excerpt"])
+            if r["doc_id"] in used or any(_near_duplicate(key, t) for t in texts):
                 continue
             if not cg.verify_case(g, r["doc_id"]):  # cannot fail for a graph edge; checked anyway
                 continue
             used.add(r["doc_id"])
-            texts.add(key)
+            texts.append(key)
             out.append({**r, "for_charge": f"{era.upper()} {v['section']}", "verified": True})
             picked += 1
             if picked == PER_CHARGE:

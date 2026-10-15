@@ -21,16 +21,16 @@ This starts the backend on port 8000 and opens `http://127.0.0.1:8000/` in the b
 
 | sample | what it shows |
 |---|---|
-| Motorcycle theft (BNS) | the worked example: BNS 303 verified; precedent comes through IPC 379, because no BNS theft case has reached an appeal yet |
+| Motorcycle theft (BNS) | the worked example: BNS 303 verified (up to 3 years; 1 to 5 years on a repeat conviction); precedent comes through IPC 379, because no BNS theft case has reached an appeal yet |
 | Group assault (IPC) | common intention (s34) and grievous hurt by a weapon (326) charged; rioting (148) **doubted** - it needs five or more persons, the facts show three; 324 shown as included in 326 |
 | Fake job scam (IPC) | cheating (420) and forgery for cheating (468); 417 shown as included in 420 |
 | OTP impersonation fraud (BNS) | cheating (318) and cheating by personation (319); forgery and stolen-property sections doubted, each with its reason |
-| Knife stabbing (BNS) | attempt to murder (109) and hurt by a dangerous weapon (118); culpable homicide (100) doubted - no death occurred |
+| Knife stabbing (BNS) | attempt to murder (109) and hurt by a dangerous weapon (118); culpable homicide (105) doubted - no death occurred; grievous hurt (117) shown as included in 118(2) |
 | Security deposit (civil) | no offence charged; a warning that the facts look civil, with the nearest sections listed for review only |
 
 How to read a report: **verified** = in the citation graph and supported by the facts; **doubted** = verified, but the applicability check doubts it (the reason is shown); **struck through** = a citation the model proposed that the graph rejected.
 
-Tools beside each report, all local: the bare text of any section; an IPC-BNS word diff (`/compare`); punishment and bail from the official First Schedules; PDF upload of an FIR or order; follow-up questions answered only from the report; precedent summaries; a printable research memo.
+Tools beside each report, all local: the bare text of any section; an IPC-BNS word diff (`/compare`); punishment (a repeat-conviction range shown apart from the first-offence one) and bail from the official First Schedules; PDF upload of an FIR or order; follow-up questions answered only from the report; precedent summaries; a printable research memo.
 
 API: `POST /analyze {"facts": "...", "offence_date": "YYYY-MM-DD"}`, `POST /jobs` + `GET /jobs/{id}` for live progress, `GET /health`.
 

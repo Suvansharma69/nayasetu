@@ -49,6 +49,19 @@ def test_companion_judgments_with_identical_text_are_shown_once(g):
     assert len(precedents.precedent_matcher(_state(pool=pool), g)["precedents"]) == 1
 
 
+def test_companion_judgments_differing_only_in_a_date_are_shown_once(g):
+    base = ("This appeal is directed against the judgment of the learned Additional District Judge "
+            "in of 2017, dated {} whereby the appellant was convicted for the offence punishable "
+            "under Section 379 and sentenced to simple imprisonment for a period of six months.")
+    texts = {"b1": base.format(""), "b2": base.format("16.04.2019,"), "b3": "A wholly different appeal "
+             "about a stolen bicycle taken from the railway station parking lot at night by two men."}
+    for d in texts:
+        _add_case(g, d, "ipc", "379")
+    pool = {d: {"score": 0.6, "chunk_id": d, "text": t} for d, t in texts.items()}
+    out = precedents.precedent_matcher(_state(pool=pool), g)["precedents"]
+    assert sorted(p["doc_id"] for p in out) in (["b1", "b3"], ["b2", "b3"])
+
+
 # --- Node 4 final verification -------------------------------------------------------
 
 def test_final_check_flags_uncharged_section_unknown_precedent_and_invented_quote(g):
@@ -128,3 +141,13 @@ def test_full_graph_runs_nodes_3_to_5(g, db, scripted, monkeypatch):
     assert [p["doc_id"] for p in st["precedents"]] == ["theft_case"]
     assert st["analytics"]["sections"][0]["charge"] == "BNS 303"
     assert st["defenses"][0]["verified"] and st["defenses"][0]["precedents"][0]["label"] == "P1"
+
+
+def test_defence_prompt_carries_the_grievous_hurt_definition_only_when_charged():
+    text_of = lambda era, s, sub=None: f"text of {era} {s}"
+    st = _state(verified=("118",))
+    st["verified_sections"][0]["subsection"] = "118(2)"
+    user = defense.build_messages(st, text_of=text_of)[1]["content"]
+    assert "BNS 116 (not itself a charge): text of bns 116" in user
+    user = defense.build_messages(_state(verified=("303",)), text_of=text_of)[1]["content"]
+    assert "116" not in user
