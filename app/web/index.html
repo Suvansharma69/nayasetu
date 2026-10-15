@@ -183,6 +183,7 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .cands { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 .cands .mono { color: var(--ink-2); }
 .tally { display: flex; flex-wrap: wrap; gap: 6px 26px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 13.5px; color: var(--ink-2); }
+.tally i { font-style: normal; }
 .tally b { font-family: var(--f-mono); font-size: 17px; font-weight: 500; color: var(--ink); margin-right: 6px; }
 
 /* ---------- the matter file (report) ---------- */
@@ -514,7 +515,7 @@ class LiveRun {
       <p class="cands" data-cands hidden></p>
       <div class="ledger-wrap" data-ledger hidden><table class="ledger">
         <thead><tr><th>Section</th><th>Retrieved</th><th>Proposed</th><th>Citation graph</th><th>Facts</th></tr></thead><tbody></tbody></table></div>
-      <div class="tally" data-tally hidden><span><b data-n="precedents">–</b>precedent judgments</span><span><b data-n="analytics">–</b>sections with outcome data</span><span><b data-n="defense">–</b>counter-arguments</span></div>
+      <div class="tally" data-tally hidden><span><b data-n="precedents">–</b><i data-l="precedent judgment|precedent judgments">precedent judgments</i></span><span><b data-n="analytics">–</b><i data-l="section with outcome data|sections with outcome data">sections with outcome data</i></span><span><b data-n="defense">–</b><i data-l="counter-argument|counter-arguments">counter-arguments</i></span></div>
     </div>`);
     this.el = host.lastElementChild;
     if (!replay) this.tick = setInterval(() => {
@@ -620,7 +621,9 @@ class LiveRun {
     }
     if (["precedents", "analytics", "defense"].includes(st) && d) {
       $("[data-tally]", this.el).hidden = false;
-      countUp($(`[data-n="${st}"]`, this.el), (st === "analytics" ? (d.sections || []).length : d.count) || 0);
+      const n = (st === "analytics" ? (d.sections || []).length : d.count) || 0, lab = $(`[data-n="${st}"] + [data-l]`, this.el);
+      countUp($(`[data-n="${st}"]`, this.el), n);
+      if (lab) lab.textContent = lab.dataset.l.split("|")[n === 1 ? 0 : 1];
     }
   }
   secondRun() {
@@ -913,7 +916,7 @@ function renderRun(r, box) {
     const via = p.via_ipc_predecessor ? ` · through the IPC predecessor` : "";
     const yr = precYear(p);
     return `<li data-prec="${i}" data-for="${esc(p.for_charge)}"><details><summary><span class="lab">${esc(p.label)}</span>
-      <span><span class="case">${esc(precTitle(p))}</span><span class="cite">${esc(p.court || "")}${yr ? ` · ${esc(yr)}` : ""}${p.citation ? ` · ${esc(p.citation)}` : ""} · for ${esc(p.for_charge)}${via}</span>${p.excerpt ? `<span class="peek">${esc(firstLine(p.excerpt))}</span>` : ""}</span></summary>
+      <span><span class="case">${esc(precTitle(p))}</span><span class="cite">${[p.title ? p.court : "", yr, p.citation, `for ${p.for_charge}`].filter(Boolean).map(esc).join(" · ")}${via}</span>${p.excerpt ? `<span class="peek">${esc(firstLine(p.excerpt))}</span>` : ""}</span></summary>
       <div class="x"><div class="note">${p.similarity ? `Similarity to these facts ${p.similarity.toFixed(2)}` : "Most cited for this section"} · disposal: ${esc(p.disposal_nature || "not recorded")}${p.via_ipc_predecessor ? ` · ${esc(p.via_ipc_predecessor)}` : ""}</div>
       ${p.excerpt ? `<blockquote>${esc(p.excerpt)}</blockquote>` : ""}
       <button class="link" data-summ="${esc(p.doc_id)}">Summarise this judgment</button><div data-summout></div></div></details></li>`;

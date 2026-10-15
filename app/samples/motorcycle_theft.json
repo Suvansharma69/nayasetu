@@ -25,6 +25,78 @@
  "included": [],
  "retries": 0,
  "review_candidates": [],
+ "retrieved": [
+  {
+   "section": "303",
+   "ref": "303(1)",
+   "title": "Theft"
+  },
+  {
+   "section": "317",
+   "ref": "317(5)",
+   "title": "Stolen property"
+  },
+  {
+   "section": "324",
+   "ref": "324(1)",
+   "title": "Mischief"
+  },
+  {
+   "section": "238",
+   "ref": "238",
+   "title": "Causing disappearance of evidence of offence, or giving false information to screen offender"
+  },
+  {
+   "section": "331",
+   "ref": "331(4)",
+   "title": "Punishment for house-trespass or house- breaking"
+  },
+  {
+   "section": "309",
+   "ref": "309(4)",
+   "title": "Robbery"
+  },
+  {
+   "section": "329",
+   "ref": "329(1)",
+   "title": "Criminal trespass and house-trespass"
+  },
+  {
+   "section": "316",
+   "ref": "316(1)",
+   "title": "Criminal breach of trust"
+  },
+  {
+   "section": "127",
+   "ref": "127(1)",
+   "title": "Wrongful confinement"
+  },
+  {
+   "section": "103",
+   "ref": "103",
+   "title": "Punishment for murder"
+  },
+  {
+   "section": "129",
+   "ref": "129",
+   "title": "Criminal force"
+  },
+  {
+   "section": "330",
+   "ref": "330(1)",
+   "title": "House-trespass and house- breaking"
+  },
+  {
+   "section": "106",
+   "ref": "106(2)",
+   "title": "Causing death by negligence"
+  },
+  {
+   "section": "345",
+   "ref": "345(2)",
+   "title": "Property mark"
+  }
+ ],
  "precedents": [
   {
    "label": "P1",
@@ -47,15 +119,15 @@
    "for_charge": "BNS 303",
    "applies": "IPC 379",
    "via_ipc_predecessor": "BNS 303 <- IPC 379",
-   "doc_id": "na_Telangana_HC_2020_1863",
+   "doc_id": "na_Himachal_Pradesh_HC_2022_2878",
    "title": null,
-   "court": "Telangana High Court",
+   "court": "Himachal Pradesh High Court",
    "date": null,
    "citation": null,
    "disposal_nature": "Allowed",
-   "similarity": 0.6811,
+   "similarity": 0.6756,
    "matched_by": "similarity to the facts",
-   "excerpt": "This appeal is directed against the judgment of the learned IV-Additional District and Judge (Fast Track Court), in of 2017, dated 16.04.2019, whereby the appellant A-1 was convicted for the offence punishable under Section 411 of and to undergo simple imprisonment for a period of six months, by reversing the judgment of acquittal, dated passed by the I-Additional Judicial Magistrate of First Class, against the appellant A-1 for the offence punishable under Section 379 of P.C.in of 2015. The ...",
+   "excerpt": "Sections 379, 411 and 34 of IPC, with Police Station Balh, District Mandi, H.P., as well as consequent proceedings, if any, pending before the court below, on the basis of compromise amicable arrived inter-se parties. Averments contained in the petition, which is duly supported by an affidavit, reveal that FIR sought to be quashed in the instant proceedings came to be lodged at the behest of the respondent No.4 Sh.Bhavneshwar Dutt (herein after to as the complainant), who alleged that on ...",
    "verified": true
   },
   {
@@ -63,15 +135,15 @@
    "for_charge": "BNS 303",
    "applies": "IPC 379",
    "via_ipc_predecessor": "BNS 303 <- IPC 379",
-   "doc_id": "na_Telangana_HC_2020_1859",
+   "doc_id": "na_Delhi_HC_2021_88",
    "title": null,
-   "court": "Telangana High Court",
+   "court": "Delhi High Court",
    "date": null,
    "citation": null,
-   "disposal_nature": "Allowed",
-   "similarity": 0.6785,
+   "disposal_nature": "Dismissed",
+   "similarity": 0.6581,
    "matched_by": "similarity to the facts",
-   "excerpt": "This appeal is directed against the judgment of the learned IV-Additional District and Judge (Fast Track Court), in of 2017, dated 17.04.2019, whereby the appellant A-1 was convicted for the offence punishable under Section 411 of and to undergo simple imprisonment for a period of six months, by reversing the judgment of acquittal, dated passed by the I-Additional Judicial Magistrate of First Class, against the appellant A-1 for the offence punishable under Section 379 of P.C.in of 2015. The ...",
+   "excerpt": "He had stated that he had found that his motorcycle was missing at about pm on He had searched for his motorcycle but it was not found where it was parked. The complainant had immediately made a call to the police at 100. A PCR had come to the spot and he had been asked to report the same at PS Bhajan Pura. He had stated that he visited the said Police Station but he did not have the Registration Certificate of his motorcycle. He again went to the said Police Station one or two days and on he ...",
    "verified": true
   }
  ],
@@ -128,20 +200,9 @@
  "defenses": [
   {
    "against": "BNS 303",
-   "argument": "The prosecution has failed to prove the essential ingredient of 'dishonest intention' (animus furandi). Mere unauthorized movement of property, without evidence of a specific intent to permanently deprive the owner or appropriate it as one's own, does not constitute theft under Section 303. The accused may have moved the motorcycle for reasons other than dishonesty, such as moving it to clear an obstruction or due to a misunderstanding of ownership rights.",
+   "argument": "The prosecution has failed to prove the essential ingredient of 'dishonest intention' (animus furandi). The facts merely state that the accused moved the motorcycle without permission; they do not establish a specific intent to permanently deprive the owner of possession. Mere unauthorized movement, especially when the vehicle was left in a public lane and the accused rode it away immediately, does not automatically satisfy the legal requirement of dishonesty absent evidence of concealment, denial of ownership, or refusal to return the property.",
    "fact_quote": "The accused had no permission to take it and did not return it.",
-   "precedents": [
-    {
-     "label": "P1",
-     "doc_id": "na_Telangana_HC_2020_1862",
-     "title": null
-    },
-    {
-     "label": "P2",
-     "doc_id": "na_Telangana_HC_2020_1863",
-     "title": null
-    }
-   ],
+   "precedents": [],
    "verified": true,
    "issues": []
   }
@@ -160,10 +221,10 @@
  "timings": {
   "intake_s": 0.0,
   "route_s": 0.0,
-  "unload_s": 7.1,
-  "guardrail_s": 11.5,
+  "unload_s": 6.5,
+  "guardrail_s": 10.9,
   "retrieve_s": 0.5,
-  "graph_s": 53.4
+  "graph_s": 52.9
  },
  "sample": {
   "id": "motorcycle_theft",

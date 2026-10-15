@@ -141,3 +141,13 @@ def test_full_graph_runs_nodes_3_to_5(g, db, scripted, monkeypatch):
     assert [p["doc_id"] for p in st["precedents"]] == ["theft_case"]
     assert st["analytics"]["sections"][0]["charge"] == "BNS 303"
     assert st["defenses"][0]["verified"] and st["defenses"][0]["precedents"][0]["label"] == "P1"
+
+
+def test_defence_prompt_carries_the_grievous_hurt_definition_only_when_charged():
+    text_of = lambda era, s, sub=None: f"text of {era} {s}"
+    st = _state(verified=("118",))
+    st["verified_sections"][0]["subsection"] = "118(2)"
+    user = defense.build_messages(st, text_of=text_of)[1]["content"]
+    assert "BNS 116 (not itself a charge): text of bns 116" in user
+    user = defense.build_messages(_state(verified=("303",)), text_of=text_of)[1]["content"]
+    assert "116" not in user

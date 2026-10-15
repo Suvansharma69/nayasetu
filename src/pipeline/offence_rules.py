@@ -1,6 +1,6 @@
 r"""Deterministic offence rules, read off the structure of the codes themselves.
 
-Three rules, each switchable for ablation:
+Four rules, each switchable for ablation:
 
 * Lesser-included offences (`lesser`). When an aggravated form of an offence is
   charged AND Node 2b supports it, the plain form is redundant beside it: IPC
@@ -23,8 +23,13 @@ Three rules, each switchable for ablation:
   negligence and abetment of suicide all need a death. When Node 1 reported
   the worst harm as something less, those sections get a rule doubt, as the
   headcount rule does for an unlawful assembly of three.
+
+* Attempts (`attempt`). The converse: an attempt to murder (IPC 307 / BNS 109)
+  is never doubted merely because no one died.
 """
 from __future__ import annotations
+
+import re
 
 from . import ablation
 
@@ -146,6 +151,33 @@ def grievous_consistency(era, verified, records, profile):
                 f"rule: the judge accepted every other ingredient for {era.upper()} {twin}, whose text is "
                 f"the same but for grievous hurt, and the facts report grievous hurt")
     return out
+
+
+# --- attempts --------------------------------------------------------------------
+
+# An attempt is the act done with the intent; the result is what did NOT happen.
+ATTEMPTS = {"ipc": {"307", "308", "511"}, "bns": {"62", "109", "110"}}
+_ONLY_DEATH = re.compile(
+    r"(?:(?:the|an?|no|actual|resulting|causing|caused|of|victim'?s?|complainant'?s?|person'?s?)\s+)*"
+    r"(?:death|died|killing|killed)"
+    r"(?:\s+of\s+(?:the\s+)?(?:victim|complainant|person|injured))?(?:\s+(?:was\s+)?(?:caused|occurred))?\W*")
+
+
+def attempt_without_result(era, section, missing):
+    """A reason string when the judge doubts an ATTEMPT only because no one died.
+
+    Measured on the knife demo, 2026-10-15: the judge doubted BNS 109 (attempt
+    to murder) with the missing ingredient "death", in both of two live runs.
+    BNS 109 / IPC 307 punish the act done with intent to kill "if by that act
+    death be caused" as murder -- an attempt is, by its own words, the case
+    where death is NOT caused. Only a doubt that names nothing but the death is
+    overruled; any other missing ingredient (intent, the act) still stands."""
+    if ablation.off("attempt") or section not in ATTEMPTS.get(era, set()):
+        return None
+    if not missing or not _ONLY_DEATH.fullmatch(missing.strip().lower()):
+        return None
+    return (f"rule: {era.upper()} {section} is an attempt, which by its own words needs no death; "
+            f"the judge's only objection was \"{missing.strip()}\"")
 
 
 NEEDS_DEATH = {

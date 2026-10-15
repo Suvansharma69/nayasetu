@@ -44,6 +44,13 @@ SCHEMA = {
     "required": ["arguments"],
 }
 
+# Charges whose text turns on "grievous hurt", which only the definition lists
+# (IPC 320 / BNS 116: "hurt which endangers life" is grievous). Without it the
+# model argued, on the knife demo 2026-10-15, that an injury "dangerous to
+# life" might not be grievous hurt.
+DEFINITION_FOR = {"ipc": ({"325", "326", "335", "338"}, "320"),
+                  "bns": ({"117", "118", "122", "125"}, "116")}
+
 _SECTION = re.compile(r"(\d{1,3}[A-Z]{0,3})")
 _LABEL = re.compile(r"P\d+")
 
@@ -60,7 +67,11 @@ def build_messages(state, text_of=statute_text):
         if d:
             line += f"\n  Reviewer's doubt: {d}"
         charges.append(line)
-    precs = [f"[{p['label']}] {p.get('title') or p['doc_id']} ({p.get('court') or 'court n/a'}, "
+    users, definition = DEFINITION_FOR.get(state["era"], (set(), None))
+    if definition and any(v["section"] in users for v in charged(state)):
+        text = re.sub(r"\s+", " ", text_of(state["era"], definition, None))[:STATUTE_CHARS]
+        charges.append(f"- Definition used by the charges above, {era} {definition} (not itself a charge): {text}")
+    precs =[f"[{p['label']}] {p.get('title') or p['doc_id']} ({p.get('court') or 'court n/a'}, "
              f"applies {p['applies']}): {p.get('excerpt') or '(no excerpt: cited by count only)'}"
              for p in state.get("precedents", [])]
     system = (
@@ -69,6 +80,14 @@ def build_messages(state, text_of=statute_text):
         "- Each argument targets exactly one listed charge: put its section number in `against`.\n"
         "- Attack an ingredient of that section's text that the facts do not clearly establish, "
         "or a gap in evidence the prosecution must fill. Use the reviewer's doubts where given.\n"
+        # Measured on the demo samples, 2026-10-15: "the accused did not sever the
+        # motorcycle or remove an obstacle, so pushing it is not 'moving'" (BNS
+        # 303's Explanation read as a requirement), and four arguments on one
+        # ingredient of one theft.
+        "- Read the section as a court would: an Explanation or Illustration widens or clarifies an "
+        "ingredient, it is never an extra requirement; and an ingredient the facts plainly state "
+        "is not a gap.\n"
+        "- One argument per ingredient. Fewer, stronger arguments are better than repeating one point.\n"
         "- `fact_quote`: copy the exact words from the facts that the argument turns on, or \"\".\n"
         "- `precedents`: only labels like P1 from the list below, and only if that precedent "
         "is genuinely relevant to the argument; otherwise an empty list. Never name any other case.\n"

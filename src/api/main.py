@@ -95,7 +95,9 @@ def _run(case):
 
 @app.get("/", include_in_schema=False)
 def web():
-    return FileResponse(WEB)
+    # Revalidate on every load: a browser that saw an older build otherwise
+    # keeps serving it from its heuristic cache after an update.
+    return FileResponse(WEB, headers={"Cache-Control": "no-cache"})
 
 
 @app.get("/health")
