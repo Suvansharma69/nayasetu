@@ -41,3 +41,6 @@ desktop.ini
 .DS_Store
 .vscode/
 .idea/
+
+# --- Run markers written by scripts ---
+docs/*.flag

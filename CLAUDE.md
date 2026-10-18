@@ -522,4 +522,9 @@ No API keys are needed anywhere in this project any more.
 - **Saved samples do not reproduce on later code.** Of six samples re-run on 2026-10-15, three gave different charges on both of two attempts. Every sample is a saved run of the code of its date; re-check it after any pipeline change before showing it, and never silently swap in a cherry-picked run - compare against the checked version (`samples_checked` approach: same charges or keep the old file).
 - **The live server competes with a sample run for Ollama**: `/health` pings Ollama and can time out while a run is generating, which made a `until curl /health` loop hang. Give such loops a timeout.
 
+*Added 2026-10-18 (launcher polish).*
+
+- **Never poll `/health` to decide the server is ready.** It pings Ollama with a 3 s timeout, so a 2 s client gives up every time while Ollama is busy or starting. `run_web.bat` polls the page (`GET /`, a static file) and opens the browser only once it answers; a second launch just reopens the running page.
+- **PowerShell's `Invoke-WebRequest` to 127.0.0.1 timed out on this machine even with the server up** (probably proxy settings), and the waiter looped invisibly. Use `curl.exe` in batch files here.
+
 *(Add to this as you hit real issues during the build.)*

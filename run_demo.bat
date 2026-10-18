@@ -3,7 +3,7 @@ rem Pramana demo: starts the FastAPI backend and the Streamlit frontend.
 rem Starts Ollama itself if it is not already running (qwen3.5:4b must be pulled).
 rem Close Chrome tabs / VS Code if memory is tight: a live analysis loads a 3.4GB model.
 rem (The main interface is run_web.bat.)
-cd /d D:\nayasetu
+cd /d "%~dp0"
 set HF_HUB_OFFLINE=1
 call :ensure_ollama
 start "Pramana API" venv\Scripts\python.exe -m uvicorn src.api.main:app --port 8000
