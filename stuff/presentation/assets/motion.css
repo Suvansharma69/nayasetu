@@ -131,3 +131,11 @@ html.still .seal-check, html.print .seal-check { stroke-dashoffset: 0; }
 @keyframes shimmer { 0% { left: -60%; } 30%, 100% { left: 130%; } }
 .live .tl { animation: floaty 6s ease-in-out calc(var(--d, 0) * .25s + 1.4s) infinite; }
 @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+/* ---------- demo slide closes the talk ---------- */
+.thanks-line { display: flex; flex-direction: column; gap: 6px; padding: 22px 26px; border-radius: 14px; border: 2px solid var(--accent); background: var(--wash); }
+.thanks-line b { font: 600 64px/1 var(--f-display); letter-spacing: -.02em; }
+.thanks-line span { font-size: 24px; color: var(--ink-2); }
+.thanks-line .by { font: 500 18px var(--f-mono); color: var(--muted); letter-spacing: .03em; }
+.thanks-line.on b { animation: thankin .9s var(--ease) both; }
+@keyframes thankin { from { opacity: 0; transform: translateY(14px) scale(.96); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }

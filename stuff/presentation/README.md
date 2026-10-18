@@ -1,6 +1,6 @@
 # Pramana — presentation
 
-An animated slide deck: 18 main slides (about 12–14 minutes) plus 8 backup slides for questions that runs offline in a browser. It has no internet dependency: the fonts are bundled (SIL Open Font License), there are no external libraries, and every figure comes from the project's own data and evaluation files.
+An animated slide deck: 15 slides, about 11–13 minutes that runs offline in a browser. It has no internet dependency: the fonts are bundled (SIL Open Font License), there are no external libraries, and every figure comes from the project's own data and evaluation files.
 
 ## Before the talk
 
@@ -22,7 +22,7 @@ Open `index.html` in **Chrome or Edge** (double-click, or drag it into the brows
 | **F** | full screen |
 | **T** | switch between the dark "ink" theme and a light "paper" theme (use paper if the room is bright or the projector washes out dark slides) |
 | **B** or **.** | black screen |
-| number + Enter | jump to slide (e.g. `20` Enter for the benchmark, `22` for the worked example) |
+| number + Enter | jump to slide (e.g. `10` Enter for the multi-agent pipeline) |
 | Home / End | first / last slide |
 | ? | key help |
 
@@ -30,7 +30,7 @@ Slides build step by step: a press reveals the next part before moving on. The n
 
 The address bar keeps the slide number (`index.html#12`), so a refresh returns to the same slide.
 
-## The live demo (slide 17)
+## The live demo (slide 15)
 
 Start the app beforehand: `run_web.bat` in the project root, then `http://127.0.0.1:8000`. Paste the motorcycle facts shown on the slide. A live run takes about a minute. If anything misbehaves live, open the saved **Motorcycle theft** sample in the app; it replays instantly and is labelled as a replay.
 
@@ -38,28 +38,16 @@ Start the app beforehand: `run_web.bat` in the project root, then `http://127.0.
 
 | # | Section | Slide |
 |---|---|---|
-| 1–2 | Title, Outline | |
-| 3–5 | 01 The problem | legal research today; renumbering; invented citations + the problem statement |
-| 6 | 02 What exists | research, existing tools, the gap |
-| 7–8 | 03 Our solution | facts in, checked memo out; how we do it in four steps |
-| 9–11 | 04 How it works | architecture, the knowledge base, retrieval |
-| 12–15 | 05 Multi-agent pipeline | the six agents and the shared state; identify + verify; applicability + defence; precedents + outcomes |
-| 16 | 06 Technology | the stack and why each piece |
-| 17 | 07 Demo | |
-| 18 | Thank you / Q&A | |
+| 1 | Title | |
+| 2–4 | 01 The problem | research done by hand; renumbering; invented citations + the problem statement |
+| 5 | 02 What exists | research, existing tools, the gap |
+| 6–7 | 03 Our solution | facts in, checked memo out; how we do it in four steps |
+| 8–9 | 04 How it works | architecture, retrieval |
+| 10–13 | 05 Multi-agent pipeline | six agents on one shared state; identify + verify; applicability + defence; precedents + outcomes |
+| 14 | 06 Technology | the stack and why each piece |
+| 15 | 07 Demo | live run; "Thank you" on the last click |
 
-## Backup slides for Q&A (not presented)
-
-| # | Backup | Answers |
-|---|---|---|
-| 19 | B1 Results | "What are your results?" |
-| 20 | B2 Benchmark (IL-TUR) | "How does it compare with existing work?" |
-| 21 | B3 Challenges & limitations | "What was difficult?", "What are the limitations?" |
-| 22 | B4 Worked example traced | "Walk us through one case" |
-| 23 | B5 LangGraph state | "Why LangGraph?", "How do the agents share data?" |
-| 24 | B6 Evaluation method | "How did you evaluate?" |
-| 25 | B7 Product screens | "Show us the interface" (if the live demo is skipped) |
-| 26 | B8 References | |
+Results, the IL-TUR benchmark and the references are in `stuff/docs/` (the guide and the paper) for questions.
 
 ## PDF backup
 
@@ -78,10 +66,10 @@ Add `&theme=paper` after `?print` for a light-background PDF suitable for printi
 
 Every figure on the slides was checked against the project's records, not typed from memory:
 
-- Dataset slide (10): `data/processed/build_report.json` (575 IPC, 358 BNS, 918 SC + 1,781 HC judgments; 83,918 IPC-era + 3,118 BNS-era passages = 87,036); the outcome threshold of 5 judgments is `MIN_JUDGMENTS` in `src/pipeline/analytics.py`; the state slide (B3) follows `src/pipeline/state.py`.
+- Corpus counts (2,699 judgments: 918 SC + 1,781 HC; 87,036 passages): `data/processed/build_report.json`; the outcome threshold of 5 judgments is `MIN_JUDGMENTS` in `src/pipeline/analytics.py`.
 
 - Corpus and graph counts (933 sections, 2,699 judgments, 16,493 citation edges, 539 IPC→BNS bridges, 87,036 judgment passages): the built citation graph and `data/processed/build_report.json`.
-- The citation-graph pictures (slides 13 and 15) draw a **real** subgraph: `tools/export_subgraph.py` writes `data/subgraph.js` from the built graph (41 judgments citing IPC 378, 379 and 411). Re-run it if the graph is rebuilt.
+- The citation-graph pictures (slides 11 and 13) draw a **real** subgraph: `tools/export_subgraph.py` writes `data/subgraph.js` from the built graph (41 judgments citing IPC 378, 379 and 411). Re-run it if the graph is rebuilt.
 - The motorcycle example (candidates, precedents, similarities, appeal outcomes, the counter-argument): `app/samples/motorcycle_theft.json`.
 - Embedder bake-off: `stuff/docs/embedding_bakeoff.md`. Retry loop: `stuff/docs/phase4_pipeline.md`. Catch rate, court orders and benchmark: `stuff/docs/evaluation_results.md` and `stuff/docs/iltur_lsi_test_100_summary.json`. Rules and laptop figures: `CLAUDE.md`.
 
