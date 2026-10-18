@@ -7,10 +7,10 @@ present, its slide shows a dashed placeholder frame naming the file it wants.
 
 Any of the listed extensions works; the first one found is used.
 
-  demo.mp4            Slide 16 "The interface" (large 16:9 frame).
+  demo.mp4            Slide 10 "Live demo" (right-hand frame). Optional.
   (or .webm / .mov)   Screen recording of a LIVE run of the motorcycle case:
                       run_web.bat -> http://127.0.0.1:8000 -> paste the facts
-                      (they are on slide 22) with offence date 15 August 2024
+                      (they are on slide 10) with offence date 15 August 2024
                       -> let the pipeline view play -> scroll the report.
                       About 60-90 s. Record 1920x1080 (Windows: Win+Alt+R with
                       Xbox Game Bar, or Snipping Tool's video mode). It plays
@@ -18,17 +18,17 @@ Any of the listed extensions works; the first one found is used.
                       Tip: speed the waiting part up 2-4x in any editor (Clipchamp
                       ships with Windows) so the slide holds attention.
 
-  screen-pipeline.png Slide 17, top left. The live pipeline view mid-run
+  screen-pipeline.png Slide 11, top left. The live pipeline view mid-run
   (or .jpg / .webp)   (stages lighting up, sections moving through the ledger).
 
-  screen-report.png   Slide 17, top right. The finished report: green verified
+  screen-report.png   Slide 11, top right. The finished report: green verified
                       charges, an amber doubted one if the case has it,
                       precedents and counter-arguments.
 
-  screen-graph.png    Slide 17, bottom left. The citation-graph / evidence-map
+  screen-graph.png    Slide 11, bottom left. The citation-graph / evidence-map
                       view of a case.
 
-  screen-dashboard.png  Slide 17, bottom right. The evaluation dashboard.
+  screen-dashboard.png  Slide 11, bottom right. The evaluation dashboard.
 
 All four screenshot frames are 16:9, so a full-window 1920x1080 capture
 (Win+Shift+S, then save) fills them exactly. Other shapes are letterboxed,

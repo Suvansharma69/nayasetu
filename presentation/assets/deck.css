@@ -53,8 +53,12 @@ body { background: #000; color: var(--ink); font-family: var(--f-body); overflow
 
 /* ---------- slides ---------- */
 .slide { position: absolute; inset: 0; padding: 92px 128px 120px; display: flex; flex-direction: column;
-  opacity: 0; visibility: hidden; transition: opacity .55s var(--ease), visibility 0s linear .55s; }
-.slide.active { opacity: 1; visibility: visible; transition: opacity .55s var(--ease), visibility 0s; z-index: 2; }
+  opacity: 0; visibility: hidden; transform: scale(.975); transform-origin: 50% 50%;
+  transition: opacity .55s var(--ease), transform .7s var(--ease), visibility 0s linear .7s; }
+/* the next slide settles in from slightly larger; the leaving one recedes */
+.slide.active { opacity: 1; visibility: visible; transform: none; z-index: 2;
+  animation: slidein .9s var(--ease) both; transition: opacity .6s var(--ease), visibility 0s; }
+@keyframes slidein { from { transform: scale(1.03); } to { transform: none; } }
 .slide.leaving { visibility: visible; }
 .notes { display: none; }
 
@@ -175,7 +179,7 @@ body.presenter { background: #120b0d; color: #efe7e5; overflow: auto; }
 html.print, html.print body { overflow: visible; height: auto; background: var(--ground); }
 html.print #viewport { position: static; display: block; background: none; }
 html.print #stage { position: relative; left: 0; top: 0; transform: none !important; height: auto; overflow: visible; background: none; }
-html.print .slide { position: relative; height: 1080px; opacity: 1; visibility: visible; page-break-after: always; break-after: page;
+html.print .slide { position: relative; height: 1080px; opacity: 1; visibility: visible; transform: none !important; animation: none !important; page-break-after: always; break-after: page;
   background: var(--ground); overflow: hidden; }
 html.print #chrome, html.print #progress { display: none; }
 html.print .slide .pfoot { display: flex; }
