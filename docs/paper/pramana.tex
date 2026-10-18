@@ -12,8 +12,8 @@
 \usepackage{xspace}
 \newcommand{\sys}{\textsc{Pramana}\xspace}
 % Filled from docs/evaluation_results.md, Section 7, after the test run completes.
-\newcommand{\testmacro}{TODO}
-\newcommand{\testmicro}{TODO}
+\newcommand{\testmacro}{11.8}
+\newcommand{\testmicro}{27.4}
 
 \begin{document}
 
@@ -200,6 +200,8 @@ Hier.\ LegalBERT & supervised & 21.7\\
 \end{table}
 
 On the development split micro-precision/recall/F1 were 29/17/21, and macro-F1 over the 84 labels with support was 11.6 (bootstrap 95\% CI 8.6--14.3). The gap to the supervised baselines is large and expected: they learn IL-TUR's label conventions from 42K training documents, whereas \sys is zero-shot with a 4B model. Error analysis attributes the loss to three causes. First, 30 documents received no charge; most state no allegation (bail conditions, adjournments), but about five real fact patterns were wrongly declined. Second, frequent minor companion offences (IPC 504, 294, 323) rarely reached the candidate list: only 34\% of gold labels did. Third, the system over-charges up the gravity scale (common intention, attempt to murder and grievous hurt are the commonest false positives). About 7\% of gold labels are procedural (CrPC) numbers.
+
+On the test split, run once after all decisions, macro-F1 was \testmacro{} over all 100 labels (13.9 over the 85 with support, bootstrap 95\% CI 10.9--17.2) and micro-precision/recall/F1 40/21/\testmicro. The intervals of the two splits overlap almost entirely, so we read the test result as confirming the development result rather than improving on it. The same three losses recur: 37\% of gold labels reached the candidate list, 33 documents received no charge, and common intention and attempt to murder are the commonest false positives. Two test documents exceeded the 32K-token context the hardware allows and are scored as empty.
 
 \subsection{Negative results}
 Several standard techniques made retrieval worse on the development set and were removed (Table~\ref{tab:neg}). The cross-encoder and sparse scoring both rewarded surface word overlap, which is a poor signal between narrative facts and abstract statutory text; precedent votes, which encode what courts charged on similar facts, carried the signal they lacked. Running Node~1 twice over two candidate orderings added relevant sections only in redundant forms while precision fell from 35\% to 26\%.

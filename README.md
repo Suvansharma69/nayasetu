@@ -50,7 +50,7 @@ venv\Scripts\python.exe -m pytest tests -q
 ## Known limitations (MVP)
 
 - **The citation check holds; the choice of sections is the weak part.** No invented section number has reached a report in any evaluation. But the model often proposes extra sections that exist and do not apply: about 40% of charged sections are relevant on the development set, and fewer on real court orders. The applicability check marks many extras as doubted, not all.
-- **Below the state of the art on the standard benchmark.** On IL-TUR statute identification (100 dev documents) macro-F1 is 9.8, against 28.1 for the best supervised model, which is trained on that task; Pramana is not. Details in `docs/evaluation_results.md`, reproducible with `scripts/eval_lsi.py`.
+- **Below the state of the art on the standard benchmark.** On IL-TUR statute identification macro-F1 is 11.8 on 100 test documents (9.8 on 100 dev documents), against 28.1 for the best supervised model, which is trained on that task; Pramana is not. Details in `docs/evaluation_results.md`, reproducible with `scripts/eval_lsi.py`.
 - **Works best on a statement of facts.** Pasted court orders are reduced to their allegations first; orders that state none are declined rather than charged.
 - **Analytics are appeal outcomes, not conviction rates.** Sentence ranges are not extracted.
 - **Legal labels and the IPC-BNS mapping were reviewed by Claude, not by a lawyer.**

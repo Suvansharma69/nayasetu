@@ -94,7 +94,7 @@ Hand-written by Claude, not reviewed by a lawyer. Each held-out set was written 
 
 ## 6. IL-TUR Legal Statute Identification, dev split (2026-10-10)
 
-The published benchmark, now that access was granted: 100 documents sampled from the LSI dev split (seed 20260927), the full pipeline as it runs for a user, with the router given an IPC-era date because the benchmark has none (`scripts/eval_lsi.py`, `src/eval/lsi.py`; per-document records in `docs/iltur_lsi_dev_100.jsonl`, summary in `..._summary.json`). Decisions may be made on this split; the test split is still unrun.
+The published benchmark, now that access was granted: 100 documents sampled from the LSI dev split (seed 20260927), the full pipeline as it runs for a user, with the router given an IPC-era date because the benchmark has none (`scripts/eval_lsi.py`, `src/eval/lsi.py`; per-document records in `docs/iltur_lsi_dev_100.jsonl`, summary in `..._summary.json`). Decisions were made on this split only; the test split was run once afterwards (Section 7).
 
 | prediction | macro-F1, all 100 labels | macro-F1, 84 labels with support (95% CI) | micro P / R / F1 |
 |---|---|---|---|
@@ -112,9 +112,28 @@ Where it goes:
 - **Label noise is real but small**: ~28 of 430 gold labels (7%) are CrPC numbers filed as IPC labels (482, 438, 389, 173, 164, 161, 156, 155, 313), and one smoke document's gold 498A is plainly wrong (fake-currency facts). IPC 2-5 and 13 are labels but are never chargeable; excluding them changes macro-F1 by 0.3.
 - 3 documents first failed on Ollama running out of VRAM; they were re-run (the runner now retries errors), so the table has 0 errors.
 
+## 7. IL-TUR Legal Statute Identification, test split (2026-10-18)
+
+Run once, after every decision had been made on the dev split: 100 documents sampled from the LSI test split with the same seed (20260927), same code and settings as Section 6, no ablation switches (`scripts/run_iltur_test.bat` -> `scripts/eval_lsi.py --split test --n 100`; records in `docs/iltur_lsi_test_100.jsonl`, summary in `..._summary.json`). Started 2026-10-15, finished 2026-10-18 (the first attempt was killed for low memory at 17/100; the runner resumed from there).
+
+| prediction | macro-F1, all 100 labels | macro-F1, 85 labels with support (95% CI) | micro P / R / F1 |
+|---|---|---|---|
+| `charges` (shown to the user) | **11.8** | 13.9 (10.9-17.2) | 40 / 21 / 27 |
+| `verified` (before Node 2b) | 11.8 | 13.9 (10.9-17.1) | 39 / 21 / 27 |
+| dev split, for comparison (Section 6) | 9.8 | 11.6 (8.6-14.3) | 29 / 17 / 21 |
+| published best (supervised) | **28.1** (LeSICiN), 26.2 (Hier. InLegalBERT), 21.7 (Hier. LegalBERT) | | |
+
+**The test result confirms the dev result: far below the supervised state of the art.** Test is 2 points higher than dev, but the two confidence intervals overlap almost entirely, so read it as the same performance on a different sample, not as an improvement. Excluding the labels that are never chargeable (IPC 2-5 and 13), macro-F1 is 14.4.
+
+- **Errors: 2 of 100**, both documents too long for this machine (~53K and ~33K tokens against the 32K context). They are scored as "charged nothing". 16 more documents first failed on Ollama crashing (GPU out of memory, empty replies, one llama-server crash, mostly in a run at documents 82-100); as on dev, those were re-run with the same code, and all 16 completed.
+- **33/100 documents got no charge**: 24 declined by `nofacts` as stating no allegation, 1 by the guardrail, 6 with no proposals, 2 errors. The `nofacts` declines were not read one by one on this split (dev: about 5 of 21 were real facts).
+- **The same three losses as dev.** Gold sections in Node 1's candidate list on charged documents: 95/258 (37%; dev 34%). Minor companion offences are still almost never there: 504 (0 of 5 documents), 294 (0/5), 324 (0/4), 323 (6/13, charged twice). Common intention (34) is a gold label in 41 documents and is both the commonest right charge (16) and the commonest wrong one (15). Over-charging: the top wrong charges are 34 (15), 307 (12), 149 (8), 326 (7), 120B, 325 and 506 (6 each).
+- **What it gets right** is the grave, well-represented offences: 302 F1 0.78 (18 correct), 279 1.0, 201 0.67, 304B 0.55, 306 0.50.
+- About 19 of 396 gold labels (5%) are procedural (CrPC) numbers.
+
 ## What this does and does not show
 
 - **The citation check holds:** 20 invented section numbers were caught and 0 reached the charges. With retrieval context the model proposed no invented numbers at all; from memory, on the BNS, most of its numbers were IPC numbers (420, 378-383, 465-468), the renumbering trap the graph check exists for.
 - **On unseen real court orders the system is weak to middling:** a right section is charged in 12/30 cases (40%) on the first sample and 60-65% on the second (Section 4), against 60-100% on the hand-written fixtures. The spread between two samples of the same set shows how wide the uncertainty is at these sizes. The input is part of the gap (procedural orders, not fact statements; Section 2); the intake step (Section 4) removes most of the procedural charges it caused, and precision is the rest.
-- **Not state of the art on statute identification.** On IL-TUR LSI (Section 6) macro-F1 is 9.8 against a supervised best of 28.1. Prior case retrieval is not evaluated.
+- **Not state of the art on statute identification.** On IL-TUR LSI macro-F1 is 11.8 on the test split (Section 7; 9.8 on dev, Section 6) against a supervised best of 28.1. Prior case retrieval is not evaluated.
 - **Weak point on every set: precision** (extra sections that exist but do not apply).

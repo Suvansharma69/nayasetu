@@ -29,7 +29,7 @@ Contents
 
 **Thirty seconds.** Lawyers in India have had a confusing year: on 1 July 2024 the Indian Penal Code (IPC, 1860) was replaced by the Bharatiya Nyaya Sanhita (BNS, 2023), and every section number changed. Theft was IPC 378/379; it is now BNS 303. Murder was IPC 302; BNS 302 is now about wounding religious feelings. An offence committed before that date is still tried under the IPC. AI chatbots make this worse because they invent or mix up section numbers. Pramana fixes the number problem structurally: a deterministic rule picks the code from the offence date, a small local language model proposes sections, and **nothing it proposes is shown as real unless it exists as a node in a citation graph built from the ingested statutes**. A second check asks whether the facts actually support each section. Then it pulls matching judgments, writes counter-arguments grounded only in verified material, and counts appeal outcomes.
 
-**Two minutes** — add: it is retrieval-augmented generation (RAG), not a fine-tuned model; the embedder is BGE-M3, chosen by a measured bake-off over the legal-domain InLegal-Sbert; the corpus is about 88,000 chunks from 2,700 Supreme Court and High Court judgments plus both codes; the LLM is Qwen 3.5 4B running on Ollama on a 4 GB laptop GPU; the orchestration is a LangGraph state machine with a retry loop; the web interface shows each pipeline stage live. Evaluated honestly: the citation check has let **zero** invented sections through in every evaluation, but choosing the *right* sections is the weak part — on the published IL-TUR statute-identification benchmark it scores macro-F1 9.8 against 28.1 for the best supervised model.
+**Two minutes** — add: it is retrieval-augmented generation (RAG), not a fine-tuned model; the embedder is BGE-M3, chosen by a measured bake-off over the legal-domain InLegal-Sbert; the corpus is about 88,000 chunks from 2,700 Supreme Court and High Court judgments plus both codes; the LLM is Qwen 3.5 4B running on Ollama on a 4 GB laptop GPU; the orchestration is a LangGraph state machine with a retry loop; the web interface shows each pipeline stage live. Evaluated honestly: the citation check has let **zero** invented sections through in every evaluation, but choosing the *right* sections is the weak part — on the published IL-TUR statute-identification benchmark it scores macro-F1 11.8 on the test split (9.8 on dev) against 28.1 for the best supervised model.
 
 ## A2. The problem it solves
 
@@ -351,7 +351,8 @@ A self-imposed 20 GB ceiling (the disk actually had ~107 GB free), kept as disci
 | 6 Oct | **Web interface** | chat-style page, live pipeline view, evidence map, lawyer tools, law-report redesign |
 | 7–9 Oct | Accuracy pass | 80 IPC sections completed from official text; fact-free orders declined; scored on fresh orders |
 | 9–14 Oct | **IL-TUR** | access granted; LSI dev 100 documents: macro-F1 9.8 |
-| 14–15 Oct | Wrap-up and polish | launchers; precedent dedupe; repeat-conviction ranges; attempt rule; Node 4 grounding; samples refreshed; IL-TUR **test** run |
+| 14–15 Oct | Wrap-up and polish | launchers; precedent dedupe; repeat-conviction ranges; attempt rule; Node 4 grounding; samples refreshed |
+| 15–18 Oct | **IL-TUR test** | 100 test documents, run once after all decisions: macro-F1 11.8 |
 
 **Working method** (worth describing if asked "how did you manage the project"):
 - one git branch per phase, merged only when that phase's written "Done when" gate was met;
@@ -421,7 +422,7 @@ A self-imposed 20 GB ceiling (the disk actually had ~107 GB free), kept as disci
 | | macro-F1 (all 100 labels) | micro P / R / F1 |
 |---|---|---|
 | **Pramana, dev split, 100 docs** | **9.8** (11.6 over the 84 labels with support, 95% CI 8.6–14.3) | 29 / 17 / 21 |
-| Pramana, test split, 100 docs | *see `docs/evaluation_results.md` §7 (run 2026-10-15)* | |
+| **Pramana, test split, 100 docs** (run once, 15-18 Oct) | **11.8** (13.9 over the 85 labels with support, 95% CI 10.9–17.2) | 40 / 21 / 27 |
 | LeSICiN (supervised, published best) | 28.1 | |
 | Hierarchical InLegalBERT (supervised) | 26.2 | |
 | Hierarchical LegalBERT (supervised) | 21.7 | |
@@ -484,7 +485,7 @@ A self-imposed 20 GB ceiling (the disk actually had ~107 GB free), kept as disci
 - **Lesson**: in legal AI, the asymmetric costs matter. Missing a real offence (or falsely declining a case) is worse than an extra flagged section, so the judge informs rather than deletes.
 
 ### 7. Evaluation honesty
-- Hand-written fixtures flatter the system (60–100%) vs real orders (40–65%) vs the benchmark (macro-F1 9.8).
+- Hand-written fixtures flatter the system (60–100%) vs real orders (40–65%) vs the benchmark (macro-F1 11.8 test, 9.8 dev).
 - The benchmark (IL-TUR) was gated and access took weeks; a substitute ungated set was used meanwhile and labelled as such.
 - **Lessons**: write held-out sets before the change; score once; compare against the same code with only the switch flipped; report setbacks (the broad-coverage setback is in the record as "a SETBACK, recorded as is").
 
@@ -513,7 +514,7 @@ A self-imposed 20 GB ceiling (the disk actually had ~107 GB free), kept as disci
 | Edge precision | **63% → 96%** after the audit fix |
 | Hallucinations leaked | **0** in every evaluation |
 | Stress test | 20 of 68 proposals rejected, 6/6 recovered |
-| IL-TUR LSI dev | macro-F1 **9.8** vs **28.1** supervised SOTA |
+| IL-TUR LSI test (dev) | macro-F1 **11.8** (9.8) vs **28.1** supervised SOTA |
 | Tests | **413** passing |
 | Time per case | ~1–3 min |
 | Cost | **₹0 recurring** |
@@ -680,10 +681,10 @@ Answer out loud, then check. **Bold** marks the phrase that should be in your an
 
 70. **How did you evaluate?** Five layers: per-phase gates; hand-written dev and held-out sets (scored once each); out-of-domain probes; an external set of real Patna HC orders; and the published IL-TUR LSI benchmark.
 71. **What is IL-TUR?** The Indian Legal Text Understanding and Reasoning benchmark (ACL 2024). LSI = legal statute identification: given facts, predict the IPC sections (100 labels).
-72. **What did you score?** Macro-F1 **9.8** on 100 dev documents (micro-F1 21), against **28.1** for the best supervised model (LeSICiN).
+72. **What did you score?** Macro-F1 **11.8** on 100 test documents (micro-F1 27) and **9.8** on 100 dev documents (micro-F1 21), against **28.1** for the best supervised model (LeSICiN).
 73. **Why so far below?** The baselines are **trained on IL-TUR's 42K training documents** and its label conventions; Pramana is zero-shot with a 4B local model. Many documents state no allegation; minor companion offences (504, 323) rarely reach the candidate list; it over-charges grave sections (307, 326).
 74. **Is that a fair comparison?** It is the standard metric on the standard split, so it is reported; but it compares a supervised classifier to a zero-shot system. A closer calibration: on the ILSIC benchmark GPT-4.1 zero-shot gets ~32% micro-F1 and 8–12B open models 18–30%; Pramana's 21 is in that band.
-75. **Did you tune on the test set?** No. Decisions were made on dev; the test split was run once at the end (2026-10-15).
+75. **Did you tune on the test set?** No. Decisions were made on dev; the test split was run once at the end (started 2026-10-15, finished 2026-10-18).
 76. **What is your precision and why is it low?** About 20–45% depending on the set. The model over-proposes real-but-inapplicable sections, and the IL-TUR/charge-sheet labels themselves often list several companion sections the facts don't spell out.
 77. **Your hand-written test sets were written by an AI — isn't that circular?** They flatter the system (60–100% vs 40–65% on real orders), which is exactly why the external set and the benchmark were added and are the numbers we lead with.
 78. **How do you know results aren't noise?** Small sets are noisy — we say so: on 20 cases, one or two flips are within run-to-run variation (we saw a case flip with identical input). We report confidence intervals on IL-TUR (8.6–14.3 for the supported-label macro-F1) and avoid claims from one-case differences.
