@@ -1,0 +1,3 @@
+Spectral, IBM Plex Sans and IBM Plex Mono are licensed under the SIL Open Font License 1.1
+(https://openfontlicense.org). Copied from app/web/static/fonts; latin subsets as served by Google Fonts.
+Spectral: Copyright 2017 The Spectral Project Authors. IBM Plex: Copyright 2017 IBM Corp.

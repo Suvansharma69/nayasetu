@@ -11,6 +11,10 @@ r"""FastAPI backend: the full pipeline, and the chat-style web interface (Phase 
     POST /pdf               raw PDF bytes -> its text (digital PDFs; no OCR)
     POST /ask               {"report", "question", "history"?} -> grounded answer, citations checked
     POST /summarise         {"doc_id"} -> headnote of an ingested judgment, quote checked verbatim
+    GET  /graph/{code}/{s}  citation-graph neighbourhood of a section (graph explorer)
+    POST /graph             {"era", "sections", "doc_ids"?} -> neighbourhood of a report's charges
+    GET  /stats             corpus, graph and evaluation figures, read from files (System view)
+    GET  /classic           the previous interface, kept as a fallback
     GET  /health            Ollama reachable? graph and outcomes table present?
 
 One analysis at a time: the 4GB card holds either BGE-M3 or the LLM, and the
@@ -37,12 +41,13 @@ from fastapi.staticfiles import StaticFiles  # noqa: E402
 from pydantic import BaseModel, Field  # noqa: E402
 
 
-from src.api import assistant, dates, lawtools, report  # noqa: E402
+from src.api import assistant, dates, lawtools, report, visuals  # noqa: E402
 from src.pipeline import analytics, graph, llm, progress, router  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 SAMPLES = ROOT / "app" / "samples"
 WEB = ROOT / "app" / "web" / "index.html"
+WEB_CLASSIC = ROOT / "app" / "web" / "classic.html"
 MAX_JOBS = 20
 
 app = FastAPI(title="Pramana", description="AI-assisted legal research for Indian criminal law")
@@ -98,6 +103,12 @@ def web():
     # Revalidate on every load: a browser that saw an older build otherwise
     # keeps serving it from its heuristic cache after an update.
     return FileResponse(WEB, headers={"Cache-Control": "no-cache"})
+
+
+@app.get("/classic", include_in_schema=False)
+def web_classic():
+    # The previous interface, kept as a fallback for demonstrations.
+    return FileResponse(WEB_CLASSIC, headers={"Cache-Control": "no-cache"})
 
 
 @app.get("/health")
@@ -204,6 +215,34 @@ def compare(code: str, section: str):
     if out is None:
         raise HTTPException(status_code=404, detail=f"{code.upper()} {section} is not a section of the ingested {code.upper()}")
     return out
+
+
+class GraphQuery(BaseModel):
+    era: str
+    sections: list[str] = Field(max_length=20)
+    doc_ids: list[str] = Field(default_factory=list, max_length=40)
+
+
+@app.get("/graph/{code}/{section}")
+def graph_section(code: str, section: str):
+    """The citation-graph neighbourhood of one section (graph explorer)."""
+    if code not in visuals.CODES or not graph.cg.verify_section(graph.citation_graph(), code, section):
+        raise HTTPException(status_code=404, detail=f"{code.upper()} {section} is not a section of the ingested {code.upper()}")
+    return visuals.neighbourhood(graph.citation_graph(), code, [section], per_section=10, cocited=6)
+
+
+@app.post("/graph")
+def graph_report(q: GraphQuery):
+    """The citation-graph neighbourhood of a report's charges and precedents."""
+    if q.era not in visuals.CODES:
+        raise HTTPException(status_code=422, detail="era must be ipc or bns")
+    return visuals.neighbourhood(graph.citation_graph(), q.era, q.sections, q.doc_ids)
+
+
+@app.get("/stats")
+def system_stats():
+    """Corpus, graph and evaluation figures for the System view, read from files."""
+    return {**visuals.stats(graph.citation_graph()), "model": llm.model(), "embedder": "BAAI/bge-m3"}
 
 
 @app.post("/pdf")

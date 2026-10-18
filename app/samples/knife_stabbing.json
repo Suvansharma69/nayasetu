@@ -55,72 +55,138 @@
   {
    "section": "118",
    "ref": "118(1)",
-   "title": "Voluntarily causing hurt or grievous hurt by dangerous weapons or means"
+   "title": "Voluntarily causing hurt or grievous hurt by dangerous weapons or means",
+   "score": 0.03227,
+   "statute_rank": 1,
+   "statute_score": 0.536,
+   "vote_rank": 3,
+   "list": "fused"
   },
   {
    "section": "109",
    "ref": "109(2)",
-   "title": "Attempt to murder"
+   "title": "Attempt to murder",
+   "score": 0.03226,
+   "statute_rank": 2,
+   "statute_score": 0.5308,
+   "vote_rank": 2,
+   "list": "fused"
   },
   {
    "section": "103",
    "ref": "103(1)",
-   "title": "Punishment for murder"
+   "title": "Punishment for murder",
+   "score": 0.03068,
+   "statute_rank": 10,
+   "statute_score": 0.4904,
+   "vote_rank": 1,
+   "list": "fused"
   },
   {
    "section": "115",
    "ref": "115(1)",
-   "title": "Voluntarily causing hurt"
+   "title": "Voluntarily causing hurt",
+   "score": 0.02963,
+   "statute_rank": 8,
+   "statute_score": 0.4987,
+   "vote_rank": 7,
+   "list": "fused"
   },
   {
    "section": "119",
    "ref": "119(2)",
-   "title": "Voluntarily causing hurt or grievous hurt to extort property, or to constrain to an illegal act"
+   "title": "Voluntarily causing hurt or grievous hurt to extort property, or to constrain to an illegal act",
+   "score": 0.02813,
+   "statute_rank": 4,
+   "statute_score": 0.5147,
+   "vote_rank": 20,
+   "list": "fused"
   },
   {
    "section": "3",
    "ref": "3(7)",
-   "title": "General explanations"
+   "title": "General explanations",
+   "score": 0.02797,
+   "statute_rank": 21,
+   "statute_score": 0.4715,
+   "vote_rank": 4,
+   "list": "fused"
   },
   {
    "section": "351",
    "ref": "351(1)",
-   "title": "Criminal intimidation"
+   "title": "Criminal intimidation",
+   "score": 0.0278,
+   "statute_rank": 14,
+   "statute_score": 0.4846,
+   "vote_rank": 10,
+   "list": "fused"
   },
   {
    "section": "117",
    "ref": "117(3)",
-   "title": "Voluntarily causing grievous hurt"
+   "title": "Voluntarily causing grievous hurt",
+   "score": 0.02748,
+   "statute_rank": 9,
+   "statute_score": 0.4962,
+   "vote_rank": 17,
+   "list": "fused"
   },
   {
    "section": "100",
    "ref": "100",
-   "title": "Culpable homicide"
+   "title": "Culpable homicide",
+   "score": 0.02688,
+   "statute_rank": 17,
+   "statute_score": 0.4765,
+   "vote_rank": 12,
+   "list": "fused"
   },
   {
    "section": "110",
    "ref": "110",
-   "title": "Attempt to commit culpable homicide"
+   "title": "Attempt to commit culpable homicide",
+   "score": 0.02686,
+   "statute_rank": 13,
+   "statute_score": 0.4866,
+   "vote_rank": 16,
+   "list": "fused"
   },
   {
    "section": "124",
    "ref": "124(1)",
-   "title": "Voluntarily causing grievous hurt by use of acid, etc"
+   "title": "Voluntarily causing grievous hurt by use of acid, etc",
+   "score": 0.01587,
+   "statute_rank": 3,
+   "statute_score": 0.5221,
+   "list": "text"
   },
   {
    "section": "114",
    "ref": "114",
-   "title": "Hurt"
+   "title": "Hurt",
+   "score": 0.01538,
+   "statute_rank": 5,
+   "statute_score": 0.5106,
+   "list": "text"
   },
   {
    "section": "120",
    "ref": "120(2)",
-   "title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property"
+   "title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property",
+   "score": 0.01515,
+   "statute_rank": 6,
+   "statute_score": 0.5052,
+   "list": "text"
   },
   {
    "section": "121",
    "ref": "121(2)",
-   "title": "Voluntarily causing hurt or grievous hurt to deter public servant from his duty"
+   "title": "Voluntarily causing hurt or grievous hurt to deter public servant from his duty",
+   "score": 0.01493,
+   "statute_rank": 7,
+   "statute_score": 0.4988,
+   "list": "text"
   }
  ],
  "precedents": [
@@ -462,5 +528,399 @@
  "sample": {
   "id": "knife_stabbing",
   "name": "Knife stabbing after a parking quarrel (BNS era)"
+ },
+ "embedding_map": {
+  "points": [
+   {
+    "kind": "query",
+    "label": "These facts",
+    "cos": 1.0,
+    "x": -0.4249,
+    "y": -0.0985
+   },
+   {
+    "kind": "statute",
+    "section": "118",
+    "label": "BNS 118(1)",
+    "title": "Voluntarily causing hurt or grievous hurt by dangerous weapons or means",
+    "rank": 1,
+    "cos": 0.5238,
+    "x": 0.7937,
+    "y": -0.3286
+   },
+   {
+    "kind": "statute",
+    "section": "109",
+    "label": "BNS 109(2)",
+    "title": "Attempt to murder",
+    "rank": 2,
+    "cos": 0.5129,
+    "x": 0.8593,
+    "y": 0.2428
+   },
+   {
+    "kind": "statute",
+    "section": "103",
+    "label": "BNS 103(1)",
+    "title": "Punishment for murder",
+    "rank": 3,
+    "cos": 0.4658,
+    "x": 0.7728,
+    "y": 0.1872
+   },
+   {
+    "kind": "statute",
+    "section": "115",
+    "label": "BNS 115(1)",
+    "title": "Voluntarily causing hurt",
+    "rank": 4,
+    "cos": 0.4895,
+    "x": 0.9124,
+    "y": -0.3461
+   },
+   {
+    "kind": "statute",
+    "section": "119",
+    "label": "BNS 119(2)",
+    "title": "Voluntarily causing hurt or grievous hurt to extort property, or to constrain to an illegal act",
+    "rank": 5,
+    "cos": 0.4951,
+    "x": 1.0,
+    "y": -0.2744
+   },
+   {
+    "kind": "statute",
+    "section": "3",
+    "label": "BNS 3(7)",
+    "title": "General explanations",
+    "rank": 6,
+    "cos": 0.4099,
+    "x": 0.3922,
+    "y": 0.2151
+   },
+   {
+    "kind": "statute",
+    "section": "351",
+    "label": "BNS 351(1)",
+    "title": "Criminal intimidation",
+    "rank": 7,
+    "cos": 0.4533,
+    "x": 0.8348,
+    "y": 0.0069
+   },
+   {
+    "kind": "statute",
+    "section": "117",
+    "label": "BNS 117(3)",
+    "title": "Voluntarily causing grievous hurt",
+    "rank": 8,
+    "cos": 0.4739,
+    "x": 0.9461,
+    "y": -0.1424
+   },
+   {
+    "kind": "statute",
+    "section": "100",
+    "label": "BNS 100",
+    "title": "Culpable homicide",
+    "rank": 9,
+    "cos": 0.4768,
+    "x": 0.6508,
+    "y": 0.4615
+   },
+   {
+    "kind": "statute",
+    "section": "110",
+    "label": "BNS 110",
+    "title": "Attempt to commit culpable homicide",
+    "rank": 10,
+    "cos": 0.4866,
+    "x": 0.895,
+    "y": 0.2661
+   },
+   {
+    "kind": "statute",
+    "section": "124",
+    "label": "BNS 124(1)",
+    "title": "Voluntarily causing grievous hurt by use of acid, etc",
+    "rank": 11,
+    "cos": 0.4914,
+    "x": 0.8192,
+    "y": -0.2115
+   },
+   {
+    "kind": "statute",
+    "section": "114",
+    "label": "BNS 114",
+    "title": "Hurt",
+    "rank": 12,
+    "cos": 0.5109,
+    "x": 0.5756,
+    "y": -0.2468
+   },
+   {
+    "kind": "statute",
+    "section": "120",
+    "label": "BNS 120(2)",
+    "title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property",
+    "rank": 13,
+    "cos": 0.4764,
+    "x": 0.8763,
+    "y": -0.3293
+   },
+   {
+    "kind": "statute",
+    "section": "121",
+    "label": "BNS 121(2)",
+    "title": "Voluntarily causing hurt or grievous hurt to deter public servant from his duty",
+    "rank": 14,
+    "cos": 0.4991,
+    "x": 0.9517,
+    "y": -0.3777
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Guwahati_HC_2024_191",
+    "label": "na_Guwahati_HC_2024_191",
+    "cos": 0.6924,
+    "x": -0.6329,
+    "y": -0.5548
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2023_443",
+    "label": "na_KA_HC_2023_443",
+    "cos": 0.6634,
+    "x": -0.3526,
+    "y": 0.0804
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_2541",
+    "label": "na_KA_HC_2020_2541",
+    "cos": 0.6599,
+    "x": -0.4817,
+    "y": 0.2324
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_12_392_417",
+    "label": "2024_12_392_417",
+    "cos": 0.6314,
+    "x": -0.1595,
+    "y": 0.6521
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_2884",
+    "label": "na_KA_HC_2020_2884",
+    "cos": 0.6294,
+    "x": -0.3749,
+    "y": 0.1095
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Andhra_HC_2023_2939",
+    "label": "na_Andhra_HC_2023_2939",
+    "cos": 0.6277,
+    "x": -0.5133,
+    "y": 0.1349
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2022_974",
+    "label": "na_KA_HC_2022_974",
+    "cos": 0.6221,
+    "x": -0.0607,
+    "y": -0.1005
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2021_706",
+    "label": "na_Madras_HC_2021_706",
+    "cos": 0.6191,
+    "x": -0.5903,
+    "y": -0.3097
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2021_704",
+    "label": "na_Madras_HC_2021_704",
+    "cos": 0.6189,
+    "x": -0.5908,
+    "y": -0.3111
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_MP_HC_2021_207",
+    "label": "na_MP_HC_2021_207",
+    "cos": 0.613,
+    "x": -0.5134,
+    "y": -0.283
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_MP_HC_2023_1178",
+    "label": "na_MP_HC_2023_1178",
+    "cos": 0.6112,
+    "x": -0.5129,
+    "y": -0.5143
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Gujarat_HC_2020_1551",
+    "label": "na_Gujarat_HC_2020_1551",
+    "cos": 0.6086,
+    "x": -0.434,
+    "y": 0.0238
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_1_1454_1468",
+    "label": "2025_1_1454_1468",
+    "cos": 0.6033,
+    "x": -0.3526,
+    "y": -0.0829
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2022_2627",
+    "label": "na_Delhi_HC_2022_2627",
+    "cos": 0.602,
+    "x": -0.3379,
+    "y": 0.1132
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Bombay_HC_2022_165",
+    "label": "na_Bombay_HC_2022_165",
+    "cos": 0.5962,
+    "x": -0.5234,
+    "y": -0.1776
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2020_555",
+    "label": "na_Madras_HC_2020_555",
+    "cos": 0.5951,
+    "x": -0.2943,
+    "y": -0.0595
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Bombay_HC_2020_2833",
+    "label": "na_Bombay_HC_2020_2833",
+    "cos": 0.5936,
+    "x": -0.2446,
+    "y": 0.711
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Kerala_HC_2020_1551",
+    "label": "na_Kerala_HC_2020_1551",
+    "cos": 0.5902,
+    "x": -0.3809,
+    "y": -0.2261
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2026_3_243_265",
+    "label": "2026_3_243_265",
+    "cos": 0.5898,
+    "x": -0.1851,
+    "y": -0.217
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_1704",
+    "label": "na_KA_HC_2020_1704",
+    "cos": 0.5896,
+    "x": -0.1233,
+    "y": 0.5308
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_3_933_950",
+    "label": "2025_3_933_950",
+    "cos": 0.5886,
+    "x": -0.0926,
+    "y": 0.8321
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2022_341",
+    "label": "na_KA_HC_2022_341",
+    "cos": 0.5861,
+    "x": -0.1811,
+    "y": 0.0678
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_7_218_245",
+    "label": "2024_7_218_245",
+    "cos": 0.5859,
+    "x": -0.5671,
+    "y": -0.2778
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2022_73",
+    "label": "na_KA_HC_2022_73",
+    "cos": 0.5848,
+    "x": -0.4254,
+    "y": -0.2049
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2023_15_1074_1080",
+    "label": "2023_15_1074_1080",
+    "cos": 0.5848,
+    "x": -0.0789,
+    "y": 0.7935
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Bombay_HC_2020_2784",
+    "label": "na_Bombay_HC_2020_2784",
+    "cos": 0.5843,
+    "x": -0.2682,
+    "y": 0.2751
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2020_681",
+    "label": "na_Delhi_HC_2020_681",
+    "cos": 0.584,
+    "x": -0.5242,
+    "y": -0.295
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Bombay_HC_2023_722",
+    "label": "na_Bombay_HC_2023_722",
+    "cos": 0.5839,
+    "x": -0.4066,
+    "y": -0.1328
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2022_90",
+    "label": "na_Delhi_HC_2022_90",
+    "cos": 0.5814,
+    "x": -0.3118,
+    "y": -0.0782
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Andhra_HC_2020_2218",
+    "label": "na_Andhra_HC_2020_2218",
+    "cos": 0.5812,
+    "x": -0.3402,
+    "y": 0.2447
+   }
+  ],
+  "explained": 0.261,
+  "model": "BAAI/bge-m3",
+  "dims": 1024
  }
 }

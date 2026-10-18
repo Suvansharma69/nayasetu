@@ -8,6 +8,13 @@ from __future__ import annotations
 ERA_NAME = {"ipc": "Indian Penal Code, 1860 (offence before 1 July 2024)",
             "bns": "Bharatiya Nyaya Sanhita, 2023 (offence on/after 1 July 2024)"}
 RETRIEVED_KEPT = 14  # graph._brief's default: what the live view shows
+RANK_KEYS = ("score", "statute_rank", "statute_score", "vote_rank", "list")
+
+
+def brief_row(r):
+    """A retrieved candidate with the signals that ranked it (as graph.brief_row)."""
+    return {"section": r["section"], "ref": r.get("matched") or r["section"], "title": r.get("title"),
+            **{k: r[k] for k in RANK_KEYS if r.get(k) is not None}}
 
 
 def _charge(v, doubt=None):
@@ -48,8 +55,10 @@ def build(result):
         "review_candidates": result.get("review_candidates", []),
         # The candidate list Node 1 read, in rank order, so a saved report can
         # replay the ledger's "retrieved" column instead of leaving it blank.
-        "retrieved": [{"section": r["section"], "ref": r.get("matched") or r["section"], "title": r.get("title")}
-                      for r in (st.get("retrieved") or [])[:RETRIEVED_KEPT]],
+        "retrieved": [brief_row(r) for r in (st.get("retrieved") or [])[:RETRIEVED_KEPT]],
+        # Real BGE-M3 vectors of the facts and of what retrieval found, in 2-D
+        # (src/pipeline/embedmap.py). None for runs that did not compute it.
+        "embedding_map": result.get("embedding_map"),
         "precedents": [{k: p.get(k) for k in ("label", "for_charge", "applies", "via_ipc_predecessor",
                                                "doc_id", "title", "court", "date", "citation",
                                                "disposal_nature", "similarity", "matched_by",

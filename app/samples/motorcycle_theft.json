@@ -29,74 +29,542 @@
   {
    "section": "303",
    "ref": "303(1)",
-   "title": "Theft"
+   "title": "Theft",
+   "score": 0.032,
+   "statute_rank": 3,
+   "statute_score": 0.5005,
+   "vote_rank": 2,
+   "list": "fused"
   },
   {
    "section": "317",
    "ref": "317(5)",
-   "title": "Stolen property"
+   "title": "Stolen property",
+   "score": 0.03102,
+   "statute_rank": 6,
+   "statute_score": 0.4864,
+   "vote_rank": 3,
+   "list": "fused"
   },
   {
    "section": "324",
    "ref": "324(1)",
-   "title": "Mischief"
+   "title": "Mischief",
+   "score": 0.0265,
+   "statute_rank": 5,
+   "statute_score": 0.487,
+   "vote_rank": 30,
+   "list": "fused"
   },
   {
    "section": "238",
    "ref": "238",
-   "title": "Causing disappearance of evidence of offence, or giving false information to screen offender"
+   "title": "Causing disappearance of evidence of offence, or giving false information to screen offender",
+   "score": 0.02625,
+   "statute_rank": 32,
+   "statute_score": 0.4453,
+   "vote_rank": 5,
+   "list": "fused"
   },
   {
    "section": "331",
    "ref": "331(4)",
-   "title": "Punishment for house-trespass or house- breaking"
+   "title": "Punishment for house-trespass or house- breaking",
+   "score": 0.02623,
+   "statute_rank": 2,
+   "statute_score": 0.5087,
+   "vote_rank": 39,
+   "list": "fused"
   },
   {
    "section": "309",
    "ref": "309(4)",
-   "title": "Robbery"
+   "title": "Robbery",
+   "score": 0.0262,
+   "statute_rank": 8,
+   "statute_score": 0.4808,
+   "vote_rank": 27,
+   "list": "fused"
   },
   {
    "section": "329",
    "ref": "329(1)",
-   "title": "Criminal trespass and house-trespass"
+   "title": "Criminal trespass and house-trespass",
+   "score": 0.02594,
+   "statute_rank": 23,
+   "statute_score": 0.4556,
+   "vote_rank": 12,
+   "list": "fused"
   },
   {
    "section": "316",
    "ref": "316(1)",
-   "title": "Criminal breach of trust"
+   "title": "Criminal breach of trust",
+   "score": 0.0247,
+   "statute_rank": 22,
+   "statute_score": 0.4558,
+   "vote_rank": 20,
+   "list": "fused"
   },
   {
    "section": "127",
    "ref": "127(1)",
-   "title": "Wrongful confinement"
+   "title": "Wrongful confinement",
+   "score": 0.02457,
+   "statute_rank": 13,
+   "statute_score": 0.4681,
+   "vote_rank": 32,
+   "list": "fused"
   },
   {
    "section": "103",
    "ref": "103",
-   "title": "Punishment for murder"
+   "title": "Punishment for murder",
+   "score": 0.01639,
+   "vote_rank": 1,
+   "list": "fused"
   },
   {
    "section": "129",
    "ref": "129",
-   "title": "Criminal force"
+   "title": "Criminal force",
+   "score": 0.01639,
+   "statute_rank": 1,
+   "statute_score": 0.5149,
+   "list": "text"
   },
   {
    "section": "330",
    "ref": "330(1)",
-   "title": "House-trespass and house- breaking"
+   "title": "House-trespass and house- breaking",
+   "score": 0.01562,
+   "statute_rank": 4,
+   "statute_score": 0.4944,
+   "list": "text"
   },
   {
    "section": "106",
    "ref": "106(2)",
-   "title": "Causing death by negligence"
+   "title": "Causing death by negligence",
+   "score": 0.01493,
+   "statute_rank": 7,
+   "statute_score": 0.4809,
+   "list": "text"
   },
   {
    "section": "345",
    "ref": "345(2)",
-   "title": "Property mark"
+   "title": "Property mark",
+   "score": 0.01449,
+   "statute_rank": 9,
+   "statute_score": 0.4799,
+   "list": "text"
   }
  ],
+ "embedding_map": {
+  "points": [
+   {
+    "kind": "query",
+    "label": "These facts",
+    "cos": 1.0,
+    "x": -0.5237,
+    "y": -0.0975
+   },
+   {
+    "kind": "statute",
+    "section": "303",
+    "label": "BNS 303(1)",
+    "title": "Theft",
+    "rank": 1,
+    "cos": 0.4898,
+    "x": 0.6187,
+    "y": 0.095
+   },
+   {
+    "kind": "statute",
+    "section": "317",
+    "label": "BNS 317(5)",
+    "title": "Stolen property",
+    "rank": 2,
+    "cos": 0.4289,
+    "x": 0.8449,
+    "y": -0.0891
+   },
+   {
+    "kind": "statute",
+    "section": "324",
+    "label": "BNS 324(1)",
+    "title": "Mischief",
+    "rank": 3,
+    "cos": 0.4599,
+    "x": 0.9034,
+    "y": -0.0666
+   },
+   {
+    "kind": "statute",
+    "section": "238",
+    "label": "BNS 238",
+    "title": "Causing disappearance of evidence of offence, or giving false information to screen offender",
+    "rank": 4,
+    "cos": 0.4454,
+    "x": 0.6994,
+    "y": 0.077
+   },
+   {
+    "kind": "statute",
+    "section": "331",
+    "label": "BNS 331(4)",
+    "title": "Punishment for house-trespass or house- breaking",
+    "rank": 5,
+    "cos": 0.4867,
+    "x": 0.8618,
+    "y": -0.064
+   },
+   {
+    "kind": "statute",
+    "section": "309",
+    "label": "BNS 309(4)",
+    "title": "Robbery",
+    "rank": 6,
+    "cos": 0.4592,
+    "x": 0.7085,
+    "y": 0.1063
+   },
+   {
+    "kind": "statute",
+    "section": "329",
+    "label": "BNS 329(1)",
+    "title": "Criminal trespass and house-trespass",
+    "rank": 7,
+    "cos": 0.4236,
+    "x": 1.0,
+    "y": -0.0326
+   },
+   {
+    "kind": "statute",
+    "section": "316",
+    "label": "BNS 316(1)",
+    "title": "Criminal breach of trust",
+    "rank": 8,
+    "cos": 0.4474,
+    "x": 0.7804,
+    "y": -0.1497
+   },
+   {
+    "kind": "statute",
+    "section": "127",
+    "label": "BNS 127(1)",
+    "title": "Wrongful confinement",
+    "rank": 9,
+    "cos": 0.4516,
+    "x": 0.8718,
+    "y": -0.1691
+   },
+   {
+    "kind": "statute",
+    "section": "103",
+    "label": "BNS 103",
+    "title": "Punishment for murder",
+    "rank": 10,
+    "cos": 0.3815,
+    "x": 0.7937,
+    "y": 0.0885
+   },
+   {
+    "kind": "statute",
+    "section": "129",
+    "label": "BNS 129",
+    "title": "Criminal force",
+    "rank": 11,
+    "cos": 0.5149,
+    "x": 0.4961,
+    "y": 0.2517
+   },
+   {
+    "kind": "statute",
+    "section": "330",
+    "label": "BNS 330(1)",
+    "title": "House-trespass and house- breaking",
+    "rank": 12,
+    "cos": 0.487,
+    "x": 0.7424,
+    "y": 0.1351
+   },
+   {
+    "kind": "statute",
+    "section": "106",
+    "label": "BNS 106(2)",
+    "title": "Causing death by negligence",
+    "rank": 13,
+    "cos": 0.4489,
+    "x": 0.6469,
+    "y": -0.0762
+   },
+   {
+    "kind": "statute",
+    "section": "345",
+    "label": "BNS 345(2)",
+    "title": "Property mark",
+    "rank": 14,
+    "cos": 0.4743,
+    "x": 0.662,
+    "y": -0.235
+   },
+   {
+    "kind": "statute",
+    "section": "126",
+    "label": "BNS 126(1)",
+    "title": "Wrongful restraint",
+    "rank": 15,
+    "cos": 0.4627,
+    "x": 0.7653,
+    "y": -0.0927
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Telangana_HC_2020_1862",
+    "label": "na_Telangana_HC_2020_1862",
+    "cos": 0.6863,
+    "x": -0.3623,
+    "y": -0.9364
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Telangana_HC_2020_1863",
+    "label": "na_Telangana_HC_2020_1863",
+    "cos": 0.6811,
+    "x": -0.3942,
+    "y": -0.991
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Telangana_HC_2020_1859",
+    "label": "na_Telangana_HC_2020_1859",
+    "cos": 0.6784,
+    "x": -0.3923,
+    "y": -0.9743
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Himachal_Pradesh_HC_2022_2878",
+    "label": "na_Himachal_Pradesh_HC_2022_2878",
+    "cos": 0.6755,
+    "x": -0.4321,
+    "y": -0.4966
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2021_88",
+    "label": "na_Delhi_HC_2021_88",
+    "cos": 0.6581,
+    "x": -0.5849,
+    "y": -0.2971
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2020_2104",
+    "label": "na_Delhi_HC_2020_2104",
+    "cos": 0.6514,
+    "x": -0.3958,
+    "y": -0.1324
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Telangana_HC_2020_1860",
+    "label": "na_Telangana_HC_2020_1860",
+    "cos": 0.6369,
+    "x": -0.3983,
+    "y": -0.9732
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_10_753_768",
+    "label": "2024_10_753_768",
+    "cos": 0.6317,
+    "x": -0.1935,
+    "y": 0.2869
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_3079",
+    "label": "na_KA_HC_2020_3079",
+    "cos": 0.63,
+    "x": -0.4641,
+    "y": 0.1936
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Andhra_HC_2021_2132",
+    "label": "na_Andhra_HC_2021_2132",
+    "cos": 0.624,
+    "x": -0.45,
+    "y": 0.3677
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_3075",
+    "label": "na_KA_HC_2020_3075",
+    "cos": 0.621,
+    "x": -0.1616,
+    "y": 0.5256
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2023_5_601_623",
+    "label": "2023_5_601_623",
+    "cos": 0.6199,
+    "x": -0.3702,
+    "y": 0.356
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Andhra_HC_2023_1430",
+    "label": "na_Andhra_HC_2023_1430",
+    "cos": 0.6197,
+    "x": -0.386,
+    "y": 0.4972
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_615",
+    "label": "na_KA_HC_2020_615",
+    "cos": 0.614,
+    "x": -0.4393,
+    "y": 0.2535
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2022_1348",
+    "label": "na_KA_HC_2022_1348",
+    "cos": 0.6127,
+    "x": -0.3336,
+    "y": 0.3864
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_504",
+    "label": "na_KA_HC_2020_504",
+    "cos": 0.6112,
+    "x": -0.3609,
+    "y": 0.0685
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_MP_HC_2021_2733",
+    "label": "na_MP_HC_2021_2733",
+    "cos": 0.611,
+    "x": -0.3607,
+    "y": -0.0383
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_10_587_630",
+    "label": "2025_10_587_630",
+    "cos": 0.6029,
+    "x": -0.2354,
+    "y": 0.4414
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_1_1041_1104",
+    "label": "2025_1_1041_1104",
+    "cos": 0.6026,
+    "x": -0.4805,
+    "y": 0.075
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Telangana_HC_2024_65",
+    "label": "na_Telangana_HC_2024_65",
+    "cos": 0.6021,
+    "x": -0.3104,
+    "y": 0.2766
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2021_1799",
+    "label": "na_Delhi_HC_2021_1799",
+    "cos": 0.6012,
+    "x": -0.3757,
+    "y": -0.1272
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2023_706",
+    "label": "na_Delhi_HC_2023_706",
+    "cos": 0.6002,
+    "x": -0.3949,
+    "y": 0.133
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Jharkhand_HC_2022_1648",
+    "label": "na_Jharkhand_HC_2022_1648",
+    "cos": 0.6,
+    "x": -0.3014,
+    "y": -0.0134
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_2549",
+    "label": "na_KA_HC_2020_2549",
+    "cos": 0.5986,
+    "x": -0.2236,
+    "y": 0.1495
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2026_4_417_432",
+    "label": "2026_4_417_432",
+    "cos": 0.5979,
+    "x": -0.3972,
+    "y": 0.0612
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_6_20_35",
+    "label": "2024_6_20_35",
+    "cos": 0.5959,
+    "x": -0.3734,
+    "y": 0.053
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2023_2578",
+    "label": "na_Madras_HC_2023_2578",
+    "cos": 0.595,
+    "x": -0.4199,
+    "y": 0.5903
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_1101",
+    "label": "na_KA_HC_2020_1101",
+    "cos": 0.594,
+    "x": -0.2418,
+    "y": -0.0836
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_7_160_189",
+    "label": "2025_7_160_189",
+    "cos": 0.5933,
+    "x": -0.3698,
+    "y": 0.3004
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_930",
+    "label": "na_KA_HC_2020_930",
+    "cos": 0.5933,
+    "x": -0.2679,
+    "y": 0.3667
+   }
+  ],
+  "explained": 0.264,
+  "model": "BAAI/bge-m3",
+  "dims": 1024
+ },
  "precedents": [
   {
    "label": "P1",
@@ -221,10 +689,10 @@
  "timings": {
   "intake_s": 0.0,
   "route_s": 0.0,
-  "unload_s": 6.5,
-  "guardrail_s": 10.9,
-  "retrieve_s": 0.5,
-  "graph_s": 52.9
+  "unload_s": 6.4,
+  "guardrail_s": 9.9,
+  "retrieve_s": 0.4,
+  "graph_s": 55.0
  },
  "sample": {
   "id": "motorcycle_theft",
