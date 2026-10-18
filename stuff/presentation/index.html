@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="assets/deck.css">
 <link rel="stylesheet" href="assets/slides.css">
 <link rel="stylesheet" href="assets/flow.css">
+<link rel="stylesheet" href="assets/motion.css">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -17,12 +18,13 @@
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M3 12h16M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></symbol>
     <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 16l5-5 4 4 3-3 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
-    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
-    <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="10.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M2 19h20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
     <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M4 7h16M6.5 7l-3 7a3.5 3.5 0 0 0 6 0l-3-7M17.5 7l-3 7a3.5 3.5 0 0 0 6 0l-3-7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></symbol>
     <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5l8 3v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-net" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="19" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="18" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7.3 7.3l3.4 8.4M16.7 7.3l-3.4 8.4M7.5 6h9" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 6l3 3" stroke="currentColor" stroke-width="2"/></symbol>
     <marker id="m-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker>
   </defs>
 </svg>
@@ -33,54 +35,59 @@
 <!-- ============================================================ 1 TITLE -->
 <section class="slide s-title" id="title" data-chapter="Title" data-title="Pramana">
   <div class="numfield" aria-hidden="true"></div>
+  <svg class="seal" viewBox="0 0 400 400" aria-hidden="true">
+    <defs><path id="seal-ring" d="M200 200 m-150 0 a150 150 0 1 1 300 0 a150 150 0 1 1 -300 0"/></defs>
+    <circle class="seal-glow" cx="200" cy="200" r="120"/>
+    <g class="seal-spin"><text class="seal-t"><textPath href="#seal-ring">EVERY CITATION VERIFIED · IPC · BNS · EVERY CITATION VERIFIED · IPC · BNS ·</textPath></text></g>
+    <circle class="seal-dash" cx="200" cy="200" r="118"/>
+    <circle class="seal-core" cx="200" cy="200" r="86"/>
+    <path class="seal-check" d="M155 202 l30 30 l62 -66" pathLength="1"/>
+  </svg>
   <div class="title-wrap">
     <div class="eyebrow rise">B.Tech CSE · Major project · October 2026</div>
     <h1 class="rise" style="--d:1">Pramana</h1>
     <div class="deva rise" style="--d:2"><span lang="sa">प्रमाण</span><i>proof; a means of valid knowledge</i></div>
-    <p class="lede rise" style="--d:3">Citation-verified, fully local AI legal research for Indian criminal law across the IPC → BNS transition.</p>
-    <div class="title-tags rise" style="--d:4"><span class="chip ok"><svg class="ico"><use href="#i-check"/></svg>Every citation verified</span><span class="chip"><svg class="ico"><use href="#i-lock"/></svg>Fully offline</span><span class="chip"><svg class="ico"><use href="#i-laptop"/></svg>Zero cost</span></div>
-    <div class="byline rise" style="--d:5">
+    <p class="lede rise" style="--d:3">AI-assisted legal research for Indian criminal law that verifies every citation it makes, across the IPC → BNS transition.</p>
+    <div class="byline rise" style="--d:4">
       <span>Suvan Sharma · Roll no. <span class="verify">[[VERIFY: roll no]]</span> · Team The Spartan Coders</span><br>
       <span>Guide: Aditya Sharma, <span class="verify">[[VERIFY: designation]]</span></span><br>
       <span>Department of Computer Science &amp; Engineering · I.K. Gujral Punjab Technical University</span>
     </div>
   </div>
-  <aside class="notes">Good morning. I’m Suvan Sharma from team The Spartan Coders, and my major project is Pramana, an AI legal research assistant for Indian criminal law, guided by Aditya Sharma. Pramana is Sanskrit for proof, and that is the design goal: nothing reaches the lawyer unless it can be proved from data the system actually holds. It runs fully offline on a laptop, at zero cost. Here is how the presentation is organised.</aside>
+  <aside class="notes">Good morning. I’m Suvan Sharma from team The Spartan Coders, and my major project is Pramana, an AI-assisted legal research system for Indian criminal law, guided by Aditya Sharma. Pramana is Sanskrit for proof, and that is the design goal: nothing reaches the lawyer unless it can be proved from the statutes and judgments the system actually holds. Here is the plan.</aside>
 </section>
 
 <!-- ============================================================ 2 OUTLINE -->
 <section class="slide s-agenda" id="outline" data-chapter="Outline" data-title="Outline">
   <div class="eyebrow rise">Outline</div>
-  <h2 class="rise" style="--d:1">Presentation outline.</h2>
+  <h2 class="rise" style="--d:1">What we will cover.</h2>
   <div class="body">
     <svg class="ag-line" viewBox="0 0 1664 20" preserveAspectRatio="none" aria-hidden="true"><line class="draw" pathLength="1" style="--d:2" x1="0" y1="10" x2="1664" y2="10"/></svg>
-    <ol class="agenda nine">
-      <li class="rise" style="--d:2"><span class="num">01</span><b>Introduction</b><span>who does legal research, and why it matters now</span></li>
-      <li class="rise" style="--d:3"><span class="num">02</span><b>Problem statement</b><span>two codes, invented citations</span></li>
-      <li class="rise" style="--d:4"><span class="num">03</span><b>Literature review</b><span>research, tools, the gap</span></li>
-      <li class="rise" style="--d:5"><span class="num">04</span><b>Objectives</b><span>five measurable goals</span></li>
-      <li class="rise" style="--d:6"><span class="num">05</span><b>Proposed system</b><span>facts in, checked memo out</span></li>
-      <li class="rise" style="--d:7"><span class="num">06</span><b>Methodology</b><span>architecture, dataset, RAG, verification</span></li>
-      <li class="rise" style="--d:8"><span class="num">07</span><b>Implementation</b><span>tech stack and live demo</span></li>
-      <li class="rise" style="--d:9"><span class="num">08</span><b>Results</b><span>verification, benchmark, limitations</span></li>
-      <li class="rise" style="--d:10"><span class="num">09</span><b>Conclusion</b><span>objectives met, future scope</span></li>
+    <ol class="agenda seven">
+      <li class="rise" style="--d:2"><span class="num">01</span><b>The problem</b><span>what lawyers in India face</span></li>
+      <li class="rise" style="--d:3"><span class="num">02</span><b>What exists</b><span>research, tools, the gap</span></li>
+      <li class="rise" style="--d:4"><span class="num">03</span><b>Our solution</b><span>what Pramana does, and how</span></li>
+      <li class="rise" style="--d:5"><span class="num">04</span><b>How it works</b><span>architecture, data, retrieval</span></li>
+      <li class="rise" style="--d:6"><span class="num">05</span><b>Multi-agent pipeline</b><span>every agent, one by one</span></li>
+      <li class="rise" style="--d:7"><span class="num">06</span><b>Technology</b><span>the stack and why</span></li>
+      <li class="rise" style="--d:8"><span class="num">07</span><b>Demo</b><span>a real case, end to end</span></li>
     </ol>
   </div>
-  <aside class="notes">The presentation follows nine sections: the introduction and motivation, the problem statement, a literature review that ends in the research gap, our objectives, the proposed system, the methodology including the dataset, the implementation with a live demo, the results, and the conclusion with future scope. Let me start with who this is for.</aside>
+  <aside class="notes">Seven parts: the problem lawyers in India face, what already exists, our solution and how we do it, how it works inside, the multi-agent pipeline agent by agent, the technology stack, and a live demo. Let me start with the problem.</aside>
 </section>
 
-<!-- ============================================================ 3 INTRODUCTION -->
-<section class="slide s-intro" id="intro" data-chapter="Introduction" data-title="Introduction and motivation">
-  <div class="eyebrow rise">01 · Introduction &amp; motivation</div>
-  <h2 class="rise" style="--d:1">Criminal legal research is still done by hand.</h2>
+<!-- ============================================================ 3 PROBLEM: RESEARCH TODAY -->
+<section class="slide s-intro" id="intro" data-chapter="The problem" data-title="Legal research today">
+  <div class="eyebrow rise">01 · The problem · legal research today</div>
+  <h2 class="rise" style="--d:1">Criminal legal research in India is still done by hand.</h2>
   <div class="body intro">
     <div class="users rise" style="--d:2">
-      <span class="label">Users</span>
-      <span class="chip"><svg class="ico"><use href="#i-scale"/></svg>Advocates, especially solo and district-court practitioners</span>
+      <span class="label">Who does it</span>
+      <span class="chip"><svg class="ico"><use href="#i-scale"/></svg>Advocates, especially district-court practitioners</span>
       <span class="chip"><svg class="ico"><use href="#i-book"/></svg>Law students</span>
       <span class="chip"><svg class="ico"><use href="#i-net"/></svg>Legal-aid clinics</span>
     </div>
-    <div class="chain">
+    <div class="chain sweep">
       <div class="ckc rise" style="--d:3"><span class="n">1</span><b>Bare act</b><span>find candidate sections</span></div>
       <svg class="ck-arrow rise" style="--d:3" viewBox="0 0 60 24"><path d="M2 12h48M42 4l10 8-10 8" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
       <div class="ckc rise" style="--d:4"><span class="n">2</span><b>Commentary</b><span>read the ingredients</span></div>
@@ -90,18 +97,18 @@
       <div class="ckc hot rise" style="--d:6"><span class="n">4</span><b>Manual reading</b><span>hours per matter <span class="verify">[[VERIFY: time per matter]]</span></span></div>
     </div>
     <div class="motiv">
-      <span class="label" data-step="1">Why now</span>
-      <div class="mv" data-step="1" style="--d:0"><b>Two criminal codes since 1 July 2024</b><span>IPC and BNS in use side by side for years</span></div>
+      <span class="label" data-step="1">And now</span>
+      <div class="mv" data-step="1" style="--d:0"><b>Two criminal codes since 1 July 2024</b><span>IPC and BNS in use side by side</span></div>
       <div class="mv" data-step="1" style="--d:1"><b>AI tools invent citations</b><span>a wrong section is not a cosmetic error</span></div>
-      <div class="mv" data-step="1" style="--d:2"><b>Client facts are confidential</b><span>they should not leave the lawyer’s machine</span></div>
+      <div class="mv" data-step="1" style="--d:2"><b>Precedent is split across codes</b><span>new BNS sections have almost no case law yet</span></div>
     </div>
   </div>
-  <aside class="notes">The users are advocates, especially solo and district-court practitioners who cannot afford research staff, law students and legal-aid clinics. Today the work is manual: find candidate sections in the bare act, read the commentary for the ingredients, search judgments for precedent, and then read for hours. [click] Three things make this harder now: since July 2024 there are two criminal codes in use, AI tools that promise speed invent citations, and a lawyer’s facts are confidential. The first of these is the core problem.</aside>
+  <aside class="notes">Legal research in India is mostly manual. Advocates, especially in the district courts, law students and legal-aid clinics find candidate sections in the bare act, read the commentary for the ingredients, search judgments for precedent, and then read for hours. [click] Three things make it harder now: since July 2024 there are two criminal codes in use, AI tools that promise speed invent citations, and precedent is split, because the new code has almost no case law yet. The first of these is the core problem.</aside>
 </section>
 
-<!-- ============================================================ 4 PROBLEM (1) RENUMBERING -->
-<section class="slide s-renum" id="renumbering" data-chapter="Problem statement" data-title="One number, two crimes">
-  <div class="eyebrow rise">02 · Problem statement · renumbering</div>
+<!-- ============================================================ 4 PROBLEM: RENUMBERING -->
+<section class="slide s-renum" id="renumbering" data-chapter="The problem" data-title="One number, two crimes">
+  <div class="eyebrow rise">01 · The problem · renumbering</div>
   <h2 class="rise" style="--d:1">On 1 July 2024 India renumbered its criminal law.</h2>
   <div class="body">
     <div class="ledger">
@@ -131,14 +138,14 @@
   <aside class="notes">The Bharatiya Nyaya Sanhita replaced the Indian Penal Code on 1 July 2024, and almost every offence got a new number. Offences committed before that date are still tried under the IPC, so for years every lawyer works with both. [click] 302 is murder in the IPC; in the BNS it is hurting religious feelings. [click] 303 was murder by a life-convict; in the BNS it is theft. [click] And 420, the best-known cheating section, does not exist in the BNS at all. [click] So a citation that is right in one code is a different crime, or nothing, in the other. That is exactly where AI tools go wrong.</aside>
 </section>
 
-<!-- ============================================================ 5 PROBLEM (2) HALLUCINATION -->
-<section class="slide s-halluc" id="hallucination" data-chapter="Problem statement" data-title="AI invents law">
-  <div class="eyebrow rise">02 · Problem statement · invented citations</div>
+<!-- ============================================================ 5 PROBLEM: INVENTED CITATIONS -->
+<section class="slide s-halluc" id="hallucination" data-chapter="The problem" data-title="AI invents law">
+  <div class="eyebrow rise">01 · The problem · invented citations</div>
   <h2 class="rise" style="--d:1">AI models cite law with confidence, including law that does not exist.</h2>
   <div class="body halluc2">
     <div class="row">
       <div class="term card rise" style="--d:2">
-        <div class="term-bar"><span class="label">A 4-billion-parameter model, asked on this laptop</span></div>
+        <div class="term-bar"><span class="label">A language model, asked directly</span></div>
         <div class="term-q"><span class="mono accent">Q</span> What does BNS Section 303 cover?</div>
         <div class="term-a"><span class="mono muted">A</span><span><span data-type="A public-panic offence: making or spreading a bomb threat." class="typed"></span><span class="caret"></span></span></div>
         <div class="stamp" data-step="1" data-fx="pop"><svg class="ico"><use href="#i-cross"/></svg><span>Wrong. BNS 303 is <b>Theft</b>.</span></div>
@@ -147,7 +154,7 @@
         <div class="fact-block" data-step="2">
           <div class="big-frac"><span class="mono" data-count="20">20</span><span class="of">of</span><span class="mono">68</span></div>
           <p class="small">citations named sections not in the BNS when the model answered from memory.</p>
-          <p class="tiny">15 development cases, retrieval withheld (stuff/docs/evaluation_results.md).</p>
+          <p class="tiny">15 development cases, retrieval withheld.</p>
         </div>
         <div class="fact-block privacy" data-step="3">
           <div class="big-frac sm"><span class="mono">17–33%</span></div>
@@ -157,15 +164,15 @@
     </div>
     <div class="ps-box" data-step="4">
       <span class="label">Problem statement</span>
-      <p>Build a research assistant for Indian criminal law that identifies applicable sections and precedents across the IPC→BNS transition, <em>never presents a non-existent citation</em>, and runs fully offline.</p>
+      <p>Build a research assistant for Indian criminal law that identifies applicable sections and precedents across the IPC→BNS transition, and <em>never presents a non-existent citation</em>.</p>
     </div>
   </div>
-  <aside class="notes">The second problem: language models invent citations. This is the very model inside Pramana. Asked what BNS 303 covers, it confidently described a bomb-threat offence. [click] BNS 303 is theft. [click] When we withheld retrieval on our 15 development cases and let it answer from memory, 20 of its 68 citations named sections that do not exist in the BNS, mostly old IPC numbers. [click] And this is not only small models: a 2024 Stanford study found commercial legal AI research tools hallucinating in roughly 17 to 33 percent of queries. [click] So the problem statement is: build a research assistant for Indian criminal law that finds the applicable sections and precedents across the transition, never presents a non-existent citation, and runs fully offline. What does existing work already offer?</aside>
+  <aside class="notes">The second problem: language models invent citations. Asked what BNS 303 covers, the model confidently described a bomb-threat offence. [click] BNS 303 is theft. [click] When we let it answer from memory on 15 development cases, 20 of its 68 citations named sections that do not exist in the BNS, mostly old IPC numbers. [click] This is not only small models: a 2024 Stanford study found commercial legal AI research tools hallucinating in roughly 17 to 33 percent of queries. [click] So the problem statement: build a research assistant for Indian criminal law that finds the applicable sections and precedents across the transition, and never presents a non-existent citation. What already exists?</aside>
 </section>
 
-<!-- ============================================================ 6 LITERATURE REVIEW -->
-<section class="slide s-lit" id="literature" data-chapter="Literature review" data-title="Literature review and research gap">
-  <div class="eyebrow rise">03 · Literature review &amp; research gap</div>
+<!-- ============================================================ 6 WHAT EXISTS -->
+<section class="slide s-lit" id="literature" data-chapter="What exists" data-title="What exists and the gap">
+  <div class="eyebrow rise">02 · What exists</div>
   <h2 class="rise" style="--d:1">What exists, and what nobody combines.</h2>
   <div class="body lit">
     <div class="col papers">
@@ -179,44 +186,28 @@
     <div class="col tools">
       <div class="label rise" style="--d:2">Existing tools</div>
       <table class="cmp rise" style="--d:3">
-        <thead><tr><th></th><th>IPC/BNS<br>by date</th><th>Verifies<br>citations</th><th>Runs<br>offline</th><th>Free</th><th></th></tr></thead>
+        <thead><tr><th></th><th>IPC/BNS<br>by date</th><th>Verifies<br>citations</th><th>Precedent<br>across codes</th><th>Counter-<br>arguments</th><th></th></tr></thead>
         <tbody>
-          <tr><td>Indian Kanoon</td><td>✗</td><td>—</td><td>✗</td><td>✓</td><td><span class="verify">[[VERIFY]]</span></td></tr>
-          <tr><td>Manupatra / SCC Online</td><td>?</td><td>—</td><td>✗</td><td>✗</td><td><span class="verify">[[VERIFY]]</span></td></tr>
-          <tr><td>jhana.ai</td><td>?</td><td>✓</td><td>✗</td><td>?</td><td><span class="verify">[[VERIFY]]</span></td></tr>
-          <tr><td>NyayAssist</td><td>?</td><td>✓</td><td>✗</td><td>?</td><td><span class="verify">[[VERIFY]]</span></td></tr>
+          <tr><td>Indian Kanoon</td><td>✗</td><td>—</td><td>✗</td><td>✗</td><td><span class="verify">[[VERIFY]]</span></td></tr>
+          <tr><td>Manupatra / SCC Online</td><td>?</td><td>—</td><td>?</td><td>✗</td><td><span class="verify">[[VERIFY]]</span></td></tr>
+          <tr><td>jhana.ai</td><td>?</td><td>✓</td><td>?</td><td>?</td><td><span class="verify">[[VERIFY]]</span></td></tr>
+          <tr><td>NyayAssist</td><td>?</td><td>✓</td><td>?</td><td>?</td><td><span class="verify">[[VERIFY]]</span></td></tr>
           <tr class="me"><td>Pramana</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td></td></tr>
         </tbody>
       </table>
       <p class="tiny">— search engines and databases return real documents; they do not interpret facts.</p>
     </div>
     <div class="gap-box" data-step="1">
-      <span class="label">Research gap</span>
-      <p>No system combines <b>offline operation</b>, <b>date-based code routing</b>, an <b>IPC→BNS precedent bridge</b>, <b>graph-verified citations</b> and <b>outcome statistics</b>.</p>
+      <span class="label">The gap</span>
+      <p>No system combines <b>date-based code routing</b>, <b>graph-verified citations</b>, an <b>IPC→BNS precedent bridge</b>, <b>counter-arguments</b> and <b>outcome statistics</b>.</p>
     </div>
   </div>
-  <aside class="notes">On the research side: retrieval-augmented generation grounds a model’s answer in retrieved text, but nothing in it checks that a citation exists. LeSICiN identifies statutes with a graph model, but it is supervised and IPC-only. IL-TUR is the Indian legal benchmark we evaluate on, with IPC-era labels. Magesh and colleagues measured hallucination in commercial tools but do not prevent it. BGE-M3 is a strong general embedder that had not been tested on Indian criminal law. On the tool side: Indian Kanoon and the paid databases are search engines; they return real documents but do not interpret facts. jhana.ai and NyayAssist do verify citations, so verification alone is not new. [click] The gap is the combination: offline operation for confidentiality, choosing the code by offence date, bridging new BNS charges to old IPC precedent, graph-verified citations, and outcome statistics. That gives us our objectives.</aside>
+  <aside class="notes">On the research side: retrieval-augmented generation grounds a model’s answer in retrieved text, but nothing in it checks that a citation exists. LeSICiN identifies statutes with a graph model, but it is supervised and IPC-only. IL-TUR is the Indian legal benchmark. Magesh and colleagues measured hallucination in commercial tools. BGE-M3 is a strong general embedder. On the tool side: Indian Kanoon and the paid databases are search engines; they return real documents but do not interpret the facts. jhana.ai and NyayAssist do verify citations, so verification alone is not new. [click] The gap is the combination: choosing the code by offence date, graph-verified citations, bridging new BNS charges to old IPC precedent, counter-arguments and outcome statistics. That is what we built.</aside>
 </section>
 
-<!-- ============================================================ 7 OBJECTIVES -->
-<section class="slide s-obj" id="objectives" data-chapter="Objectives" data-title="Objectives">
-  <div class="eyebrow rise">04 · Objectives</div>
-  <h2 class="rise" style="--d:1">Five measurable objectives.</h2>
-  <div class="body">
-    <ol class="objs">
-      <li class="rise" style="--d:2"><span class="onum">1</span><b>Route the correct code from the offence date</b><span class="tag">→ 30 / 30 routing · slide 16</span></li>
-      <li class="rise" style="--d:3"><span class="onum">2</span><b>Identify applicable sections from the facts</b><span class="tag">→ IL-TUR benchmark · slide 17</span></li>
-      <li class="rise" style="--d:4"><span class="onum">3</span><b>Never show a non-existent section</b><span class="tag ok">→ 0 unverified in 889 citations · slide 16</span></li>
-      <li class="rise" style="--d:5"><span class="onum">4</span><b>Find precedents for new BNS sections</b><span class="tag">→ IPC bridge: 0 → 169 judgments · slide 13</span></li>
-      <li class="rise" style="--d:6"><span class="onum">5</span><b>Run offline on a 4 GB laptop GPU at ₹0</b><span class="tag">→ RTX 3050 Ti · slide 14</span></li>
-    </ol>
-  </div>
-  <aside class="notes">From that gap come five objectives, each with a number I will show later. One: route the correct code from the offence date, measured on 30 routing runs. Two: identify the applicable sections from the facts, measured on the IL-TUR benchmark. Three: never show a section that does not exist, measured across 889 citations. Four: find precedents for new BNS sections, through the IPC bridge. Five: run offline on a 4 GB laptop GPU at zero cost. Here is the system that meets them.</aside>
-</section>
-
-<!-- ============================================================ 8 PROPOSED SYSTEM -->
-<section class="slide s-what" id="system" data-chapter="Proposed system" data-title="Proposed system">
-  <div class="eyebrow rise">05 · Proposed system</div>
+<!-- ============================================================ 7 OUR SOLUTION -->
+<section class="slide s-what" id="system" data-chapter="Our solution" data-title="Our solution">
+  <div class="eyebrow rise">03 · Our solution</div>
   <h2 class="rise" style="--d:1">Facts and a date go in. A checked research memo comes out.</h2>
   <div class="body sol">
     <div class="io">
@@ -225,7 +216,7 @@
         <p class="facts">The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it.</p>
         <div class="io-date"><span class="label">Offence date</span><span class="mono">15 Aug 2024</span></div>
       </div>
-      <div class="io-arrow rise" style="--d:3"><svg viewBox="0 0 120 40"><line class="draw" pathLength="1" x1="4" y1="20" x2="104" y2="20" stroke="currentColor" stroke-width="3"/><path d="M98 10l14 10-14 10" fill="none" stroke="currentColor" stroke-width="3"/></svg><span class="mono tiny">about a minute, offline</span></div>
+      <div class="io-arrow rise" style="--d:3"><svg viewBox="0 0 120 40"><line class="draw" pathLength="1" x1="4" y1="20" x2="104" y2="20" stroke="currentColor" stroke-width="3"/><path d="M98 10l14 10-14 10" fill="none" stroke="currentColor" stroke-width="3"/></svg><span class="mono tiny">Pramana</span></div>
       <div class="card io-out">
         <div class="out-row" data-step="1" style="--d:0"><span class="label">Code</span><span>BNS, because the offence is on or after 1 July 2024</span></div>
         <div class="out-row" data-step="1" style="--d:1"><span class="label">Charge</span><span><b class="sec">BNS 303</b> Theft <span class="chip ok"><svg class="ico"><use href="#i-check"/></svg>verified</span></span></div>
@@ -235,17 +226,38 @@
       </div>
     </div>
     <div class="promises">
-      <div class="promise" data-step="2" style="--d:0"><span class="pi"><svg class="ico"><use href="#i-shield"/></svg></span><div><b>Verified citations</b><span>a section is shown only if it exists in the right code</span></div></div>
-      <div class="promise" data-step="2" style="--d:1"><span class="pi"><svg class="ico"><use href="#i-lock"/></svg></span><div><b>Private by design</b><span>runs offline; client facts never leave the laptop</span></div></div>
-      <div class="promise" data-step="2" style="--d:2"><span class="pi mono">₹0</span><div><b>Free to run</b><span>open models and public data; no API key</span></div></div>
+      <div class="promise" data-step="2" style="--d:0"><span class="pi"><svg class="ico"><use href="#i-cal"/></svg></span><div><b>The right code, every time</b><span>the offence date decides IPC or BNS</span></div></div>
+      <div class="promise" data-step="2" style="--d:1"><span class="pi"><svg class="ico"><use href="#i-shield"/></svg></span><div><b>Every citation verified</b><span>a section is shown only if it exists in that code</span></div></div>
+      <div class="promise" data-step="2" style="--d:2"><span class="pi"><svg class="ico"><use href="#i-net"/></svg></span><div><b>Precedent across both codes</b><span>BNS charges reach IPC case law</span></div></div>
     </div>
   </div>
-  <aside class="notes">This is the proposed system, shown with the running example I will use throughout: a motorcycle stolen on 15 August 2024. The lawyer pastes the facts and the date. [click] About a minute later, on the laptop, the report says: the BNS applies because of the date; the charge is BNS 303, theft, verified; three precedents, found through its old IPC section; a counter-argument whose quotation was checked word for word; and how 158 appeals under the old theft section were decided. [click] Three promises: verified citations, private by design, and free to run. Here is how it works inside.</aside>
+  <aside class="notes">This is our solution, shown with the running example: a motorcycle stolen on 15 August 2024. The lawyer enters the facts and the date. [click] Pramana answers: the BNS applies because of the date; the charge is BNS 303, theft, verified; three precedents, found through its old IPC section; a counter-argument whose quotation is checked word for word; and how 158 appeals under the old theft section were decided. [click] Three guarantees: the right code every time, every citation verified, and precedent across both codes. Here is how we do it.</aside>
+</section>
+
+<!-- ============================================================ 8 HOW WE DO IT -->
+<section class="slide s-appr" id="approach" data-chapter="Our solution" data-title="How we do it">
+  <div class="eyebrow rise">03 · Our solution · how we do it</div>
+  <h2 class="rise" style="--d:1">Four steps: route, retrieve, verify, ground.</h2>
+  <div class="body appr">
+    <svg class="appr-track" viewBox="0 0 1664 60" preserveAspectRatio="none" aria-hidden="true">
+      <line class="appr-base" x1="48" y1="30" x2="1320" y2="30"/>
+      <line class="appr-fill draw" pathLength="1" style="--d:2" x1="48" y1="30" x2="1320" y2="30"/>
+      <circle class="appr-pulse" cx="48" cy="30" r="10"/>
+    </svg>
+    <div class="appr-steps">
+      <div class="as" data-step="1" style="--d:0"><span class="ai"><svg class="ico"><use href="#i-cal"/></svg></span><span class="k">01</span><b>Route</b><span>The offence date picks the code: IPC or BNS. A fixed rule, no AI.</span></div>
+      <div class="as" data-step="2" style="--d:0"><span class="ai"><svg class="ico"><use href="#i-search"/></svg></span><span class="k">02</span><b>Retrieve</b><span>Find candidate sections from statute text and from similar past judgments.</span></div>
+      <div class="as" data-step="3" style="--d:0"><span class="ai"><svg class="ico"><use href="#i-shield"/></svg></span><span class="k">03</span><b>Propose &amp; verify</b><span>The AI proposes sections; the citation graph confirms each one exists.</span></div>
+      <div class="as" data-step="4" style="--d:0"><span class="ai"><svg class="ico"><use href="#i-pen"/></svg></span><span class="k">04</span><b>Ground &amp; argue</b><span>Test each section on the facts, find precedents, draft counter-arguments.</span></div>
+    </div>
+    <p class="appr-rule" data-step="4">The AI proposes. <em>The graph decides what is real.</em></p>
+  </div>
+  <aside class="notes">Our approach has four steps. [click] Route: the offence date picks the code, IPC or BNS, with a fixed rule; no AI is involved. [click] Retrieve: find candidate sections, both from statute text and from similar past judgments. [click] Propose and verify: the AI proposes sections, and a citation graph built from the statutes confirms that each one exists in that code. [click] Ground and argue: test each section against the facts, find precedents, and draft counter-arguments. The principle behind it: the AI proposes, the graph decides what is real. Here is the full architecture.</aside>
 </section>
 
 <!-- ============================================================ 9 ARCHITECTURE -->
-<section class="slide s-arch" id="architecture" data-chapter="Methodology" data-title="System architecture">
-  <div class="eyebrow rise">06 · Methodology · system architecture</div>
+<section class="slide s-arch" id="architecture" data-chapter="How it works" data-title="System architecture">
+  <div class="eyebrow rise">04 · How it works · system architecture</div>
   <h2 class="rise" style="--d:1">The model proposes. The graph decides.</h2>
   <div class="body">
     <svg class="arch" viewBox="0 0 1664 600" role="img" aria-label="Pipeline: facts and date, router, retrieval, guardrail, statute identifier, verifier with a retry loop, applicability judge, precedents and outcomes in parallel, defence, final verification, report.">
@@ -285,27 +297,27 @@
       <div class="lg"><span class="sw llm"></span>Language model</div>
       <div class="lg"><span class="sw graph"></span>Graph lookup</div>
       <div class="stores">
-        <span class="label">Built offline</span>
+        <span class="label">Built once</span>
         <span class="chip">ChromaDB · 4 collections</span>
         <span class="chip">Citation graph · NetworkX</span>
         <span class="chip">Outcomes · SQLite</span>
       </div>
     </div>
   </div>
-  <aside class="notes">This is the architecture, and the key idea is in the title: the model proposes, the graph decides. Solid boxes are ordinary code; dashed boxes are the language model, used in only three places: proposing sections, judging whether they apply, and drafting arguments. Everything that decides whether a citation is real is code. A router picks the code from the date, retrieval finds candidates, a guardrail stops early if nothing is close, Node 1 proposes, Node 2 verifies against the graph and sends rejections back, Node 2b tests applicability, precedents and outcome statistics run in parallel, Node 4 drafts arguments, and a final check re-verifies everything new. [click] Three stores are built offline. The next slides walk through the pipeline stage by stage with the motorcycle case, starting with the data those stores are built from.</aside>
+  <aside class="notes">This is the full architecture. Solid boxes are ordinary code, dashed boxes are the language model, and green boxes are lookups in the citation graph. A case flows left to right along the top: the router picks the code, retrieval finds candidates, a guardrail stops early if nothing is close, Node 1 proposes sections and Node 2 verifies them, sending rejections back. Then down the right and back along the bottom: Node 2b tests whether each real section applies, Node 3 finds precedents and Node 5 counts outcomes in parallel, Node 4 drafts counter-arguments, and a final check re-verifies everything before the report. [click] Three stores are built once from the data. Let me start with that data.</aside>
 </section>
 
 <!-- ============================================================ 10 DATASET -->
-<section class="slide s-data" id="dataset" data-chapter="Methodology" data-title="Dataset">
-  <div class="eyebrow rise">06 · Methodology · dataset</div>
-  <h2 class="rise" style="--d:1">From public sources to three local stores.</h2>
+<section class="slide s-data" id="dataset" data-chapter="How it works" data-title="The knowledge base">
+  <div class="eyebrow rise">04 · How it works · the knowledge base</div>
+  <h2 class="rise" style="--d:1">From public sources to three stores.</h2>
   <div class="body dpipe">
     <div class="dcol">
       <div class="label rise" style="--d:2">Sources</div>
-      <div class="dsrc rise" style="--d:2"><b>IPC</b><span class="mono">575</span><span>sections · civictech JSON + official text [2]</span></div>
-      <div class="dsrc rise" style="--d:3"><b>BNS</b><span class="mono">358</span><span>sections · parsed from the gazette PDF [1]</span></div>
-      <div class="dsrc rise" style="--d:4"><b>Judgments</b><span class="mono">2,699</span><span>918 Supreme Court (2023–26) + 1,781 High Court [11]</span></div>
-      <div class="dsrc rise" style="--d:5"><b>IPC→BNS map</b><span class="mono">575</span><span>rows, each reviewed against the gazette text</span></div>
+      <div class="dsrc rise" style="--d:2"><b>IPC</b><span class="mono" data-count="575">575</span><span>sections · structured JSON + official text [2]</span></div>
+      <div class="dsrc rise" style="--d:3"><b>BNS</b><span class="mono" data-count="358">358</span><span>sections · parsed from the gazette PDF [1]</span></div>
+      <div class="dsrc rise" style="--d:4"><b>Judgments</b><span class="mono" data-count="2699">2,699</span><span>918 Supreme Court (2023–26) + 1,781 High Court [11]</span></div>
+      <div class="dsrc rise" style="--d:5"><b>IPC→BNS map</b><span class="mono" data-count="575">575</span><span>rows, each reviewed against the gazette text</span></div>
     </div>
     <svg class="d-arrow rise" style="--d:5" viewBox="0 0 80 40"><line class="draw" pathLength="1" x1="4" y1="20" x2="64" y2="20" stroke="currentColor" stroke-width="3"/><path d="M58 10l14 10-14 10" fill="none" stroke="currentColor" stroke-width="3"/></svg>
     <div class="dcol proc">
@@ -315,7 +327,7 @@
         <li data-step="1" style="--d:1"><b>Chunk</b><span>one section per chunk; judgments by paragraph</span></li>
         <li data-step="1" style="--d:2"><b>Extract</b><span>cited sections per chunk; CrPC and other Acts filtered out</span></li>
         <li data-step="1" style="--d:3"><b>Validate</b><span>every record against a fixed schema</span></li>
-        <li data-step="1" style="--d:4"><b>Embed</b><span>BGE-M3, fp16 on the GPU</span></li>
+        <li data-step="1" style="--d:4"><b>Embed</b><span>BGE-M3 vectors, 1024 dimensions</span></li>
       </ol>
     </div>
     <svg class="d-arrow" data-step="2" viewBox="0 0 80 40"><line class="draw" pathLength="1" x1="4" y1="20" x2="64" y2="20" stroke="currentColor" stroke-width="3"/><path d="M58 10l14 10-14 10" fill="none" stroke="currentColor" stroke-width="3"/></svg>
@@ -326,40 +338,98 @@
       <div class="dst" data-step="2" style="--d:2"><b>Outcomes · SQLite</b><span>appeal disposals per section</span></div>
     </div>
   </div>
-  <aside class="notes">The data comes from public sources: the full IPC, the BNS parsed from the official gazette PDF because no reliable digital copy existed, 2,699 judgments, 918 from the Supreme Court and 1,781 from High Courts, and a 575-row IPC-to-BNS mapping that was reviewed row by row against the gazette text. [click] Processing: PDF text extraction with repairs for ligatures and page headers, chunking one section per chunk and judgments by paragraph, extracting the sections each passage cites while filtering out the Criminal Procedure Code and other Acts, validating every record against a schema, and embedding with BGE-M3 on the GPU. [click] That fills three stores: four ChromaDB collections with 87,036 judgment passages, the citation graph with 933 section nodes and 16,493 citation edges, and an SQLite outcomes table. Now, how the facts are matched to this data.</aside>
+  <aside class="notes">The knowledge base is built from public sources: the full IPC, the BNS parsed from the official gazette because no reliable digital copy existed, 2,699 judgments from the Supreme Court and High Courts, and a 575-row IPC-to-BNS mapping reviewed against the gazette text. [click] Processing: extract the PDF text and repair it, chunk statutes one section per chunk and judgments by paragraph, extract the sections each passage cites while filtering out the Criminal Procedure Code and other Acts, validate every record, and embed it with BGE-M3. [click] That fills three stores: 87,036 judgment passages in ChromaDB, the citation graph with 933 sections and 16,493 citation edges, and an outcomes table. Now, how a case is matched against this.</aside>
 </section>
 
-<!-- ============================================================ 11 RETRIEVAL (RAG) -->
-<section class="slide s-rag" id="retrieval" data-chapter="Methodology" data-title="Retrieval (RAG)">
-  <div class="eyebrow rise">06 · Methodology · retrieval (RAG)</div>
+<!-- ============================================================ 11 RETRIEVAL -->
+<section class="slide s-rag" id="retrieval" data-chapter="How it works" data-title="Retrieval">
+  <div class="eyebrow rise">04 · How it works · retrieval (RAG)</div>
   <h2 class="rise" style="--d:1">Retrieval finds the candidates; nothing is fine-tuned.</h2>
   <div class="body rag">
     <div class="col why-rag">
       <div class="label rise" style="--d:2">Why RAG [3], not fine-tuning</div>
       <div class="vs rise" style="--d:2"><b>Knowledge stays current</b><span>new judgments are added, not trained in</span></div>
       <div class="vs rise" style="--d:3"><b>Every answer traces to a source</b><span>each candidate is a real indexed section</span></div>
-      <div class="vs rise" style="--d:4"><b>Fits a 4 GB GPU</b><span>no training run on the laptop</span></div>
+      <div class="vs rise" style="--d:4"><b>The model reads the real text</b><span>the section itself is in front of it when it proposes</span></div>
     </div>
     <div class="col rsteps">
       <div class="label rise" style="--d:2">The motorcycle case, step by step</div>
       <div class="rs" data-step="1"><span class="n">1</span><div><b>Date rule</b><span>15 Aug 2024 ≥ 1 Jul 2024 → <b class="accent">BNS</b></span></div></div>
       <div class="rs" data-step="2"><span class="n">2</span><div><b>Embed the facts</b><span>BGE-M3 [8], 1024 dimensions</span></div></div>
       <div class="rs" data-step="3"><span class="n">3</span><div><b>Statute search + precedent votes</b><span>similar judgments vote for the sections they applied; fused by reciprocal rank fusion [9]</span></div></div>
-      <div class="rs top" data-step="4"><span class="n">4</span><div><b>14 candidates for Node 1</b>
+      <div class="rs top" data-step="4"><span class="n">4</span><div><b>14 candidates for the agents</b>
         <div class="cands3">
-          <span><b class="sec">303(1)</b> Theft <i class="mono">0.0320 · T3 V2</i></span>
-          <span><b class="sec">317(5)</b> Stolen property <i class="mono">0.0310 · T6 V3</i></span>
-          <span><b class="sec">324(1)</b> Mischief <i class="mono">0.0265 · T5 V30</i></span>
+          <span><b class="sec">303(1)</b> Theft <i class="mono">0.0320 · T3 V2</i><i class="bar" style="--w:100%"></i></span>
+          <span><b class="sec">317(5)</b> Stolen property <i class="mono">0.0310 · T6 V3</i><i class="bar" style="--w:97%"></i></span>
+          <span><b class="sec">324(1)</b> Mischief <i class="mono">0.0265 · T5 V30</i><i class="bar" style="--w:83%"></i></span>
         </div></div></div>
-      <p class="tiny" data-step="4">Guardrail: closest judgment 0.686, above the 0.576 threshold, so the model is asked.</p>
+      <p class="tiny" data-step="4">Guardrail: closest judgment 0.686, above the 0.576 threshold, so the agents are asked.</p>
     </div>
   </div>
-  <aside class="notes">Why retrieval-augmented generation instead of fine-tuning a legal model? The law keeps changing, and with retrieval new judgments are simply added. Every candidate traces back to a real indexed section. And it fits a 4 GB GPU, because nothing is trained. A published Indian legal model that was fine-tuned actually scored below its own base model, which supports this choice. Here is the motorcycle case. [click] The date rule picks the BNS. [click] BGE-M3 turns the facts into a 1024-dimensional vector. [click] Two rankings are built: similarity to statute text, and votes from similar judgments for the sections they applied, combined by reciprocal rank fusion. [click] BNS 303, theft, comes first: third by text and second by votes. A guardrail checks that the closest judgment is near enough before the model is asked at all. The model then proposes from these candidates, and every proposal is verified.</aside>
+  <aside class="notes">Why retrieval-augmented generation and not fine-tuning? The law keeps changing, and with retrieval new judgments are simply added. Every candidate traces back to a real indexed section. And the model reads the real section text before it proposes anything. Here is the motorcycle case. [click] The date rule picks the BNS. [click] BGE-M3 turns the facts into a 1024-dimensional vector. [click] Two rankings are built: similarity to statute text, and votes from similar judgments for the sections they applied, combined by reciprocal rank fusion. [click] BNS 303, theft, comes first: third by text and second by votes. A guardrail checks that the closest judgment is near enough before the agents are asked. Those agents are next.</aside>
 </section>
 
-<!-- ============================================================ 12 VERIFICATION -->
-<section class="slide s-verify" id="verify" data-chapter="Methodology" data-title="Citation verification">
-  <div class="eyebrow rise">06 · Methodology · citation verification</div>
+<!-- ============================================================ 12 MULTI-AGENT PIPELINE -->
+<section class="slide s-agents" id="agents" data-chapter="Multi-agent pipeline" data-title="Multi-agent pipeline">
+  <div class="eyebrow rise">05 · Multi-agent pipeline</div>
+  <h2 class="rise" style="--d:1">Six agents, one shared state.</h2>
+  <div class="body">
+    <svg class="agents-svg" viewBox="0 0 1664 640" role="img" aria-label="Six agents around a shared LangGraph state: statute identifier, verifier, applicability judge, precedent matcher, outcome analyst and defence drafter.">
+      <defs>
+        <path id="w1" d="M420 115 C540 115 520 290 632 290"/>
+        <path id="w2" d="M1244 115 C1124 115 1144 290 1032 290"/>
+        <path id="w3" d="M1244 320 L1032 320"/>
+        <path id="w4" d="M420 320 L632 320"/>
+        <path id="w5" d="M1244 525 C1124 525 1144 350 1032 350"/>
+        <path id="w6" d="M420 525 C540 525 520 350 632 350"/>
+      </defs>
+      <g class="st-core rise" style="--d:2">
+        <rect x="632" y="230" width="400" height="180" rx="22"/>
+        <text x="832" y="276" text-anchor="middle" class="nt">Shared state</text>
+        <text x="832" y="306" text-anchor="middle" class="ns">LangGraph · typed fields</text>
+        <text x="832" y="350" text-anchor="middle" class="sf">facts · date · code · candidates</text>
+        <text x="832" y="378" text-anchor="middle" class="sf">verified · precedents · defences</text>
+      </g>
+      <g data-step="1">
+        <use href="#w1" class="wire"/><use href="#w2" class="wire"/>
+        <path class="wire retry" d="M240 60 C240 0 1424 0 1424 60" marker-end="url(#m-arrow)"/>
+        <text class="retry-t" x="832" y="-6" text-anchor="middle">rejected → retry with the reason (at most 2)</text>
+        <g class="ag llm" transform="translate(60 60)"><rect width="360" height="110" rx="14"/><text x="24" y="44" class="nt">1 · Statute identifier</text><text x="24" y="78" class="ns">LLM proposes sections from the facts</text></g>
+        <g class="ag graph" transform="translate(1244 60)"><rect width="360" height="110" rx="14"/><text x="24" y="44" class="nt">2 · Verifier</text><text x="24" y="78" class="ns">is it a node of the routed code?</text></g>
+        <circle class="msg" r="7"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#w1"/></animateMotion></circle>
+        <circle class="msg ok" r="7"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#w2"/></animateMotion></circle>
+      </g>
+      <g data-step="2">
+        <use href="#w3" class="wire"/>
+        <g class="ag llm" transform="translate(1244 265)"><rect width="360" height="110" rx="14"/><text x="24" y="44" class="nt">2b · Applicability judge</text><text x="24" y="78" class="ns">quotes the facts + legal rules</text></g>
+        <circle class="msg" r="7"><animateMotion dur="2.2s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#w3"/></animateMotion></circle>
+      </g>
+      <g data-step="3">
+        <use href="#w4" class="wire"/><use href="#w5" class="wire"/>
+        <g class="ag graph" transform="translate(60 265)"><rect width="360" height="110" rx="14"/><text x="24" y="44" class="nt">3 · Precedent matcher</text><text x="24" y="78" class="ns">graph edges + IPC→BNS bridge</text></g>
+        <g class="ag" transform="translate(1244 470)"><rect width="360" height="110" rx="14"/><text x="24" y="44" class="nt">5 · Outcome analyst</text><text x="24" y="78" class="ns">SQL counts, in parallel with 3</text></g>
+        <circle class="msg ok" r="7"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#w4"/></animateMotion></circle>
+        <circle class="msg" r="7"><animateMotion dur="2.4s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#w5"/></animateMotion></circle>
+      </g>
+      <g data-step="4">
+        <use href="#w6" class="wire"/>
+        <g class="ag llm" transform="translate(60 470)"><rect width="360" height="110" rx="14"/><text x="24" y="44" class="nt">4 · Defence drafter</text><text x="24" y="78" class="ns">counter-arguments, then a final check</text></g>
+        <circle class="msg" r="7"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#w6"/></animateMotion></circle>
+      </g>
+    </svg>
+    <div class="arch-foot ag-key rise" style="--d:3">
+      <div class="lg"><span class="sw ink"></span>Code</div>
+      <div class="lg"><span class="sw llm"></span>Language model</div>
+      <div class="lg"><span class="sw graph"></span>Graph lookup</div>
+      <span class="tiny">Each agent reads and writes only its own fields of the state, so every step can be checked on its own.</span>
+    </div>
+  </div>
+  <aside class="notes">The pipeline is a set of agents built with LangGraph, all reading and writing one shared, typed state: the facts, the date, the code, the candidates, what was verified or rejected, the precedents and the defences. [click] The statute identifier, a language model, proposes sections from the facts and the candidates. The verifier checks each one in the citation graph; if any is rejected, the case goes back to the identifier with the reason, at most twice. [click] The applicability judge, a language model guided by fixed legal rules, tests whether each real section fits the facts. [click] Then two agents run in parallel: the precedent matcher walks the citation graph, including the bridge from BNS to IPC, and the outcome analyst counts how appeals were decided with plain SQL. [click] Finally the defence drafter writes counter-arguments, and a final check verifies everything it cites. Let me take the agents one at a time, starting with verification.</aside>
+</section>
+
+<!-- ============================================================ 13 VERIFICATION -->
+<section class="slide s-verify" id="verify" data-chapter="Multi-agent pipeline" data-title="Agents 1 and 2: identify and verify">
+  <div class="eyebrow rise">05 · Agents 1 &amp; 2 · identify and verify</div>
   <h2 class="rise" style="--d:1">Every citation is checked against the law itself.</h2>
   <div class="body row">
     <figure class="graph-fig">
@@ -374,15 +444,15 @@
     <div class="col v-side">
       <div class="label rise" style="--d:2">The retry loop · a real run with retrieval withheld</div>
       <div class="vround" data-step="1" data-fx="right">
-        <div class="vr-h"><span class="label">Round 0</span><span class="chip llm">model: 421</span></div>
+        <div class="vr-h"><span class="label">Round 0</span><span class="chip llm">identifier: 421</span></div>
         <div class="r-why bad"><svg class="ico"><use href="#i-cross"/></svg><span>Not a section of the BNS, which has sections 1 to 358.</span></div>
       </div>
       <div class="vround" data-step="2" data-fx="right">
-        <div class="vr-h"><span class="label">Round 1</span><span class="chip llm">model: 378</span></div>
+        <div class="vr-h"><span class="label">Round 1</span><span class="chip llm">identifier: 378</span></div>
         <div class="r-why bad"><svg class="ico"><use href="#i-cross"/></svg><span>An IPC number. Hint from the graph: its BNS counterpart is <b>BNS 303</b>.</span></div>
       </div>
       <div class="vround win" data-step="3" data-fx="right">
-        <div class="vr-h"><span class="label">Round 2</span><span class="chip llm">model: 303</span></div>
+        <div class="vr-h"><span class="label">Round 2</span><span class="chip llm">identifier: 303</span></div>
         <div class="r-why ok"><svg class="ico"><use href="#i-check"/></svg><span><b>BNS 303 · Theft.</b> A node of the BNS. Verified.</span></div>
       </div>
       <div class="v-out" data-step="4">
@@ -391,12 +461,37 @@
       </div>
     </div>
   </div>
-  <aside class="notes">This is the heart of the system. The citation graph holds every section of both codes, every judgment, and an edge whenever a judgment cites a section. The rule is one line: a section is real only if it is a node of the code the router chose. In the normal motorcycle run, BNS 303 verifies at once. To show the loop, this is a real stress-test run with retrieval withheld. [click] Round 0: the model says 421. Rejected: the BNS stops at 358. [click] Round 1: it says 378, the old IPC theft section. Rejected, but the graph supplies a hint: its BNS counterpart is 303. [click] Round 2: 303, verified. [click] The graph passed its gate 20 out of 20, including traps like BNS 420, and no rejected citation has ever reached a report. A verified charge then needs precedents, which is hard for a new code.</aside>
+  <aside class="notes">Agents one and two. The citation graph holds every section of both codes, every judgment, and an edge whenever a judgment cites a section; on the left is a real piece of it around theft. The rule is one line: a section is real only if it is a node of the code the router chose. In the normal motorcycle run, BNS 303 verifies at once. To show the loop, this is a stress-test run with retrieval withheld. [click] Round 0: the identifier says 421. Rejected: the BNS stops at 358. [click] Round 1: it says 378, the old IPC theft section. Rejected, but the graph supplies a hint: its BNS counterpart is 303. [click] Round 2: 303, verified. [click] The graph tells real section numbers from invented ones 20 out of 20 times, and no rejected citation has ever reached a report. But a real section can still be the wrong charge.</aside>
 </section>
 
-<!-- ============================================================ 13 PRECEDENT BRIDGE -->
-<section class="slide s-bridge" id="bridge" data-chapter="Methodology" data-title="Precedents across the transition">
-  <div class="eyebrow rise">06 · Methodology · precedents across the transition</div>
+<!-- ============================================================ 14 APPLICABILITY + DEFENCE -->
+<section class="slide s-applies" id="applies" data-chapter="Multi-agent pipeline" data-title="Agents 2b and 4: applicability and defence">
+  <div class="eyebrow rise">05 · Agents 2b &amp; 4 · applicability and defence</div>
+  <h2 class="rise" style="--d:1">A real section can still be the wrong charge.</h2>
+  <div class="body row app">
+    <div class="card app-facts rise" style="--d:2">
+      <div class="label">Facts · knife stabbing · 3 Nov 2024</div>
+      <p class="facts">After a quarrel over a parking space, the accused took <mark data-step="1" style="--d:0">a kitchen knife</mark> from his car and <mark data-step="1" style="--d:1">stabbed the complainant in the abdomen</mark>. Surgeons repaired <mark data-step="1" style="--d:2">a perforated intestine</mark>, and the medical report records <mark data-step="1" style="--d:3">the injury as dangerous to life</mark>.</p>
+      <div class="rules" data-step="3"><span class="label">Legal rules</span><span class="chip">death needed for homicide</span><span class="chip">5+ people for rioting</span><span class="chip">lesser offence included</span><span class="chip">weapon + injury grade</span></div>
+    </div>
+    <div class="col verdicts">
+      <div class="vd ok" data-step="2" style="--d:0"><span class="sec">BNS 109</span><b>Attempt to murder</b><span class="vst">Supported</span></div>
+      <div class="vd ok" data-step="2" style="--d:1"><span class="sec">BNS 118(2)</span><b>Hurt by a dangerous weapon</b><span class="vst">Supported</span></div>
+      <div class="vd warn" data-step="3" style="--d:0"><span class="sec">BNS 105</span><b>Culpable homicide</b><span class="vst">Doubted</span><p>requires a death; the facts report grievous hurt, not death</p></div>
+      <div class="vd dim" data-step="3" style="--d:1"><span class="sec">BNS 117</span><b>Grievous hurt</b><span class="vst">In 118(2)</span></div>
+      <div class="def" data-step="4"><span class="label">Agent 4 · defence drafter</span><b>3 counter-arguments</b>
+        <span class="ckl"><svg class="ico"><use href="#i-check"/></svg>each targets a charge</span>
+        <span class="ckl"><svg class="ico"><use href="#i-check"/></svg>every quote verbatim from the facts</span>
+        <span class="ckl"><svg class="ico"><use href="#i-check"/></svg>only supplied precedents cited</span>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Existing is not the same as applying, so agent 2b, the applicability judge, tests every verified section against the facts. Here is a different saved case: a stabbing after a parking quarrel. [click] The judge must quote the facts for each ingredient: a kitchen knife, a stab to the abdomen, a perforated intestine, an injury dangerous to life. [click] So attempt to murder and hurt by a dangerous weapon are supported. [click] Culpable homicide is a real section, but it is doubted, because it requires a death and the facts report grievous hurt. Fixed legal rules back the judge: a death for homicide, five people for rioting, a lesser offence included in a greater one. Grievous hurt is shown as included in the weapon charge. Nothing is hidden; doubts are shown with their reason. [click] Agent four then drafts three counter-arguments, and a final check confirms each one targets a charge, quotes the facts word for word, and cites only precedents it was given. Where do those precedents come from?</aside>
+</section>
+
+<!-- ============================================================ 15 PRECEDENTS + OUTCOMES -->
+<section class="slide s-bridge" id="bridge" data-chapter="Multi-agent pipeline" data-title="Agents 3 and 5: precedents and outcomes">
+  <div class="eyebrow rise">05 · Agents 3 &amp; 5 · precedents and outcomes</div>
   <h2 class="rise" style="--d:1">New law has almost no case law yet. We bridge it to the old.</h2>
   <div class="body bridge2">
     <div class="row">
@@ -415,49 +510,50 @@
         </div>
       </div>
     </div>
-    <div class="b-foot" data-step="4">
-      <span><b>Node 2b</b> does a real section fit the facts? Doubts are shown in amber, never hidden.</span>
-      <span><b>Node 5</b> outcome counts by SQL, no LLM; fewer than 5 judgments → suppressed.</span>
+    <div class="b-foot one" data-step="4">
+      <span><b>Agent 5</b> counts how appeals under each section were decided with plain SQL: IPC 379, <span class="mono">158</span> judgments: <span class="mono">76</span> allowed, <span class="mono">76</span> dismissed. Under 5 judgments, a figure is not shown.</span>
     </div>
   </div>
-  <aside class="notes">Precedents come only from graph edges, so every precedent really did apply the charged section. [click] For BNS 303, not one judgment in our corpus applies it yet; BNS theft cases have not reached the higher courts in bulk. [click] So Pramana crosses the reviewed mapping to the old IPC sections: 378 with 11 judgments and 379 with 158. The law of theft did not change, so that precedent still counts. [click] The top three are ranked by similarity to the facts. [click] Two more stages: Node 2b checks whether each real section actually fits the facts, quoting them, and shows any doubt in amber. Node 5 counts how appeals were decided using plain SQL, with no language model, and hides anything under five judgments. Here is the technology that runs all of this.</aside>
+  <aside class="notes">Agent three finds precedents only through graph edges, so every precedent really did apply the charged section. [click] For BNS 303, not one judgment in our corpus applies it yet; BNS theft cases have not reached the higher courts in bulk. [click] So the agent crosses the reviewed mapping to the old IPC sections: 378 with 11 judgments and 379 with 158. The law of theft did not change, so that precedent still counts. [click] The top three are ranked by similarity to the facts. [click] In parallel, agent five counts how appeals under each section were decided, with plain SQL and no language model: under IPC 379, 158 judgments, 76 allowed and 76 dismissed. Anything under five judgments is not shown. That is every agent; here is the technology behind them.</aside>
 </section>
 
-<!-- ============================================================ 14 TECH STACK -->
-<section class="slide s-tech" id="tech" data-chapter="Implementation" data-title="Tech stack">
-  <div class="eyebrow rise">07 · Implementation · tech stack</div>
-  <h2 class="rise" style="--d:1">Every choice, and why.</h2>
-  <div class="body tech">
+<!-- ============================================================ 16 TECH STACK -->
+<section class="slide s-tech" id="tech" data-chapter="Technology" data-title="Technology stack">
+  <div class="eyebrow rise">06 · Technology</div>
+  <h2 class="rise" style="--d:1">The technology stack, and why each piece.</h2>
+  <div class="body tech tech2">
     <div class="stack why">
       <div class="flow" aria-hidden="true"><i></i></div>
       <div class="layer rise" style="--d:5"><span class="lk">Interface</span><div class="items"><span class="chip"><b>FastAPI</b> + web app</span></div>
-        <div class="wy"><span>typed endpoints, live progress streaming, serves a page that makes no outside requests</span></div></div>
+        <div class="wy"><span>typed endpoints and live, stage-by-stage progress</span></div></div>
       <div class="layer rise" style="--d:4"><span class="lk">Orchestration</span><div class="items"><span class="chip"><b>LangGraph</b> [12]</span></div>
-        <div class="wy"><span><i>vs one big prompt:</i> a retry edge, parallel nodes, and shared state checked step by step</span></div></div>
-      <div class="layer llm rise" style="--d:3"><span class="lk">Intelligence</span><div class="items"><span class="chip llm"><b>qwen3.5:4b</b> on Ollama</span><span class="chip"><b>BGE-M3</b> [8]</span></div>
-        <div class="wy"><span><i>vs cloud GPT / Gemini:</i> private, ₹0, fits 4 GB</span><span><i>vs a legal-domain embedder:</i> recall@3 0.533 vs 0.20, measured [10]</span></div></div>
+        <div class="wy"><span><i>vs one big prompt:</i> a retry edge, parallel agents, and a shared state checked step by step</span></div></div>
+      <div class="layer llm rise" style="--d:3"><span class="lk">Intelligence</span><div class="items"><span class="chip llm"><b>qwen3.5:4b</b> via Ollama</span><span class="chip"><b>BGE-M3</b> [8]</span></div>
+        <div class="wy"><span><i>qwen3.5:4b:</i> open-weight model with JSON-schema-constrained answers</span><span><i>BGE-M3 vs a legal-domain embedder:</i> recall@3 0.533 vs 0.20, measured [10]</span></div></div>
       <div class="layer rise" style="--d:2"><span class="lk">Knowledge</span><div class="items"><span class="chip"><b>ChromaDB</b></span><span class="chip ok"><b>NetworkX</b></span><span class="chip"><b>SQLite</b></span></div>
-        <div class="wy"><span><i>ChromaDB vs FAISS / Pinecone:</i> local, persistent, metadata filters</span><span><i>NetworkX:</i> exact existence check · <i>SQLite:</i> exact counts</span></div></div>
+        <div class="wy"><span><i>ChromaDB vs FAISS / Pinecone:</i> persistent, with metadata filters</span><span><i>NetworkX:</i> exact existence check · <i>SQLite:</i> exact counts</span></div></div>
     </div>
-    <div class="card laptop rise" style="--d:6">
-      <div class="label">One laptop · RTX 3050 Ti · 4 GB GPU</div>
-      <div class="vbar" aria-label="GPU memory: the embedder and the language model take turns">
-        <i class="e"></i><i class="l"></i><span class="cap4">4 GB</span>
-      </div>
-      <div class="vleg"><span><i class="sw e"></i>BGE-M3 encodes the facts</span><span><i class="sw l"></i>then the language model</span></div>
-      <p class="small">Both models cannot fit at once, so every run hands the card over: unload the language model, embed, free the embedder, generate.</p>
-      <div class="lap-stats">
-        <div class="stat"><div class="n mono">₹0</div><div class="k">recurring cost</div></div>
-        <div class="stat"><div class="n mono" data-count="422">422</div><div class="k">automated tests</div></div>
-      </div>
+    <div class="tiles">
+      <div class="tl rise" style="--d:3"><b>Python</b><span>3.12</span></div>
+      <div class="tl rise" style="--d:4"><b>PyTorch</b><span>CUDA</span></div>
+      <div class="tl rise" style="--d:5"><b>sentence-transformers</b><span>embedding</span></div>
+      <div class="tl hi rise" style="--d:6"><b>BGE-M3</b><span>1024-d vectors</span></div>
+      <div class="tl rise" style="--d:7"><b>ChromaDB</b><span>vector store</span></div>
+      <div class="tl ok rise" style="--d:8"><b>NetworkX</b><span>citation graph</span></div>
+      <div class="tl hi rise" style="--d:9"><b>LangGraph</b><span>agents + state</span></div>
+      <div class="tl llm rise" style="--d:10"><b>Ollama</b><span>qwen3.5:4b</span></div>
+      <div class="tl rise" style="--d:11"><b>FastAPI</b><span>API + web app</span></div>
+      <div class="tl rise" style="--d:12"><b>SQLite</b><span>outcomes</span></div>
+      <div class="tl rise" style="--d:13"><b>PyMuPDF</b><span>PDF parsing</span></div>
+      <div class="tl ok rise" style="--d:14"><b>pytest</b><span>422 tests</span></div>
     </div>
   </div>
-  <aside class="notes">Each layer, with the alternative we rejected. The interface is FastAPI with a web app: typed endpoints and live progress, and the page makes no outside requests. Orchestration is LangGraph rather than one big prompt, because we need a conditional retry edge, parallel branches, and a shared state that can be checked after every step. The language model is qwen 3.5 with 4 billion parameters on Ollama, not a cloud model like GPT or Gemini, because client facts must stay private, it costs nothing, and it fits 4 GB. The embedder is BGE-M3, chosen by a measured bake-off over a legal-domain model: 0.533 against 0.20 recall at 3. ChromaDB over FAISS or Pinecone because it is local, persistent and filters by metadata; NetworkX for an exact existence check; SQLite for exact counts. On the right: the two models cannot share the 4 GB card, so every run hands it over. There are 422 automated tests. Let me show it running.</aside>
+  <aside class="notes">The technology stack, layer by layer, with the reason for each choice. The knowledge layer: ChromaDB holds the vectors, persistent and filterable by metadata; NetworkX holds the citation graph, which gives an exact existence check; SQLite holds the outcome counts. The intelligence layer: BGE-M3 for embeddings, chosen by a measured comparison against a legal-domain model, and qwen 3.5, an open-weight 4-billion-parameter model served through Ollama, whose answers are constrained to a JSON schema. Orchestration is LangGraph rather than one big prompt, because we need the retry edge, parallel agents and a state we can check after every step. The interface is FastAPI with a web app that shows each stage live. On the right, every tool in the project, with 422 automated tests. Let me show it running.</aside>
 </section>
 
-<!-- ============================================================ 15 LIVE DEMO -->
-<section class="slide s-demo" id="demo" data-chapter="Implementation" data-title="Live demo">
-  <div class="eyebrow rise">07 · Implementation · live demo</div>
+<!-- ============================================================ 17 DEMO -->
+<section class="slide s-demo" id="demo" data-chapter="Demo" data-title="Live demo">
+  <div class="eyebrow rise">07 · Demo</div>
   <h2 class="rise" style="--d:1">Let’s run it.</h2>
   <div class="body demo-grid">
     <div class="col">
@@ -475,12 +571,26 @@
       <div class="ph"><span class="kind"><svg class="ico"><use href="#i-play"/></svg>LIVE</span><b>Switching to the browser</b><code>http://127.0.0.1:8000</code></div>
     </figure>
   </div>
-  <aside class="notes">Switch to the browser: run_web.bat, then 127.0.0.1:8000. Paste the motorcycle facts; the date is read from the text. A live run takes about a minute; while it runs, point out the router choosing BNS, 303 ranked first, the graph check, and precedents arriving through IPC 379. The report opens with its result summary. If anything goes wrong live, open the saved Motorcycle theft sample, which replays instantly. Back to the slides for the results.</aside>
+  <aside class="notes">Switch to the browser: run_web.bat, then 127.0.0.1:8000. Paste the motorcycle facts; the date is read from the text. While it runs, point out the router choosing BNS, 303 ranked first, the graph check, and precedents arriving through IPC 379. The report opens with its result summary. If anything goes wrong live, open the saved Motorcycle theft sample, which replays instantly.</aside>
 </section>
 
-<!-- ============================================================ 16 RESULTS -->
-<section class="slide s-zero" id="results" data-chapter="Results" data-title="Results">
-  <div class="eyebrow rise">08 · Results</div>
+<!-- ============================================================ 18 THANK YOU -->
+<section class="slide s-end" id="thanks" data-chapter="Questions" data-title="Thank you">
+  <div class="numfield quiet" aria-hidden="true"></div>
+  <div class="end-wrap">
+    <h1 class="rise">Thank you.</h1>
+    <p class="lede rise" style="--d:1">Pramana: every section it shows exists in the code the offence date selects, and it says so when it doubts one.</p>
+    <div class="end-meta rise" style="--d:2">
+      <span class="chip">RAG, not fine-tuning</span><span class="chip">BGE-M3 · ChromaDB · NetworkX</span><span class="chip">LangGraph multi-agent</span><span class="chip">qwen3.5:4b · FastAPI</span>
+    </div>
+    <p class="small rise" style="--d:3">Suvan Sharma · The Spartan Coders · Dept. of CSE, IKG PTU · Guide: Aditya Sharma<br>Questions welcome.</p>
+  </div>
+  <aside class="notes">To close: Pramana makes one promise and keeps it. Every section it shows exists in the code the offence date selects, and when it doubts that a real section applies, it says so. Thank you; I’m happy to take questions. (Backup slides 19 to 26 follow for questions: type the number and press Enter.)</aside>
+</section>
+
+<!-- ============================================================ B1 RESULTS -->
+<section class="slide s-zero" id="results" data-chapter="Backup" data-title="Backup: results">
+  <div class="eyebrow rise">Backup · B1 · results</div>
   <div class="zero-wrap">
     <div class="zero mono rise" style="--d:1">0</div>
     <div class="zero-side">
@@ -493,12 +603,12 @@
       </div>
     </div>
   </div>
-  <aside class="notes">The headline result is a zero. Across every evaluation we ran, hand-written cases, real court orders and the national benchmark, no invented section and no section from the wrong code ever reached a report. That meets objective three. [click] Behind it: the citation gate, 20 out of 20. Routing, 30 out of 30, which meets objective one. 889 citations checked across 263 saved runs, none unverified shown. And when the model was forced to cite from memory, every affected case recovered a verified section within two retries. Choosing the right section is a separate question, measured against existing work next.</aside>
+  <aside class="notes">Backup, for "what are your results". Across every evaluation, hand-written cases, real court orders and the national benchmark, no invented section and no section from the wrong code reached a report. [click] The citation gate 20 out of 20, routing 30 out of 30, 889 citations checked with none unverified shown, and every case recovered when the model was forced to cite from memory.</aside>
 </section>
 
-<!-- ============================================================ 17 COMPARISON (IL-TUR) -->
-<section class="slide s-iltur" id="benchmark" data-chapter="Results" data-title="Comparison with existing work">
-  <div class="eyebrow rise">08 · Results · comparison with existing work</div>
+<!-- ============================================================ B2 BENCHMARK -->
+<section class="slide s-iltur" id="benchmark" data-chapter="Backup" data-title="Backup: benchmark">
+  <div class="eyebrow rise">Backup · B2 · comparison with existing work</div>
   <h2 class="rise" style="--d:1">Benchmarked on IL-TUR [5], with no task-specific training.</h2>
   <div class="body row">
     <div class="col grow1">
@@ -507,7 +617,7 @@
         <div class="hb"><div class="hb-l"><b>LeSICiN [4]</b><span class="tiny">supervised, trained on 42K documents</span></div><div class="hb-t"><i class="grow muted-bar" style="width:100%"></i><span class="hb-v mono">28.1</span></div></div>
         <div class="hb"><div class="hb-l"><b>Hier. InLegalBERT [5]</b><span class="tiny">supervised</span></div><div class="hb-t"><i class="grow muted-bar" style="width:93.3%;--d:1"></i><span class="hb-v mono">26.2</span></div></div>
         <div class="hb"><div class="hb-l"><b>Hier. LegalBERT [5]</b><span class="tiny">supervised</span></div><div class="hb-t"><i class="grow muted-bar" style="width:77.2%;--d:2"></i><span class="hb-v mono">21.7</span></div></div>
-        <div class="hb me"><div class="hb-l"><b>Pramana</b><span class="tiny">zero-shot · 4B model · laptop · test split</span></div><div class="hb-t"><i class="grow accent-bar" style="width:42%;--d:3"></i><span class="hb-v mono">11.8</span></div></div>
+        <div class="hb me"><div class="hb-l"><b>Pramana</b><span class="tiny">zero-shot · test split</span></div><div class="hb-t"><i class="grow accent-bar" style="width:42%;--d:3"></i><span class="hb-v mono">11.8</span></div></div>
       </div>
       <p class="tiny il-note rise" style="--d:3">100 test documents, run once after all development. Development split: 9.8. Micro precision / recall / F1: 40 / 21 / 27.</p>
     </div>
@@ -524,18 +634,18 @@
       </div>
     </div>
   </div>
-  <aside class="notes">For objective two we used IL-TUR, the published Indian legal benchmark from ACL 2024. The best systems on it are trained on 42 thousand labelled documents and score 28.1 macro-F1. Pramana has no training on this task: it is a 4-billion-parameter model on a laptop, and it scores 11.8 on the test split, which we ran once at the very end. The trained systems lead on this task, and we say so plainly. They are classifiers built for this one benchmark; Pramana also routes the code, finds precedents, drafts arguments and explains its doubts. [click] It is strong on serious offences: murder at 0.78. [click] The gap is mostly minor companion offences, which rarely reach the candidate list. Building this raised several challenges.</aside>
+  <aside class="notes">Backup, for "how does it compare". On IL-TUR, the published Indian legal benchmark, the best trained systems score 28.1 macro-F1; Pramana, with no training on the task, scores 11.8 on the test split, run once at the end. They are classifiers built for this one benchmark; Pramana also routes the code, finds precedents, drafts arguments and explains its doubts. [click] It is strong on serious offences: murder at 0.78. [click] The gap is mostly minor companion offences, which rarely reach the candidate list.</aside>
 </section>
 
-<!-- ============================================================ 18 CHALLENGES & LIMITATIONS -->
-<section class="slide s-chal" id="challenges" data-chapter="Results" data-title="Challenges and limitations">
-  <div class="eyebrow rise">08 · Challenges &amp; limitations</div>
+<!-- ============================================================ B3 CHALLENGES -->
+<section class="slide s-chal" id="challenges" data-chapter="Backup" data-title="Backup: challenges and limitations">
+  <div class="eyebrow rise">Backup · B3 · challenges &amp; limitations</div>
   <h2 class="rise" style="--d:1">What was hard, and what remains.</h2>
   <div class="body row chal">
     <div class="col grow1">
       <div class="label rise" style="--d:2">Challenge → how we handled it</div>
       <div class="ch rise" style="--d:2"><b>No reliable digital BNS</b><svg class="ico"><use href="#i-arrow"/></svg><span>parsed the official gazette PDF</span></div>
-      <div class="ch rise" style="--d:3"><b>Two models, one 4 GB GPU</b><svg class="ico"><use href="#i-arrow"/></svg><span>hand the card over on every run</span></div>
+      <div class="ch rise" style="--d:3"><b>Section numbers collide across Acts</b><svg class="ico"><use href="#i-arrow"/></svg><span>code-scoped graph; CrPC citations filtered</span></div>
       <div class="ch rise" style="--d:4"><b>The model invents sections</b><svg class="ico"><use href="#i-arrow"/></svg><span>graph verification + retry loop</span></div>
       <div class="ch rise" style="--d:5"><b>No BNS case law yet</b><svg class="ico"><use href="#i-arrow"/></svg><span>IPC→BNS precedent bridge</span></div>
     </div>
@@ -549,40 +659,93 @@
       </ul>
     </div>
   </div>
-  <aside class="notes">Four challenges and how we handled them. There was no reliable machine-readable BNS, so we parsed the official gazette PDF ourselves. The embedder and the language model cannot share a 4 GB GPU, so every run hands the card from one to the other. The model invents sections, which the citation graph and the retry loop catch. And there is almost no BNS case law yet, which the IPC bridge solves. [click] The limitations: zero-shot section choice trails trained systems; minor companion offences are often missed; the mapping has not yet been reviewed by practising lawyers; and the scope is substantive criminal law in English text. Which brings us to the conclusion.</aside>
+  <aside class="notes">Backup, for "what was difficult" or "what are the limitations". There was no reliable machine-readable BNS, so we parsed the gazette. Section numbers collide across Acts, so the graph is scoped by code and Criminal Procedure Code citations are filtered out. The model invents sections, which verification catches. And there is almost no BNS case law, which the bridge solves. [click] The limitations: section choice trails trained systems, minor offences are often missed, the mapping awaits review by practising lawyers, and the scope is substantive criminal law in English.</aside>
 </section>
 
-<!-- ============================================================ 19 CONCLUSION & FUTURE SCOPE -->
-<section class="slide s-impact" id="conclusion" data-chapter="Conclusion" data-title="Conclusion and future scope">
-  <div class="eyebrow rise">09 · Conclusion &amp; future scope</div>
-  <h2 class="rise" style="--d:1">Objectives met, and where it goes next.</h2>
-  <div class="body row">
-    <div class="col who-col">
-      <div class="label rise" style="--d:2">Conclusion · objectives from slide 7</div>
-      <div class="obj-met rise" style="--d:2"><span class="m ok">Met</span><b>1 · Correct code from the date</b><span>30 / 30</span></div>
-      <div class="obj-met rise" style="--d:3"><span class="m warn">Partly</span><b>2 · Sections from the facts</b><span>strong on serious offences; 11.8 macro-F1 zero-shot</span></div>
-      <div class="obj-met rise" style="--d:4"><span class="m ok">Met</span><b>3 · No non-existent section</b><span>0 unverified in 889</span></div>
-      <div class="obj-met rise" style="--d:5"><span class="m ok">Met</span><b>4 · Precedents for BNS sections</b><span>through the IPC bridge</span></div>
-      <div class="obj-met rise" style="--d:6"><span class="m ok">Met</span><b>5 · Offline, 4 GB, ₹0</b><span>RTX 3050 Ti laptop</span></div>
-    </div>
-    <div class="col road-col">
-      <div class="label rise" style="--d:2">Future scope · matched to each limitation</div>
-      <div class="road">
-        <svg class="road-line" viewBox="0 0 8 600" preserveAspectRatio="none" aria-hidden="true"><line class="draw" pathLength="1" x1="4" y1="0" x2="4" y2="600"/></svg>
-        <div class="rm" data-step="1" style="--d:0"><i></i><div><span class="label">← companion offences missed</span><b>Wider retrieval for minor offences</b></div></div>
-        <div class="rm" data-step="1" style="--d:1"><i></i><div><span class="label">← mapping not lawyer-reviewed</span><b>Review by practising lawyers</b></div></div>
-        <div class="rm" data-step="1" style="--d:2"><i></i><div><span class="label">← scarce BNS case law</span><b>Ingest new BNS judgments as published</b></div></div>
-        <div class="rm" data-step="1" style="--d:3"><i></i><div><span class="label">← scope</span><b>BNSS and BSA, Hindi input, scanned orders</b></div></div>
-      </div>
-      <div class="whos" data-step="2"><span class="label">Who it helps</span><span class="chip">Advocates</span><span class="chip">Law students</span><span class="chip">Legal-aid clinics</span><span class="chip">Firms with confidential matters</span></div>
-    </div>
+<!-- ============================================================ B4 WORKED EXAMPLE -->
+<section class="slide s-trace" id="trace" data-chapter="Backup" data-title="Backup: worked example traced">
+  <div class="eyebrow rise">Backup · B4 · worked example traced</div>
+  <h2 class="rise" style="--d:1">The motorcycle case through every stage.</h2>
+  <div class="body trace">
+    <div class="tr rise" style="--d:2"><span class="kb code">Router</span><b>BNS</b><span>15 Aug 2024 ≥ 1 Jul 2024</span></div>
+    <div class="tr rise" style="--d:2"><span class="kb code">Guardrail</span><b>pass</b><span>closest judgment 0.686 ≥ 0.576</span></div>
+    <div class="tr rise" style="--d:3"><span class="kb code">Retrieval</span><b>14 candidates</b><span>303(1) first: fused 0.0320, text rank 3, vote rank 2</span></div>
+    <div class="tr rise" style="--d:3"><span class="kb llm">Agent 1</span><b>proposes BNS 303</b><span>from the candidate list</span></div>
+    <div class="tr rise" style="--d:4"><span class="kb graph">Agent 2</span><b>verified</b><span>303 is a node of the BNS · 0 rejected</span></div>
+    <div class="tr rise" style="--d:4"><span class="kb llm">Agent 2b</span><b>supported</b><span>ingredients quoted from the facts, both passes</span></div>
+    <div class="tr rise" style="--d:5"><span class="kb graph">Agent 3</span><b>3 precedents</b><span>via IPC 379: Telangana 0.686 · HP 0.676 · Delhi 0.658</span></div>
+    <div class="tr rise" style="--d:5"><span class="kb code">Agent 5</span><b>IPC 379: 158</b><span>76 allowed · 76 dismissed · 1 partly · 5 other · IPC 378: 8 / 3 · BNS 303: not shown</span></div>
+    <div class="tr rise" style="--d:6"><span class="kb llm">Agent 4</span><b>1 argument</b><span>dishonest intention not proved; quote verified verbatim</span></div>
+    <div class="tr rise" style="--d:6"><span class="kb code">Total</span><b>≈ 71 s</b><span>end to end, from facts to report</span></div>
   </div>
-  <aside class="notes">To conclude, against the five objectives. One, the correct code from the date: met, 30 out of 30. Two, sections from the facts: partly met; it is strong on serious offences but trails trained systems on the benchmark. Three, no non-existent section: met, zero unverified in 889 citations. Four, precedents for BNS sections: met, through the IPC bridge. Five, offline on a 4 GB laptop at zero cost: met. [click] Future scope follows the limitations: wider retrieval for minor offences, a review of the mapping by practising lawyers, new BNS judgments as they are published, and the new procedure and evidence codes, Hindi input and scanned orders. [click] It helps advocates, students, legal-aid clinics and firms with confidential matters. These are the references.</aside>
+  <aside class="notes">Backup, for "walk us through one case". Every value is from the saved motorcycle report: the router picks BNS, the guardrail passes, retrieval puts 303 first, agent one proposes it, agent two verifies it, agent 2b supports it, agent three finds three precedents through IPC 379, agent five counts 158 appeals, and agent four drafts one argument whose quote is checked word for word.</aside>
 </section>
 
-<!-- ============================================================ 20 REFERENCES -->
-<section class="slide s-refs" id="references" data-chapter="References" data-title="References">
-  <div class="eyebrow rise">09 · References</div>
+<!-- ============================================================ B5 STATE -->
+<section class="slide s-state" id="state" data-chapter="Backup" data-title="Backup: LangGraph state">
+  <div class="eyebrow rise">Backup · B5 · LangGraph state object</div>
+  <h2 class="rise" style="--d:1">One shared state, filled agent by agent.</h2>
+  <div class="body statebox">
+    <div class="st rise" style="--d:2"><code>case_facts, offence_date</code><span class="kb code">input</span><span>from the lawyer</span></div>
+    <div class="st rise" style="--d:2"><code>era</code><span class="kb code">router</span><span>"ipc" or "bns"; the only code agent 2 verifies against</span></div>
+    <div class="st rise" style="--d:3"><code>retrieved</code><span class="kb code">retrieval</span><span>ranked candidates agent 1 reads</span></div>
+    <div class="st rise" style="--d:3"><code>candidate_sections</code><span class="kb llm">agent 1</span><span>every round's proposals, tagged by round</span></div>
+    <div class="st rise" style="--d:4"><code>verified_sections, unconfirmed, retry_count</code><span class="kb graph">agent 2</span><span>verified, rejected with the reason, retries used (≤ 2)</span></div>
+    <div class="st rise" style="--d:4"><code>applicability</code><span class="kb llm">agent 2b</span><span>supported or doubted, with quotes and rules</span></div>
+    <div class="st rise" style="--d:5"><code>precedents</code><span class="kb graph">agent 3</span><span>graph-linked judgments, IPC bridge for BNS</span></div>
+    <div class="st rise" style="--d:5"><code>analytics</code><span class="kb code">agent 5</span><span>SQL counts, not shown below 5 judgments</span></div>
+    <div class="st rise" style="--d:6"><code>defenses</code><span class="kb llm">agent 4</span><span>counter-arguments, then the final check</span></div>
+    <div class="st-key rise" style="--d:7"><span class="kb code">code</span><span class="kb llm">language model</span><span class="kb graph">graph lookup</span></div>
+  </div>
+  <aside class="notes">Backup, for "why LangGraph" or "how do the agents share data". One typed state; each agent writes only its own fields, so each step's output can be checked on its own, which a single prompt cannot offer.</aside>
+</section>
+
+<!-- ============================================================ B6 EVALUATION METHOD -->
+<section class="slide s-evalm" id="evaluation" data-chapter="Backup" data-title="Backup: evaluation method">
+  <div class="eyebrow rise">Backup · B6 · evaluation method</div>
+  <h2 class="rise" style="--d:1">How each result number was produced.</h2>
+  <div class="body">
+    <table class="evt rise" style="--d:2">
+      <thead><tr><th>Test</th><th>Set</th><th>How it was run</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Citation gate</td><td>10 real + 10 invented numbers</td><td>verify_section on each, both codes</td><td class="mono">20 / 20</td></tr>
+        <tr><td>Routing</td><td>10 cases × 3 runs</td><td>code chosen and every verified section's code</td><td class="mono">30 / 30</td></tr>
+        <tr><td>Stress test</td><td>15 dev cases</td><td>retrieval withheld; model cites from memory</td><td class="mono">20 / 68 caught · 6 / 6 recovered</td></tr>
+        <tr><td>Real court orders</td><td>30 fresh Patna HC orders (CC-BY-4.0)</td><td>never read before scoring</td><td class="mono">13 / 30 right section</td></tr>
+        <tr><td>IL-TUR LSI</td><td>100 dev + 100 test documents</td><td>decisions on dev; test run once at the end</td><td class="mono">9.8 / 11.8 macro-F1</td></tr>
+        <tr><td>Embedder bake-off</td><td>15 hand-written cases</td><td>each searched only against its own code</td><td class="mono">0.533 vs 0.20 recall@3</td></tr>
+        <tr><td>Held-out sets</td><td>16 · 10 · 12 cases</td><td>written before each change, scored once</td><td class="mono">14/16 · 6/10 · 8/12</td></tr>
+      </tbody>
+    </table>
+    <p class="tiny" style="margin-top:18px">Hand-written sets were authored with AI assistance and are not lawyer-reviewed; the external orders and IL-TUR are independent.</p>
+  </div>
+  <aside class="notes">Backup, for "how did you evaluate". Each number comes from a saved run. The court orders were never read before scoring; on IL-TUR every decision was made on the development split and the test split was run once at the end; held-out sets were written before each change and scored once.</aside>
+</section>
+
+<!-- ============================================================ B7 SCREENS -->
+<section class="slide s-screens" id="screens" data-chapter="Backup" data-title="Backup: product screens">
+  <div class="eyebrow rise">Backup · B7 · product screens</div>
+  <h2 class="rise" style="--d:1">Verified and doubted are never confused.</h2>
+  <div class="body screens">
+    <figure class="media rise" style="--d:2" data-media="media/screen-pipeline" data-kind="image" data-caption="Live pipeline view">
+      <div class="ph"><span class="kind"><svg class="ico"><use href="#i-image"/></svg>SCREENSHOT</span><b>Live pipeline view mid-run</b><code>media/screen-pipeline.png</code></div>
+    </figure>
+    <figure class="media rise" style="--d:3" data-media="media/screen-report" data-kind="image" data-caption="Report: supported, doubted, included">
+      <div class="ph"><span class="kind"><svg class="ico"><use href="#i-image"/></svg>SCREENSHOT</span><b>Report: verified charges and doubted ones</b><code>media/screen-report.png</code></div>
+    </figure>
+    <figure class="media rise" style="--d:4" data-media="media/screen-graph" data-kind="image" data-caption="Citation-graph view">
+      <div class="ph"><span class="kind"><svg class="ico"><use href="#i-image"/></svg>SCREENSHOT</span><b>Citation-graph view</b><code>media/screen-graph.png</code></div>
+    </figure>
+    <figure class="media rise" style="--d:5" data-media="media/screen-dashboard" data-kind="image" data-caption="Evaluation dashboard">
+      <div class="ph"><span class="kind"><svg class="ico"><use href="#i-image"/></svg>SCREENSHOT</span><b>Evaluation dashboard</b><code>media/screen-dashboard.png</code></div>
+    </figure>
+  </div>
+  <aside class="notes">Backup, for "show us the interface" if the live demo was skipped: the live pipeline, a report with supported, doubted and included charges, the citation-graph view, and the evaluation dashboard.</aside>
+</section>
+
+<!-- ============================================================ B8 REFERENCES -->
+<section class="slide s-refs" id="references" data-chapter="Backup" data-title="Backup: references">
+  <div class="eyebrow rise">Backup · B8 · references</div>
   <h2 class="rise" style="--d:1">References.</h2>
   <div class="body">
     <ol class="refs rise" style="--d:2">
@@ -600,102 +763,7 @@
       <li>LangChain, “LangGraph,” github.com/langchain-ai/langgraph; Ollama, ollama.com; Chroma, trychroma.com. Software, 2026. <span class="verify">[[VERIFY]]</span></li>
     </ol>
   </div>
-  <aside class="notes">These are the references cited on the slides, in IEEE style: the two codes, the RAG, LeSICiN, IL-TUR and hallucination papers, BGE-M3, reciprocal rank fusion, the embedder study, the NyayaAnumana dataset, and the software we built on. Thank you.</aside>
-</section>
-
-<!-- ============================================================ 21 THANK YOU -->
-<section class="slide s-end" id="thanks" data-chapter="Questions" data-title="Thank you">
-  <div class="numfield quiet" aria-hidden="true"></div>
-  <div class="end-wrap">
-    <h1 class="rise">Thank you.</h1>
-    <p class="lede rise" style="--d:1">Pramana: every section it shows exists in the code the offence date selects, and it says so when it doubts one.</p>
-    <div class="end-meta rise" style="--d:2">
-      <span class="chip">RAG, not fine-tuning</span><span class="chip">BGE-M3 · ChromaDB · NetworkX · LangGraph</span><span class="chip">qwen3.5:4b on Ollama</span><span class="chip">FastAPI</span>
-    </div>
-    <p class="small rise" style="--d:3">Suvan Sharma · The Spartan Coders · Dept. of CSE, IKG PTU · Guide: Aditya Sharma<br>Questions welcome.</p>
-  </div>
-  <aside class="notes">To close: Pramana makes one promise and keeps it. Every section it shows exists in the code the offence date selects, and when it doubts that a real section applies, it says so. It runs offline, at no cost, on a laptop. Thank you; I’m happy to take questions. (Backup slides 22 to 25 follow for questions: type the number and press Enter.)</aside>
-</section>
-
-<!-- ============================================================ B1 SCREENS -->
-<section class="slide s-screens" id="screens" data-chapter="Backup" data-title="Backup: product screens">
-  <div class="eyebrow rise">Backup · B1 · product screens</div>
-  <h2 class="rise" style="--d:1">Verified and doubted are never confused.</h2>
-  <div class="body screens">
-    <figure class="media rise" style="--d:2" data-media="media/screen-pipeline" data-kind="image" data-caption="Live pipeline view">
-      <div class="ph"><span class="kind"><svg class="ico"><use href="#i-image"/></svg>SCREENSHOT</span><b>Live pipeline view mid-run</b><code>media/screen-pipeline.png</code></div>
-    </figure>
-    <figure class="media rise" style="--d:3" data-media="media/screen-report" data-kind="image" data-caption="Report: supported, doubted, included">
-      <div class="ph"><span class="kind"><svg class="ico"><use href="#i-image"/></svg>SCREENSHOT</span><b>Report: verified charges and doubted ones</b><code>media/screen-report.png</code></div>
-    </figure>
-    <figure class="media rise" style="--d:4" data-media="media/screen-graph" data-kind="image" data-caption="Citation-graph view">
-      <div class="ph"><span class="kind"><svg class="ico"><use href="#i-image"/></svg>SCREENSHOT</span><b>Citation-graph view</b><code>media/screen-graph.png</code></div>
-    </figure>
-    <figure class="media rise" style="--d:5" data-media="media/screen-dashboard" data-kind="image" data-caption="Evaluation dashboard">
-      <div class="ph"><span class="kind"><svg class="ico"><use href="#i-image"/></svg>SCREENSHOT</span><b>Evaluation dashboard</b><code>media/screen-dashboard.png</code></div>
-    </figure>
-  </div>
-  <aside class="notes">Backup, for "show us the interface" if the live demo was skipped. Top left, the live pipeline with retrieval scores and the verification ledger. Top right, a report: green charges supported, the amber one doubted with its reason, and a lesser offence included in the greater one. Bottom left, the citation graph view. Bottom right, the evaluation dashboard, which reads every number from the project's own records.</aside>
-</section>
-
-<!-- ============================================================ B2 WORKED EXAMPLE -->
-<section class="slide s-trace" id="trace" data-chapter="Backup" data-title="Backup: worked example traced">
-  <div class="eyebrow rise">Backup · B2 · worked example traced</div>
-  <h2 class="rise" style="--d:1">The motorcycle case through every stage.</h2>
-  <div class="body trace">
-    <div class="tr rise" style="--d:2"><span class="kb code">Router</span><b>BNS</b><span>15 Aug 2024 ≥ 1 Jul 2024</span></div>
-    <div class="tr rise" style="--d:2"><span class="kb code">Guardrail</span><b>pass</b><span>closest judgment 0.686 ≥ 0.576</span></div>
-    <div class="tr rise" style="--d:3"><span class="kb code">Retrieval</span><b>14 candidates</b><span>303(1) first: fused 0.0320, text rank 3, vote rank 2</span></div>
-    <div class="tr rise" style="--d:3"><span class="kb llm">Node 1</span><b>proposes BNS 303</b><span>from the candidate list</span></div>
-    <div class="tr rise" style="--d:4"><span class="kb graph">Node 2</span><b>verified</b><span>303 is a node of the BNS · 0 rejected</span></div>
-    <div class="tr rise" style="--d:4"><span class="kb llm">Node 2b</span><b>supported</b><span>ingredients quoted from the facts, both passes</span></div>
-    <div class="tr rise" style="--d:5"><span class="kb graph">Node 3</span><b>3 precedents</b><span>via IPC 379: Telangana 0.686 · HP 0.676 · Delhi 0.658</span></div>
-    <div class="tr rise" style="--d:5"><span class="kb code">Node 5</span><b>IPC 379: 158</b><span>76 allowed · 76 dismissed · 1 partly · 5 other · IPC 378: 8 / 3 · BNS 303: suppressed</span></div>
-    <div class="tr rise" style="--d:6"><span class="kb llm">Node 4</span><b>1 argument</b><span>dishonest intention not proved; quote verified verbatim</span></div>
-    <div class="tr rise" style="--d:6"><span class="kb code">Timing</span><b>≈ 71 s</b><span>unload 6.4 · guardrail 9.9 · retrieval 0.4 · graph 55.0</span></div>
-  </div>
-  <aside class="notes">Backup, for "walk us through one case". Every value here is from the saved motorcycle report. The router picks BNS; the guardrail passes; retrieval puts 303 first; Node 1 proposes 303; Node 2 verifies it; Node 2b supports it with quotes from the facts; Node 3 finds three precedents through IPC 379; Node 5 counts 158 appeals under 379 and suppresses BNS 303, which has none; Node 4 drafts one argument whose quote is checked word for word. The whole run takes about 71 seconds.</aside>
-</section>
-
-<!-- ============================================================ B3 STATE -->
-<section class="slide s-state" id="state" data-chapter="Backup" data-title="Backup: LangGraph state">
-  <div class="eyebrow rise">Backup · B3 · LangGraph state object</div>
-  <h2 class="rise" style="--d:1">One shared state, filled node by node.</h2>
-  <div class="body statebox">
-    <div class="st rise" style="--d:2"><code>case_facts, offence_date</code><span class="kb code">input</span><span>from the lawyer</span></div>
-    <div class="st rise" style="--d:2"><code>era</code><span class="kb code">router</span><span>"ipc" or "bns"; the only code Node 2 verifies against</span></div>
-    <div class="st rise" style="--d:3"><code>retrieved</code><span class="kb code">retrieval</span><span>ranked candidates Node 1 reads</span></div>
-    <div class="st rise" style="--d:3"><code>candidate_sections</code><span class="kb llm">Node 1</span><span>every round's proposals, tagged by round</span></div>
-    <div class="st rise" style="--d:4"><code>verified_sections, unconfirmed, retry_count</code><span class="kb graph">Node 2</span><span>verified, rejected with the reason, retries used (≤ 2)</span></div>
-    <div class="st rise" style="--d:4"><code>applicability</code><span class="kb llm">Node 2b</span><span>supported or doubted, with quotes and rules</span></div>
-    <div class="st rise" style="--d:5"><code>precedents</code><span class="kb graph">Node 3</span><span>graph-linked judgments, IPC bridge for BNS</span></div>
-    <div class="st rise" style="--d:5"><code>analytics</code><span class="kb code">Node 5</span><span>SQL counts, suppressed below 5 judgments</span></div>
-    <div class="st rise" style="--d:6"><code>defenses</code><span class="kb llm">Node 4</span><span>counter-arguments, then the final check</span></div>
-    <div class="st-key rise" style="--d:7"><span class="kb code">code</span><span class="kb llm">language model</span><span class="kb graph">graph lookup</span></div>
-  </div>
-  <aside class="notes">Backup, for "why LangGraph" or "how do the stages talk to each other". The pipeline shares one typed state. Each stage writes only its own fields: the router writes the era, retrieval the candidates, Node 1 the proposals, Node 2 the verified and rejected sections and the retry count, and so on. Because each step's output is a field, each one can be checked independently, which a single prompt cannot offer. Three writers are the language model; the rest are code or graph lookups.</aside>
-</section>
-
-<!-- ============================================================ B4 EVALUATION METHOD -->
-<section class="slide s-evalm" id="evaluation" data-chapter="Backup" data-title="Backup: evaluation method">
-  <div class="eyebrow rise">Backup · B4 · evaluation method</div>
-  <h2 class="rise" style="--d:1">How each result number was produced.</h2>
-  <div class="body">
-    <table class="evt rise" style="--d:2">
-      <thead><tr><th>Test</th><th>Set</th><th>How it was run</th><th>Result</th></tr></thead>
-      <tbody>
-        <tr><td>Citation gate</td><td>10 real + 10 invented numbers</td><td>verify_section on each, both codes</td><td class="mono">20 / 20</td></tr>
-        <tr><td>Routing</td><td>10 cases × 3 runs</td><td>code chosen and every verified section's code</td><td class="mono">30 / 30</td></tr>
-        <tr><td>Stress test</td><td>15 dev cases</td><td>retrieval withheld; model cites from memory</td><td class="mono">20 / 68 caught · 6 / 6 recovered</td></tr>
-        <tr><td>Real court orders</td><td>30 fresh Patna HC orders (CC-BY-4.0)</td><td>never read before scoring</td><td class="mono">13 / 30 right section</td></tr>
-        <tr><td>IL-TUR LSI</td><td>100 dev + 100 test documents</td><td>decisions on dev; test run once at the end</td><td class="mono">9.8 / 11.8 macro-F1</td></tr>
-        <tr><td>Embedder bake-off</td><td>15 hand-written cases</td><td>each searched only against its own code</td><td class="mono">0.533 vs 0.20 recall@3</td></tr>
-        <tr><td>Held-out sets</td><td>16 · 10 · 12 cases</td><td>written before each change, scored once</td><td class="mono">14/16 · 6/10 · 8/12</td></tr>
-      </tbody>
-    </table>
-    <p class="tiny" style="margin-top:18px">Hand-written sets were authored with AI assistance and are not lawyer-reviewed; the external orders and IL-TUR are independent. Records: stuff/docs/evaluation_results.md.</p>
-  </div>
-  <aside class="notes">Backup, for "how did you evaluate" or "is the test set fair". Each number comes from a saved run. The gates are binary. The real court orders were never read before scoring. IL-TUR: every decision was made on the development split, and the test split was run once at the end. Held-out sets were written before each change and scored once. The hand-written sets were authored with AI assistance, so we lead with the external results.</aside>
+  <aside class="notes">Backup: the references cited on the slides, in IEEE style.</aside>
 </section>
 
 <div id="chrome"><span class="brand">Pramana</span><span class="chapter"></span><span class="count"></span></div>
