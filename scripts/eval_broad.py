@@ -40,7 +40,7 @@ def _sec(cid):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--fixture", default="tests/fixtures/broad_coverage.json")
-    ap.add_argument("--out", default=None, help="docs/<out>_raw.json (default: from fixture name)")
+    ap.add_argument("--out", default=None, help="stuff/docs/<out>_raw.json (default: from fixture name)")
     ap.add_argument("--no-applicability", action="store_true", help="Phase 4 behaviour, for comparison")
     args = ap.parse_args()
     fixture = ROOT / args.fixture
@@ -53,7 +53,7 @@ def main():
            "said_no_offence": 0, "false_decline": 0}
     # Resumable, like run_phase4.py: each finished case is appended here and
     # skipped on a re-run (long runs on this machine get killed for low memory).
-    ckpt_path = ROOT / "docs" / f"{out_name}_runs.jsonl"
+    ckpt_path = ROOT / "stuff" / "docs" / f"{out_name}_runs.jsonl"
     done = {}
     if ckpt_path.exists():
         done = {json.loads(l)["id"]: json.loads(l) for l in
@@ -119,7 +119,7 @@ def main():
           f"relevant sections rejected by 2b: {tot['relevant_rejected_by_2b']}")
     print(f"  quotes grounded {tot['quotes_grounded']}/{tot['quotes']}")
     print(f"  model said no offence {tot['said_no_offence']}/{n}   false declines {tot['false_decline']}/{n}")
-    (ROOT / "docs" / f"{out_name}_raw.json").write_text(
+    (ROOT / "stuff" / "docs" / f"{out_name}_raw.json").write_text(
         json.dumps({"model": llm.model(), "fixture": args.fixture, "totals": tot, "cases": rows},
                    indent=1), encoding="utf-8")
 

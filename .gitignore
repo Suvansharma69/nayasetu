@@ -43,4 +43,4 @@ desktop.ini
 .idea/
 
 # --- Run markers written by scripts ---
-docs/*.flag
+stuff/docs/*.flag

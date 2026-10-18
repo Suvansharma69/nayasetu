@@ -10,8 +10,8 @@ cd /d D:\nayasetu
 set HF_HUB_OFFLINE=1
 set PRAMANA_ABLATE=
 
-echo IL-TUR LSI test, 100 documents - progress in docs\iltur_lsi_test_100.log
-venv\Scripts\python.exe -u scripts\eval_lsi.py --split test --n 100 >> docs\iltur_lsi_test_100.log 2>&1
-venv\Scripts\python.exe -c "print(open(r'docs\iltur_lsi_test_100.log',encoding='utf-8',errors='replace').read()[-1500:])"
+echo IL-TUR LSI test, 100 documents - progress in stuff\docs\iltur_lsi_test_100.log
+venv\Scripts\python.exe -u scripts\eval_lsi.py --split test --n 100 >> stuff\docs\iltur_lsi_test_100.log 2>&1
+venv\Scripts\python.exe -c "print(open(r'stuff\docs\iltur_lsi_test_100.log',encoding='utf-8',errors='replace').read()[-1500:])"
 echo All done. Tell Claude.
 pause

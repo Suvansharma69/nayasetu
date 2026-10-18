@@ -4,7 +4,7 @@
 
 ## Gate result: PASS
 
-To reproduce: `venv\Scripts\python.exe -u scripts\run_phase4.py --reps 3`. Raw output is in `docs/phase4_pipeline_raw.json`.
+To reproduce: `venv\Scripts\python.exe -u scripts\run_phase4.py --reps 3`. Raw output is in `stuff/docs/phase4_pipeline_raw.json`.
 
 | Gate criterion (CLAUDE.md §8) | Result |
 |---|---|
@@ -71,7 +71,7 @@ What these show:
 
 ## The insufficient-data guardrail
 
-`scripts/calibrate_guardrail.py` (raw output in `docs/phase4_guardrail_raw.json`) measured two candidate signals over the 25 Phase 2 queries (dev + held-out) and 10 out-of-domain inputs. Each out-of-domain input was scored in both eras.
+`scripts/calibrate_guardrail.py` (raw output in `stuff/docs/phase4_guardrail_raw.json`) measured two candidate signals over the 25 Phase 2 queries (dev + held-out) and 10 out-of-domain inputs. Each out-of-domain input was scored in both eras.
 
 | group | best judgment cosine | best statute cosine |
 |---|---|---|
@@ -95,7 +95,7 @@ Probes: the recipe → `insufficient_data` in 2.6 s, no LLM call. The tenancy di
 
 ## Re-run after the data update (2026-09-27, later the same day)
 
-The IPC↔BNS mapping was completed (97 → 574 rows reviewed, 538 with a BNS counterpart), 2026 Supreme Court judgments were ingested, and the index was rebuilt. Then `run_phase4.py --reps 3` was re-run unchanged. Raw output was overwritten in `docs/phase4_pipeline_raw.json`.
+The IPC↔BNS mapping was completed (97 → 574 rows reviewed, 538 with a BNS counterpart), 2026 Supreme Court judgments were ingested, and the index was rebuilt. Then `run_phase4.py --reps 3` was re-run unchanged. Raw output was overwritten in `stuff/docs/phase4_pipeline_raw.json`.
 
 | | first run | re-run |
 |---|---|---|
@@ -111,7 +111,7 @@ Case 8 (common intention) still misses: s34 is not proposed; it gets 149 (unlawf
 
 ## Broad-coverage baseline (held out, scored once)
 
-`scripts/eval_broad.py` was run on `tests/fixtures/broad_coverage.json`: 20 cases written after Phase 4 covering homicide, dowry death, kidnapping, robbery, intimidation, forgery, negligent death, extortion, a lawyer-style brief and both boundary days. Raw output is in `docs/broad_coverage_raw.json`.
+`scripts/eval_broad.py` was run on `tests/fixtures/broad_coverage.json`: 20 cases written after Phase 4 covering homicide, dowry death, kidnapping, robbery, intimidation, forgery, negligent death, extortion, a lawyer-style brief and both boundary days. Raw output is in `stuff/docs/broad_coverage_raw.json`.
 
 - **Routing 19/19; a relevant section verified in 19/19** (case 20 is an ungated limitation probe). On clear-cut offences, retrieval plus Node 1 finds the charge.
 - **The weakness is over-charging, not missing charges.** Extra verified sections include IPC 302 on a dowry death, 120B (conspiracy) and 372 on a kidnapping, 307 on a single-blow sudden fight, 387 on a phone threat, and IPC 25, the *definition* of "fraudulently", on a forgery. Each is a real section, so each verifies. This is the same "verified ≠ applicable" problem, and it is now the main quality issue for Phase 5.

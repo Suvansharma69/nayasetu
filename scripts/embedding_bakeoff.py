@@ -213,7 +213,7 @@ def main():
     ap.add_argument("--models", nargs="+", default=DEFAULT_MODELS)
     ap.add_argument("--device", default=os.environ.get("EMBEDDING_DEVICE", "cuda"))
     ap.add_argument("--report", type=Path,
-                    default=ROOT / "docs" / "embedding_bakeoff.md")
+                    default=ROOT / "stuff" / "docs" / "embedding_bakeoff.md")
     args = ap.parse_args()
 
     if args.smoke:

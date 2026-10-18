@@ -5,7 +5,7 @@
     "",
     "Written 2026-09-26 AFTER the method was chosen on phase2_testset.json and",
     "BEFORE it was ever run on these cases; it was scored once, with the method",
-    "frozen, and the result recorded in docs/phase2_retrieval.md whatever it was.",
+    "frozen, and the result recorded in stuff/docs/phase2_retrieval.md whatever it was.",
     "Do not tune retrieval against this file -- the moment you do, it stops being",
     "held out and a new one has to be written.",
     "",

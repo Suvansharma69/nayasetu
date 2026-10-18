@@ -11,7 +11,7 @@ through the full pipeline with a BNS-era date. Expected outcome per kind:
                                    or insufficient_data
 
 A non-legal probe that ends with any charge fails; a civil probe fails only if the
-report carries no warning. Results: docs/probes_raw.json.
+report carries no warning. Results: stuff/docs/probes_raw.json.
 
 Run:  venv\Scripts\python.exe -u scripts\eval_probes.py
 """
@@ -51,7 +51,7 @@ def main():
               f"charges={rows[-1]['charges']}  {str(why)[:90]}", flush=True)
     embedder.free()
     print(f"\n{ok}/{len(rows)} probes handled correctly")
-    (ROOT / "docs" / "probes_raw.json").write_text(json.dumps(rows, indent=1), encoding="utf-8")
+    (ROOT / "stuff" / "docs" / "probes_raw.json").write_text(json.dumps(rows, indent=1), encoding="utf-8")
     return 0 if ok == len(rows) else 1
 
 

@@ -1,6 +1,6 @@
 # Pramana — The Complete Project Guide
 
-*Written 2026-10-15 and revised 2026-10-18 (IL-TUR test split added; every mechanism re-checked against the code; stale figures corrected) from the project's own records (git history, `CLAUDE.md`, the `docs/` evaluation files, the code). Every number here can be traced to one of those files; where a number lives is given in brackets so you can show it if asked. Read Part A once end to end, then use Part F (the question bank) to rehearse. Part B now gives each stage's exact parameters (B14 collects them in one table), so you can answer "how many / how long / what threshold" without opening the code.*
+*Written 2026-10-15 and revised 2026-10-18 (IL-TUR test split added; every mechanism re-checked against the code; stale figures corrected) from the project's own records (git history, `CLAUDE.md`, the `stuff/docs/` evaluation files, the code). Every number here can be traced to one of those files; where a number lives is given in brackets so you can show it if asked. Read Part A once end to end, then use Part F (the question bank) to rehearse. Part B now gives each stage's exact parameters (B14 collects them in one table), so you can answer "how many / how long / what threshold" without opening the code.*
 
 **How to use this guide**
 
@@ -554,7 +554,7 @@ A self-imposed 20 GB ceiling (the disk actually had ~107 GB free), kept as disci
 | 3 Graph | 100% on 10 real + 10 fabricated section numbers | **20/20** (fabricated include BNS 420 and BNS 498A — real IPC numbers, the union trap) |
 | 4 Pipeline | 10 cases route correctly every time; adversarial case triggers and survives retry | **30/30**, **3/3** |
 | 5 Full pipeline | motorcycle worked example end to end | done |
-| 6 Evaluation | real numbers in `docs/evaluation_results.md`, reproducible by one script | done (`scripts/eval_phase6.py all`, `scripts/eval_lsi.py`) |
+| 6 Evaluation | real numbers in `stuff/docs/evaluation_results.md`, reproducible by one script | done (`scripts/eval_phase6.py all`, `scripts/eval_lsi.py`) |
 | 7 Frontend | motorcycle example works in the browser, no manual steps | done (`run_web.bat`) |
 
 ## D3. Metrics, explained simply
@@ -572,7 +572,7 @@ A self-imposed 20 GB ceiling (the disk actually had ~107 GB free), kept as disci
 
 ### Citation verification (the core claim)
 - Phase 3 adversarial set: **20/20**.
-- Phase 6 hallucination-catch (`docs/evaluation_results.md` §3):
+- Phase 6 hallucination-catch (`stuff/docs/evaluation_results.md` §3):
   - normal use (with retrieval), 30 real court orders, 94 proposals: **0 invented** — the model never proposed a non-existent number when shown candidates.
   - stress test (retrieval withheld), 15 dev cases, 68 proposals: **20 rejected (29%)** — mostly IPC numbers in BNS cases (420, 378–383, 465–468); **6/6 cases with a rejection recovered within 2 retries**; **0 leaked**.
 - With retrieval context the model never took IPC-number bait ("Section 420" in a BNS-era complaint): 0/9.
@@ -591,7 +591,7 @@ A self-imposed 20 GB ceiling (the disk actually had ~107 GB free), kept as disci
 | held-out 4 (12) | 8/12 | 42% (59% with doubted set aside) |
 | broad coverage (19) | 16/19 | 68% |
 
-\* Held-out 2 is shown as re-scored by `scripts/score_runs.py` (definition = punishment on both sides, `docs/evaluation_results.md` §5). The original scorer in `docs/hardening.md` gave 44% (57%) on the same run; quote 58% and know why the two differ.
+\* Held-out 2 is shown as re-scored by `scripts/score_runs.py` (definition = punishment on both sides, `stuff/docs/evaluation_results.md` §5). The original scorer in `stuff/docs/hardening.md` gave 44% (57%) on the same run; quote 58% and know why the two differ.
 - Across three held-out sets the judge doubted **0 of 31** correct charges.
 - Out-of-domain probes: **10/10** declined correctly (civil, tax, labour, family → "no offence disclosed"; recipe, cricket, gibberish → "insufficient data" before any LLM call).
 
@@ -913,7 +913,7 @@ Answer out loud, then check. **Bold** marks the phrase that should be in your an
 107. **How long does indexing take?** ~25 minutes on the GPU at fp16.
 108. **How do you handle a court order that is mostly procedure?** The intake step extracts alleged facts; if none are stated, it declines with `no_facts_stated` rather than charging procedural sections.
 109. **What happens if Ollama is down?** The launchers start it; saved samples still work; a live run returns a clear 503.
-110. **Where is the design record?** `CLAUDE.md` (rules, status, every gotcha) and `docs/` (one file per evaluation).
+110. **Where is the design record?** `CLAUDE.md` (rules, status, every gotcha) and `stuff/docs/` (one file per evaluation).
 
 ## F10. Process and reflection
 

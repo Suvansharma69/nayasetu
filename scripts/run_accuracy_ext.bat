@@ -24,7 +24,7 @@ copy /y %B%\chargeability_main.json data\mappings\chargeability.json >nul
 %PY% scripts\build_index.py --only ipc_sections
 %PY% %B%\dev_cands.py %B%\dev_cands_main.json
 set PRAMANA_ABLATE=nofacts
-%PY% -u scripts\eval_ext_slice.py docs\accuracy_ext60_base_runs.jsonl 60 30
+%PY% -u scripts\eval_ext_slice.py stuff\docs\accuracy_ext60_base_runs.jsonl 60 30
 set PRAMANA_ABLATE=
 
 echo [2/3] CURRENT arm
@@ -32,7 +32,7 @@ copy /y %B%\statutes_ipc_current.jsonl data\processed\statutes_ipc.jsonl >nul
 copy /y %B%\chargeability_current.json data\mappings\chargeability.json >nul
 %PY% scripts\build_index.py --only ipc_sections
 %PY% %B%\dev_cands.py %B%\dev_cands_current.json
-%PY% -u scripts\eval_ext_slice.py docs\accuracy_ext60_new_runs.jsonl 60 30
+%PY% -u scripts\eval_ext_slice.py stuff\docs\accuracy_ext60_new_runs.jsonl 60 30
 
 echo [3/3] check the current data is in place
 fc /b data\processed\statutes_ipc.jsonl %B%\statutes_ipc_current.jsonl >nul && fc /b data\mappings\chargeability.json %B%\chargeability_current.json >nul && echo current data in place

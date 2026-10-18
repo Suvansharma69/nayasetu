@@ -32,7 +32,7 @@ except ImportError:                                  # pragma: no cover
 
 # Decided at the Phase 2 gate (2026-09-26): BGE-M3 put a relevant section in
 # the top 3 for 8/15 test cases against InLegal-Sbert's 3/15, and led in
-# every variant tried (docs/embedding_bakeoff.md). EMBEDDING_MODEL overrides.
+# every variant tried (stuff/docs/embedding_bakeoff.md). EMBEDDING_MODEL overrides.
 DEFAULT_MODEL = "BAAI/bge-m3"
 
 # law-ai/InLegalBERT is the base MLM that InLegal-Sbert was adapted FROM. Loaded

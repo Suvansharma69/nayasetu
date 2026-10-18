@@ -65,7 +65,7 @@ Intake extracted facts from 14/20 orders; 4 were judged to state no alleged fact
 
 ## 4b. Accuracy pass on fresh orders (2026-10-07)
 
-Scored once on ext0060-0089, which no one had read. Same code in both arms; `base` runs main's data (IPC text cut short, old definition pairs) with the `nofacts` switch off, `new` runs the completed IPC text, the new pairs and `nofacts` (`scripts/run_accuracy_ext.bat`; details in `docs/accuracy_2026-10-07.md`).
+Scored once on ext0060-0089, which no one had read. Same code in both arms; `base` runs main's data (IPC text cut short, old definition pairs) with the `nofacts` switch off, `new` runs the completed IPC text, the new pairs and `nofacts` (`scripts/run_accuracy_ext.bat`; details in `stuff/docs/accuracy_2026-10-07.md`).
 
 | arm | cases | right section charged | right section in Node 1's list | precision | recall | sections/case | procedural sections charged |
 |---|---|---|---|---|---|---|---|
@@ -94,7 +94,7 @@ Hand-written by Claude, not reviewed by a lawyer. Each held-out set was written 
 
 ## 6. IL-TUR Legal Statute Identification, dev split (2026-10-10)
 
-The published benchmark, now that access was granted: 100 documents sampled from the LSI dev split (seed 20260927), the full pipeline as it runs for a user, with the router given an IPC-era date because the benchmark has none (`scripts/eval_lsi.py`, `src/eval/lsi.py`; per-document records in `docs/iltur_lsi_dev_100.jsonl`, summary in `..._summary.json`). Decisions were made on this split only; the test split was run once afterwards (Section 7).
+The published benchmark, now that access was granted: 100 documents sampled from the LSI dev split (seed 20260927), the full pipeline as it runs for a user, with the router given an IPC-era date because the benchmark has none (`scripts/eval_lsi.py`, `src/eval/lsi.py`; per-document records in `stuff/docs/iltur_lsi_dev_100.jsonl`, summary in `..._summary.json`). Decisions were made on this split only; the test split was run once afterwards (Section 7).
 
 | prediction | macro-F1, all 100 labels | macro-F1, 84 labels with support (95% CI) | micro P / R / F1 |
 |---|---|---|---|
@@ -114,7 +114,7 @@ Where it goes:
 
 ## 7. IL-TUR Legal Statute Identification, test split (2026-10-18)
 
-Run once, after every decision had been made on the dev split: 100 documents sampled from the LSI test split with the same seed (20260927), same code and settings as Section 6, no ablation switches (`scripts/run_iltur_test.bat` -> `scripts/eval_lsi.py --split test --n 100`; records in `docs/iltur_lsi_test_100.jsonl`, summary in `..._summary.json`). Started 2026-10-15, finished 2026-10-18 (the first attempt was killed for low memory at 17/100; the runner resumed from there).
+Run once, after every decision had been made on the dev split: 100 documents sampled from the LSI test split with the same seed (20260927), same code and settings as Section 6, no ablation switches (`scripts/run_iltur_test.bat` -> `scripts/eval_lsi.py --split test --n 100`; records in `stuff/docs/iltur_lsi_test_100.jsonl`, summary in `..._summary.json`). Started 2026-10-15, finished 2026-10-18 (the first attempt was killed for low memory at 17/100; the runner resumed from there).
 
 | prediction | macro-F1, all 100 labels | macro-F1, 85 labels with support (95% CI) | micro P / R / F1 |
 |---|---|---|---|

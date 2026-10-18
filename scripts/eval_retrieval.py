@@ -11,7 +11,7 @@ CLAUDE.md Section 8's gate is "top-3 results manually judged relevant in at
 least 12/15" -- a human judgement. The recall@3 printed here is the strict
 automatic proxy against the fixture's `relevant` lists; the per-case top-3 is
 printed so it can be read and judged, and the judgement is recorded in
-docs/phase2_retrieval.md.
+stuff/docs/phase2_retrieval.md.
 
 Run:  venv\Scripts\python.exe scripts\eval_retrieval.py
 """
@@ -84,7 +84,7 @@ def main():
           + ("(held out: a check, not the gate)" if args.heldout
              else "(gate: 12/15 top-3 relevant, judged manually)"))
     embedder.free()
-    out = ROOT / "docs" / (("phase2_retrieval_heldout" if args.heldout else "phase2_retrieval")
+    out = ROOT / "stuff" / "docs" / (("phase2_retrieval_heldout" if args.heldout else "phase2_retrieval")
                            + ("_pipeline" if args.pipeline else "") + ("_hyde" if args.hyde else "")
                            + "_raw.json")
     out.write_text(json.dumps([

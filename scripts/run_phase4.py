@@ -91,7 +91,7 @@ def summary(out):
     }
 
 
-CHECKPOINT = ROOT / "docs" / "phase4_runs.jsonl"
+CHECKPOINT = ROOT / "stuff" / "docs" / "phase4_runs.jsonl"
 
 
 def main():
@@ -205,7 +205,7 @@ def main():
           f"{sum(a['triggered'] for a in reported)}/{len(reported)}   "
           f"relevant section verified (reported, not gated): {hits}/{n}")
     print("GATE " + ("PASS" if gate_fail == 0 and adv_ok else "FAIL"))
-    out = ROOT / "docs" / "phase4_pipeline_raw.json"
+    out = ROOT / "stuff" / "docs" / "phase4_pipeline_raw.json"
     out.write_text(json.dumps(results, indent=1), encoding="utf-8")
     print(f"wrote {out.relative_to(ROOT)}")
 

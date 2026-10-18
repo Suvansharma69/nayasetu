@@ -21,7 +21,7 @@ from pathlib import Path
 from src.graph import citation_graph as cg
 
 ROOT = Path(__file__).resolve().parents[2]
-DOCS = ROOT / "docs"
+DOCS = ROOT / "stuff" / "docs"
 BUILD_REPORT = ROOT / "data" / "processed" / "build_report.json"
 SAMPLES = ROOT / "app" / "samples"
 MAPPING = ROOT / "data" / "mappings" / "ipc_bns_map.json"

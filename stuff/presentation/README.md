@@ -66,8 +66,8 @@ Start the app beforehand: `run_web.bat` in the project root, then `http://127.0.
 ```bash
 "/c/Program Files/Google/Chrome/Application/chrome.exe" --headless=new --disable-gpu \
   --no-pdf-header-footer --virtual-time-budget=5000 \
-  --print-to-pdf="D:/nayasetu/presentation/Pramana_presentation.pdf" \
-  "file:///D:/nayasetu/presentation/index.html?print"
+  --print-to-pdf="D:/nayasetu/stuff/presentation/Pramana_presentation.pdf" \
+  "file:///D:/nayasetu/stuff/presentation/index.html?print"
 ```
 
 Add `&theme=paper` after `?print` for a light-background PDF suitable for printing handouts.
@@ -81,12 +81,12 @@ Every figure on the slides was checked against the project's records, not typed 
 - Corpus and graph counts (933 sections, 2,699 judgments, 16,493 citation edges, 539 IPC→BNS bridges, 87,036 judgment passages): the built citation graph and `data/processed/build_report.json`.
 - The citation-graph pictures (slides 12 and 13) draw a **real** subgraph: `tools/export_subgraph.py` writes `data/subgraph.js` from the built graph (41 judgments citing IPC 378, 379 and 411). Re-run it if the graph is rebuilt.
 - The motorcycle example (candidates, precedents, similarities, appeal outcomes, the counter-argument): `app/samples/motorcycle_theft.json`.
-- Embedder bake-off: `docs/embedding_bakeoff.md`. Retry loop: `docs/phase4_pipeline.md`. Catch rate, court orders and benchmark: `docs/evaluation_results.md` and `docs/iltur_lsi_test_100_summary.json`. Rules and laptop figures: `CLAUDE.md`.
+- Embedder bake-off: `stuff/docs/embedding_bakeoff.md`. Retry loop: `stuff/docs/phase4_pipeline.md`. Catch rate, court orders and benchmark: `stuff/docs/evaluation_results.md` and `stuff/docs/iltur_lsi_test_100_summary.json`. Rules and laptop figures: `CLAUDE.md`.
 
 ## Files
 
 ```
-presentation/
+stuff/presentation/
 ├── index.html              the deck: slides and speaker notes
 ├── assets/deck.css         stage, motion vocabulary, notes/presenter/print styles
 ├── assets/slides.css       per-slide layout and animation

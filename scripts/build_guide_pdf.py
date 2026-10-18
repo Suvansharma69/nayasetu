@@ -1,4 +1,4 @@
-"""Render docs/PROJECT_GUIDE.md to a styled HTML page and print it to PDF with headless Chrome.
+"""Render stuff/docs/PROJECT_GUIDE.md to a styled HTML page and print it to PDF with headless Chrome.
 
 Usage: venv/Scripts/python.exe scripts/build_guide_pdf.py <repo root> <build dir>   (build dir: any scratch folder)
 """
@@ -17,7 +17,7 @@ for f in (root / "app" / "web" / "static" / "fonts").glob("*.woff2"):
     shutil.copy(f, fonts / f.name)
 
 md = MarkdownIt("commonmark", {"html": False, "typographer": False}).enable("table").enable("strikethrough")
-body = md.render((root / "docs" / "PROJECT_GUIDE.md").read_text(encoding="utf-8"))
+body = md.render((root / "stuff" / "docs" / "PROJECT_GUIDE.md").read_text(encoding="utf-8"))
 
 css = """
 @font-face{font-family:Plex;src:url(fonts/IBMPlexSans-400.woff2);font-weight:400}
@@ -56,7 +56,7 @@ html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 page = build / "guide.html"
 page.write_text(html, encoding="utf-8")
 
-out = (root / "docs" / "PROJECT_GUIDE.pdf").resolve()  # Chrome does not resolve a relative path against our cwd
+out = (root / "stuff" / "docs" / "PROJECT_GUIDE.pdf").resolve()  # Chrome does not resolve a relative path against our cwd
 chrome = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 profile = build / "chrome-profile"
 subprocess.run([chrome, "--headless=new", "--disable-gpu", f"--user-data-dir={profile}",

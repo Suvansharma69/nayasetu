@@ -1,6 +1,6 @@
 r"""Intake: turn a pasted court order or FIR into a statement of the alleged facts.
 
-Phase 6 (docs/evaluation_results.md) measured the system on real Patna High
+Phase 6 (stuff/docs/evaluation_results.md) measured the system on real Patna High
 Court orders: a right section was charged in 12/30, against 60-100% on written
 fact statements. The orders are mostly procedure -- counsel, bail, custody, case
 numbers -- and the facts are often one sentence. That vocabulary steered

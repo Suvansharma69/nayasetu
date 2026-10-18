@@ -14,7 +14,7 @@
 | 4 | Retry hint faithfully translated a wrong guess | ✅ | hint now names both titles plus a caveat; Node 2b judges the result |
 | 5 | Civil disputes and false declines | ✅ | no bare refusal on any path: model (`0203e85`) and guardrail (`6f09d4f`). Held-out 4 (new, scored once): **0 false declines in 12**; held-out 3 #7 re-run returns a review list with BNS 324 (mischief) 6th. Civil controls 4/4 carry a no-offence warning; #14 of held-out 4 still charged 420, which the judge doubted |
 | 6 | Offence period straddling 1 Jul 2024 | ✅ | `route_period` + dual-code run with a warning; tests at the boundary |
-| 7 | Phase 2 held-out 10 → 8/10 after the mapping change | ✅ | re-scored 2026-10-04 (`docs/phase2_retrieval.md`, last section): pipeline ranking judged dev **12/15** (gate met) + held-out 9/10 = 84%; strict 19/25 (76%) reported as is. The dual list Node 1 reads holds a relevant section in 26/27 cases; the miss is common intention, supplied by rule |
+| 7 | Phase 2 held-out 10 → 8/10 after the mapping change | ✅ | re-scored 2026-10-04 (`stuff/docs/phase2_retrieval.md`, last section): pipeline ranking judged dev **12/15** (gate met) + held-out 9/10 = 84%; strict 19/25 (76%) reported as is. The dual list Node 1 reads holds a relevant section in 26/27 cases; the miss is common intention, supplied by rule |
 | 8 | **Citation-graph edges: 63% precision (found in this pass)** | ✅ | fresh 100-edge audit: **96%** after the fix |
 | 9 | Bombay HC lost-ligature words | ✅ | 140 reviewed repairs, 1,294 occurrences in 137 judgments |
 | 10 | spotcheck "4.6% tails cut off" unexplained | ✅ | explained; true mid-sentence splits 1,190 → **122 (0.1%)** |
@@ -45,7 +45,7 @@ Result: edges 24,475 → 16,514. Real offences held steady (IPC 420: 885, 302: 6
 - **D. Liability rule**: 2+ accused acting together with a shared plan → IPC 34 / BNS 3(5); 5+ with a common object → IPC 149 / BNS 190. Verified and judged like any proposal.
 - **Per-section vs batched**: per-section calls kept 15/16 but removed only 6/28 extras. In isolation a small model says yes to almost anything, so the check stays batched.
 
-Dev set end to end (`docs/hardening_dev_v2_raw.json`): routed 15/15; a relevant section among the charges 14/15 (the applicability check dropped **0** relevant sections); extras 28 → 12; supporting quotes grounded 85/85.
+Dev set end to end (`stuff/docs/hardening_dev_v2_raw.json`): routed 15/15; a relevant section among the charges 14/15 (the applicability check dropped **0** relevant sections); extras 28 → 12; supporting quotes grounded 85/85.
 
 ## 9–11. Phase 1 data
 
@@ -90,7 +90,7 @@ Per the anti-overfitting protocol, this set is now spent for the current method:
 
 ## Dev-set ablation and the frozen method (2026-09-30)
 
-After the broad-coverage setback, each hardening change was switched off in turn on the **dev set only** (`PRAMANA_ABLATE`, `src/pipeline/ablation.py`; results in `docs/abl_*_runs.jsonl`):
+After the broad-coverage setback, each hardening change was switched off in turn on the **dev set only** (`PRAMANA_ABLATE`, `src/pipeline/ablation.py`; results in `stuff/docs/abl_*_runs.jsonl`):
 
 | dev set, 15 cases | relevant verified | relevant among charges | extras verified / charges |
 |---|---|---|---|
@@ -108,7 +108,7 @@ Decisions:
 
 ## Held-out set 2: the frozen method, scored once (2026-10-01)
 
-Run from a normal terminal (`scripts\run_final_evals.bat`); raw: `docs/heldout_2_hardened_runs.jsonl`.
+Run from a normal terminal (`scripts\run_final_evals.bat`); raw: `stuff/docs/heldout_2_hardened_runs.jsonl`.
 
 | 16 cases, never seen while building | result |
 |---|---|
@@ -153,7 +153,7 @@ un_dev_compare.bat`, baseline 9/15 done when a memory kill stopped it), then hel
 
 **Dev** (same code, only `PRAMANA_ABLATE=dual,punish` differing): recall 14/15 -> **15/15**, precision 33% -> 35%, 4.0 -> 3.6 sections/case, doubted-set-aside precision 45% -> 49%, false declines 0 -> 0. Kept. (Dev #6, assault without a blow: IPC 351 ranked 16th fused, 3rd by statute text.)
 
-**Held-out 4** (`tests/fixtures/heldout_4.json`, committed before any dev result; scored once; raw `docs/heldout_4_runs.jsonl`):
+**Held-out 4** (`tests/fixtures/heldout_4.json`, committed before any dev result; scored once; raw `stuff/docs/heldout_4_runs.jsonl`):
 
 | 12 gated cases | result |
 |---|---|
@@ -169,7 +169,7 @@ Misses: #1 defamation (209/417; the model also warned "no offence"); **#7 a deat
 
 ## 2026-10-04: Phase 2 re-score (row 7 closed) and definition/punishment pooling (row 1)
 
-**Row 7:** see `docs/phase2_retrieval.md`, last section. Judged dev 12/15 (the gate, met for the first time), held-out 9/10; strict 19/25. The list Node 1 reads holds a relevant section in 26/27 cases.
+**Row 7:** see `stuff/docs/phase2_retrieval.md`, last section. Judged dev 12/15 (the gate, met for the first time), held-out 9/10; strict 19/25. The list Node 1 reads holds a relevant section in 26/27 cases.
 
 **Row 1, threat to kill → attempt to murder (held-out 3 #10, held-out 4 #7).** Cause found in retrieval, not the model: in the IPC era neither 503 nor 506 was among the 16-18 candidates. Statute text finds the definition 503 (ranks 25 and 27, because 506's text is one line of boilerplate). Precedent votes find 506 (vote ranks 7 and 2, because judgments cite "506 IPC"). RRF fused them as two unrelated sections, so each held half the evidence for one offence. In the BNS, which keeps both in s351, the same facts rank 351 1st and 3rd.
 

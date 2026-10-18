@@ -10,7 +10,7 @@ best statute match, the first candidate signal, which did not separate -- for
 
 and proposes the midpoint of the gap between criminal facts and non-legal text.
 Civil/regulatory disputes are printed but excluded from the gap: they overlap
-criminal facts on both signals (docs/phase4_pipeline.md).
+criminal facts on both signals (stuff/docs/phase4_pipeline.md).
 
 It only READS retrieval scores -- it changes nothing about ranking, so scoring
 the held-out cases here does not tune retrieval on them. Encoding is on CPU,
@@ -73,7 +73,7 @@ def main():
         print(f"\n{name}: lowest criminal {lo_in:.4f}  highest non-legal {hi_nl:.4f}  "
               f"highest out-of-domain {hi_out:.4f}  -> {verdict}")
     print(f"threshold in use: {guardrail.MIN_JUDGMENT_SIMILARITY}")
-    out = ROOT / "docs" / "phase4_guardrail_raw.json"
+    out = ROOT / "stuff" / "docs" / "phase4_guardrail_raw.json"
     out.write_text(json.dumps([{"group": r[0], "era": r[1], "kind": r[2], "top_judgment": r[3],
                                 "top_statute": r[4], "query": r[5]} for r in rows], indent=1),
                    encoding="utf-8")

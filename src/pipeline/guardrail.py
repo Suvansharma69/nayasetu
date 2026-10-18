@@ -5,7 +5,7 @@ explicit "insufficient data" answer and never calls the LLM: a 4B model handed
 weak context does not say "I don't know", it writes something plausible.
 
 The signal, chosen by measurement (scripts/calibrate_guardrail.py,
-docs/phase4_pipeline.md), is the cosine similarity of the best-matching
+stuff/docs/phase4_pipeline.md), is the cosine similarity of the best-matching
 JUDGMENT chunk in the era's judgment collections -- not the best statute:
 
 * Best statute match did not separate anything. BGE-M3's statute cosines are

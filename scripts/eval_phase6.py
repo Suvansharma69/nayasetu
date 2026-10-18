@@ -1,4 +1,4 @@
-r"""Phase 6: evaluation, written to docs/evaluation_results.md by one script.
+r"""Phase 6: evaluation, written to stuff/docs/evaluation_results.md by one script.
 
 IL-TUR (the planned yardstick) is gated and access was never granted, so the
 external statute-identification set is Hanno-Labs/indian-ipc-statute-identification
@@ -17,7 +17,7 @@ Parts (each resumable; re-running skips finished cases):
                 memory: the condition the citation check exists for (as in the
                 Phase 4 adversarial gate).
     report      hallucination-catch rate over every proposal of the pipeline and
-                stress runs, plus all metrics, -> docs/evaluation_results.md
+                stress runs, plus all metrics, -> stuff/docs/evaluation_results.md
 
 Fetch (17 MB, once):
       curl -L -o data/raw/eval/hanno_ipc_lsi/train.parquet https://huggingface.co/datasets/Hanno-Labs/indian-ipc-statute-identification/resolve/main/data/train.parquet
@@ -41,7 +41,7 @@ os.environ.setdefault("HF_HUB_OFFLINE", "1")
 
 EXTERNAL = ROOT / "data" / "raw" / "eval" / "hanno_ipc_lsi" / "train.parquet"
 DEV = ROOT / "tests" / "fixtures" / "phase2_testset.json"
-DOCS = ROOT / "docs"
+DOCS = ROOT / "stuff" / "docs"
 OUT = {"retrieval": DOCS / "phase6_retrieval_runs.jsonl", "pipeline": DOCS / "phase6_pipeline_runs.jsonl",
        "stress": DOCS / "phase6_stress_runs.jsonl"}
 REPORT = DOCS / "evaluation_results.md"
@@ -283,7 +283,7 @@ def accuracy_ab():
          f"Scored once on ext{ACCURACY_START:04d}-{ACCURACY_START + N_ACCURACY - 1:04d}, which no one had read. "
          "Same code in both arms; `base` runs main's data (IPC text cut short, old definition pairs) with the "
          "`nofacts` switch off, `new` runs the completed IPC text, the new pairs and `nofacts` "
-         "(`scripts/run_accuracy_ext.bat`; details in `docs/accuracy_2026-10-07.md`).", "",
+         "(`scripts/run_accuracy_ext.bat`; details in `stuff/docs/accuracy_2026-10-07.md`).", "",
          "| arm | cases | right section charged | right section in Node 1's list | precision | recall | "
          "sections/case | procedural sections charged |", "|---|---|---|---|---|---|---|---|",
          row("base, all", list(base.values())), row("new, all", list(new.values())),
@@ -310,13 +310,13 @@ def own_fixtures():
     """The project's own fixtures, re-scored from saved runs (scripts/score_runs.py)."""
     import subprocess
 
-    rows = [("dev (15)", "tests/fixtures/phase2_testset.json", "docs/dual_dev_runs.jsonl"),
-            ("dev, pair on (14)", "tests/fixtures/phase2_testset.json", "docs/pair_dev_runs.jsonl"),
-            ("held-out 2", "tests/fixtures/heldout_2.json", "docs/heldout_2_hardened_runs.jsonl"),
-            ("held-out 3", "tests/fixtures/heldout_3.json", "docs/heldout_3_runs.jsonl"),
-            ("held-out 4", "tests/fixtures/heldout_4.json", "docs/heldout_4_runs.jsonl"),
-            ("held-out 5", "tests/fixtures/heldout_5.json", "docs/heldout_5_runs.jsonl"),
-            ("broad coverage", "tests/fixtures/broad_coverage.json", "docs/broad_coverage_hardened_runs.jsonl")]
+    rows = [("dev (15)", "tests/fixtures/phase2_testset.json", "stuff/docs/dual_dev_runs.jsonl"),
+            ("dev, pair on (14)", "tests/fixtures/phase2_testset.json", "stuff/docs/pair_dev_runs.jsonl"),
+            ("held-out 2", "tests/fixtures/heldout_2.json", "stuff/docs/heldout_2_hardened_runs.jsonl"),
+            ("held-out 3", "tests/fixtures/heldout_3.json", "stuff/docs/heldout_3_runs.jsonl"),
+            ("held-out 4", "tests/fixtures/heldout_4.json", "stuff/docs/heldout_4_runs.jsonl"),
+            ("held-out 5", "tests/fixtures/heldout_5.json", "stuff/docs/heldout_5_runs.jsonl"),
+            ("broad coverage", "tests/fixtures/broad_coverage.json", "stuff/docs/broad_coverage_hardened_runs.jsonl")]
     out = []
     for name, fx, runs in rows:
         if not (ROOT / fx).exists() or not (ROOT / runs).exists():

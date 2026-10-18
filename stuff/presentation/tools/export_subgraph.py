@@ -1,17 +1,17 @@
 """Export the REAL citation-graph neighbourhood of theft for the deck's graph animations.
 
-Writes presentation/data/subgraph.js (a JS global, so the deck works from file://
+Writes stuff/presentation/data/subgraph.js (a JS global, so the deck works from file://
 without fetch). Every node and edge comes from the built graph; cases are a
 deterministic sample where a section has more than the cap.
 
-    venv\\Scripts\\python.exe presentation\\tools\\export_subgraph.py
+    venv\\Scripts\\python.exe stuff\\presentation\\tools\\export_subgraph.py
 """
 import hashlib
 import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 from src.graph import citation_graph as cg  # noqa: E402
 
@@ -52,7 +52,7 @@ def main():
                       "cites": sum(1 for *_, d in g.edges(data=True) if d.get("kind") == "cites"),
                       "maps_to": sum(1 for *_, d in g.edges(data=True) if d.get("kind") == "maps_to")},
            "nodes": list(nodes.values()), "edges": edges}
-    dest = ROOT / "presentation" / "data" / "subgraph.js"
+    dest = ROOT / "stuff" / "presentation" / "data" / "subgraph.js"
     dest.write_text("window.SUBGRAPH = " + json.dumps(out, ensure_ascii=False) + ";\n", encoding="utf-8")
     print(dest, len(nodes), "nodes", len(edges), "edges", out["totals"])
 

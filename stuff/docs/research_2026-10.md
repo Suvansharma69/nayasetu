@@ -40,7 +40,7 @@ Every change is evaluated on the dev set (ablation switches in `src/pipeline/abl
 
 ## Node 1 union, measured on the dev set (2026-10-01)
 
-Both runs on the same code (`e193a90` plus the switch), only `union` differing; raw: `docs/single_dev_runs.jsonl`, `docs/union_dev_runs.jsonl`.
+Both runs on the same code (`e193a90` plus the switch), only `union` differing; raw: `stuff/docs/single_dev_runs.jsonl`, `stuff/docs/union_dev_runs.jsonl`.
 
 | 15 dev cases | single call | union of two orderings |
 |---|---|---|
@@ -58,7 +58,7 @@ Note on the earlier comparison: the first union run was compared with `abl_full`
 
 ## Cross-encoder reranker, measured on the dev set (2026-10-01)
 
-`bge-reranker-v2-m3` (weights sha256-verified against the hub), rescoring the top 40 of the pipeline's ranking (non-chargeable sections excluded, as Node 1 sees it). Raw: `docs/rerank_phase2_testset_raw.json`, `docs/rerank_dev.log`.
+`bge-reranker-v2-m3` (weights sha256-verified against the hub), rescoring the top 40 of the pipeline's ranking (non-chargeable sections excluded, as Node 1 sees it). Raw: `stuff/docs/rerank_phase2_testset_raw.json`, `stuff/docs/rerank_dev.log`.
 
 | 15 dev cases | recall@1 | recall@3 | recall@5 | recall@10 |
 |---|---|---|---|---|

@@ -1,4 +1,4 @@
-r"""Re-score saved pipeline runs (docs/<name>_runs.jsonl) against a fixture, the same way for all.
+r"""Re-score saved pipeline runs (stuff/docs/<name>_runs.jsonl) against a fixture, the same way for all.
 
 eval_broad.py scores a run as it happens; this re-scores any saved run under one
 rule set, so a baseline and a new method are compared like for like:
@@ -14,7 +14,7 @@ rule set, so a baseline and a new method are compared like for like:
   either the run was refused (insufficient data) or nothing was charged.
 * "set aside" = precision if the sections the advisory judge doubted are left out.
 
-Run:  venv\Scripts\python.exe scripts\score_runs.py tests\fixtures\phase2_testset.json docs\single_dev_runs.jsonl [more runs...]
+Run:  venv\Scripts\python.exe scripts\score_runs.py tests\fixtures\phase2_testset.json stuff\docs\single_dev_runs.jsonl [more runs...]
 """
 import json
 import sys

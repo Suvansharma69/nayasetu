@@ -3,11 +3,11 @@ r"""Score the pipeline on IL-TUR LSI (see src/eval/lsi.py for exactly how).
     --split dev  --n 300    decisions may be made on these results
     --split test --n 1000   FROZEN: run once, after every decision is made
 
-Resumable: each document's result is appended to docs/iltur_lsi_<split>_<n>.jsonl
+Resumable: each document's result is appended to stuff/docs/iltur_lsi_<split>_<n>.jsonl
 as it finishes, and a re-run skips ids already there (except errors, which are
 retried) -- a 1,000-document run
 takes ~12 h on this machine. The summary (with a bootstrap 95% CI) is printed
-and written to docs/iltur_lsi_<split>_<n>_summary.json.
+and written to stuff/docs/iltur_lsi_<split>_<n>_summary.json.
 
 Prerequisite: scripts/fetch_iltur.py (IL-TUR is gated; see that script).
 
@@ -41,7 +41,7 @@ def main():
 
     rows = lsi.sample(lsi.load(args.split), args.n, args.seed)
     labels = sorted(lsi.label_names().values())
-    out = ROOT / "docs" / f"iltur_lsi_{args.split}_{args.n}.jsonl"
+    out = ROOT / "stuff" / "docs" / f"iltur_lsi_{args.split}_{args.n}.jsonl"
     # an error (e.g. Ollama failing to start) is retried on a re-run; the new record
     # is appended and wins below, since `results` keeps the last record per id
     done = {r["id"] for r in lsi.read_results(out) if not r["status"].startswith("error")}
@@ -102,7 +102,7 @@ def main():
               f"micro P/R/F1 {100 * m['micro_precision']:.1f}/{100 * m['micro_recall']:.1f}/"
               f"{100 * m['micro_f1']:.1f}  chargeable-labels macro-F1 {100 * mc['macro_f1_supported']:.2f}")
     print(f"published best macro-F1: {PUBLISHED_BEST}")
-    (ROOT / "docs" / f"iltur_lsi_{args.split}_{args.n}_summary.json").write_text(
+    (ROOT / "stuff" / "docs" / f"iltur_lsi_{args.split}_{args.n}_summary.json").write_text(
         json.dumps(summary, indent=1), encoding="utf-8")
 
 
