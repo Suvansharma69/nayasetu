@@ -77,67 +77,129 @@
   {
    "section": "316",
    "ref": "316",
-   "title": "Criminal breach of trust"
+   "title": "Criminal breach of trust",
+   "score": 0.03226,
+   "statute_rank": 2,
+   "statute_score": 0.506,
+   "vote_rank": 2,
+   "list": "fused"
   },
   {
    "section": "317",
    "ref": "317(1)",
-   "title": "Stolen property"
+   "title": "Stolen property",
+   "score": 0.02938,
+   "statute_rank": 1,
+   "statute_score": 0.5148,
+   "vote_rank": 17,
+   "list": "fused"
   },
   {
    "section": "303",
    "ref": "303",
-   "title": "Theft"
+   "title": "Theft",
+   "score": 0.02921,
+   "statute_rank": 3,
+   "statute_score": 0.4846,
+   "vote_rank": 15,
+   "list": "fused"
   },
   {
    "section": "308",
    "ref": "308(1)",
-   "title": "Extortion"
+   "title": "Extortion",
+   "score": 0.02879,
+   "statute_rank": 8,
+   "statute_score": 0.47,
+   "vote_rank": 11,
+   "list": "fused"
   },
   {
    "section": "318",
    "ref": "318(4)",
-   "title": "Cheating"
+   "title": "Cheating",
+   "score": 0.02802,
+   "statute_rank": 26,
+   "statute_score": 0.4437,
+   "vote_rank": 1,
+   "list": "fused"
   },
   {
    "section": "324",
    "ref": "324(4)",
-   "title": "Mischief"
+   "title": "Mischief",
+   "score": 0.02743,
+   "statute_rank": 5,
+   "statute_score": 0.4801,
+   "vote_rank": 23,
+   "list": "fused"
   },
   {
    "section": "3",
    "ref": "3(3)",
-   "title": "General explanations"
+   "title": "General explanations",
+   "score": 0.02712,
+   "statute_rank": 27,
+   "statute_score": 0.4435,
+   "vote_rank": 4,
+   "list": "fused"
   },
   {
    "section": "335",
    "ref": "335",
-   "title": "Making a false document"
+   "title": "Making a false document",
+   "score": 0.02699,
+   "statute_rank": 4,
+   "statute_score": 0.4816,
+   "vote_rank": 28,
+   "list": "fused"
   },
   {
    "section": "309",
    "ref": "309",
-   "title": "Robbery"
+   "title": "Robbery",
+   "score": 0.02692,
+   "statute_rank": 6,
+   "statute_score": 0.4747,
+   "vote_rank": 25,
+   "list": "fused"
   },
   {
    "section": "331",
    "ref": "331(4)",
-   "title": "Punishment for house-trespass or house- breaking"
+   "title": "Punishment for house-trespass or house- breaking",
+   "score": 0.02462,
+   "statute_rank": 30,
+   "statute_score": 0.4428,
+   "vote_rank": 14,
+   "list": "fused"
   },
   {
    "section": "345",
    "ref": "345(1)",
-   "title": "Property mark"
+   "title": "Property mark",
+   "score": 0.01493,
+   "statute_rank": 7,
+   "statute_score": 0.4743,
+   "list": "text"
   },
   {
    "section": "120",
    "ref": "120(1)",
-   "title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property"
+   "title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property",
+   "score": 0.01449,
+   "statute_rank": 9,
+   "statute_score": 0.4691,
+   "list": "text"
   },
   {
    "section": "193",
    "ref": "193(1)",
-   "title": "Liability of owner, occupier, etc., of land on which an unlawful assembly or riot takes place"
+   "title": "Liability of owner, occupier, etc., of land on which an unlawful assembly or riot takes place",
+   "score": 0.01429,
+   "statute_rank": 10,
+   "statute_score": 0.4682,
+   "list": "text"
   }
  ],
  "precedents": [],
@@ -171,5 +233,389 @@
  "sample": {
   "id": "civil_deposit",
   "name": "Security deposit dispute (civil, BNS era)"
+ },
+ "embedding_map": {
+  "points": [
+   {
+    "kind": "query",
+    "label": "These facts",
+    "cos": 1.0,
+    "x": -0.4553,
+    "y": -0.1985
+   },
+   {
+    "kind": "statute",
+    "section": "316",
+    "label": "BNS 316",
+    "title": "Criminal breach of trust",
+    "rank": 1,
+    "cos": 0.5061,
+    "x": 0.8137,
+    "y": -0.0152
+   },
+   {
+    "kind": "statute",
+    "section": "317",
+    "label": "BNS 317(1)",
+    "title": "Stolen property",
+    "rank": 2,
+    "cos": 0.4687,
+    "x": 0.9184,
+    "y": -0.0019
+   },
+   {
+    "kind": "statute",
+    "section": "303",
+    "label": "BNS 303",
+    "title": "Theft",
+    "rank": 3,
+    "cos": 0.4847,
+    "x": 0.8894,
+    "y": -0.1526
+   },
+   {
+    "kind": "statute",
+    "section": "308",
+    "label": "BNS 308(1)",
+    "title": "Extortion",
+    "rank": 4,
+    "cos": 0.46,
+    "x": 0.9292,
+    "y": 0.2056
+   },
+   {
+    "kind": "statute",
+    "section": "318",
+    "label": "BNS 318(4)",
+    "title": "Cheating",
+    "rank": 5,
+    "cos": 0.4307,
+    "x": 0.9251,
+    "y": 0.0928
+   },
+   {
+    "kind": "statute",
+    "section": "324",
+    "label": "BNS 324(4)",
+    "title": "Mischief",
+    "rank": 6,
+    "cos": 0.4767,
+    "x": 1.0,
+    "y": 0.099
+   },
+   {
+    "kind": "statute",
+    "section": "3",
+    "label": "BNS 3(3)",
+    "title": "General explanations",
+    "rank": 7,
+    "cos": 0.3702,
+    "x": 0.8297,
+    "y": -0.04
+   },
+   {
+    "kind": "statute",
+    "section": "335",
+    "label": "BNS 335",
+    "title": "Making a false document",
+    "rank": 8,
+    "cos": 0.4819,
+    "x": 0.4911,
+    "y": 0.0197
+   },
+   {
+    "kind": "statute",
+    "section": "309",
+    "label": "BNS 309",
+    "title": "Robbery",
+    "rank": 9,
+    "cos": 0.475,
+    "x": 0.9481,
+    "y": 0.0787
+   },
+   {
+    "kind": "statute",
+    "section": "331",
+    "label": "BNS 331(4)",
+    "title": "Punishment for house-trespass or house- breaking",
+    "rank": 10,
+    "cos": 0.4375,
+    "x": 0.9575,
+    "y": -0.0278
+   },
+   {
+    "kind": "statute",
+    "section": "345",
+    "label": "BNS 345(1)",
+    "title": "Property mark",
+    "rank": 11,
+    "cos": 0.473,
+    "x": 0.7778,
+    "y": -0.171
+   },
+   {
+    "kind": "statute",
+    "section": "120",
+    "label": "BNS 120(1)",
+    "title": "Voluntarily causing hurt or grievous hurt to extort confession, or to compel restoration of property",
+    "rank": 12,
+    "cos": 0.4243,
+    "x": 0.9229,
+    "y": 0.0767
+   },
+   {
+    "kind": "statute",
+    "section": "193",
+    "label": "BNS 193(1)",
+    "title": "Liability of owner, occupier, etc., of land on which an unlawful assembly or riot takes place",
+    "rank": 13,
+    "cos": 0.4571,
+    "x": 0.637,
+    "y": -0.1151
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2024_425",
+    "label": "na_Delhi_HC_2024_425",
+    "cos": 0.643,
+    "x": -0.4599,
+    "y": -0.4184
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2022_965",
+    "label": "na_Madras_HC_2022_965",
+    "cos": 0.6085,
+    "x": -0.4886,
+    "y": 0.3469
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_8_633_649",
+    "label": "2024_8_633_649",
+    "cos": 0.5981,
+    "x": -0.4134,
+    "y": -0.4086
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Tripura_HC_2022_711",
+    "label": "na_Tripura_HC_2022_711",
+    "cos": 0.5907,
+    "x": -0.5342,
+    "y": 0.3157
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2021_2154",
+    "label": "na_Madras_HC_2021_2154",
+    "cos": 0.5891,
+    "x": -0.2995,
+    "y": 0.0393
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_7_1476_1488",
+    "label": "2024_7_1476_1488",
+    "cos": 0.5864,
+    "x": -0.4618,
+    "y": 0.6461
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Orissa_HC_2022_3576",
+    "label": "na_Orissa_HC_2022_3576",
+    "cos": 0.585,
+    "x": -0.518,
+    "y": -0.2236
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Tripura_HC_2022_701",
+    "label": "na_Tripura_HC_2022_701",
+    "cos": 0.5844,
+    "x": -0.441,
+    "y": -0.3927
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Punjab_HC_2022_1028",
+    "label": "na_Punjab_HC_2022_1028",
+    "cos": 0.5837,
+    "x": -0.4609,
+    "y": -0.5386
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Telangana_HC_2022_978",
+    "label": "na_Telangana_HC_2022_978",
+    "cos": 0.5792,
+    "x": -0.2232,
+    "y": 0.1409
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Guwahati_HC_2021_2305",
+    "label": "na_Guwahati_HC_2021_2305",
+    "cos": 0.5779,
+    "x": -0.2284,
+    "y": -0.2119
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_8_121_139",
+    "label": "2024_8_121_139",
+    "cos": 0.5759,
+    "x": -0.4372,
+    "y": 0.0645
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_6_1_21",
+    "label": "2025_6_1_21",
+    "cos": 0.574,
+    "x": -0.3244,
+    "y": -0.5667
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_5_203_214",
+    "label": "2024_5_203_214",
+    "cos": 0.5732,
+    "x": -0.4999,
+    "y": 0.7316
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2022_3141",
+    "label": "na_Madras_HC_2022_3141",
+    "cos": 0.5713,
+    "x": -0.1906,
+    "y": -0.6714
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2022_1823",
+    "label": "na_Delhi_HC_2022_1823",
+    "cos": 0.5711,
+    "x": -0.417,
+    "y": 0.0133
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_MP_HC_2023_3677",
+    "label": "na_MP_HC_2023_3677",
+    "cos": 0.5704,
+    "x": -0.392,
+    "y": 0.0774
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2022_1866",
+    "label": "na_Delhi_HC_2022_1866",
+    "cos": 0.57,
+    "x": -0.1008,
+    "y": -0.2308
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_6_698_707",
+    "label": "2024_6_698_707",
+    "cos": 0.5697,
+    "x": -0.3142,
+    "y": 0.8509
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_8_984_1001",
+    "label": "2024_8_984_1001",
+    "cos": 0.5684,
+    "x": -0.2072,
+    "y": -0.0444
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2026_5_175_209",
+    "label": "2026_5_175_209",
+    "cos": 0.5678,
+    "x": -0.42,
+    "y": 0.6276
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_7_1451_1461",
+    "label": "2025_7_1451_1461",
+    "cos": 0.567,
+    "x": -0.4386,
+    "y": -0.3145
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2024_94",
+    "label": "na_KA_HC_2024_94",
+    "cos": 0.5667,
+    "x": -0.4231,
+    "y": -0.3
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2023_14_1073_1082",
+    "label": "2023_14_1073_1082",
+    "cos": 0.5667,
+    "x": -0.2265,
+    "y": -0.1922
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_2415",
+    "label": "na_KA_HC_2020_2415",
+    "cos": 0.5665,
+    "x": -0.1315,
+    "y": 0.301
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2022_3301",
+    "label": "na_Madras_HC_2022_3301",
+    "cos": 0.5655,
+    "x": -0.1556,
+    "y": -0.0165
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Supreme_Court_2022_645",
+    "label": "na_Supreme_Court_2022_645",
+    "cos": 0.565,
+    "x": -0.3805,
+    "y": 0.364
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Guwahati_HC_2020_1774",
+    "label": "na_Guwahati_HC_2020_1774",
+    "cos": 0.5645,
+    "x": -0.382,
+    "y": 0.2563
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_11_246_263",
+    "label": "2025_11_246_263",
+    "cos": 0.563,
+    "x": -0.3851,
+    "y": -0.5581
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_7_1980_1997",
+    "label": "2025_7_1980_1997",
+    "cos": 0.5621,
+    "x": -0.2294,
+    "y": 0.4623
+   }
+  ],
+  "explained": 0.222,
+  "model": "BAAI/bge-m3",
+  "dims": 1024
  }
 }

@@ -7,44 +7,60 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%238a1f2d'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' text-anchor='middle' fill='%23fff'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="/static/fonts/fonts.css">
 <style>
-/* Layout: a register of matters on the left; one reading column for the matter file, set like a
-   law report (section numbers in the margin, case names in italics); a docked instructions bar. */
+/* Layout: a dark register rail (navigation, sample matters) beside three views - the Workspace
+   (a law-report matter file, opened by a dark "chamber" that shows the real citation graph),
+   the Graph explorer and the System view. Every figure and graph is drawn from live API data. */
 :root {
   /* warm greys, biased toward the oxblood accent */
-  --paper: #f6f4f2;  --sheet: #ffffff;  --ink: #1e1a1b;  --ink-2: #4b4446;  --muted: #716a6b;
-  --rule: #e6e0dd;   --rule-2: #cec6c3; --accent: #8a1f2d; --accent-ink: #ffffff; --accent-wash: #f6eaeb; --fill: #8a1f2d; --fill-ink: #ffffff;
-  --ok: #1d6b3b;     --ok-wash: #eef6f0; --warn: #8f5600;  --warn-wash: #fbf3e4; --bad: #ae2a1f; --bad-wash: #fbeeec;
-  --hl: #fff2c4;
-  /* the register (left panel) and the matter band */
-  --reg-bg: #2a1418; --reg-ink: #f3e9ea; --reg-muted: #b9a3a6; --reg-rule: #44262b; --reg-hover: #3a1c22; --reg-accent: #e7a0a9;
-  --band-1: #8a1f2d; --band-2: #5e1520; --band-ink: #ffffff; --band-muted: #f0cfd3;
+  --paper: #f3f0ed;  --sheet: #ffffff;  --ink: #1c1718;  --ink-2: #4a4244;  --muted: #71676a;
+  --rule: #e6dfdb;   --rule-2: #cfc5c1; --accent: #8a1f2d; --accent-ink: #ffffff; --accent-wash: #f6e9eb; --fill: #8a1f2d; --fill-ink: #ffffff;
+  --brass: #8a5f0a;  --brass-wash: #f7efdc;
+  --ok: #1d6b3b;     --ok-wash: #ecf5ef; --warn: #8f5600;  --warn-wash: #fbf2e2; --bad: #ae2a1f; --bad-wash: #fbedeb;
+  --hl: #fff0bd;
+  /* the register (rail) */
+  --reg-bg: #1b0e11; --reg-ink: #f3e9ea; --reg-muted: #b19a9e; --reg-rule: #3a2328; --reg-hover: #2c171c; --reg-accent: #ec9aa6;
+  /* the chamber: a deliberately dark stage in both themes, for the live graphs */
+  --ch-bg: #140c0e; --ch-bg-2: #1f1215; --ch-ink: #f5ecec; --ch-muted: #b7a2a5; --ch-rule: #3b2429; --ch-glow: rgba(216, 74, 96, .22);
+  /* the matter band */
+  --band-1: #8a1f2d; --band-2: #5a1420; --band-ink: #ffffff; --band-muted: #f0cfd3;
+  /* graph roles, categorical, validated (charge, IPC<->BNS counterpart, judgment, co-cited section) */
+  --g1: #b3263c; --g2: #c08a00; --g3: #0f8f82; --g4: #3b6fd0;
+  /* the same roles on the chamber's dark ground, validated against it */
+  --cg1: #d84a60; --cg2: #b8860e; --cg3: #14998b; --cg4: #5a7fe0;
   /* outcome chart: categorical slots 1-4, validated for colour-blind separation */
   --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
   --f-display: "Spectral", Georgia, "Times New Roman", serif;
   --f-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
   --f-mono: "IBM Plex Mono", Consolas, "Courier New", monospace;
-  --shadow: 0 1px 2px rgba(20, 24, 33, .05);
+  --shadow: 0 1px 2px rgba(28, 16, 18, .05), 0 6px 24px -12px rgba(28, 16, 18, .14);
+  --ease: cubic-bezier(.2, .8, .2, 1);
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #151213; --sheet: #1d191b; --ink: #ede7e8; --ink-2: #c5bcbe; --muted: #988e91;
-    --rule: #322b2e;  --rule-2: #463d41; --accent: #e08b96; --accent-ink: #1d0e11; --accent-wash: #3a2128; --fill: #9b3341; --fill-ink: #ffffff;
-    --ok: #6cc38a;    --ok-wash: #17271c; --warn: #e3b25a; --warn-wash: #2f2612; --bad: #f08b81; --bad-wash: #34191a;
+    --paper: #120e0f; --sheet: #1b1618; --ink: #efe8e9; --ink-2: #c7bdbf; --muted: #9a8f92;
+    --rule: #30292c;  --rule-2: #463d41; --accent: #e58b98; --accent-ink: #1d0e11; --accent-wash: #37202a; --fill: #a3384a; --fill-ink: #ffffff;
+    --brass: #dcae55; --brass-wash: #2c2412;
+    --ok: #6cc38a;    --ok-wash: #15251a; --warn: #e3b25a; --warn-wash: #2e2512; --bad: #f08b81; --bad-wash: #331819;
     --hl: #4a3f20;
-    --reg-bg: #0f0a0c; --reg-ink: #ede2e4; --reg-muted: #9c878b; --reg-rule: #2b1c20; --reg-hover: #22151a; --reg-accent: #e08b96;
-    --band-1: #6a1823; --band-2: #3e0e16; --band-ink: #ffffff; --band-muted: #e6c2c7;
+    --reg-bg: #0c0809; --reg-ink: #ede2e4; --reg-muted: #9c878b; --reg-rule: #2a1b1f; --reg-hover: #1e1316; --reg-accent: #e58b98;
+    --ch-bg: #0e0a0b; --ch-bg-2: #181012; --ch-rule: #33222a;
+    --band-1: #6a1823; --band-2: #3c0e16; --band-ink: #ffffff; --band-muted: #e6c2c7;
+    --g1: #d84a60; --g2: #b8860e; --g3: #14998b; --g4: #5a7fe0;
     --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
     --shadow: none; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #151213; --sheet: #1d191b; --ink: #ede7e8; --ink-2: #c5bcbe; --muted: #988e91;
-  --rule: #322b2e;  --rule-2: #463d41; --accent: #e08b96; --accent-ink: #1d0e11; --accent-wash: #3a2128; --fill: #9b3341; --fill-ink: #ffffff;
-  --ok: #6cc38a;    --ok-wash: #17271c; --warn: #e3b25a; --warn-wash: #2f2612; --bad: #f08b81; --bad-wash: #34191a;
+  --paper: #120e0f; --sheet: #1b1618; --ink: #efe8e9; --ink-2: #c7bdbf; --muted: #9a8f92;
+  --rule: #30292c;  --rule-2: #463d41; --accent: #e58b98; --accent-ink: #1d0e11; --accent-wash: #37202a; --fill: #a3384a; --fill-ink: #ffffff;
+  --brass: #dcae55; --brass-wash: #2c2412;
+  --ok: #6cc38a;    --ok-wash: #15251a; --warn: #e3b25a; --warn-wash: #2e2512; --bad: #f08b81; --bad-wash: #331819;
   --hl: #4a3f20;
-  --reg-bg: #0f0a0c; --reg-ink: #ede2e4; --reg-muted: #9c878b; --reg-rule: #2b1c20; --reg-hover: #22151a; --reg-accent: #e08b96;
-  --band-1: #6a1823; --band-2: #3e0e16; --band-ink: #ffffff; --band-muted: #e6c2c7;
+  --reg-bg: #0c0809; --reg-ink: #ede2e4; --reg-muted: #9c878b; --reg-rule: #2a1b1f; --reg-hover: #1e1316; --reg-accent: #e58b98;
+  --ch-bg: #0e0a0b; --ch-bg-2: #181012; --ch-rule: #33222a;
+  --band-1: #6a1823; --band-2: #3c0e16; --band-ink: #ffffff; --band-muted: #e6c2c7;
+  --g1: #d84a60; --g2: #b8860e; --g3: #14998b; --g4: #5a7fe0;
   --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
   --shadow: none; color-scheme: dark;
 }
@@ -57,34 +73,43 @@ button, input, textarea, select { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 h1, h2, h3 { text-wrap: balance; }
 
-.app { display: grid; grid-template-columns: 272px minmax(0, 1fr); height: 100%; }
+.app { display: grid; grid-template-columns: 276px minmax(0, 1fr); height: 100%; }
 
-/* ---------- register (left) ---------- */
-.register { background: var(--reg-bg); color: var(--reg-ink); border-right: 1px solid var(--reg-rule); display: flex; flex-direction: column; min-height: 0; }
-.brand { padding: 20px 20px 14px; border-bottom: 1px solid var(--reg-rule); }
-.brand .name { font-family: var(--f-display); font-size: 24px; font-weight: 600; letter-spacing: .01em; line-height: 1.1; }
-.brand .name::first-letter { color: var(--reg-accent); }
-.brand p { margin: 4px 0 0; font-size: 12.5px; color: var(--reg-muted); line-height: 1.45; }
-.reg-actions { display: grid; gap: 6px; padding: 14px 16px; border-bottom: 1px solid var(--reg-rule); }
-.reg-btn { display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px; border: 1px solid var(--reg-rule); border-radius: 4px;
+/* ---------- register (rail) ---------- */
+.register { background: var(--reg-bg); color: var(--reg-ink); border-right: 1px solid var(--reg-rule); display: flex; flex-direction: column; min-height: 0; position: relative; }
+.register::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 40% at 0% 0%, rgba(216, 74, 96, .16), transparent 60%); }
+.brand { padding: 22px 20px 16px; border-bottom: 1px solid var(--reg-rule); display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 0 12px; align-items: center; position: relative; z-index: 1; }
+.seal { width: 38px; height: 38px; grid-row: span 2; }
+.seal circle { fill: none; stroke: var(--reg-accent); }
+.seal text { fill: var(--reg-ink); font-family: var(--f-display); font-size: 17px; font-weight: 600; }
+.brand .name { font-family: var(--f-display); font-size: 23px; font-weight: 600; letter-spacing: .01em; line-height: 1.05; }
+.brand p { margin: 2px 0 0; font-size: 12px; color: var(--reg-muted); line-height: 1.4; }
+.nav { display: grid; gap: 2px; padding: 12px 10px; border-bottom: 1px solid var(--reg-rule); position: relative; z-index: 1; }
+.nav button { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; align-items: center; gap: 10px; border: 0; background: transparent; color: var(--reg-muted);
+  padding: 8px 10px; border-radius: 6px; cursor: pointer; text-align: left; font-size: 13.5px; font-weight: 500; transition: background .15s, color .15s; }
+.nav button:hover { background: var(--reg-hover); color: var(--reg-ink); }
+.nav button[aria-current="page"] { background: var(--reg-hover); color: var(--reg-ink); box-shadow: inset 2px 0 0 var(--reg-accent); }
+.nav button .k { font-family: var(--f-mono); font-size: 10.5px; color: var(--reg-muted); opacity: .7; }
+.reg-actions { display: grid; gap: 6px; padding: 12px 16px; border-bottom: 1px solid var(--reg-rule); position: relative; z-index: 1; }
+.reg-btn { display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px; border: 1px solid var(--reg-rule); border-radius: 6px;
   background: transparent; color: var(--reg-ink); cursor: pointer; text-align: left; font-size: 13.5px; font-weight: 500; }
 .reg-btn:hover { background: var(--reg-hover); border-color: var(--reg-muted); }
 .reg-btn.primary { background: var(--fill); border-color: color-mix(in srgb, var(--fill) 70%, #ffffff); color: var(--fill-ink); }
-.reg-btn.primary:hover { filter: brightness(1.06); }
-.reg-h { margin: 16px 20px 6px; font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--reg-muted); }
-.matters { overflow-y: auto; padding: 0 8px 12px; flex: 1; }
-.matter-link { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 2px 8px; width: 100%; padding: 8px 12px; border: 0; border-radius: 4px;
-  background: transparent; cursor: pointer; text-align: left; }
-.matter-link { color: var(--reg-ink); }
+.reg-btn.primary:hover { filter: brightness(1.08); }
+.reg-h { margin: 14px 20px 6px; font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--reg-muted); position: relative; z-index: 1; }
+.matters { overflow-y: auto; padding: 0 8px 12px; flex: 1; position: relative; z-index: 1; }
+.matter-link { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 2px 8px; width: 100%; padding: 8px 12px; border: 0; border-radius: 6px;
+  background: transparent; cursor: pointer; text-align: left; color: var(--reg-ink); }
 .matter-link:hover { background: var(--reg-hover); }
 .matter-link .code { grid-row: span 2; font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; color: var(--reg-accent); padding-top: 2px; }
 .matter-link .t { font-size: 13.5px; font-weight: 500; line-height: 1.35; }
 .matter-link .d { font-size: 12px; color: var(--reg-muted); }
-.reg-foot { border-top: 1px solid var(--reg-rule); padding: 10px 20px 14px; display: grid; gap: 8px; font-size: 12px; color: var(--reg-muted); }
+.reg-foot { border-top: 1px solid var(--reg-rule); padding: 10px 20px 14px; display: grid; gap: 8px; font-size: 12px; color: var(--reg-muted); position: relative; z-index: 1; }
 .health { display: flex; align-items: center; gap: 7px; }
 .health i { width: 7px; height: 7px; border-radius: 50%; background: var(--reg-muted); flex: none; }
-.health i.up { background: #5fbf7f; } .health i.down { background: #f08b81; }
-.theme { display: flex; border: 1px solid var(--reg-rule); border-radius: 4px; overflow: hidden; width: max-content; }
+.health i.up { background: #5fbf7f; box-shadow: 0 0 0 3px rgba(95, 191, 127, .18); } .health i.down { background: #f08b81; }
+.theme { display: flex; border: 1px solid var(--reg-rule); border-radius: 6px; overflow: hidden; width: max-content; }
 .theme button { border: 0; background: transparent; padding: 3px 9px; font-size: 12px; cursor: pointer; color: var(--reg-muted); }
 .theme button + button { border-left: 1px solid var(--reg-rule); }
 .theme button[aria-pressed="true"] { background: var(--reg-hover); color: var(--reg-ink); font-weight: 600; }
@@ -93,65 +118,154 @@ h1, h2, h3 { text-wrap: balance; }
 main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .topbar { display: none; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--rule); background: var(--sheet); }
 .topbar .name { font-family: var(--f-display); font-size: 19px; font-weight: 600; }
+.view { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.view[hidden] { display: none !important; }
 .thread { flex: 1; overflow-y: auto; scroll-behavior: smooth; }
-.col { max-width: 920px; margin: 0 auto; padding: 28px 28px 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
-/* Grid items default to min-width: auto, so the ledger's and the evidence
-   map's minimum widths would widen the whole column on a phone instead of
-   scrolling inside their own wrappers. */
+.col { max-width: 960px; margin: 0 auto; padding: 28px 28px 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
 .col > *, .sheet { min-width: 0; }
-.entry { animation: rise .3s ease both; min-width: 0; }
-.label { font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.entry.facts, .entry.question { border-left: 2px solid var(--rule-2); padding: 2px 0 2px 16px; }
-.entry.facts p, .entry.question p { margin: 0; white-space: pre-wrap; font-family: var(--f-display); font-size: 17px; line-height: 1.55; color: var(--ink); }
+.entry { animation: rise .4s var(--ease) both; min-width: 0; }
+.label { font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.entry.facts, .entry.question { border-left: 2px solid var(--accent); padding: 2px 0 2px 16px; }
+.entry.facts p, .entry.question p { margin: 0; white-space: pre-wrap; font-family: var(--f-display); font-size: 17.5px; line-height: 1.55; color: var(--ink); }
 .entry.question p { font-style: italic; }
 .note { color: var(--muted); font-size: 13.5px; }
-.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; box-shadow: var(--shadow); padding: 22px 26px; }
-.btn { border: 1px solid var(--fill); background: var(--fill); color: var(--fill-ink); border-radius: 4px; padding: 8px 18px; cursor: pointer; font-weight: 600; font-size: 14px; }
-.btn:hover { filter: brightness(1.06); }
+.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; box-shadow: var(--shadow); padding: 22px 26px; }
+.btn { border: 1px solid var(--fill); background: var(--fill); color: var(--fill-ink); border-radius: 6px; padding: 8px 18px; cursor: pointer; font-weight: 600; font-size: 14px; transition: filter .15s, transform .15s; }
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: translateY(1px); }
 .btn:disabled { opacity: .45; cursor: default; filter: none; }
-.tbtn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 4px; padding: 6px 11px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--ink-2); }
+.tbtn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 6px; padding: 6px 11px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--ink-2); }
 .tbtn:hover { border-color: var(--ink-2); color: var(--ink); }
 .tbtn:disabled { opacity: .45; cursor: default; }
-.tbtn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.tbtn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
 .link { border: 0; background: none; padding: 0; color: var(--accent); cursor: pointer; font-size: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .ic { width: 16px; height: 16px; flex: none; }
-.banner { border: 1px solid var(--rule); border-radius: 4px; padding: 10px 14px; font-size: 14px; background: var(--paper); }
+.banner { border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; font-size: 14px; background: var(--paper); }
 .banner.warn { border-color: color-mix(in srgb, var(--warn) 40%, transparent); background: var(--warn-wash); }
 .banner.err { border-color: color-mix(in srgb, var(--bad) 40%, transparent); background: var(--bad-wash); color: var(--bad); }
 .banner.info { background: var(--accent-wash); border-color: color-mix(in srgb, var(--accent) 25%, transparent); }
-@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes rowin { from { opacity: 0; } to { opacity: 1; } }
-/* an inset shadow, not a background: the cell keeps its status wash underneath */
 @keyframes cellin { from { box-shadow: inset 0 0 0 999px var(--hl); } to { box-shadow: inset 0 0 0 999px transparent; } }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); } 100% { box-shadow: 0 0 0 9px transparent; } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); } 100% { box-shadow: 0 0 0 10px transparent; } }
 @keyframes flow { from { background-position: 0 0; } to { background-position: 12px 0; } }
 @keyframes flash { from { background: var(--hl); } to { background: transparent; } }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes grow { from { transform: scaleX(0); } to { transform: none; } }
+@keyframes growy { from { transform: scaleY(0); } to { transform: none; } }
+@keyframes dash { to { stroke-dashoffset: -24; } }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- the chamber (dark stage for graphs, both themes) ---------- */
+.chamber { position: relative; overflow: hidden; border-radius: 14px; color: var(--ch-ink); border: 1px solid var(--ch-rule);
+  background: radial-gradient(90% 120% at 85% 20%, #2a1419 0%, var(--ch-bg-2) 38%, var(--ch-bg) 100%); }
+.chamber::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: linear-gradient(var(--ch-rule) 1px, transparent 1px), linear-gradient(90deg, var(--ch-rule) 1px, transparent 1px);
+  background-size: 44px 44px; mask-image: radial-gradient(80% 80% at 70% 40%, #000 0%, transparent 75%); -webkit-mask-image: radial-gradient(80% 80% at 70% 40%, #000 0%, transparent 75%); }
+.chamber .label { color: var(--ch-muted); }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); min-height: 420px; }
+.hero-copy { position: relative; z-index: 2; padding: 34px 10px 30px 34px; display: flex; flex-direction: column; justify-content: center; }
+.hero-copy .eyebrow { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--reg-accent); }
+.hero h1 { font-family: var(--f-display); font-weight: 600; font-size: clamp(34px, 4.2vw, 50px); line-height: 1.04; margin: 12px 0 14px; letter-spacing: -.01em; max-width: 13ch; }
+.hero h1 em { font-style: italic; font-weight: 500; color: var(--reg-accent); }
+.hero .lede { margin: 0 0 20px; color: var(--ch-muted); font-size: 15.5px; max-width: 46ch; line-height: 1.6; }
+.hero .cta { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn.ghost { background: transparent; border-color: var(--ch-rule); color: var(--ch-ink); }
+.btn.ghost:hover { border-color: var(--ch-muted); }
+.hero-graph { position: relative; min-height: 360px; }
+.hero-graph svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-graph .cap { position: absolute; right: 16px; bottom: 12px; z-index: 2; font-size: 11.5px; color: var(--ch-muted); text-align: right; max-width: 34ch; line-height: 1.4; }
+.hero-graph .cap b { color: var(--ch-ink); font-weight: 600; }
+.hero-graph .gl { position: absolute; right: 16px; top: 16px; z-index: 2; justify-content: flex-end; max-width: 60%; }
+.figures { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ch-rule); position: relative; z-index: 2; }
+.figures div { padding: 14px 18px 16px; border-left: 1px solid var(--ch-rule); }
+.figures div:first-child { border-left: 0; }
+.figures b { display: block; font-family: var(--f-mono); font-size: 25px; font-weight: 500; letter-spacing: -.01em; color: var(--ch-ink); font-variant-numeric: tabular-nums; }
+.figures span { font-size: 12px; color: var(--ch-muted); line-height: 1.35; display: block; }
+.figures b.zero { color: #7fd69b; }
+
+/* graph legends (both grounds) */
+.glegend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; color: var(--muted); }
+.chamber .glegend { color: var(--ch-muted); }
+.glegend span { display: inline-flex; align-items: center; gap: 6px; }
+.glegend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.glegend i.sq { border-radius: 2px; }
+.glegend i.ring { border: 2px solid; }
+
+/* force graphs */
+.fg { display: block; width: 100%; height: 100%; touch-action: none; user-select: none; }
+.fg .e { fill: none; stroke-linecap: round; }
+.fg .e.cites { stroke: var(--rule-2); stroke-width: 1; }
+.fg .e.maps_to { stroke: var(--g2); stroke-width: 2.2; stroke-dasharray: 6 6; animation: dash 1.4s linear infinite; }
+.fg .e.co_cited { stroke: var(--g4); stroke-width: 1; stroke-opacity: .45; }
+.chamber .fg .e.cites { stroke: #5a3d44; }
+.chamber .fg .e.maps_to { stroke: var(--cg2); }
+.chamber .fg .e.co_cited { stroke: var(--cg4); }
+.fg .n { cursor: pointer; }
+.fg .n circle.halo { fill: none; stroke-width: 0; transition: stroke-width .2s; }
+.fg .n circle.dot { stroke: var(--sheet); stroke-width: 2; }
+.chamber .fg .n circle.dot { stroke: var(--ch-bg); }
+.fg .n.r-charge circle.dot { fill: var(--g1); } .fg .n.r-counterpart circle.dot { fill: var(--g2); }
+.fg .n.r-case circle.dot { fill: var(--g3); } .fg .n.r-cocited circle.dot { fill: var(--g4); }
+.fg .n.r-precedent circle.dot { fill: var(--g3); stroke: var(--g1); stroke-width: 2.5; }
+.chamber .fg .n.r-charge circle.dot { fill: var(--cg1); } .chamber .fg .n.r-counterpart circle.dot { fill: var(--cg2); }
+.chamber .fg .n.r-case circle.dot { fill: var(--cg3); } .chamber .fg .n.r-cocited circle.dot { fill: var(--cg4); }
+.chamber .fg .n.r-precedent circle.dot { fill: var(--cg3); stroke: var(--cg1); }
+.fg .n.r-charge circle.halo { stroke: var(--g1); stroke-opacity: .25; stroke-width: 9; }
+.chamber .fg .n.r-charge circle.halo { stroke: var(--cg1); stroke-opacity: .3; }
+.fg .n text { font-family: var(--f-mono); font-size: 11px; fill: var(--ink); paint-order: stroke; stroke: var(--sheet); stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; }
+.chamber .fg .n text { fill: var(--ch-ink); stroke: var(--ch-bg); }
+.fg .n.r-charge text { font-size: 13px; font-weight: 500; }
+.fg .n.r-case text { font-family: var(--f-body); font-size: 10.5px; opacity: 0; transition: opacity .15s; }
+.fg .n.nolab text { opacity: 0; transition: opacity .15s; }
+.fg .n:hover text, .fg .n.on text, .fg .n:focus text { opacity: 1; }
+.fg.hot .e { opacity: .08; } .fg.hot .n { opacity: .22; }
+.fg.hot .e.on { opacity: 1; } .fg.hot .n.on { opacity: 1; }
+.fg .n:focus { outline: none; } .fg .n:focus circle.dot { stroke: var(--accent); stroke-width: 3; }
 
 /* ---------- welcome ---------- */
-.welcome h1 { font-family: var(--f-display); font-size: 34px; line-height: 1.15; font-weight: 600; margin: 4px 0 10px; max-width: 18ch; }
-.welcome .lede { font-size: 16px; color: var(--ink-2); max-width: 62ch; margin: 0 0 22px; }
-.welcome h2 { font-family: var(--f-display); font-size: 19px; font-weight: 600; margin: 28px 0 4px; }
-.samples-table { width: 100%; border-collapse: collapse; }
-.samples-table td { padding: 10px 8px; border-top: 1px solid var(--rule); vertical-align: top; }
-.samples-table tr:last-child td { border-bottom: 1px solid var(--rule); }
-.samples-table tr[data-id] { cursor: pointer; }
-.samples-table tr[data-id]:hover td { background: var(--paper); }
-.samples-table .code { font-family: var(--f-mono); font-size: 12px; color: var(--accent); width: 44px; padding-top: 12px; }
-.samples-table .t { font-weight: 500; }
-.samples-table .d { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; text-align: right; padding-top: 12px; }
+.welcome h2 { font-family: var(--f-display); font-size: 21px; font-weight: 600; margin: 34px 0 4px; }
+.welcome h2 + .note { margin: 0 0 12px; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.card { display: grid; gap: 6px; align-content: start; text-align: left; border: 1px solid var(--rule); background: var(--sheet); border-radius: 10px; padding: 14px 16px 15px; cursor: pointer;
+  transition: border-color .15s, transform .2s var(--ease), box-shadow .2s; box-shadow: var(--shadow); color: var(--ink); }
+.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.card .code { font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; color: var(--accent); letter-spacing: .06em; }
+.card .d { font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); }
+.card .t { font-family: var(--f-display); font-size: 17px; font-weight: 600; line-height: 1.25; }
+.card .x { font-size: 13px; color: var(--ink-2); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card .res { font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 4px; }
 
-/* ---------- the pipeline track ---------- */
-.track { list-style: none; margin: 14px 0 6px; padding: 0; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); }
+/* the schematic of the pipeline */
+.schema { overflow-x: auto; }
+.schema svg { display: block; width: 100%; min-width: 700px; height: auto; }
+.schema .box rect { fill: var(--sheet); stroke: var(--rule-2); stroke-width: 1.2; }
+.schema .box.det rect { stroke: var(--ink-2); }
+.schema .box.llm rect { stroke: var(--accent); stroke-width: 1.6; }
+.schema .box.graph rect { stroke: var(--g2); stroke-width: 1.6; }
+.schema .box text { font-family: var(--f-body); font-size: 12px; fill: var(--ink); }
+.schema .box text.s { font-size: 10.5px; fill: var(--muted); }
+.schema .box text.k { font-family: var(--f-mono); font-size: 9.5px; fill: var(--muted); letter-spacing: .08em; }
+.schema .wire { fill: none; stroke: var(--rule-2); stroke-width: 1.4; }
+.schema .wire.retry { stroke: var(--warn); stroke-dasharray: 4 4; }
+.schema .pkt { fill: var(--accent); }
+.schema .legend text { font-size: 10.5px; fill: var(--muted); font-family: var(--f-body); }
+
+/* ---------- the pipeline track (live) ---------- */
+.track { list-style: none; margin: 16px 0 6px; padding: 0; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); }
 .track li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px; min-width: 0; }
-.track li + li::before { content: ""; position: absolute; top: 6px; right: 50%; width: 100%; height: 2px; background: var(--rule-2); }
-.track .dot { position: relative; z-index: 1; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--rule-2); background: var(--sheet); transition: background .25s, border-color .25s; }
+.track li + li::before { content: ""; position: absolute; top: 8px; right: 50%; width: 100%; height: 2px; background: var(--rule-2); }
+.track .dot { position: relative; z-index: 1; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--rule-2); background: var(--sheet); transition: background .25s, border-color .25s; display: grid; place-items: center; }
+.track .dot::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: transparent; transition: background .25s; }
 .track .lbl { font-size: 11.5px; color: var(--muted); line-height: 1.25; }
+.track .tm { font-family: var(--f-mono); font-size: 10px; color: var(--muted); min-height: 13px; }
 .track li.on .dot { border-color: var(--accent); animation: pulse 1.3s ease-out infinite; }
+.track li.on .dot::after { background: var(--accent); }
 .track li.on::before { background: repeating-linear-gradient(90deg, var(--accent) 0 7px, transparent 7px 12px); animation: flow .5s linear infinite; }
 .track li.on .lbl { color: var(--ink); font-weight: 600; }
 .track li.done .dot { background: var(--ink); border-color: var(--ink); }
+.track li.done .dot::after { background: var(--sheet); }
 .track li.done::before { background: var(--ink); }
 .track li.done .lbl { color: var(--ink-2); }
 .track li.skip .dot { border-style: dashed; }
@@ -159,7 +273,7 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 
 /* ---------- the live run ---------- */
 .run-h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.run-title { font-family: var(--f-display); font-size: 19px; font-weight: 600; }
+.run-title { font-family: var(--f-display); font-size: 20px; font-weight: 600; }
 .run-meta { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 10px; }
 .spin { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--accent); border-top-color: transparent; animation: spin .8s linear infinite; flex: none; }
 .now { font-size: 14px; color: var(--ink-2); margin: 6px 0 0; min-height: 22px; }
@@ -168,7 +282,7 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .stamp span { font-size: 12.5px; }
 .ledger-wrap { overflow-x: auto; margin-top: 16px; }
 .ledger { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 560px; }
-.ledger th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--rule-2); white-space: nowrap; }
+.ledger th { text-align: left; font-size: 10.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--rule-2); white-space: nowrap; }
 .ledger td { padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
 .ledger tr { animation: rowin .5s ease both; }
 .ledger td.fresh { animation: cellin 1.2s ease both; }
@@ -186,24 +300,60 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .tally i { font-style: normal; }
 .tally b { font-family: var(--f-mono); font-size: 17px; font-weight: 500; color: var(--ink); margin-right: 6px; }
 
+/* panels inside the run: retrieval, embedding space, funnel */
+.panels { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 14px; margin-top: 16px; }
+.panel { border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px 12px; background: var(--sheet); min-width: 0; animation: rise .4s var(--ease) both; }
+.panel.wide { grid-column: 1 / -1; }
+.panel h4 { margin: 0; font-size: 13.5px; font-weight: 600; }
+.panel .sub { font-size: 12px; color: var(--muted); margin: 2px 0 10px; line-height: 1.45; }
+.rbars { display: grid; gap: 3px; }
+.rbar { display: grid; grid-template-columns: 66px minmax(0, 1fr) 54px; gap: 10px; align-items: center; font-size: 12.5px; padding: 2px 0; border-radius: 4px; }
+.rbar .s { font-family: var(--f-mono); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rbar .track2 { position: relative; height: 16px; }
+.rbar .fill { position: absolute; left: 0; top: 4px; height: 8px; border-radius: 0 4px 4px 0; background: var(--g4); transform-origin: left; animation: grow .8s var(--ease) both; animation-delay: var(--d, 0ms); }
+.rbar.text .fill { background: color-mix(in srgb, var(--g4) 45%, transparent); }
+.rbar .ttl { position: absolute; left: 0; top: -1px; font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: none; }
+.rbar .sig { font-family: var(--f-mono); font-size: 10.5px; color: var(--muted); white-space: nowrap; text-align: right; }
+.rbar.prop .s { color: var(--accent); }
+.rbar.prop .s::before { content: "\25CF"; font-size: 8px; margin-right: 4px; vertical-align: 2px; }
+.rbar:hover { background: var(--paper); }
+.rkey { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; color: var(--muted); margin-top: 8px; }
+.rkey i { display: inline-block; width: 14px; height: 6px; border-radius: 0 3px 3px 0; margin-right: 6px; vertical-align: 1px; background: var(--g4); }
+.rkey i.t { background: color-mix(in srgb, var(--g4) 45%, transparent); }
+.emb svg { display: block; width: 100%; height: auto; }
+.emb .ax { stroke: var(--rule); stroke-width: 1; }
+.emb .pt { cursor: pointer; transition: r .15s; }
+.emb .pt.statute { fill: var(--g1); stroke: var(--sheet); stroke-width: 1.5; }
+.emb .pt.judgment { fill: var(--g3); fill-opacity: .75; stroke: var(--sheet); stroke-width: 1; }
+.emb .pt.query { fill: var(--ink); stroke: var(--sheet); stroke-width: 2; }
+.emb .ql { font-family: var(--f-mono); font-size: 10.5px; fill: var(--ink); paint-order: stroke; stroke: var(--sheet); stroke-width: 3px; }
+.emb .ring { fill: none; stroke: var(--ink); stroke-opacity: .25; stroke-dasharray: 3 4; }
+.emb .lbl2 { font-family: var(--f-mono); font-size: 10px; fill: var(--ink-2); paint-order: stroke; stroke: var(--sheet); stroke-width: 3px; pointer-events: none; }
+.funnel { display: grid; gap: 6px; }
+.fun { display: grid; grid-template-columns: 168px minmax(0, 1fr) 30px; gap: 10px; align-items: center; font-size: 12.5px; }
+.fun .bar { height: 14px; border-radius: 0 4px 4px 0; transform-origin: left; animation: grow .9s var(--ease) both; animation-delay: var(--d, 0ms); min-width: 3px; }
+.fun b { font-family: var(--f-mono); font-weight: 500; text-align: right; }
+
 /* ---------- the matter file (report) ---------- */
 .sheet.matter { padding-top: 0; overflow: hidden; }
 .matter-h { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 28px; align-items: flex-end;
-  margin: 0 -26px; padding: 22px 26px 18px; color: var(--band-ink);
+  margin: 0 -26px; padding: 24px 26px 20px; color: var(--band-ink); position: relative; overflow: hidden;
   background: linear-gradient(115deg, var(--band-1) 0%, var(--band-2) 100%); }
-.codemark .code { font-family: var(--f-mono); font-size: 30px; font-weight: 500; letter-spacing: .06em; color: var(--band-ink); line-height: 1; }
+.matter-h::after { content: ""; position: absolute; right: -60px; top: -80px; width: 260px; height: 260px; border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .14); box-shadow: 0 0 0 26px rgba(255, 255, 255, .03), 0 0 0 54px rgba(255, 255, 255, .025); pointer-events: none; }
+.codemark .code { font-family: var(--f-mono); font-size: 32px; font-weight: 500; letter-spacing: .06em; color: var(--band-ink); line-height: 1; }
 .codemark .full { display: block; font-family: var(--f-display); font-size: 16px; margin-top: 6px; color: var(--band-ink); }
-.meta { display: flex; gap: 26px; margin: 0; flex-wrap: wrap; }
+.meta { display: flex; gap: 26px; margin: 0; flex-wrap: wrap; position: relative; z-index: 1; }
 .meta div { display: grid; }
-.meta dt { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--band-muted); }
+.meta dt { font-size: 10.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--band-muted); }
 .meta dd { margin: 0; font-family: var(--f-mono); font-size: 14px; color: var(--band-ink); }
-.verdict { margin: 16px 0 8px; font-size: 15px; }
+.verdict { margin: 18px 0 8px; font-size: 15px; }
 .vbar { display: flex; height: 8px; gap: 2px; margin-bottom: 6px; max-width: 520px; }
-.vbar span { height: 100%; border-radius: 1px; transform-origin: left; animation: grow .8s cubic-bezier(.2,.8,.2,1) both; }
+.vbar span { height: 100%; border-radius: 1px; transform-origin: left; animation: grow .8s var(--ease) both; }
 .vkey { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; color: var(--muted); }
 .vkey i { display: inline-block; width: 9px; height: 9px; border-radius: 1px; margin-right: 5px; vertical-align: -1px; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 4px; }
-.matter h2 { font-family: var(--f-display); font-size: 21px; font-weight: 600; margin: 34px 0 4px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+.matter h2 { font-family: var(--f-display); font-size: 21px; font-weight: 600; margin: 36px 0 4px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
 .matter h2 small { font-family: var(--f-body); font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 10px; }
 
 .charge { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 0 18px; padding: 16px 14px 16px 0; margin: 0 -14px 0 0; border-bottom: 1px solid var(--rule); animation: rise .35s ease both; animation-delay: var(--d, 0ms); }
@@ -216,13 +366,13 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .margin:hover .n { color: var(--accent); }
 .ch-h { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 14px; }
 .ch-h h3 { font-family: var(--f-display); font-size: 18px; font-weight: 600; margin: 0; }
-.status { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.status { font-size: 11.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; }
 .status::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 6px; }
 .status.ok { color: var(--ok); } .status.ok::before { background: var(--ok); }
 .status.warn { color: var(--warn); } .status.warn::before { background: var(--warn); }
 .status.dim { color: var(--ink-2); } .status.dim::before { background: var(--muted); }
 .charge p { margin: 6px 0 0; color: var(--ink-2); max-width: 70ch; }
-.charge .doubt { color: var(--ink); background: var(--sheet); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); padding: 6px 10px; border-radius: 3px; }
+.charge .doubt { color: var(--ink); background: var(--sheet); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); padding: 6px 10px; border-radius: 4px; }
 .charge > div { padding-left: 0; }
 .pb { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 12px 0 0; }
 .pb div { display: grid; }
@@ -240,6 +390,16 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .legend-x summary { cursor: pointer; color: var(--muted); font-size: 13px; margin-top: 12px; }
 .legend-x ul { margin: 6px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 13.5px; }
 
+/* citation graph inside the matter */
+.cgraph { position: relative; border: 1px solid var(--rule); border-radius: 10px; margin-top: 12px; height: 440px; background:
+  radial-gradient(70% 70% at 50% 45%, color-mix(in srgb, var(--accent-wash) 70%, transparent), transparent 70%), var(--sheet); overflow: hidden; }
+.cgraph { display: flex; flex-direction: column; }
+.cgraph .gl { padding: 10px 12px 0; }
+.cgraph svg.fg { flex: 1; min-height: 0; }
+.cgraph .gfoot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; padding: 0 12px 10px; }
+.cgraph .gstat { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.cgraph .ghint { margin: 0; font-size: 11.5px; color: var(--muted); }
+
 .precs { list-style: none; margin: 0; padding: 0; }
 .precs > li { border-bottom: 1px solid var(--rule); transition: opacity .2s; }
 .precs details > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 12px; padding: 12px 0; }
@@ -252,6 +412,8 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .precs details[open] .peek { display: none; }
 .precs .x { padding: 0 0 14px 46px; font-size: 14px; color: var(--ink-2); }
 .precs .x blockquote { margin: 8px 0 10px; padding-left: 14px; border-left: 2px solid var(--rule-2); font-family: var(--f-display); font-size: 15px; color: var(--ink); }
+.simbar { display: inline-block; width: 64px; height: 5px; border-radius: 3px; background: var(--rule); vertical-align: 2px; margin-left: 6px; overflow: hidden; }
+.simbar i { display: block; height: 100%; background: var(--g3); }
 .summary { margin: 10px 0 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; font-size: 14px; }
 .summary dt { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
 .summary dd { margin: 0; color: var(--ink); }
@@ -287,7 +449,7 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .orow .ol { font-family: var(--f-mono); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .orow .ol.via { color: var(--muted); padding-left: 14px; }
 .obar { display: flex; gap: 2px; height: 12px; }
-.obar span { height: 100%; min-width: 2px; transform-origin: left; animation: grow .8s cubic-bezier(.2,.8,.2,1) both; animation-delay: var(--d, 0ms); }
+.obar span { height: 100%; min-width: 2px; transform-origin: left; animation: grow .8s var(--ease) both; animation-delay: var(--d, 0ms); }
 .obar span:first-child { border-radius: 3px 0 0 3px; } .obar span:last-child { border-radius: 0 3px 3px 0; } .obar span:only-child { border-radius: 3px; }
 .orow .on { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
 .osup { color: var(--muted); font-style: italic; font-size: 13px; }
@@ -296,8 +458,10 @@ main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 table.data { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 6px; }
 table.data th, table.data td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
 table.data th { color: var(--muted); font-weight: 600; font-size: 11.5px; }
-table.data td.num { font-family: var(--f-mono); }
-.tip { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: var(--paper); font-size: 12.5px; padding: 5px 9px; border-radius: 3px; opacity: 0; transition: opacity .1s; }
+table.data td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.tip { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: var(--paper); font-size: 12.5px; padding: 6px 10px; border-radius: 5px; opacity: 0; transition: opacity .1s; max-width: 340px; line-height: 1.45; }
+.tip { white-space: pre-line; }
+.tip b { font-weight: 600; }
 .foot { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
 .suggest { margin-top: 22px; }
 .suggest ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 2px; }
@@ -310,24 +474,94 @@ table.data td.num { font-family: var(--f-mono); }
 .fine { font-size: 12px; color: var(--muted); margin: 10px 0 0; }
 .wait { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; margin: 0; }
 .ask-date { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
-input[type=date] { border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 4px; padding: 5px 8px; }
+input[type=date] { border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 6px; padding: 5px 8px; }
+
+/* ---------- graph explorer view ---------- */
+.explorer { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 0; }
+.explorer .stage { position: relative; min-height: 0; margin: 16px 0 16px 16px; }
+.explorer .stage .chamber { position: absolute; inset: 0; }
+.explorer .bar { position: absolute; left: 14px; right: 14px; top: 12px; z-index: 3; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.explorer .bar form { display: flex; gap: 6px; align-items: center; }
+.explorer .bar select, .explorer .bar input { border: 1px solid var(--ch-rule); background: rgba(0, 0, 0, .35); color: var(--ch-ink); border-radius: 6px; padding: 6px 9px; }
+.explorer .bar input { width: 92px; font-family: var(--f-mono); }
+.chip { border: 1px solid var(--ch-rule); background: rgba(255, 255, 255, .04); color: var(--ch-muted); border-radius: 999px; padding: 4px 11px; font-size: 12px; cursor: pointer; font-family: var(--f-mono); }
+.chip:hover, .chip[aria-pressed="true"] { color: var(--ch-ink); border-color: var(--cg1); background: rgba(216, 74, 96, .14); }
+.explorer .gl { position: absolute; left: 14px; bottom: 12px; z-index: 3; }
+.explorer .gstat { position: absolute; right: 14px; bottom: 12px; z-index: 3; font-family: var(--f-mono); font-size: 11px; color: var(--ch-muted); }
+.inspector { overflow-y: auto; padding: 18px 18px 24px; border-left: 1px solid var(--rule); background: var(--sheet); }
+.inspector h3 { font-family: var(--f-display); font-size: 20px; font-weight: 600; margin: 4px 0 6px; line-height: 1.25; }
+.inspector .num { font-family: var(--f-mono); font-size: 13px; color: var(--accent); letter-spacing: .04em; }
+.inspector dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; font-size: 13px; margin: 12px 0; }
+.inspector dt { color: var(--muted); }
+.inspector dd { margin: 0; font-family: var(--f-mono); font-size: 12.5px; }
+.inspector .list { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 2px; font-size: 13px; }
+.inspector .list button { border: 0; background: none; padding: 4px 0; text-align: left; cursor: pointer; color: var(--ink-2); width: 100%; display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 8px; }
+.inspector .list button:hover { color: var(--accent); }
+.inspector .list .m { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+
+/* ---------- system view ---------- */
+.sys { flex: 1; overflow-y: auto; }
+.sys .col { max-width: 1120px; gap: 18px; }
+.sys-h h1 { font-family: var(--f-display); font-size: 34px; font-weight: 600; margin: 4px 0 6px; line-height: 1.1; }
+.sys-h p { margin: 0; color: var(--ink-2); max-width: 70ch; }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.tile { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px 15px; box-shadow: var(--shadow); }
+.tile b { display: block; font-family: var(--f-mono); font-size: 27px; font-weight: 500; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.tile b.good { color: var(--ok); }
+.tile span { display: block; font-size: 12.5px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+.card2 { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px 16px; box-shadow: var(--shadow); min-width: 0; }
+.card2.wide { grid-column: 1 / -1; }
+.card2 h3 { font-family: var(--f-display); font-size: 18px; font-weight: 600; margin: 0 0 2px; }
+.card2 .sub { font-size: 12.5px; color: var(--muted); margin: 0 0 12px; line-height: 1.5; }
+.hbars { display: grid; gap: 6px; }
+.hb { display: grid; grid-template-columns: 170px minmax(0, 1fr) 64px; gap: 10px; align-items: center; font-size: 13px; }
+.hb .lab { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hb .tr { position: relative; height: 18px; }
+.hb .tr .grid { position: absolute; inset: 0; background-image: linear-gradient(90deg, var(--rule) 1px, transparent 1px); background-size: 25% 100%; }
+.hb .bar { position: absolute; left: 0; top: 3px; height: 12px; border-radius: 0 4px 4px 0; transform-origin: left; animation: grow .9s var(--ease) both; animation-delay: var(--d, 0ms); }
+.hb .ci { position: absolute; top: 9px; height: 1.5px; background: var(--ink); }
+.hb .ci::before, .hb .ci::after { content: ""; position: absolute; top: -4px; width: 1.5px; height: 9px; background: var(--ink); }
+.hb .ci::before { left: 0; } .hb .ci::after { right: 0; }
+.hb .v { font-family: var(--f-mono); font-size: 12.5px; text-align: right; }
+.hb.ours .lab { font-weight: 600; }
+.axis { display: grid; grid-template-columns: 170px minmax(0, 1fr) 64px; gap: 10px; font-family: var(--f-mono); font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+.axis .t { position: relative; height: 14px; }
+.axis .t span { position: absolute; transform: translateX(-50%); }
+.vcols { display: flex; align-items: flex-end; gap: 6px; height: 170px; padding-top: 18px; border-bottom: 1px solid var(--rule-2); }
+.vcol { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; min-width: 0; position: relative; }
+.vcol .b { width: 100%; max-width: 44px; border-radius: 4px 4px 0 0; transform-origin: bottom; animation: growy .9s var(--ease) both; animation-delay: var(--d, 0ms); }
+.vcol .v { font-family: var(--f-mono); font-size: 11px; color: var(--ink-2); margin-bottom: 3px; }
+.vlabels { display: flex; gap: 6px; }
+.vlabels span { flex: 1; text-align: center; font-family: var(--f-mono); font-size: 11px; color: var(--muted); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ctable { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ctable th { text-align: left; font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--rule-2); white-space: nowrap; }
+.ctable td { padding: 7px 8px; border-bottom: 1px solid var(--rule); }
+.ctable td.num { font-family: var(--f-mono); text-align: right; font-variant-numeric: tabular-nums; }
+.ctable th.num { text-align: right; }
+.ctable tr.total td { font-weight: 600; border-top: 1px solid var(--rule-2); }
+.zero-pill { display: inline-block; font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; padding: 1px 7px; border-radius: 999px; background: var(--ok-wash); color: var(--ok); }
+.stack { display: flex; height: 12px; gap: 2px; border-radius: 3px; overflow: hidden; margin-top: 4px; }
+.stack span { transform-origin: left; animation: grow .9s var(--ease) both; }
+.prose { font-size: 14px; color: var(--ink-2); max-width: 75ch; }
+.prose li { margin: 4px 0; }
 
 /* ---------- drawer: the bare act ---------- */
 .drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(580px, 100vw); background: var(--sheet); border-left: 1px solid var(--rule-2);
-  box-shadow: -12px 0 30px rgba(10, 12, 18, .14); z-index: 30; transform: translateX(104%); transition: transform .22s ease; display: flex; flex-direction: column;
+  box-shadow: -12px 0 30px rgba(10, 12, 18, .16); z-index: 30; transform: translateX(104%); transition: transform .26s var(--ease); display: flex; flex-direction: column;
   padding-bottom: env(safe-area-inset-bottom, 0px); }
 .drawer.open { transform: none; }
 .drawer header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--rule); }
 .drawer header b { flex: 1; font-family: var(--f-display); font-size: 18px; font-weight: 600; }
 .drawer form { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 18px; border-bottom: 1px solid var(--rule); background: var(--paper); align-items: center; }
-.drawer select, .drawer input[type=text] { border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 4px; padding: 6px 9px; }
+.drawer select, .drawer input[type=text] { border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 6px; padding: 6px 9px; }
 .drawer input[type=text] { width: 120px; font-family: var(--f-mono); }
 .dbody { overflow-y: auto; padding: 18px 18px 30px; flex: 1; }
 .act-h { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 14px; align-items: baseline; }
 .act-h .num { font-family: var(--f-mono); font-size: 24px; font-weight: 500; color: var(--accent); white-space: nowrap; }
 .act-h h2 { font-family: var(--f-display); font-size: 22px; font-weight: 600; margin: 0; line-height: 1.25; }
 .act-h .ch { grid-column: 2; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
-.dbody h4 { font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin: 22px 0 8px; }
+.dbody h4 { font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 22px 0 8px; }
 .kv { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; }
 .kv div { display: grid; } .kv dt { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); } .kv dd { margin: 0; font-size: 15px; font-weight: 500; }
 .verified { color: var(--ok); font-size: 13px; font-weight: 500; }
@@ -344,38 +578,63 @@ input[type=date] { border: 1px solid var(--rule-2); background: var(--sheet); bo
 
 /* ---------- dock: instructions ---------- */
 .dock { border-top: 1px solid var(--rule); background: var(--sheet); padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); }
-.dock form { max-width: 864px; margin: 0 auto; display: grid; gap: 8px; }
+.dock form { max-width: 904px; margin: 0 auto; display: grid; gap: 8px; }
 .dock .lbl-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .modebar { display: none; font-size: 13px; color: var(--muted); gap: 8px; align-items: baseline; }
 .modebar.on { display: flex; flex-wrap: wrap; }
 .modebar .case { color: var(--ink); font-style: italic; font-family: var(--f-display); max-width: 44ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-textarea#input { width: 100%; resize: none; border: 1px solid var(--rule-2); border-radius: 4px; background: var(--sheet); padding: 10px 12px; min-height: 64px; max-height: 240px; line-height: 1.5; }
-textarea#input:focus { outline: none; border-color: var(--ink-2); }
+textarea#input { width: 100%; resize: none; border: 1px solid var(--rule-2); border-radius: 8px; background: var(--sheet); padding: 10px 12px; min-height: 64px; max-height: 240px; line-height: 1.5; transition: border-color .15s, box-shadow .15s; }
+textarea#input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent); }
 .dock.drag textarea#input { border-color: var(--accent); background: var(--accent-wash); }
 .dock .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 .dock .left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
 .dock .left label { display: inline-flex; align-items: center; gap: 8px; }
-.disclaimer { max-width: 864px; margin: 6px auto 0; font-size: 11.5px; color: var(--muted); }
+.disclaimer { max-width: 904px; margin: 6px auto 0; font-size: 11.5px; color: var(--muted); }
 
+@media (max-width: 1100px) {
+  .explorer { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(420px, 1fr) auto; }
+  .explorer .stage { margin: 12px; }
+  .inspector { border-left: 0; border-top: 1px solid var(--rule); max-height: 40vh; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 860px) {
   .app { grid-template-columns: minmax(0, 1fr); }
   .register { position: fixed; inset: 0 auto 0 0; width: min(300px, 86vw); z-index: 25; transform: translateX(-104%); transition: transform .2s; }
   .register.open { transform: none; box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .35); }
   .topbar { display: flex; }
-  .col { padding: 20px 16px 20px; }
+  .col { padding: 18px 16px 20px; }
   .sheet { padding: 18px 16px; }
   .matter-h { margin: 0 -16px; padding: 18px 16px 16px; }
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .hero-copy { padding: 26px 20px 8px; }
+  .hero-graph { min-height: 0; display: flex; flex-direction: column; padding: 0 0 14px; }
+  .hero-graph svg { position: relative; inset: auto; height: 340px; flex: none; }
+  .hero-graph .gl { position: static; order: -1; max-width: none; justify-content: flex-start; padding: 6px 20px 0; }
+  .hero-graph .cap { position: static; text-align: left; max-width: none; padding: 0 20px; margin: 0; }
+  .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .figures div:nth-child(3) { border-left: 0; }
+  .figures div:nth-child(n+3) { border-top: 1px solid var(--ch-rule); }
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .panels, .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .hb, .axis { grid-template-columns: 110px minmax(0, 1fr) 54px; }
 }
 @media (max-width: 560px) {
-  .track .lbl { display: none; }
-  .track li.on .lbl { display: block; position: absolute; top: 20px; white-space: nowrap; }
+  .track .lbl, .track .tm { display: none; }
+  .track li.on .lbl { display: block; position: absolute; top: 24px; white-space: nowrap; }
   .track { margin-bottom: 26px; }
   .charge { grid-template-columns: 56px minmax(0, 1fr); gap: 0 12px; }
   .margin .n { font-size: 18px; }
-  .welcome h1 { font-size: 27px; }
   .orow { grid-template-columns: 96px minmax(0, 1fr) auto; }
   .precs .x { padding-left: 0; }
   #datehint { display: none; }
+  .figures b { font-size: 21px; }
+  .tiles { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .tile b { font-size: 22px; }
+  .cgraph { height: 480px; }
+  .disclaimer { display: none; }
+  .modebar .case { display: none; }
+  .rbar { grid-template-columns: 58px minmax(0, 1fr) 46px; }
+  .fun { grid-template-columns: 104px minmax(0, 1fr) 26px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
@@ -384,8 +643,15 @@ textarea#input:focus { outline: none; border-color: var(--ink-2); }
 </head>
 <body>
 <div class="app">
-  <aside class="register" id="side" aria-label="Matters">
-    <div class="brand"><div class="name">Pramana</div><p>Research aid for Indian criminal law. Runs entirely on this computer.</p></div>
+  <aside class="register" id="side" aria-label="Navigation and matters">
+    <div class="brand">
+      <svg class="seal" viewBox="0 0 38 38" aria-hidden="true"><circle cx="19" cy="19" r="17.5" stroke-width="1.2"/><circle cx="19" cy="19" r="13.5" stroke-width=".7" stroke-dasharray="2 2.4"/><text x="19" y="25" text-anchor="middle">P</text></svg>
+      <div class="name">Pramana</div><p>Verified legal research for Indian criminal law, on this computer.</p></div>
+    <nav class="nav" aria-label="Views">
+      <button type="button" data-view="work" aria-current="page"><span data-ic="desk"></span>Workspace<span class="k">1</span></button>
+      <button type="button" data-view="graph"><span data-ic="graph"></span>Citation graph<span class="k">2</span></button>
+      <button type="button" data-view="system"><span data-ic="gauge"></span>System &amp; evaluation<span class="k">3</span></button>
+    </nav>
     <div class="reg-actions">
       <button class="reg-btn primary" id="newcase">New matter</button>
       <button class="reg-btn" id="lookup"></button>
@@ -401,7 +667,25 @@ textarea#input:focus { outline: none; border-color: var(--ink-2); }
   </aside>
 
   <main>
-    <div class="topbar"><button class="tbtn" id="menu">Matters</button><span class="name">Pramana</span><button class="tbtn" id="lookup2">Bare act</button></div>
+    <div class="topbar"><button class="tbtn" id="menu">Menu</button><span class="name">Pramana</span><button class="tbtn" id="lookup2">Bare act</button></div>
+    <section class="view" id="view-graph" hidden aria-label="Citation graph explorer">
+      <div class="explorer">
+        <div class="stage"><div class="chamber" id="xchamber">
+          <div class="bar">
+            <form id="xform"><select id="xcode" aria-label="Code"><option value="bns">BNS</option><option value="ipc">IPC</option></select>
+              <input type="text" id="xsec" value="303" aria-label="Section number" autocomplete="off"><button class="btn" style="padding:6px 12px">Show</button></form>
+            <span id="xchips"></span>
+          </div>
+          <svg class="fg" id="xsvg" role="img" aria-label="Citation graph neighbourhood"></svg>
+          <div class="gl" id="xlegend"></div><div class="gstat" id="xstat"></div>
+        </div></div>
+        <aside class="inspector" id="xinspect" aria-live="polite"></aside>
+      </div>
+    </section>
+    <section class="view" id="view-system" hidden aria-label="System and evaluation">
+      <div class="sys"><div class="col" id="syscol"><p class="note">Loading the figures…</p></div></div>
+    </section>
+    <section class="view" id="view-work" aria-label="Workspace">
     <div class="thread" id="thread"><div class="col" id="col"></div></div>
     <div class="dock" id="dock">
       <form id="form">
@@ -420,6 +704,7 @@ textarea#input:focus { outline: none; border-color: var(--ink-2); }
       </form>
       <p class="disclaimer">A research aid, not legal advice. Every section shown has been checked against the ingested IPC and BNS; nothing you type leaves this computer.</p>
     </div>
+    </section>
   </main>
 </div>
 <div class="tip" id="tip" role="tooltip"></div>
@@ -446,7 +731,8 @@ const CODE_FULL = {ipc: "Indian Penal Code, 1860", bns: "Bharatiya Nyaya Sanhita
 const secNum = s => (String(s ?? "").toUpperCase().match(/\d{1,3}[A-Z]{0,3}/) || [""])[0];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const cleanTitle = t => String(t || "").replace(/[\s:.–—-]+$/, "");
-let busy = false, pending = null, SAMPLE_LIST = [], active = null;
+let busy = false, pending = null, SAMPLE_LIST = [], active = null, heroGraph = null, STATS = null;
+const SAMPLE_CACHE = {};
 dateIn.max = new Date().toISOString().slice(0, 10);
 
 /* ---- icons: plain strokes ---- */
@@ -457,7 +743,11 @@ const ICON = {
   ask: I('<path d="M4 5h16v11H10l-5 4z"/>'),
   book: I('<path d="M6 4h10a3 3 0 0 1 3 3v13H9a3 3 0 0 1-3-3z"/><path d="M6 17a3 3 0 0 1 3-3h10"/>'),
   arrow: I('<path d="M5 12h14m-5-5 5 5-5 5"/>'),
+  desk: I('<path d="M4 5h16v10H4z"/><path d="M9 19h6M12 15v4"/>'),
+  graph: I('<circle cx="6" cy="7" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="17" r="2.6"/><path d="M8 8l2.8 7M16.4 7.6l-3 7.2M8.2 6.8l7.6-.6"/>'),
+  gauge: I('<path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4-6"/><path d="M4 18h16"/>'),
 };
+$$("[data-ic]").forEach(el => { el.outerHTML = ICON[el.dataset.ic]; });
 $("#clip").innerHTML = `${ICON.clip}Attach PDF`;
 $("#lookup").innerHTML = `${ICON.book}Bare act · IPC and BNS`;
 
@@ -499,7 +789,7 @@ const NOW = {
   retrieve: "Searching the statutes and similar judgments", statute_identifier: "The local model is proposing sections",
   verifier: "Checking every citation against the citation graph", applicability: "Testing each section’s ingredients against the facts",
   precedents: "Matching precedent judgments", analytics: "Counting outcomes in past judgments", defense: "Drafting counter-arguments for the defence"};
-const trackHTML = () => `<ol class="track">${STAGES.map((s, i) => `<li data-i="${i}"><span class="dot"></span><span class="lbl">${esc(s.label)}</span></li>`).join("")}</ol>`;
+const trackHTML = () => `<ol class="track">${STAGES.map((s, i) => `<li data-i="${i}"><span class="dot"></span><span class="lbl">${esc(s.label)}</span><span class="tm"></span></li>`).join("")}</ol>`;
 
 /* ================= live run: track + verification ledger ================= */
 class LiveRun {
@@ -515,9 +805,14 @@ class LiveRun {
       <p class="cands" data-cands hidden></p>
       <div class="ledger-wrap" data-ledger hidden><table class="ledger">
         <thead><tr><th>Section</th><th>Retrieved</th><th>Proposed</th><th>Citation graph</th><th>Facts</th></tr></thead><tbody></tbody></table></div>
+      <div class="panels" data-panels hidden>
+        <div class="panel" data-rpanel><h4>What retrieval found</h4><p class="sub" data-rsub></p><div class="rbars" data-rbars></div><div class="rkey" data-rkey></div></div>
+        <div class="panel" data-fpanel><h4>From candidates to charges</h4><p class="sub">How this run narrowed the list, stage by stage. Only verified sections can be charged.</p><div class="funnel" data-funnel></div></div>
+      </div>
       <div class="tally" data-tally hidden><span><b data-n="precedents">–</b><i data-l="precedent judgment|precedent judgments">precedent judgments</i></span><span><b data-n="analytics">–</b><i data-l="section with outcome data|sections with outcome data">sections with outcome data</i></span><span><b data-n="defense">–</b><i data-l="counter-argument|counter-arguments">counter-arguments</i></span></div>
     </div>`);
     this.el = host.lastElementChild;
+    this.fun = {cands: 0, proposed: new Set(), verified: new Set(), rejected: new Set(), supported: new Set(), doubted: new Set(), included: new Set()};
     if (!replay) this.tick = setInterval(() => {
       const s = Math.round((Date.now() - this.t0) / 1000);
       $("[data-t]", this.el).textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
@@ -560,8 +855,13 @@ class LiveRun {
   }
   handle(ev) {
     const {stage: st, phase, data: d} = ev;
-    if (phase === "start") { this.start(st); return; }
+    if (phase === "start") { this.start(st); if (ev.at != null) this.startAt = {...(this.startAt || {}), [st]: ev.at}; return; }
     this.finishStage(st);
+    if (ev.at != null && this.startAt && this.startAt[st] != null) {
+      const tm = $(".tm", this.li(st) || document.createElement("i"));
+      const dt = Math.max(0, ev.at - this.startAt[st]);
+      if (tm) tm.textContent = dt < .1 ? "<0.1 s" : `${dt.toFixed(1)} s`;
+    }
     const E = ERA[this.era] || "";
     if (st === "intake" && d && d.extracted) this.setNow("Court order or FIR detected: the alleged facts were extracted first.");
     if (st === "route" && d) {
@@ -575,6 +875,8 @@ class LiveRun {
         ? `${this.cands.size} candidate sections retrieved: <span class="mono">${[...this.cands.values()].map(c => esc(c.ref)).join(", ")}</span>`
         : (this.replay ? "Retrieved candidates were not kept in this saved analysis." : "No candidate sections were retrieved.");
       this.noRanks = this.replay && !this.cands.size;
+      this.fun.cands = this.cands.size;
+      if ((d.candidates || []).length) this.retrievalPanel(d.candidates);
       if (d.no_facts) this.setNow("<b>No allegation stated.</b> The text is procedure only, so there is nothing to charge and the model will not be asked.");
       else if (d.insufficient) this.setNow("<b>Insufficient data.</b> Nothing in the corpus is close enough, so the model will not be asked.");
     }
@@ -585,7 +887,10 @@ class LiveRun {
         this.cell(r, 1, c ? `<span class="mono">#${c.rank}</span>` : `<span class="mk-dim">${this.noRanks ? "—" : "not in list"}</span>`);
         this.cell(r, 2, p.source === "rule" ? `<span title="Derived by a fixed rule from the facts">rule</span>` : (d.round ? `<span class="mk-warn">retry ${d.round}</span>` : "model"));
         if (c && c.title) $(".tt", r.tr).textContent = cleanTitle(c.title);
+        this.fun.proposed.add(key);
+        $(`[data-rsec="${CSS.escape(key)}"]`, this.el)?.classList.add("prop");
       });
+      this.funnel();
       (d.withdrawn || []).forEach(w => {
         const r = this.row("w" + secNum(w), `${E} ${w}`); r.tr.classList.add("struck");
         this.cell(r, 2, `<span class="mk-dim" title="Listed by the model, but its own reason says it does not apply">ruled out</span>`);
@@ -610,6 +915,9 @@ class LiveRun {
         this.cell(r, 4, `<span class="mk-dim">—</span>`);
       });
       if (bad) this.setNow(`<b>${bad} citation${bad > 1 ? "s" : ""} rejected</b> by the citation graph. Hover over “rejected” for the reason.`);
+      (d.verified || []).forEach(v => this.fun.verified.add(v.section));
+      (d.unconfirmed || []).forEach(u => this.fun.rejected.add(secNum(u.raw)));
+      this.funnel();
     }
     if (st === "applicability" && d) {
       (d.checks || []).forEach(c => {
@@ -618,6 +926,8 @@ class LiveRun {
         else if (c.supported) this.cell(r, 4, `<span class="mk-ok">supported</span>`, c.rule || "Facts quoted for every ingredient, on both readings");
         else this.cell(r, 4, `<span class="mk-warn">doubted</span>`, c.rule || "Not every ingredient was shown on both readings");
       });
+      (d.checks || []).forEach(c => (c.included_in ? this.fun.included : c.supported ? this.fun.supported : this.fun.doubted).add(c.section));
+      this.funnel();
     }
     if (["precedents", "analytics", "defense"].includes(st) && d) {
       $("[data-tally]", this.el).hidden = false;
@@ -625,6 +935,44 @@ class LiveRun {
       countUp($(`[data-n="${st}"]`, this.el), n);
       if (lab) lab.textContent = lab.dataset.l.split("|")[n === 1 ? 0 : 1];
     }
+  }
+  /* The ranked candidate list Node 1 reads, with the signals that ranked it:
+     the fused (reciprocal-rank) score, and each section's rank by statute text
+     (T) and by precedent votes (V). Saved analyses from before 18 Oct 2026 kept
+     the ranks but not the scores, and the panel says so instead of drawing bars. */
+  retrievalPanel(cands) {
+    $("[data-panels]", this.el).hidden = false;
+    const scored = cands.some(c => c.score != null);
+    const fused = cands.filter(c => c.list !== "text" && c.score != null);
+    const max = Math.max(...fused.map(c => c.score), ...cands.filter(c => c.score != null).map(c => c.score), 1e-9);
+    const E = ERA[this.era] || "";
+    $("[data-rsub]", this.el).innerHTML = scored
+      ? `${cands.length} sections, best first. Bar length is the fused score; T and V are the section’s rank by statute text and by precedent votes. Dots mark what the model went on to propose.`
+      : `${cands.length} sections, best first. This saved analysis kept the ranking but not the scores, so no bars are drawn.`;
+    $("[data-rbars]", this.el).innerHTML = cands.map((c, i) => {
+      const sig = [c.statute_rank ? `T${c.statute_rank}` : "", c.vote_rank ? `V${c.vote_rank}` : ""].filter(Boolean).join(" ") || (scored ? "" : `#${i + 1}`);
+      const tipT = `${E} ${c.ref} · ${cleanTitle(c.title)}\n` + (scored
+        ? `${c.list === "text" ? "From the statute-text list (added after the fused top 10)" : `Fused score ${(+c.score).toFixed(4)}`}` +
+          `${c.statute_rank ? `\nRank ${c.statute_rank} by statute text${c.statute_score != null ? ` (cosine ${(+c.statute_score).toFixed(3)})` : ""}` : "\nNot in the statute-text top 60"}` +
+          `${c.vote_rank ? `\nRank ${c.vote_rank} by precedent votes` : c.list === "text" ? "" : "\nNo precedent votes"}`
+        : `Rank ${i + 1}`);
+      const w = scored && c.score != null ? Math.max(3, (c.score / max) * 100) : 0;
+      return `<div class="rbar${c.list === "text" ? " text" : ""}" data-rsec="${esc(secNum(c.section))}" data-tip="${esc(tipT)}">
+        <span class="s">${esc(c.ref)}</span><span class="track2">${w ? `<span class="fill" style="width:${w}%;--d:${i * 40}ms"></span>` : ""}</span><span class="sig">${esc(sig)}</span></div>`;
+    }).join("");
+    $("[data-rkey]", this.el).innerHTML = scored && cands.some(c => c.list === "text")
+      ? `<span><i></i>fused ranking (text + votes)</span><span><i class="t"></i>statute-text list, added after the top 10</span>` : "";
+    [...this.fun.proposed].forEach(k => $(`[data-rsec="${CSS.escape(k)}"]`, this.el)?.classList.add("prop"));
+  }
+  funnel() {
+    const f = this.fun, el = $("[data-funnel]", this.el); if (!el) return;
+    $("[data-panels]", this.el).hidden = false;
+    const rows = [["Retrieved candidates", f.cands, "var(--g4)"], ["Proposed by the model", f.proposed.size, "var(--g1)"],
+      ["Rejected by the graph", f.rejected.size, "var(--bad)"], ["Verified in the graph", f.verified.size, "var(--g2)"],
+      ["Supported on the facts", f.supported.size, "var(--ok)"], ["Doubted", f.doubted.size, "var(--warn)"], ["Included in a greater charge", f.included.size, "var(--muted)"]];
+    const max = Math.max(1, ...rows.map(r => r[1]));
+    el.innerHTML = rows.map(([l, n, c], i) => `<div class="fun" data-tip="${esc(`${l}: ${n}`)}"><span>${esc(l)}</span>
+      <span class="bar" style="width:${n ? Math.max(2, n / max * 100) : 0}%;background:${c};--d:${i * 60}ms"></span><b>${n}</b></div>`).join("");
   }
   secondRun() {
     $$(".track li", this.el).forEach(x => { x.classList.remove("on", "done"); $(".ret", x)?.remove(); });
@@ -641,11 +989,11 @@ class LiveRun {
     this.setNow(ok ? "Hover over any entry in the ledger for the reason behind it. The matter file follows." : "");
   }
 }
-function countUp(el, n) {
-  const t0 = performance.now(), dur = 700;
-  const step = () => { const k = Math.max(0, Math.min(1, (performance.now() - t0) / dur)); el.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+function countUp(el, n, grouped = false) {
+  const t0 = performance.now(), dur = grouped ? 1100 : 700, f = v => grouped ? v.toLocaleString("en-IN") : String(v);
+  const step = () => { const k = Math.max(0, Math.min(1, (performance.now() - t0) / dur)); el.textContent = f(Math.round(n * (1 - Math.pow(1 - k, 3)))); if (k < 1) requestAnimationFrame(step); };
   requestAnimationFrame(step);
-  setTimeout(() => { el.textContent = n; }, dur + 100);
+  setTimeout(() => { el.textContent = f(n); }, dur + 100);
 }
 
 /* A saved report replayed as the same events. Only what the report holds:
@@ -696,15 +1044,36 @@ async function replay(r, host) {
 /* ================= welcome / samples ================= */
 function welcome() {
   col.innerHTML = ""; pending = null;
-  entry("welcome", `<div class="label">Indian criminal law · research workspace</div>
-    <h1>Start a matter from its facts.</h1>
-    <p class="lede">Describe what happened and when. The offence date selects the code: the IPC before 1 July 2024, the BNS from that day. The local model then proposes sections, every citation is checked against the ingested statutes, each section is tested against your facts, and precedents and counter-arguments follow.</p>
-    <div class="sheet"><div class="label">How each matter is worked</div>${trackHTML()}
-      <p class="note" style="margin:8px 0 0">A live analysis takes 1½ to 3 minutes and runs on this computer. You can follow every step as it happens.</p></div>
+  if (heroGraph) { heroGraph.destroy(); heroGraph = null; }
+  const w = entry("welcome", `<div class="chamber">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Indian criminal law · IPC and BNS</span>
+          <h1>Start a matter from its facts. <em>Every citation proven.</em></h1>
+          <p class="lede">Describe what happened and when. The offence date picks the code, a local model proposes sections, and none is shown until the citation graph confirms it exists in that code. Each one is then tested against your facts, with precedents and counter-arguments to follow.</p>
+          <div class="cta"><button class="btn" data-focus>Describe a case</button><button class="btn ghost" data-demo>Replay the motorcycle theft</button></div>
+        </div>
+        <div class="hero-graph"><svg class="fg" data-hero role="img" aria-label="Citation graph around BNS 303"></svg>
+          <div class="gl glegend" data-hlegend></div><p class="cap" data-hcap>Loading the citation graph…</p></div>
+      </div>
+      <div class="figures" data-figs>
+        <div><b data-f="sections">–</b><span>statute sections, IPC and BNS</span></div>
+        <div><b data-f="chunks">–</b><span>judgment passages indexed</span></div>
+        <div><b data-f="edges">–</b><span>edges in the citation graph</span></div>
+        <div><b data-f="leaked" class="zero">–</b><span data-f2="checked">unverified citations shown</span></div>
+      </div>
+    </div>
+    <h2>How each matter is worked</h2>
+    <p class="note">Black boxes are fixed rules, red is the local language model, brass is the citation graph. Nothing leaves this computer.</p>
+    <div class="sheet schema">${schemaSVG()}</div>
     <h2>Sample matters</h2>
-    <p class="note" style="margin:0 0 8px">Saved analyses open at once, with a replay of how each one was worked.</p>
-    <table class="samples-table" id="samplerows"><tbody><tr><td class="note">Loading…</td></tr></tbody></table>`);
+    <p class="note">Saved analyses open at once, with a replay of how each was worked. A live analysis takes 1 to 3 minutes on this laptop.</p>
+    <div class="cards" id="samplecards"><p class="note">Loading…</p></div>`);
+  thread.scrollTop = 0;
+  $("[data-focus]", w).onclick = () => input.focus();
+  $("[data-demo]", w).onclick = () => { if (!busy) openSample("motorcycle_theft"); };
   loadSamples();
+  loadHero(w);
 }
 async function loadSamples() {
   try { if (!SAMPLE_LIST.length) SAMPLE_LIST = await api("/samples"); }
@@ -713,10 +1082,23 @@ async function loadSamples() {
   const code = s => s.offence_date < "2024-07-01" ? "IPC" : "BNS";   // label only; the server's router decides
   $("#samples").innerHTML = SAMPLE_LIST.map(s => `<button class="matter-link" data-id="${esc(s.id)}">
       <span class="code">${code(s)}</span><span class="t">${esc(short(s.name))}</span><span class="d mono">${esc(fmt(s.offence_date))}</span></button>`).join("");
-  const rows = $("#samplerows");
-  if (rows) rows.innerHTML = `<tbody>${SAMPLE_LIST.map(s => `<tr data-id="${esc(s.id)}" tabindex="0">
-      <td class="code">${code(s)}</td><td><span class="t">${esc(short(s.name))}</span>
-      <div class="note">${esc(s.facts.length > 120 ? s.facts.slice(0, 118) + "…" : s.facts)}</div></td><td class="d">${esc(fmt(s.offence_date))}</td></tr>`).join("")}</tbody>`;
+  const cards = $("#samplecards");
+  if (cards) {
+    cards.innerHTML = SAMPLE_LIST.map(s => `<button class="card" data-id="${esc(s.id)}">
+      <span class="top"><span class="code">${code(s)}</span><span class="d">${esc(fmt(s.offence_date))}</span></span>
+      <span class="t">${esc(short(s.name))}</span><span class="x">${esc(s.facts)}</span>
+      <span class="res" data-res="${esc(s.id)}">${s.saved ? "&nbsp;" : "runs live"}</span></button>`).join("");
+    // What each saved analysis concluded, read from the saved report itself.
+    SAMPLE_LIST.filter(s => s.saved).forEach(async s => {
+      try {
+        const r = SAMPLE_CACHE[s.id] || (SAMPLE_CACHE[s.id] = await api(`/samples/${encodeURIComponent(s.id)}`));
+        const runs = r.runs ? Object.values(r.runs) : [r];
+        const ch = runs.flatMap(x => (x.charges || []).map(c => `${c.code} ${c.subsection || c.section}${c.doubt ? "?" : ""}`));
+        const el = $(`[data-res="${CSS.escape(s.id)}"]`);
+        if (el) el.textContent = ch.length ? `${ch.join(" · ")}${ch.some(x => x.endsWith("?")) ? "  (? doubted)" : ""}` : "no charge: " + (r.status === "insufficient_data" ? "declined" : "nothing verified");
+      } catch { /* the card stands without it */ }
+    });
+  }
 }
 document.addEventListener("click", e => {
   const b = e.target.closest("[data-id]");
@@ -727,7 +1109,9 @@ document.addEventListener("keydown", e => {
   if (b && e.key === "Enter" && !busy) openSample(b.dataset.id);
 });
 async function openSample(id) {
+  if (!SAMPLE_LIST.length) await loadSamples();
   const s = SAMPLE_LIST.find(x => x.id === id); if (!s) return;
+  showView("work");
   pending = null; clearActive();
   addFacts(s.facts, `Facts · sample matter · offence ${fmt(s.offence_date)}`);
   const out = addOut(`<p class="note" style="margin:0 0 10px">A saved analysis of this sample. <button class="link" data-live>Run it live instead</button></p>`);
@@ -735,7 +1119,7 @@ async function openSample(id) {
   if (!s.saved) { startJob(s.facts, s.offence_date, out); return; }
   setBusy(true);
   try {
-    const rep = await api(`/samples/${encodeURIComponent(id)}`);
+    const rep = SAMPLE_CACHE[id] || (SAMPLE_CACHE[id] = await api(`/samples/${encodeURIComponent(id)}`));
     await replay(rep, out);
     renderReport(rep, out);
   } catch (e) { out.insertAdjacentHTML("beforeend", `<div class="banner err">${esc(e.message)}</div>`); }
@@ -907,6 +1291,11 @@ function renderRun(r, box) {
     <li><b>Included in</b>: a lesser offence covered by a supported aggravated charge, so it is not counted twice.</li>
     <li><b>Arrest and bail</b> come from the First Schedule of the BNSS or the CrPC; the maximum punishment from the section itself.</li></ul></details>`;
 
+  if (r.charges.length) h += `<h2>Citation graph<small>drag a node; select a section for its bare act</small></h2>
+    <div class="cgraph" data-cgraph><div class="gl glegend" data-cglegend></div><svg class="fg" role="img" aria-label="Citation graph around the charges"></svg>
+      <div class="gfoot"><p class="ghint" data-cghint>Reading the citation graph…</p><span class="gstat" data-cgstat></span></div></div>`;
+  if (r.embedding_map && (r.embedding_map.points || []).length) h += `<h2>How the search saw these facts<small>real BGE-M3 vectors, projected to two dimensions</small></h2>${embedHTML(r.embedding_map, r)}`;
+
   const map = mapSVG(r);
   if (map) h += `<h2>Evidence map<small>hover to trace links, select a charge to filter</small></h2>${map}`;
 
@@ -917,7 +1306,7 @@ function renderRun(r, box) {
     const yr = precYear(p);
     return `<li data-prec="${i}" data-for="${esc(p.for_charge)}"><details><summary><span class="lab">${esc(p.label)}</span>
       <span><span class="case">${esc(precTitle(p))}</span><span class="cite">${[p.title ? p.court : "", yr, p.citation, `for ${p.for_charge}`].filter(Boolean).map(esc).join(" · ")}${via}</span>${p.excerpt ? `<span class="peek">${esc(firstLine(p.excerpt))}</span>` : ""}</span></summary>
-      <div class="x"><div class="note">${p.similarity ? `Similarity to these facts ${p.similarity.toFixed(2)}` : "Most cited for this section"} · disposal: ${esc(p.disposal_nature || "not recorded")}${p.via_ipc_predecessor ? ` · ${esc(p.via_ipc_predecessor)}` : ""}</div>
+      <div class="x"><div class="note">${p.similarity ? `Similarity to these facts ${p.similarity.toFixed(2)}<span class="simbar" aria-hidden="true"><i style="width:${Math.round(Math.max(0, Math.min(1, p.similarity)) * 100)}%"></i></span>` : "Most cited for this section"} · disposal: ${esc(p.disposal_nature || "not recorded")}${p.via_ipc_predecessor ? ` · ${esc(p.via_ipc_predecessor)}` : ""}</div>
       ${p.excerpt ? `<blockquote>${esc(p.excerpt)}</blockquote>` : ""}
       <button class="link" data-summ="${esc(p.doc_id)}">Summarise this judgment</button><div data-summout></div></div></details></li>`;
   }).join("")}</ol>`;
@@ -940,7 +1329,7 @@ function renderRun(r, box) {
   const t = r.timings || {};
   h += `<p class="foot">Run time ${Math.round(Object.values(t).reduce((x, y) => x + y, 0))} s (${Object.entries(t).map(([kk, v]) => `${kk.replace(/_s$/, "")} ${v} s`).join(", ")}). Generated on this computer by a local model; nothing was sent elsewhere.</p>`;
   box.insertAdjacentHTML("beforeend", h);
-  wireMap(box); wireReport(r, box); decorateCharges(box);
+  wireMap(box); wireReport(r, box); decorateCharges(box); loadReportGraph(r, box);
 }
 
 function mapSVG(r) {
@@ -1272,6 +1661,437 @@ function memo(r) {
   w.document.open(); w.document.write(html); w.document.close();
 }
 
+/* ================= force-directed citation graphs ================= */
+/* A small force simulation (repulsion, springs by edge kind, collision, a pull
+   to the centre) drawn in SVG. It lays out real sub-graphs from /graph only:
+   nodes are sections and judgments of the NetworkX citation graph, edges are
+   its `cites` and verified `maps_to` edges, plus counted co-citations. */
+const ROLE_NAME = {charge: "Section", counterpart: "IPC ↔ BNS counterpart (verified mapping)", cocited: "Cited alongside it", case: "Judgment citing it", precedent: "Precedent shown in this matter"};
+function rng(seed) { let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function nodeTip(n) {
+  if (n.kind === "case") return `${n.title || n.label}\n${[n.court, n.year ? `decided ${n.year}` : "", n.disposal ? `disposal: ${n.disposal}` : ""].filter(Boolean).join(" · ")}\n${ROLE_NAME[n.role] || ""}`;
+  return `${n.label} · ${cleanTitle(n.title) || "untitled"}\nCited by ${n.cited_by} judgment${n.cited_by === 1 ? "" : "s"} in the corpus\n${ROLE_NAME[n.role] || ""}`;
+}
+function forceGraph(svg, data, {onSelect, particles = false, seed = 7} = {}) {
+  const NS = "http://www.w3.org/2000/svg";
+  let W = svg.clientWidth || 800, H = svg.clientHeight || 420;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.innerHTML = "";
+  const R = rng(seed);
+  const nodes = data.nodes.map(n => ({...n})), byId = new Map(nodes.map(n => [n.id, n]));
+  const links = data.edges.filter(e => byId.has(e.source) && byId.has(e.target)).map(e => ({...e, s: byId.get(e.source), t: byId.get(e.target)}));
+  const charges = nodes.filter(n => n.role === "charge");
+  nodes.forEach((n, i) => {
+    n.cls = n.kind === "case" ? (n.role === "precedent" ? "r-case r-precedent" : "r-case") : `r-${n.role}`;
+    n.r = n.kind === "case" ? (n.role === "precedent" ? 7.5 : 4.8) : n.role === "charge" ? 16 : n.role === "counterpart" ? 12 : 7 + Math.min(4, Math.log10(1 + (n.cited_by || 0)) * 1.5);
+    n.r *= Math.max(.62, Math.min(1, W / 640));   // smaller marks on a phone
+    const a = R() * Math.PI * 2, d = n.role === "charge" ? 0 : 40 + R() * 80;
+    const k = charges.indexOf(n), cx = W / 2 + (charges.length > 1 ? (k - (charges.length - 1) / 2) * Math.min(160, W / (charges.length + 1)) : 0);
+    n.x = (n.role === "charge" ? cx : W / 2) + Math.cos(a) * d; n.y = H / 2 + Math.sin(a) * d * .7; n.vx = 0; n.vy = 0;
+    n.adj = new Set();
+  });
+  links.forEach(l => { l.s.adj.add(l.t.id); l.t.adj.add(l.s.id); });
+  const gE = document.createElementNS(NS, "g"), gP = document.createElementNS(NS, "g"), gN = document.createElementNS(NS, "g");
+  svg.append(gE, gP, gN);
+  links.forEach(l => { l.el = document.createElementNS(NS, "path"); l.el.setAttribute("class", `e ${l.kind}`);
+    if (l.kind === "cites") l.el.style.strokeWidth = Math.min(3, .7 + Math.log10(l.weight || 1)); gE.append(l.el); });
+  nodes.forEach(n => {
+    const g = document.createElementNS(NS, "g"); g.setAttribute("class", `n ${n.cls}`); g.setAttribute("tabindex", "0"); g.setAttribute("role", "button");
+    g.setAttribute("aria-label", nodeTip(n).replace(/\n/g, ". ")); g.dataset.tip = nodeTip(n);
+    g.innerHTML = `<circle class="halo" r="${n.r + 4}"></circle><circle class="dot" r="${n.r}"></circle>` +
+      `<text dy="${n.kind === "case" ? -10 : n.r + 13}" text-anchor="middle">${esc(n.kind === "case" ? n.label : n.label)}</text>`;
+    n.el = g;
+  });
+  // judgments first, sections last, so a section's label is never painted over by a dot
+  [...nodes.filter(n => n.kind === "case"), ...nodes.filter(n => n.kind !== "case")].forEach(n => gN.append(n.el));
+  let alpha = 1, raf = 0, dead = false, drag = null;
+  const LEN = {maps_to: 128, cites: 74, co_cited: 150};
+  // springs scale with the stage, so a large stage is used rather than left empty
+  const SCALE = Math.max(.75, Math.min(1.5, Math.sqrt(W * H) / 560));
+
+  function tick() {
+    const N = nodes.length;
+    for (let i = 0; i < N; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < N; j++) {
+        const b = nodes[j]; let dx = b.x - a.x, dy = b.y - a.y, d2 = dx * dx + dy * dy || .01;
+        const d = Math.sqrt(d2), rep = (a.kind === "case" && b.kind === "case" ? 420 : 1700) * SCALE * SCALE * alpha / d2;
+        const min = a.r + b.r + (a.kind === "case" && b.kind === "case" ? 4 : a.kind === "section" && b.kind === "section" ? 34 : 12);
+        let f = rep; if (d < min) f += (min - d) * .35;
+        dx /= d; dy /= d; a.vx -= dx * f; a.vy -= dy * f; b.vx += dx * f; b.vy += dy * f;
+      }
+    }
+    links.forEach(l => {
+      let dx = l.t.x - l.s.x, dy = l.t.y - l.s.y; const d = Math.sqrt(dx * dx + dy * dy) || .01;
+      const len = ((LEN[l.kind] || 80) + (l.s.r + l.t.r) * .6) * SCALE, k = (l.kind === "co_cited" ? .025 : .06) * alpha;
+      const f = (d - len) * k; dx /= d; dy /= d;
+      l.s.vx += dx * f; l.s.vy += dy * f; l.t.vx -= dx * f; l.t.vy -= dy * f;
+    });
+    nodes.forEach((n, i) => {
+      const k = charges.indexOf(n);
+      const cx = k >= 0 && charges.length > 1 ? W / 2 + (k - (charges.length - 1) / 2) * Math.min(160, W / (charges.length + 1)) : W / 2;
+      if (n === drag) { n.vx = n.vy = 0; return; }
+      // a single charge is the anchor of the picture: it stays at the centre
+      if (k >= 0 && charges.length === 1 && !n.moved) { n.x = W / 2; n.y = H / 2; n.vx = n.vy = 0; return; }
+      const pull = (n.role === "charge" ? .25 : .012) * Math.max(alpha, .05);
+      n.vx += (cx - n.x) * pull; n.vy += (H / 2 - n.y) * pull * 1.3;
+      n.vx *= .58; n.vy *= .58; n.x += n.vx; n.y += n.vy;
+      n.x = Math.max(n.r + 30, Math.min(W - n.r - 30, n.x)); n.y = Math.max(n.r + 40, Math.min(H - n.r - 40, n.y));
+    });
+  }
+  function draw() {
+    links.forEach(l => {
+      const mx = (l.s.x + l.t.x) / 2, my = (l.s.y + l.t.y) / 2, dx = l.t.x - l.s.x, dy = l.t.y - l.s.y;
+      const bend = l.kind === "co_cited" ? .18 : l.kind === "maps_to" ? 0 : .06;
+      l.el.setAttribute("d", `M${l.s.x.toFixed(1)} ${l.s.y.toFixed(1)} Q${(mx - dy * bend).toFixed(1)} ${(my + dx * bend).toFixed(1)} ${l.t.x.toFixed(1)} ${l.t.y.toFixed(1)}`);
+    });
+    nodes.forEach(n => n.el.setAttribute("transform", `translate(${n.x.toFixed(1)} ${n.y.toFixed(1)})`));
+    placeLabels();
+  }
+  // Section labels: below, above, right or left of the node, whichever overlaps
+  // no other label and no other node; a label that fits nowhere is hidden until
+  // its node is hovered. The anchor of the picture (charges) is placed first.
+  const PRI = {charge: 0, counterpart: 1, cocited: 2};
+  const labelled = nodes.filter(n => n.kind === "section").sort((a, b) => (PRI[a.role] ?? 3) - (PRI[b.role] ?? 3) || (b.cited_by || 0) - (a.cited_by || 0));
+  labelled.forEach(n => { n.tx = $("text", n.el); n.cw = (n.role === "charge" ? 7.9 : 6.7) * n.label.length; });
+  function placeLabels() {
+    // Judgment dots are small and the label's halo reads over them, so only
+    // section nodes block a label.
+    const boxes = labelled.map(n => [n.x - n.r - 1, n.y - n.r - 1, n.x + n.r + 1, n.y + n.r + 1, n]);
+    const placed = [];
+    const over = (b, o) => Math.max(0, Math.min(b[2], o[2]) - Math.max(b[0], o[0])) * Math.max(0, Math.min(b[3], o[3]) - Math.max(b[1], o[1]));
+    const cost = b => placed.reduce((s, o) => s + over(b, o), 0) + boxes.reduce((s, o) => s + (o[4] !== b[4] ? over(b, o) : 0), 0);
+    labelled.forEach(n => {
+      const w = n.cw, h = n.role === "charge" ? 14 : 12, r = n.r;
+      const opts = [[0, r + 13, "middle"], [0, -r - 6, "middle"], [r + 5, 4, "start"], [-r - 5, 4, "end"],
+        [r * .7 + 3, r * .7 + 11, "start"], [-r * .7 - 3, r * .7 + 11, "end"], [r * .7 + 3, -r * .7 - 3, "start"], [-r * .7 - 3, -r * .7 - 3, "end"]];
+      let best = null;
+      for (const [dx, dy, anchor] of opts) {
+        const x0 = n.x + dx - (anchor === "middle" ? w / 2 : anchor === "end" ? w : 0), y0 = n.y + dy - h + 3;
+        const b = [x0, y0, x0 + w, y0 + h, n];
+        if (x0 < 2 || x0 + w > W - 2 || y0 < 2 || y0 + h > H - 2) continue;
+        const c = cost(b);
+        if (!best || c < best.c) best = {c, b, dx, dy, anchor};
+        if (c === 0) break;
+      }
+      // a charge is the subject of the picture: always labelled, at its least crowded spot
+      const show = best && (best.c === 0 || n.role === "charge");
+      const p = best || {dx: 0, dy: r + 13, anchor: "middle"};
+      n.tx.setAttribute("x", p.dx); n.tx.setAttribute("y", p.dy); n.tx.setAttribute("dy", "0"); n.tx.setAttribute("text-anchor", p.anchor);
+      if (show) placed.push(best.b);
+      n.el.classList.toggle("nolab", !show);
+    });
+  }
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function loop() {
+    if (dead) return;
+    tick(); draw(); alpha *= .985;
+    if (alpha > .015 || drag) raf = requestAnimationFrame(loop); else raf = 0;
+  }
+  if (reduce) { for (let i = 0; i < 320; i++) { tick(); alpha *= .985; } draw(); } else loop();
+  const heat = (a = .35) => { alpha = Math.max(alpha, a); if (!raf && !dead) raf = requestAnimationFrame(loop); };
+  // hover: light the node and its neighbours
+  const light = n => { svg.classList.add("hot"); nodes.forEach(x => x.el.classList.toggle("on", x === n || n.adj.has(x.id)));
+    links.forEach(l => l.el.classList.toggle("on", l.s === n || l.t === n)); };
+  const clear = () => { svg.classList.remove("hot"); nodes.forEach(x => x.el.classList.remove("on")); links.forEach(l => l.el.classList.remove("on")); };
+  nodes.forEach(n => {
+    n.el.addEventListener("mouseenter", () => light(n)); n.el.addEventListener("mouseleave", clear);
+    n.el.addEventListener("focus", () => light(n)); n.el.addEventListener("blur", clear);
+    n.el.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && onSelect) { e.preventDefault(); onSelect(n); } });
+    let moved = false, sx = 0, sy = 0;
+    n.el.addEventListener("pointerdown", e => { drag = n; moved = false; sx = e.clientX; sy = e.clientY; n.el.setPointerCapture(e.pointerId); heat(.3); });
+    n.el.addEventListener("pointermove", e => {
+      if (drag !== n) return;
+      const rect = svg.getBoundingClientRect(), k = W / rect.width;
+      if (Math.abs(e.clientX - sx) + Math.abs(e.clientY - sy) > 3) moved = true;
+      n.x = (e.clientX - rect.left) * k; n.y = (e.clientY - rect.top) * (H / rect.height); n.moved = true; heat(.3);
+    });
+    n.el.addEventListener("pointerup", () => { drag = null; if (!moved && onSelect) onSelect(n); });
+  });
+  // particles: a dot runs along a real `cites` edge toward the section it cites
+  let ptimer = 0;
+  if (particles && !reduce) {
+    const cites = links.filter(l => l.kind === "cites" || l.kind === "maps_to");
+    ptimer = setInterval(() => {
+      if (dead || !cites.length || document.hidden) return;
+      const l = cites[Math.floor(Math.random() * cites.length)];
+      const c = document.createElementNS(NS, "circle"); c.setAttribute("r", "2.2");
+      c.setAttribute("fill", l.kind === "maps_to" ? "var(--cg2)" : "var(--cg3)"); gP.append(c);
+      const t0 = performance.now(), dur = 1400;
+      const step = now => {
+        const k = Math.min(1, (now - t0) / dur);
+        try { const p = l.el.getPointAtLength(l.el.getTotalLength() * k); c.setAttribute("cx", p.x); c.setAttribute("cy", p.y); c.setAttribute("opacity", String(Math.sin(k * Math.PI))); } catch { /* path not laid out yet */ }
+        if (k < 1 && !dead) requestAnimationFrame(step); else c.remove();
+      };
+      requestAnimationFrame(step);
+    }, 420);
+  }
+  const onResize = () => {
+    const w = svg.clientWidth, h = svg.clientHeight; if (!w || !h || (w === W && h === H)) return;
+    nodes.forEach(n => { n.x *= w / W; n.y *= h / H; }); W = w; H = h; svg.setAttribute("viewBox", `0 0 ${W} ${H}`); heat(.25);
+  };
+  const ro = new ResizeObserver(onResize); ro.observe(svg);
+  return {nodes, destroy() { dead = true; cancelAnimationFrame(raf); clearInterval(ptimer); ro.disconnect(); }, heat};
+}
+function graphLegend(nodes) {
+  const has = r => nodes.some(n => r === "case" ? n.kind === "case" && n.role !== "precedent" : r === "precedent" ? n.role === "precedent" : n.role === r);
+  const items = [["charge", "var(--g1)", "Section"], ["counterpart", "var(--g2)", "IPC ↔ BNS counterpart"], ["precedent", "var(--g3)", "Precedent in this matter", "ring"],
+    ["case", "var(--g3)", "Judgment citing it"], ["cocited", "var(--g4)", "Cited alongside"]];
+  return items.filter(([r]) => has(r)).map(([, c, l, ring]) => `<span><i class="${ring ? "ring" : ""}" style="${ring ? `border-color:var(--g1);background:${c}` : `background:${c}`}"></i>${l}</span>`).join("");
+}
+const chamberLegend = nodes => graphLegend(nodes).replace(/var\(--g(\d)\)/g, "var(--cg$1)");
+
+/* the workspace hero: the real neighbourhood of BNS 303 (theft) */
+async function loadHero(w) {
+  loadStats().then(s => {
+    if (!s || !w.isConnected) return;
+    const figs = {sections: s.corpus.ipc_sections + s.corpus.bns_sections, chunks: s.corpus.chunks_ipc_era + s.corpus.chunks_bns_era,
+      edges: s.graph.edges, leaked: s.citation_check.total.leaked};
+    Object.entries(figs).forEach(([k, v]) => { const el = $(`[data-f="${k}"]`, w); if (el) countUp(el, v, true); });
+    const c = $(`[data-f2="checked"]`, w);
+    if (c) c.textContent = `unverified citations shown, of ${s.citation_check.total.proposals.toLocaleString("en-IN")} proposed in ${s.citation_check.total.runs} saved evaluation runs`;
+  });
+  try {
+    const g = await api("/graph/bns/303");
+    if (!w.isConnected) return;
+    const svg = $("[data-hero]", w);
+    heroGraph = forceGraph(svg, g, {particles: true, seed: 303, onSelect: n => n.kind === "section" && openDrawer(n.code, n.section)});
+    $("[data-hlegend]", w).innerHTML = chamberLegend(g.nodes);
+    const preds = g.nodes.filter(n => n.role === "counterpart").map(n => n.section);
+    $("[data-hcap]", w).innerHTML = `<b>Live from the citation graph:</b> BNS 303 (theft)${preds.length ? `, its IPC predecessors ${preds.join(" and ")}` : ""}, ${g.stats.judgments} judgments citing them and the sections cited alongside.`;
+  } catch (e) { $("[data-hcap]", w).textContent = `The citation graph could not be read: ${e.message}`; }
+}
+async function loadStats() {
+  if (STATS) return STATS;
+  try { STATS = await api("/stats"); } catch { STATS = null; }
+  return STATS;
+}
+
+/* the citation graph of a matter: its charges, counterparts and precedents */
+async function loadReportGraph(r, box) {
+  const host = $("[data-cgraph]", box); if (!host) return;
+  try {
+    const g = await api("/graph", {era: r.era, sections: r.charges.map(c => c.section), doc_ids: (r.precedents || []).map(p => p.doc_id)});
+    if (!g.nodes.length) { host.remove(); return; }
+    const prec = new Map((r.precedents || []).map((p, i) => [p.doc_id, i]));
+    forceGraph($("svg", host), g, {seed: 11, onSelect: n => {
+      if (n.kind === "section") return openDrawer(n.code, n.section);
+      const i = prec.get(n.doc_id); if (i == null) return;
+      const el = $(`[data-prec="${i}"]`, box);
+      if (el) { const d = $("details", el); if (d) d.open = true; el.scrollIntoView({behavior: "smooth", block: "center"}); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); }
+    }});
+    $("[data-cglegend]", host).innerHTML = graphLegend(g.nodes);
+    $("[data-cghint]", host).textContent = "Hover for details. A ringed judgment is one of this matter’s precedents: select it to open it below.";
+    $("[data-cgstat]", host).textContent = `${g.stats.sections} sections · ${g.stats.judgments} judgments · ${g.edges.length} edges`;
+  } catch (e) { $("[data-cghint]", host).textContent = `The citation graph could not be read: ${e.message}`; }
+}
+
+/* the embedding map: facts, statutes and judgment passages as real vectors */
+function embedHTML(m, r) {
+  const W = 640, H = 360, P = 26, pts = m.points;
+  const X = x => P + (x + 1) / 2 * (W - 2 * P), Y = y => P + (1 - (y + 1) / 2) * (H - 2 * P);
+  const prec = new Map((r.precedents || []).map(p => [p.doc_id, p.label]));
+  const charged = new Set((r.charges || []).map(c => secNum(c.section)));
+  const q = pts.find(p => p.kind === "query");
+  const stat = pts.filter(p => p.kind === "statute"), jud = pts.filter(p => p.kind === "judgment");
+  const best = stat.slice().sort((a, b) => b.cos - a.cos)[0];
+  let s = `<line class="ax" x1="${X(0)}" y1="${P}" x2="${X(0)}" y2="${H - P}"/><line class="ax" x1="${P}" y1="${Y(0)}" x2="${W - P}" y2="${Y(0)}"/>`;
+  // labels: try right, left, above, below of the mark; drop one that fits nowhere
+  const marks = pts.map(p => [X(p.x) - 6, Y(p.y) - 6, X(p.x) + 6, Y(p.y) + 6]), placed = [];
+  const hit = (b, list) => list.some(o => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1]);
+  const label = (x, y, text, cls) => {
+    const w = text.length * 6.4, h = 11;
+    for (const [dx, dy, anchor] of [[10, 4, "start"], [-10, 4, "end"], [0, -10, "middle"], [0, 16, "middle"]]) {
+      const x0 = anchor === "start" ? x + dx : anchor === "end" ? x + dx - w : x - w / 2, y0 = y + dy - h + 2;
+      const b = [x0, y0, x0 + w, y0 + h];
+      if (b[0] < 2 || b[2] > W - 2 || b[1] < 2 || b[3] > H - 2 || hit(b, placed) || hit(b, marks.filter(m => !(m[0] < x && m[2] > x && m[1] < y && m[3] > y)))) continue;
+      placed.push(b);
+      return `<text class="${cls}" x="${x + dx}" y="${y + dy}" text-anchor="${anchor}">${esc(text)}</text>`;
+    }
+    return "";
+  };
+  let labels = "";
+  if (q) labels += label(X(q.x), Y(q.y), "these facts", "ql");
+  jud.forEach(p => { const lab = prec.get(p.doc_id);
+    s += `<circle class="pt judgment" cx="${X(p.x)}" cy="${Y(p.y)}" r="${lab ? 6 : 4}" ${lab ? `stroke="var(--g1)" stroke-width="2"` : ""} data-tip="${esc(`Judgment passage${lab ? ` · precedent ${lab}` : ""}\n${p.doc_id}\ncosine to the facts ${p.cos.toFixed(3)}`)}"/>`;
+    if (lab) labels += label(X(p.x), Y(p.y), lab, "lbl2"); });
+  stat.slice().sort((a, b) => (charged.has(secNum(b.section)) - charged.has(secNum(a.section))) || a.rank - b.rank).forEach(p => {
+    const on = charged.has(secNum(p.section));
+    s += `<rect class="pt statute" x="${X(p.x) - (on ? 6 : 4.5)}" y="${Y(p.y) - (on ? 6 : 4.5)}" width="${on ? 12 : 9}" height="${on ? 12 : 9}" rx="2" ${on ? `stroke="var(--ink)" stroke-width="1.5"` : ""} data-tip="${esc(`${p.label} · ${cleanTitle(p.title)}\nrank ${p.rank} in the candidate list${on ? " · charged" : ""}\ncosine to the facts ${p.cos.toFixed(3)}`)}"/>`;
+    if (on || p.rank <= 4) labels += label(X(p.x), Y(p.y), p.label, "lbl2");
+  });
+  if (q) s += `<circle class="pt query" cx="${X(q.x)}" cy="${Y(q.y)}" r="7" data-tip="These facts (the query)"/>`;
+  s += labels;
+  return `<div class="emb panel" style="margin-top:12px"><p class="sub" style="margin-top:0">Each mark is a ${m.dims}-dimensional ${esc(m.model)} vector as indexed, flattened with PCA (the two axes keep ${Math.round(m.explained * 100)}% of the variance, so positions are approximate; the cosine on hover is exact).
+    ${best ? `Closest statute to the facts: <b class="mono">${esc(best.label)}</b>, cosine ${best.cos.toFixed(3)}.` : ""}</p>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Embedding map of the facts, statute sections and judgment passages">${s}</svg>
+    <div class="glegend" style="margin-top:6px"><span><i style="background:var(--ink)"></i>These facts</span><span><i class="sq" style="background:var(--g1)"></i>Statute section (outlined: charged)</span><span><i style="background:var(--g3)"></i>Judgment passage (ringed: a precedent)</span></div></div>`;
+}
+
+/* ================= the pipeline schematic ================= */
+function schemaSVG() {
+  const B = [["INPUT", "Facts", "+ offence date", "det"], ["RULE", "Date rule", "IPC or BNS", "det"], ["BGE-M3", "Retrieve", "statutes + votes", "det"],
+    ["QWEN 3.5 4B", "Propose", "Node 1", "llm"], ["GRAPH", "Verify", "Node 2", "graph"], ["LLM + RULES", "Test facts", "Node 2b", "llm"],
+    ["GRAPH · SQL", "Precedents", "Nodes 3 and 5", "graph"], ["QWEN 3.5 4B", "Defence", "Node 4", "llm"], ["GRAPH", "Final check", "quotes, labels", "graph"], ["OUTPUT", "Report", "verified only", "det"]];
+  const w = 86, g = 12, x0 = 6, y = 70, h = 64, W = x0 * 2 + B.length * w + (B.length - 1) * g;
+  let s = "", wires = "";
+  B.forEach(([k, t, sub, cls], i) => {
+    const x = x0 + i * (w + g);
+    s += `<g class="box ${cls}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="7"/><text class="k" x="${x + 8}" y="${y + 16}">${esc(k)}</text>
+      <text x="${x + 8}" y="${y + 36}" font-weight="600">${esc(t)}</text><text class="s" x="${x + 8}" y="${y + 52}">${esc(sub)}</text></g>`;
+    if (i) wires += `<line class="wire" x1="${x - g}" y1="${y + h / 2}" x2="${x}" y2="${y + h / 2}"/>`;
+  });
+  const vx = i => x0 + i * (w + g);
+  const retry = `M${vx(4) + w / 2} ${y} C${vx(4) + w / 2} ${y - 46}, ${vx(3) + w / 2} ${y - 46}, ${vx(3) + w / 2} ${y}`;
+  const stop = `M${vx(2) + w / 2} ${y + h} C${vx(2) + w / 2} ${y + h + 52}, ${vx(9) + w / 2} ${y + h + 52}, ${vx(9) + w / 2} ${y + h}`;
+  const main = `M${x0} ${y + h / 2} H${W - x0}`;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pkts = reduce ? "" : [0, 1.6, 3.2].map(b => `<circle class="pkt" r="3.5"><animateMotion dur="4.8s" begin="${b}s" repeatCount="indefinite" path="${main}"/></circle>`).join("") +
+    `<circle class="pkt" r="3" style="fill:var(--warn)"><animateMotion dur="2.4s" begin="1s" repeatCount="indefinite" path="${retry}"/></circle>`;
+  return `<svg viewBox="0 0 ${W} 230" role="img" aria-label="Pipeline: facts and date, date rule, retrieval, the model proposes, the citation graph verifies with up to two retries, a facts test, precedents and outcomes in parallel, defence arguments, a final check, the report">
+    <path class="wire retry" d="${retry}"/><text x="${(vx(3) + vx(4)) / 2 + w / 2}" y="${y - 40}" text-anchor="middle" style="font-size:10.5px;fill:var(--warn);font-family:var(--f-body)">rejected? retry with the reason (at most 2)</text>
+    <path class="wire" d="${stop}" stroke-dasharray="2 4"/><text x="${(vx(2) + vx(9)) / 2 + w / 2}" y="${y + h + 50}" text-anchor="middle" style="font-size:10.5px;fill:var(--muted);font-family:var(--f-body)">nothing close in the corpus: insufficient data, the model is never asked</text>
+    ${wires}${s}${pkts}</svg>`;
+}
+
+/* ================= views ================= */
+const VIEWS = ["work", "graph", "system"];
+let explorerReady = false, systemReady = false, xgraph = null;
+function showView(v) {
+  if (!VIEWS.includes(v)) v = "work";
+  VIEWS.forEach(x => { $(`#view-${x}`).hidden = x !== v; });
+  $$(".nav [data-view]").forEach(b => { if (b.dataset.view === v) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  $("#side").classList.remove("open");
+  if (v === "graph" && !explorerReady) { explorerReady = true; initExplorer(); }
+  if (v === "system" && !systemReady) { systemReady = true; renderSystem(); }
+  if (v === "graph" && xgraph) xgraph.heat(.2);
+}
+$$(".nav [data-view]").forEach(b => b.onclick = () => { showView(b.dataset.view); history.replaceState(null, "", b.dataset.view === "work" ? location.pathname : `#${b.dataset.view}`); });
+document.addEventListener("keydown", e => {
+  if (e.target.closest && e.target.closest("input, textarea, select, [contenteditable]")) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const k = {"1": "work", "2": "graph", "3": "system"}[e.key];
+  if (k) { e.preventDefault(); showView(k); }
+});
+
+/* ---- graph explorer ---- */
+const PRESETS = [["bns", "303", "theft"], ["bns", "318", "cheating"], ["bns", "103", "murder"], ["bns", "115", "hurt"], ["ipc", "302", "murder"], ["ipc", "420", "cheating"], ["ipc", "498A", "cruelty"], ["ipc", "34", "common intention"]];
+function initExplorer() {
+  $("#xchips").innerHTML = PRESETS.map(([c, s, t]) => `<button class="chip" data-x="${c}:${s}" title="${esc(t)}">${c.toUpperCase()} ${s}</button>`).join("");
+  $$("#xchips [data-x]").forEach(b => b.onclick = () => { const [c, s] = b.dataset.x.split(":"); exploreSection(c, s); });
+  $("#xform").addEventListener("submit", e => { e.preventDefault(); const s = $("#xsec").value.trim(); if (s) exploreSection($("#xcode").value, s); });
+  exploreSection("bns", "303");
+}
+async function exploreSection(code, sec) {
+  $("#xcode").value = code; $("#xsec").value = sec;
+  $$("#xchips [data-x]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.x === `${code}:${sec}`)));
+  const ins = $("#xinspect");
+  ins.innerHTML = `<p class="wait"><span class="spin"></span>Reading ${esc(code.toUpperCase())} ${esc(sec)} from the citation graph…</p>`;
+  try {
+    const g = await api(`/graph/${encodeURIComponent(code)}/${encodeURIComponent(sec)}`);
+    if (xgraph) xgraph.destroy();
+    xgraph = forceGraph($("#xsvg"), g, {particles: true, seed: sec.length * 31 + sec.charCodeAt(0), onSelect: n => inspect(n, g)});
+    $("#xlegend").innerHTML = `<div class="glegend">${chamberLegend(g.nodes)}</div>`;
+    $("#xstat").textContent = `${g.stats.sections} sections · ${g.stats.judgments} judgments · ${g.edges.length} edges`;
+    inspect(g.nodes.find(n => n.role === "charge"), g);
+  } catch (e) { ins.innerHTML = `<div class="banner err">${esc(e.message)}</div><p class="note">Only sections that exist in the ingested ${esc(code.toUpperCase())} can be shown: the same check every proposed charge goes through.</p>`; }
+}
+function inspect(n, g) {
+  if (!n) return;
+  const ins = $("#xinspect"), by = new Map(g.nodes.map(x => [x.id, x]));
+  const nb = g.edges.filter(e => e.source === n.id || e.target === n.id).map(e => ({e, o: by.get(e.source === n.id ? e.target : e.source)}));
+  if (n.kind === "section") {
+    const cps = nb.filter(x => x.e.kind === "maps_to").map(x => x.o);
+    const cases = nb.filter(x => x.e.kind === "cites").sort((a, b) => b.e.weight - a.e.weight);
+    const co = nb.filter(x => x.e.kind === "co_cited").sort((a, b) => b.e.weight - a.e.weight);
+    ins.innerHTML = `<div class="label">${esc(ROLE_NAME[n.role] || "Section")}</div><span class="num">${esc(n.label)}</span><h3>${esc(cleanTitle(n.title) || "Untitled section")}</h3>
+      <dl><dt>Code</dt><dd>${esc(CODE_FULL[n.code])}</dd><dt>Cited by</dt><dd>${n.cited_by} judgment${n.cited_by === 1 ? "" : "s"} in the corpus</dd>
+        ${cps.length ? `<dt>${n.code === "bns" ? "IPC predecessor" : "BNS successor"}</dt><dd>${cps.map(c => esc(c.label)).join(", ")}</dd>` : ""}</dl>
+      <div class="toolbar" style="margin-top:0"><button class="tbtn" data-open>${ICON.book}Open the bare act</button>${n.role !== "charge" ? `<button class="tbtn" data-go>Centre the graph here</button>` : ""}</div>
+      ${cases.length ? `<div class="label" style="margin-top:16px">Judgments citing it (shown)</div><ul class="list">${cases.map(({e, o}) => `<li><button data-node="${esc(o.id)}"><span class="m">${e.weight} ¶</span>${esc(o.label)}</button></li>`).join("")}</ul>
+        <p class="fine">¶ is the number of passages in that judgment that cite the section.</p>` : n.cited_by === 0 ? `<p class="note" style="margin-top:14px">No ingested judgment cites this section directly.${cps.length ? " Its precedent comes through the counterpart." : ""}</p>` : ""}
+      ${co.length ? `<div class="label" style="margin-top:16px">Most often cited alongside</div><ul class="list">${co.map(({e, o}) => `<li><button data-node="${esc(o.id)}"><span class="m">${e.weight}×</span>${esc(o.label)} · ${esc(cleanTitle(o.title))}</button></li>`).join("")}</ul>
+        <p class="fine">× counts the judgments that cite both.</p>` : ""}`;
+    $("[data-open]", ins).onclick = () => openDrawer(n.code, n.section);
+    const go = $("[data-go]", ins); if (go) go.onclick = () => exploreSection(n.code, n.section);
+  } else {
+    const secs = nb.filter(x => x.e.kind === "cites").map(x => x.o);
+    ins.innerHTML = `<div class="label">Judgment</div><h3><i style="font-family:var(--f-display)">${esc(n.title ? caseName(n.title) : n.label)}</i></h3>
+      <dl>${n.court ? `<dt>Court</dt><dd>${esc(n.court)}</dd>` : ""}${n.year ? `<dt>Decided</dt><dd>${esc(n.year.endsWith("+") ? `${n.year.slice(0, -1)} or later` : n.year)}</dd>` : ""}
+        ${n.disposal ? `<dt>Disposal</dt><dd>${esc(n.disposal)}</dd>` : ""}<dt>Corpus id</dt><dd>${esc(n.doc_id)}</dd></dl>
+      ${secs.length ? `<div class="label">Cites, among the sections shown</div><ul class="list">${secs.map(o => `<li><button data-node="${esc(o.id)}"><span class="m">${esc(o.label)}</span>${esc(cleanTitle(o.title))}</button></li>`).join("")}</ul>` : ""}
+      <div class="toolbar"><button class="tbtn" data-summ2>Summarise this judgment</button></div><div data-sout></div>`;
+    $("[data-summ2]", ins).onclick = async ev => {
+      if (busy) return; ev.target.disabled = true; const out = $("[data-sout]", ins);
+      out.innerHTML = `<p class="wait"><span class="spin"></span>Reading the judgment, 20 to 40 seconds.</p>`; setBusy(true);
+      try { const s = await api("/summarise", {doc_id: n.doc_id});
+        out.innerHTML = `<dl class="summary"><dt>Facts</dt><dd>${esc(s.facts)}</dd><dt>Held</dt><dd>${esc(s.held)}</dd><dt>Outcome</dt><dd>${esc(s.outcome)}</dd></dl><p class="fine">Summary by the local model. Read the judgment before relying on it.</p>`;
+      } catch (e) { out.innerHTML = `<div class="banner err">${esc(e.message)}</div>`; ev.target.disabled = false; }
+      setBusy(false);
+    };
+  }
+  $$("[data-node]", ins).forEach(b => b.onclick = () => { const o = by.get(b.dataset.node); if (o) inspect(o, g); });
+}
+
+/* ---- system view ---- */
+async function renderSystem() {
+  const el = $("#syscol"), s = await loadStats();
+  if (!s) { el.innerHTML = `<div class="banner err">The figures could not be read from the backend.</div>`; return; }
+  const n = v => (v ?? 0).toLocaleString("en-IN"), cc = s.citation_check, t = s.iltur.find(x => x.split === "test"), d = s.iltur.find(x => x.split === "dev");
+  const chunks = s.corpus.chunks_ipc_era + s.corpus.chunks_bns_era;
+  let h = `<header class="sys-h entry"><div class="label">System and evaluation</div><h1>What it is built from, and how it measures up.</h1>
+    <p>Every figure on this page is read from the project’s own build report, citation graph and saved evaluation runs when the page loads. Nothing here is typed in by hand.</p></header>
+    <div class="tiles entry">
+      <div class="tile"><b>${n(s.corpus.ipc_sections + s.corpus.bns_sections)}</b><span>statute sections: ${n(s.corpus.ipc_sections)} IPC, ${n(s.corpus.bns_sections)} BNS, every one a graph node</span></div>
+      <div class="tile"><b>${n(chunks)}</b><span>judgment passages embedded with ${esc(s.embedder)} in ChromaDB</span></div>
+      <div class="tile"><b>${n(s.graph.judgments)}</b><span>judgments in the citation graph (Supreme Court and High Courts)</span></div>
+      <div class="tile"><b class="good">${n(cc.total.leaked)}</b><span>unverified citations shown, of ${n(cc.total.proposals)} proposed across ${n(cc.total.runs)} saved runs</span></div>
+    </div>
+    <div class="grid2 entry">
+      <section class="card2"><h3>Every proposed citation is checked</h3><p class="sub">From the saved runs. “Rejected” means Node 2 found the number is not a section of the code in force; “leaked” would be one shown anyway. With retrieval withheld the model cites from memory, and most of what it cites are old IPC numbers in BNS cases.</p>
+        <div class="tablewrap"><table class="ctable"><tr><th>Evaluation set</th><th class="num">Runs</th><th class="num">Proposed</th><th class="num">Rejected</th><th class="num">Leaked</th></tr>
+        ${cc.by_set.map(r => `<tr><td>${esc(r.name)}</td><td class="num">${n(r.runs)}</td><td class="num">${n(r.proposals)}</td><td class="num">${n(r.rejected)}</td><td class="num"><span class="zero-pill">${n(r.leaked)}</span></td></tr>`).join("")}
+        <tr class="total"><td>All</td><td class="num">${n(cc.total.runs)}</td><td class="num">${n(cc.total.proposals)}</td><td class="num">${n(cc.total.rejected)}</td><td class="num"><span class="zero-pill">${n(cc.total.leaked)}</span></td></tr></table></div></section>
+      <section class="card2"><h3>The citation graph</h3><p class="sub">Built with NetworkX from the ingested statutes and judgments. A section is real only if it is a node here.</p>
+        <div class="hbars">${[["Section nodes, IPC", s.graph.ipc_sections, "var(--g1)"], ["Section nodes, BNS", s.graph.bns_sections, "var(--g1)"], ["Judgment nodes", s.graph.judgments, "var(--g3)"],
+          ["Judgment → section edges", s.graph.cites_edges, "var(--g4)"], ["IPC → BNS mapping edges", s.graph.maps_to_edges, "var(--g2)"]].map(([l, v, c], i, a) => {
+            const mx = Math.max(...a.map(x => x[1]));
+            return `<div class="hb" data-tip="${esc(`${l}: ${n(v)}`)}"><span class="lab">${esc(l)}</span><span class="tr"><span class="bar" style="width:${Math.max(1, v / mx * 100)}%;background:${c};--d:${i * 70}ms"></span></span><span class="v">${n(v)}</span></div>`; }).join("")}</div>
+        <p class="fine">All ${n(s.graph.maps_to_edges)} mapping edges come from the ${n(s.mapping.rows)}-row IPC → BNS table (${n(s.mapping.no_successor)} rows have no BNS successor), every row reviewed against the gazette text.</p></section>
+    </div>`;
+  if (t) {
+    const rows = [...Object.entries(t.published).map(([k, v]) => [k, v, false, "supervised, trained on 42K documents"]),
+      [`Pramana, test split`, t.macro_f1_all, true, `zero-shot, 4B model on this laptop, n = ${t.n}`], ...(d ? [[`Pramana, dev split`, d.macro_f1_all, true, `zero-shot, n = ${d.n}`]] : [])];
+    const ticks = [0, 10, 20, 30];
+    h += `<div class="grid2 entry"><section class="card2"><h3>IL-TUR statute identification</h3>
+      <p class="sub">Macro-F1 over 100 IPC labels (ACL 2024 benchmark). The published models are trained on the task; Pramana is not trained on it at all. It is well below the state of the art here, and this is the honest place to say so.</p>
+      <div class="hbars">${rows.map(([l, v, ours, note], i) => `<div class="hb${ours ? " ours" : ""}" data-tip="${esc(`${l}: macro-F1 ${v}\n${note}`)}"><span class="lab">${esc(l)}</span>
+        <span class="tr"><span class="grid"></span><span class="bar" style="width:${v / 30 * 100}%;background:${ours ? "var(--accent)" : "var(--rule-2)"};--d:${i * 80}ms"></span></span><span class="v">${v.toFixed(1)}</span></div>`).join("")}</div>
+      <div class="axis"><span></span><span class="t">${ticks.map(k => `<span style="left:${k / 30 * 100}%">${k}</span>`).join("")}</span><span></span></div>
+      <p class="fine">Test split, 100 documents run once after every decision: macro-F1 ${t.macro_f1_all} over all labels, ${t.macro_f1_supported} over the labels that occur (95% CI ${t.ci95.join("–")}); micro precision ${t.micro.precision}, recall ${t.micro.recall}, F1 ${t.micro.f1}. ${t.errors ? `${t.errors} documents too long for the 32K context count as empty.` : ""}</p></section>
+      <section class="card2"><h3>Where it is right, where it is not</h3><p class="sub">F1 for the 14 most frequent labels in the test sample. Grave, well-documented offences (302 murder, 376) score well; minor companion offences (341, 504, 324) are rarely in the candidate list.</p>
+      <div class="hbars">${t.labels.map((x, i) => `<div class="hb" data-tip="${esc(`IPC ${x.label}: F1 ${x.f1}\ngold label in ${x.support} of 100 documents`)}"><span class="lab mono">IPC ${esc(x.label)} <span class="muted">· ${x.support}</span></span>
+        <span class="tr"><span class="grid"></span><span class="bar" style="width:${Math.max(.5, x.f1)}%;background:var(--g4);--d:${i * 40}ms"></span></span><span class="v">${x.f1.toFixed(1)}</span></div>`).join("")}</div>
+      <div class="axis"><span></span><span class="t">${[0, 25, 50, 75, 100].map(k => `<span style="left:${k}%">${k}</span>`).join("")}</span><span></span></div>
+      <p class="fine">The number after each label is how many of the 100 documents carry it.</p></section></div>`;
+  }
+  const yrs = Object.entries(s.corpus.sc_by_year), ymax = Math.max(...yrs.map(x => x[1]));
+  const fam = Object.entries(s.corpus.nyaya_families || {}).sort((a, b) => b[1] - a[1]), fmax = Math.max(1, ...fam.map(x => x[1]));
+  const FAM = {hurt_assault: "Hurt and assault", cheating: "Cheating", with_common_intention_s34: "With common intention (s34)", breach_of_trust: "Criminal breach of trust", theft: "Theft"};
+  h += `<div class="grid2 entry"><section class="card2"><h3>Supreme Court judgments read, by year</h3><p class="sub">${n(s.corpus.sc_judgments_read)} judgments from the public archive (English only), kept where they apply the IPC or the BNS: ${n(s.corpus.sc_judgments_kept)}.</p>
+      <div class="vcols">${yrs.map(([y, v], i) => `<div class="vcol" data-tip="${esc(`${y}: ${n(v)} judgments`)}"><span class="v">${n(v)}</span><span class="b" style="height:${v / ymax * 100}%;background:var(--g1);--d:${i * 80}ms"></span></div>`).join("")}</div>
+      <div class="vlabels">${yrs.map(([y]) => `<span>${y}</span>`).join("")}</div></section>
+    <section class="card2"><h3>High Court judgments, by offence</h3><p class="sub">${n(s.corpus.hc_judgments_kept)} criminal judgments kept from ${n(s.corpus.hc_rows_screened)} NyayaAnumana rows screened; one judgment can fall in several groups.</p>
+      <div class="hbars">${fam.map(([k, v], i) => `<div class="hb" data-tip="${esc(`${FAM[k] || k}: ${n(v)}`)}"><span class="lab">${esc(FAM[k] || k)}</span><span class="tr"><span class="bar" style="width:${v / fmax * 100}%;background:var(--g3);--d:${i * 60}ms"></span></span><span class="v">${n(v)}</span></div>`).join("")}</div></section></div>
+    <section class="card2 wide entry"><h3>How a matter is worked</h3><p class="sub">Generation runs only on this laptop (${esc(s.model)} through Ollama); the embedder and the model take turns on the 4 GB graphics card.</p>
+      <div class="schema">${schemaSVG()}</div></section>
+    <section class="card2 wide entry"><h3>What it does not do yet</h3><ul class="prose">
+      <li>It is far below supervised models on IL-TUR statute identification (above). It finds the grave offence more often than the minor companion charges.</li>
+      <li>It over-charges: common intention (34), attempt to murder (307) and grievous hurt are its commonest wrong charges. The applicability check shows doubts, but does not remove sections.</li>
+      <li>Runs are not perfectly repeatable even at temperature 0; a saved sample is the run of the day it was saved.</li>
+      <li>Prior-case retrieval is not benchmarked. Outcome figures are appeal outcomes (allowed or dismissed), not conviction rates.</li></ul></section>`;
+  el.innerHTML = h;
+}
+
 /* ================= chart tooltips ================= */
 document.addEventListener("mousemove", e => {
   const t = e.target.closest && e.target.closest("[data-tip]");
@@ -1289,13 +2109,15 @@ async function checkHealth() {
   } catch { el.innerHTML = `<i class="down"></i>The backend is not reachable`; }
 }
 
-$("#newcase").onclick = () => { if (!busy) { clearActive(); welcome(); $("#side").classList.remove("open"); input.focus(); } };
+$("#newcase").onclick = () => { if (!busy) { showView("work"); clearActive(); welcome(); $("#side").classList.remove("open"); input.focus(); } };
 $("#menu").onclick = () => $("#side").classList.toggle("open");
 welcome(); checkHealth(); setInterval(checkHealth, 30000);
-input.focus();
-// Deep link for demonstrations: /#sample=group_assault replays that saved matter.
+// Deep links for demonstrations: /#sample=group_assault replays that saved
+// matter; /#graph and /#system open those views.
 const deep = location.hash.match(/^#sample=([\w-]+)$/);
-if (deep) loadSamples().then(() => openSample(deep[1]));
+if (deep) openSample(deep[1]);
+else if (location.hash === "#graph" || location.hash === "#system") showView(location.hash.slice(1));
+else input.focus({preventScroll: true});
 </script>
 </body>
 </html>

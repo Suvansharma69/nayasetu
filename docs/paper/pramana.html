@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pramana: Citation-Verified, Fully Local Legal Research</title>
+<!-- Print source for docs/paper/pramana.pdf (headless Chrome, A4). Same content as pramana.tex. -->
+<style>
+@page { size: A4; margin: 17mm 15mm 18mm 15mm; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Times New Roman", Times, serif; font-size: 9.6pt; line-height: 1.24; color: #000; margin: 0; }
+.title { text-align: center; font-size: 21pt; line-height: 1.15; margin: 0 0 8pt; font-weight: normal; }
+.authors { text-align: center; font-size: 10.5pt; margin-bottom: 12pt; }
+.authors .name { font-size: 11pt; }
+.authors .aff { font-style: italic; }
+.cols { column-count: 2; column-gap: 7mm; text-align: justify; hyphens: auto; }
+.abstract { font-weight: bold; font-size: 8.8pt; }
+.abstract i { font-weight: bold; }
+.abstract .lead { font-style: italic; }
+.keywords { font-size: 8.8pt; font-weight: bold; margin-top: 4pt; }
+.keywords .lead { font-style: italic; }
+h2 { font-size: 9.6pt; font-weight: normal; font-variant: small-caps; text-align: center; margin: 10pt 0 4pt; letter-spacing: 0.02em; break-after: avoid; }
+h3 { font-size: 9.6pt; font-weight: normal; font-style: italic; margin: 7pt 0 3pt; break-after: avoid; }
+p { margin: 0 0 0; text-indent: 1.2em; }
+p.noi, h2 + p, h3 + p, .fig + p, table + p { text-indent: 0; }
+ul { margin: 3pt 0 3pt; padding-left: 14pt; }
+li { margin: 1pt 0; }
+b.run { font-weight: bold; }
+.sc { font-variant: small-caps; }
+code, .tt { font-family: "Courier New", Courier, monospace; font-size: 8.6pt; }
+.eq { text-align: center; margin: 5pt 0; text-indent: 0; font-style: italic; position: relative; }
+.eq .num { position: absolute; right: 0; font-style: normal; }
+.frac { display: inline-block; vertical-align: middle; text-align: center; font-size: 9pt; }
+.frac > span { display: block; padding: 0 2pt; }
+.frac > span:first-child { border-bottom: 0.6pt solid #000; }
+.tbl { break-inside: avoid; margin: 6pt 0 8pt; text-indent: 0; }
+.tbl .cap { font-variant: small-caps; text-align: center; font-size: 8pt; margin-bottom: 3pt; }
+.tbl .cap .n { display: block; font-variant: normal; }
+table { border-collapse: collapse; width: 100%; font-size: 8pt; text-align: left; }
+thead th { border-top: 1pt solid #000; border-bottom: 0.6pt solid #000; padding: 2pt 3pt; font-weight: normal; }
+tbody td { padding: 1.4pt 3pt; vertical-align: top; }
+tbody tr:last-child td { border-bottom: 1pt solid #000; }
+tr.mid td { border-top: 0.6pt solid #000; }
+td.c, th.c { text-align: center; }
+.fig { break-inside: avoid; margin: 4pt 0 8pt; text-indent: 0; }
+.fig.wide { column-span: all; margin: 0 0 10pt; }
+.fig .cap { font-size: 8pt; text-align: justify; margin-top: 3pt; }
+.fig svg { width: 100%; height: auto; display: block; }
+.refs { font-size: 7.9pt; line-height: 1.2; }
+.refs div { display: grid; grid-template-columns: 18pt 1fr; margin-bottom: 2pt; text-indent: 0; text-align: left; }
+.todo { background: #fff3c4; }
+.quote { font-style: italic; }
+sup { font-size: 70%; }
+</style>
+</head>
+<body>
+
+<div class="title"><span class="sc">Pramana</span>: Citation-Verified, Fully Local Retrieval-Augmented Legal Research for Indian Criminal Law Across the IPC–BNS Transition</div>
+<div class="authors"><div class="name todo">TODO: Author Name</div><div class="aff todo">TODO: Department, Institution, City, India · TODO: email</div></div>
+
+<div class="fig wide">
+<svg viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif" font-size="12.5">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#222"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a1c1c"/></marker>
+  </defs>
+  <!-- legend -->
+  <rect x="10" y="8" width="16" height="11" fill="#fff" stroke="#222" stroke-width="1.4"/><text x="32" y="18">deterministic code</text>
+  <rect x="160" y="8" width="16" height="11" fill="#f3dede" stroke="#8a1c1c" stroke-width="1.4"/><text x="182" y="18">LLM call (qwen3.5:4b, local)</text>
+  <rect x="380" y="8" width="16" height="11" fill="#e6eef6" stroke="#2c5a85" stroke-width="1.2"/><text x="402" y="18">offline data</text>
+  <text x="990" y="18" text-anchor="end" font-size="11.5" fill="#555">runtime, per case → left to right</text>
+
+  <!-- row 1: pre-graph stages -->
+  <g stroke-width="1.4">
+    <rect x="10"  y="40" width="100" height="52" rx="4" fill="#fff" stroke="#222"/>
+    <rect x="130" y="40" width="100" height="52" rx="4" fill="#fff" stroke="#222"/>
+    <rect x="250" y="40" width="110" height="52" rx="4" fill="#f3dede" stroke="#8a1c1c"/>
+    <rect x="380" y="40" width="150" height="52" rx="4" fill="#fff" stroke="#222"/>
+    <rect x="550" y="40" width="120" height="52" rx="4" fill="#fff" stroke="#222"/>
+    <rect x="690" y="40" width="120" height="52" rx="4" fill="#fff" stroke="#222"/>
+  </g>
+  <text x="60" y="61" text-anchor="middle" font-weight="bold">Input</text><text x="60" y="78" text-anchor="middle" font-size="11">facts + offence date</text>
+  <text x="180" y="61" text-anchor="middle" font-weight="bold">Router</text><text x="180" y="78" text-anchor="middle" font-size="11">&lt; 1 Jul 2024 → IPC</text>
+  <text x="305" y="61" text-anchor="middle" font-weight="bold">Intake</text><text x="305" y="78" text-anchor="middle" font-size="11">court order → facts</text>
+  <text x="455" y="61" text-anchor="middle" font-weight="bold">Retrieval</text><text x="455" y="78" text-anchor="middle" font-size="11">statute sim. ⊕ votes (RRF)</text>
+  <text x="610" y="61" text-anchor="middle" font-weight="bold">Guardrail</text><text x="610" y="78" text-anchor="middle" font-size="11">best judgment ≥ .576</text>
+  <text x="750" y="61" text-anchor="middle" font-weight="bold">GPU handoff</text><text x="750" y="78" text-anchor="middle" font-size="11">embedder → LLM</text>
+  <g stroke="#222" stroke-width="1.3" fill="none" marker-end="url(#a)">
+    <path d="M110,66 H128"/><path d="M230,66 H248"/><path d="M360,66 H378"/><path d="M530,66 H548"/><path d="M670,66 H688"/>
+    <path d="M810,66 H870 V128"/>
+  </g>
+  <text x="610" y="108" text-anchor="middle" font-size="11" fill="#555">too far → review list, no LLM</text>
+  <path d="M610,92 V98" stroke="#555" stroke-width="1"/>
+
+  <!-- row 2: LangGraph -->
+  <rect x="120" y="120" width="870" height="112" rx="6" fill="none" stroke="#999" stroke-dasharray="4 3"/>
+  <text x="130" y="136" font-size="11" fill="#555">LangGraph state machine</text>
+  <g stroke-width="1.4">
+    <rect x="800" y="140" width="130" height="50" rx="4" fill="#f3dede" stroke="#8a1c1c"/>
+    <rect x="620" y="140" width="140" height="50" rx="4" fill="#fff" stroke="#222"/>
+    <rect x="450" y="140" width="135" height="50" rx="4" fill="#f3dede" stroke="#8a1c1c"/>
+    <rect x="290" y="140" width="125" height="32" rx="4" fill="#fff" stroke="#222"/>
+    <rect x="290" y="186" width="125" height="32" rx="4" fill="#fff" stroke="#222"/>
+    <rect x="140" y="140" width="120" height="50" rx="4" fill="#f3dede" stroke="#8a1c1c"/>
+  </g>
+  <text x="865" y="161" text-anchor="middle" font-weight="bold">N1 Propose</text><text x="865" y="178" text-anchor="middle" font-size="11">JSON schema, fact profile</text>
+  <text x="690" y="161" text-anchor="middle" font-weight="bold">N2 Verify</text><text x="690" y="178" text-anchor="middle" font-size="11">graph, code-scoped</text>
+  <text x="517" y="161" text-anchor="middle" font-weight="bold">N2b Applicability</text><text x="517" y="178" text-anchor="middle" font-size="11">2 passes + rules, advisory</text>
+  <text x="352" y="161" text-anchor="middle" font-weight="bold" font-size="12">N3 Precedents</text>
+  <text x="352" y="207" text-anchor="middle" font-weight="bold" font-size="12">N5 Outcomes (SQL)</text>
+  <text x="200" y="161" text-anchor="middle" font-weight="bold">N4 Arguments</text><text x="200" y="178" text-anchor="middle" font-size="11">+ final verification</text>
+  <g stroke="#222" stroke-width="1.3" fill="none" marker-end="url(#a)">
+    <path d="M800,165 H762"/><path d="M620,165 H587"/>
+    <path d="M450,160 H417"/><path d="M450,172 C435,180 430,198 417,202"/>
+    <path d="M290,156 H262"/>
+  </g>
+  <path d="M690,140 C690,118 865,118 865,138" stroke="#8a1c1c" stroke-width="1.4" fill="none" marker-end="url(#ag)"/>
+  <text x="777" y="114" text-anchor="middle" font-size="11" fill="#8a1c1c">rejected &amp; retries &lt; 2 → feedback</text>
+  <path d="M140,165 H60 V250" stroke="#222" stroke-width="1.3" fill="none" marker-end="url(#a)"/>
+  <rect x="5" y="250" width="120" height="40" rx="4" fill="#fff" stroke="#222" stroke-width="1.4"/>
+  <text x="65" y="265" text-anchor="middle" font-weight="bold">Report</text><text x="65" y="281" text-anchor="middle" font-size="10">verified · doubted · rejected</text>
+  <path d="M290,202 H140 V262 H127" stroke="#222" stroke-width="1.3" fill="none" marker-end="url(#a)"/>
+
+  <!-- offline data: what each stage reads -->
+  <text x="160" y="248" font-size="11" fill="#2c5a85">built offline, read at runtime:</text>
+  <g stroke="#2c5a85" stroke-width="1.2">
+    <rect x="320" y="238" width="200" height="54" rx="4" fill="#e6eef6"/>
+    <rect x="535" y="238" width="250" height="54" rx="4" fill="#e6eef6"/>
+    <rect x="800" y="238" width="190" height="54" rx="4" fill="#e6eef6"/>
+  </g>
+  <text x="420" y="254" text-anchor="middle" font-weight="bold" fill="#173a5a">ChromaDB (BGE-M3 vectors)</text><text x="420" y="269" text-anchor="middle" font-size="10.5" fill="#173a5a">87,969 chunks, 4 collections</text><text x="420" y="284" text-anchor="middle" font-size="10.5" fill="#2c5a85" font-style="italic">read by Retrieval, Guardrail, N3</text>
+  <text x="660" y="254" text-anchor="middle" font-weight="bold" fill="#173a5a">Citation graph (NetworkX)</text><text x="660" y="269" text-anchor="middle" font-size="10.5" fill="#173a5a">933 sections · 2,699 cases · 16,493 edges</text><text x="660" y="284" text-anchor="middle" font-size="10.5" fill="#2c5a85" font-style="italic">read by N2, N3, N4's final check</text>
+  <text x="895" y="254" text-anchor="middle" font-weight="bold" fill="#173a5a">Outcomes (SQLite)</text><text x="895" y="269" text-anchor="middle" font-size="10.5" fill="#173a5a">disposals per section</text><text x="895" y="284" text-anchor="middle" font-size="10.5" fill="#2c5a85" font-style="italic">read by N5</text>
+</svg>
+<div class="cap"><b>Fig. 1.</b> Runtime architecture. The router, retrieval, guardrail, verifier, precedent matcher, analytics and every final check are deterministic code (white); only intake, N1, N2b and N4 call the local LLM (red), and each of their outputs is checked by code. Blue: stores built offline and the stages that read them. N3 and N5 run in parallel.</div>
+</div>
+
+<div class="cols">
+
+<div class="abstract"><span class="lead">Abstract</span>—On 1 July 2024 India replaced the Indian Penal Code (IPC, 1860) with the Bharatiya Nyaya Sanhita (BNS, 2023), renumbering almost every offence, while offences committed earlier remain under the IPC. Large language models (LLMs) used for legal research are known to fabricate citations, and the transition multiplies the opportunity: the same section number denotes unrelated offences in the two codes. We present <span class="sc">Pramana</span>, a legal research assistant that, given case facts and an offence date, selects the applicable code with a deterministic router, retrieves candidate sections by fusing statute similarity with votes from similar judgments, lets a small local LLM propose charges, and admits a section into the report only if it exists as a node of the applicable code in a citation graph built from the ingested statutes. An LLM applicability check with deterministic legal rules then grades each verified section, and later stages retrieve graph-linked precedents (bridging BNS charges to their IPC predecessors through a reviewed 575-row mapping), draft defence arguments that are re-verified after generation, and aggregate appeal outcomes in SQL. The system runs entirely on a laptop with a 4 GB GPU at zero recurring cost, so client facts never leave the machine. In every evaluation no non-existent or wrong-code section reached a report; with retrieval withheld, the verifier rejected 29% of the model's citations and every affected case recovered within two retries. Section <i>choice</i> remains the weak point: on the IL-TUR statute-identification benchmark the zero-shot system reaches macro-F1 9.8 on the development split and 11.8 on the test split (run once), against 28.1 for the best supervised model. We report negative results, including a domain-specific embedder and a cross-encoder reranker that both underperformed general-purpose alternatives.</div>
+<div class="keywords"><span class="lead">Index Terms</span>—legal AI, retrieval-augmented generation, citation verification, hallucination, Indian law, Bharatiya Nyaya Sanhita, statute identification</div>
+
+<h2>I. Introduction</h2>
+<p>Legal research assistants built on LLMs promise speed but have a well-documented failure: confident, fabricated or misattributed citations [2], [3]. In Indian criminal practice this failure has become more likely since the BNS came into force on 1 July 2024 [1]. The BNS applies to offences committed on or after that date, the IPC to offences before it, and practitioners must work with both. Nearly all section numbers changed: theft is IPC 378/379 but BNS 303; murder is IPC 302 but BNS 103, while BNS 302 punishes wounding religious feelings. A model that mixes the codes produces citations that look right and are wrong. We observed this directly: asked what BNS 303 covers, the 4B model used here described a bomb-threat offence.</p>
+<p>We built <span class="sc">Pramana</span> around one principle: <i>the language model proposes; deterministic code decides what is real.</i> The code is chosen by date, not by the model. Every proposed section is checked for existence in that code against a citation graph built from ingested statutory text, and rejections are fed back through a bounded retry loop. Counting-type legal conditions (five persons for an unlawful assembly, a death for homicide) are enforced by rules rather than left to the model. The LLM is used only where language understanding is unavoidable: proposing sections, judging their fit to the facts, and drafting arguments, and each of those outputs is checked again by code.</p>
+<p>Three constraints shaped the system: zero recurring cost, generation that never leaves the user's machine (a lawyer types a client's real facts), and commodity hardware (a Windows laptop with a 4 GB RTX 3050 Ti and 16 GB RAM).</p>
+<p>Our contributions are:</p>
+<ul>
+<li>an end-to-end architecture for date-routed, dual-code legal retrieval with code-scoped citation verification and a feedback retry loop (Sec. III);</li>
+<li>a precedent bridge from the new code to the old through a fully reviewed IPC→BNS mapping, needed because almost no BNS case law exists yet (Sec. III-G);</li>
+<li>a measured account of data-quality defects in Indian legal corpora that automated validation missed, including a citation-extraction error that left 37% of graph edges pointing to the wrong statute (Sec. IV);</li>
+<li>an evaluation on hand-written, real-order and benchmark data, with ablations and the negative results reported (Sec. VI).</li>
+</ul>
+
+<h2>II. Background and Related Work</h2>
+<p class="noi"><b class="run">The IPC–BNS transition.</b> The BNS re-enacts most IPC offences under new numbers, merges the IPC's separate definition and punishment sections for many offences (IPC 378 defines theft and 379 punishes it; BNS 303 does both), moves some provisions into sub-sections (common intention, IPC 34, is BNS 3(5)) and drops others (adultery, IPC 497). Offences committed before 1 July 2024 continue to be tried under the IPC, so for years both codes will be in use.</p>
+<p><b class="run">Indian legal NLP.</b> IL-TUR [4] collects Indian legal understanding tasks, including Legal Statute Identification (LSI: predict the IPC sections applicable to a fact description, 100 labels) and Prior Case Retrieval (PCR). Supervised models trained on its training split set the reference results; the best reported LSI macro-F1 is 28.1 (LeSICiN [5], a heterogeneous-graph model), with hierarchical InLegalBERT [6] at 26.2. NyayaAnumana [7] provides a large corpus of Indian judgments labelled with whether the appeal or petition succeeded. For zero-shot LLMs on a related task, ILSIC [8] identifies statutes from layperson queries; zero-shot, GPT-4.1 reached 31.6 micro-F1 (14.4 macro-F1), Llama-3-8B 18.0 and Gemma-3-12B 21.5, and its SBERT retriever's macro recall at 15 was 21.2%, a retrieval bottleneck. Premasiri et al. [9] found LLM-based general-purpose embedders competitive with or better than legal-domain models for prior case retrieval.</p>
+<p><b class="run">Retrieval-augmented generation</b> (RAG) [10] grounds generation in retrieved text. Rank fusion [11], cross-encoder reranking and hybrid sparse–dense scoring [12] are the standard ways to improve the retriever; COLIEE systems typically chain several of them [13]. Self-consistency [14] aggregates repeated model judgments.</p>
+<p><b class="run">Hallucination in legal AI.</b> Dahl et al. [2] measured frequent legal hallucinations in general chatbots; Magesh et al. [3] found that commercial RAG-based legal research tools still hallucinate. <span class="sc">Pramana</span> addresses one specific, checkable class, <i>citation existence in the applicable code</i>, structurally rather than statistically, and treats applicability as a separate, softer problem.</p>
+
+<h2>III. System</h2>
+<h3>A. Overview</h3>
+<p>Offline, statutes and judgments are cleaned, chunked and embedded with BGE-M3 [12] (1024-d, fp16) into four ChromaDB collections (IPC sections, BNS sections, IPC-era and BNS-era judgments) and used to build a NetworkX citation graph. At runtime (Fig. 1) a case passes through: an offence-date router; an intake step for pasted court orders; retrieval and a relevance guardrail; then a LangGraph [18] state machine with Node 1 (statute identifier, LLM), Node 2 (verifier, graph lookup) and a conditional retry edge, Node 2b (applicability check), Nodes 3 and 5 in parallel (precedents; outcome analytics in SQL), and Node 4 (defence arguments) followed by a final verification pass. All LLM calls go to qwen3.5:4b [16] (Q4_K_M) served locally by Ollama [17].</p>
+
+<h3>B. Offence-Date Router</h3>
+<p>A plain function maps an offence date before 2024-07-01 to the IPC and any later date to the BNS; future dates are rejected and only unambiguous ISO dates are accepted (08/09/2024 is a different day in India and the US, and a guessed date is a guessed code). An offence period that straddles the date is run once per code with a warning. In the web interface, dates are read from the text by regular expressions only, and the user is asked when there is no single clear date.</p>
+
+<h3>C. Intake</h3>
+<p>Real inputs are often court orders dominated by procedure. A deterministic test (at least 3 of 22 procedural markers) decides whether the input is an order; only then one LLM call restates the alleged facts, and the restatement is discarded unless at least 60% of its content words occur in the original. If the order states no allegation at all, the system declines rather than charging procedural sections; this requires both the model's flag and an empty extraction.</p>
+
+<h3>D. Retrieval</h3>
+<p><b class="run">Embedder.</b> The plan prescribed InLegal-Sbert, a sentence model adapted from InLegalBERT. Because recent work reported general embedders competitive with domain ones on Indian case retrieval [9], we ran a bake-off on 15 hand-written fact patterns, each searched only against its own code. BGE-M3 reached recall@3 0.533 against 0.20 (Table I). InLegal-Sbert exhibited hubness [15]: the same generic sections topped nearly every query.</p>
+<div class="tbl"><div class="cap"><span class="n">TABLE I</span>Embedder bake-off (15 cases, code-masked)</div>
+<table><thead><tr><th>Model</th><th class="c">dim</th><th class="c">R@1</th><th class="c">R@3</th><th class="c">R@5</th><th class="c">MRR</th></tr></thead>
+<tbody><tr><td>InLegal-Sbert</td><td class="c">768</td><td class="c">.133</td><td class="c">.200</td><td class="c">.333</td><td class="c">.223</td></tr>
+<tr><td>BGE-M3</td><td class="c">1024</td><td class="c">.067</td><td class="c"><b>.533</b></td><td class="c"><b>.600</b></td><td class="c"><b>.295</b></td></tr></tbody></table></div>
+<p><b class="run">Index views.</b> Long sections are also indexed per sub-section (common intention is a 194-character sub-section of the 4,765-character BNS 3), and each IPC section is also indexed with its verified BNS counterpart's text, whose Illustrations read like case facts. Views exist only in the index and collapse back to their section on retrieval.</p>
+<p><b class="run">Precedent votes and fusion.</b> Facts are narrative and statutes abstract, but judgments are narrative too. For a query <i>q</i>, let <i>J</i> be the set of judgments owning one of the 60 chunks most similar to <i>q</i> in each of the era's judgment collections, with <i>s<sub>j</sub></i> the similarity of judgment <i>j</i>'s best chunk and <i>S</i>(<i>j</i>) the sections it cites. The vote for section <i>x</i> is</p>
+<div class="eq">v(x) = Σ<sub>j ∈ J, x ∈ S(j)</sub> s<sub>j</sub> ,<span class="num">(1)</span></div>
+<p class="noi">one vote per judgment, so one long judgment cannot outvote several courts. In a BNS-era query an IPC judgment votes only through the verified mapping. Votes and direct statute similarity are fused by reciprocal rank fusion [11],</p>
+<div class="eq">RRF(x) = <span class="frac"><span>1</span><span>k + r<sub>stat</sub>(x)</span></span> + <span class="frac"><span>1</span><span>k + r<sub>vote</sub>(x)</span></span>, &nbsp; k = 60,<span class="num">(2)</span></div>
+<p class="noi">dropping a term when <i>x</i> is absent from that ranking. Because the IPC often splits an offence into a definition (found by text similarity) and a punishment section (found by votes), each definition–punishment pair shares its best rank before fusion. Non-chargeable sections (definitions, general exceptions) neither rank nor receive votes. Node 1 reads the fused top 10 followed by any new sections of the statute-only top 10 (about 14–16 candidates), each with a 300-character excerpt: on the development set votes placed the right section in the top 3 more often (11/15 vs 9/15) but crowded out textual matches from the top 10 (13/15 vs 14/15).</p>
+<p><b class="run">Guardrail.</b> If the best judgment similarity is below 0.576, the midpoint between the highest non-legal input (0.557) and the lowest criminal fact pattern (0.595) in a calibration set, the LLM is not called. The best <i>statute</i> similarity did not separate the groups, and no threshold separated civil from criminal facts, so the guardrail only stops non-legal text and always returns the nearest sections for review rather than a bare refusal.</p>
+<p><b class="run">VRAM handoff.</b> The fp16 embedder (≈2 GB) and the 4-bit LLM (≈3.7 GB loaded) cannot share a 4 GB card. Per case, the LLM is evicted (Ollama <span class="tt">keep_alive</span> 0) and the eviction confirmed by polling, the embedder encodes the query and also prefetches the judgment neighbourhood needed later by Node 3, and is then freed before generation. Moving query encoding from CPU to GPU this way halved pre-generation time (36 s to 18 s) with identical output.</p>
+
+<h3>E. Statute Identification and Verification</h3>
+<p>Node 1 uses JSON-schema-constrained decoding (Ollama compiles the schema into the decoding grammar) with bounded lists and strings, temperature 0, a fixed seed and reasoning tokens disabled. Without the bounds the model once listed sections until the 5-minute request limit. The context window is the smallest of 8K/16K/32K tokens that holds the prompt, because the server silently truncates longer prompts. The schema places a fact profile <i>before</i> the section list, so the grammar makes the model commit to the facts first: whether an offence is disclosed, the number of accused, whether they acted together with a shared plan, the injury grade, a dangerous weapon, and whether harm was intended. A “no offence” answer is reported as a warning, never as a refusal.</p>
+<p>Node 2 parses each citation, recording any code it names, and calls <span class="tt">verify_section(g, code, s)</span>. The code argument is mandatory: checking against the union of the two codes would accept, for example, “BNS 420” (no such section; IPC 420 is cheating). A code named in the proposal is honoured, so “IPC 302” in a BNS case is rejected rather than read as BNS 302. Rejections are classified (does not exist, other code, not chargeable, other Act) and may carry a hint read from the graph (“its BNS counterpart is BNS 303”), with a caveat that the counterpart is right only if the original offence was. A verified IPC definition is charged under its punishing section (405 → 406). If any proposal in the latest round was rejected and fewer than two retries have been used, the graph returns to Node 1. A first version that sent the feedback as a plain follow-up message was ignored (the same rejected number was proposed three times); replaying the model's previous answer as an assistant turn and listing rejected numbers as banned made it correct itself (421 → 378 → 303 in the adversarial gate case).</p>
+
+<h3>F. Applicability Check and Legal Rules</h3>
+<p>Existence is not applicability: BNS 66–68 (sexual offences) verify for a fraud case. Node 2b gives the model each verified section's text (the definition prepended for an IPC punishment section) and the facts, and asks for up to three verbatim quotes supporting the ingredients, then the missing ingredient, then a verdict; asking for the missing ingredient first made the model hyper-literal. A quote counts only if it occurs in the facts after normalising case, whitespace and quote marks. It runs twice with the section order reversed, and a section is <i>supported</i> only if both passes support it. Used as a filter, the check removed the correct charge in 4 of 15 development cases for a precision gain from 38% to 42%, so it is <i>advisory</i>: doubted sections stay in the report with the stated reason.</p>
+<p>Deterministic rules, each behind an ablation switch, override or supply judgments where the law is mechanical (Table II).</p>
+<div class="tbl"><div class="cap"><span class="n">TABLE II</span>Deterministic legal rules (each can be switched off)</div>
+<table><thead><tr><th style="width:27%">Rule</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>Headcount</td><td>unlawful assembly/rioting need ≥5 accused; common intention and conspiracy ≥2</td></tr>
+<tr><td>Joint liability</td><td>≥2 accused with a shared plan → IPC 34 / BNS 3(5); ≥5 with a common object → IPC 149 / BNS 190</td></tr>
+<tr><td>Injury grade</td><td>(hurt / grievous hurt) × (weapon or not) → IPC 323–326 / BNS 115–118</td></tr>
+<tr><td>Death</td><td>homicide, dowry death, abetment of suicide need a reported death</td></tr>
+<tr><td>Attempt</td><td>an attempt to murder is never doubted only for want of a death</td></tr>
+<tr><td>Lesser-included</td><td>a plain offence beside a supported aggravated form (417 in 420) is shown as included</td></tr>
+<tr><td>Chargeability</td><td>definitions and general exceptions are never charges</td></tr>
+</tbody></table></div>
+
+<h3>G. Precedents, Outcomes and Arguments</h3>
+<p><b class="run">Node 3</b> returns, for each charge, up to three judgments with a graph edge to that section, ordered by similarity of their best chunk to the facts; similarity never makes a judgment a precedent by itself. For a BNS charge it also follows the verified mapping to the IPC predecessor. This is necessary rather than optional: in our corpus BNS 303 (theft) has no direct precedent, while its predecessors IPC 378 and 379 have 11 and 158. Companion judgments filed under several numbers are merged when their 5-word shingle overlap coefficient is at least 0.6. <b class="run">Node 5</b> aggregates, in SQL only, how appeals and petitions citing each section were disposed of, suppressing sections with fewer than five judgments, and labels the figures as disposals, not conviction rates. <b class="run">Node 4</b> drafts up to four counter-arguments, each targeting one charge, from the charges' statute text, the applicability doubts and labelled precedents. A final deterministic pass checks that each targets a charged section, cites only supplied precedent labels that verify in the graph, and quotes the facts verbatim; failures are flagged on the argument, not hidden.</p>
+
+<h3>H. Interface</h3>
+<p>A FastAPI backend serves a plain HTML/JS page that makes no external requests. The page streams real stage events emitted by the pipeline (not an animation), shows a per-section verification ledger (retrieved rank, proposer, graph, facts), draws verified, doubted and rejected sections distinctly, and offers bare-act text with punishment read from the section's own words, an IPC–BNS word diff, arrest and bail from the official First Schedules, PDF input, a printable memo and follow-up questions answered only from the report.</p>
+
+<h2>IV. Data</h2>
+<p>The corpus holds the IPC (575 sections; civictech JSON, with 80 truncated sections completed from an official 1997 consolidation where civictech's words are its exact prefix), the BNS (358 sections parsed from the official gazette PDF, as no trustworthy machine-readable copy existed), 918 Supreme Court judgments 2023–2026 that apply a penal code (English, from an open S3 archive), and 1,827 High Court judgments from NyayaAnumana [7] filtered to theft, hurt, cheating and criminal breach of trust: 87,969 chunks in all. Statutes are chunked one section per chunk; judgments by paragraph (or by whole-sentence runs of about 1,200 characters where the source has no paragraphs), never by fixed token windows. Judgments are routed to collections by the code they apply, not by decision date. The citation graph has 933 section nodes, 2,699 case nodes, 16,493 case→section edges and 539 IPC→BNS mapping edges.</p>
+<p><b class="run">Mapping.</b> An overlap-coefficient scorer (|A∩B| / min(|A|,|B|), robust to the BNS inlining Explanations and Illustrations) proposed a BNS counterpart for each of 574 IPC sections; every row was then reviewed against the gazette text (538 bridges, 36 with no counterpart, each proven by phrase-search absence), and IPC 304B → BNS 80 was added later, for 539 bridges. The review was carried out by an AI assistant following a documented method, not by a lawyer.</p>
+<p><b class="run">Defects found by reading, not by validation.</b> Schema validation, deduplication and encoding checks all passed while: PDF ligatures padded with spaces broke words in 8.6% of judgment chunks; running headers appeared in 17%; 11 BNS titles were lost and three misassigned by a coordinate error in marginal-note parsing; one “paragraph” was 397,044 characters long; and 7,035 Code of Criminal Procedure citations (which reuse IPC numbers, e.g. CrPC 378, appeal against acquittal, vs. IPC 378, theft) were stored as IPC sections. A later audit of 100 random graph edges found only 63% pointed to penal-code sections (headnotes naming the Act before the sections, bare procedural numbers, suit numbers). After a fix using enactment detection around each citation and a corpus-derived trust table for bare numbers, a <i>fresh</i> sample of 100 edges was 96% correct.</p>
+
+<h2>V. Case Study</h2>
+<p class="noi">The worked example used throughout development: <span class="quote">“The complainant parked his motorcycle outside his house at night. In the morning it was gone. CCTV shows the accused pushing it away down the lane and riding off. The accused had no permission to take it and did not return it.”</span>, offence date 15 August 2024. The router selects the BNS. Retrieval ranks BNS 303 (theft) first of 14 candidates. Node 1 proposes BNS 303; Node 2 verifies it; Node 2b supports it on both passes with verbatim quotes. BNS 303 has no direct precedent, so Node 3 returns three IPC 379 theft judgments from three High Courts through the mapping, labelled as such; Node 5 suppresses BNS 303 (0 judgments) and reports IPC 378 (11) and IPC 379 (158) disposals beside it. Node 4 produces one argument, that dishonest intention is not established by unauthorised movement alone, whose fact quote is verified verbatim. The run takes about 71 s on the laptop (unload 6.5 s, guardrail and embedder load 10.9 s, retrieval 0.5 s, graph 52.9 s).</p>
+
+<h2>VI. Evaluation</h2>
+<h3>A. Protocol</h3>
+<p>Each phase had a written gate. Method changes were measured on a 15-case development set against the same code with only that change disabled (ablation switches), then on a held-out set written before the change and scored once. External evaluation used (i) real Patna High Court orders from an ungated statute-identification dataset (CC-BY-4.0) while benchmark access was pending and (ii) IL-TUR LSI. Definition and punishment sections (IPC 378/379) count as one offence on both sides. The hand-written sets were authored with AI assistance and are not lawyer-reviewed, so we lead with the external results.</p>
+
+<h3>B. Citation Verification</h3>
+<p>On an adversarial set of 10 real and 10 fabricated section numbers (including BNS 420 and BNS 498A, real only in the IPC) verification was correct in 20/20. Routing was correct in 30/30 runs (10 cases × 3), and retrieval touched only the routed code's collections. In normal use on 30 real orders the model proposed no non-existent section in 94 proposals; it also never adopted an IPC number planted in a BNS-era complaint (0/9). With retrieval withheld (Table III) it cited from memory and Node 2 rejected 20 of 68 proposals, mostly IPC numbers in BNS cases (420, 378–383, 465–468) and a few numbers that exist in neither code (420A, 520); all six affected cases recovered a verified section within two retries, and no rejected citation reached a report in any evaluation.</p>
+<div class="tbl"><div class="cap"><span class="n">TABLE III</span>Hallucination catch by the verifier</div>
+<table><thead><tr><th>Condition</th><th class="c">proposals</th><th class="c">rejected</th><th class="c">leaked</th></tr></thead>
+<tbody><tr><td>30 real orders, with retrieval</td><td class="c">94</td><td class="c">0 (0%)</td><td class="c">0</td></tr>
+<tr><td>15 dev cases, retrieval withheld</td><td class="c">68</td><td class="c">20 (29%)</td><td class="c">0</td></tr></tbody></table></div>
+
+<h3>C. Retrieval</h3>
+<p>On the development set the fused top-3 contained a relevant section in 11/15 cases (12/15 under a manual relevance reading) and 10/10 on its first held-out set; the candidate list Node 1 actually reads contained a relevant section in 26 of 27 cases, the exception being common intention, which a rule supplies. On 300 real orders a charged section appeared in the list for 157 (52%).</p>
+
+<h3>D. End-to-End Statute Identification</h3>
+<p>Table IV summarises the full pipeline. Across three held-out sets the applicability check doubted none of 31 correct charges. Ten out-of-domain probes were all handled correctly (civil, tax, labour and family matters flagged as disclosing no offence; non-legal text stopped by the guardrail before any LLM call).</p>
+<div class="tbl"><div class="cap"><span class="n">TABLE IV</span>End-to-end results (a case is a hit if a correct section is charged)</div>
+<table><thead><tr><th>Set</th><th class="c">hit rate</th><th class="c">precision</th></tr></thead>
+<tbody>
+<tr><td>Dev (15, hand-written)</td><td class="c">15/15</td><td class="c">35%</td></tr>
+<tr><td>Held-out 2 (16)</td><td class="c">14/16</td><td class="c">58%</td></tr>
+<tr><td>Held-out 3 (10, civil-looking)</td><td class="c">6/10</td><td class="c">31%</td></tr>
+<tr><td>Held-out 4 (12)</td><td class="c">8/12</td><td class="c">42%</td></tr>
+<tr><td>Broad coverage (19)</td><td class="c">16/19</td><td class="c">68%</td></tr>
+<tr><td>Real orders, first 30</td><td class="c">12/30</td><td class="c">14%</td></tr>
+<tr><td>Real orders, fresh 30 (final code)</td><td class="c">13/30</td><td class="c">21%</td></tr>
+</tbody></table></div>
+
+<h3>E. Ablations</h3>
+<p>Table V switches components off on the development set, at the level of verified sections. The fact profile carries the joint-liability rule: without it common intention is lost again and extra sections rise from 30 to 37. Exclusion and chargeability move results by less than one case; they are kept because a definition is never a charge. Showing Node 1 both candidate lists and charging definitions under their punishing section raised recall from 14 to 15 of 15 and precision from 33% to 35%.</p>
+<div class="tbl"><div class="cap"><span class="n">TABLE V</span>Development-set ablations (15 cases, verified level)</div>
+<table><thead><tr><th>Configuration</th><th class="c">recall</th><th class="c">precision</th></tr></thead>
+<tbody>
+<tr><td>All hardening changes off</td><td class="c">12/15</td><td class="c">33%</td></tr>
+<tr><td>All on</td><td class="c">14/15</td><td class="c">38%</td></tr>
+<tr><td>Fact profile off</td><td class="c">12/15</td><td class="c">30%</td></tr>
+<tr><td>Candidate exclusion off</td><td class="c">14/15</td><td class="c">39%</td></tr>
+<tr><td>Chargeability off</td><td class="c">14/15</td><td class="c">39%</td></tr>
+<tr class="mid"><td>Dual list + punishing section off</td><td class="c">14/15</td><td class="c">33%</td></tr>
+<tr><td>Dual list + punishing section on</td><td class="c">15/15</td><td class="c">35%</td></tr>
+</tbody></table></div>
+
+<h3>F. IL-TUR Legal Statute Identification</h3>
+<p>We ran the complete user-facing pipeline on 100 documents sampled (seed 20260927) from each split, with the router given an IPC-era date because the benchmark has none. Table VI compares with the published supervised baselines [4]. The development split was used for analysis and decisions; the test split was run once at the end, with the same code and settings.</p>
+<div class="tbl"><div class="cap"><span class="n">TABLE VI</span>IL-TUR LSI, macro-F1 over all 100 labels</div>
+<table><thead><tr><th>System</th><th class="c">training</th><th class="c">macro-F1</th></tr></thead>
+<tbody>
+<tr><td>LeSICiN [5]</td><td class="c">supervised</td><td class="c">28.1</td></tr>
+<tr><td>Hier. InLegalBERT</td><td class="c">supervised</td><td class="c">26.2</td></tr>
+<tr><td>Hier. LegalBERT</td><td class="c">supervised</td><td class="c">21.7</td></tr>
+<tr class="mid"><td><span class="sc">Pramana</span>, dev (100 docs)</td><td class="c">zero-shot</td><td class="c">9.8</td></tr>
+<tr><td><span class="sc">Pramana</span>, test (100 docs)</td><td class="c">zero-shot</td><td class="c">11.8</td></tr>
+</tbody></table></div>
+<p>On the development split micro-precision/recall/F1 were 29/17/21, and macro-F1 over the 84 labels with support was 11.6 (bootstrap 95% CI 8.6–14.3). On the test split macro-F1 was 11.8 over all 100 labels (13.9 over the 85 with support, CI 10.9–17.2) and micro-precision/recall/F1 40/21/27.4. The intervals overlap almost entirely, so we read the test result as confirming the development result rather than improving on it. Two test documents exceeded the 32K-token context the hardware allows and are scored as empty.</p>
+<p>The gap to the supervised baselines is large and expected: they learn IL-TUR's label conventions from 42K training documents, whereas <span class="sc">Pramana</span> is zero-shot with a 4B model. Error analysis attributes the loss to three causes, present on both splits. First, 30 (dev) and 33 (test) documents received no charge; on dev most state no allegation (bail conditions, adjournments), but about five real fact patterns were wrongly declined. Second, frequent minor companion offences (IPC 504, 294, 323) rarely reach the candidate list: only 34% (dev) and 37% (test) of gold labels did. Third, the system over-charges up the gravity scale: common intention, attempt to murder and grievous hurt are the commonest false positives. The grave, well-represented offences are handled well (test F1 for IPC 302: 0.78). About 5–7% of gold labels are procedural (CrPC) numbers that no penal-code system can produce.</p>
+
+<h3>G. Negative Results</h3>
+<p>Several standard techniques made retrieval worse on the development set and were removed (Table VII). The cross-encoder and sparse scoring both rewarded surface word overlap, which is a poor signal between narrative facts and abstract statutory text; precedent votes, which encode what courts charged on similar facts, carried the signal they lacked. Running Node 1 twice over two candidate orderings added relevant sections only in redundant forms while precision fell from 35% to 26%. A companion-offence rule aimed at IL-TUR's minor labels moved dev macro-F1 from 12.8 to 12.6 on the documents it was tested on and was not merged.</p>
+<div class="tbl"><div class="cap"><span class="n">TABLE VII</span>Methods tried and rejected (development set)</div>
+<table><thead><tr><th>Change</th><th class="c">effect</th></tr></thead>
+<tbody>
+<tr><td>InLegal-Sbert embedder</td><td class="c">R@3 .533 → .200</td></tr>
+<tr><td>Cross-encoder rerank (bge-reranker-v2-m3)</td><td class="c">top-3 11 → 5 of 15</td></tr>
+<tr><td>BGE-M3 sparse fused with dense</td><td class="c">top-3 11 → 7 of 15</td></tr>
+<tr><td>HyDE query restatement</td><td class="c">11 → 11 of 15</td></tr>
+<tr><td>IDF-weighted votes; RRF k=10</td><td class="c">11 → 10 of 15</td></tr>
+<tr><td>Node 1 two-ordering union</td><td class="c">precision 35% → 26%</td></tr>
+<tr><td>Applicability check as a filter</td><td class="c">right charge lost in 4/15</td></tr>
+</tbody></table></div>
+
+<h2>VII. Discussion</h2>
+<p class="noi"><b class="run">What verification buys.</b> The verifier removes a dangerous and checkable failure, a section that does not exist in the applicable code, at no measurable cost in recall, and the retry loop recovers from it. It cannot address applicability, which is where the remaining error lies.</p>
+<p><b class="run">Rules versus a small model.</b> The 4B model is reliable at reading and writing but not at bookkeeping: it listed sections it had itself ruled out, doubted an attempt to murder because no one died, and changed verdicts with the order of a list. Moving each mechanical condition into code improved behaviour without fine-tuning, and every rule can be switched off for measurement.</p>
+<p><b class="run">Asymmetric errors.</b> For a research aid, missing a real offence or falsely declaring “no offence” is worse than an extra, flagged section. This motivated the advisory applicability check and the rule that no path returns a bare refusal, after two real false declines were observed.</p>
+<p><b class="run">Evaluation realism.</b> Results fall sharply from hand-written facts (60–100%) to real court orders (40–65%) to the benchmark (macro-F1 9.8–11.8). Real inputs are largely procedural; an intake step that extracts the alleged facts reduced procedural false charges from 9 to 3 on fresh orders, with the hit rate unchanged within noise.</p>
+<h3>A. Threats to Validity</h3>
+<p>The hand-written sets are small (10–19 cases) and were written with AI assistance, so one- or two-case differences are within noise; we observed outcome flips with identical input to the model. Local generation is not exactly reproducible run to run despite temperature 0 and a fixed seed, plausibly because the model is split between GPU and CPU. The IL-TUR samples are 100 documents per split, not the full splits, and IL-TUR labels include procedural numbers and occasional errors. The external real-order set is narrow (mostly Patna High Court bail orders from 2012).</p>
+
+<h2>VIII. Ethics and Privacy</h2>
+<p class="noi">The system is a research aid, not legal advice; the interface says so and keeps verified, doubted and rejected sections visually distinct to limit over-trust, and every section links to its bare-act text. All generation runs on the user's machine, so a client's facts are never sent to a third party; the page loads no external resources. Judgments used are public; NyayaAnumana and IL-TUR were accessed under their terms, and the external order set is CC-BY-4.0. The mapping, test keys and gate judgements were produced by an AI assistant and are labelled as such in the data; they have not been reviewed by a lawyer.</p>
+
+<h2>IX. Limitations</h2>
+<p class="noi">Precision is low and the system is not state of the art on statute identification. The High Court data covers four offence families, and BNS case law is scarce, so post-2024 precedent comes almost entirely through IPC predecessors. Analytics are appeal disposals, not conviction rates, and no sentence ranges are reported. Prior-case retrieval (Node 3) is not evaluated on a benchmark. Inputs must be English text; scanned documents are not read.</p>
+
+<h2>X. Conclusion</h2>
+<p class="noi"><span class="sc">Pramana</span> shows that a zero-cost, fully local legal research assistant can make citation existence a guaranteed property rather than a hoped-for one, even across a wholesale renumbering of the criminal code, by routing deterministically, verifying against a code-scoped citation graph, and confining the LLM to proposal and drafting. The open problem is applicability; the next steps are lawyer review of the mapping and keys, a precision model over (facts, section) pairs, prior-case retrieval evaluation on IL-TUR PCR, and broader High Court coverage.</p>
+
+<h2>Reproducibility</h2>
+<p class="noi">Every result above is produced by a script in the project repository: <span class="tt">scripts/embedding_bakeoff.py</span> (Table I), <span class="tt">scripts/eval_phase6.py all</span> (Tables III and IV, real orders), <span class="tt">scripts/score_runs.py</span> (fixture sets), <span class="tt">scripts/eval_lsi.py --split dev|test --n 100</span> (Table VI), with per-case records committed beside each summary. Ablations use the <span class="tt">PRAMANA_ABLATE</span> environment variable.</p>
+
+<h2>Acknowledgment</h2>
+<p class="noi"><span class="todo">TODO: acknowledgements.</span> The system's code, data processing and documentation were developed with the assistance of an AI coding agent (Claude Code, Anthropic), directed by the author; the IPC–BNS mapping review and the test-set answer keys were produced with that assistance and are labelled as such in the released data. <span class="todo">TODO: adjust this statement to your institution's policy on AI assistance.</span></p>
+
+<h2>References</h2>
+<div class="refs">
+<div><span>[1]</span><span>Government of India, “The Bharatiya Nyaya Sanhita, 2023 (Act No. 45 of 2023),” <i>Gazette of India</i>, Ministry of Law and Justice, 2023.</span></div>
+<div><span>[2]</span><span>M. Dahl, V. Magesh, M. Suzgun, and D. E. Ho, “Large legal fictions: Profiling legal hallucinations in large language models,” <i>Journal of Legal Analysis</i>, vol. 16, no. 1, 2024.</span></div>
+<div><span>[3]</span><span>V. Magesh, F. Surani, M. Dahl, M. Suzgun, C. D. Manning, and D. E. Ho, “Hallucination-free? Assessing the reliability of leading AI legal research tools,” arXiv:2405.20362, 2024.</span></div>
+<div><span>[4]</span><span>A. Joshi, S. Paul, A. Sharma, P. Goyal, S. Ghosh, and A. Modi, “IL-TUR: Benchmark for Indian legal text understanding and reasoning,” in <i>Proc. ACL</i>, 2024.</span></div>
+<div><span>[5]</span><span>S. Paul, P. Goyal, and S. Ghosh, “LeSICiN: A heterogeneous graph-based approach for automatic legal statute identification from Indian legal documents,” in <i>Proc. AAAI</i>, 2022.</span></div>
+<div><span>[6]</span><span>S. Paul, A. Mandal, P. Goyal, and S. Ghosh, “Pre-trained language models for the legal domain: A case study on Indian law,” in <i>Proc. ICAIL</i>, 2023.</span></div>
+<div><span>[7]</span><span>S. K. Nigam, B. D. Patnaik, S. Mishra, N. Shallum, K. Ghosh, and A. Bhattacharya, “NyayaAnumana and INLegalLlama: The largest Indian legal judgment prediction dataset and specialized language model for enhanced decision analysis,” in <i>Proc. COLING</i>, 2025, arXiv:2412.08385.</span></div>
+<div><span>[8]</span><span>S. Paul, R. Dogra, P. Goyal, and S. Ghosh, “ILSIC: Corpora for identifying Indian legal statutes from queries by laypeople,” in <i>Findings of EACL</i>, 2026, arXiv:2602.00881.</span></div>
+<div><span>[9]</span><span>D. Premasiri, T. Ranasinghe, and R. Mitkov, “LLM-based embedders for prior case retrieval,” in <i>Proc. RANLP</i>, 2025, arXiv:2507.18455.</span></div>
+<div><span>[10]</span><span>P. Lewis <i>et al.</i>, “Retrieval-augmented generation for knowledge-intensive NLP tasks,” in <i>Proc. NeurIPS</i>, 2020.</span></div>
+<div><span>[11]</span><span>G. V. Cormack, C. L. A. Clarke, and S. Büttcher, “Reciprocal rank fusion outperforms Condorcet and individual rank learning methods,” in <i>Proc. SIGIR</i>, 2009.</span></div>
+<div><span>[12]</span><span>J. Chen, S. Xiao, P. Zhang, K. Luo, D. Lian, and Z. Liu, “BGE M3-Embedding: Multi-lingual, multi-functionality, multi-granularity text embeddings through self-knowledge distillation,” arXiv:2402.03216, 2024.</span></div>
+<div><span>[13]</span><span>R. Goebel, Y. Kano, M.-Y. Kim, J. Kwan, K. Satoh, H. Yamada, and M. Yoshioka, “An overview of the COLIEE 2025 competition: Legal case law and statute law information retrieval and entailment,” in <i>Proc. ICAIL</i>, 2025, pp. 506–515.</span></div>
+<div><span>[14]</span><span>X. Wang <i>et al.</i>, “Self-consistency improves chain of thought reasoning in language models,” in <i>Proc. ICLR</i>, 2023.</span></div>
+<div><span>[15]</span><span>M. Radovanović, A. Nanopoulos, and M. Ivanović, “Hubs in space: Popular nearest neighbors in high-dimensional data,” <i>JMLR</i>, vol. 11, pp. 2487–2531, 2010.</span></div>
+<div><span>[16]</span><span>Qwen Team, “Qwen3 technical report,” arXiv:2505.09388, 2025. (The model used is the later qwen3.5:4b release, served by Ollama; no standalone Qwen3.5 text-model report was found.)</span></div>
+<div><span>[17]</span><span>Ollama, https://ollama.com, 2026.</span></div>
+<div><span>[18]</span><span>LangChain, “LangGraph,” https://github.com/langchain-ai/langgraph, 2026.</span></div>
+</div>
+
+</div>
+</body>
+</html>

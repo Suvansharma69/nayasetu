@@ -1,0 +1,1301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pramana</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%238a1f2d'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' text-anchor='middle' fill='%23fff'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/fonts/fonts.css">
+<style>
+/* Layout: a register of matters on the left; one reading column for the matter file, set like a
+   law report (section numbers in the margin, case names in italics); a docked instructions bar. */
+:root {
+  /* warm greys, biased toward the oxblood accent */
+  --paper: #f6f4f2;  --sheet: #ffffff;  --ink: #1e1a1b;  --ink-2: #4b4446;  --muted: #716a6b;
+  --rule: #e6e0dd;   --rule-2: #cec6c3; --accent: #8a1f2d; --accent-ink: #ffffff; --accent-wash: #f6eaeb; --fill: #8a1f2d; --fill-ink: #ffffff;
+  --ok: #1d6b3b;     --ok-wash: #eef6f0; --warn: #8f5600;  --warn-wash: #fbf3e4; --bad: #ae2a1f; --bad-wash: #fbeeec;
+  --hl: #fff2c4;
+  /* the register (left panel) and the matter band */
+  --reg-bg: #2a1418; --reg-ink: #f3e9ea; --reg-muted: #b9a3a6; --reg-rule: #44262b; --reg-hover: #3a1c22; --reg-accent: #e7a0a9;
+  --band-1: #8a1f2d; --band-2: #5e1520; --band-ink: #ffffff; --band-muted: #f0cfd3;
+  /* outcome chart: categorical slots 1-4, validated for colour-blind separation */
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+  --f-display: "Spectral", Georgia, "Times New Roman", serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "IBM Plex Mono", Consolas, "Courier New", monospace;
+  --shadow: 0 1px 2px rgba(20, 24, 33, .05);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #151213; --sheet: #1d191b; --ink: #ede7e8; --ink-2: #c5bcbe; --muted: #988e91;
+    --rule: #322b2e;  --rule-2: #463d41; --accent: #e08b96; --accent-ink: #1d0e11; --accent-wash: #3a2128; --fill: #9b3341; --fill-ink: #ffffff;
+    --ok: #6cc38a;    --ok-wash: #17271c; --warn: #e3b25a; --warn-wash: #2f2612; --bad: #f08b81; --bad-wash: #34191a;
+    --hl: #4a3f20;
+    --reg-bg: #0f0a0c; --reg-ink: #ede2e4; --reg-muted: #9c878b; --reg-rule: #2b1c20; --reg-hover: #22151a; --reg-accent: #e08b96;
+    --band-1: #6a1823; --band-2: #3e0e16; --band-ink: #ffffff; --band-muted: #e6c2c7;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+    --shadow: none; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #151213; --sheet: #1d191b; --ink: #ede7e8; --ink-2: #c5bcbe; --muted: #988e91;
+  --rule: #322b2e;  --rule-2: #463d41; --accent: #e08b96; --accent-ink: #1d0e11; --accent-wash: #3a2128; --fill: #9b3341; --fill-ink: #ffffff;
+  --ok: #6cc38a;    --ok-wash: #17271c; --warn: #e3b25a; --warn-wash: #2f2612; --bad: #f08b81; --bad-wash: #34191a;
+  --hl: #4a3f20;
+  --reg-bg: #0f0a0c; --reg-ink: #ede2e4; --reg-muted: #9c878b; --reg-rule: #2b1c20; --reg-hover: #22151a; --reg-accent: #e08b96;
+  --band-1: #6a1823; --band-2: #3e0e16; --band-ink: #ffffff; --band-muted: #e6c2c7;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+  --shadow: none; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { background: var(--paper); color: var(--ink); font: 15px/1.6 var(--f-body); -webkit-font-smoothing: antialiased; }
+button, input, textarea, select { font: inherit; color: inherit; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+
+.app { display: grid; grid-template-columns: 272px minmax(0, 1fr); height: 100%; }
+
+/* ---------- register (left) ---------- */
+.register { background: var(--reg-bg); color: var(--reg-ink); border-right: 1px solid var(--reg-rule); display: flex; flex-direction: column; min-height: 0; }
+.brand { padding: 20px 20px 14px; border-bottom: 1px solid var(--reg-rule); }
+.brand .name { font-family: var(--f-display); font-size: 24px; font-weight: 600; letter-spacing: .01em; line-height: 1.1; }
+.brand .name::first-letter { color: var(--reg-accent); }
+.brand p { margin: 4px 0 0; font-size: 12.5px; color: var(--reg-muted); line-height: 1.45; }
+.reg-actions { display: grid; gap: 6px; padding: 14px 16px; border-bottom: 1px solid var(--reg-rule); }
+.reg-btn { display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px; border: 1px solid var(--reg-rule); border-radius: 4px;
+  background: transparent; color: var(--reg-ink); cursor: pointer; text-align: left; font-size: 13.5px; font-weight: 500; }
+.reg-btn:hover { background: var(--reg-hover); border-color: var(--reg-muted); }
+.reg-btn.primary { background: var(--fill); border-color: color-mix(in srgb, var(--fill) 70%, #ffffff); color: var(--fill-ink); }
+.reg-btn.primary:hover { filter: brightness(1.06); }
+.reg-h { margin: 16px 20px 6px; font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--reg-muted); }
+.matters { overflow-y: auto; padding: 0 8px 12px; flex: 1; }
+.matter-link { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 2px 8px; width: 100%; padding: 8px 12px; border: 0; border-radius: 4px;
+  background: transparent; cursor: pointer; text-align: left; }
+.matter-link { color: var(--reg-ink); }
+.matter-link:hover { background: var(--reg-hover); }
+.matter-link .code { grid-row: span 2; font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; color: var(--reg-accent); padding-top: 2px; }
+.matter-link .t { font-size: 13.5px; font-weight: 500; line-height: 1.35; }
+.matter-link .d { font-size: 12px; color: var(--reg-muted); }
+.reg-foot { border-top: 1px solid var(--reg-rule); padding: 10px 20px 14px; display: grid; gap: 8px; font-size: 12px; color: var(--reg-muted); }
+.health { display: flex; align-items: center; gap: 7px; }
+.health i { width: 7px; height: 7px; border-radius: 50%; background: var(--reg-muted); flex: none; }
+.health i.up { background: #5fbf7f; } .health i.down { background: #f08b81; }
+.theme { display: flex; border: 1px solid var(--reg-rule); border-radius: 4px; overflow: hidden; width: max-content; }
+.theme button { border: 0; background: transparent; padding: 3px 9px; font-size: 12px; cursor: pointer; color: var(--reg-muted); }
+.theme button + button { border-left: 1px solid var(--reg-rule); }
+.theme button[aria-pressed="true"] { background: var(--reg-hover); color: var(--reg-ink); font-weight: 600; }
+
+/* ---------- main column ---------- */
+main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.topbar { display: none; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--rule); background: var(--sheet); }
+.topbar .name { font-family: var(--f-display); font-size: 19px; font-weight: 600; }
+.thread { flex: 1; overflow-y: auto; scroll-behavior: smooth; }
+.col { max-width: 920px; margin: 0 auto; padding: 28px 28px 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+/* Grid items default to min-width: auto, so the ledger's and the evidence
+   map's minimum widths would widen the whole column on a phone instead of
+   scrolling inside their own wrappers. */
+.col > *, .sheet { min-width: 0; }
+.entry { animation: rise .3s ease both; min-width: 0; }
+.label { font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.entry.facts, .entry.question { border-left: 2px solid var(--rule-2); padding: 2px 0 2px 16px; }
+.entry.facts p, .entry.question p { margin: 0; white-space: pre-wrap; font-family: var(--f-display); font-size: 17px; line-height: 1.55; color: var(--ink); }
+.entry.question p { font-style: italic; }
+.note { color: var(--muted); font-size: 13.5px; }
+.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; box-shadow: var(--shadow); padding: 22px 26px; }
+.btn { border: 1px solid var(--fill); background: var(--fill); color: var(--fill-ink); border-radius: 4px; padding: 8px 18px; cursor: pointer; font-weight: 600; font-size: 14px; }
+.btn:hover { filter: brightness(1.06); }
+.btn:disabled { opacity: .45; cursor: default; filter: none; }
+.tbtn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 4px; padding: 6px 11px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--ink-2); }
+.tbtn:hover { border-color: var(--ink-2); color: var(--ink); }
+.tbtn:disabled { opacity: .45; cursor: default; }
+.tbtn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.link { border: 0; background: none; padding: 0; color: var(--accent); cursor: pointer; font-size: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.ic { width: 16px; height: 16px; flex: none; }
+.banner { border: 1px solid var(--rule); border-radius: 4px; padding: 10px 14px; font-size: 14px; background: var(--paper); }
+.banner.warn { border-color: color-mix(in srgb, var(--warn) 40%, transparent); background: var(--warn-wash); }
+.banner.err { border-color: color-mix(in srgb, var(--bad) 40%, transparent); background: var(--bad-wash); color: var(--bad); }
+.banner.info { background: var(--accent-wash); border-color: color-mix(in srgb, var(--accent) 25%, transparent); }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes rowin { from { opacity: 0; } to { opacity: 1; } }
+/* an inset shadow, not a background: the cell keeps its status wash underneath */
+@keyframes cellin { from { box-shadow: inset 0 0 0 999px var(--hl); } to { box-shadow: inset 0 0 0 999px transparent; } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); } 100% { box-shadow: 0 0 0 9px transparent; } }
+@keyframes flow { from { background-position: 0 0; } to { background-position: 12px 0; } }
+@keyframes flash { from { background: var(--hl); } to { background: transparent; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes grow { from { transform: scaleX(0); } to { transform: none; } }
+
+/* ---------- welcome ---------- */
+.welcome h1 { font-family: var(--f-display); font-size: 34px; line-height: 1.15; font-weight: 600; margin: 4px 0 10px; max-width: 18ch; }
+.welcome .lede { font-size: 16px; color: var(--ink-2); max-width: 62ch; margin: 0 0 22px; }
+.welcome h2 { font-family: var(--f-display); font-size: 19px; font-weight: 600; margin: 28px 0 4px; }
+.samples-table { width: 100%; border-collapse: collapse; }
+.samples-table td { padding: 10px 8px; border-top: 1px solid var(--rule); vertical-align: top; }
+.samples-table tr:last-child td { border-bottom: 1px solid var(--rule); }
+.samples-table tr[data-id] { cursor: pointer; }
+.samples-table tr[data-id]:hover td { background: var(--paper); }
+.samples-table .code { font-family: var(--f-mono); font-size: 12px; color: var(--accent); width: 44px; padding-top: 12px; }
+.samples-table .t { font-weight: 500; }
+.samples-table .d { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; text-align: right; padding-top: 12px; }
+
+/* ---------- the pipeline track ---------- */
+.track { list-style: none; margin: 14px 0 6px; padding: 0; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.track li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px; min-width: 0; }
+.track li + li::before { content: ""; position: absolute; top: 6px; right: 50%; width: 100%; height: 2px; background: var(--rule-2); }
+.track .dot { position: relative; z-index: 1; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--rule-2); background: var(--sheet); transition: background .25s, border-color .25s; }
+.track .lbl { font-size: 11.5px; color: var(--muted); line-height: 1.25; }
+.track li.on .dot { border-color: var(--accent); animation: pulse 1.3s ease-out infinite; }
+.track li.on::before { background: repeating-linear-gradient(90deg, var(--accent) 0 7px, transparent 7px 12px); animation: flow .5s linear infinite; }
+.track li.on .lbl { color: var(--ink); font-weight: 600; }
+.track li.done .dot { background: var(--ink); border-color: var(--ink); }
+.track li.done::before { background: var(--ink); }
+.track li.done .lbl { color: var(--ink-2); }
+.track li.skip .dot { border-style: dashed; }
+.track li .ret { position: absolute; top: -18px; font-family: var(--f-mono); font-size: 10.5px; color: var(--warn); white-space: nowrap; }
+
+/* ---------- the live run ---------- */
+.run-h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.run-title { font-family: var(--f-display); font-size: 19px; font-weight: 600; }
+.run-meta { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 10px; }
+.spin { display: inline-block; width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--accent); border-top-color: transparent; animation: spin .8s linear infinite; flex: none; }
+.now { font-size: 14px; color: var(--ink-2); margin: 6px 0 0; min-height: 22px; }
+.stamp { display: inline-flex; align-items: baseline; gap: 10px; margin-top: 14px; padding: 6px 12px; border: 3px double var(--accent); border-radius: 2px; color: var(--accent); animation: rise .35s ease both; }
+.stamp b { font-family: var(--f-mono); font-size: 18px; letter-spacing: .08em; }
+.stamp span { font-size: 12.5px; }
+.ledger-wrap { overflow-x: auto; margin-top: 16px; }
+.ledger { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 560px; }
+.ledger th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--rule-2); white-space: nowrap; }
+.ledger td { padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.ledger tr { animation: rowin .5s ease both; }
+.ledger td.fresh { animation: cellin 1.2s ease both; }
+.ledger .sec { font-family: var(--f-mono); font-weight: 500; white-space: nowrap; }
+.ledger .tt { display: block; color: var(--muted); font-size: 12.5px; line-height: 1.35; max-width: 26ch; }
+.ledger tr.struck .sec { text-decoration: line-through; color: var(--muted); }
+.mk-ok { color: var(--ok); font-weight: 500; } .mk-bad { color: var(--bad); font-weight: 500; } .mk-warn { color: var(--warn); font-weight: 500; }
+.ledger td:has(> .mk-ok) { background: var(--ok-wash); } .ledger td:has(> .mk-warn) { background: var(--warn-wash); }
+.ledger td:has(> .mk-bad) { background: var(--bad-wash); }
+.ledger tr.struck td:first-child { background: var(--bad-wash); }
+.mk-dim { color: var(--muted); }
+.cands { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+.cands .mono { color: var(--ink-2); }
+.tally { display: flex; flex-wrap: wrap; gap: 6px 26px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 13.5px; color: var(--ink-2); }
+.tally i { font-style: normal; }
+.tally b { font-family: var(--f-mono); font-size: 17px; font-weight: 500; color: var(--ink); margin-right: 6px; }
+
+/* ---------- the matter file (report) ---------- */
+.sheet.matter { padding-top: 0; overflow: hidden; }
+.matter-h { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 28px; align-items: flex-end;
+  margin: 0 -26px; padding: 22px 26px 18px; color: var(--band-ink);
+  background: linear-gradient(115deg, var(--band-1) 0%, var(--band-2) 100%); }
+.codemark .code { font-family: var(--f-mono); font-size: 30px; font-weight: 500; letter-spacing: .06em; color: var(--band-ink); line-height: 1; }
+.codemark .full { display: block; font-family: var(--f-display); font-size: 16px; margin-top: 6px; color: var(--band-ink); }
+.meta { display: flex; gap: 26px; margin: 0; flex-wrap: wrap; }
+.meta div { display: grid; }
+.meta dt { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--band-muted); }
+.meta dd { margin: 0; font-family: var(--f-mono); font-size: 14px; color: var(--band-ink); }
+.verdict { margin: 16px 0 8px; font-size: 15px; }
+.vbar { display: flex; height: 8px; gap: 2px; margin-bottom: 6px; max-width: 520px; }
+.vbar span { height: 100%; border-radius: 1px; transform-origin: left; animation: grow .8s cubic-bezier(.2,.8,.2,1) both; }
+.vkey { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; color: var(--muted); }
+.vkey i { display: inline-block; width: 9px; height: 9px; border-radius: 1px; margin-right: 5px; vertical-align: -1px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 4px; }
+.matter h2 { font-family: var(--f-display); font-size: 21px; font-weight: 600; margin: 34px 0 4px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+.matter h2 small { font-family: var(--f-body); font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 10px; }
+
+.charge { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 0 18px; padding: 16px 14px 16px 0; margin: 0 -14px 0 0; border-bottom: 1px solid var(--rule); animation: rise .35s ease both; animation-delay: var(--d, 0ms); }
+.charge.ok { background: linear-gradient(90deg, transparent 0, transparent 76px, var(--ok-wash) 76px); }
+.charge.warn { background: linear-gradient(90deg, transparent 0, transparent 76px, var(--warn-wash) 76px); }
+.margin { display: flex; flex-direction: column; align-items: flex-end; text-decoration: none; color: inherit; padding-top: 2px; border-right: 2px solid var(--rule-2); padding-right: 12px; cursor: pointer; }
+.charge.ok .margin { border-right-color: var(--ok); } .charge.warn .margin { border-right-color: var(--warn); }
+.margin .c { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; color: var(--muted); }
+.margin .n { font-family: var(--f-mono); font-size: 22px; font-weight: 500; line-height: 1.15; }
+.margin:hover .n { color: var(--accent); }
+.ch-h { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 14px; }
+.ch-h h3 { font-family: var(--f-display); font-size: 18px; font-weight: 600; margin: 0; }
+.status { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.status::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 6px; }
+.status.ok { color: var(--ok); } .status.ok::before { background: var(--ok); }
+.status.warn { color: var(--warn); } .status.warn::before { background: var(--warn); }
+.status.dim { color: var(--ink-2); } .status.dim::before { background: var(--muted); }
+.charge p { margin: 6px 0 0; color: var(--ink-2); max-width: 70ch; }
+.charge .doubt { color: var(--ink); background: var(--sheet); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); padding: 6px 10px; border-radius: 3px; }
+.charge > div { padding-left: 0; }
+.pb { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 12px 0 0; }
+.pb div { display: grid; }
+.pb dt { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pb dd { margin: 0; font-size: 14px; font-weight: 500; }
+.pb dd.bad { color: var(--bad); } .pb dd.ok { color: var(--ok); } .pb dd.warn { color: var(--warn); }
+.minor { margin-top: 14px; font-size: 13.5px; }
+.minor .label { margin-top: 12px; }
+.minor ul { margin: 2px 0 0; padding-left: 0; list-style: none; display: grid; gap: 4px; }
+.minor li { color: var(--ink-2); }
+.minor .sx { font-family: var(--f-mono); font-weight: 500; color: var(--ink); margin-right: 8px; }
+.minor .sx.struck { text-decoration: line-through; color: var(--bad); }
+.secref { cursor: pointer; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; color: inherit; }
+.secref:hover { color: var(--accent); }
+.legend-x summary { cursor: pointer; color: var(--muted); font-size: 13px; margin-top: 12px; }
+.legend-x ul { margin: 6px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 13.5px; }
+
+.precs { list-style: none; margin: 0; padding: 0; }
+.precs > li { border-bottom: 1px solid var(--rule); transition: opacity .2s; }
+.precs details > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 12px; padding: 12px 0; }
+.precs details > summary::-webkit-details-marker { display: none; }
+.precs details[open] > summary .case { color: var(--accent); }
+.precs .lab { font-family: var(--f-mono); font-size: 12px; color: var(--accent); padding-top: 3px; }
+.precs .case { font-family: var(--f-display); font-style: italic; font-size: 16.5px; line-height: 1.35; }
+.precs .cite { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.precs .peek { display: block; font-size: 13.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.45; }
+.precs details[open] .peek { display: none; }
+.precs .x { padding: 0 0 14px 46px; font-size: 14px; color: var(--ink-2); }
+.precs .x blockquote { margin: 8px 0 10px; padding-left: 14px; border-left: 2px solid var(--rule-2); font-family: var(--f-display); font-size: 15px; color: var(--ink); }
+.summary { margin: 10px 0 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; font-size: 14px; }
+.summary dt { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+.summary dd { margin: 0; color: var(--ink); }
+.args { list-style: none; counter-reset: arg; margin: 0; padding: 0; }
+.args > li { counter-increment: arg; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 12px; padding: 14px 0; border-bottom: 1px solid var(--rule); transition: opacity .2s; }
+.args > li::before { content: counter(arg) "."; font-family: var(--f-display); font-size: 17px; color: var(--muted); }
+.args h3 { margin: 0 0 4px; font-size: 14.5px; font-weight: 600; }
+.args p { margin: 4px 0 0; color: var(--ink-2); max-width: 72ch; }
+.args blockquote { margin: 8px 0 0; padding-left: 14px; border-left: 2px solid var(--rule-2); font-family: var(--f-display); font-style: italic; color: var(--ink); }
+.args .relies { font-size: 13px; color: var(--muted); }
+.dim { opacity: .28; }
+.flash { animation: flash 1.4s ease; }
+
+/* evidence map */
+.map { margin-top: 10px; overflow-x: auto; }
+.map svg { display: block; width: 100%; min-width: 540px; height: auto; }
+.map .edge { fill: none; stroke: var(--rule-2); stroke-width: 1.4; transition: stroke .2s, opacity .2s; }
+.map .mn rect { fill: var(--sheet); stroke: var(--rule-2); stroke-width: 1; transition: opacity .2s; }
+.map .mn text { fill: var(--ink); font-size: 11.5px; font-family: var(--f-body); }
+.map .mn text .s { fill: var(--muted); font-size: 10.5px; }
+.map .mn.ch-ok rect { stroke: var(--ok); stroke-width: 1.5; } .map .mn.ch-doubt rect { stroke: var(--warn); stroke-width: 1.5; }
+.map .mn.arg-bad rect { stroke: var(--bad); }
+.map .mn { cursor: pointer; }
+.map .colh { fill: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .08em; font-family: var(--f-body); }
+.map.hot .edge { opacity: .12; } .map.hot .mn { opacity: .3; }
+.map.hot .edge.on { opacity: 1; stroke: var(--accent); stroke-width: 2; } .map.hot .mn.on { opacity: 1; }
+.map .mn:focus { outline: none; } .map .mn:focus rect { stroke: var(--accent); stroke-width: 2; }
+
+/* outcome bars */
+.olegend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12.5px; color: var(--muted); margin: 10px 0 6px; }
+.olegend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.orow { display: grid; grid-template-columns: minmax(120px, 170px) minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 6px 0; font-size: 13.5px; border-bottom: 1px solid var(--rule); }
+.orow .ol { font-family: var(--f-mono); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.orow .ol.via { color: var(--muted); padding-left: 14px; }
+.obar { display: flex; gap: 2px; height: 12px; }
+.obar span { height: 100%; min-width: 2px; transform-origin: left; animation: grow .8s cubic-bezier(.2,.8,.2,1) both; animation-delay: var(--d, 0ms); }
+.obar span:first-child { border-radius: 3px 0 0 3px; } .obar span:last-child { border-radius: 0 3px 3px 0; } .obar span:only-child { border-radius: 3px; }
+.orow .on { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+.osup { color: var(--muted); font-style: italic; font-size: 13px; }
+.tbl summary { cursor: pointer; color: var(--muted); font-size: 13px; margin-top: 10px; }
+.tablewrap { overflow-x: auto; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 6px; }
+table.data th, table.data td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+table.data th { color: var(--muted); font-weight: 600; font-size: 11.5px; }
+table.data td.num { font-family: var(--f-mono); }
+.tip { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: var(--paper); font-size: 12.5px; padding: 5px 9px; border-radius: 3px; opacity: 0; transition: opacity .1s; }
+.foot { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
+.suggest { margin-top: 22px; }
+.suggest ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 2px; }
+.suggest li button { border: 0; background: none; padding: 5px 0; cursor: pointer; text-align: left; color: var(--accent); font-size: 14.5px; display: inline-flex; gap: 8px; align-items: center; }
+.suggest li button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.answer p { margin: 0; white-space: pre-wrap; max-width: 72ch; }
+.answer .cited { margin-top: 12px; font-size: 13.5px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.answer .cited a, .answer .cited span.c { font-family: var(--f-mono); font-size: 13px; }
+.cite-ok { color: var(--ok); text-decoration: none; } .cite-bad { color: var(--bad); text-decoration: line-through; } .cite-other { color: var(--muted); }
+.fine { font-size: 12px; color: var(--muted); margin: 10px 0 0; }
+.wait { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; margin: 0; }
+.ask-date { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+input[type=date] { border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 4px; padding: 5px 8px; }
+
+/* ---------- drawer: the bare act ---------- */
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(580px, 100vw); background: var(--sheet); border-left: 1px solid var(--rule-2);
+  box-shadow: -12px 0 30px rgba(10, 12, 18, .14); z-index: 30; transform: translateX(104%); transition: transform .22s ease; display: flex; flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom, 0px); }
+.drawer.open { transform: none; }
+.drawer header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--rule); }
+.drawer header b { flex: 1; font-family: var(--f-display); font-size: 18px; font-weight: 600; }
+.drawer form { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 18px; border-bottom: 1px solid var(--rule); background: var(--paper); align-items: center; }
+.drawer select, .drawer input[type=text] { border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 4px; padding: 6px 9px; }
+.drawer input[type=text] { width: 120px; font-family: var(--f-mono); }
+.dbody { overflow-y: auto; padding: 18px 18px 30px; flex: 1; }
+.act-h { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 14px; align-items: baseline; }
+.act-h .num { font-family: var(--f-mono); font-size: 24px; font-weight: 500; color: var(--accent); white-space: nowrap; }
+.act-h h2 { font-family: var(--f-display); font-size: 22px; font-weight: 600; margin: 0; line-height: 1.25; }
+.act-h .ch { grid-column: 2; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.dbody h4 { font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin: 22px 0 8px; }
+.kv { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; }
+.kv div { display: grid; } .kv dt { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); } .kv dd { margin: 0; font-size: 15px; font-weight: 500; }
+.verified { color: var(--ok); font-size: 13px; font-weight: 500; }
+.quote { font-family: var(--f-display); font-size: 14.5px; color: var(--ink-2); border-left: 2px solid var(--rule-2); padding: 1px 12px; margin: 6px 0; }
+.sched { width: 100%; border-collapse: collapse; font-size: 13px; }
+.sched th { text-align: left; font-size: 10.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 5px 8px 5px 0; border-bottom: 1px solid var(--rule-2); }
+.sched td { padding: 7px 8px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.sched td.bad { color: var(--bad); font-weight: 500; } .sched td.ok { color: var(--ok); font-weight: 500; } .sched td.warn { color: var(--warn); font-weight: 500; }
+.cp { padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.diff { font-family: var(--f-display); font-size: 15px; line-height: 1.75; }
+.diff del { color: var(--bad); text-decoration: line-through; text-decoration-thickness: 1px; background: var(--bad-wash); }
+.diff ins { color: var(--ok); text-decoration: none; background: var(--ok-wash); border-bottom: 1px solid var(--ok); }
+.bare { font-family: var(--f-display); font-size: 15.5px; line-height: 1.7; white-space: pre-wrap; color: var(--ink); }
+
+/* ---------- dock: instructions ---------- */
+.dock { border-top: 1px solid var(--rule); background: var(--sheet); padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); }
+.dock form { max-width: 864px; margin: 0 auto; display: grid; gap: 8px; }
+.dock .lbl-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.modebar { display: none; font-size: 13px; color: var(--muted); gap: 8px; align-items: baseline; }
+.modebar.on { display: flex; flex-wrap: wrap; }
+.modebar .case { color: var(--ink); font-style: italic; font-family: var(--f-display); max-width: 44ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+textarea#input { width: 100%; resize: none; border: 1px solid var(--rule-2); border-radius: 4px; background: var(--sheet); padding: 10px 12px; min-height: 64px; max-height: 240px; line-height: 1.5; }
+textarea#input:focus { outline: none; border-color: var(--ink-2); }
+.dock.drag textarea#input { border-color: var(--accent); background: var(--accent-wash); }
+.dock .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.dock .left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.dock .left label { display: inline-flex; align-items: center; gap: 8px; }
+.disclaimer { max-width: 864px; margin: 6px auto 0; font-size: 11.5px; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .register { position: fixed; inset: 0 auto 0 0; width: min(300px, 86vw); z-index: 25; transform: translateX(-104%); transition: transform .2s; }
+  .register.open { transform: none; box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .35); }
+  .topbar { display: flex; }
+  .col { padding: 20px 16px 20px; }
+  .sheet { padding: 18px 16px; }
+  .matter-h { margin: 0 -16px; padding: 18px 16px 16px; }
+}
+@media (max-width: 560px) {
+  .track .lbl { display: none; }
+  .track li.on .lbl { display: block; position: absolute; top: 20px; white-space: nowrap; }
+  .track { margin-bottom: 26px; }
+  .charge { grid-template-columns: 56px minmax(0, 1fr); gap: 0 12px; }
+  .margin .n { font-size: 18px; }
+  .welcome h1 { font-size: 27px; }
+  .orow { grid-template-columns: 96px minmax(0, 1fr) auto; }
+  .precs .x { padding-left: 0; }
+  #datehint { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="register" id="side" aria-label="Matters">
+    <div class="brand"><div class="name">Pramana</div><p>Research aid for Indian criminal law. Runs entirely on this computer.</p></div>
+    <div class="reg-actions">
+      <button class="reg-btn primary" id="newcase">New matter</button>
+      <button class="reg-btn" id="lookup"></button>
+    </div>
+    <div class="reg-h">Sample matters</div>
+    <div class="matters" id="samples"><p class="note" style="padding:4px 12px">Loading…</p></div>
+    <div class="reg-foot">
+      <div class="health" id="status"><i></i>Checking the backend…</div>
+      <div class="theme" role="group" aria-label="Theme">
+        <button type="button" data-theme-set="light">Light</button><button type="button" data-theme-set="system">System</button><button type="button" data-theme-set="dark">Dark</button>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="topbar"><button class="tbtn" id="menu">Matters</button><span class="name">Pramana</span><button class="tbtn" id="lookup2">Bare act</button></div>
+    <div class="thread" id="thread"><div class="col" id="col"></div></div>
+    <div class="dock" id="dock">
+      <form id="form">
+        <div class="lbl-row">
+          <label class="label" for="input" id="inlabel" style="margin:0">Facts of the case</label>
+          <div class="modebar" id="modebar">Asking about <span class="case" id="modecase"></span><button type="button" class="link" id="modeoff">Start a new matter instead</button></div>
+        </div>
+        <textarea id="input" rows="2" placeholder="What happened, who did it, and when. For example: On 15 August 2024 the accused took the complainant’s motorcycle from outside his house…"></textarea>
+        <div class="row">
+          <div class="left">
+            <button type="button" class="tbtn" id="clip" title="Attach an FIR, charge sheet or order (a PDF with a text layer)"></button><input type="file" id="file" accept="application/pdf,.pdf" hidden>
+            <label for="date">Offence date <input type="date" id="date"></label><span id="datehint">or state it in the facts</span>
+          </div>
+          <button class="btn" id="send" type="submit">Analyse</button>
+        </div>
+      </form>
+      <p class="disclaimer">A research aid, not legal advice. Every section shown has been checked against the ingested IPC and BNS; nothing you type leaves this computer.</p>
+    </div>
+  </main>
+</div>
+<div class="tip" id="tip" role="tooltip"></div>
+<aside class="drawer" id="drawer" aria-label="Bare act">
+  <header><b>Bare act</b><button class="tbtn" id="dclose">Close</button></header>
+  <form id="dform">
+    <select id="dcode" aria-label="Code"><option value="ipc">IPC</option><option value="bns">BNS</option></select>
+    <input type="text" id="dsec" placeholder="e.g. 420" autocomplete="off" aria-label="Section number">
+    <button class="btn" style="padding:6px 14px">Look up</button>
+  </form>
+  <div class="dbody" id="dbody"><p class="note">Choose a code and enter a section number, or click any section in a matter. You will see its text, the punishment, how it is classified for arrest and bail, and what changed between the IPC and the BNS.</p></div>
+</aside>
+
+<script>
+"use strict";
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"})[c]);
+const col = $("#col"), thread = $("#thread"), input = $("#input"), dateIn = $("#date"), sendBtn = $("#send"), tip = $("#tip");
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const fmt = iso => { const [y, m, d] = String(iso).split("-").map(Number); return y && m && d ? `${d} ${MONTHS[m - 1]} ${y}` : String(iso || ""); };
+const ERA = {ipc: "IPC", bns: "BNS"};
+const CODE_FULL = {ipc: "Indian Penal Code, 1860", bns: "Bharatiya Nyaya Sanhita, 2023"};
+const secNum = s => (String(s ?? "").toUpperCase().match(/\d{1,3}[A-Z]{0,3}/) || [""])[0];
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const cleanTitle = t => String(t || "").replace(/[\s:.–—-]+$/, "");
+let busy = false, pending = null, SAMPLE_LIST = [], active = null;
+dateIn.max = new Date().toISOString().slice(0, 10);
+
+/* ---- icons: plain strokes ---- */
+const I = p => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const ICON = {
+  clip: I('<path d="M20.5 11.5 12.4 19.6a4.8 4.8 0 0 1-6.8-6.8l8.2-8.2a3.2 3.2 0 0 1 4.5 4.5l-8.2 8.2a1.6 1.6 0 0 1-2.3-2.3l7.6-7.6"/>'),
+  download: I('<path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/>'),
+  ask: I('<path d="M4 5h16v11H10l-5 4z"/>'),
+  book: I('<path d="M6 4h10a3 3 0 0 1 3 3v13H9a3 3 0 0 1-3-3z"/><path d="M6 17a3 3 0 0 1 3-3h10"/>'),
+  arrow: I('<path d="M5 12h14m-5-5 5 5-5 5"/>'),
+};
+$("#clip").innerHTML = `${ICON.clip}Attach PDF`;
+$("#lookup").innerHTML = `${ICON.book}Bare act · IPC and BNS`;
+
+async function api(path, body) {
+  const r = await fetch(path, body === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(typeof data.detail === "string" ? data.detail : JSON.stringify(data.detail || r.statusText));
+  return data;
+}
+function scrollDown() { thread.scrollTop = thread.scrollHeight; }
+function entry(kind, html) {
+  const s = document.createElement("section"); s.className = `entry ${kind}`; s.innerHTML = html;
+  col.append(s); scrollDown(); return s;
+}
+const addFacts = (text, label = "Facts as instructed") => entry("facts", `<div class="label">${esc(label)}</div><p>${esc(text)}</p>`);
+const addQuestion = q => entry("question", `<div class="label">Question</div><p>${esc(q)}</p>`);
+const addOut = (html = "") => entry("out", html);
+function setBusy(b) { busy = b; sendBtn.disabled = b; sendBtn.textContent = b ? "Working…" : (active ? "Ask" : "Analyse"); }
+
+/* ================= theme ================= */
+function setTheme(t) {
+  if (t === "system") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", t);
+  $$("[data-theme-set]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.themeSet === t)));
+  try { localStorage.setItem("pramana-theme", t); } catch { /* storage unavailable: the theme still applies */ }
+}
+$$("[data-theme-set]").forEach(b => b.onclick = () => setTheme(b.dataset.themeSet));
+let savedTheme = "system";
+try { savedTheme = localStorage.getItem("pramana-theme") || "system"; } catch { /* ignore */ }
+setTheme(savedTheme);
+
+/* ================= the pipeline track ================= */
+const STAGES = [
+  {ids: ["intake"], label: "Read input"}, {ids: ["route"], label: "Date rule"}, {ids: ["retrieve"], label: "Search statutes"},
+  {ids: ["statute_identifier"], label: "Propose sections"}, {ids: ["verifier"], label: "Verify citations"},
+  {ids: ["applicability"], label: "Test against facts"}, {ids: ["precedents", "analytics"], label: "Precedents"}, {ids: ["defense"], label: "Counter-arguments"}];
+const stageIndex = id => STAGES.findIndex(s => s.ids.includes(id));
+const NOW = {
+  intake: "Checking whether this is a court order or FIR", route: "Choosing the code from the offence date",
+  retrieve: "Searching the statutes and similar judgments", statute_identifier: "The local model is proposing sections",
+  verifier: "Checking every citation against the citation graph", applicability: "Testing each section’s ingredients against the facts",
+  precedents: "Matching precedent judgments", analytics: "Counting outcomes in past judgments", defense: "Drafting counter-arguments for the defence"};
+const trackHTML = () => `<ol class="track">${STAGES.map((s, i) => `<li data-i="${i}"><span class="dot"></span><span class="lbl">${esc(s.label)}</span></li>`).join("")}</ol>`;
+
+/* ================= live run: track + verification ledger ================= */
+class LiveRun {
+  constructor(host, {replay = false} = {}) {
+    this.replay = replay; this.t0 = Date.now(); this.done = new Set(); this.rows = new Map(); this.bySec = new Map();
+    this.cands = new Map(); this.rounds = 0; this.era = null;
+    host.insertAdjacentHTML("beforeend", `<div class="sheet run">
+      <div class="run-h"><span class="run-title">${replay ? "Replay of the saved analysis" : "Analysis in progress"}</span>
+        <span class="run-meta">${replay ? "" : `<span class="spin"></span>`}<span class="mono" data-t>${replay ? "" : "0:00"}</span></span></div>
+      ${trackHTML()}
+      <p class="now" data-now>Starting…</p>
+      <div data-stamp></div>
+      <p class="cands" data-cands hidden></p>
+      <div class="ledger-wrap" data-ledger hidden><table class="ledger">
+        <thead><tr><th>Section</th><th>Retrieved</th><th>Proposed</th><th>Citation graph</th><th>Facts</th></tr></thead><tbody></tbody></table></div>
+      <div class="tally" data-tally hidden><span><b data-n="precedents">–</b><i data-l="precedent judgment|precedent judgments">precedent judgments</i></span><span><b data-n="analytics">–</b><i data-l="section with outcome data|sections with outcome data">sections with outcome data</i></span><span><b data-n="defense">–</b><i data-l="counter-argument|counter-arguments">counter-arguments</i></span></div>
+    </div>`);
+    this.el = host.lastElementChild;
+    if (!replay) this.tick = setInterval(() => {
+      const s = Math.round((Date.now() - this.t0) / 1000);
+      $("[data-t]", this.el).textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+    }, 500);
+  }
+  li(id) { return $(`.track li[data-i="${stageIndex(id)}"]`, this.el); }
+  setNow(html) { $("[data-now]", this.el).innerHTML = html; }
+  start(st) {
+    if (st === "route" && this.done.has("route")) this.secondRun();
+    const li = this.li(st); if (!li) return;
+    const i = stageIndex(st);
+    $$(".track li", this.el).forEach((x, k) => { if (k < i && !x.classList.contains("on")) x.classList.add("done"); });
+    li.classList.remove("done"); li.classList.add("on");
+    this.setNow(esc(NOW[st] || st) + "…");
+    if (st === "statute_identifier" && this.done.has("verifier")) {
+      this.rounds++;
+      this.li("verifier").classList.remove("done");
+      $(".ret", li)?.remove();
+      li.insertAdjacentHTML("afterbegin", `<span class="ret">retry ${this.rounds}</span>`);
+      this.setNow(`<b>Retry ${this.rounds}.</b> The citation graph rejected a section, so the model is asked again with the reason.`);
+    }
+  }
+  finishStage(st) {
+    this.done.add(st);
+    const li = this.li(st); if (!li) return;
+    if (STAGES[stageIndex(st)].ids.every(x => this.done.has(x))) { li.classList.remove("on"); li.classList.add("done"); }
+  }
+  row(key, label) {
+    if (this.rows.has(key)) return this.rows.get(key);
+    $("[data-ledger]", this.el).hidden = false;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td><span class="sec">${esc(label)}</span><span class="tt"></span></td><td></td><td></td><td></td><td></td>`;
+    $("tbody", this.el).append(tr);
+    const r = {tr, cells: $$("td", tr)};
+    this.rows.set(key, r); return r;
+  }
+  cell(r, i, html, title) {
+    const c = r.cells[i]; c.innerHTML = html; c.classList.remove("fresh"); void c.offsetWidth; c.classList.add("fresh");
+    if (title) c.title = title;
+  }
+  handle(ev) {
+    const {stage: st, phase, data: d} = ev;
+    if (phase === "start") { this.start(st); return; }
+    this.finishStage(st);
+    const E = ERA[this.era] || "";
+    if (st === "intake" && d && d.extracted) this.setNow("Court order or FIR detected: the alleged facts were extracted first.");
+    if (st === "route" && d) {
+      this.era = d.era;
+      $("[data-stamp]", this.el).innerHTML = `<span class="stamp"><b>${ERA[d.era]}</b><span>offence ${esc(fmt(d.offence_date))} · ${d.era === "bns" ? "on or after" : "before"} 1 July 2024</span></span>`;
+    }
+    if (st === "retrieve" && d) {
+      (d.candidates || []).forEach((c, i) => this.cands.set(secNum(c.section), {rank: i + 1, ref: c.ref, title: c.title}));
+      const p = $("[data-cands]", this.el); p.hidden = false;
+      p.innerHTML = this.cands.size
+        ? `${this.cands.size} candidate sections retrieved: <span class="mono">${[...this.cands.values()].map(c => esc(c.ref)).join(", ")}</span>`
+        : (this.replay ? "Retrieved candidates were not kept in this saved analysis." : "No candidate sections were retrieved.");
+      this.noRanks = this.replay && !this.cands.size;
+      if (d.no_facts) this.setNow("<b>No allegation stated.</b> The text is procedure only, so there is nothing to charge and the model will not be asked.");
+      else if (d.insufficient) this.setNow("<b>Insufficient data.</b> Nothing in the corpus is close enough, so the model will not be asked.");
+    }
+    if (st === "statute_identifier" && d) {
+      (d.proposals || []).forEach(p => {
+        const key = secNum(p.raw), r = this.row(key, `${E} ${String(p.raw).replace(/^(IPC|BNS)\s*/i, "")}`);
+        const c = this.cands.get(key);
+        this.cell(r, 1, c ? `<span class="mono">#${c.rank}</span>` : `<span class="mk-dim">${this.noRanks ? "—" : "not in list"}</span>`);
+        this.cell(r, 2, p.source === "rule" ? `<span title="Derived by a fixed rule from the facts">rule</span>` : (d.round ? `<span class="mk-warn">retry ${d.round}</span>` : "model"));
+        if (c && c.title) $(".tt", r.tr).textContent = cleanTitle(c.title);
+      });
+      (d.withdrawn || []).forEach(w => {
+        const r = this.row("w" + secNum(w), `${E} ${w}`); r.tr.classList.add("struck");
+        this.cell(r, 2, `<span class="mk-dim" title="Listed by the model, but its own reason says it does not apply">ruled out</span>`);
+        this.cell(r, 3, `<span class="mk-dim">—</span>`); this.cell(r, 4, `<span class="mk-dim">—</span>`);
+      });
+      if (d.profile && d.profile.discloses_offence === false) this.setNow("The model thinks these facts may not disclose an offence. Every proposal is still verified.");
+    }
+    if (st === "verifier" && d) {
+      let bad = 0;
+      (d.verified || []).forEach(v => {
+        const key = secNum(v.raw || v.ref), r = this.row(key, `${E} ${v.ref}`);
+        this.bySec.set(v.section, r);
+        $(".sec", r.tr).textContent = `${E} ${v.ref}`; $(".tt", r.tr).textContent = cleanTitle(v.title);
+        if (!r.cells[3].textContent) this.cell(r, 3, `<span class="mk-ok">verified</span>${v.defined_in ? ` <span class="mk-dim">(from ${esc(v.defined_in)})</span>` : ""}`,
+          v.defined_in ? `Proposed as ${v.defined_in}, a definition; charged under the section that punishes it` : "A section of the ingested code");
+      });
+      (d.unconfirmed || []).forEach(u => {
+        const r = this.row(secNum(u.raw), `${E} ${u.raw}`);
+        if (r.cells[3].dataset.bad) return;
+        r.cells[3].dataset.bad = "1"; bad++;
+        r.tr.classList.add("struck"); this.cell(r, 3, `<span class="mk-bad">rejected</span>`, u.why);
+        this.cell(r, 4, `<span class="mk-dim">—</span>`);
+      });
+      if (bad) this.setNow(`<b>${bad} citation${bad > 1 ? "s" : ""} rejected</b> by the citation graph. Hover over “rejected” for the reason.`);
+    }
+    if (st === "applicability" && d) {
+      (d.checks || []).forEach(c => {
+        const r = this.bySec.get(c.section) || this.rows.get(secNum(c.ref)); if (!r) return;
+        if (c.included_in) this.cell(r, 4, `<span class="mk-dim">in ${esc(c.included_in)}</span>`, `Covered by the supported aggravated charge ${c.included_in}`);
+        else if (c.supported) this.cell(r, 4, `<span class="mk-ok">supported</span>`, c.rule || "Facts quoted for every ingredient, on both readings");
+        else this.cell(r, 4, `<span class="mk-warn">doubted</span>`, c.rule || "Not every ingredient was shown on both readings");
+      });
+    }
+    if (["precedents", "analytics", "defense"].includes(st) && d) {
+      $("[data-tally]", this.el).hidden = false;
+      const n = (st === "analytics" ? (d.sections || []).length : d.count) || 0, lab = $(`[data-n="${st}"] + [data-l]`, this.el);
+      countUp($(`[data-n="${st}"]`, this.el), n);
+      if (lab) lab.textContent = lab.dataset.l.split("|")[n === 1 ? 0 : 1];
+    }
+  }
+  secondRun() {
+    $$(".track li", this.el).forEach(x => { x.classList.remove("on", "done"); $(".ret", x)?.remove(); });
+    this.done.clear(); this.bySec.clear(); this.rounds = 0;
+    $("tbody", this.el).insertAdjacentHTML("beforeend", `<tr><td colspan="5" class="mk-dim">Second run, for the part of the period on the other side of 1 July 2024</td></tr>`);
+    this.rows = new Map();
+  }
+  finish(ok, label) {
+    clearInterval(this.tick);
+    $(".spin", this.el)?.remove();
+    if (label) $("[data-t]", this.el).textContent = label;
+    $$(".track li", this.el).forEach(x => { x.classList.remove("on"); if (ok && !x.classList.contains("done")) x.classList.add("skip"); });
+    $(".run-title", this.el).textContent = ok ? (this.replay ? "Replay of the saved analysis" : "Analysis complete") : "Analysis stopped";
+    this.setNow(ok ? "Hover over any entry in the ledger for the reason behind it. The matter file follows." : "");
+  }
+}
+function countUp(el, n) {
+  const t0 = performance.now(), dur = 700;
+  const step = () => { const k = Math.max(0, Math.min(1, (performance.now() - t0) / dur)); el.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+  setTimeout(() => { el.textContent = n; }, dur + 100);
+}
+
+/* A saved report replayed as the same events. Only what the report holds:
+   reports saved before `retrieved` was kept have no ranks, and the ledger says so. */
+function eventsFromReport(r) {
+  const ref = c => c.subsection || c.section, ev = [];
+  const add = (stage, data) => { ev.push({stage, phase: "start"}); ev.push({stage, phase: "done", data}); };
+  add("route", {era: r.era, offence_date: r.offence_date});
+  add("retrieve", {candidates: (r.retrieved || []).length ? r.retrieved
+                     : (r.review_candidates || []).map(c => ({section: c.section, ref: c.matched || c.section, title: c.title})),
+                   insufficient: r.status === "insufficient_data",
+                   no_facts: (r.guardrail || {}).reason === "no_facts_stated"});
+  if (r.status === "insufficient_data") return ev;
+  const verified = [...r.charges, ...(r.included || [])];
+  const rounds = Math.max(0, ...(r.unconfirmed || []).map(u => u.round || 0));
+  for (let k = 0; k <= rounds; k++) {
+    const props = k === 0 ? [...verified.map(v => ({raw: ref(v), source: /^rule:/.test(v.reason || "") ? "rule" : "llm"})),
+                             ...(r.unconfirmed || []).filter(u => !u.round).map(u => ({raw: u.raw}))]
+                          : (r.unconfirmed || []).filter(u => u.round === k).map(u => ({raw: u.raw}));
+    add("statute_identifier", {round: k, proposals: props, withdrawn: k === 0 ? (r.withdrawn || []).map(w => w.raw) : []});
+    add("verifier", {verified: k === 0 ? verified.map(v => ({ref: ref(v), raw: ref(v), section: v.section, title: v.title})) : [],
+                     unconfirmed: (r.unconfirmed || []).filter(u => (u.round || 0) <= k)});
+  }
+  if (verified.length) {
+    add("applicability", {checks: [...r.charges.map(c => ({ref: ref(c), section: c.section, supported: !c.doubt, rule: c.doubt})),
+                                   ...(r.included || []).map(c => ({ref: ref(c), section: c.section, included_in: c.included_in}))]});
+    ev.push({stage: "precedents", phase: "start"}, {stage: "analytics", phase: "start"});
+    ev.push({stage: "analytics", phase: "done", data: {sections: ((r.analytics || {}).sections || []).map(s => s.charge)}});
+    ev.push({stage: "precedents", phase: "done", data: {count: (r.precedents || []).length}});
+    add("defense", {count: (r.defenses || []).length});
+  }
+  return ev;
+}
+async function replay(r, host) {
+  const live = new LiveRun(host, {replay: true});
+  const h = $(".run-h", live.el);
+  h.insertAdjacentHTML("beforeend", `<button class="link" data-skip style="font-size:13px">Skip the replay</button>`);
+  let skip = false; $("[data-skip]", h).onclick = () => { skip = true; };
+  for (const e of eventsFromReport(r)) {
+    live.handle(e);
+    if (!skip) { await sleep(e.phase === "start" ? 380 : 240); scrollDown(); }
+  }
+  $("[data-skip]", h)?.remove();
+  const total = Math.round(Object.values(r.timings || {}).reduce((a, b) => a + b, 0));
+  live.finish(true, total ? `the live run took ${total} s` : "");
+}
+
+/* ================= welcome / samples ================= */
+function welcome() {
+  col.innerHTML = ""; pending = null;
+  entry("welcome", `<div class="label">Indian criminal law · research workspace</div>
+    <h1>Start a matter from its facts.</h1>
+    <p class="lede">Describe what happened and when. The offence date selects the code: the IPC before 1 July 2024, the BNS from that day. The local model then proposes sections, every citation is checked against the ingested statutes, each section is tested against your facts, and precedents and counter-arguments follow.</p>
+    <div class="sheet"><div class="label">How each matter is worked</div>${trackHTML()}
+      <p class="note" style="margin:8px 0 0">A live analysis takes 1½ to 3 minutes and runs on this computer. You can follow every step as it happens.</p></div>
+    <h2>Sample matters</h2>
+    <p class="note" style="margin:0 0 8px">Saved analyses open at once, with a replay of how each one was worked.</p>
+    <table class="samples-table" id="samplerows"><tbody><tr><td class="note">Loading…</td></tr></tbody></table>`);
+  loadSamples();
+}
+async function loadSamples() {
+  try { if (!SAMPLE_LIST.length) SAMPLE_LIST = await api("/samples"); }
+  catch { $("#samples").innerHTML = `<p class="note" style="padding:4px 12px">The backend is not reachable.</p>`; return; }
+  const short = n => n.replace(/ \((.*)\)$/, "");
+  const code = s => s.offence_date < "2024-07-01" ? "IPC" : "BNS";   // label only; the server's router decides
+  $("#samples").innerHTML = SAMPLE_LIST.map(s => `<button class="matter-link" data-id="${esc(s.id)}">
+      <span class="code">${code(s)}</span><span class="t">${esc(short(s.name))}</span><span class="d mono">${esc(fmt(s.offence_date))}</span></button>`).join("");
+  const rows = $("#samplerows");
+  if (rows) rows.innerHTML = `<tbody>${SAMPLE_LIST.map(s => `<tr data-id="${esc(s.id)}" tabindex="0">
+      <td class="code">${code(s)}</td><td><span class="t">${esc(short(s.name))}</span>
+      <div class="note">${esc(s.facts.length > 120 ? s.facts.slice(0, 118) + "…" : s.facts)}</div></td><td class="d">${esc(fmt(s.offence_date))}</td></tr>`).join("")}</tbody>`;
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-id]");
+  if (b && !busy) { $("#side").classList.remove("open"); openSample(b.dataset.id); }
+});
+document.addEventListener("keydown", e => {
+  const b = e.target.closest && e.target.closest("tr[data-id]");
+  if (b && e.key === "Enter" && !busy) openSample(b.dataset.id);
+});
+async function openSample(id) {
+  const s = SAMPLE_LIST.find(x => x.id === id); if (!s) return;
+  pending = null; clearActive();
+  addFacts(s.facts, `Facts · sample matter · offence ${fmt(s.offence_date)}`);
+  const out = addOut(`<p class="note" style="margin:0 0 10px">A saved analysis of this sample. <button class="link" data-live>Run it live instead</button></p>`);
+  $("[data-live]", out).onclick = ev => { ev.target.disabled = true; if (!busy) startJob(s.facts, s.offence_date, addOut()); };
+  if (!s.saved) { startJob(s.facts, s.offence_date, out); return; }
+  setBusy(true);
+  try {
+    const rep = await api(`/samples/${encodeURIComponent(id)}`);
+    await replay(rep, out);
+    renderReport(rep, out);
+  } catch (e) { out.insertAdjacentHTML("beforeend", `<div class="banner err">${esc(e.message)}</div>`); }
+  setBusy(false);
+}
+
+/* ================= sending ================= */
+$("#form").addEventListener("submit", e => { e.preventDefault(); send(); });
+input.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
+input.addEventListener("input", () => { input.style.height = "auto"; input.style.height = Math.min(input.scrollHeight, 240) + "px"; });
+
+async function send() {
+  const text = input.value.trim();
+  if (busy || !text) return;
+  const picked = dateIn.value;
+  input.value = ""; input.style.height = "auto";
+  // With a matter open, a message is a follow-up question, unless it is long
+  // enough to be a new set of facts (or a date was picked for one).
+  if (active && !pending && !picked && text.length <= 300) return askQuestion(text);
+  clearActive();
+  if (pending && text.length < 120) {   // answering the date question
+    addFacts(text, "Reply");
+    const found = await readDates(text);
+    const ok = found ? found.dates.filter(d => !d.error) : [];
+    if (ok.length === 1) { const p = pending; pending = null; return startJob(p.facts, ok[0].date, addOut()); }
+    if (text.length < 40) {
+      const why = found && found.dates.some(d => d.error) ? "That date is in the future." :
+        "No exact date could be read in that. The day, month and year are needed, for example 3 March 2025.";
+      addOut(`<p class="note">${why} Reply with the offence date, or choose it above.</p>`); return;
+    }
+  }
+  addFacts(text);
+  if (text.length < 20) { addOut(`<p class="note">Please describe the case in a little more detail: what happened, who did it, and when.</p>`); return; }
+  pending = null;
+  const out = addOut();
+  if (picked) { dateIn.value = ""; return startJob(text, picked, out); }
+  const found = await readDates(text);
+  if (!found) { out.innerHTML = `<div class="banner err">The backend is not reachable. Start it with run_web.bat.</div>`; return; }
+  const valid = found.dates.filter(d => !d.error);
+  if (valid.length === 1) return startJob(text, valid[0].date, out);
+  askDate(text, out, valid, found.month_only);
+}
+async function readDates(text) { try { return await api("/dates", {text}); } catch { return null; } }
+
+function askDate(facts, out, options, monthOnly) {
+  pending = {facts};
+  let q;
+  if (options.length > 1) q = `The facts mention ${options.length} dates. Which is the date of the <b>offence</b>? The offence date, not the FIR or arrest date, decides whether the IPC or the BNS applies.`;
+  else if (monthOnly.length) q = `The facts give <b>${esc(monthOnly[0])}</b> but not the day. The IPC applies to offences before 1 July 2024 and the BNS from that day, so the exact date is needed.`;
+  else q = `When was the offence committed? The date decides the code: the IPC before 1 July 2024, the BNS on or after.`;
+  out.innerHTML = `<div class="sheet"><p style="margin:0">${q}</p><div class="ask-date">
+    ${options.map(o => `<button class="tbtn" data-date="${o.date}">${fmt(o.date)} <span class="mono" style="color:var(--accent)">${ERA[o.era]}</span></button>`).join("")}
+    <input type="date" id="askdate" max="${dateIn.max}" aria-label="Offence date"><button class="btn" data-pick style="padding:6px 14px">Use this date</button></div>
+    <p class="note" style="margin:8px 0 0">Or reply with the date below.</p></div>`;
+  $$("[data-date]", out).forEach(b => b.onclick = () => { if (!busy && pending) { pending = null; startJob(facts, b.dataset.date, addOut()); } });
+  $("[data-pick]", out).onclick = () => { const v = $("#askdate", out).value; if (v && !busy && pending) { pending = null; startJob(facts, v, addOut()); } };
+  scrollDown();
+}
+
+async function startJob(facts, date, out) {
+  clearActive(); setBusy(true);
+  out.innerHTML = "";
+  const live = new LiveRun(out);
+  let job;
+  try { job = await api("/jobs", {facts, offence_date: date}); }
+  catch (e) { live.finish(false); out.insertAdjacentHTML("beforeend", `<div class="banner err">${esc(e.message)}</div>`); setBusy(false); return; }
+  let next = 0;
+  const poll = async () => {
+    let s;
+    try { s = await api(`/jobs/${job.id}`); }
+    catch (e) { live.finish(false); out.insertAdjacentHTML("beforeend", `<div class="banner err">${esc(e.message)}</div>`); setBusy(false); return; }
+    for (; next < s.stages.length; next++) live.handle(s.stages[next]);
+    if (s.state === "queued") live.setNow("Waiting for the previous analysis to finish. Analyses run one at a time because they share the graphics card.");
+    if (s.state === "done") { live.finish(true, `${Math.round(s.elapsed)} s`); renderReport(s.report, out); setBusy(false); }
+    else if (s.state === "error") { live.finish(false); out.insertAdjacentHTML("beforeend", `<div class="banner err">${esc(s.error)}</div>`); setBusy(false); }
+    else setTimeout(poll, 800);
+  };
+  poll();
+}
+
+/* ================= the matter file ================= */
+const caseName = t => String(t || "").replace(/\s+versus\s+/i, " v. ").replace(/\b([A-Z][A-Z@.&']{2,})\b/g,
+  w => /^(AIR|SCC|SCR|UOI|CBI|NCB|NIA)$/.test(w) ? w : w.charAt(0) + w.slice(1).toLowerCase()).replace(/\b(Of|The|And)\b/g, (m, x, i) => i ? m.toLowerCase() : m);
+function precTitle(p) {
+  if (p.title) return caseName(p.title);
+  return `${p.court || "Unreported"} judgment`;
+}
+/* NyayaAnumana ids carry a filename year that is only a LOWER BOUND on the
+   decision year (CLAUDE.md, Known Gotchas 2026-09-26); never show it as the date. */
+function precYear(p) {
+  if (p.date) return String(p.date).slice(0, 4);
+  const y = (String(p.doc_id).match(/_(\d{4})_/) || [])[1];
+  return y ? (String(p.doc_id).startsWith("na_") ? `${y} or later` : y) : "";
+}
+const firstLine = t => { const s = String(t || "").replace(/\s+/g, " ").trim(); return s.length > 150 ? s.slice(0, 150).replace(/\s+\S*$/, "") + "…" : s; };
+
+function renderReport(r, host) {
+  const box = document.createElement("div"); box.className = "sheet matter"; box.style.marginTop = "14px"; host.append(box);
+  if (r.status === "straddles_transition") {
+    box.innerHTML = (r.warnings || []).map(w => `<div class="banner warn">${esc(w)}</div>`).join("") + `<div class="toolbar" data-tabs></div><div data-run></div>`;
+    const tabs = $("[data-tabs]", box), runEl = $("[data-run]", box), eras = Object.keys(r.runs);
+    const show = era => { $$("button", tabs).forEach(b => b.setAttribute("aria-pressed", String(b.dataset.era === era))); runEl.innerHTML = ""; renderRun(r.runs[era], runEl); };
+    tabs.innerHTML = eras.map(e => `<button class="tbtn" data-era="${e}">${ERA[e]} part of the period</button>`).join("");
+    $$("button", tabs).forEach(b => b.onclick = () => show(b.dataset.era));
+    show(eras[0]); return;
+  }
+  renderRun(r, box);
+}
+
+function verdictHTML(r) {
+  const sup = r.charges.filter(c => !c.doubt).length, dbt = r.charges.filter(c => c.doubt).length;
+  const inc = (r.included || []).length, rej = (r.unconfirmed || []).length, out = (r.withdrawn || []).length;
+  const parts = [];
+  if (sup) parts.push(`<b>${sup}</b> section${sup > 1 ? "s" : ""} supported on the facts`);
+  if (dbt) parts.push(`<b>${dbt}</b> doubted`);
+  if (inc) parts.push(`<b>${inc}</b> included in a greater charge`);
+  if (rej) parts.push(`<b>${rej}</b> citation${rej > 1 ? "s" : ""} rejected by the graph`);
+  if (out) parts.push(`<b>${out}</b> ruled out by the model`);
+  if (!parts.length) return `<p class="verdict">No section was both proposed and verified for these facts.</p>`;
+  const segs = [[sup, "var(--ok)", "supported"], [dbt, "var(--warn)", "doubted"], [inc, "var(--muted)", "included"], [rej, "var(--bad)", "rejected"]].filter(s => s[0]);
+  return `<p class="verdict">${parts.join(" · ")}.</p>
+    ${segs.length ? `<div class="vbar" role="img" aria-label="${esc(parts.join(", ").replace(/<\/?b>/g, ""))}">${segs.map(([n, c, l], i) => `<span style="flex:${n};background:${c};animation-delay:${i * 90}ms" data-tip="${n} ${l}"></span>`).join("")}</div>
+    <div class="vkey">${segs.map(([, c, l]) => `<span><i style="background:${c}"></i>${l}</span>`).join("")}</div>` : ""}`;
+}
+
+function chargeHTML(c, era, kind, i) {
+  const st = kind === "ok" ? `<span class="status ok">Supported</span>` : kind === "warn" ? `<span class="status warn">Doubted</span>`
+    : `<span class="status dim">Included in ${esc(c.included_in)}</span>`;
+  const body = kind === "warn" ? `<p class="doubt"><b>Doubt.</b> ${esc(c.doubt)}</p>${c.reason ? `<p>${esc(c.reason)}</p>` : ""}`
+    : kind === "dim" ? `<p>${esc(c.included_in)} is an aggravated form of this offence and is supported, so it covers this one.</p>`
+    : `<p>${esc(c.reason || "")}</p>`;
+  return `<article class="charge ${kind}" style="--d:${i * 60}ms" ${kind !== "dim" ? `data-charge="${esc(era)}:${esc(c.section)}:${esc(c.subsection || "")}"` : ""}>
+    <a class="margin" data-secref="${esc(era)}:${esc(c.section)}" title="Open the bare act"><span class="c">${esc(c.code)}</span><span class="n">${esc(c.subsection || c.section)}</span></a>
+    <div><div class="ch-h"><h3>${esc(cleanTitle(c.title))}</h3>${st}</div>${body}${kind !== "dim" ? `<dl class="pb" data-pb></dl>` : ""}</div></article>`;
+}
+
+function renderRun(r, box) {
+  let h = `<header class="matter-h"><div class="codemark"><span class="code">${ERA[r.era]}</span><span class="full">${esc(CODE_FULL[r.era])}</span></div>
+    <dl class="meta"><div><dt>Offence date</dt><dd>${esc(fmt(r.offence_date))}</dd></div><div><dt>Code chosen by</dt><dd>date rule</dd></div>
+    <div><dt>Prepared</dt><dd>${esc(new Date().toLocaleDateString("en-IN", {day: "numeric", month: "short", year: "numeric"}))}</dd></div></dl></header>`;
+  const it = r.intake || {};
+  if (it.extracted) h += `<div class="banner info" style="margin-top:14px"><b>Court order or FIR detected.</b> The analysis is of the alleged facts extracted from it. Check them against the original:<p style="font-family:var(--f-display);margin:6px 0 0">${esc(it.facts)}</p></div>`;
+  (r.warnings || []).forEach(w => h += `<div class="banner warn" style="margin-top:12px">${esc(w)}</div>`);
+  if (r.status === "insufficient_data" && (r.guardrail || {}).reason === "no_facts_stated")
+    h += `<div class="banner warn" style="margin-top:12px"><b>No allegation stated.</b> ${esc(r.guardrail.message)}</div>`;
+  else if (r.status === "insufficient_data") h += `<div class="banner info" style="margin-top:12px">Nothing in the corpus is close enough to these facts to ground an analysis, so the model was not asked. The nearest statute sections are listed for review.</div>`;
+  h += verdictHTML(r);
+  h += `<div class="toolbar"><button class="tbtn" data-memo>${ICON.download}Download research memo</button>
+    ${r.charges.length ? `<button class="tbtn" data-askfocus>${ICON.ask}Ask about this matter</button>` : ""}</div>`;
+
+  const sup = r.charges.filter(c => !c.doubt), dbt = r.charges.filter(c => c.doubt);
+  let k = 0;
+  h += `<h2>Applicable sections<small>select a section number for the bare act</small></h2>`;
+  if (!r.charges.length) h += `<p class="note">No section was both proposed and verified for these facts.</p>`;
+  sup.forEach(c => h += chargeHTML(c, r.era, "ok", k++));
+  dbt.forEach(c => h += chargeHTML(c, r.era, "warn", k++));
+  (r.included || []).forEach(c => h += chargeHTML(c, r.era, "dim", k++));
+  const minors = [];
+  if ((r.unconfirmed || []).length) minors.push(`<div class="label">Rejected by the citation graph</div><ul>${r.unconfirmed.map(u =>
+    `<li><span class="sx struck">${esc(`${u.code} ${u.raw || u.section}`)}</span>${esc(u.why || "")}${u.round != null ? ` (round ${u.round})` : ""}</li>`).join("")}</ul>`);
+  if ((r.withdrawn || []).length) minors.push(`<div class="label">Considered and ruled out by the model</div><ul>${r.withdrawn.map(w =>
+    `<li><span class="sx">${esc(`${w.code} ${w.raw}`)}</span>${esc(w.reason || "")}</li>`).join("")}</ul>`);
+  if ((r.review_candidates || []).length) minors.push(`<div class="label">Nearest sections, for review (retrieved, not verified)</div><ul>${r.review_candidates.map(c =>
+    `<li><a class="sx secref" data-secref="${esc(r.era)}:${esc(c.section)}">${esc(`${ERA[r.era]} ${c.matched || c.section}`)}</a>${esc(c.title || "")}</li>`).join("")}</ul>`);
+  if (minors.length) h += `<div class="minor">${minors.join("")}</div>`;
+  h += `<details class="legend-x"><summary>How to read this</summary><ul>
+    <li><b>Verified</b>: the section exists in the ingested code, checked against the citation graph. Nothing the model proposes is shown as real without this check.</li>
+    <li><b>Supported or doubted</b>: a second check. The model must quote the facts for every ingredient, on two separate readings. Fixed rules also apply: rioting needs five people, murder needs a death.</li>
+    <li><b>Included in</b>: a lesser offence covered by a supported aggravated charge, so it is not counted twice.</li>
+    <li><b>Arrest and bail</b> come from the First Schedule of the BNSS or the CrPC; the maximum punishment from the section itself.</li></ul></details>`;
+
+  const map = mapSVG(r);
+  if (map) h += `<h2>Evidence map<small>hover to trace links, select a charge to filter</small></h2>${map}`;
+
+  h += `<h2>Precedents<small>${(r.precedents || []).length} verified judgments</small></h2>`;
+  if (!(r.precedents || []).length) h += `<p class="note">No precedent: there is no verified section to match.</p>`;
+  else h += `<ol class="precs">${r.precedents.map((p, i) => {
+    const via = p.via_ipc_predecessor ? ` · through the IPC predecessor` : "";
+    const yr = precYear(p);
+    return `<li data-prec="${i}" data-for="${esc(p.for_charge)}"><details><summary><span class="lab">${esc(p.label)}</span>
+      <span><span class="case">${esc(precTitle(p))}</span><span class="cite">${[p.title ? p.court : "", yr, p.citation, `for ${p.for_charge}`].filter(Boolean).map(esc).join(" · ")}${via}</span>${p.excerpt ? `<span class="peek">${esc(firstLine(p.excerpt))}</span>` : ""}</span></summary>
+      <div class="x"><div class="note">${p.similarity ? `Similarity to these facts ${p.similarity.toFixed(2)}` : "Most cited for this section"} · disposal: ${esc(p.disposal_nature || "not recorded")}${p.via_ipc_predecessor ? ` · ${esc(p.via_ipc_predecessor)}` : ""}</div>
+      ${p.excerpt ? `<blockquote>${esc(p.excerpt)}</blockquote>` : ""}
+      <button class="link" data-summ="${esc(p.doc_id)}">Summarise this judgment</button><div data-summout></div></div></details></li>`;
+  }).join("")}</ol>`;
+
+  h += `<h2>Counter-arguments for the defence</h2>`;
+  if (!(r.defenses || []).length) h += `<p class="note">None drafted: there is no verified section.</p>`;
+  else h += `<ol class="args">${r.defenses.map((d, i) => `<li data-arg="${i}" data-for="${esc(d.against)}"><div>
+      <h3>Against ${esc(d.against)}${d.verified ? "" : ` <span class="status warn" style="margin-left:8px">Failed the final check</span>`}</h3>
+      <p>${esc(d.argument)}</p>
+      ${d.fact_quote ? `<blockquote>“${esc(d.fact_quote)}”</blockquote>` : ""}
+      ${(d.precedents || []).length ? `<p class="relies">Relies on ${d.precedents.map(x => x.title ? `${esc(x.label)}, <i>${esc(caseName(x.title))}</i>` : esc(x.label)).join("; ")}</p>` : ""}
+      ${(d.issues || []).length ? `<p class="relies">${esc(d.issues.join("; "))}</p>` : ""}</div></li>`).join("")}</ol>`;
+
+  h += `<h2>Outcomes in past judgments</h2>`;
+  const a = r.analytics || {};
+  if (a.error) h += `<div class="banner err">${esc(a.error)}</div>`;
+  else if ((a.sections || []).length) h += `<p class="note">${esc(a.note)} Figures under ${esc(a.min_judgments)} judgments are not shown. Rows marked ← count IPC-predecessor judgments for a BNS section.</p>${outcomesHTML(a)}`;
+  else h += `<p class="note">No verified section to count.</p>`;
+
+  const t = r.timings || {};
+  h += `<p class="foot">Run time ${Math.round(Object.values(t).reduce((x, y) => x + y, 0))} s (${Object.entries(t).map(([kk, v]) => `${kk.replace(/_s$/, "")} ${v} s`).join(", ")}). Generated on this computer by a local model; nothing was sent elsewhere.</p>`;
+  box.insertAdjacentHTML("beforeend", h);
+  wireMap(box); wireReport(r, box); decorateCharges(box);
+}
+
+function mapSVG(r) {
+  const charges = r.charges, precs = r.precedents || [], defs = r.defenses || [];
+  if (!charges.length || (!precs.length && !defs.length)) return "";
+  const W = 640, NH = 26, GAP = 8, cx = [4, 248, 456], cw = [178, 150, 180];
+  const n = Math.max(charges.length, precs.length, defs.length), H = 30 + n * (NH + GAP);
+  const ys = k => { const top = 30 + (H - 30 - k * (NH + GAP) + GAP) / 2; return i => top + i * (NH + GAP); };
+  const yP = ys(precs.length), yC = ys(charges.length), yD = ys(defs.length);
+  const cIdx = s => charges.findIndex(c => secNum(c.section) === secNum(s));
+  const short = (t, k) => (t.length > k ? t.slice(0, k - 1) + "…" : t);
+  let edges = "", nodes = "";
+  precs.forEach((p, i) => {
+    const j = cIdx(p.for_charge); if (j < 0) return;
+    const x1 = cx[0] + cw[0], y1 = yP(i) + NH / 2, x2 = cx[1], y2 = yC(j) + NH / 2;
+    edges += `<path class="edge" data-a="p${i}" data-b="c${j}" d="M${x1} ${y1} C${x1 + 32} ${y1}, ${x2 - 32} ${y2}, ${x2} ${y2}"/>`;
+  });
+  defs.forEach((d, i) => {
+    const j = cIdx(d.against); if (j < 0) return;
+    const x1 = cx[1] + cw[1], y1 = yC(j) + NH / 2, x2 = cx[2], y2 = yD(i) + NH / 2;
+    edges += `<path class="edge" data-a="c${j}" data-b="d${i}" d="M${x1} ${y1} C${x1 + 32} ${y1}, ${x2 - 32} ${y2}, ${x2} ${y2}"/>`;
+  });
+  const box = (id, x, y, w, cls, label, sub, tipText, sec = "") => `<g class="mn ${cls}" data-n="${id}" data-sec="${esc(sec)}" tabindex="0" role="button" aria-label="${esc(tipText)}">
+      <title>${esc(tipText)}</title><rect x="${x}" y="${y}" width="${w}" height="${NH}" rx="3"/>
+      <text x="${x + 9}" y="${y + 17}">${esc(label)}${sub ? `<tspan class="s" dx="7">${esc(sub)}</tspan>` : ""}</text></g>`;
+  precs.forEach((p, i) => {
+    const court = String(p.court || "").replace(/ High Court$/, " HC").replace(/^Supreme Court.*/, "Supreme Court");
+    nodes += box(`p${i}`, cx[0], yP(i), cw[0], "", p.label, short(court || p.doc_id, 20), `${p.label}: ${precTitle(p)}, for ${p.for_charge}`);
+  });
+  charges.forEach((c, i) => nodes += box(`c${i}`, cx[1], yC(i), cw[1], c.doubt ? "ch-doubt" : "ch-ok", `${c.code} ${c.subsection || c.section}`,
+    short(cleanTitle(c.title), 13), `${c.code} ${c.subsection || c.section}: ${c.title}${c.doubt ? " (doubted)" : " (supported)"}`, c.section));
+  defs.forEach((d, i) => nodes += box(`d${i}`, cx[2], yD(i), cw[2], d.verified ? "" : "arg-bad", `Argument ${i + 1}`, `against ${d.against}`, d.argument));
+  const heads = `<text class="colh" x="${cx[0]}" y="16">PRECEDENTS</text><text class="colh" x="${cx[1]}" y="16">CHARGES</text><text class="colh" x="${cx[2]}" y="16">COUNTER-ARGUMENTS</text>`;
+  return `<div class="map" data-map><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Evidence map: precedents and counter-arguments linked to each charge">${heads}${edges}${nodes}</svg></div>`;
+}
+
+function wireMap(root) {
+  const map = $("[data-map]", root); if (!map) return;
+  const edges = $$(".edge", map), nodes = $$(".mn", map);
+  const linked = id => {
+    const on = new Set([id]), es = [];
+    const via = x => edges.forEach(e => { if (e.dataset.a === x || e.dataset.b === x) { es.push(e); on.add(e.dataset.a); on.add(e.dataset.b); } });
+    via(id);
+    if (id[0] !== "c") [...on].filter(x => x[0] === "c").forEach(via);
+    return {on, es};
+  };
+  const light = id => { map.classList.add("hot"); const {on, es} = linked(id); nodes.forEach(n => n.classList.toggle("on", on.has(n.dataset.n))); edges.forEach(e => e.classList.toggle("on", es.includes(e))); };
+  const clear = () => { map.classList.remove("hot"); nodes.forEach(n => n.classList.remove("on")); edges.forEach(e => e.classList.remove("on")); };
+  let filter = null;
+  nodes.forEach(n => {
+    n.addEventListener("mouseenter", () => light(n.dataset.n)); n.addEventListener("focus", () => light(n.dataset.n));
+    n.addEventListener("mouseleave", clear); n.addEventListener("blur", clear);
+    const act = () => {
+      const id = n.dataset.n, k = +id.slice(1);
+      if (id[0] === "c") {
+        filter = filter === id ? null : id;
+        $$("[data-for]", root).forEach(el => el.classList.toggle("dim", !!filter && secNum(el.dataset.for) !== secNum(n.dataset.sec)));
+        nodes.forEach(x => { x.querySelector("rect").style.strokeWidth = filter && x === n ? "3" : ""; });
+      } else {
+        const el = $(`[data-${id[0] === "p" ? "prec" : "arg"}="${k}"]`, root);
+        if (el) { const d = $("details", el); if (d) d.open = true; el.scrollIntoView({behavior: "smooth", block: "center"}); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); }
+      }
+    };
+    n.addEventListener("click", act);
+    n.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); act(); } });
+  });
+}
+
+const OUT = [["allowed", "Allowed", "var(--s1)"], ["partly allowed", "Partly allowed", "var(--s2)"], ["dismissed", "Dismissed", "var(--s3)"], ["other", "Other", "var(--s4)"]];
+function outcomesHTML(a) {
+  let rows = "", tbl = "", i = 0;
+  a.sections.forEach(s => [[s.charge, s.direct, false], ...s.via_ipc.map(v => [`← IPC ${v.section}`, v, true])].forEach(([label, x, via]) => {
+    const c = x.counts, n = x.judgments, share = x.suppressed ? "not shown (fewer than 5)" : (x.allowed_share != null ? Math.round(x.allowed_share * 100) + "%" : "n/a");
+    const bar = (x.suppressed || !n) ? `<span class="osup">${n ? `only ${n} judgment${n > 1 ? "s" : ""}, not shown` : "no judgments"}</span>`
+      : `<div class="obar">${OUT.filter(([kk]) => c[kk]).map(([kk, l, colr]) =>
+          `<span data-tip="${esc(`${l}: ${c[kk]} of ${n} (${Math.round(c[kk] / n * 100)}%)`)}" style="flex:${c[kk]};background:${colr};--d:${i * 80}ms"></span>`).join("")}</div>`;
+    rows += `<div class="orow"><span class="ol${via ? " via" : ""}" title="${esc(label)}">${esc(label)}</span>${bar}<span class="on">n = ${n}${x.suppressed || !n ? "" : ` · ${share} succeeded`}</span></div>`;
+    tbl += `<tr><td>${esc(via ? `${s.charge} ${label}` : label)}</td><td class="num">${n}</td><td>${share}</td><td class="num">${c.allowed}</td><td class="num">${c["partly allowed"]}</td><td class="num">${c.dismissed}</td><td class="num">${c.other}</td></tr>`;
+    i++;
+  }));
+  return `<div class="olegend">${OUT.map(([, l, colr]) => `<span><i style="background:${colr}"></i>${l}</span>`).join("")}</div>${rows}
+    <details class="tbl"><summary>Show as a table</summary><div class="tablewrap"><table class="data">
+    <tr><th>Section</th><th>Judgments</th><th>Appellant or petitioner succeeded</th><th>Allowed</th><th>Partly</th><th>Dismissed</th><th>Other</th></tr>${tbl}</table></div></details>`;
+}
+
+/* ---- punishment, arrest and bail on each charge ---- */
+const COG = {yes: ["Cognizable", "", "police may arrest without warrant"], no: ["Non-cognizable", "", "police may not arrest without warrant"],
+  depends: ["Depends on the offence abetted", "", ""], conditional: ["Cognizable, conditionally", "warn", ""], unclear: ["Unclear in the source", "warn", ""]};
+const BAIL = {yes: ["Bailable", "ok", "bail as of right"], no: ["Non-bailable", "bad", "bail at the court’s discretion"],
+  depends: ["Depends on the offence abetted", "", ""], conditional: ["Conditional", "warn", ""], unclear: ["Unclear in the source", "warn", ""]};
+const repeatRange = r => r.min && r.max ? `${r.min} to ${r.max}` : r.max ? `up to ${r.max}` : `at least ${r.min}`;
+async function decorateCharges(box) {
+  for (const el of $$("[data-charge]", box)) {
+    const [code, sec, sub] = el.dataset.charge.split(":");
+    try {
+      const i = await api(`/section/${code}/${encodeURIComponent(sec)}`);
+      const p = i.punishment || {}, rows = (i.schedule || {}).rows || [];
+      const row = rows.find(x => x.ref === sub) || (rows.length === 1 ? rows[0] : null);
+      const bits = [];
+      if (p.max) bits.push(`<div><dt>Maximum</dt><dd title="${esc(`From the ${p.max_source || "section text"}`)}">${esc(p.max)}</dd></div>`);
+      if (p.min) bits.push(`<div><dt>Minimum</dt><dd>${esc(p.min)}</dd></div>`);
+      if (p.repeat) bits.push(`<div><dt>Repeat conviction</dt><dd title="Second or subsequent conviction under this section">${esc(repeatRange(p.repeat))}</dd></div>`);
+      if (row) {
+        const [cl, cc, cg] = COG[row.cognizable_flag] || [row.cognizable, ""], [bl, bc, bg] = BAIL[row.bailable_flag] || [row.bailable, ""];
+        bits.push(`<div><dt>Arrest</dt><dd class="${cc}" title="${esc(cg || row.cognizable)}">${esc(cl)}</dd></div><div><dt>Bail</dt><dd class="${bc}" title="${esc(bg || row.bailable)}">${esc(bl)}</dd></div><div><dt>Triable by</dt><dd>${esc(row.triable.replace(/\.$/, ""))}</dd></div>`);
+      } else if (rows.length > 1) bits.push(`<div><dt>Arrest and bail</dt><dd><a class="secref" data-secref="${esc(code)}:${esc(sec)}">varies by sub-section</a></dd></div>`);
+      const dl = $("[data-pb]", el); if (dl && bits.length) dl.innerHTML = bits.join("");
+    } catch { /* the entry stands without it */ }
+  }
+}
+
+/* ================= follow-up questions ================= */
+const DEFAULT_PH = input.placeholder;
+function setActive(r, body) {
+  if (!r || !r.era || !(r.charges || []).length) return;
+  if (!active || active.report !== r) active = {report: r, body, history: []};
+  const facts = String(r.facts || "").replace(/\s+/g, " ");
+  $("#modecase").textContent = facts.length > 70 ? facts.slice(0, 68) + "…" : facts;
+  $("#modebar").classList.add("on"); $("#inlabel").textContent = "Question about this matter";
+  input.placeholder = "For example: why was a section doubted? What must the prosecution prove?";
+  if (!busy) sendBtn.textContent = "Ask";
+}
+function clearActive() {
+  active = null; $("#modebar").classList.remove("on"); $("#inlabel").textContent = "Facts of the case";
+  input.placeholder = DEFAULT_PH; if (!busy) sendBtn.textContent = "Analyse";
+}
+$("#modeoff").onclick = () => { clearActive(); input.focus(); };
+
+function wireReport(r, box) {
+  const m = $("[data-memo]", box); if (m) m.onclick = () => memo(r);
+  const af = $("[data-askfocus]", box); if (af) af.onclick = () => { setActive(r, box); input.focus(); };
+  $$("[data-summ]", box).forEach(b => b.onclick = () => summarise(b));
+  if (!(r.charges || []).length) return;
+  const qs = [], d = r.charges.find(c => c.doubt), s = r.charges.find(c => !c.doubt);
+  if (d) qs.push(`Why was ${d.code} ${d.subsection || d.section} doubted?`);
+  if (s) qs.push(`What must the prosecution prove for ${s.code} ${s.subsection || s.section}?`);
+  if ((r.precedents || []).length) qs.push("Which precedent helps the defence most, and why?");
+  qs.push("What is the weakest point in the prosecution’s case?");
+  const cmp = r.era === "bns" ? (s || r.charges[0]) : null;
+  box.insertAdjacentHTML("beforeend", `<div class="suggest"><div class="label">Questions you can ask next</div><ul>
+    ${qs.map(q => `<li><button data-q="${esc(q)}">${ICON.arrow}${esc(q)}</button></li>`).join("")}
+    ${cmp ? `<li><button data-secref="bns:${esc(cmp.section)}">${ICON.book}What changed from the IPC for BNS ${esc(cmp.section)}?</button></li>` : ""}</ul></div>`);
+  $$("[data-q]", box).forEach(b => b.onclick = () => { setActive(r, box); askQuestion(b.dataset.q); });
+  setActive(r, box);
+}
+async function askQuestion(q) {
+  if (!active || busy) return;
+  addQuestion(q);
+  const out = addOut(`<div class="sheet"><p class="wait"><span class="spin"></span>Reading this matter’s report. The local model takes about 20 to 40 seconds.</p></div>`);
+  setBusy(true);
+  try {
+    const res = await api("/ask", {report: active.report, question: q, history: active.history});
+    active.history.push([q, res.answer]);
+    out.innerHTML = answerHTML(res);
+  } catch (e) { out.innerHTML = `<div class="banner err">${esc(e.message)}</div>`; }
+  setBusy(false); scrollDown();
+}
+function answerHTML(res) {
+  const text = esc(res.answer).replace(/\[?\bP(\d{1,2})\b\]?/g, (m, n) => `<a class="secref" data-plabel="P${n}">[P${n}]</a>`);
+  const cites = res.citations.map(c => c.status === "verified"
+      ? `<a class="cite-ok secref" data-secref="${c.code}:${esc(c.section)}" title="${esc(c.title || "")}: verified in the citation graph">✓ ${esc(c.code.toUpperCase())} ${esc(c.subsection || c.section)}${c.in_report ? "" : " (not in this matter)"}</a>`
+      : c.status === "other_act" ? `<span class="c cite-other" title="${esc(c.why)}">${esc(c.mention)} (another Act, not checked)</span>`
+      : `<span class="c cite-bad" title="${esc(c.why)}">${esc(c.mention)}</span>`).join("");
+  const bad = res.precedents.filter(p => !p.valid);
+  return `<div class="sheet answer"><div class="label">Answer</div><p>${text}</p>
+    ${cites ? `<div class="cited"><span>Sections cited:</span>${cites}</div>` : ""}
+    ${bad.length ? `<div class="banner err" style="margin-top:10px">The answer mentions ${esc(bad.map(p => p.label).join(", "))}, which ${bad.length > 1 ? "are" : "is"} not a precedent in this matter. Disregard that reference.</div>` : ""}
+    <p class="fine">Answered only from this matter’s report. Every section it mentions was checked against the citation graph; a struck-through number is not a real section. A research aid, not legal advice.</p></div>`;
+}
+
+/* ================= precedent summaries ================= */
+async function summarise(btn) {
+  if (busy) return;
+  const out = btn.nextElementSibling; btn.disabled = true;
+  out.innerHTML = `<p class="wait" style="margin-top:10px"><span class="spin"></span>Reading the judgment. This takes about 20 to 40 seconds.</p>`;
+  setBusy(true);
+  try {
+    const s = await api("/summarise", {doc_id: btn.dataset.summ});
+    out.innerHTML = `<dl class="summary"><dt>Facts</dt><dd>${esc(s.facts)}</dd><dt>Question</dt><dd>${esc(s.question)}</dd>
+      <dt>Held</dt><dd>${esc(s.held)}</dd><dt>Outcome</dt><dd>${esc(s.outcome)}</dd>
+      ${s.key_quote ? `<dt>Key line</dt><dd><span style="font-family:var(--f-display);font-style:italic">“${esc(s.key_quote)}”</span> <span class="verified">found word for word in the judgment</span></dd>`
+        : s.quote_dropped ? `<dt>Key line</dt><dd class="note">The model’s quotation was not found word for word in the judgment, so it is not shown.</dd>` : ""}</dl>
+      <p class="fine">Summary of ${s.read_chars < s.full_chars ? `the opening and closing parts (${s.read_chars.toLocaleString()} of ${s.full_chars.toLocaleString()} characters)` : "the full ingested text"} by the local model. Read the judgment before relying on it.</p>`;
+    btn.remove();
+  } catch (e) { out.innerHTML = `<div class="banner err" style="margin-top:8px">${esc(e.message)}</div>`; btn.disabled = false; }
+  setBusy(false);
+}
+
+/* ================= bare act drawer ================= */
+const drawer = $("#drawer");
+async function openDrawer(code, sec) {
+  drawer.classList.add("open");
+  $("#dcode").value = code; $("#dsec").value = sec;
+  const b = $("#dbody"); b.innerHTML = `<p class="wait"><span class="spin"></span>Opening ${esc(code.toUpperCase())} ${esc(sec)}…</p>`;
+  try {
+    const info = await api(`/section/${encodeURIComponent(code)}/${encodeURIComponent(sec)}`);
+    b.innerHTML = sectionHTML(info); b.scrollTop = 0;
+    if ((info.counterparts || []).some(c => c.section)) {
+      const c = await api(`/compare/${encodeURIComponent(code)}/${encodeURIComponent(info.section)}`);
+      $("[data-cmp]", b).innerHTML = compareHTML(c);
+    }
+  } catch (e) {
+    b.innerHTML = `<div class="banner err">${esc(e.message)}</div><p class="note">Only sections that exist in the ingested ${esc(code.toUpperCase())} are shown: the same check every proposed charge goes through.</p>`;
+  }
+}
+function scheduleHTML(s) {
+  return `<table class="sched"><tr><th>Entry</th><th>Arrest</th><th>Bail</th><th>Triable by</th></tr>${s.rows.map(e => {
+    const [cl, cc, cg] = COG[e.cognizable_flag] || [e.cognizable, ""], [bl, bc, bg] = BAIL[e.bailable_flag] || [e.bailable, ""];
+    return `<tr><td><span class="mono">${esc(e.ref)}</span> ${esc(e.offence)}${e.bailable_note || e.cognizable_note ? `<div class="note">${esc(e.bailable_note || e.cognizable_note)}</div>` : ""}
+      ${e.cognizable_flag === "conditional" || e.cognizable_flag === "depends" ? `<div class="note">${esc(e.cognizable)}</div>` : ""}</td>
+      <td class="${cc}" title="${esc(cg || "")}">${esc(cl)}</td><td class="${bc}" title="${esc(bg || "")}">${esc(bl)}</td><td>${esc(e.triable.replace(/\.$/, ""))}</td></tr>`;
+  }).join("")}</table><p class="fine">From the First Schedule: ${esc(s.source || "")}, p. ${esc(s.rows[0].page)}. ${esc(s.caveat)}</p>`;
+}
+function sectionHTML(i) {
+  const C = i.code.toUpperCase(), p = i.punishment || {};
+  const cls = i.class === "offence" ? "a chargeable offence" : i.class === "liability" ? "extends liability; charged together with an offence"
+    : i.class === "non_chargeable" ? `not a charge: ${i.class_why || ""}` : "";
+  return `<div class="act-h"><span class="num">${C} ${esc(i.section)}</span><h2>${esc(cleanTitle(i.title))}</h2>
+      <div class="ch">Chapter ${esc(i.chapter || "")}${i.chapter_title ? ` · ${esc(i.chapter_title)}` : ""}</div></div>
+    <p class="verified" style="margin:10px 0 0">In the ingested ${esc(CODE_FULL[i.code])}${cls ? `<span style="color:var(--ink-2)"> · ${esc(cls)}</span>` : ""}</p>
+    <h4>Punishment</h4>
+    ${p.max || p.min ? `<dl class="kv">${p.max ? `<div><dt>Maximum</dt><dd>${esc(p.max)}</dd></div>` : ""}${p.min ? `<div><dt>Minimum</dt><dd>${esc(p.min)}</dd></div>` : ""}${p.repeat ? `<div><dt>Repeat conviction</dt><dd>${esc(repeatRange(p.repeat))}</dd></div>` : ""}</dl>
+      ${p.max_source ? `<p class="fine" style="margin-top:4px">Maximum read from the ${esc(p.max_source)}.</p>` : ""}`
+      : `<p class="note">${(p.sentences || []).length ? "No term could be read reliably; the section’s own words follow." : "This section states no punishment itself: it is a definition, or another section punishes it."}</p>`}
+    ${p.text_incomplete ? `<div class="banner warn" style="margin-top:8px">The ingested text of this section ends mid-sentence: the source copy is cut short, so a later limb may be missing. The First Schedule below lists every limb.</div>` : ""}
+    ${(p.sentences || []).map(x => `<div class="quote">${esc(x)}</div>`).join("")}
+    <h4>Arrest, bail and court</h4>${i.schedule ? scheduleHTML(i.schedule) : `<p class="note">The First Schedule has no entry for this section.</p>`}
+    <h4>${i.code === "ipc" ? "BNS counterpart" : "IPC predecessor"} · verified mapping</h4>${cpHTML(i)}
+    <div data-cmp></div>
+    <h4>Text of the section</h4><div class="bare">${esc(i.text)}</div>`;
+}
+function cpHTML(i) {
+  const cps = i.counterparts || [];
+  if (!cps.length) return `<p class="note">No counterpart in the verified mapping.</p>`;
+  return cps.map(c => c.section
+    ? `<div class="cp"><a class="secref mono" data-secref="${c.code}:${esc(c.section)}">${c.code.toUpperCase()} ${esc(c.subsection || c.section)}</a> · ${esc(c.title || "")}${c.note ? `<div class="quote">${esc(c.note)}</div>` : ""}</div>`
+    : `<div class="cp"><b>No ${c.code.toUpperCase()} equivalent.</b> <span class="note">${esc(c.note || "")}</span></div>`).join("");
+}
+function compareHTML(c) {
+  if (!c || !c.diff) return "";
+  const ipc = c.from.code === "ipc" ? c.from : c.to, bns = c.from.code === "bns" ? c.from : c.to;
+  const pun = x => [x.punishment.max, x.punishment.min && `minimum ${x.punishment.min}`].filter(Boolean).join(", ") || "not stated";
+  const diff = c.diff.map(([op, t]) => op === "eq" ? esc(t) : op === "del" ? `<del>${esc(t)}</del>` : `<ins>${esc(t)}</ins>`).join(" ");
+  return `<h4>What changed · IPC ${esc(c.ipc)} to BNS ${esc(c.versus)}</h4>
+    <dl class="kv"><div><dt>Wording changed</dt><dd>${Math.round(c.changed_share * 100)}%</dd></div>
+      <div><dt>Punishment</dt><dd>${c.punishment_changed ? `IPC ${esc(pun(ipc))} → BNS ${esc(pun(bns))}` : `unchanged (${esc(pun(bns))})`}</dd></div></dl>
+    <div class="diff" style="margin-top:10px">${diff}</div>
+    <p class="fine"><del>Struck</del> appears only in the IPC; <ins>underlined</ins> is new in the BNS. Explanations, illustrations, sub-section numbers and quotation marks are left out, so only changes of wording show.</p>`;
+}
+$("#dform").addEventListener("submit", e => { e.preventDefault(); const s = $("#dsec").value.trim(); if (s) openDrawer($("#dcode").value, s); });
+$("#dclose").onclick = () => drawer.classList.remove("open");
+const openLookup = () => { $("#side").classList.remove("open"); drawer.classList.add("open"); $("#dsec").focus(); };
+$("#lookup").onclick = openLookup; $("#lookup2").onclick = openLookup;
+document.addEventListener("keydown", e => { if (e.key === "Escape") drawer.classList.remove("open"); });
+document.addEventListener("click", e => {
+  const s = e.target.closest("[data-secref]");
+  if (s) { e.preventDefault(); const [c, n] = s.dataset.secref.split(":"); if (c && n) openDrawer(c, n); return; }
+  const pl = e.target.closest("[data-plabel]");
+  if (pl && active) {
+    const el = $(`[data-prec="${+pl.dataset.plabel.slice(1) - 1}"]`, active.body);
+    if (el) { const d = $("details", el); if (d) d.open = true; el.scrollIntoView({behavior: "smooth", block: "center"}); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); }
+  }
+});
+
+/* ================= PDF upload ================= */
+$("#clip").onclick = () => $("#file").click();
+$("#file").onchange = e => { const f = e.target.files[0]; if (f) readPdf(f); e.target.value = ""; };
+const dock = $("#dock");
+["dragenter", "dragover"].forEach(t => dock.addEventListener(t, e => { e.preventDefault(); dock.classList.add("drag"); }));
+["dragleave", "drop"].forEach(t => dock.addEventListener(t, e => { e.preventDefault(); dock.classList.remove("drag"); }));
+dock.addEventListener("drop", e => {
+  const f = [...e.dataTransfer.files].find(x => x.type === "application/pdf" || /\.pdf$/i.test(x.name));
+  if (f) readPdf(f);
+});
+async function readPdf(f) {
+  if (busy) return;
+  clearActive();
+  const out = addOut(`<p class="wait"><span class="spin"></span>Reading ${esc(f.name)}…</p>`);
+  try {
+    const r = await fetch("/pdf", {method: "POST", headers: {"Content-Type": "application/pdf"}, body: f});
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.detail || r.statusText);
+    if (d.scanned) {
+      out.innerHTML = `<div class="banner err"><b>${esc(f.name)}</b> appears to be a scanned image (${d.pages} page${d.pages > 1 ? "s" : ""} with almost no text). Text recognition is not included; paste the text instead.</div>`;
+      return;
+    }
+    input.value = d.text; input.dispatchEvent(new Event("input"));
+    out.innerHTML = `<div class="banner info">Read <b>${esc(f.name)}</b>: ${d.pages} page${d.pages > 1 ? "s" : ""}, ${d.chars.toLocaleString()} characters${d.truncated ? " (the first 12,000 are used)" : ""}. The text is in the box below. Check it, then choose Analyse. An FIR or court order is reduced to its alleged facts first, and you will see what was extracted.</div>`;
+    input.focus();
+  } catch (e) { out.innerHTML = `<div class="banner err">${esc(e.message)}</div>`; }
+}
+
+/* ================= research memo (the browser's print dialog saves it as PDF) ================= */
+function memo(r) {
+  const w = window.open("", "_blank");
+  if (!w) { addOut(`<div class="banner err">The memo opens in a new window. Allow pop-ups for this page and try again.</div>`); return; }
+  const qa = active && active.report === r ? active.history : [];
+  const C = c => `${c.code} ${c.subsection || c.section}`;
+  const a = r.analytics || {};
+  const html = `<!doctype html><html><head><meta charset="utf-8"><title>Research memo · Pramana</title>
+  <link rel="stylesheet" href="${location.origin}/static/fonts/fonts.css"><style>
+    body { font: 11pt/1.55 "Spectral", Georgia, serif; color: #111; max-width: 740px; margin: 30px auto; padding: 0 22px; }
+    h1 { font-size: 21pt; margin: 0; font-weight: 600; } h2 { font: 600 9.5pt "IBM Plex Sans", Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; border-bottom: 1px solid #999; padding-bottom: 3px; margin-top: 24px; color: #333; }
+    .meta, .small { color: #555; font: 9pt/1.5 "IBM Plex Sans", Arial, sans-serif; } table { border-collapse: collapse; width: 100%; font: 9.5pt/1.45 "IBM Plex Sans", Arial, sans-serif; }
+    th, td { border-bottom: 1px solid #ccc; padding: 5px 6px; text-align: left; vertical-align: top; } th { color: #444; font-weight: 600; }
+    .sec { font-family: "IBM Plex Mono", Consolas, monospace; font-weight: 500; white-space: nowrap; }
+    .warn { border: 1px solid #b98a2e; padding: 7px 10px; font: 9pt/1.5 "IBM Plex Sans", Arial, sans-serif; } li { margin: 6px 0; }
+    @media print { .noprint { display: none; } body { margin: 0 auto; } }
+  </style></head><body>
+    <p class="noprint small">Use the print dialog and choose “Save as PDF”.</p>
+    <h1>Research memo</h1>
+    <div class="meta">Prepared with Pramana on ${esc(new Date().toLocaleString("en-IN"))} · ${esc(r.code_applied)} · offence date ${esc(fmt(r.offence_date))}</div>
+    <p class="warn">A research aid, not legal advice. Every section listed exists in the ingested ${esc(r.era.toUpperCase())}, checked against the citation graph. Whether it applies is the model’s assessment and must be verified by counsel.</p>
+    <h2>Facts as given</h2><p>${esc(r.facts || "")}</p>
+    <h2>Applicable sections</h2>
+    ${r.charges.length ? `<table><tr><th>Section</th><th>Title</th><th>Assessment</th><th>Reason</th></tr>
+      ${r.charges.map(c => `<tr><td class="sec">${esc(C(c))}</td><td>${esc(c.title)}</td><td>${c.doubt ? `Doubted: ${esc(c.doubt)}` : "Supported on the facts"}</td><td>${esc(c.reason || "")}</td></tr>`).join("")}</table>` : "<p>No section was both proposed and verified.</p>"}
+    ${(r.included || []).length ? `<p class="small">Included in a greater charge: ${r.included.map(c => `${esc(C(c))} (in ${esc(c.included_in)})`).join("; ")}.</p>` : ""}
+    ${(r.unconfirmed || []).length ? `<p class="small">Proposed but rejected by the citation graph: ${r.unconfirmed.map(u => esc(u.raw)).join(", ")}.</p>` : ""}
+    <h2>Precedents</h2>
+    ${(r.precedents || []).length ? `<ol>${r.precedents.map(p => `<li><i>${esc(precTitle(p))}</i>${p.title ? `, ${esc(p.court || "")}` : ""}${p.date ? `, ${esc(p.date)}` : precYear(p) ? `, ${esc(precYear(p))}` : ""}${p.citation ? `, ${esc(p.citation)}` : ""}. For ${esc(p.for_charge)}${p.via_ipc_predecessor ? ", through the IPC predecessor" : ""}. Disposal: ${esc(p.disposal_nature || "not recorded")}.<br><span class="small">${esc((p.excerpt || "").slice(0, 400))}${(p.excerpt || "").length > 400 ? "…" : ""}</span></li>`).join("")}</ol>` : "<p>None.</p>"}
+    <h2>Counter-arguments for the defence</h2>
+    ${(r.defenses || []).length ? `<ol>${r.defenses.map(d => `<li><b>Against ${esc(d.against)}.</b> ${esc(d.argument)}${d.fact_quote ? `<br><span class="small">Turns on: “${esc(d.fact_quote)}”</span>` : ""}${d.verified ? "" : `<br><span class="small">Failed the final check: ${esc((d.issues || []).join("; "))}</span>`}</li>`).join("")}</ol>` : "<p>None.</p>"}
+    ${(a.sections || []).length ? `<h2>Outcomes in past judgments</h2><p class="small">${esc(a.note || "")}</p><table><tr><th>Section</th><th>Judgments</th><th>Appellant or petitioner succeeded</th></tr>
+      ${a.sections.flatMap(s => [[s.charge, s.direct], ...s.via_ipc.map(v => [`${s.charge} ← IPC ${v.section}`, v])]).map(([l, x]) => `<tr><td class="sec">${esc(l)}</td><td>${x.judgments}</td><td>${x.suppressed ? "not shown (fewer than 5)" : x.allowed_share != null ? Math.round(x.allowed_share * 100) + "%" : "n/a"}</td></tr>`).join("")}</table>` : ""}
+    ${qa.length ? `<h2>Questions asked</h2>${qa.map(([q, ans]) => `<p><b>${esc(q)}</b><br>${esc(ans)}</p>`).join("")}` : ""}
+    <p class="small" style="margin-top:30px">Generated on the user’s computer by a local model; no case facts left the device.</p>
+    <script>window.onload = () => setTimeout(() => window.print(), 400);<\/script></body></html>`;
+  w.document.open(); w.document.write(html); w.document.close();
+}
+
+/* ================= chart tooltips ================= */
+document.addEventListener("mousemove", e => {
+  const t = e.target.closest && e.target.closest("[data-tip]");
+  if (!t) { tip.style.opacity = 0; return; }
+  tip.textContent = t.dataset.tip; tip.style.opacity = 1;
+  tip.style.left = Math.min(e.clientX + 12, innerWidth - tip.offsetWidth - 8) + "px"; tip.style.top = (e.clientY + 14) + "px";
+});
+
+/* ================= backend status ================= */
+async function checkHealth() {
+  const el = $("#status");
+  try {
+    const h = await api("/health");
+    el.innerHTML = `<i class="${h.ollama ? "up" : "down"}"></i>${h.ollama ? `Ready · local model ${esc(h.model)}` : "The local model (Ollama) is not running"}`;
+  } catch { el.innerHTML = `<i class="down"></i>The backend is not reachable`; }
+}
+
+$("#newcase").onclick = () => { if (!busy) { clearActive(); welcome(); $("#side").classList.remove("open"); input.focus(); } };
+$("#menu").onclick = () => $("#side").classList.toggle("open");
+welcome(); checkHealth(); setInterval(checkHealth, 30000);
+input.focus();
+// Deep link for demonstrations: /#sample=group_assault replays that saved matter.
+const deep = location.hash.match(/^#sample=([\w-]+)$/);
+if (deep) loadSamples().then(() => openSample(deep[1]));
+</script>
+</body>
+</html>

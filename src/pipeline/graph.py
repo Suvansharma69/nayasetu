@@ -26,8 +26,8 @@ from functools import partial
 from src.graph import citation_graph as cg
 from src.retrieval import embedder, ranker
 
-from . import (ablation, analytics, applicability, chargeability, defense, guardrail, intake, llm as llm_mod, nodes,
-               precedents, progress)
+from . import (ablation, analytics, applicability, chargeability, defense, embedmap, guardrail, intake, llm as llm_mod,
+               nodes, precedents, progress)
 from .router import STRADDLE_WARNING, route, route_period
 from .state import initial_state
 
@@ -106,10 +106,13 @@ def retrieve_candidates(case_facts, era, cli=None, device=RUNTIME_DEVICE):
         # threat with an axe, got attempt to murder and murder on top). The
         # fused top 10 comes first, then the statute-text top 10's new sections.
         seen = {r["section"] for r in rows}
+        for r in rows:
+            r["list"] = "fused"
         for r in ranker.rank_sections(case_facts, era, top_k=TOP_K_CANDIDATES, cli=cli,
                                       device=device, exclude=exclude, use_votes=False,
                                       pairs=pairs):
             if r["section"] not in seen:
+                r["list"] = "text"
                 rows.append(r)
                 seen.add(r["section"])
     for r in rows:
@@ -148,9 +151,15 @@ def run(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=None, suf
 
 
 def _brief(rows, n=TOP_K_CANDIDATES + 4):
-    """Retrieved candidates as the live view shows them."""
-    return [{"section": r["section"], "ref": r.get("matched") or r["section"], "title": r.get("title")}
-            for r in (rows or [])[:n]]
+    """Retrieved candidates as the live view shows them, with the ranking
+    signals that put each one there (fused RRF score, its rank by statute text
+    and by precedent votes, and which of the two lists it came from)."""
+    return [brief_row(r) for r in (rows or [])[:n]]
+
+
+def brief_row(r):
+    return {"section": r["section"], "ref": r.get("matched") or r["section"], "title": r.get("title"),
+            **{k: r[k] for k in ("score", "statute_rank", "statute_score", "vote_rank", "list") if r.get(k) is not None}}
 
 
 def _review(retrieved, n):
@@ -280,10 +289,12 @@ def _run_core(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=Non
     t = time.perf_counter()
     retrieved = retrieve(case_facts, era) if retrieve else _on_device(
         lambda d: retrieve_candidates(case_facts, era, cli=cli, device=d), device)
-    pool = {}
+    pool, emap = {}, None
     if full and retrieve is None:
         # Node 3's judgment neighbourhood, while the embedder still has the card.
         pool = _on_device(lambda d: precedents.prefetch(case_facts, era, cli=cli, device=d), device)
+        # The web view's embedding map, from the same vectors (src/pipeline/embedmap.py).
+        emap = _on_device(lambda d: embedmap.build(case_facts, era, retrieved, pool, cli=cli, device=d), device)
     timings["retrieve_s"] = time.perf_counter() - t
     embedder.free()
     progress.mark("retrieve", "done", {"insufficient": False, "candidates": _brief(retrieved)})
@@ -308,7 +319,8 @@ def _run_core(case_facts, offence_date, llm=None, g=None, cli=None, retrieve=Non
     # verified charges.
     review = [] if final["verified_sections"] else _review(final["retrieved"], REVIEW_CANDIDATES)
     return {"status": status, "era": era, "guardrail": detail, "state": final, "timings": timings,
-            "review_candidates": review, **split_by_applicability(final, check_applicability)}
+            "review_candidates": review, "embedding_map": emap,
+            **split_by_applicability(final, check_applicability)}
 
 
 # Node 2b is ADVISORY, not a gate (decided 2026-09-30 on the dev-set ablation):

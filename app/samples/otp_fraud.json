@@ -61,67 +61,129 @@
   {
    "section": "316",
    "ref": "316(1)",
-   "title": "Criminal breach of trust"
+   "title": "Criminal breach of trust",
+   "score": 0.03226,
+   "statute_rank": 2,
+   "statute_score": 0.5723,
+   "vote_rank": 2,
+   "list": "fused"
   },
   {
    "section": "318",
    "ref": "318(1)",
-   "title": "Cheating"
+   "title": "Cheating",
+   "score": 0.03154,
+   "statute_rank": 6,
+   "statute_score": 0.553,
+   "vote_rank": 1,
+   "list": "fused"
   },
   {
    "section": "335",
    "ref": "335",
-   "title": "Making a false document"
+   "title": "Making a false document",
+   "score": 0.03037,
+   "statute_rank": 3,
+   "statute_score": 0.5696,
+   "vote_rank": 9,
+   "list": "fused"
   },
   {
    "section": "319",
    "ref": "319(1)",
-   "title": "Cheating by personation"
+   "title": "Cheating by personation",
+   "score": 0.02973,
+   "statute_rank": 1,
+   "statute_score": 0.5859,
+   "vote_rank": 15,
+   "list": "fused"
   },
   {
    "section": "336",
    "ref": "336(3)",
-   "title": "Forgery"
+   "title": "Forgery",
+   "score": 0.02921,
+   "statute_rank": 15,
+   "statute_score": 0.5169,
+   "vote_rank": 3,
+   "list": "fused"
   },
   {
    "section": "344",
    "ref": "344",
-   "title": "Falsification of accounts"
+   "title": "Falsification of accounts",
+   "score": 0.02901,
+   "statute_rank": 7,
+   "statute_score": 0.5485,
+   "vote_rank": 11,
+   "list": "fused"
   },
   {
    "section": "340",
    "ref": "340(1)",
-   "title": "Forged document or electronic record and using it as genuine"
+   "title": "Forged document or electronic record and using it as genuine",
+   "score": 0.02861,
+   "statute_rank": 17,
+   "statute_score": 0.5098,
+   "vote_rank": 4,
+   "list": "fused"
   },
   {
    "section": "303",
    "ref": "303",
-   "title": "Theft"
+   "title": "Theft",
+   "score": 0.02669,
+   "statute_rank": 13,
+   "statute_score": 0.5225,
+   "vote_rank": 17,
+   "list": "fused"
   },
   {
    "section": "317",
    "ref": "317(1)",
-   "title": "Stolen property"
+   "title": "Stolen property",
+   "score": 0.02663,
+   "statute_rank": 10,
+   "statute_score": 0.534,
+   "vote_rank": 21,
+   "list": "fused"
   },
   {
    "section": "308",
    "ref": "308(1)",
-   "title": "Extortion"
+   "title": "Extortion",
+   "score": 0.02558,
+   "statute_rank": 8,
+   "statute_score": 0.5466,
+   "vote_rank": 32,
+   "list": "fused"
   },
   {
    "section": "182",
    "ref": "182",
-   "title": "Making or using documents resembling currency-notes or bank-notes"
+   "title": "Making or using documents resembling currency-notes or bank-notes",
+   "score": 0.01562,
+   "statute_rank": 4,
+   "statute_score": 0.5593,
+   "list": "text"
   },
   {
    "section": "309",
    "ref": "309(3)",
-   "title": "Robbery"
+   "title": "Robbery",
+   "score": 0.01538,
+   "statute_rank": 5,
+   "statute_score": 0.5569,
+   "list": "text"
   },
   {
    "section": "178",
    "ref": "178(4)",
-   "title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes"
+   "title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+   "score": 0.01449,
+   "statute_rank": 9,
+   "statute_score": 0.5434,
+   "list": "text"
   }
  ],
  "precedents": [
@@ -763,5 +825,389 @@
  "sample": {
   "id": "otp_fraud",
   "name": "Bank impersonation OTP fraud (BNS era)"
+ },
+ "embedding_map": {
+  "points": [
+   {
+    "kind": "query",
+    "label": "These facts",
+    "cos": 1.0,
+    "x": -0.3684,
+    "y": 0.0185
+   },
+   {
+    "kind": "statute",
+    "section": "316",
+    "label": "BNS 316(1)",
+    "title": "Criminal breach of trust",
+    "rank": 1,
+    "cos": 0.5479,
+    "x": 0.6679,
+    "y": 0.2156
+   },
+   {
+    "kind": "statute",
+    "section": "318",
+    "label": "BNS 318(1)",
+    "title": "Cheating",
+    "rank": 2,
+    "cos": 0.5401,
+    "x": 0.8699,
+    "y": 0.1126
+   },
+   {
+    "kind": "statute",
+    "section": "335",
+    "label": "BNS 335",
+    "title": "Making a false document",
+    "rank": 3,
+    "cos": 0.5699,
+    "x": 0.5481,
+    "y": -0.1186
+   },
+   {
+    "kind": "statute",
+    "section": "319",
+    "label": "BNS 319(1)",
+    "title": "Cheating by personation",
+    "rank": 4,
+    "cos": 0.5589,
+    "x": 0.7389,
+    "y": -0.1236
+   },
+   {
+    "kind": "statute",
+    "section": "336",
+    "label": "BNS 336(3)",
+    "title": "Forgery",
+    "rank": 5,
+    "cos": 0.4924,
+    "x": 1.0,
+    "y": -0.2694
+   },
+   {
+    "kind": "statute",
+    "section": "344",
+    "label": "BNS 344",
+    "title": "Falsification of accounts",
+    "rank": 6,
+    "cos": 0.5486,
+    "x": 0.7968,
+    "y": -0.173
+   },
+   {
+    "kind": "statute",
+    "section": "340",
+    "label": "BNS 340(1)",
+    "title": "Forged document or electronic record and using it as genuine",
+    "rank": 7,
+    "cos": 0.4908,
+    "x": 0.8699,
+    "y": -0.3727
+   },
+   {
+    "kind": "statute",
+    "section": "303",
+    "label": "BNS 303",
+    "title": "Theft",
+    "rank": 8,
+    "cos": 0.5226,
+    "x": 0.6471,
+    "y": 0.4132
+   },
+   {
+    "kind": "statute",
+    "section": "317",
+    "label": "BNS 317(1)",
+    "title": "Stolen property",
+    "rank": 9,
+    "cos": 0.5237,
+    "x": 0.8094,
+    "y": 0.2068
+   },
+   {
+    "kind": "statute",
+    "section": "308",
+    "label": "BNS 308(1)",
+    "title": "Extortion",
+    "rank": 10,
+    "cos": 0.5339,
+    "x": 0.7795,
+    "y": 0.3967
+   },
+   {
+    "kind": "statute",
+    "section": "182",
+    "label": "BNS 182",
+    "title": "Making or using documents resembling currency-notes or bank-notes",
+    "rank": 11,
+    "cos": 0.5597,
+    "x": 0.6308,
+    "y": -0.1761
+   },
+   {
+    "kind": "statute",
+    "section": "309",
+    "label": "BNS 309(3)",
+    "title": "Robbery",
+    "rank": 12,
+    "cos": 0.5195,
+    "x": 0.6724,
+    "y": 0.5438
+   },
+   {
+    "kind": "statute",
+    "section": "178",
+    "label": "BNS 178(4)",
+    "title": "Counterfeiting coin, Government stamps, currency-notes or bank-notes",
+    "rank": 13,
+    "cos": 0.5329,
+    "x": 0.7816,
+    "y": -0.2208
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2023_2276",
+    "label": "na_Delhi_HC_2023_2276",
+    "cos": 0.7347,
+    "x": -0.4492,
+    "y": 0.0625
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Himachal_Pradesh_HC_2021_552",
+    "label": "na_Himachal_Pradesh_HC_2021_552",
+    "cos": 0.7096,
+    "x": -0.5264,
+    "y": 0.3884
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Himachal_Pradesh_HC_2021_419",
+    "label": "na_Himachal_Pradesh_HC_2021_419",
+    "cos": 0.7015,
+    "x": -0.5316,
+    "y": 0.4049
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_393",
+    "label": "na_KA_HC_2020_393",
+    "cos": 0.6878,
+    "x": -0.4191,
+    "y": -0.078
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Tripura_HC_2022_160",
+    "label": "na_Tripura_HC_2022_160",
+    "cos": 0.6871,
+    "x": -0.4554,
+    "y": 0.0209
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Bombay_HC_2022_1810",
+    "label": "na_Bombay_HC_2022_1810",
+    "cos": 0.6786,
+    "x": -0.233,
+    "y": -0.3241
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2023_61",
+    "label": "na_KA_HC_2023_61",
+    "cos": 0.6698,
+    "x": -0.4763,
+    "y": 0.2447
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2025_2_708_726",
+    "label": "2025_2_708_726",
+    "cos": 0.6657,
+    "x": -0.3706,
+    "y": -0.1781
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2022_1347",
+    "label": "na_KA_HC_2022_1347",
+    "cos": 0.6621,
+    "x": -0.3773,
+    "y": 0.3141
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2022_4058",
+    "label": "na_Madras_HC_2022_4058",
+    "cos": 0.6581,
+    "x": -0.2537,
+    "y": -0.3621
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Andhra_HC_2022_219",
+    "label": "na_Andhra_HC_2022_219",
+    "cos": 0.658,
+    "x": -0.2246,
+    "y": 0.1589
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2023_3_697_713",
+    "label": "2023_3_697_713",
+    "cos": 0.6572,
+    "x": -0.448,
+    "y": 0.2316
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Supreme_Court_2023_578",
+    "label": "na_Supreme_Court_2023_578",
+    "cos": 0.6554,
+    "x": -0.2167,
+    "y": 0.2547
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Punjab_HC_2022_1601",
+    "label": "na_Punjab_HC_2022_1601",
+    "cos": 0.6519,
+    "x": -0.2519,
+    "y": 0.0828
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Punjab_HC_2022_619",
+    "label": "na_Punjab_HC_2022_619",
+    "cos": 0.6509,
+    "x": -0.2451,
+    "y": -0.1115
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_2415",
+    "label": "na_KA_HC_2020_2415",
+    "cos": 0.6504,
+    "x": -0.1271,
+    "y": 0.1227
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Telangana_HC_2024_65",
+    "label": "na_Telangana_HC_2024_65",
+    "cos": 0.6502,
+    "x": -0.2623,
+    "y": 0.5409
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Punjab_HC_2021_756",
+    "label": "na_Punjab_HC_2021_756",
+    "cos": 0.6493,
+    "x": -0.3437,
+    "y": 0.3521
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_KA_HC_2020_2865",
+    "label": "na_KA_HC_2020_2865",
+    "cos": 0.648,
+    "x": -0.1577,
+    "y": -0.141
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2023_1593",
+    "label": "na_Madras_HC_2023_1593",
+    "cos": 0.6469,
+    "x": -0.3032,
+    "y": -0.3395
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Orissa_HC_2023_1980",
+    "label": "na_Orissa_HC_2023_1980",
+    "cos": 0.6464,
+    "x": -0.3059,
+    "y": -0.4019
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2022_2262",
+    "label": "na_Delhi_HC_2022_2262",
+    "cos": 0.6456,
+    "x": -0.1959,
+    "y": -0.3121
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_J_K_HC_2020_3054",
+    "label": "na_J_K_HC_2020_3054",
+    "cos": 0.6447,
+    "x": -0.3314,
+    "y": 0.1311
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "2024_8_235_286",
+    "label": "2024_8_235_286",
+    "cos": 0.644,
+    "x": -0.2339,
+    "y": 0.1181
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Tripura_HC_2022_701",
+    "label": "na_Tripura_HC_2022_701",
+    "cos": 0.6422,
+    "x": -0.1976,
+    "y": -0.1441
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Delhi_HC_2022_2134",
+    "label": "na_Delhi_HC_2022_2134",
+    "cos": 0.6414,
+    "x": -0.1791,
+    "y": -0.3074
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2023_859",
+    "label": "na_Madras_HC_2023_859",
+    "cos": 0.6412,
+    "x": -0.348,
+    "y": -0.6744
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Kerala_HC_2022_115",
+    "label": "na_Kerala_HC_2022_115",
+    "cos": 0.6414,
+    "x": -0.4008,
+    "y": 0.2278
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Madras_HC_2023_848",
+    "label": "na_Madras_HC_2023_848",
+    "cos": 0.6409,
+    "x": -0.3551,
+    "y": -0.6849
+   },
+   {
+    "kind": "judgment",
+    "doc_id": "na_Orissa_HC_2023_798",
+    "label": "na_Orissa_HC_2023_798",
+    "cos": 0.6403,
+    "x": -0.2231,
+    "y": -0.0504
+   }
+  ],
+  "explained": 0.244,
+  "model": "BAAI/bge-m3",
+  "dims": 1024
  }
 }
