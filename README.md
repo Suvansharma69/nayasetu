@@ -187,6 +187,7 @@ Development decisions were made on development sets only; held-out sets were wri
 |---|---|
 | [`stuff/docs/PROJECT_GUIDE.md`](stuff/docs/PROJECT_GUIDE.md) (also `.pdf`) | design, data, results, problems met, question bank |
 | [`stuff/docs/paper/`](stuff/docs/paper/) | research paper, IEEE conference format (`pramana.tex`, `.pdf`) |
+| [`stuff/docs/report/`](stuff/docs/report/) | project report (40 pages, IKGPTU format), Word and PDF |
 | [`stuff/docs/synopsis/`](stuff/docs/synopsis/) | project synopsis, Word and PDF |
 | [`stuff/presentation/`](stuff/presentation/) | animated slide deck with speaker notes and a PDF backup |
 | [`stuff/docs/README.md`](stuff/docs/README.md) | index of the reports and run records |

@@ -6,6 +6,7 @@
 |---|---|
 | [`PROJECT_GUIDE.md`](PROJECT_GUIDE.md) · [`.pdf`](PROJECT_GUIDE.pdf) | the complete guide: design, data, results, problems met, question bank |
 | [`paper/`](paper/) | research paper: `pramana.tex` (IEEE, compile on Overleaf), `pramana.html`, `pramana.pdf` |
+| [`report/`](report/) | project report for the university (40 pages, IKGPTU format), Word and PDF |
 | [`synopsis/`](synopsis/) | project synopsis for the university, Word and PDF |
 | [`evaluation_results.md`](evaluation_results.md) | every evaluation in one place, with the command that reproduces it |
 
