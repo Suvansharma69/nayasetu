@@ -50,8 +50,8 @@
     <p class="lede rise" style="--d:3">AI-assisted legal research for Indian criminal law that verifies every citation it makes, across the IPC → BNS transition.</p>
     <div class="byline rise" style="--d:4">
       <span>Suvan Sharma · Roll no. 2328069 · Team The Spartan Coders</span><br>
-      <span>Guide: Aditya Sharma, <span class="verify">[[VERIFY: designation]]</span></span><br>
-      <span>Department of Computer Science &amp; Engineering · I.K. Gujral Punjab Technical University</span>
+      <span>Guide: Aditya Sharma</span><br>
+      <span>Department of Computer Science &amp; Engineering · I.K. Gujral Punjab Technical University, Mohali Campus-1</span>
     </div>
   </div>
   <aside class="notes">Good morning. I’m Suvan Sharma from team The Spartan Coders, and my major project is Pramana, an AI-assisted legal research system for Indian criminal law, guided by Aditya Sharma. Pramana is Sanskrit for proof, and that is the design goal: nothing reaches the lawyer unless it can be proved from the statutes and judgments the system actually holds. Let me start with the problem.</aside>
@@ -76,7 +76,7 @@
       <svg class="ck-arrow rise" style="--d:4" viewBox="0 0 60 24"><path d="M2 12h48M42 4l10 8-10 8" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
       <div class="ckc rise" style="--d:5"><span class="n">3</span><b>Search judgments</b><span>keyword search for precedent</span></div>
       <svg class="ck-arrow rise" style="--d:5" viewBox="0 0 60 24"><path d="M2 12h48M42 4l10 8-10 8" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
-      <div class="ckc hot rise" style="--d:6"><span class="n">4</span><b>Manual reading</b><span>hours per matter <span class="verify">[[VERIFY: time per matter]]</span></span></div>
+      <div class="ckc hot rise" style="--d:6"><span class="n">4</span><b>Manual reading</b><span>the slowest step of all</span></div>
     </div>
     <div class="motiv">
       <span class="label" data-step="1">And now</span>
@@ -140,7 +140,8 @@
         </div>
         <div class="fact-block privacy" data-step="3">
           <div class="big-frac sm"><span class="mono">17–33%</span></div>
-          <p class="small">of queries hallucinated by commercial legal AI research tools. <span class="verify">[[VERIFY: Magesh et al. figure]]</span></p>
+          <p class="small">of queries hallucinated by leading commercial legal AI research tools.</p>
+          <p class="tiny">Magesh et al., Stanford &amp; Yale, Journal of Empirical Legal Studies, 2025.</p>
         </div>
       </div>
     </div>
@@ -149,7 +150,7 @@
       <p>Build a research assistant for Indian criminal law that identifies applicable sections and precedents across the IPC→BNS transition, and <em>never presents a non-existent citation</em>.</p>
     </div>
   </div>
-  <aside class="notes">The second problem: language models invent citations. Asked what BNS 303 covers, the model confidently described a bomb-threat offence. [click] BNS 303 is theft. [click] When we let it answer from memory on 15 development cases, 20 of its 68 citations named sections that do not exist in the BNS, mostly old IPC numbers. [click] This is not only small models: a 2024 Stanford study found commercial legal AI research tools hallucinating in roughly 17 to 33 percent of queries. [click] So the problem statement: build a research assistant for Indian criminal law that finds the applicable sections and precedents across the transition, and never presents a non-existent citation. What already exists?</aside>
+  <aside class="notes">The second problem: language models invent citations. Asked what BNS 303 covers, the model confidently described a bomb-threat offence. [click] BNS 303 is theft. [click] When we let it answer from memory on 15 development cases, 20 of its 68 citations named sections that do not exist in the BNS, mostly old IPC numbers. [click] This is not only small models: a Stanford and Yale study published in 2025 found the leading commercial legal AI research tools hallucinating on 17 to 33 percent of queries. [click] So the problem statement: build a research assistant for Indian criminal law that finds the applicable sections and precedents across the transition, and never presents a non-existent citation. What already exists?</aside>
 </section>
 
 <!-- ============================================================ 6 WHAT EXISTS -->
@@ -158,33 +159,26 @@
   <h2 class="rise" style="--d:1">What exists, and what nobody combines.</h2>
   <div class="body lit">
     <div class="col papers">
-      <div class="label rise" style="--d:2">Research <span class="verify">[[VERIFY: paper details]]</span></div>
+      <div class="label rise" style="--d:2">Research</div>
       <div class="pp rise" style="--d:2"><span class="r">●</span><div><b>RAG</b> · Lewis et al., NeurIPS 2020</div><span class="lim">grounds answers in retrieved text; no citation check</span></div>
       <div class="pp rise" style="--d:3"><span class="r">●</span><div><b>LeSICiN</b> · Paul et al., AAAI 2022</div><span class="lim">graph statute identification; supervised, IPC only</span></div>
       <div class="pp rise" style="--d:4"><span class="r">●</span><div><b>IL-TUR</b> · Joshi et al., ACL 2024</div><span class="lim">Indian legal benchmark; IPC-era labels</span></div>
-      <div class="pp rise" style="--d:5"><span class="r">●</span><div><b>Legal AI hallucination</b> · Magesh et al., 2024</div><span class="lim">measures the failure, does not prevent it</span></div>
+      <div class="pp rise" style="--d:5"><span class="r">●</span><div><b>Legal AI hallucination</b> · Magesh et al., JELS 2025</div><span class="lim">measures the failure, does not prevent it</span></div>
       <div class="pp rise" style="--d:6"><span class="r">●</span><div><b>BGE-M3</b> · Chen et al., 2024</div><span class="lim">general embedder; untested on Indian law</span></div>
     </div>
     <div class="col tools">
       <div class="label rise" style="--d:2">Existing tools</div>
-      <table class="cmp rise" style="--d:3">
-        <thead><tr><th></th><th>IPC/BNS<br>by date</th><th>Verifies<br>citations</th><th>Precedent<br>across codes</th><th>Counter-<br>arguments</th><th></th></tr></thead>
-        <tbody>
-          <tr><td>Indian Kanoon</td><td>✗</td><td>—</td><td>✗</td><td>✗</td><td><span class="verify">[[VERIFY]]</span></td></tr>
-          <tr><td>Manupatra / SCC Online</td><td>?</td><td>—</td><td>?</td><td>✗</td><td><span class="verify">[[VERIFY]]</span></td></tr>
-          <tr><td>jhana.ai</td><td>?</td><td>✓</td><td>?</td><td>?</td><td><span class="verify">[[VERIFY]]</span></td></tr>
-          <tr><td>NyayAssist</td><td>?</td><td>✓</td><td>?</td><td>?</td><td><span class="verify">[[VERIFY]]</span></td></tr>
-          <tr class="me"><td>Pramana</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td></td></tr>
-        </tbody>
-      </table>
-      <p class="tiny">— search engines and databases return real documents; they do not interpret facts.</p>
+      <div class="tool rise" style="--d:3"><b>Indian Kanoon</b><span>free search engine for judgments and statutes</span></div>
+      <div class="tool rise" style="--d:4"><b>Manupatra · SCC Online</b><span>subscription case-law databases with editorial content</span></div>
+      <div class="tool rise" style="--d:5"><b>jhana.ai · NyayAssist</b><span>AI research assistants that link and check citations</span></div>
+      <p class="tiny">Search tools return real documents but do not map facts to sections; AI assistants check citations, so verification alone is not new.</p>
     </div>
     <div class="gap-box" data-step="1">
       <span class="label">The gap</span>
-      <p>No system combines <b>date-based code routing</b>, <b>graph-verified citations</b>, an <b>IPC→BNS precedent bridge</b>, <b>counter-arguments</b> and <b>outcome statistics</b>.</p>
+      <p>No system we found combines <b>date-based code routing</b>, <b>graph-verified citations</b>, an <b>IPC→BNS precedent bridge</b>, <b>counter-arguments</b> and <b>outcome statistics</b>.</p>
     </div>
   </div>
-  <aside class="notes">On the research side: retrieval-augmented generation grounds a model’s answer in retrieved text, but nothing in it checks that a citation exists. LeSICiN identifies statutes with a graph model, but it is supervised and IPC-only. IL-TUR is the Indian legal benchmark. Magesh and colleagues measured hallucination in commercial tools. BGE-M3 is a strong general embedder. On the tool side: Indian Kanoon and the paid databases are search engines; they return real documents but do not interpret the facts. jhana.ai and NyayAssist do verify citations, so verification alone is not new. [click] The gap is the combination: choosing the code by offence date, graph-verified citations, bridging new BNS charges to old IPC precedent, counter-arguments and outcome statistics. That is what we built.</aside>
+  <aside class="notes">On the research side: retrieval-augmented generation grounds a model’s answer in retrieved text, but nothing in it checks that a citation exists. LeSICiN identifies statutes with a graph model, but it is supervised and IPC-only. IL-TUR is the Indian legal benchmark. Magesh and colleagues, at Stanford and Yale, measured hallucination in commercial tools. BGE-M3 is a strong general embedder. On the tool side: Indian Kanoon is a free search engine, and Manupatra and SCC Online are subscription databases; they return real documents but do not map facts to sections. jhana.ai and NyayAssist are AI research assistants that link and check citations, so verification alone is not new. [click] The gap is the combination, which no system we found offers: choosing the code by offence date, graph-verified citations, bridging new BNS charges to old IPC precedent, counter-arguments and outcome statistics. That is what we built.</aside>
 </section>
 
 <!-- ============================================================ 7 OUR SOLUTION -->

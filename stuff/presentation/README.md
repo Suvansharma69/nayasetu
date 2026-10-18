@@ -1,13 +1,14 @@
 # Pramana — presentation
 
-An animated slide deck: 15 slides, about 11–13 minutes that runs offline in a browser. It has no internet dependency: the fonts are bundled (SIL Open Font License), there are no external libraries, and every figure comes from the project's own data and evaluation files.
+An animated slide deck: 15 slides, about 14 minutes including the live demo. It runs offline in a browser: the fonts are bundled (SIL Open Font License), there are no external libraries, and every figure comes from the project's own data and evaluation files. Outside figures (the Magesh et al. study, the IL-TUR baselines) were checked against their published papers.
+
+**The spoken script** is `Pramana_Presentation_Script.pdf` (also `.docx`) in this folder: timing plan, slide-by-slide script with click cues, demo runbook, fallbacks and likely questions. The same words are in the deck as speaker notes (press P).
 
 ## Before the talk
 
-1. **Check the `[[VERIFY: …]]` tags.** Amber dashed tags mark every detail that comes from outside the project (roll number, the guide's designation, paper details, competitor tools, the references). Confirm each one, then delete the tag in `index.html` (search for `[[VERIFY`).
-2. **Drop in the media.** See `media/README.txt`: the four screenshots are in place; the screen recording (`media/demo.mp4`) is optional. Without it the demo slide shows a frame reading "Switching to the browser".
-3. **Re-export the PDF backup** after adding media (command below).
-4. Open `index.html` in Chrome once and step through every slide on the machine you will present from.
+1. Close heavy apps, then run `run_web.bat` from the project root and wait for the page to show "Ready".
+2. Open `index.html` in Chrome or Edge on the projector and press **F**; press **P** for the presenter view on your laptop.
+3. Optional: drop a screen recording at `media/demo.mp4` to play in the demo slide's frame; without it the frame reads "Switching to the browser".
 
 ## Presenting
 

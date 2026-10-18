@@ -132,7 +132,30 @@ html.still .seal-check, html.print .seal-check { stroke-dashoffset: 0; }
 .live .tl { animation: floaty 6s ease-in-out calc(var(--d, 0) * .25s + 1.4s) infinite; }
 @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
+/* ---------- invented citations: keep the problem statement clear of the footer ---------- */
+.halluc2 { gap: 18px; margin-top: 22px; }
+.halluc2 .term { padding: 28px 34px; gap: 18px; }
+.halluc2 .term-a { min-height: 90px; }
+.halluc2 .fact-block { padding-bottom: 14px; gap: 6px; }
+.halluc2 .fact-block.privacy { padding-top: 14px; }
+.halluc2 .big-frac { font-size: 104px; }
+.halluc2 .big-frac.sm { font-size: 66px; }
+.halluc2 .ps-box { padding: 16px 28px; }
+.halluc2 .ps-box p { font-size: 25px; }
+
+/* ---------- what exists: tool rows ---------- */
+.tools { gap: 12px; }
+.tool { display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; border: 1px solid var(--rule-2); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; background: var(--panel); }
+.tool b { font: 600 23px var(--f-body); }
+.tool span { font-size: 19px; color: var(--muted); }
+.tools .tiny { margin-top: 6px; }
+
 /* ---------- demo slide closes the talk ---------- */
+.s-demo .demo-grid { margin-top: 22px; }
+.s-demo .demo-grid .col { gap: 18px; }
+.s-demo .demo-grid .demo-case { padding: 22px 28px; gap: 12px; }
+.s-demo .demo-grid .demo-case .facts { font-size: 27px; line-height: 1.45; }
+.s-demo .demo-grid .media { min-height: 0; }
 .thanks-line { display: flex; flex-direction: column; gap: 6px; padding: 22px 26px; border-radius: 14px; border: 2px solid var(--accent); background: var(--wash); }
 .thanks-line b { font: 600 64px/1 var(--f-display); letter-spacing: -.02em; }
 .thanks-line span { font-size: 24px; color: var(--ink-2); }
