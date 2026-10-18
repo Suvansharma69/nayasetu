@@ -421,7 +421,7 @@ Router, intake, retrieval and the guardrail run **before** the graph as plain fu
 | **Official IPC consolidation (1997)** | Legislative Department text (Goa Police copy), sha256-recorded | used for patches | filled 304B and **completed 80 truncated sections** (300's clauses and Exceptions, 506's threat-to-kill limb, 307's life-convict clause…) under strict rules (C4) |
 | **BNS** | Ministry of Home Affairs gazette PDF, Act 45 of 2023, digitally signed | 358 sections | **no trustworthy machine-readable BNS existed** — every GitHub copy was an unvetted hobby project; indiacode.nic.in timed out. So it was parsed from the gazette PDF |
 | **Supreme Court judgments** | "vanga" open archive on AWS S3 (Mumbai), years 2023–2026, **English only** | 828 MB of PDFs, 2,533 + 214 judgments | digital-born PDFs with a text layer (no OCR). Regional-language tars deliberately skipped |
-| **NyayaAnumana** | Hugging Face, gated (accepted terms + token). The 2020–2024 single-judgment test file | 1,827 judgments kept from 31,028 HC + SC rows | filtered to theft / hurt-assault / cheating / criminal breach of trust; read from the zip in place |
+| **NyayaAnumana** | Hugging Face, gated (accepted terms + token). The 2020–2024 single-judgment test file | 1,781 judgments kept from 31,028 HC + SC rows | filtered to theft / hurt-assault / cheating / criminal breach of trust; read from the zip in place |
 | **IPC↔BNS mapping** | built in-project: 575 IPC rows → BNS (574 reviewed in September; 304B → 80 added 2026-10-06 after 304B was patched into the corpus) | 539 bridges, 36 "none" | proposed by a scorer, **every row reviewed** (by Claude, against gazette text — **not by a lawyer**) |
 | **First Schedules** | BNSS (MHA gazette) and CrPC (CRPF copy, amended to 2013) | BNSS 465 rows / 288 sections; CrPC 479 rows / 395 sections | parsed by column position; cognizable / bailable / triable by |
 | **IL-TUR** | ACL 2024 benchmark, gated; only LSI + PCR dev/test splits | 153.6 MB | for evaluation only; the 1.2 GB train splits were never downloaded |
@@ -686,7 +686,7 @@ A self-imposed 20 GB ceiling (the disk actually had ~107 GB free), kept as disci
 |---|---|
 | Transition date | **1 July 2024** (offence date decides) |
 | Sections | IPC **575**, BNS **358** |
-| Judgments in corpus | ~2,750 (918 SC 2023–26 that apply a penal code + 1,827 HC from NyayaAnumana); 2,699 have graph edges |
+| Judgments in corpus | 2,699 (918 SC 2023–26 that apply a penal code + 1,781 HC from NyayaAnumana), every one a graph node |
 | Chunks | **87,969** |
 | Graph | 933 section nodes, 2,699 case nodes, 16,493 cites edges, 539 maps_to edges |
 | Mapping | 575 IPC rows: 539 bridges, 36 none |
@@ -808,7 +808,7 @@ Answer out loud, then check. **Bold** marks the phrase that should be in your an
 ## F3. Data
 
 22. **Where does the data come from?** IPC: civictech JSON (+ official 1997 text for completions); BNS: the MHA gazette PDF; Supreme Court judgments 2023–26 from the open "vanga" S3 archive; High Court judgments from NyayaAnumana (gated HF dataset), a filtered subset; mapping and schedules built in-project.
-23. **How big is it?** 575 IPC + 358 BNS sections; ~2,750 judgments (918 Supreme Court + 1,827 High Court); **87,969 chunks**.
+23. **How big is it?** 575 IPC + 358 BNS sections; 2,699 judgments (918 Supreme Court + 1,781 High Court); **87,969 chunks**.
 24. **Why not all of NyayaAnumana (700K cases)?** Disk and embedding time on a 4 GB GPU, and relevance: a curated subset (theft, hurt, cheating, breach of trust) matched the test cases.
 25. **Why only 2023–2026 SC judgments?** They straddle the transition, giving both IPC and BNS judgments; earlier years add size, not BNS coverage.
 26. **How did you get the BNS text?** Parsed the official gazette PDF — no trustworthy machine-readable BNS existed. Titles are marginal notes, which needed geometry-based parsing.
