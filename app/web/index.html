@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="premium">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -640,6 +640,7 @@ textarea#input:focus { outline: none; border-color: var(--accent); box-shadow: 0
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
 }
 </style>
+<link rel="stylesheet" href="/static/premium.css">
 </head>
 <body>
 <div class="app">
@@ -800,7 +801,7 @@ class LiveRun {
       <div class="run-h"><span class="run-title">${replay ? "Replay of the saved analysis" : "Analysis in progress"}</span>
         <span class="run-meta">${replay ? "" : `<span class="spin"></span>`}<span class="mono" data-t>${replay ? "" : "0:00"}</span></span></div>
       ${trackHTML()}
-      <p class="now" data-now>Starting…</p>
+      <div class="stepnow"><span class="k" data-stepk>${replay ? "Replay" : "Starting"}</span><p class="now" data-now>Starting…</p></div>
       <div data-stamp></div>
       <p class="cands" data-cands hidden></p>
       <div class="ledger-wrap" data-ledger hidden><table class="ledger">
@@ -826,6 +827,7 @@ class LiveRun {
     const i = stageIndex(st);
     $$(".track li", this.el).forEach((x, k) => { if (k < i && !x.classList.contains("on")) x.classList.add("done"); });
     li.classList.remove("done"); li.classList.add("on");
+    $("[data-stepk]", this.el).textContent = `Step ${i + 1} of ${STAGES.length}`;
     this.setNow(esc(NOW[st] || st) + "…");
     if (st === "statute_identifier" && this.done.has("verifier")) {
       this.rounds++;
@@ -987,6 +989,14 @@ class LiveRun {
     $$(".track li", this.el).forEach(x => { x.classList.remove("on"); if (ok && !x.classList.contains("done")) x.classList.add("skip"); });
     $(".run-title", this.el).textContent = ok ? (this.replay ? "Replay of the saved analysis" : "Analysis complete") : "Analysis stopped";
     this.setNow(ok ? "Hover over any entry in the ledger for the reason behind it. The matter file follows." : "");
+    $("[data-stepk]", this.el).textContent = ok ? "Done" : "Stopped";
+    // A finished run folds away so the report below is the focus; the toggle reopens it.
+    if (ok) {
+      this.el.classList.add("folded");
+      $(".run-h", this.el).insertAdjacentHTML("beforeend", `<button type="button" class="tbtn foldbtn" data-fold>Show how it was worked</button>`);
+      const b = $("[data-fold]", this.el);
+      b.onclick = () => { const f = this.el.classList.toggle("folded"); b.textContent = f ? "Show how it was worked" : "Hide the details"; };
+    }
   }
 }
 function countUp(el, n, grouped = false) {
@@ -1063,12 +1073,12 @@ function welcome() {
         <div><b data-f="leaked" class="zero">–</b><span data-f2="checked">unverified citations shown</span></div>
       </div>
     </div>
-    <h2>How each matter is worked</h2>
-    <p class="note">Black boxes are fixed rules, red is the local language model, brass is the citation graph. Nothing leaves this computer.</p>
-    <div class="sheet schema">${schemaSVG()}</div>
     <h2>Sample matters</h2>
     <p class="note">Saved analyses open at once, with a replay of how each was worked. A live analysis takes 1 to 3 minutes on this laptop.</p>
-    <div class="cards" id="samplecards"><p class="note">Loading…</p></div>`);
+    <div class="cards" id="samplecards"><p class="note">Loading…</p></div>
+    <h2>How each matter is worked</h2>
+    <p class="note">Outlined boxes are fixed rules, highlighted ones the local language model, gold the citation graph. Nothing leaves this computer.</p>
+    <div class="sheet schema">${schemaSVG()}</div>`);
   thread.scrollTop = 0;
   $("[data-focus]", w).onclick = () => input.focus();
   $("[data-demo]", w).onclick = () => { if (!busy) openSample("motorcycle_theft"); };
@@ -1224,9 +1234,36 @@ function renderReport(r, host) {
     const show = era => { $$("button", tabs).forEach(b => b.setAttribute("aria-pressed", String(b.dataset.era === era))); runEl.innerHTML = ""; renderRun(r.runs[era], runEl); };
     tabs.innerHTML = eras.map(e => `<button class="tbtn" data-era="${e}">${ERA[e]} part of the period</button>`).join("");
     $$("button", tabs).forEach(b => b.onclick = () => show(b.dataset.era));
-    show(eras[0]); return;
-  }
-  renderRun(r, box);
+    show(eras[0]);
+  } else renderRun(r, box);
+  // Bring the answer into view: the finished run above has folded away.
+  requestAnimationFrame(() => box.scrollIntoView({behavior: "smooth", block: "start"}));
+}
+
+/* The answer in one glance, above everything else in the report: what was charged,
+   how sure, and how much support there is. Each pill opens the bare act; each figure
+   jumps to its part of the report. */
+function resultHTML(r) {
+  const sup = r.charges.filter(c => !c.doubt), dbt = r.charges.filter(c => c.doubt), inc = r.included || [];
+  const n = (k, one, many) => `${k} ${k === 1 ? one : many}`;
+  const head = r.status === "insufficient_data" ? "No charge: too little to go on"
+    : sup.length ? `${n(sup.length, "charge", "charges")} supported` : r.charges.length ? "Sections found, all doubted" : "No offence charged";
+  const pill = (c, kind, badge) => `<button type="button" class="pill ${kind}" data-secref="${esc(r.era)}:${esc(c.section)}" title="Open the bare act">
+    <span class="s">${esc(c.code)} ${esc(c.subsection || c.section)}</span><span>${esc(cleanTitle(c.title))}</span><span class="b">${esc(badge)}</span></button>`;
+  const pills = [...sup.map(c => pill(c, "ok", "Supported")), ...dbt.map(c => pill(c, "warn", "Doubted")),
+    ...inc.map(c => pill(c, "dim", `In ${c.included_in}`))].join("");
+  const rej = (r.unconfirmed || []).length;
+  const kpi = (v, label, jump, zero) => `<button type="button" class="kpi" data-jump="${jump}"><b class="${zero ? "zero" : ""}">${v}</b><span>${esc(label)}</span></button>`;
+  return `<div class="result">
+    <div class="result-h"><span class="big">${esc(head)}</span><span class="sub">${esc(ERA[r.era])} applies · offence ${esc(fmt(r.offence_date))}</span></div>
+    ${pills ? `<div class="pills">${pills}</div>` : ""}
+    ${r.charges.length ? `<div class="kpis">
+      ${kpi((r.precedents || []).length, "precedent judgments", "precs")}
+      ${kpi((r.defenses || []).length, "counter-arguments", "args")}
+      ${kpi(((r.analytics || {}).sections || []).length, "sections with outcome data", "outcomes")}
+      ${kpi(rej, rej === 1 ? "citation rejected by the graph" : "citations rejected by the graph", "sections", !rej)}
+    </div>` : ""}
+  </div>`;
 }
 
 function verdictHTML(r) {
@@ -1266,13 +1303,13 @@ function renderRun(r, box) {
   if (r.status === "insufficient_data" && (r.guardrail || {}).reason === "no_facts_stated")
     h += `<div class="banner warn" style="margin-top:12px"><b>No allegation stated.</b> ${esc(r.guardrail.message)}</div>`;
   else if (r.status === "insufficient_data") h += `<div class="banner info" style="margin-top:12px">Nothing in the corpus is close enough to these facts to ground an analysis, so the model was not asked. The nearest statute sections are listed for review.</div>`;
-  h += verdictHTML(r);
+  h += resultHTML(r) + verdictHTML(r);
   h += `<div class="toolbar"><button class="tbtn" data-memo>${ICON.download}Download research memo</button>
     ${r.charges.length ? `<button class="tbtn" data-askfocus>${ICON.ask}Ask about this matter</button>` : ""}</div>`;
 
   const sup = r.charges.filter(c => !c.doubt), dbt = r.charges.filter(c => c.doubt);
   let k = 0;
-  h += `<h2>Applicable sections<small>select a section number for the bare act</small></h2>`;
+  h += `<h2 data-anchor="sections">Applicable sections<small>select a section number for the bare act</small></h2>`;
   if (!r.charges.length) h += `<p class="note">No section was both proposed and verified for these facts.</p>`;
   sup.forEach(c => h += chargeHTML(c, r.era, "ok", k++));
   dbt.forEach(c => h += chargeHTML(c, r.era, "warn", k++));
@@ -1291,15 +1328,16 @@ function renderRun(r, box) {
     <li><b>Included in</b>: a lesser offence covered by a supported aggravated charge, so it is not counted twice.</li>
     <li><b>Arrest and bail</b> come from the First Schedule of the BNSS or the CrPC; the maximum punishment from the section itself.</li></ul></details>`;
 
-  if (r.charges.length) h += `<h2>Citation graph<small>drag a node; select a section for its bare act</small></h2>
+  // The visual deep-dives come after the answer (charges, precedents, defence, outcomes).
+  let deep = "";
+  if (r.charges.length) deep += `<h2>Citation graph<small>drag a node; select a section for its bare act</small></h2>
     <div class="cgraph" data-cgraph><div class="gl glegend" data-cglegend></div><svg class="fg" role="img" aria-label="Citation graph around the charges"></svg>
       <div class="gfoot"><p class="ghint" data-cghint>Reading the citation graph…</p><span class="gstat" data-cgstat></span></div></div>`;
-  if (r.embedding_map && (r.embedding_map.points || []).length) h += `<h2>How the search saw these facts<small>real BGE-M3 vectors, projected to two dimensions</small></h2>${embedHTML(r.embedding_map, r)}`;
-
   const map = mapSVG(r);
-  if (map) h += `<h2>Evidence map<small>hover to trace links, select a charge to filter</small></h2>${map}`;
+  if (map) deep += `<h2>Evidence map<small>hover to trace links, select a charge to filter</small></h2>${map}`;
+  if (r.embedding_map && (r.embedding_map.points || []).length) deep += `<h2>How the search saw these facts<small>real BGE-M3 vectors, projected to two dimensions</small></h2>${embedHTML(r.embedding_map, r)}`;
 
-  h += `<h2>Precedents<small>${(r.precedents || []).length} verified judgments</small></h2>`;
+  h += `<h2 data-anchor="precs">Precedents<small>${(r.precedents || []).length} verified judgments</small></h2>`;
   if (!(r.precedents || []).length) h += `<p class="note">No precedent: there is no verified section to match.</p>`;
   else h += `<ol class="precs">${r.precedents.map((p, i) => {
     const via = p.via_ipc_predecessor ? ` · through the IPC predecessor` : "";
@@ -1311,7 +1349,7 @@ function renderRun(r, box) {
       <button class="link" data-summ="${esc(p.doc_id)}">Summarise this judgment</button><div data-summout></div></div></details></li>`;
   }).join("")}</ol>`;
 
-  h += `<h2>Counter-arguments for the defence</h2>`;
+  h += `<h2 data-anchor="args">Counter-arguments for the defence</h2>`;
   if (!(r.defenses || []).length) h += `<p class="note">None drafted: there is no verified section.</p>`;
   else h += `<ol class="args">${r.defenses.map((d, i) => `<li data-arg="${i}" data-for="${esc(d.against)}"><div>
       <h3>Against ${esc(d.against)}${d.verified ? "" : ` <span class="status warn" style="margin-left:8px">Failed the final check</span>`}</h3>
@@ -1320,15 +1358,17 @@ function renderRun(r, box) {
       ${(d.precedents || []).length ? `<p class="relies">Relies on ${d.precedents.map(x => x.title ? `${esc(x.label)}, <i>${esc(caseName(x.title))}</i>` : esc(x.label)).join("; ")}</p>` : ""}
       ${(d.issues || []).length ? `<p class="relies">${esc(d.issues.join("; "))}</p>` : ""}</div></li>`).join("")}</ol>`;
 
-  h += `<h2>Outcomes in past judgments</h2>`;
+  h += `<h2 data-anchor="outcomes">Outcomes in past judgments</h2>`;
   const a = r.analytics || {};
   if (a.error) h += `<div class="banner err">${esc(a.error)}</div>`;
   else if ((a.sections || []).length) h += `<p class="note">${esc(a.note)} Figures under ${esc(a.min_judgments)} judgments are not shown. Rows marked ← count IPC-predecessor judgments for a BNS section.</p>${outcomesHTML(a)}`;
   else h += `<p class="note">No verified section to count.</p>`;
+  if (deep) h += `<div class="deep"><div class="label">Explore the evidence</div>${deep}</div>`;
 
   const t = r.timings || {};
   h += `<p class="foot">Run time ${Math.round(Object.values(t).reduce((x, y) => x + y, 0))} s (${Object.entries(t).map(([kk, v]) => `${kk.replace(/_s$/, "")} ${v} s`).join(", ")}). Generated on this computer by a local model; nothing was sent elsewhere.</p>`;
   box.insertAdjacentHTML("beforeend", h);
+  $$("[data-jump]", box).forEach(b => b.onclick = () => $(`[data-anchor="${b.dataset.jump}"]`, box)?.scrollIntoView({behavior: "smooth", block: "start"}));
   wireMap(box); wireReport(r, box); decorateCharges(box); loadReportGraph(r, box);
 }
 
